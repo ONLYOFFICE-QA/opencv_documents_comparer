@@ -89,7 +89,7 @@ def grab(path, filename, number_of_pages):
         num_of_sheet += 1
 
 
-def open_document(list_of_files, extension_from, extension_to):
+def open_document(list_of_files, from_extension, to_extension):
     for file_name in list_of_files:
         extension = file_name.split('.')[-1]
         file_name_for_screen = file_name.split('.')[0]
@@ -99,7 +99,7 @@ def open_document(list_of_files, extension_from, extension_to):
         elif extension == 'doc' or 'docx':
             word = Dispatch('Word.Application')
             word.Visible = True
-            if extension == extension_from:
+            if extension == from_extension:
                 print(f'{custom_path_to_document_from}{file_name}')
                 word = word.Documents.Open(f'{custom_path_to_document_from}{file_name}')
                 word.Repaginate()
@@ -117,7 +117,7 @@ def open_document(list_of_files, extension_from, extension_to):
                 print(statistics_word['num_of_sheets'])
                 grab(path_to_tmpimg_befor_conversion, file_name_for_screen, statistics_word['num_of_sheets'])
                 word.Close()
-            elif extension == extension_to:
+            elif extension == to_extension:
                 print(f'{custom_path_to_document_to}{file_name}')
                 word = word.Documents.Open(f'{custom_path_to_document_to}{file_name}')
                 word.Repaginate()
@@ -136,8 +136,8 @@ def open_document(list_of_files, extension_from, extension_to):
                 grab(path_to_tmpimg_after_conversion, file_name_for_screen, statistics_word['num_of_sheets'])
                 word.Close()
 
-    sb.call(["taskkill", "/IM", "WINWORD.EXE"])
-    sb.call(["taskkill", "/IM", "WINWORD.EXE"])
+        sb.call(["taskkill", "/IM", "WINWORD.EXE"])
+        sb.call(["taskkill", "/IM", "WINWORD.EXE"])
     # sb.call(f'powershell.exe kill -Name WINWORD', shell=True)
 
 
@@ -190,12 +190,11 @@ def get_list_of_file_names(list, ext_from, ext_to):
 
 if __name__ == "__main__":
     doc_for_compare = get_list_of_file_names(list_file_names_doc_from_compare, extension_from, extension_to)
-    # print(doc_for_compare)
-    # create_project_dirs()
-    # open_document(doc_for_compare, extension_from, extension_to)
+    print(doc_for_compare)
+    create_project_dirs()
+    open_document(doc_for_compare, extension_from, extension_to)
 
     # start_to_compare_images()
-
     # sb.call(f'powershell.exe rm {path_to_tmpimg_befor_conversion}*,'
     #         f'{path_to_tmpimg_after_conversion}* -Recurse',
     #         shell=True)
