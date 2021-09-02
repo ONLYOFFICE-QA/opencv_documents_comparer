@@ -78,66 +78,58 @@ def run(file_name):
 
 
 def grab(path, filename, number_of_pages):
-    sleep(5)
+    sleep(wait_for_open)
     num_of_sheet = 1
     for el in range(int(number_of_pages)):
         im = ImageGrab.grab()
         im.save(path + filename + str(f'_{num_of_sheet}') + '.png', 'PNG')
         # grab(filename + str(number_of_pages), path2)
+        pg.click()
         pg.press('pgdn')
         sleep(0.3)
         num_of_sheet += 1
 
 
-def open_document(list_of_files, extension_from, extension_to):
+def create_word_json(word, file_name_for_save, path_for_save):
+    statistics_word = {
+        'num_of_sheets': f'{word.ComputeStatistics(2)}',
+        'number_of_lines': f'{word.ComputeStatistics(1)}',
+        'word_count': f'{word.ComputeStatistics(0)}',
+        'number_of_characters_without_spaces': f'{word.ComputeStatistics(3)}',
+        'number_of_characters_with_spaces': f'{word.ComputeStatistics(5)}',
+        'number_of_abzad': f'{word.ComputeStatistics(4)}',
+    }
+    with open(f'{path_for_save}{file_name_for_save}_doc.json', 'w') as f:
+        json.dump(statistics_word, f)
+    return statistics_word['num_of_sheets']
+
+
+def word_opener(file_name, path_for_open, path_for_save):
+    word = Dispatch('Word.Application')
+    word.Visible = True
+    file_name_for_screen = file_name.split('.')[0]
+    # print(f'{custom_path_to_document_from}{file_name}')
+    word = word.Documents.Open(f'{path_for_open}{file_name}')
+    word.Repaginate()
+    num_of_sheets = create_word_json(word, file_name_for_screen, path_for_save)
+    # print(statistics_word['num_of_sheets'])
+    grab(path_for_save, file_name_for_screen, num_of_sheets)
+    word.Close()
+
+
+def open_document_for_compare(list_of_files, from_extension, to_extension):
     for file_name in list_of_files:
         extension = file_name.split('.')[-1]
-        file_name_for_screen = file_name.split('.')[0]
         if extension == 'ppt' or extension == 'pptx':
             run(file_name, 'POWERPNT.EXE')
 
         elif extension == 'doc' or 'docx':
-            word = Dispatch('Word.Application')
-            word.Visible = True
-            if extension == extension_from:
-                print(f'{custom_path_to_document_from}{file_name}')
-                word = word.Documents.Open(f'{custom_path_to_document_from}{file_name}')
-                word.Repaginate()
-                num_of_sheets = word.ComputeStatistics(2)
-                statistics_word = {
-                    'num_of_sheets': f'{word.ComputeStatistics(2)}',
-                    'number_of_lines': f'{word.ComputeStatistics(1)}',
-                    'word_count': f'{word.ComputeStatistics(0)}',
-                    'number_of_characters_without_spaces': f'{word.ComputeStatistics(3)}',
-                    'number_of_characters_with_spaces': f'{word.ComputeStatistics(5)}',
-                    'number_of_abzad': f'{word.ComputeStatistics(4)}',
-                }
-                with open(f'{path_to_result}{file_name_for_screen}_doc.json', 'w') as f:
-                    json.dump(statistics_word, f)
-                print(statistics_word['num_of_sheets'])
-                grab(path_to_tmpimg_befor_conversion, file_name_for_screen, statistics_word['num_of_sheets'])
-                word.Close()
-            elif extension == extension_to:
-                print(f'{custom_path_to_document_to}{file_name}')
-                word = word.Documents.Open(f'{custom_path_to_document_to}{file_name}')
-                word.Repaginate()
-                statistics_word = {
-                    'num_of_sheets': f'{word.ComputeStatistics(2)}',
-                    'number_of_lines': f'{word.ComputeStatistics(1)}',
-                    'word_count': f'{word.ComputeStatistics(0)}',
-                    'number_of_characters_without_spaces': f'{word.ComputeStatistics(3)}',
-                    'number_of_characters_with_spaces': f'{word.ComputeStatistics(5)}',
-                    'number_of_abzad': f'{word.ComputeStatistics(4)}',
-                }
-                with open(f'{path_to_result}{file_name_for_screen}_docx.json', 'w') as f:
-                    json.dump(statistics_word, f)
-                print(statistics_word['num_of_sheets'])
-                print(statistics_word['num_of_sheets'])
-                grab(path_to_tmpimg_after_conversion, file_name_for_screen, statistics_word['num_of_sheets'])
-                word.Close()
+            word_opener(file_name, custom_path_to_document_to, path_to_tmpimg_after_conversion)
+            file_name_from = file_name.replace(f'.{to_extension}', f'.{from_extension}')
+            word_opener(file_name_from, custom_path_to_document_from, path_to_tmpimg_befor_conversion)
 
-    sb.call(["taskkill", "/IM", "WINWORD.EXE"])
-    sb.call(["taskkill", "/IM", "WINWORD.EXE"])
+    # sb.call(["taskkill", "/IM", "WINWORD.EXE"])
+    # sb.call(["taskkill", "/IM", "WINWORD.EXE"])
     # sb.call(f'powershell.exe kill -Name WINWORD', shell=True)
 
 
@@ -155,12 +147,19 @@ def create_project_dirs():
 def start_to_compare_images():
     list_of_images = os.listdir(path_to_tmpimg_befor_conversion)
     for image_name in track(list_of_images, description='Comparing In Progress'):
-        compare_img(path_to_tmpimg_befor_conversion + image_name,
-                    path_to_tmpimg_after_conversion + image_name,
-                    image_name)
-    sb.call(f'powershell.exe rm {path_to_tmpimg_befor_conversion}*,'
-            f'{path_to_tmpimg_after_conversion}* -Recurse',
-            shell=True)
+        if image_name.split('.')[-1] != 'json':
+            if os.path.exists(f'{path_to_tmpimg_befor_conversion}{image_name}') and os.path.exists(
+                    f'{path_to_tmpimg_after_conversion}{image_name}'):
+                compare_img(path_to_tmpimg_befor_conversion + image_name,
+                            path_to_tmpimg_after_conversion + image_name,
+                            image_name)
+            else:
+                print(f'[bold red] FIle not found [/bold red]{image_name}')
+        else:
+            print(f'[bold red] JSON OR WATH? [/bold red]{image_name}')
+    # sb.call(f'powershell.exe rm {path_to_tmpimg_befor_conversion}*,'
+    #         f'{path_to_tmpimg_after_conversion}* -Recurse',
+    #         shell=True)
 
 
 def dict_compare(d1, d2):
@@ -179,23 +178,15 @@ def run_compare_statistics():
     print(modified)
 
 
-def get_list_of_file_names(list, ext_from, ext_to):
-    doc_for_compare = []
-    for names in list:
-        doc_for_compare.append(f'{names}.{ext_from}')
-        doc_for_compare.append(f'{names}.{ext_to}')
-
-    return doc_for_compare
-
-
 if __name__ == "__main__":
-    doc_for_compare = get_list_of_file_names(list_file_names_doc_from_compare, extension_from, extension_to)
-    # print(doc_for_compare)
+    # sb.call(f'powershell.exe rm {path_to_tmpimg_befor_conversion}*,'
+    #         f'{path_to_tmpimg_after_conversion}* -Recurse',
+    #         shell=True)
+    #
     # create_project_dirs()
-    # open_document(doc_for_compare, extension_from, extension_to)
+    # open_document_for_compare(list_file_names_doc_from_compare, extension_from, extension_to)
 
-    # start_to_compare_images()
-
+    start_to_compare_images()
     # sb.call(f'powershell.exe rm {path_to_tmpimg_befor_conversion}*,'
     #         f'{path_to_tmpimg_after_conversion}* -Recurse',
     #         shell=True)

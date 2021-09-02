@@ -4,9 +4,11 @@ version = '6.4.1.8'
 extension_from = 'doc'
 extension_to = 'docx'
 
+wait_for_open = 3  # время ожидания открытия
+
 list_file_names_doc_from_compare = [
-    '1267452368_Tornedalsradets_Arsmote_2009_protokoll',
-    'Alimentaire_Etude_Planning_StrategiqueKM_2010'
+    '1267452368_Tornedalsradets_Arsmote_2009_protokoll.docx',
+    'Alimentaire_Etude_Planning_StrategiqueKM_2010.docx'
 ]
 
 path_to_project = os.getcwd()
