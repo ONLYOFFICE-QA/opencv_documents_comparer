@@ -1,4 +1,3 @@
-import os
 import shlex
 import subprocess as sb
 from time import sleep
@@ -8,12 +7,13 @@ import numpy as np
 import pyautogui as pg
 from PIL import ImageGrab
 from skimage.metrics import structural_similarity
+from win32com.client import Dispatch
 
-list_of_files = os.getcwd() + '/data/files/'
-ppt_path = os.getcwd() + '/data/before/'
-pptx_path = os.getcwd() + '/data/after/'
-ppt_path_imgmagic = 'data/before/'
-pptx_path_imgmagic = 'data/after/'
+from var import *
+
+
+# ppt_path_imgmagic = 'data/tmp/before/'
+# pptx_path_imgmagic = 'data/tmp/after/'
 
 
 def compare_img(pathppt, pathpptx, file_name):
@@ -104,6 +104,23 @@ def grab(filename, path):
         number += 1
 
 
+def open_document(list_of_files):
+    for file_name in list_of_files:
+        index = file_name.split('.')
+        if index[-1] == 'ppt' or index[1] == 'pptx':
+            run(file_name, 'POWERPNT.EXE')
+
+        elif index[-1] == 'doc' or 'docx':
+            word = Dispatch('Word.Application')
+            word.Visible = True
+            word = word.Documents.Open(f'{list_of_files}{file_name}')
+            # get number of sheets
+            word.Repaginate()
+            num_of_sheets = word.ComputeStatistics(2)
+            print(num_of_sheets)
+            word.Close()
+
+
 def go():
     list_f = os.listdir(list_of_files)
     for file_name in list_f:
@@ -114,23 +131,36 @@ def go():
             run(file_name)
             sleep(3)
             file_name = file_name.replace('after', '')
-            grab(file_name, pptx_path)
-            sb.call(["taskkill", "/IM", "POWERPNT.EXE"])
+            grab(file_name, path_to_files_after_conversion)
+            sb.call(["taskkill", "/IM", "POWERPNT.EXE /T"])
         elif index[1] == 'before':
             run(file_name)
             sleep(3)
             file_name = file_name.replace('before', '')
-            grab(file_name, ppt_path)
+            grab(file_name, path_to_files_befor_conversion)
             sb.call(["taskkill", "/IM", "POWERPNT.EXE"])
 
 
+def create_project_dirs():
+    if not os.path.exists(path_to_tmpimg_befor_conversion):
+        os.mkdir(path_to_tmpimg_befor_conversion)
+
+    if not os.path.exists(path_to_tmpimg_after_conversion):
+        os.mkdir(path_to_tmpimg_after_conversion)
+
+    if not os.path.exists(path_to_result):
+        os.mkdir(path_to_result)
+
+
 if __name__ == "__main__":
+    list_of_files = os.listdir(path_to_compaire_files)
+    create_project_dirs()
+    # sb.call(f'powershell.exe rm {path_to_tmpimg_befor_conversion}* -Recurse', shell=True)
     # go()
-    mass = os.listdir(ppt_path)
-    for filename in mass:
-        compare_img(ppt_path + filename, pptx_path + filename, filename)
-        # os.remove(ppt_path + filename)
-        # os.remove(pptx_path + filename)
-        # print(ppt_path + filename)
-        # compare_img_wirh_imagemagic(ppt_path_imgmagic + filename, pptx_path_imgmagic + filename, filename)
-       
+    # mass = os.listdir(path_to_files_befor_conversion)
+    # for filename in mass:
+    #     compare_img(path_to_files_befor_conversion + filename, path_to_files_after_conversion + filename, filename)
+    #     # os.remove(ppt_path + filename)
+    #     # os.remove(path_to_files_after_conversion + filename)
+    #     # print(ppt_path + filename)
+    #     # compare_img_wirh_imagemagic(ppt_path_imgmagic + filename, pptx_path_imgmagic + filename, filename)
