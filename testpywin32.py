@@ -6,7 +6,7 @@ from win32com.client import Dispatch
 # open Word
 word = Dispatch('Word.Application')
 word.Visible = True
-word = word.Documents.Open(os.getcwd() + '/data/files/Alimentaire_Etude_Planning_StrategiqueKM_2010.doc')
+word = word.Documents.Open(os.getcwd() + '/data/02c.docx')
 
 # get number_of_pages of sheets
 word.Repaginate()

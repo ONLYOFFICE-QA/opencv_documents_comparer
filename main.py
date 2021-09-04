@@ -14,10 +14,6 @@ from win32com.client import Dispatch
 from var import *
 
 
-# ppt_path_imgmagic = 'data/tmp/before/'
-# pptx_path_imgmagic = 'data/tmp/after/'
-
-
 def compare_img(path_to_image_befor_conversion, path_to_image_after_conversion, file_name):
     before = cv2.imread(path_to_image_befor_conversion)
     after = cv2.imread(path_to_image_after_conversion)
@@ -101,7 +97,7 @@ def create_word_json(word, file_name_for_save, path_for_save):
     }
     with open(f'{path_for_save}{file_name_for_save}_doc.json', 'w') as f:
         json.dump(statistics_word, f)
-    return statistics_word['num_of_sheets']
+    return statistics_word
 
 
 def word_opener(file_name, path_for_open, path_for_save):
@@ -111,10 +107,8 @@ def word_opener(file_name, path_for_open, path_for_save):
     # print(f'{custom_path_to_document_from}{file_name}')
     word = word.Documents.Open(f'{path_for_open}{file_name}')
     word.Repaginate()
-    num_of_sheets = create_word_json(word, file_name_for_screen, path_for_save)
-    # print(statistics_word['num_of_sheets'])
-    grab(path_for_save, file_name_for_screen, num_of_sheets)
-    word.Close()
+    statistics_word = create_word_json(word, file_name_for_screen, path_for_save)
+    return word, statistics_word
 
 
 def open_document_for_compare(list_of_files, from_extension, to_extension):
@@ -124,10 +118,13 @@ def open_document_for_compare(list_of_files, from_extension, to_extension):
             run(file_name, 'POWERPNT.EXE')
 
         elif extension == 'doc' or 'docx':
-            word_opener(file_name, custom_path_to_document_to, path_to_tmpimg_after_conversion)
+            word, statistics_word = word_opener(file_name, custom_path_to_document_to, path_to_tmpimg_after_conversion)
+            grab(path_to_tmpimg_after_conversion, file_name.split('.')[0], statistics_word['num_of_sheets'])
+            word.Close()
             file_name_from = file_name.replace(f'.{to_extension}', f'.{from_extension}')
-            word_opener(file_name_from, custom_path_to_document_from, path_to_tmpimg_befor_conversion)
-
+            word, statistics_word = word_opener(file_name_from, custom_path_to_document_from,
+                                                path_to_tmpimg_befor_conversion)
+            word.Close()
     # sb.call(["taskkill", "/IM", "WINWORD.EXE"])
     # sb.call(["taskkill", "/IM", "WINWORD.EXE"])
     # sb.call(f'powershell.exe kill -Name WINWORD', shell=True)
