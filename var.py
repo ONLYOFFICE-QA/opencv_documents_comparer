@@ -14,6 +14,7 @@ list_file_names_doc_from_compare = [
 path_to_project = os.getcwd()
 
 custom_path_to_document_to = f'd:/ProjectsAndVM/data_db/results/{version}_xmllint_{extension_to}_{extension_from}/'
+# custom_path_to_document_to = f'd:/ProjectsAndVM/data_db/results/{version}_xmllint_{extension_from}_{extension_to}/'
 
 custom_path_to_document_from = f'd:/ProjectsAndVM/data_db/files/{extension_from}/'
 
@@ -22,6 +23,7 @@ path_to_result = path_to_project + '/data/result/'
 path_to_tmpimg_after_conversion = path_to_project + '/data/tmp/after/'
 path_to_tmpimg_befor_conversion = path_to_project + '/data/tmp/before/'
 path_to_errors_file = path_to_project + '/data/errors/'
+path_to_not_tested_file = path_to_project + '/data/not_tested/'
 path_to_temp_in_test = path_to_project + '/data/tmp/in_test/'
 
 # папки исходных файлов должны называться как расширения,

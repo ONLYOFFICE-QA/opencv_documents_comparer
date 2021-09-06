@@ -1,6 +1,8 @@
 import os
 import shutil
 
+# инструметы для работы
+
 path_list_from = 'd:\\ProjectsAndVM\data_db\\results\\6.5.0.1_xmllint_pptx_ppt\\errors\\'
 path_files_from = 'd:\\ProjectsAndVM\\data_db\\results\\6.4.1.8_xmllint_pptx_ppt\\'
 path_to_sours_files = 'D:\\ProjectsAndVM\\data_db\\files\\ppt\\'
