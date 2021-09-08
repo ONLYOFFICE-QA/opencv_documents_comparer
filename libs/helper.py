@@ -21,9 +21,9 @@ class Helper:
     def create_dir(path_to_dir):
         if not os.path.exists(path_to_dir):
             os.mkdir(path_to_dir)
-        else:
-            print('')
-            # print(f'[bold red]Folder exists: [/bold red]{path_to_dir}')
+        # else:
+        #     print('')
+        #     # print(f'[bold red]Folder exists: [/bold red]{path_to_dir}')
 
     # принимает к каталогу с фалвми которые нужно переименовать
     @staticmethod

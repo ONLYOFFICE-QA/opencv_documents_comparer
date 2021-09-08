@@ -1,12 +1,15 @@
+from time import sleep
+
 from rich import print
 from win32com.client import Dispatch
+import pyautogui as pg
 
 from Compare_Image import CompareImage
 from helper import Helper
 from var import *
 
 
-class PowerPoint(Helper, CompareImage):
+class PowerPoint(Helper):
 
     def __init__(self):
         self.create_project_dirs()
@@ -27,9 +30,15 @@ class PowerPoint(Helper, CompareImage):
     def get_screenshot(self, file_name, path_to_save_screen):
         print(f'[bold green]In test[/bold green] {file_name}')
         slide_count, presentation = self.opener_power_point(path_to_folder_for_test, file_name)
-        self.grab(path_to_save_screen, file_name, slide_count)
+        sleep(wait_for_open)
+        page_num = 1
+        for page in range(slide_count):
+            CompareImage.grab(path_to_save_screen, file_name, page_num)
+            pg.click()
+            pg.press('pgdn')
+            sleep(wait_for_press)
+            page_num += 1
         presentation.Close()
-        # sb.call(f'powershell.exe kill -Name POWERPNT', shell=True)
         return slide_count
 
     def compare(self, list_of_files, from_extension, to_extension):
@@ -39,7 +48,6 @@ class PowerPoint(Helper, CompareImage):
                 slide_count_after = self.get_screenshot(file_name, path_to_tmpimg_after_conversion)
                 slide_count_before = self.get_screenshot(file_name_from, path_to_tmpimg_befor_conversion)
                 # sb.call(f'powershell.exe kill -Name POWERPNT', shell=True)
-
                 if slide_count_after != slide_count_before:
                     self.copy(f'{custom_path_to_document_to}{file_name}', f'{path_to_errors_file}{file_name}')
                     self.copy(f'{custom_path_to_document_from}{file_name_from}', f'{path_to_errors_file}{file_name}')

@@ -2,3 +2,6 @@ data/
 env/
 .idea/
 /configure.json
+
+dist/
+build/

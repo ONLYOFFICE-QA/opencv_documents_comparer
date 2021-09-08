@@ -3,4 +3,6 @@ numpy
 scikit-image
 PyAutoGUI
 rich
+tqdm
+pywin32
 https://github.com/pyinstaller/pyinstaller/archive/develop.zip
