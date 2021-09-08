@@ -3,3 +3,4 @@ numpy
 scikit-image
 PyAutoGUI
 rich
+https://github.com/pyinstaller/pyinstaller/archive/develop.zip

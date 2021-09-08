@@ -1,4 +1,5 @@
 from time import sleep
+import imageio
 
 import cv2
 import numpy as np
@@ -50,11 +51,20 @@ class CompareImage:
         sheet = file_name.split('_')[-1]
         file_name_for_print = file_name.split('_')[0]
         print(f"{file_name_for_print} Sheet:{sheet} similarity", score * 100)
-        cv2.imwrite(f'{path_to_result}{folder_name}/{file_name}_before_conv.png', before)
-        cv2.imwrite(f'{path_to_result}{folder_name}/{file_name}_after_conv.png', after)
+
+        # cv2.imwrite(f'{path_to_result}{folder_name}/{file_name}_before_conv.png', before)
+        # cv2.imwrite(f'{path_to_result}{folder_name}/{file_name}_after_conv.png', after)
         # cv2.imwrite(os.getcwd() + f'\\data/{number_of_pages}diff.png', diff)
         # cv2.imwrite(os.getcwd() + f'\\data/{number_of_pages}_mask.png', mask)
         # cv2.imwrite(f'{path_to_result}{folder_name}/{file_name}_filled_after.png', filled_after)
+        # images = [imageio.imread(f'{path_to_result}{folder_name}/{file_name}_before_conv.png'),
+        #           imageio.imread(f'{path_to_result}{folder_name}/{file_name}_after_conv.png')]
+        images = [before,
+                  after]
+        imageio.mimsave(f'{path_to_result}{folder_name}/{file_name}.gif', images, duration=1)
+        # Helper.delete(f'{path_to_result}{folder_name}/{file_name}_before_conv.png')
+        # Helper.delete(f'{path_to_result}{folder_name}/{file_name}_after_conv.png')
+
 
     @staticmethod
     def grab(path, filename, number_of_pages):
@@ -102,8 +112,8 @@ class CompareImage:
             else:
                 print(f'[bold red] FIle not found [/bold red]{image_name}')
 
-        Helper.delete(f'{path_to_tmpimg_after_conversion}*')
-        Helper.delete(f'{path_to_tmpimg_befor_conversion}*')
+        # Helper.delete(f'{path_to_tmpimg_after_conversion}*')
+        # Helper.delete(f'{path_to_tmpimg_befor_conversion}*')
 
     # def run_compare_statistics():
     #     a = json.load(open(path_to_result + 'Alimentaire_Etude_Planning_StrategiqueKM_2010_doc.json'))

@@ -1,10 +1,14 @@
+import csv
+import io
 import json
+import os
 import subprocess as sb
 
 from rich import print
 from rich.progress import track
 from win32com.client import Dispatch
 
+from Compare_Image import CompareImage
 from helper import Helper
 from var import *
 
@@ -59,7 +63,7 @@ class Word(Helper):
                 print(f'[bold green]In test[/bold green] {file_name_from}')
                 statistics_word_before = self.word_opener(file_name_from, custom_path_to_document_from)
 
-                modified = self.dict_compare(statistics_word_after, statistics_word_before)
+                modified = self.dict_compare(statistics_word_before, statistics_word_after)
 
                 if modified != {}:
                     print(modified)
@@ -68,6 +72,18 @@ class Word(Helper):
 
                     self.copy(f'{custom_path_to_document_from}{file_name_from}',
                               f'{path_to_errors_file}{file_name_from}')
+
+                    with io.open('report.csv', 'w', encoding="utf-8") as csvfile:
+                        writer = csv.writer(csvfile, delimiter=';')
+                        # writer.writerow(['file name', 'modified keys', 'values'])
+                        # print('tut')
+                        # print(file_name, (m for m in modified.keys()), (m[m] for m in modified.values()))
+                        modified_keys = [file_name]
+                        for m in modified.keys():
+                            modified_keys.append(m)
+                            for z in modified.values():
+                                modified_keys.append(z)
+                        writer.writerow(modified_keys)
 
                     with open(f'{path_to_errors_file}{file_name}_difference.json', 'w') as f:
                         json.dump(modified, f)
@@ -78,3 +94,4 @@ class Word(Helper):
     # sb.call(["taskkill", "/IM", "WINWORD.EXE"])
     # sb.call(["taskkill", "/IM", "WINWORD.EXE"])
     # sb.call(f'powershell.exe kill -Name WINWORD', shell=True)
+

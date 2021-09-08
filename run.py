@@ -1,13 +1,14 @@
 from tqdm import tqdm
 
-from comapare_doc_docx import Word
+from Compare_Image import CompareImage
+from word import Word
+from word_compaire_image import WordCompareImg
 
 if __name__ == "__main__":
     for i in tqdm(range(1)):
-        # PowerPoint()
-
-        # CompareImage()
-        Word()
+        CompareImage()
+        # Word()
+        # WordCompareImg()
         # sb.call(["taskkill", "/IM", "WINWORD.EXE" "/T"])
         # Word.delete(path_to_temp_in_test)
 

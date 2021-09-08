@@ -22,7 +22,8 @@ class Helper:
         if not os.path.exists(path_to_dir):
             os.mkdir(path_to_dir)
         else:
-            print(f'[bold red]Folder exists: [/bold red]{path_to_dir}')
+            print('')
+            # print(f'[bold red]Folder exists: [/bold red]{path_to_dir}')
 
     # принимает к каталогу с фалвми которые нужно переименовать
     @staticmethod
@@ -58,8 +59,8 @@ class Helper:
         return modified
 
     @staticmethod
-    def run(file_name):
-        sb.Popen([r"C:\Program Files (x86)\Microsoft Office\root\Office16\POWERPNT.EXE", f"./data/files/{file_name}"])
+    def run(path, file_name, office):
+        sb.Popen([f"{ms_office}{office}", f"{path}{file_name}"])
 
     @staticmethod
     def create_word_json(word, file_name_for_save, path_for_save):
@@ -86,8 +87,13 @@ class Helper:
 
     def create_project_dirs(self):
         print('')
+        self.create_dir(path_to_data)
+        self.create_dir(path_to_tmp)
+        self.create_dir(path_to_result)
+        self.create_dir(path_to_compare_files)
         self.create_dir(path_to_tmpimg_befor_conversion)
         self.create_dir(path_to_tmpimg_after_conversion)
-        self.create_dir(path_to_result)
         self.create_dir(path_to_temp_in_test)
         self.create_dir(path_to_folder_for_test)
+        self.create_dir(path_to_errors_file)
+        self.create_dir(path_to_not_tested_file)
