@@ -1,12 +1,14 @@
 from tqdm import tqdm
+from multiprocessing import Process
 
+from libs.get_error import run_get_pr, ggg
 from libs.word import WordCompareImg, Word
 from var import *
 
 if __name__ == "__main__":
     for i in tqdm(range(1)):
-        # CompareImage()
-        # Word(os.listdir(custom_path_to_document_to))
+        p1 = Process(target=run_get_pr)
+        p1.start()
         WordCompareImg()
-        # sb.call(["taskkill", "/IM", "WINWORD.EXE" "/T"])
-        # Word.delete(path_to_temp_in_test)
+        p1.terminate()
+
