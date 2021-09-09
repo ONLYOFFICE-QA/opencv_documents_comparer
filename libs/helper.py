@@ -40,7 +40,7 @@ class Helper:
                 os.rename(f'{dir_for_rename_files}{file}', f'{dir_for_rename_files}{file_name}.{extension}')
 
     @staticmethod
-    def preparing_files(file_name):
+    def preparing_file_names(file_name):
         file_name_for_test = file_name.replace(')', '_')
         file_name_for_test = file_name_for_test.replace('(', '_')
         file_name_for_test = file_name_for_test.replace(' ', '_')
@@ -79,10 +79,10 @@ class Helper:
     def copy_for_test(self, list_of_files=list_file_names_doc_from_compare, ext_from=extension_from,
                       ext_to=extension_to):
         for file_name in list_of_files:
-            self.copy(f'{custom_path_to_document_to}{file_name}',
+            self.copy(f'{custom_doc_to}{file_name}',
                       f'{path_to_folder_for_test}{file_name}')
             file_name_from = file_name.replace(f'.{ext_to}', f'.{ext_from}')
-            self.copy(f'{custom_path_to_document_from}{file_name_from}',
+            self.copy(f'{custom_doc_from}{file_name_from}',
                       f'{path_to_folder_for_test}{file_name_from}')
 
     def create_project_dirs(self):

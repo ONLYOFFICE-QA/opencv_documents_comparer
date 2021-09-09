@@ -69,7 +69,6 @@ class CompareImage:
         # grab(filename + str(number_of_pages), path2)
 
 
-
     def start_to_compare_images(self):
         list_of_images = os.listdir(path_to_tmpimg_after_conversion)
         for image_name in track(list_of_images, description='Comparing In Progress'):

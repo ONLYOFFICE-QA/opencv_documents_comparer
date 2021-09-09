@@ -8,14 +8,14 @@ wait_for_open = 5  # время ожидания открытия
 wait_for_press = 0.5  # время ожидания открытия
 
 list_file_names_doc_from_compare = [
-    '_4__.docx'
+    'chinese.docx'
 ]
 
-custom_path_to_document_to = f'd:/ProjectsAndVM/data_db/results/{version}_xmllint_{extension_to}_{extension_from}/'
-# custom_path_to_document_to = f'D:/documents/results/{version}_xmllint_{extension_to}_{extension_from}/'
-# custom_path_to_document_to = f'd:/ProjectsAndVM/data_db/results/{version}_xmllint_{extension_from}_{extension_to}/'
-custom_path_to_document_from = f'd:/ProjectsAndVM/data_db/files/{extension_from}/'
-# custom_path_to_document_from = f'D:/documents/files/{extension_from}/'
+custom_doc_to = f'd:/ProjectsAndVM/data_db/results/{version}_xmllint_{extension_to}_{extension_from}/'
+# custom_doc_to = f'D:/documents/results/{version}_xmllint_{extension_to}_{extension_from}/'
+# custom_doc_to = f'd:/ProjectsAndVM/data_db/results/{version}_xmllint_{extension_from}_{extension_to}/'
+custom_doc_from = f'd:/ProjectsAndVM/data_db/files/{extension_from}/'
+# custom_doc_from = f'D:/documents/files/{extension_from}/'
 
 ms_office = 'C:/Program Files (x86)/Microsoft Office/root/Office16/'
 word = 'WINWORD.EXE'

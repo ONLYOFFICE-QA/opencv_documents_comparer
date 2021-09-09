@@ -49,8 +49,8 @@ class PowerPoint(Helper):
                 slide_count_before = self.get_screenshot(file_name_from, path_to_tmpimg_befor_conversion)
                 # sb.call(f'powershell.exe kill -Name POWERPNT', shell=True)
                 if slide_count_after != slide_count_before:
-                    self.copy(f'{custom_path_to_document_to}{file_name}', f'{path_to_errors_file}{file_name}')
-                    self.copy(f'{custom_path_to_document_from}{file_name_from}', f'{path_to_errors_file}{file_name}')
+                    self.copy(f'{custom_doc_to}{file_name}', f'{path_to_errors_file}{file_name}')
+                    self.copy(f'{custom_doc_from}{file_name_from}', f'{path_to_errors_file}{file_name}')
                     print('[bold red]SLIDE COUNT DIFFERENT[/bold red]')
                 else:
                     CompareImage()

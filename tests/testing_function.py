@@ -44,4 +44,4 @@ def presentation_slide_count(filename):
     presentation.Close()
 
 
-presentation_slide_count(f'{custom_path_to_document_to}2.pptx')
+presentation_slide_count(f'{custom_doc_to}2.pptx')
