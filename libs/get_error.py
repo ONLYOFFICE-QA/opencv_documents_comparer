@@ -6,11 +6,18 @@ import pyautogui as pg
 import subprocess as sb
 
 ClassName = []
-coord = []
 
-
-def get_coord():
-    pass
+# coordinate = []
+#
+#
+# def get_coord(hwnd, ctx):
+#     if win32gui.IsWindowVisible(hwnd):
+#         if win32gui.GetClassName(hwnd) == 'OpusApp':
+#             win32gui.ShowWindow(hwnd, win32con.SW_MAXIMIZE)
+#             win32gui.SetForegroundWindow(hwnd)
+#             coordinate.clear()
+#             coordinate.append(win32gui.GetWindowRect(hwnd))
+#     pass
 
 
 def get_windows_title(hwnd, ctx):
@@ -57,6 +64,11 @@ def check():
         elif ClassName[1] == 'Удаление нескольких элементов':
             print(ClassName[1])
             # pg.press('enter')
+            ClassName.clear()
+
+        elif ClassName[1] == 'Сохранить как':
+            print(ClassName[1])
+            sb.call(f'powershell.exe kill -Name WINWORD', shell=True)
             ClassName.clear()
 
     elif ClassName[0] == 'bosa_sdm_msword':

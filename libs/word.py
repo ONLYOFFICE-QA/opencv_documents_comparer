@@ -1,15 +1,11 @@
 import csv
 import io
 import json
-import subprocess as sb
-from time import sleep
 
 from rich import print
 from rich.progress import track
 from win32com.client import Dispatch
-import pyautogui as pg
 
-from libs.Compare_Image import CompareImage
 from libs.helper import Helper
 from var import *
 
@@ -43,15 +39,13 @@ class Word(Helper):
         # word_app.DisplayAlerts = False
         try:
             word_app = word_app.Documents.Open(f'{path_for_open}{file_name}', None, True)
-            # word_app.Repaginate()
             statistics_word = Word.get_word_metadata(word_app)
         except Exception:
             print('[bold red]NOT TESTED!!![/bold red]')
-            # Word.copy(f'{path_for_open}{file_name}',
-            #           f'{path_to_not_tested_file}{file_name}')
             statistics_word = {}
-        # word_app.Close()
-        sb.call(f'powershell.exe kill -Name WINWORD', shell=True)
+        word_app.Close(False)
+        # sb.call(f'powershell.exe kill -Name WINWORD', shell=True)
+        # sb.call(["taskkill", "/IM", "WINWORD.EXE", "/T"])
         return statistics_word
 
     def open_document_and_compare(self, list_of_files, from_extension=extension_from, to_extension=extension_to):
@@ -75,22 +69,16 @@ class Word(Helper):
 
                     if statistics_word_after == {} or statistics_word_before == {}:
                         print('[bold red]NOT TESTED, Statistics empty!!![/bold red]')
-                        self.copy(f'{custom_doc_to}{file_name}',
-                                  f'{path_to_not_tested_file}{file_name}')
-
-                        self.copy(f'{custom_doc_from}{file_name_from}',
-                                  f'{path_to_not_tested_file}{file_name_from}')
+                        self.copy_to_not_tested(file_name,
+                                                file_name_from)
 
                     else:
                         modified = self.dict_compare(statistics_word_before, statistics_word_after)
 
                         if modified != {}:
                             print(modified)
-                            self.copy(f'{custom_doc_to}{file_name}',
-                                      f'{path_to_errors_file}{file_name}')
-
-                            self.copy(f'{custom_doc_from}{file_name_from}',
-                                      f'{path_to_errors_file}{file_name_from}')
+                            self.copy_to_errors(file_name,
+                                                file_name_from)
 
                             writer = csv.writer(csvfile, delimiter=';')
                             modified_keys = [file_name]

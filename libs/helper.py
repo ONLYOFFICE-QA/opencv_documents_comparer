@@ -60,7 +60,7 @@ class Helper:
 
     @staticmethod
     def run(path, file_name, office):
-        sb.Popen([f"{ms_office}{office}", f"{path}{file_name}"])
+        sb.Popen([f"{ms_office}{office}", '-t', f"{path}{file_name}"])
 
     @staticmethod
     def create_word_json(word, file_name_for_save, path_for_save):
@@ -85,15 +85,29 @@ class Helper:
             self.copy(f'{custom_doc_from}{file_name_from}',
                       f'{path_to_folder_for_test}{file_name_from}')
 
+    def copy_to_not_tested(self, file_name, file_name_from):
+        self.copy(f'{custom_doc_to}{file_name}',
+                  f'{path_to_not_tested_file}{file_name}')
+
+        self.copy(f'{custom_doc_from}{file_name_from}',
+                  f'{path_to_not_tested_file}{file_name_from}')
+
+    def copy_to_errors(self, file_name, file_name_from):
+        self.copy(f'{custom_doc_to}{file_name}',
+                  f'{path_to_errors_file}{file_name}')
+
+        self.copy(f'{custom_doc_from}{file_name_from}',
+                  f'{path_to_errors_file}{file_name_from}')
+
     def create_project_dirs(self):
         print('')
         self.create_dir(path_to_data)
+        self.create_dir(path_to_folder_for_test)
         self.create_dir(path_to_tmp)
         self.create_dir(path_to_result)
         self.create_dir(path_to_compare_files)
         self.create_dir(path_to_tmpimg_befor_conversion)
         self.create_dir(path_to_tmpimg_after_conversion)
         self.create_dir(path_to_temp_in_test)
-        self.create_dir(path_to_folder_for_test)
         self.create_dir(path_to_errors_file)
         self.create_dir(path_to_not_tested_file)

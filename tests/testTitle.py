@@ -8,7 +8,6 @@
 #         elif win32gui.GetWindowText(
 #                 hwnd) == 'Alimentaire_Etude_Planning_StrategiqueKM_2010.docx [Режим ограниченной функциональности] - Word':
 #             print(hex(hwnd), win32gui.GetClassName(hwnd))
-import win32con
 import win32gui
 
 def get_windows_title(hwnd, ctx):
@@ -47,7 +46,4 @@ print(ClassName)
 # win32gui.ShowWindow(hwnd, win32con.SW_RESTORE)
 # print(hwnd)
 # #
-hwnd = win32gui.FindWindow(None, "Telegram (15125)")
-win32gui.ShowWindow(hwnd, win32con.SW_NORMAL)
-win32gui.SetForegroundWindow(hwnd)
 
