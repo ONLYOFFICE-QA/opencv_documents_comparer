@@ -14,14 +14,12 @@ from var import *
 
 class PowerPoint(Helper):
 
-    def __init__(self):
+    def __init__(self, list_of_files):
         self.create_project_dirs()
-        self.copy_for_test()
+        self.copy_for_test(list_of_files)
         self.coordinate = []
-        # self.run_compare_pp(list_file_names_doc_from_compare,
-        #                     extension_from,
-        #                     extension_to)
-        self.run_compare_pp(os.listdir(custom_doc_to),
+        self.errors = []
+        self.run_compare_pp(list_of_files,
                             extension_from,
                             extension_to)
 
@@ -35,6 +33,16 @@ class PowerPoint(Helper):
                 self.coordinate.clear()
                 self.coordinate.append(win32gui.GetWindowRect(hwnd))
 
+    def check_error(self, hwnd, ctx):
+        if win32gui.IsWindowVisible(hwnd):
+            if win32gui.GetClassName(hwnd) == '#32770':
+                win32gui.ShowWindow(hwnd, win32con.SW_NORMAL)
+                win32gui.SetForegroundWindow(hwnd)
+                sleep(0.5)
+                self.errors.clear()
+                print(win32gui.GetClassName(hwnd))
+                self.errors.append(win32gui.GetClassName(hwnd))
+
     @staticmethod
     def opener_power_point(path_for_open, file_name):
         try:
@@ -43,51 +51,67 @@ class PowerPoint(Helper):
             slide_count = len(presentation.Slides)
             # print(presentation)
             print(slide_count)
-            return slide_count, presentation
+            presentation.Close()
+            # sleep(5)
+            # sb.call("powershell.exe kill -Name POWERPNT", shell=True)
+            # sb.call(["taskkill", "/IM", "POWERPNT.EXE"])
+            return slide_count
+
         except Exception:
             print('[bold red]NOT TESTED!!![/bold red]')
             sb.call(["taskkill", "/IM", "POWERPNT.EXE"])
-            return 'error', 'error'
 
-    def get_screenshot(self, file_name_for_screen, path_to_save_screen):
-        print(f'[bold green]In test[/bold green] {file_name_for_screen}')
-        slide_count, presentation = self.opener_power_point(path_to_folder_for_test, file_name_for_screen)
-        win32gui.EnumWindows(self.get_coord_pp, self.coordinate)
+    def get_screenshot(self, path_to_save_screen, file_name, slide_count):
+        print(f'[bold green]In test[/bold green] {file_name}')
+        self.run(path_to_folder_for_test, file_name, "POWERPNT.EXE")
         sleep(wait_for_open)
-        page_num = 1
-        if slide_count == 'error':
-            return 'error'
-        else:
+        win32gui.EnumWindows(self.check_error, self.errors)
+        print(f'Step 1 {self.errors}')
+        if not self.errors:
+            print(f'error = {self.errors}')
+            win32gui.EnumWindows(self.get_coord_pp, self.coordinate)
+            print(f'Step 2 {self.coordinate}')
+            page_num = 1
             for page in range(slide_count):
-                CompareImage.grab_coordinate(path_to_save_screen, file_name_for_screen, page_num, self.coordinate[0])
+                CompareImage.grab_coordinate(path_to_save_screen, file_name, page_num, self.coordinate[0])
                 pg.press('pgdn')
                 sleep(wait_for_press)
                 page_num += 1
-            presentation.Close()
-            return slide_count
+            sb.call(["taskkill", "/IM", "POWERPNT.EXE"])
+            return 'normal'
+        elif self.errors and self.errors[0] == '#32770':
+            print(f'Step 3 {self.errors[0]}')
+            pg.press('enter')
+            sb.call(["TASKKILL", "/IM", "POWERPNT.EXE", "/t", "/f"], shell=True)
+            return self.errors[0]
+        sb.call(["taskkill", "/IM", "POWERPNT.EXE"])
 
     def run_compare_pp(self, list_of_files, from_extension, to_extension):
         for file_name in list_of_files:
             file_name_from = file_name.replace(f'.{to_extension}', f'.{from_extension}')
             if to_extension == file_name.split('.')[-1]:
-                slide_count_after = self.get_screenshot(file_name,
-                                                        path_to_tmpimg_after_conversion)
-                if slide_count_after == 'error':
-                    print('[bold red]ERROR slide_count_after[/bold red]')
-                    self.copy_to_errors(file_name,
-                                        file_name_from)
-                else:
-                    slide_count_before = self.get_screenshot(file_name_from,
-                                                             path_to_tmpimg_befor_conversion)
-                    if slide_count_before == 'error':
-                        print('[bold red]ERROR slide_count_before[/bold red]')
-                        self.copy_to_errors(file_name,
-                                            file_name_from)
+                slide_count = self.opener_power_point(path_to_folder_for_test,
+                                                      file_name_from)
+                print(slide_count)
 
-                    elif slide_count_after != slide_count_before:
-                        self.copy_to_not_tested(file_name,
-                                                file_name_from)
-                        print('[bold red]SLIDE COUNT DIFFERENT[/bold red]')
-                    else:
-                        CompareImage()
+                error = self.get_screenshot(path_to_tmpimg_after_conversion,
+                                            file_name,
+                                            slide_count)
+                print(error)
+                if error == "#32770":
+                    print('[bold red]ERROR, copy to not tested folder[/bold red]')
+                    self.copy_to_not_tested(file_name, file_name_from)
+                    self.errors.clear()
+
+                elif error != "#32770":
+                    self.get_screenshot(path_to_tmpimg_befor_conversion,
+                                        file_name_from,
+                                        slide_count)
+                    CompareImage()
+                    sb.call(["TASKKILL", "/IM", "POWERPNT.EXE", "/t", "/f"], shell=True)
+
+                pass
+            pass
         pass
+
+    pass

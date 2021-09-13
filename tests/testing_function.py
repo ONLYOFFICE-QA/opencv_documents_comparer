@@ -1,11 +1,11 @@
-# def compare_img_wirh_imagemagic(path_to_image_befor_conversion, path_to_image_after_conversion, file_name_for_screen):
+# def compare_img_wirh_imagemagic(path_to_image_befor_conversion, path_to_image_after_conversion, file_name):
 #     try:
-#         folder = file_name_for_screen.split('.')
+#         folder = file_name.split('.')
 #         folder = folder[0] + '_imgmagic'
 #         os.mkdir(os.getcwd() + f'\\data/{folder}')
 #     except Exception:
 #         print(Exception, 'folder created')
-#     command = f'magick compare -compose src {path_to_image_befor_conversion} {path_to_image_after_conversion} data/{folder}/{file_name_for_screen}.png'
+#     command = f'magick compare -compose src {path_to_image_befor_conversion} {path_to_image_after_conversion} data/{folder}/{file_name}.png'
 #     sb.call(shlex.split(command), shell=True)
 #     pass
 #

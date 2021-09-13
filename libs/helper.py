@@ -14,8 +14,9 @@ class Helper:
     def copy(path_from, path_to):
         if os.path.exists(path_from) and not os.path.exists(path_to):
             shutil.copyfile(path_from, path_to)
-        else:
-            print(f'Folder exists: {path_from}')
+        # else:
+        # print(f'Folder exists: {path_from}')
+        # print(f'Folder exists: {path_from}')
 
     @staticmethod
     def create_dir(path_to_dir):

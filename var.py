@@ -1,18 +1,14 @@
 import os
 
 version = '6.4.1.8'
-extension_from = 'odt'
-extension_to = 'docx'
+extension_from = 'ppt'
+extension_to = 'pptx'
 
-wait_for_open = 5  # время ожидания открытия
-wait_for_press = 0.5  # время ожидания открытия
+wait_for_open = 10  # время ожидания открытия
+wait_for_press = 0.3  # время ожидания открытия
 
 list_file_names_doc_from_compare = [
-    '0103GS-FileManagement_el.docx',
-    'Kurzanalyse_Open_Source_Software.docx',
-    'Sostavnye Footnotes_Endnotes.docx',
-    'Writing_Greek_Polytonic_new_layout.docx',
-    'Lisce_Kashtanau_doc.docx',
+        "!10_France.pptx"
 
 ]
 

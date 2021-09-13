@@ -47,13 +47,13 @@ class CompareImage:
         file_name_for_print = file_name.split('_')[0]
         print(f"{file_name_for_print} Sheet:{sheet} similarity", similarity)
 
-        # cv2.imwrite(f'{path_to_result}{folder_name}/{file_name_for_screen}_before_conv.png', before)
-        # cv2.imwrite(f'{path_to_result}{folder_name}/{file_name_for_screen}_after_conv.png', after)
+        # cv2.imwrite(f'{path_to_result}{folder_name}/{file_name}_before_conv.png', before)
+        # cv2.imwrite(f'{path_to_result}{folder_name}/{file_name}_after_conv.png', after)
         # cv2.imwrite(os.getcwd() + f'\\data/{number_of_pages}diff.png', diff)
         # cv2.imwrite(os.getcwd() + f'\\data/{number_of_pages}_mask.png', mask)
-        # cv2.imwrite(f'{path_to_result}{folder_name}/{file_name_for_screen}_filled_after.png', filled_after)
-        # images = [imageio.imread(f'{path_to_result}{folder_name}/{file_name_for_screen}_before_conv.png'),
-        #           imageio.imread(f'{path_to_result}{folder_name}/{file_name_for_screen}_after_conv.png')]
+        # cv2.imwrite(f'{path_to_result}{folder_name}/{file_name}_filled_after.png', filled_after)
+        # images = [imageio.imread(f'{path_to_result}{folder_name}/{file_name}_before_conv.png'),
+        #           imageio.imread(f'{path_to_result}{folder_name}/{file_name}_after_conv.png')]
         cv2.putText(before, f'Before sheet {sheet}', (50, 300), cv2.FONT_HERSHEY_COMPLEX, 1, color=(0, 255, 0),
                     thickness=2)
         cv2.putText(after, f'After sheet {sheet}', (50, 300), cv2.FONT_HERSHEY_COMPLEX, 1, color=(0, 255, 0),
