@@ -50,6 +50,10 @@ class Word(Helper):
 
     def open_document_and_compare(self, list_of_files, from_extension=extension_from, to_extension=extension_to):
         with io.open('./report.csv', 'w', encoding="utf-8") as csvfile:
+            writer = csv.writer(csvfile, delimiter=';')
+            writer.writerow(['File_name', 'num_of_sheets', 'number_of_lines', 'word_count', 'characters_without_spaces',
+                             'characters_with_spaces', 'number_of_abzad'])
+
             for file_name in track(list_of_files, description='[bold blue]Comparing... [/bold blue]'):
                 file_name_from = file_name.replace(f'.{to_extension}', f'.{from_extension}')
                 name_for_test = self.preparing_file_names(file_name)
@@ -80,11 +84,25 @@ class Word(Helper):
                             self.copy_to_errors(file_name,
                                                 file_name_from)
 
-                            writer = csv.writer(csvfile, delimiter=';')
                             modified_keys = [file_name]
                             for m in modified:
-                                modified_keys.append(m)
-                                modified_keys.append(modified[m])
+                                modified_keys.append(
+                                    modified['num_of_sheets']) if m == 'num_of_sheets' else modified_keys.append(' ')
+                                modified_keys.append(
+                                    modified['number_of_lines']) if m == 'number_of_lines' else modified_keys.append(
+                                    ' ')
+                                modified_keys.append(
+                                    modified['word_count']) if m == 'word_count' else modified_keys.append(' ')
+                                modified_keys.append(modified[
+                                                         'number_of_characters_without_spaces']) if m == 'number_of_characters_without_spaces' else modified_keys.append(
+                                    ' ')
+                                modified_keys.append(modified[
+                                                         'number_of_characters_with_spaces']) if m == 'number_of_characters_with_spaces' else modified_keys.append(
+                                    ' ')
+                                modified_keys.append(
+                                    modified['number_of_abzad']) if m == 'number_of_abzad' else modified_keys.append(
+                                    ' ')
+
                             writer.writerow(modified_keys)
 
                             with open(f'{path_to_errors_file}{file_name}_difference.json', 'w') as f:
