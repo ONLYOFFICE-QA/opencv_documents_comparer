@@ -1,6 +1,7 @@
 import csv
 import io
 import json
+import subprocess as sb
 
 from rich import print
 from rich.progress import track
@@ -33,6 +34,7 @@ class Word(Helper):
         }
         return statistics_word
 
+    @staticmethod
     def word_opener(path_for_open, file_name):
         word_app = Dispatch('Word.Application')
         word_app.Visible = False
@@ -45,7 +47,7 @@ class Word(Helper):
             statistics_word = {}
         word_app.Close(False)
         # sb.call(f'powershell.exe kill -Name WINWORD', shell=True)
-        # sb.call(["taskkill", "/IM", "WINWORD.EXE", "/T"])
+        sb.call(["taskkill", "/IM", "WINWORD.EXE"])
         return statistics_word
 
     def open_document_and_compare(self, list_of_files, from_extension=extension_from, to_extension=extension_to):
@@ -62,14 +64,12 @@ class Word(Helper):
                     print(f'[bold green]In test[/bold green] {file_name}')
                     self.copy(f'{custom_doc_to}{file_name}',
                               f'{path_to_temp_in_test}{name_for_test}')
-                    statistics_word_after = Word.word_opener(path_to_temp_in_test,
-                                                             name_for_test)
+                    statistics_word_after = Word.word_opener(name_for_test)
 
                     print(f'[bold green]In test[/bold green] {file_name_from}')
                     self.copy(f'{custom_doc_from}{file_name_from}',
                               f'{path_to_temp_in_test}{name_from_for_test}')
-                    statistics_word_before = Word.word_opener(path_to_temp_in_test,
-                                                              name_from_for_test)
+                    statistics_word_before = Word.word_opener(name_from_for_test)
 
                     if statistics_word_after == {} or statistics_word_before == {}:
                         print('[bold red]NOT TESTED, Statistics empty!!![/bold red]')
@@ -106,7 +106,4 @@ class Word(Helper):
                             with open(f'{path_to_errors_file}{file_name}_difference.json', 'w') as f:
                                 json.dump(modified, f)
 
-
         self.delete(path_to_temp_in_test)
-
-

@@ -31,7 +31,7 @@ class Helper:
         #     print('')
         #     # print(f'[bold red]Folder exists: [/bold red]{path_to_dir}')
 
-    # принимает к каталогу с фалвми которые нужно переименовать
+    # принимает к каталог с файлами которые нужно переименовать
     @staticmethod
     def rename_files(dir_for_rename_files):
         for file in track(os.listdir(dir_for_rename_files)):

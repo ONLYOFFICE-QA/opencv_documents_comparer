@@ -50,7 +50,7 @@ class WordCompareImg(Helper):
             file_name_from = file_name.replace(f'.{to_extension}', f'.{from_extension}')
             if to_extension == file_name.split('.')[-1]:
                 self.copy(path_to_folder_for_test + file_name_from, path_to_temp_in_test + file_name_from)
-                num_of_sheets = Word.word_opener(path_to_folder_for_test, file_name_from)
+                num_of_sheets = Word.word_opener(file_name_from)
                 self.delete(path_to_temp_in_test + file_name_from)
                 print(num_of_sheets['num_of_sheets'])
                 if num_of_sheets != {}:

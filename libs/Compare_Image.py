@@ -122,5 +122,5 @@ class CompareImage(Helper):
             else:
                 print(f'[bold red] File not found [/bold red]{image_name}')
 
-        # Helper.delete(f'{tmp_after}*')
-        # Helper.delete(f'{tmp_befor}*')
+        Helper.delete(f'{tmp_after}*')
+        Helper.delete(f'{tmp_befor}*')
