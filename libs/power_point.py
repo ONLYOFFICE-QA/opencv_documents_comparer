@@ -19,9 +19,7 @@ class PowerPoint(Helper):
         self.copy_for_test(list_of_files)
         self.coordinate = []
         self.errors = []
-        self.run_compare_pp(list_of_files,
-                            extension_from,
-                            extension_to)
+        self.run_compare_pp(list_of_files)
 
     def get_coord_pp(self, hwnd, ctx):
         if win32gui.IsWindowVisible(hwnd):
@@ -54,7 +52,7 @@ class PowerPoint(Helper):
             presentation.Close()
             # sleep(5)
             # sb.call("powershell.exe kill -Name POWERPNT", shell=True)
-            # sb.call(["taskkill", "/IM", "POWERPNT.EXE"])
+            sb.call(["taskkill", "/IM", "POWERPNT.EXE"])
             return slide_count
 
         except Exception:
@@ -73,7 +71,7 @@ class PowerPoint(Helper):
             print(f'Step 2 {self.coordinate}')
             page_num = 1
             for page in range(slide_count):
-                CompareImage.grab_coordinate(path_to_save_screen, file_name, page_num, self.coordinate[0])
+                CompareImage.grab_coordinate_pp(path_to_save_screen, file_name, page_num, self.coordinate[0])
                 pg.press('pgdn')
                 sleep(wait_for_press)
                 page_num += 1
@@ -86,15 +84,17 @@ class PowerPoint(Helper):
             return self.errors[0]
         sb.call(["taskkill", "/IM", "POWERPNT.EXE"])
 
-    def run_compare_pp(self, list_of_files, from_extension, to_extension):
+    def run_compare_pp(self, list_of_files):
         for file_name in list_of_files:
-            file_name_from = file_name.replace(f'.{to_extension}', f'.{from_extension}')
-            if to_extension == file_name.split('.')[-1]:
-                slide_count = self.opener_power_point(path_to_folder_for_test,
+            file_name_from = file_name.replace(f'.{extension_to}', f'.{extension_from}')
+            if extension_to == file_name.split('.')[-1]:
+                self.copy(path_to_folder_for_test + file_name_from, path_to_temp_in_test + file_name_from)
+                slide_count = self.opener_power_point(path_to_temp_in_test,
                                                       file_name_from)
+                self.delete(path_to_temp_in_test + file_name_from)
                 print(slide_count)
 
-                error = self.get_screenshot(path_to_tmpimg_after_conversion,
+                error = self.get_screenshot(tmp_after,
                                             file_name,
                                             slide_count)
                 print(error)
@@ -104,11 +104,11 @@ class PowerPoint(Helper):
                     self.errors.clear()
 
                 elif error != "#32770":
-                    self.get_screenshot(path_to_tmpimg_befor_conversion,
+                    self.get_screenshot(tmp_befor,
                                         file_name_from,
                                         slide_count)
-                    CompareImage()
                     sb.call(["TASKKILL", "/IM", "POWERPNT.EXE", "/t", "/f"], shell=True)
+                    CompareImage(file_name)
 
                 pass
             pass

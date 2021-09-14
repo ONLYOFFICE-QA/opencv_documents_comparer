@@ -19,6 +19,11 @@ class Helper:
         # print(f'Folder exists: {path_from}')
 
     @staticmethod
+    def move(path_from, path_to):
+        if os.path.exists(path_from) and not os.path.exists(path_to):
+            shutil.move(path_from, path_to)
+
+    @staticmethod
     def create_dir(path_to_dir):
         if not os.path.exists(path_to_dir):
             os.mkdir(path_to_dir)
@@ -100,6 +105,17 @@ class Helper:
         self.copy(f'{custom_doc_from}{file_name_from}',
                   f'{path_to_errors_file}{file_name_from}')
 
+    def copy_to_errors_sim(self, file_name, file_name_from):
+        self.copy(f'{custom_doc_to}{file_name}',
+                  f'{path_to_errors_sim_file}{file_name}')
+
+        self.copy(f'{custom_doc_from}{file_name_from}',
+                  f'{path_to_errors_sim_file}{file_name_from}')
+
+    # def move_to_errors_sim(self, image_name, file_name_from):
+    #     self.move(f'{custom_doc_to}{image_name}',
+    #               f'{path_to_errors_sim_file}{image_name}')
+
     def create_project_dirs(self):
         print('')
         self.create_dir(path_to_data)
@@ -107,8 +123,9 @@ class Helper:
         self.create_dir(path_to_tmp)
         self.create_dir(path_to_result)
         self.create_dir(path_to_compare_files)
-        self.create_dir(path_to_tmpimg_befor_conversion)
-        self.create_dir(path_to_tmpimg_after_conversion)
+        self.create_dir(tmp_befor)
+        self.create_dir(tmp_after)
         self.create_dir(path_to_temp_in_test)
         self.create_dir(path_to_errors_file)
         self.create_dir(path_to_not_tested_file)
+        self.create_dir(path_to_errors_sim_file)

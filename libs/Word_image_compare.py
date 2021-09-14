@@ -49,13 +49,15 @@ class WordCompareImg(Helper):
         for file_name in list_of_files:
             file_name_from = file_name.replace(f'.{to_extension}', f'.{from_extension}')
             if to_extension == file_name.split('.')[-1]:
+                self.copy(path_to_folder_for_test + file_name_from, path_to_temp_in_test + file_name_from)
                 num_of_sheets = Word.word_opener(path_to_folder_for_test, file_name_from)
+                self.delete(path_to_temp_in_test + file_name_from)
                 print(num_of_sheets['num_of_sheets'])
                 if num_of_sheets != {}:
-                    self.get_screenshots(file_name, path_to_tmpimg_after_conversion,
+                    self.get_screenshots(file_name, tmp_after,
                                          num_of_sheets['num_of_sheets'])
-                    self.get_screenshots(file_name_from, path_to_tmpimg_befor_conversion,
+                    self.get_screenshots(file_name_from, tmp_befor,
                                          num_of_sheets['num_of_sheets'])
-                    CompareImage()
+                    CompareImage(file_name)
 
         self.delete(path_to_temp_in_test)

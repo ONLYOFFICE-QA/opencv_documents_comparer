@@ -86,22 +86,20 @@ class Word(Helper):
 
                             modified_keys = [file_name]
                             for m in modified:
-                                modified_keys.append(
-                                    modified['num_of_sheets']) if m == 'num_of_sheets' else modified_keys.append(' ')
-                                modified_keys.append(
-                                    modified['number_of_lines']) if m == 'number_of_lines' else modified_keys.append(
-                                    ' ')
-                                modified_keys.append(
-                                    modified['word_count']) if m == 'word_count' else modified_keys.append(' ')
+                                modified_keys.append(modified['num_of_sheets']) if m == 'num_of_sheets' \
+                                    else modified_keys.append(' ')
+                                modified_keys.append(modified['number_of_lines']) if m == 'number_of_lines' \
+                                    else modified_keys.append(' ')
+                                modified_keys.append(modified['word_count']) if m == 'word_count' \
+                                    else modified_keys.append(' ')
                                 modified_keys.append(modified[
-                                                         'number_of_characters_without_spaces']) if m == 'number_of_characters_without_spaces' else modified_keys.append(
-                                    ' ')
+                                                         'number_of_characters_without_spaces']) if m == 'number_of_characters_without_spaces' \
+                                    else modified_keys.append(' ')
                                 modified_keys.append(modified[
-                                                         'number_of_characters_with_spaces']) if m == 'number_of_characters_with_spaces' else modified_keys.append(
-                                    ' ')
-                                modified_keys.append(
-                                    modified['number_of_abzad']) if m == 'number_of_abzad' else modified_keys.append(
-                                    ' ')
+                                                         'number_of_characters_with_spaces']) if m == 'number_of_characters_with_spaces' \
+                                    else modified_keys.append(' ')
+                                modified_keys.append(modified['number_of_abzad']) if m == 'number_of_abzad' \
+                                    else modified_keys.append(' ')
 
                             writer.writerow(modified_keys)
 
