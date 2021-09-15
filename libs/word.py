@@ -10,6 +10,9 @@ from win32com.client import Dispatch
 from libs.helper import Helper
 from var import *
 
+extension_from = 'doc'
+extension_to = 'docx'
+
 
 class Word(Helper):
 

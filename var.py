@@ -1,14 +1,14 @@
 import os
 
 version = '6.4.1.8'
-extension_from = 'ppt'
-extension_to = 'pptx'
+extension_from = 'xls'
+extension_to = 'xlsx'
 
 wait_for_open = 10  # время ожидания открытия
-wait_for_press = 0.3  # время ожидания открытия
+wait_for_press = 0.5  # время ожидания открытия
 
 list_file_names_doc_from_compare = [
-        "!10_France.pptx"
+        "_excel_01.xlsx",
 
 ]
 
@@ -27,14 +27,15 @@ path_to_project = os.getcwd()
 path_to_data = path_to_project + '/data/'
 path_to_folder_for_test = path_to_project + f'/data/{version}_{extension_from}_{extension_to}/'
 path_to_errors_file = f'{path_to_folder_for_test}errors/'
+path_to_errors_sim_file = f'{path_to_folder_for_test}errors_sim/'
 path_to_not_tested_file = f'{path_to_folder_for_test}not_tested/'
 path_to_result = f'{path_to_folder_for_test}result/'
 
 # static tmp
 path_to_compare_files = path_to_project + '/data/files/'
 path_to_tmp = path_to_project + '/data/tmp/'
-path_to_tmpimg_after_conversion = path_to_project + '/data/tmp/after/'
-path_to_tmpimg_befor_conversion = path_to_project + '/data/tmp/before/'
+tmp_after = path_to_project + '/data/tmp/after/'
+tmp_befor = path_to_project + '/data/tmp/before/'
 
 path_to_temp_in_test = path_to_project + '/data/tmp/in_test/'
 

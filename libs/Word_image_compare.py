@@ -11,14 +11,17 @@ from libs.helper import Helper
 from libs.word import Word
 from var import *
 
+extension_from = 'doc'
+extension_to = 'docx'
+
 
 class WordCompareImg(Helper):
 
-    def __init__(self):
+    def __init__(self, list_of_files):
         self.create_project_dirs()
         self.copy_for_test()
         self.coordinate = []
-        self.run_compare_word(list_file_names_doc_from_compare)
+        self.run_compare_word(list_of_files)
 
     def get_coord_word(self, hwnd, ctx):
         if win32gui.IsWindowVisible(hwnd):
