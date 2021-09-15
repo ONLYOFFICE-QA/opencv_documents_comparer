@@ -1,12 +1,16 @@
 import csv
 import io
+import subprocess as sb
 import traceback
 
+import win32con
+import win32gui
 from rich import print
 from rich.progress import track
 from win32com.client import Dispatch
 
 from libs.helper import Helper
+from libs.logger import *
 from var import *
 
 
@@ -34,6 +38,22 @@ class Exel(Helper):
         return statistics_exel
         pass
 
+    def get_windows_title(self, hwnd, ctx):
+        if win32gui.IsWindowVisible(hwnd):
+            if win32gui.GetClassName(hwnd) == '#32770' or win32gui.GetClassName(hwnd) == 'bosa_sdm_msword':
+                # hwnd = win32gui.FindWindow(None, "Telegram (15125)")
+                win32gui.ShowWindow(hwnd, win32con.SW_NORMAL)
+                win32gui.SetForegroundWindow(hwnd)
+
+                self.errors.clear()
+                self.errors.append(win32gui.GetClassName(hwnd))
+                self.errors.append(win32gui.GetWindowText(hwnd))
+
+            # elif win32gui.GetClassName(hwnd) == 'OpusApp' and win32gui.GetWindowText(hwnd) == 'Word':
+            #     ClassName.clear()
+            #     ClassName.append(win32gui.GetClassName(hwnd))
+            #     ClassName.append(win32gui.GetWindowText(hwnd))
+
     @staticmethod
     def opener_exel(path_for_open, file_name):
         try:
@@ -46,15 +66,15 @@ class Exel(Helper):
             xl.Quit()
             return statistics_exel
         except Exception as e:
-            print('Error:\n', traceback.format_exc())
             error = traceback.format_exc()
-            # print(f'Eto {error}')
-
-            with io.open('./Error_exel.csv', 'w') as csvfile:
-                error2 = [file_name, error]
-                writer = csv.writer(csvfile, delimiter=';')
-                writer.writerow(['File_name', 'Error'])
-                writer.writerow(error2)
+            print('[bold red] Error:\n [/bold red]', error)
+            sb.call(["TASKKILL", "/IM", "EXCEL.EXE", "/t", "/f"], shell=True)
+            log.critical(f'\nFile name: {file_name}\n Error:\n{error}')
+            # with io.open('./Error_exel.csv', 'w') as csvfile:
+            #     error2 = [file_name, error]
+            #     writer = csv.writer(csvfile, delimiter=';')
+            #     writer.writerow(['File_name', 'Error'])
+            #     writer.writerow(error2)
             statistics_exel = {}
             return statistics_exel
 

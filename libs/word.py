@@ -18,12 +18,9 @@ class Word(Helper):
 
     def __init__(self, list_of_files):
         self.create_project_dirs()
-        self.open_document_and_compare(list_of_files,
-                                       extension_from,
-                                       extension_to)
-        # self.open_document_and_compare(list_file_names_doc_from_compare,
-        #                                extension_from,
-        #                                extension_to)
+        self.run_compare_word_statistic(list_of_files,
+                                        extension_from,
+                                        extension_to)
 
     @staticmethod
     def get_word_metadata(word):
@@ -45,21 +42,25 @@ class Word(Helper):
         try:
             word_app = word_app.Documents.Open(f'{path_for_open}{file_name}', None, True)
             statistics_word = Word.get_word_metadata(word_app)
+            word_app.Close(False)
+            sb.call(["taskkill", "/IM", "WINWORD.EXE"])
+            return statistics_word
         except Exception:
             print('[bold red]NOT TESTED!!![/bold red]')
             statistics_word = {}
-        word_app.Close(False)
-        # sb.call(f'powershell.exe kill -Name WINWORD', shell=True)
-        sb.call(["taskkill", "/IM", "WINWORD.EXE"])
-        return statistics_word
+            return statistics_word
 
-    def open_document_and_compare(self, list_of_files, from_extension=extension_from, to_extension=extension_to):
+    def run_compare_word_statistic(self,
+                                   list_of_files,
+                                   from_extension=extension_from,
+                                   to_extension=extension_to):
+
         with io.open('./report.csv', 'w') as csvfile:
             writer = csv.writer(csvfile, delimiter=';')
             writer.writerow(['File_name', 'num_of_sheets', 'number_of_lines', 'word_count', 'characters_without_spaces',
                              'characters_with_spaces', 'number_of_abzad'])
 
-            for file_name in track(list_of_files, description='[bold blue]Comparing... [/bold blue]'):
+            for file_name in track(list_of_files, description='[bold blue]Comparing Word Statistic... [/bold blue]'):
                 file_name_from = file_name.replace(f'.{to_extension}', f'.{from_extension}')
                 name_for_test = self.preparing_file_names(file_name)
                 name_from_for_test = self.preparing_file_names(file_name_from)

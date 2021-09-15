@@ -8,8 +8,8 @@ wait_for_open = 10  # время ожидания открытия
 wait_for_press = 0.5  # время ожидания открытия
 
 list_file_names_doc_from_compare = [
-        "_excel_01.xlsx",
-
+        'Cálculo De Horas Extras (Completa).xlsx',
+        '0t-1-1.xlsx'
 ]
 
 custom_doc_to = f'd:/ProjectsAndVM/data_db/results/{version}_xmllint_{extension_to}_{extension_from}/'
@@ -21,6 +21,7 @@ custom_doc_from = f'd:/ProjectsAndVM/data_db/files/{extension_from}/'
 ms_office = 'C:/Program Files (x86)/Microsoft Office/root/Office16/'
 word = 'WINWORD.EXE'
 power_point = 'POWERPNT.EXE'
+exel = 'EXCEL.EXE'
 
 # static data
 path_to_project = os.getcwd()
