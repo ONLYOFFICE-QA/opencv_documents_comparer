@@ -54,7 +54,7 @@ class Word(Helper):
         return statistics_word
 
     def open_document_and_compare(self, list_of_files, from_extension=extension_from, to_extension=extension_to):
-        with io.open('./report.csv', 'w', encoding="utf-8") as csvfile:
+        with io.open('./report.csv', 'w') as csvfile:
             writer = csv.writer(csvfile, delimiter=';')
             writer.writerow(['File_name', 'num_of_sheets', 'number_of_lines', 'word_count', 'characters_without_spaces',
                              'characters_with_spaces', 'number_of_abzad'])

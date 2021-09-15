@@ -1,8 +1,10 @@
 import csv
 import io
+import traceback
 
 from rich import print
 from rich.progress import track
+from win32com.client import Dispatch
 
 from libs.helper import Helper
 from var import *
@@ -34,18 +36,27 @@ class Exel(Helper):
 
     @staticmethod
     def opener_exel(path_for_open, file_name):
-        from win32com.client import Dispatch
+        try:
+            xl = Dispatch("Excel.Application")
+            xl.Visible = False  # otherwise excel is hidden
+            wb = xl.Workbooks.Open(f'{path_for_open}{file_name}', ReadOnly=True)
+            statistics_exel = Exel.get_exel_metadata(wb)
+            print("count of sheets:", wb.Sheets.Count)
+            wb.Close(False)
+            xl.Quit()
+            return statistics_exel
+        except Exception as e:
+            print('Error:\n', traceback.format_exc())
+            error = traceback.format_exc()
+            # print(f'Eto {error}')
 
-        xl = Dispatch("Excel.Application")
-        xl.Visible = False  # otherwise excel is hidden
-
-        wb = xl.Workbooks.Open(f'{path_for_open}{file_name}')
-        statistics_exel = Exel.get_exel_metadata(wb)
-        print("count of sheets:", wb.Sheets.Count)
-
-        wb.Close()
-        xl.Quit()
-        return statistics_exel
+            with io.open('./Error_exel.csv', 'w') as csvfile:
+                error2 = [file_name, error]
+                writer = csv.writer(csvfile, delimiter=';')
+                writer.writerow(['File_name', 'Error'])
+                writer.writerow(error2)
+            statistics_exel = {}
+            return statistics_exel
 
     def run_compare_exel(self, list_of_files):
         with io.open('./report.csv', 'w', encoding="utf-8") as csvfile:
@@ -80,4 +91,4 @@ class Exel(Helper):
                             modified_keys = [file_name, modified]
                             writer.writerow(modified_keys)
 
-            self.delete(path_to_temp_in_test)
+            # self.delete(path_to_temp_in_test)
