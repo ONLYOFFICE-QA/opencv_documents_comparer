@@ -50,9 +50,9 @@ class Exel(Helper):
                 self.errors.append(win32gui.GetWindowText(hwnd))
 
             # elif win32gui.GetClassName(hwnd) == 'OpusApp' and win32gui.GetWindowText(hwnd) == 'Word':
-            #     ClassName.clear()
-            #     ClassName.append(win32gui.GetClassName(hwnd))
-            #     ClassName.append(win32gui.GetWindowText(hwnd))
+            #     errors.clear()
+            #     errors.append(win32gui.GetClassName(hwnd))
+            #     errors.append(win32gui.GetWindowText(hwnd))
 
     @staticmethod
     def opener_exel(path_for_open, file_name):

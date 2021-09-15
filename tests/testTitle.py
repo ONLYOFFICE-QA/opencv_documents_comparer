@@ -13,15 +13,15 @@ import win32gui
 def get_windows_title(hwnd, ctx):
     if win32gui.IsWindowVisible(hwnd):
         # if win32gui.GetClassName(hwnd) == '#32770':
-        #     ClassName.append(win32gui.GetClassName(hwnd))
-        #     ClassName.append(win32gui.GetWindowText(hwnd))
+        #     errors.append(win32gui.GetClassName(hwnd))
+        #     errors.append(win32gui.GetWindowText(hwnd))
         #
         # # elif win32gui.GetClassName(hwnd) == 'OpusApp' and win32gui.GetWindowText(hwnd) != 'Word':
-        # #     ClassName.append(win32gui.GetClassName(hwnd))
-        # #     ClassName.append(win32gui.GetWindowText(hwnd))
+        # #     errors.append(win32gui.GetClassName(hwnd))
+        # #     errors.append(win32gui.GetWindowText(hwnd))
         # else:
-            print(f'class name  {win32gui.GetClassName(hwnd)}')
-            print(f'Text name {win32gui.GetWindowText(hwnd)}')
+        print(f'class name  {win32gui.GetClassName(hwnd)}')
+        print(f'Text name {win32gui.GetWindowText(hwnd)}')
 
 ClassName = []
 win32gui.EnumWindows(get_windows_title, ClassName)

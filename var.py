@@ -8,8 +8,7 @@ wait_for_open = 10  # время ожидания открытия
 wait_for_press = 0.5  # время ожидания открытия
 
 list_file_names_doc_from_compare = [
-        'Cálculo De Horas Extras (Completa).xlsx',
-        '0t-1-1.xlsx'
+        'Appendix 01 Function List.xlsx'
 ]
 
 custom_doc_to = f'd:/ProjectsAndVM/data_db/results/{version}_xmllint_{extension_to}_{extension_from}/'
