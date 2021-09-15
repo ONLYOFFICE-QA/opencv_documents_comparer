@@ -5,5 +5,6 @@ from var import *
 
 if __name__ == "__main__":
     for i in tqdm(range(1)):
-        Exel(list_file_names_doc_from_compare)
+        # Exel(list_file_names_doc_from_compare)
+        Exel(os.listdir(custom_doc_to))
         # CompareImage('kef.docx')

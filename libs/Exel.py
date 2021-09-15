@@ -2,6 +2,7 @@ import csv
 import io
 
 from rich import print
+from rich.progress import track
 
 from libs.helper import Helper
 from var import *
@@ -15,14 +16,6 @@ class Exel(Helper):
         self.coordinate = []
         self.errors = []
         self.run_compare_exel(list_of_files)
-
-    # def opener_Exel(path_for_open, file_name):
-    #     wb = load_workbook(path, use_iterators=True)
-    #     sheet = wb.worksheets[0]
-    #
-    #     row_count = sheet.max_row
-    #     column_count = sheet.max_column
-    #     pass
 
     @staticmethod
     def get_exel_metadata(wb):
@@ -58,11 +51,13 @@ class Exel(Helper):
         with io.open('./report.csv', 'w', encoding="utf-8") as csvfile:
             writer = csv.writer(csvfile, delimiter=';')
             writer.writerow(['File_name', 'statistic'])
-            for file_name in list_of_files:
+            for file_name in track(list_of_files, description='Comparing Exel Metadata...'):
                 file_name_from = file_name.replace(f'.{extension_to}', f'.{extension_from}')
                 name_to_for_test = self.preparing_file_names(file_name)
                 name_from_for_test = self.preparing_file_names(file_name_from)
                 if extension_to == file_name.split('.')[-1]:
+                    print(f'[bold green]In test[/bold green] {file_name}')
+                    print(f'[bold green]In test[/bold green] {file_name_from}')
                     self.copy(f'{custom_doc_to}{file_name}',
                               f'{path_to_temp_in_test}{name_to_for_test}')
                     self.copy(f'{custom_doc_from}{file_name_from}',
