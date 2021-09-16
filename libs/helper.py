@@ -4,6 +4,7 @@ import subprocess as sb
 
 from rich import print
 from rich.progress import track
+from transliterate import translit
 
 from var import *
 
@@ -50,6 +51,10 @@ class Helper:
         file_name_for_test = file_name.replace(')', '_')
         file_name_for_test = file_name_for_test.replace('(', '_')
         file_name_for_test = file_name_for_test.replace(' ', '_')
+        try:
+            file_name_for_test = translit(file_name_for_test, reversed=True)
+        except Exception:
+            pass
         return file_name_for_test
 
     @staticmethod
@@ -112,20 +117,24 @@ class Helper:
         self.copy(f'{custom_doc_from}{file_name_from}',
                   f'{path_to_errors_sim_file}{file_name_from}')
 
-    # def move_to_errors_sim(self, image_name, file_name_from):
-    #     self.move(f'{custom_doc_to}{image_name}',
-    #               f'{path_to_errors_sim_file}{image_name}')
+    def copy_to_folder(self, file_name, file_name_from, path_to_folder):
+        self.copy(f'{custom_doc_to}{file_name}',
+                  f'{path_to_folder}{file_name}')
+
+        self.copy(f'{custom_doc_from}{file_name_from}',
+                  f'{path_to_folder}{file_name_from}')
 
     def create_project_dirs(self):
         print('')
         self.create_dir(path_to_data)
         self.create_dir(path_to_folder_for_test)
-        self.create_dir(path_to_tmp)
+        self.create_dir(tmp_dir)
         self.create_dir(path_to_result)
         self.create_dir(path_to_compare_files)
-        self.create_dir(tmp_befor)
+        self.create_dir(tmp_before)
         self.create_dir(tmp_after)
         self.create_dir(path_to_temp_in_test)
         self.create_dir(path_to_errors_file)
         self.create_dir(path_to_not_tested_file)
         self.create_dir(path_to_errors_sim_file)
+        self.create_dir(path_to_source_file_error)

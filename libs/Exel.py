@@ -28,13 +28,17 @@ class Exel(Helper):
         statistics_exel = {
             'num_of_sheets': f'{wb.Sheets.Count}',
         }
+
+        num_of_sheet = 1
         for sh in wb.Sheets:
             ws = wb.Worksheets(sh.Name)
             used = ws.UsedRange
             nrows = used.Row + used.Rows.Count - 1
             ncols = used.Column + used.Columns.Count - 1
-            statistics_exel[f'{sh.Name}_nrows'] = nrows
-            statistics_exel[f'{sh.Name}_ncols'] = ncols
+            statistics_exel[f'{num_of_sheet}_page_name'] = sh.Name
+            statistics_exel[f'{num_of_sheet}_nrows'] = nrows
+            statistics_exel[f'{num_of_sheet}_ncols'] = ncols
+            num_of_sheet += 1
         return statistics_exel
         pass
 
@@ -111,4 +115,4 @@ class Exel(Helper):
                             modified_keys = [file_name, modified]
                             writer.writerow(modified_keys)
 
-            # self.delete(path_to_temp_in_test)
+            self.delete(path_to_temp_in_test)

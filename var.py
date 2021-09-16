@@ -8,7 +8,8 @@ wait_for_open = 10  # время ожидания открытия
 wait_for_press = 0.5  # время ожидания открытия
 
 list_file_names_doc_from_compare = [
-        'Appendix 01 Function List.xlsx'
+        'functionsamples.xlsx',
+
 ]
 
 custom_doc_to = f'd:/ProjectsAndVM/data_db/results/{version}_xmllint_{extension_to}_{extension_from}/'
@@ -29,13 +30,14 @@ path_to_folder_for_test = path_to_project + f'/data/{version}_{extension_from}_{
 path_to_errors_file = f'{path_to_folder_for_test}errors/'
 path_to_errors_sim_file = f'{path_to_folder_for_test}errors_sim/'
 path_to_not_tested_file = f'{path_to_folder_for_test}not_tested/'
+path_to_source_file_error = f'{path_to_folder_for_test}source_file_errors/'
 path_to_result = f'{path_to_folder_for_test}result/'
 
 # static tmp
 path_to_compare_files = path_to_project + '/data/files/'
-path_to_tmp = path_to_project + '/data/tmp/'
+tmp_dir = path_to_project + '/data/tmp/'
 tmp_after = path_to_project + '/data/tmp/after/'
-tmp_befor = path_to_project + '/data/tmp/before/'
+tmp_before = path_to_project + '/data/tmp/before/'
 
 path_to_temp_in_test = path_to_project + '/data/tmp/in_test/'
 

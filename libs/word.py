@@ -55,7 +55,7 @@ class Word(Helper):
                                    from_extension=extension_from,
                                    to_extension=extension_to):
 
-        with io.open('./report.csv', 'w') as csvfile:
+        with io.open('./report.csv', 'w', encoding="utf-8") as csvfile:
             writer = csv.writer(csvfile, delimiter=';')
             writer.writerow(['File_name', 'num_of_sheets', 'number_of_lines', 'word_count', 'characters_without_spaces',
                              'characters_with_spaces', 'number_of_abzad'])
@@ -68,12 +68,12 @@ class Word(Helper):
                     print(f'[bold green]In test[/bold green] {file_name}')
                     self.copy(f'{custom_doc_to}{file_name}',
                               f'{path_to_temp_in_test}{name_for_test}')
-                    statistics_word_after = Word.word_opener(name_for_test)
+                    statistics_word_after = Word.word_opener(path_to_temp_in_test, name_for_test)
 
                     print(f'[bold green]In test[/bold green] {file_name_from}')
                     self.copy(f'{custom_doc_from}{file_name_from}',
                               f'{path_to_temp_in_test}{name_from_for_test}')
-                    statistics_word_before = Word.word_opener(name_from_for_test)
+                    statistics_word_before = Word.word_opener(path_to_temp_in_test, name_from_for_test)
 
                     if statistics_word_after == {} or statistics_word_before == {}:
                         print('[bold red]NOT TESTED, Statistics empty!!![/bold red]')

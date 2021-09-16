@@ -16,7 +16,7 @@ class PowerPoint(Helper):
 
     def __init__(self, list_of_files):
         self.create_project_dirs()
-        self.copy_for_test(list_of_files)
+        # self.copy_for_test(list_of_files)
         self.coordinate = []
         self.errors = []
         self.run_compare_pp(list_of_files)
@@ -58,10 +58,11 @@ class PowerPoint(Helper):
         except Exception:
             print('[bold red]NOT TESTED!!![/bold red]')
             sb.call(["taskkill", "/IM", "POWERPNT.EXE"])
+            return 'None'
 
     def get_screenshot(self, path_to_save_screen, file_name, slide_count):
         print(f'[bold green]In test[/bold green] {file_name}')
-        self.run(path_to_folder_for_test, file_name, "POWERPNT.EXE")
+        self.run(path_to_temp_in_test, file_name, "POWERPNT.EXE")
         sleep(wait_for_open)
         win32gui.EnumWindows(self.check_error, self.errors)
         print(f'Step 1 {self.errors}')
@@ -87,31 +88,39 @@ class PowerPoint(Helper):
     def run_compare_pp(self, list_of_files):
         for file_name in list_of_files:
             file_name_from = file_name.replace(f'.{extension_to}', f'.{extension_from}')
+            name_to_for_test = self.preparing_file_names(file_name)
+            name_from_for_test = self.preparing_file_names(file_name_from)
             if extension_to == file_name.split('.')[-1]:
-                self.copy(path_to_folder_for_test + file_name_from, path_to_temp_in_test + file_name_from)
+                self.copy(f'{custom_doc_to}{file_name}',
+                          f'{path_to_temp_in_test}{name_to_for_test}')
+                self.copy(f'{custom_doc_from}{file_name_from}',
+                          f'{path_to_temp_in_test}{name_from_for_test}')
+
                 slide_count = self.opener_power_point(path_to_temp_in_test,
-                                                      file_name_from)
-                self.delete(path_to_temp_in_test + file_name_from)
-                print(slide_count)
+                                                      name_from_for_test)
 
-                error = self.get_screenshot(tmp_after,
-                                            file_name,
+                # self.delete(path_to_temp_in_test + file_name_from)
+                print(f'it is {slide_count}')
+                if slide_count == 'None':
+                    print("[bold red]Can't open source file[/bold red]")
+                    self.copy_to_folder(file_name, file_name_from, path_to_source_file_error)
+
+                else:
+                    error = self.get_screenshot(tmp_after,
+                                                name_to_for_test,
+                                                slide_count)
+                    print(error)
+                    if error == "#32770":
+                        print('[bold red]ERROR, copy to not tested folder[/bold red]')
+                        self.copy_to_not_tested(file_name, file_name_from)
+                        self.errors.clear()
+
+                    elif error != "#32770":
+                        self.get_screenshot(tmp_before,
+                                            name_from_for_test,
                                             slide_count)
-                print(error)
-                if error == "#32770":
-                    print('[bold red]ERROR, copy to not tested folder[/bold red]')
-                    self.copy_to_not_tested(file_name, file_name_from)
-                    self.errors.clear()
-
-                elif error != "#32770":
-                    self.get_screenshot(tmp_befor,
-                                        file_name_from,
-                                        slide_count)
-                    sb.call(["TASKKILL", "/IM", "POWERPNT.EXE", "/t", "/f"], shell=True)
-                    CompareImage(file_name)
-
-                pass
-            pass
+                        sb.call(["TASKKILL", "/IM", "POWERPNT.EXE", "/t", "/f"], shell=True)
+                        CompareImage(file_name)
+        self.delete(path_to_temp_in_test)
         pass
-
     pass

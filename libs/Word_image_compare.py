@@ -59,7 +59,7 @@ class WordCompareImg(Helper):
                 if num_of_sheets != {}:
                     self.get_screenshots(file_name, tmp_after,
                                          num_of_sheets['num_of_sheets'])
-                    self.get_screenshots(file_name_from, tmp_befor,
+                    self.get_screenshots(file_name_from, tmp_before,
                                          num_of_sheets['num_of_sheets'])
                     CompareImage(file_name)
 

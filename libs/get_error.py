@@ -5,6 +5,8 @@ import pyautogui as pg
 import win32con
 import win32gui
 
+from libs.logger import *
+
 errors = []
 
 
@@ -25,7 +27,8 @@ def get_windows_title(hwnd, ctx):
     if win32gui.IsWindowVisible(hwnd):
         if win32gui.GetClassName(hwnd) == '#32770' \
                 or win32gui.GetClassName(hwnd) == 'bosa_sdm_msword' \
-                or win32gui.GetClassName(hwnd) == 'ThunderDFrame':
+                or win32gui.GetClassName(hwnd) == 'ThunderDFrame' \
+                or win32gui.GetClassName(hwnd) == 'NUIDialog':
             # hwnd = win32gui.FindWindow(None, "Telegram (15125)")
             # print('step 1')
             win32gui.ShowWindow(hwnd, win32con.SW_NORMAL)
@@ -61,10 +64,35 @@ def check_exel():
         elif errors[1] == 'Удаление нескольких элементов':
             errors.clear()
 
+        elif errors[1] == 'Microsoft Excel':
+            log.info('Microsoft Excel')
+            pg.press('left')
+            pg.press('enter')
+            sleep(1)
+            pg.press('enter')
+            errors.clear()
+
+        elif errors[1] == 'Monopoly':
+            log.info('Monopoly')
+            pg.press('enter')
+            errors.clear()
+
     elif errors[0] == 'ThunderDFrame':
         if errors[1] == 'Functions List':
             print('Functions List')
             pg.hotkey('alt', 'f4')
+            errors.clear()
+
+        elif errors[1] == 'Select Players and Times':
+            log.info('Select Players and Times')
+            pg.press('tab', presses=6, interval=0.2)
+            pg.press('enter', interval=0.2)
+            errors.clear()
+
+    elif errors[0] == 'NUIDialog':
+        if errors[1] == 'Microsoft Excel' or errors[1] == 'Microsoft Excel - проверка совместимости':
+            print('Microsoft Excel')
+            pg.press('enter')
             errors.clear()
 
 

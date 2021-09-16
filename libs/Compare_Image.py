@@ -9,14 +9,15 @@ from var import *
 
 
 class CompareImage(Helper):
-    def __init__(self, file_name):
-        self.start_to_compare_images(file_name)
+    def __init__(self, file_name, koff=98):
+        self.start_to_compare_images(file_name, koff)
 
-    def compare_img(self, before_conversion, after_conversion, image_name, file_name):
+    def compare_img(self, before_conversion, after_conversion, image_name, file_name, koff):
         before = cv2.imread(before_conversion)
         after = cv2.imread(after_conversion)
         before_gray = cv2.cvtColor(before, cv2.COLOR_BGR2GRAY)
         after_gray = cv2.cvtColor(after, cv2.COLOR_BGR2GRAY)
+        collage = np.hstack([before, after])
 
         (score, diff) = structural_similarity(before_gray, after_gray, full=True)
 
@@ -34,7 +35,9 @@ class CompareImage(Helper):
                 cv2.rectangle(before, (x, y), (x + w, y + h), color, 0)
                 cv2.rectangle(after, (x, y), (x + w, y + h), color, 0)
 
-        folder_name = image_name.replace(f'_{image_name.split("_")[-1]}', '')
+        folder_name = file_name.replace(f'.{file_name.split(".")[-1]}', '')
+        # print(f'file name: {file_name}')
+        # print(f'folder name: {folder_name}')
         screen_folder = 'screen'
 
         Helper.create_dir(f'{path_to_result}{folder_name}')
@@ -59,11 +62,10 @@ class CompareImage(Helper):
 
         images = [before,
                   after]
-        collage = np.hstack([before, after])
 
         file_name_for_save = f'{image_name}_similarity.gif'
         file_name_from = file_name.replace(f'.{extension_to}', f'.{extension_from}')
-        if similarity < 98:
+        if similarity < koff:
             self.create_dir(f'{path_to_errors_sim_file}{folder_name}')
             Helper.create_dir(f'{path_to_errors_sim_file}{folder_name}/{screen_folder}')
             self.copy_to_errors_sim(file_name, file_name_from)
@@ -78,6 +80,17 @@ class CompareImage(Helper):
                             duration=1)
             cv2.imwrite(f'{path_to_errors_sim_file}{folder_name}/{screen_folder}/{file_name}_{sheet}_collage.png',
                         collage)
+
+    @staticmethod
+    def grab_coordinate_exel(path, filename, list_num, number_of_pages, coordinate):
+        img_name = filename.replace(f'.{filename.split(".")[-1]}', '')
+
+        im = ImageGrab.grab(bbox=(coordinate[0],
+                                  coordinate[1] + 170,
+                                  coordinate[2] - 30,
+                                  coordinate[3] - 20))
+
+        im.save(path + img_name + str(f'_list_{list_num}_page_{number_of_pages}') + '.png', 'PNG')
 
     @staticmethod
     def grab_coordinate(path, filename, number_of_pages, coordinate):
@@ -107,20 +120,21 @@ class CompareImage(Helper):
         im = ImageGrab.grab()
         im.save(path + filename_for_screen + str(f'_{number_of_pages}') + '.png', 'PNG')
 
-    def start_to_compare_images(self, file_name):
+    def start_to_compare_images(self, file_name, koff):
         list_of_images = os.listdir(tmp_after)
         for image_name in track(list_of_images, description='Comparing In Progress'):
 
-            if os.path.exists(f'{tmp_befor}{image_name}') \
+            if os.path.exists(f'{tmp_before}{image_name}') \
                     and os.path.exists(f'{tmp_after}{image_name}'):
 
-                self.compare_img(tmp_befor + image_name,
+                self.compare_img(tmp_before + image_name,
                                  tmp_after + image_name,
                                  image_name,
-                                 file_name)
+                                 file_name,
+                                 koff)
 
             else:
                 print(f'[bold red] File not found [/bold red]{image_name}')
 
         Helper.delete(f'{tmp_after}*')
-        Helper.delete(f'{tmp_befor}*')
+        Helper.delete(f'{tmp_before}*')
