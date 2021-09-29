@@ -1,22 +1,18 @@
 import os
 
-version = '6.4.1.8'
-extension_from = 'xls'
-extension_to = 'xlsx'
+version = '6.4.1.44'
+extension_source = 'doc'
+extension_converted = 'docx'
 
-wait_for_open = 10  # время ожидания открытия
-wait_for_press = 0.5  # время ожидания открытия
+wait_for_opening = 10  # Opening waiting time
+wait_for_press = 0.5
 
-list_file_names_doc_from_compare = [
-        'functionsamples.xlsx',
-
+list_of_file_names = [
+    '01 - Font (2).docx'
 ]
 
-custom_doc_to = f'd:/ProjectsAndVM/data_db/results/{version}_xmllint_{extension_to}_{extension_from}/'
-# custom_doc_to = f'D:/documents/results/{version}_xmllint_{extension_to}_{extension_from}/'
-# custom_doc_to = f'd:/ProjectsAndVM/data_db/results/{version}_xmllint_{extension_from}_{extension_to}/'
-custom_doc_from = f'd:/ProjectsAndVM/data_db/files/{extension_from}/'
-# custom_doc_from = f'D:/documents/files/{extension_from}/'
+source_doc_folder = f'd:/ProjectsAndVM/data_db/files/{extension_source}/'
+converted_doc_folder = f'd:/ProjectsAndVM/data_db/results/{version}_xmllint_{extension_source}_{extension_converted}/'
 
 ms_office = 'C:/Program Files (x86)/Microsoft Office/root/Office16/'
 word = 'WINWORD.EXE'
@@ -24,23 +20,18 @@ power_point = 'POWERPNT.EXE'
 exel = 'EXCEL.EXE'
 
 # static data
-path_to_project = os.getcwd()
-path_to_data = path_to_project + '/data/'
-path_to_folder_for_test = path_to_project + f'/data/{version}_{extension_from}_{extension_to}/'
-path_to_errors_file = f'{path_to_folder_for_test}errors/'
-path_to_errors_sim_file = f'{path_to_folder_for_test}errors_sim/'
-path_to_not_tested_file = f'{path_to_folder_for_test}not_tested/'
-path_to_source_file_error = f'{path_to_folder_for_test}source_file_errors/'
-path_to_result = f'{path_to_folder_for_test}result/'
+project_folder = os.getcwd()
+data = project_folder + '/data/'
+result_folder = project_folder + f'/data/{version}_{extension_source}_{extension_converted}/'
+differences_statistic = f'{result_folder}differences_statistic/'
+differences_compare_image = f'{result_folder}differences_compare_image/'
+untested_folder = f'{result_folder}untested/'
+failed_source = f'{result_folder}failed_source/'
+passed = f'{result_folder}passed/'
 
 # static tmp
-path_to_compare_files = path_to_project + '/data/files/'
-tmp_dir = path_to_project + '/data/tmp/'
-tmp_after = path_to_project + '/data/tmp/after/'
-tmp_before = path_to_project + '/data/tmp/before/'
-
-path_to_temp_in_test = path_to_project + '/data/tmp/in_test/'
-
-# папки исходных30 файлов должны называться как расширения,
-# например если расширение из котрого мы конвертируем doc,
-# то и папка где лежат эти файлы должна называться doc
+# compare_files = project_folder + '/data/files/'
+tmp_dir = project_folder + '/data/tmp/'
+tmp_converted_image = project_folder + '/data/tmp/converted_image/'
+tmp_source_image = project_folder + '/data/tmp/source_image/'
+tmp_in_test = project_folder + '/data/tmp/in_test/'

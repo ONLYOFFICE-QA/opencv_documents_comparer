@@ -8,17 +8,19 @@ import win32con
 import win32gui
 from rich import print
 
-from libs.Compare_Image import CompareImage
-from libs.Exel import Exel
-from libs.helper import Helper
+from libs.functional.spreadsheets.xls_to_xlsx_statistic_compare import Excel
+from libs.helpers.compare_image import CompareImage
+from libs.helpers.helper import Helper
 from var import *
 
 
-class ExelCompareImage(Helper):
+class ExcelCompareImage(Helper):
 
     def __init__(self, list_of_files):
         self.create_project_dirs()
-        # self.copy_for_test(list_of_files)
+        self.delete(f'{tmp_in_test}*')
+        self.delete(f'{tmp_converted_image}*')
+        self.delete(f'{tmp_source_image}*')
         self.coordinate = []
         self.errors = []
         self.run_compare_exel(list_of_files)
@@ -28,7 +30,6 @@ class ExelCompareImage(Helper):
             if win32gui.GetClassName(hwnd) == 'XLMAIN':
                 win32gui.ShowWindow(hwnd, win32con.SW_MAXIMIZE)
                 win32gui.SetForegroundWindow(hwnd)
-                # win32gui.MoveWindow(hwnd, 494, 30, 2200, 1420, True)
                 sleep(0.5)
                 self.coordinate.clear()
                 self.coordinate.append(win32gui.GetWindowRect(hwnd))
@@ -36,7 +37,6 @@ class ExelCompareImage(Helper):
     def get_windows_title(self, hwnd, ctx):
         if win32gui.IsWindowVisible(hwnd):
             if win32gui.GetClassName(hwnd) == '#32770' or win32gui.GetClassName(hwnd) == 'bosa_sdm_msword':
-                # hwnd = win32gui.FindWindow(None, "Telegram (15125)")
                 win32gui.ShowWindow(hwnd, win32con.SW_NORMAL)
                 win32gui.SetForegroundWindow(hwnd)
 
@@ -46,9 +46,15 @@ class ExelCompareImage(Helper):
 
     def get_screenshots(self, file_name_for_screen, path_to_save_screen, statistics_exel):
         print(f'[bold green]In test[/bold green] {file_name_for_screen}')
-        Helper.run(path_to_temp_in_test, file_name_for_screen, exel)
-        sleep(wait_for_open)
+        Helper.run(tmp_in_test, file_name_for_screen, exel)
+        sleep(wait_for_opening)
         win32gui.EnumWindows(self.get_coord_exel, self.coordinate)
+        coordinate = self.coordinate[0]
+        coordinate = (coordinate[0],
+                      coordinate[1] + 170,
+                      coordinate[2] - 30,
+                      coordinate[3] - 20)
+
         page_num = 1
         list_num = 1
         for page in range(int(statistics_exel['num_of_sheets'])):
@@ -62,7 +68,7 @@ class ExelCompareImage(Helper):
                                                   file_name_for_screen,
                                                   list_num,
                                                   page_num,
-                                                  self.coordinate[0])
+                                                  coordinate)
                 num_of_sheet += 1
                 page_num += 1
             pg.hotkey('ctrl', 'pgdn', interval=0.2)
@@ -75,29 +81,25 @@ class ExelCompareImage(Helper):
         with io.open('./report.csv', 'w', encoding="utf-8") as csvfile:
             writer = csv.writer(csvfile, delimiter=';')
             writer.writerow(['File_name', 'statistic'])
-            for file_name in list_of_files:
-                file_name_from = file_name.replace(f'.{extension_to}', f'.{extension_from}')
-                name_to_for_test = self.preparing_file_names(file_name)
-                name_from_for_test = self.preparing_file_names(file_name_from)
-                if extension_to == file_name.split('.')[-1]:
-                    print(f'[bold green]In test[/bold green] {name_to_for_test}')
-                    print(f'[bold green]In test[/bold green] {name_from_for_test}')
-                    self.copy(f'{custom_doc_to}{file_name}',
-                              f'{path_to_temp_in_test}{name_to_for_test}')
-                    self.copy(f'{custom_doc_from}{file_name_from}',
-                              f'{path_to_temp_in_test}{name_from_for_test}')
-
-                    statistics_exel = Exel.opener_exel(path_to_temp_in_test, name_from_for_test)
+            for converted_file in list_of_files:
+                if converted_file.endswith((".xlsx", ".XLSX")):
+                    source_file, tmp_name_converted_file, \
+                    tmp_name_source_file, tmp_name = self.preparing_files_for_test(converted_file,
+                                                                                   extension_converted,
+                                                                                   extension_source)
+                    print(f'[bold green]In test[/bold green] {tmp_name_converted_file}')
+                    print(f'[bold green]In test[/bold green] {tmp_name_source_file}')
+                    statistics_exel = Excel.opener_exel(tmp_in_test, tmp_name)
                     print(statistics_exel['num_of_sheets'])
 
                     if statistics_exel != {}:
-                        Helper.delete(f'{tmp_after}*')
-                        Helper.delete(f'{tmp_before}*')
-                        self.get_screenshots(name_to_for_test, tmp_after,
+                        Helper.delete(f'{tmp_converted_image}*')
+                        Helper.delete(f'{tmp_source_image}*')
+                        self.get_screenshots(tmp_name_converted_file, tmp_converted_image,
                                              statistics_exel)
 
-                        self.get_screenshots(name_from_for_test, tmp_before,
+                        self.get_screenshots(tmp_name_source_file, tmp_source_image,
                                              statistics_exel)
-                        CompareImage(file_name, 100)
+                        CompareImage(converted_file, 100)
 
-            self.delete(path_to_temp_in_test)
+            self.delete(tmp_in_test)

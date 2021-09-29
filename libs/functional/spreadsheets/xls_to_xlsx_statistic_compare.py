@@ -9,16 +9,21 @@ from rich import print
 from rich.progress import track
 from win32com.client import Dispatch
 
-from libs.helper import Helper
-from libs.logger import *
+from libs.helpers.helper import Helper
+from libs.helpers.logger import *
 from var import *
 
+extension_source = 'xls'
+extension_converted = 'xlsx'
 
-class Exel(Helper):
+
+class Excel(Helper):
 
     def __init__(self, list_of_files):
         self.create_project_dirs()
-        # self.copy_for_test(list_of_files)
+        self.delete(f'{tmp_in_test}*')
+        self.delete(f'{tmp_converted_image}*')
+        self.delete(f'{tmp_source_image}*')
         self.coordinate = []
         self.errors = []
         self.run_compare_exel(list_of_files)
@@ -53,32 +58,23 @@ class Exel(Helper):
                 self.errors.append(win32gui.GetClassName(hwnd))
                 self.errors.append(win32gui.GetWindowText(hwnd))
 
-            # elif win32gui.GetClassName(hwnd) == 'OpusApp' and win32gui.GetWindowText(hwnd) == 'Word':
-            #     errors.clear()
-            #     errors.append(win32gui.GetClassName(hwnd))
-            #     errors.append(win32gui.GetWindowText(hwnd))
-
     @staticmethod
     def opener_exel(path_for_open, file_name):
         try:
             xl = Dispatch("Excel.Application")
             xl.Visible = False  # otherwise excel is hidden
             wb = xl.Workbooks.Open(f'{path_for_open}{file_name}', ReadOnly=True)
-            statistics_exel = Exel.get_exel_metadata(wb)
+            statistics_exel = Excel.get_exel_metadata(wb)
             print("count of sheets:", wb.Sheets.Count)
             wb.Close(False)
             xl.Quit()
             return statistics_exel
+
         except Exception as e:
             error = traceback.format_exc()
             print('[bold red] Error:\n [/bold red]', error)
             sb.call(["TASKKILL", "/IM", "EXCEL.EXE", "/t", "/f"], shell=True)
             log.critical(f'\nFile name: {file_name}\n Error:\n{error}')
-            # with io.open('./Error_exel.csv', 'w') as csvfile:
-            #     error2 = [file_name, error]
-            #     writer = csv.writer(csvfile, delimiter=';')
-            #     writer.writerow(['File_name', 'Error'])
-            #     writer.writerow(error2)
             statistics_exel = {}
             return statistics_exel
 
@@ -86,33 +82,32 @@ class Exel(Helper):
         with io.open('./report.csv', 'w', encoding="utf-8") as csvfile:
             writer = csv.writer(csvfile, delimiter=';')
             writer.writerow(['File_name', 'statistic'])
-            for file_name in track(list_of_files, description='Comparing Exel Metadata...'):
-                file_name_from = file_name.replace(f'.{extension_to}', f'.{extension_from}')
-                name_to_for_test = self.preparing_file_names(file_name)
-                name_from_for_test = self.preparing_file_names(file_name_from)
-                if extension_to == file_name.split('.')[-1]:
-                    print(f'[bold green]In test[/bold green] {file_name}')
-                    print(f'[bold green]In test[/bold green] {file_name_from}')
-                    self.copy(f'{custom_doc_to}{file_name}',
-                              f'{path_to_temp_in_test}{name_to_for_test}')
-                    self.copy(f'{custom_doc_from}{file_name_from}',
-                              f'{path_to_temp_in_test}{name_from_for_test}')
+            for converted_file in track(list_of_files, description='Comparing Excel Metadata...'):
+                if converted_file.endswith((".xlsx", ".XLSX")):
+                    source_file, tmp_name_converted_file, \
+                    tmp_name_source_file, tmp_name = self.preparing_files_for_test(converted_file,
+                                                                                   extension_converted,
+                                                                                   extension_source)
 
-                    statistics_exel_after = self.opener_exel(path_to_temp_in_test, name_from_for_test)
-                    statistics_exel_before = self.opener_exel(path_to_temp_in_test, name_to_for_test)
+                    print(f'[bold green]In test[/bold green] {source_file}')
+                    statistics_exel_after = self.opener_exel(tmp_in_test, tmp_name_source_file)
+                    print(f'[bold green]In test[/bold green] {converted_file}')
+                    statistics_exel_before = self.opener_exel(tmp_in_test, tmp_name_converted_file)
 
                     if statistics_exel_after == {} or statistics_exel_before == {}:
                         print('[bold red]NOT TESTED, Statistics empty!!![/bold red]')
-                        self.copy_to_not_tested(file_name,
-                                                file_name_from)
+                        self.copy_to_folder(converted_file,
+                                            source_file,
+                                            untested_folder)
 
                     else:
                         modified = self.dict_compare(statistics_exel_before, statistics_exel_after)
                         if modified != {}:
                             print(modified)
-                            self.copy_to_errors(file_name,
-                                                file_name_from)
-                            modified_keys = [file_name, modified]
+                            self.copy_to_folder(converted_file,
+                                                source_file,
+                                                differences_statistic)
+                            modified_keys = [converted_file, modified]
                             writer.writerow(modified_keys)
 
-            self.delete(path_to_temp_in_test)
+            self.delete(tmp_in_test)
