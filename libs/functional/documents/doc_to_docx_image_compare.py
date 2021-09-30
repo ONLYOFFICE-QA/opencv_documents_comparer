@@ -18,10 +18,10 @@ extension_converted = 'docx'
 class WordCompareImg(Helper):
 
     def __init__(self, list_of_files):
-        self.delete(tmp_in_test)
+        self.create_project_dirs()
+        self.delete(f'{tmp_in_test}*')
         self.delete(f'{tmp_converted_image}*')
         self.delete(f'{tmp_source_image}*')
-        self.create_project_dirs()
         self.coordinate = []
         self.run_compare_word(list_of_files)
 
@@ -30,13 +30,12 @@ class WordCompareImg(Helper):
             if win32gui.GetClassName(hwnd) == 'OpusApp':
                 win32gui.ShowWindow(hwnd, win32con.SW_NORMAL)
                 win32gui.SetForegroundWindow(hwnd)
-                win32gui.MoveWindow(hwnd, 494, 30, 2200, 1420, True)
+                win32gui.MoveWindow(hwnd, 0, 0, 2000, 1400, True)
                 sleep(0.5)
                 self.coordinate.clear()
                 self.coordinate.append(win32gui.GetWindowRect(hwnd))
 
     def get_screenshots(self, file, tmp_name_file, path_to_save_screen, num_of_sheets):
-        print(f'[bold green]In test[/bold green] {file}')
         Word.run(tmp_in_test, tmp_name_file, 'WINWORD.EXE')
         sleep(wait_for_opening)
         win32gui.EnumWindows(self.get_coord_word, self.coordinate)
@@ -53,7 +52,8 @@ class WordCompareImg(Helper):
             sleep(wait_for_press)
             page_num += 1
         # sb.call(f'powershell.exe kill -Name WINWORD', shell=True)
-        sb.call(["taskkill", "/IM", "WINWORD.EXE", "/t", "/f"], shell=True)
+        sb.call(["taskkill", "/IM", "WINWORD.EXE"], shell=True)
+        sb.call(["taskkill", "/IM", "WINWORD.EXE"], shell=True)
 
     def run_compare_word(self, list_of_files):
         for converted_file in list_of_files:
@@ -62,10 +62,12 @@ class WordCompareImg(Helper):
                 tmp_name_source_file, tmp_name = self.preparing_files_for_test(converted_file,
                                                                                extension_converted,
                                                                                extension_source)
+                print(f'[bold green]In test[/bold green] {converted_file}')
                 num_of_sheets = Word.word_opener(f'{tmp_in_test}{tmp_name}')
-                num_of_sheets = num_of_sheets['num_of_sheets']
-                print(f"Number of pages: {num_of_sheets}")
+
                 if num_of_sheets != {}:
+                    num_of_sheets = num_of_sheets['num_of_sheets']
+                    print(f"Number of pages: {num_of_sheets}")
                     self.get_screenshots(converted_file,
                                          tmp_name_converted_file,
                                          tmp_converted_image,

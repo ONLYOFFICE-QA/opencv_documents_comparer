@@ -95,7 +95,7 @@ class Excel(Helper):
                     statistics_exel_before = self.opener_exel(tmp_in_test, tmp_name_converted_file)
 
                     if statistics_exel_after == {} or statistics_exel_before == {}:
-                        print('[bold red]NOT TESTED, Statistics empty!!![/bold red]')
+                        print("[bold red]Can't open source file, copy to untested[/bold red]")
                         self.copy_to_folder(converted_file,
                                             source_file,
                                             untested_folder)

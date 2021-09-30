@@ -106,7 +106,7 @@ class PowerPoint(Helper):
                     error = self.get_screenshot(tmp_converted_image,
                                                 tmp_name_converted_file,
                                                 slide_count)
-                    print(error)
+
                     if error == "#32770":
                         print('[bold red]ERROR, copy to "not tested" [/bold red]')
                         self.copy_to_folder(converted_file,
@@ -114,7 +114,7 @@ class PowerPoint(Helper):
                                             untested_folder)
                         self.errors.clear()
 
-                    elif error != "#32770":
+                    else:
                         self.get_screenshot(tmp_source_image,
                                             tmp_name_source_file,
                                             slide_count)

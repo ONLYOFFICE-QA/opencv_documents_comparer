@@ -1,5 +1,3 @@
-import csv
-import io
 import subprocess as sb
 from time import sleep
 
@@ -78,28 +76,33 @@ class ExcelCompareImage(Helper):
         sb.call(["TASKKILL", "/IM", "EXCEL.EXE", "/t", "/f"], shell=True)
 
     def run_compare_exel(self, list_of_files):
-        with io.open('./report.csv', 'w', encoding="utf-8") as csvfile:
-            writer = csv.writer(csvfile, delimiter=';')
-            writer.writerow(['File_name', 'statistic'])
-            for converted_file in list_of_files:
-                if converted_file.endswith((".xlsx", ".XLSX")):
-                    source_file, tmp_name_converted_file, \
-                    tmp_name_source_file, tmp_name = self.preparing_files_for_test(converted_file,
-                                                                                   extension_converted,
-                                                                                   extension_source)
-                    print(f'[bold green]In test[/bold green] {tmp_name_converted_file}')
-                    print(f'[bold green]In test[/bold green] {tmp_name_source_file}')
-                    statistics_exel = Excel.opener_exel(tmp_in_test, tmp_name)
+        for converted_file in list_of_files:
+            if converted_file.endswith((".xlsx", ".XLSX")):
+                source_file, tmp_name_converted_file, \
+                tmp_name_source_file, tmp_name = self.preparing_files_for_test(converted_file,
+                                                                               extension_converted,
+                                                                               extension_source)
+
+                statistics_exel = Excel.opener_exel(tmp_in_test, tmp_name)
+
+                if statistics_exel != {}:
                     print(statistics_exel['num_of_sheets'])
 
-                    if statistics_exel != {}:
-                        Helper.delete(f'{tmp_converted_image}*')
-                        Helper.delete(f'{tmp_source_image}*')
-                        self.get_screenshots(tmp_name_converted_file, tmp_converted_image,
-                                             statistics_exel)
+                    print(f'[bold green]In test[/bold green] {converted_file}')
+                    self.get_screenshots(tmp_name_converted_file,
+                                         tmp_converted_image,
+                                         statistics_exel)
 
-                        self.get_screenshots(tmp_name_source_file, tmp_source_image,
-                                             statistics_exel)
-                        CompareImage(converted_file, 100)
+                    print(f'[bold green]In test[/bold green] {source_file}')
+                    self.get_screenshots(tmp_name_source_file,
+                                         tmp_source_image,
+                                         statistics_exel)
+
+                    CompareImage(converted_file, 100)
+                else:
+                    print(f"[bold red]Can't open source file[/bold red]")
+                    self.copy_to_folder(converted_file,
+                                        source_file,
+                                        failed_source)
 
             self.delete(tmp_in_test)

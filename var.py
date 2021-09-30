@@ -4,11 +4,12 @@ version = '6.4.1.44'
 extension_source = 'doc'
 extension_converted = 'docx'
 
-wait_for_opening = 10  # Opening waiting time
+wait_for_opening = 8  # Opening waiting time
 wait_for_press = 0.5
 
 list_of_file_names = [
-    '01 - Font (2).docx'
+    'arturomurante_cv.docx',
+    'Article_contes.docx'
 ]
 
 source_doc_folder = f'd:/ProjectsAndVM/data_db/files/{extension_source}/'
