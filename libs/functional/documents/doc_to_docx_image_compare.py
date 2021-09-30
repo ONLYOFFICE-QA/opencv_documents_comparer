@@ -25,6 +25,8 @@ class WordCompareImg(Helper):
         self.coordinate = []
         self.run_compare_word(list_of_files)
 
+    # gets the coordinates of the window
+    # sets the size and position of the window
     def get_coord_word(self, hwnd, ctx):
         if win32gui.IsWindowVisible(hwnd):
             if win32gui.GetClassName(hwnd) == 'OpusApp':
@@ -35,6 +37,8 @@ class WordCompareImg(Helper):
                 self.coordinate.clear()
                 self.coordinate.append(win32gui.GetWindowRect(hwnd))
 
+    # opens the document
+    # takes a screenshot by coordinates
     def get_screenshots(self, file, tmp_name_file, path_to_save_screen, num_of_sheets):
         Word.run(tmp_in_test, tmp_name_file, 'WINWORD.EXE')
         sleep(wait_for_opening)

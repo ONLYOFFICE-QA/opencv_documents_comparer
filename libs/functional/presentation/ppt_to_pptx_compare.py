@@ -26,16 +26,19 @@ class PowerPoint(Helper):
         self.errors = []
         self.run_compare_pp(list_of_files)
 
+    # gets the coordinates of the window
+    # sets the size and position of the window
     def get_coord_pp(self, hwnd, ctx):
         if win32gui.IsWindowVisible(hwnd):
             if win32gui.GetClassName(hwnd) == 'PPTFrameClass':
                 win32gui.ShowWindow(hwnd, win32con.SW_NORMAL)
                 win32gui.SetForegroundWindow(hwnd)
-                win32gui.MoveWindow(hwnd, 494, 30, 2200, 1420, True)
+                win32gui.MoveWindow(hwnd, 0, 0, 2200, 1420, True)
                 sleep(0.5)
                 self.coordinate.clear()
                 self.coordinate.append(win32gui.GetWindowRect(hwnd))
 
+    # Checks the error on the window title
     def check_error(self, hwnd, ctx):
         if win32gui.IsWindowVisible(hwnd):
             if win32gui.GetClassName(hwnd) == '#32770':
@@ -58,10 +61,11 @@ class PowerPoint(Helper):
             return slide_count
 
         except Exception:
-            print('[bold red]NOT TESTED!!![/bold red]')
             sb.call(["taskkill", "/IM", "POWERPNT.EXE"])
             return 'None'
 
+    # opens the document
+    # takes a screenshot by coordinates
     def get_screenshot(self, path_to_save_screen, file_name, slide_count):
         self.run(tmp_in_test, file_name, power_point)
         sleep(wait_for_opening)
