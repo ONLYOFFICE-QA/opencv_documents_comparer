@@ -1,0 +1,114 @@
+import csv
+import io
+import json
+import subprocess as sb
+
+from rich import print
+from rich.progress import track
+from win32com.client import Dispatch
+
+from libs.helpers.helper import Helper
+from variables import *
+
+extension_source = 'doc'
+extension_converted = 'docx'
+
+
+class Word(Helper):
+
+    def __init__(self, list_of_files):
+        self.create_project_dirs()
+        self.delete(f'{tmp_dir_in_test}*')
+        self.delete(f'{tmp_dir_converted_image}*')
+        self.delete(f'{tmp_dir_source_image}*')
+        self.run_compare_word_statistic(list_of_files)
+
+    @staticmethod
+    def get_word_statistic(word_app):
+        statistics_word = {
+            'num_of_sheets': f'{word_app.ComputeStatistics(2)}',
+            'number_of_lines': f'{word_app.ComputeStatistics(1)}',
+            'word_count': f'{word_app.ComputeStatistics(0)}',
+            'number_of_characters_without_spaces': f'{word_app.ComputeStatistics(3)}',
+            'number_of_characters_with_spaces': f'{word_app.ComputeStatistics(5)}',
+            'number_of_paragraph': f'{word_app.ComputeStatistics(4)}',
+        }
+        return statistics_word
+
+    @staticmethod
+    def word_opener(path_to_file):
+        word_app = Dispatch('Word.Application')
+        word_app.Visible = False
+        # word_app.DisplayAlerts = False
+        try:
+            word_app = word_app.Documents.Open(f'{path_to_file}', None, True)
+            statistics_word = Word.get_word_statistic(word_app)
+            word_app.Close(False)
+            sb.call(["taskkill", "/IM", "WINWORD.EXE"])
+            return statistics_word
+        except Exception:
+            statistics_word = {}
+            return statistics_word
+
+    def run_compare_word_statistic(self, list_of_files):
+        with io.open('./report.csv', 'w', encoding="utf-8") as csvfile:
+            writer = csv.writer(csvfile, delimiter=';')
+            writer.writerow(['File_name', 'num_of_sheets', 'number_of_lines', 'word_count', 'characters_without_spaces',
+                             'characters_with_spaces', 'number_of_paragraph'])
+
+            for converted_file in track(list_of_files,
+                                        description='[bold blue]Comparing doc and docx statistic... [/bold blue]\n\n'):
+                if converted_file.endswith((".docx", ".DOCX")):
+                    source_file, tmp_name_converted_file, \
+                    tmp_name_source_file, tmp_name = self.preparing_files_for_test(converted_file,
+                                                                                   converted_extension,
+                                                                                   source_extension)
+                    print(f'[bold green]In test[/bold green] {source_file}')
+                    source_statistics = Word.word_opener(f'{tmp_dir_in_test}{tmp_name_source_file}')
+
+                    print(f'[bold green]In test[/bold green] {converted_file}')
+                    converted_statistics = Word.word_opener(f'{tmp_dir_in_test}{tmp_name_converted_file}')
+
+                    if source_statistics == {} or converted_statistics == {}:
+                        print('[bold red]Opening error[/bold red]')
+                        self.copy_to_folder(converted_file,
+                                            source_file,
+                                            untested_folder)
+
+                    else:
+                        modified = self.dict_compare(converted_statistics, source_statistics)
+
+                        if modified != {}:
+                            print('[bold red]Differences_statistic[/bold red]')
+                            print(modified)
+                            self.copy_to_folder(converted_file,
+                                                source_file,
+                                                differences_statistic)
+
+                            # report generation
+                            modified_keys = [converted_file]
+                            for key in modified:
+                                modified_keys.append(modified['num_of_sheets']) if key == 'num_of_sheets' \
+                                    else modified_keys.append(' ')
+                                modified_keys.append(modified['number_of_lines']) if key == 'number_of_lines' \
+                                    else modified_keys.append(' ')
+                                modified_keys.append(modified['word_count']) if key == 'word_count' \
+                                    else modified_keys.append(' ')
+                                modified_keys.append(modified[
+                                                         'number_of_characters_without_spaces']) if key == 'number_of_characters_without_spaces' \
+                                    else modified_keys.append(' ')
+                                modified_keys.append(modified[
+                                                         'number_of_characters_with_spaces']) if key == 'number_of_characters_with_spaces' \
+                                    else modified_keys.append(' ')
+                                modified_keys.append(modified['number_of_paragraph']) if key == 'number_of_paragraph' \
+                                    else modified_keys.append(' ')
+
+                            writer.writerow(modified_keys)
+
+                            # Saving differences in json
+                            with open(f'{differences_statistic}{converted_file}_difference.json', 'w') as f:
+                                json.dump(modified, f)
+                        else:
+                            print('[bold green]Passed[/bold green]')
+
+        self.delete(tmp_dir_in_test)

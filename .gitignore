@@ -1,3 +1,12 @@
 data/
 env/
 .idea/
+/configure.json
+dist/
+build/
+/tests/
+/venv/
+/template/
+/tools.py
+/report.csv
+/Error_exel.csv
