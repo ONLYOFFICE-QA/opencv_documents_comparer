@@ -9,7 +9,7 @@ from win32com.client import Dispatch
 
 from libs.helpers.compare_image import CompareImage
 from libs.helpers.helper import Helper
-from var import *
+from variables import *
 
 extension_source = 'ppt'
 extension_converted = 'pptx'
@@ -19,9 +19,9 @@ class PowerPoint(Helper):
 
     def __init__(self, list_of_files):
         self.create_project_dirs()
-        self.delete(f'{tmp_in_test}*')
-        self.delete(f'{tmp_converted_image}*')
-        self.delete(f'{tmp_source_image}*')
+        self.delete(f'{tmp_dir_in_test}*')
+        self.delete(f'{tmp_dir_converted_image}*')
+        self.delete(f'{tmp_dir_source_image}*')
         self.coordinate = []
         self.errors = []
         self.run_compare_pp(list_of_files)
@@ -38,7 +38,7 @@ class PowerPoint(Helper):
                 self.coordinate.clear()
                 self.coordinate.append(win32gui.GetWindowRect(hwnd))
 
-    # Checks the error on the window title
+    # Checks the window title
     def check_error(self, hwnd, ctx):
         if win32gui.IsWindowVisible(hwnd):
             if win32gui.GetClassName(hwnd) == '#32770':
@@ -67,7 +67,7 @@ class PowerPoint(Helper):
     # opens the document
     # takes a screenshot by coordinates
     def get_screenshot(self, path_to_save_screen, file_name, slide_count):
-        self.run(tmp_in_test, file_name, power_point)
+        self.run(tmp_dir_in_test, file_name, power_point)
         sleep(wait_for_opening)
         win32gui.EnumWindows(self.check_error, self.errors)
         if not self.errors:
@@ -96,9 +96,9 @@ class PowerPoint(Helper):
             if converted_file.endswith((".pptx", ".PPTX")):
                 source_file, tmp_name_converted_file, \
                 tmp_name_source_file, tmp_name = self.preparing_files_for_test(converted_file,
-                                                                               extension_converted,
-                                                                               extension_source)
-                slide_count = self.opener_power_point(tmp_in_test,
+                                                                               converted_extension,
+                                                                               source_extension)
+                slide_count = self.opener_power_point(tmp_dir_in_test,
                                                       tmp_name)
 
                 if slide_count == 'None':
@@ -107,7 +107,7 @@ class PowerPoint(Helper):
 
                 else:
                     print(f'[bold green]In test[/bold green] {converted_file}')
-                    error = self.get_screenshot(tmp_converted_image,
+                    error = self.get_screenshot(tmp_dir_converted_image,
                                                 tmp_name_converted_file,
                                                 slide_count)
 
@@ -119,13 +119,13 @@ class PowerPoint(Helper):
                         self.errors.clear()
 
                     else:
-                        self.get_screenshot(tmp_source_image,
+                        self.get_screenshot(tmp_dir_source_image,
                                             tmp_name_source_file,
                                             slide_count)
                         sb.call(["TASKKILL", "/IM", "POWERPNT.EXE", "/t", "/f"], shell=True)
                         CompareImage(converted_file)
 
-        self.delete(tmp_in_test)
+        self.delete(tmp_dir_in_test)
         pass
 
     pass

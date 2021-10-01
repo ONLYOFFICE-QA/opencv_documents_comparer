@@ -4,7 +4,7 @@ from tqdm import tqdm
 
 from libs.functional.spreadsheets.xls_to_xlsx_statistic_compare import Excel
 from libs.helpers.get_error import run_get_error_exel
-from var import *
+from variables import *
 
 if __name__ == "__main__":
     for i in tqdm(range(1)):

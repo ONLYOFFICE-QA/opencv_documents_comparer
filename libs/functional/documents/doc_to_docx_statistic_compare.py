@@ -8,7 +8,7 @@ from rich.progress import track
 from win32com.client import Dispatch
 
 from libs.helpers.helper import Helper
-from var import *
+from variables import *
 
 extension_source = 'doc'
 extension_converted = 'docx'
@@ -18,9 +18,9 @@ class Word(Helper):
 
     def __init__(self, list_of_files):
         self.create_project_dirs()
-        self.delete(f'{tmp_in_test}*')
-        self.delete(f'{tmp_converted_image}*')
-        self.delete(f'{tmp_source_image}*')
+        self.delete(f'{tmp_dir_in_test}*')
+        self.delete(f'{tmp_dir_converted_image}*')
+        self.delete(f'{tmp_dir_source_image}*')
         self.run_compare_word_statistic(list_of_files)
 
     @staticmethod
@@ -51,7 +51,6 @@ class Word(Helper):
             return statistics_word
 
     def run_compare_word_statistic(self, list_of_files):
-
         with io.open('./report.csv', 'w', encoding="utf-8") as csvfile:
             writer = csv.writer(csvfile, delimiter=';')
             writer.writerow(['File_name', 'num_of_sheets', 'number_of_lines', 'word_count', 'characters_without_spaces',
@@ -62,13 +61,13 @@ class Word(Helper):
                 if converted_file.endswith((".docx", ".DOCX")):
                     source_file, tmp_name_converted_file, \
                     tmp_name_source_file, tmp_name = self.preparing_files_for_test(converted_file,
-                                                                                   extension_converted,
-                                                                                   extension_source)
+                                                                                   converted_extension,
+                                                                                   source_extension)
                     print(f'[bold green]In test[/bold green] {source_file}')
-                    source_statistics = Word.word_opener(f'{tmp_in_test}{tmp_name_source_file}')
+                    source_statistics = Word.word_opener(f'{tmp_dir_in_test}{tmp_name_source_file}')
 
                     print(f'[bold green]In test[/bold green] {converted_file}')
-                    converted_statistics = Word.word_opener(f'{tmp_in_test}{tmp_name_converted_file}')
+                    converted_statistics = Word.word_opener(f'{tmp_dir_in_test}{tmp_name_converted_file}')
 
                     if source_statistics == {} or converted_statistics == {}:
                         print('[bold red]Opening error[/bold red]')
@@ -86,6 +85,7 @@ class Word(Helper):
                                                 source_file,
                                                 differences_statistic)
 
+                            # report generation
                             modified_keys = [converted_file]
                             for key in modified:
                                 modified_keys.append(modified['num_of_sheets']) if key == 'num_of_sheets' \
@@ -105,9 +105,10 @@ class Word(Helper):
 
                             writer.writerow(modified_keys)
 
+                            # Saving differences in json
                             with open(f'{differences_statistic}{converted_file}_difference.json', 'w') as f:
                                 json.dump(modified, f)
                         else:
                             print('[bold green]Passed[/bold green]')
 
-        self.delete(tmp_in_test)
+        self.delete(tmp_dir_in_test)

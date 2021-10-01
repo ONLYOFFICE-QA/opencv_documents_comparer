@@ -6,7 +6,7 @@ from rich.progress import track
 from skimage.metrics import structural_similarity
 
 from libs.helpers.helper import *
-from var import *
+from variables import *
 
 
 class CompareImage(Helper):
@@ -55,7 +55,7 @@ class CompareImage(Helper):
         images = [before, after]
 
         file_name_for_gif = f'{image_name}_similarity.gif'
-        source_file = converted_file.replace(f'.{extension_converted}', f'.{extension_source}')
+        source_file = converted_file.replace(f'.{converted_extension}', f'.{source_extension}')
         if similarity < koff:
             self.create_dir(f'{differences_compare_image}{folder_name}')
             self.create_dir(f'{differences_compare_image}{folder_name}/gif/')
@@ -76,14 +76,6 @@ class CompareImage(Helper):
                 collage)
 
     @staticmethod
-    def grab_coordinate_exel(path, filename, list_num, number_of_pages, coordinate):
-        img_name = filename.replace(f'.{filename.split(".")[-1]}', '')
-
-        image = ImageGrab.grab(bbox=coordinate)
-
-        image.save(path + img_name + str(f'_list_{list_num}_page_{number_of_pages}') + '.png', 'PNG')
-
-    @staticmethod
     def put_text(image, text):
         color = (0, 0, 255)
         cv2.putText(image, f'{text}',
@@ -97,11 +89,15 @@ class CompareImage(Helper):
         pass
 
     @staticmethod
+    def grab_coordinate_exel(path, filename, list_num, number_of_pages, coordinate):
+        img_name = filename.replace(f'.{filename.split(".")[-1]}', '')
+        image = ImageGrab.grab(bbox=coordinate)
+        image.save(path + img_name + str(f'_list_{list_num}_page_{number_of_pages}') + '.png', 'PNG')
+
+    @staticmethod
     def grab_coordinate(path, filename, number_of_pages, coordinate):
         img_name = filename.replace(f'.{filename.split(".")[-1]}', '')
-
         image = ImageGrab.grab(bbox=coordinate)
-
         image.save(path + img_name + str(f'_{number_of_pages}') + '.png', 'PNG')
 
     @staticmethod
@@ -111,14 +107,14 @@ class CompareImage(Helper):
         im.save(path + filename_for_screen + str(f'_{number_of_pages}') + '.png', 'PNG')
 
     def start_to_compare_images(self, file_name, koff):
-        list_of_images = os.listdir(tmp_converted_image)
+        list_of_images = os.listdir(tmp_dir_converted_image)
         for image_name in track(list_of_images, description='Comparing In Progress'):
 
-            if os.path.exists(f'{tmp_source_image}{image_name}') \
-                    and os.path.exists(f'{tmp_converted_image}{image_name}'):
+            if os.path.exists(f'{tmp_dir_source_image}{image_name}') \
+                    and os.path.exists(f'{tmp_dir_converted_image}{image_name}'):
 
-                self.compare_img(f'{tmp_source_image}{image_name}',
-                                 f'{tmp_converted_image}{image_name}',
+                self.compare_img(f'{tmp_dir_source_image}{image_name}',
+                                 f'{tmp_dir_converted_image}{image_name}',
                                  image_name,
                                  file_name,
                                  koff)
@@ -126,5 +122,5 @@ class CompareImage(Helper):
             else:
                 print(f'[bold red] File not found [/bold red]{image_name}')
 
-        Helper.delete(f'{tmp_converted_image}*')
-        Helper.delete(f'{tmp_source_image}*')
+        Helper.delete(f'{tmp_dir_converted_image}*')
+        Helper.delete(f'{tmp_dir_source_image}*')

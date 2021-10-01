@@ -11,7 +11,7 @@ from win32com.client import Dispatch
 
 from libs.helpers.helper import Helper
 from libs.helpers.logger import *
-from var import *
+from variables import *
 
 extension_source = 'xls'
 extension_converted = 'xlsx'
@@ -21,15 +21,15 @@ class Excel(Helper):
 
     def __init__(self, list_of_files):
         self.create_project_dirs()
-        self.delete(f'{tmp_in_test}*')
-        self.delete(f'{tmp_converted_image}*')
-        self.delete(f'{tmp_source_image}*')
+        self.delete(f'{tmp_dir_in_test}*')
+        self.delete(f'{tmp_dir_converted_image}*')
+        self.delete(f'{tmp_dir_source_image}*')
         self.coordinate = []
         self.errors = []
         self.run_compare_exel(list_of_files)
 
     @staticmethod
-    def get_exel_metadata(wb):
+    def get_exel_statistic(wb):
         statistics_exel = {
             'num_of_sheets': f'{wb.Sheets.Count}',
         }
@@ -64,8 +64,7 @@ class Excel(Helper):
             xl = Dispatch("Excel.Application")
             xl.Visible = False  # otherwise excel is hidden
             wb = xl.Workbooks.Open(f'{path_for_open}{file_name}', ReadOnly=True)
-            statistics_exel = Excel.get_exel_metadata(wb)
-            print("count of sheets:", wb.Sheets.Count)
+            statistics_exel = Excel.get_exel_statistic(wb)
             wb.Close(False)
             xl.Quit()
             return statistics_exel
@@ -86,13 +85,13 @@ class Excel(Helper):
                 if converted_file.endswith((".xlsx", ".XLSX")):
                     source_file, tmp_name_converted_file, \
                     tmp_name_source_file, tmp_name = self.preparing_files_for_test(converted_file,
-                                                                                   extension_converted,
-                                                                                   extension_source)
+                                                                                   converted_extension,
+                                                                                   source_extension)
 
                     print(f'[bold green]In test[/bold green] {source_file}')
-                    statistics_exel_after = self.opener_exel(tmp_in_test, tmp_name_source_file)
+                    statistics_exel_after = self.opener_exel(tmp_dir_in_test, tmp_name_source_file)
                     print(f'[bold green]In test[/bold green] {converted_file}')
-                    statistics_exel_before = self.opener_exel(tmp_in_test, tmp_name_converted_file)
+                    statistics_exel_before = self.opener_exel(tmp_dir_in_test, tmp_name_converted_file)
 
                     if statistics_exel_after == {} or statistics_exel_before == {}:
                         print("[bold red]Can't open source file, copy to untested[/bold red]")
@@ -110,4 +109,4 @@ class Excel(Helper):
                             modified_keys = [converted_file, modified]
                             writer.writerow(modified_keys)
 
-            self.delete(tmp_in_test)
+            self.delete(tmp_dir_in_test)

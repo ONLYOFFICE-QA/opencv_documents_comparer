@@ -5,7 +5,7 @@ import subprocess as sb
 
 from rich import print
 
-from var import *
+from variables import *
 
 
 class Helper:
@@ -22,11 +22,11 @@ class Helper:
                                                                f'.{extension_source}')
         tmp_name = f'{random.randint(5000, 50000)}.{extension_source}'
         self.copy(f'{source_doc_folder}{source_file}',
-                  f'{tmp_in_test}{tmp_name}')
+                  f'{tmp_dir_in_test}{tmp_name}')
         self.copy(f'{converted_doc_folder}{converted_file_name}',
-                  f'{tmp_in_test}{tmp_name_converted_file}')
+                  f'{tmp_dir_in_test}{tmp_name_converted_file}')
         self.copy(f'{source_doc_folder}{source_file}',
-                  f'{tmp_in_test}{tmp_name_source_file}')
+                  f'{tmp_dir_in_test}{tmp_name_source_file}')
         return source_file, tmp_name_converted_file, tmp_name_source_file, tmp_name
 
     @staticmethod
@@ -82,9 +82,9 @@ class Helper:
         self.create_dir(result_folder)
         self.create_dir(tmp_dir)
         self.create_dir(passed)
-        self.create_dir(tmp_source_image)
-        self.create_dir(tmp_converted_image)
-        self.create_dir(tmp_in_test)
+        self.create_dir(tmp_dir_source_image)
+        self.create_dir(tmp_dir_converted_image)
+        self.create_dir(tmp_dir_in_test)
         self.create_dir(differences_statistic)
         self.create_dir(untested_folder)
         self.create_dir(differences_compare_image)

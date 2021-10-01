@@ -5,7 +5,7 @@ from tqdm import tqdm
 
 from libs.functional.documents.doc_to_docx_statistic_compare import Word
 from libs.helpers.get_error import run_get_errors_pp
-from var import *
+from variables import *
 
 if __name__ == "__main__":
     for i in tqdm(range(1)):
