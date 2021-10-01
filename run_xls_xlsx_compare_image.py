@@ -2,9 +2,9 @@ from multiprocessing import Process
 
 from tqdm import tqdm
 
+from config import *
 from libs.functional.spreadsheets.xls_to_xlsx_image_compare import ExcelCompareImage
 from libs.helpers.get_error import run_get_error_exel
-from variables import *
 
 if __name__ == "__main__":
     for i in tqdm(range(1)):

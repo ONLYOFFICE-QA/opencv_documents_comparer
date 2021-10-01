@@ -3,10 +3,10 @@ from multiprocessing import Process
 
 from tqdm import tqdm
 
+from config import *
 from libs.functional.documents.doc_to_docx_image_compare import WordCompareImg
 from libs.functional.documents.doc_to_docx_statistic_compare import Word
 from libs.helpers.get_error import run_get_errors_pp
-from variables import *
 
 extension_source = 'doc'
 extension_converted = 'docx'

@@ -1,7 +1,7 @@
 from tqdm import tqdm
 
+from config import *
 from libs.functional.presentation.ppt_to_pptx_compare import PowerPoint
-from variables import *
 
 if __name__ == "__main__":
     for i in tqdm(range(1)):

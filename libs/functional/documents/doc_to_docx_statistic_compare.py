@@ -1,6 +1,7 @@
 import csv
 import io
 import json
+import os
 import subprocess as sb
 
 from rich import print
@@ -8,20 +9,16 @@ from rich.progress import track
 from win32com.client import Dispatch
 
 from libs.helpers.helper import Helper
-from variables import *
 
-extension_source = 'doc'
-extension_converted = 'docx'
+source_extension = 'doc'
+converted_extension = 'docx'
 
 
-class Word(Helper):
+class Word:
 
-    def __init__(self, list_of_files):
-        self.create_project_dirs()
-        self.delete(f'{tmp_dir_in_test}*')
-        self.delete(f'{tmp_dir_converted_image}*')
-        self.delete(f'{tmp_dir_source_image}*')
-        self.run_compare_word_statistic(list_of_files)
+    def __init__(self):
+        self.helper = Helper(source_extension, converted_extension)
+        self.run_compare_word_statistic(os.listdir(self.helper.converted_doc_folder))
 
     @staticmethod
     def get_word_statistic(word_app):
@@ -60,30 +57,30 @@ class Word(Helper):
                                         description='[bold blue]Comparing doc and docx statistic... [/bold blue]\n\n'):
                 if converted_file.endswith((".docx", ".DOCX")):
                     source_file, tmp_name_converted_file, \
-                    tmp_name_source_file, tmp_name = self.preparing_files_for_test(converted_file,
-                                                                                   converted_extension,
-                                                                                   source_extension)
+                    tmp_name_source_file, tmp_name = self.helper.preparing_files_for_test(converted_file,
+                                                                                          converted_extension,
+                                                                                          source_extension)
                     print(f'[bold green]In test[/bold green] {source_file}')
-                    source_statistics = Word.word_opener(f'{tmp_dir_in_test}{tmp_name_source_file}')
+                    source_statistics = Word.word_opener(f'{self.helper.tmp_dir_in_test}{tmp_name_source_file}')
 
                     print(f'[bold green]In test[/bold green] {converted_file}')
-                    converted_statistics = Word.word_opener(f'{tmp_dir_in_test}{tmp_name_converted_file}')
+                    converted_statistics = Word.word_opener(f'{self.helper.tmp_dir_in_test}{tmp_name_converted_file}')
 
                     if source_statistics == {} or converted_statistics == {}:
                         print('[bold red]Opening error[/bold red]')
-                        self.copy_to_folder(converted_file,
-                                            source_file,
-                                            untested_folder)
+                        self.helper.copy_to_folder(converted_file,
+                                                   source_file,
+                                                   self.helper.untested_folder)
 
                     else:
-                        modified = self.dict_compare(converted_statistics, source_statistics)
+                        modified = self.helper.dict_compare(source_statistics, converted_statistics)
 
                         if modified != {}:
                             print('[bold red]Differences_statistic[/bold red]')
                             print(modified)
-                            self.copy_to_folder(converted_file,
-                                                source_file,
-                                                differences_statistic)
+                            self.helper.copy_to_folder(converted_file,
+                                                       source_file,
+                                                       self.helper.differences_statistic)
 
                             # report generation
                             modified_keys = [converted_file]
@@ -106,9 +103,9 @@ class Word(Helper):
                             writer.writerow(modified_keys)
 
                             # Saving differences in json
-                            with open(f'{differences_statistic}{converted_file}_difference.json', 'w') as f:
+                            with open(f'{self.helper.differences_statistic}{converted_file}_difference.json', 'w') as f:
                                 json.dump(modified, f)
                         else:
                             print('[bold green]Passed[/bold green]')
 
-        self.delete(tmp_dir_in_test)
+        self.helper.delete(self.helper.tmp_dir_in_test)

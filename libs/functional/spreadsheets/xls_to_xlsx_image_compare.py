@@ -7,22 +7,18 @@ import win32con
 import win32gui
 from rich import print
 
+from config import *
 from libs.functional.spreadsheets.xls_to_xlsx_statistic_compare import Excel
 from libs.helpers.compare_image import CompareImage
 from libs.helpers.helper import Helper
-from variables import *
 
-extension_source = 'xls'
-extension_converted = 'xlsx'
+source_extension = 'xls'
+converted_extension = 'xlsx'
 
 
-class ExcelCompareImage(Helper):
-
+class ExcelCompareImage:
     def __init__(self, list_of_files):
-        self.create_project_dirs()
-        self.delete(f'{tmp_dir_in_test}*')
-        self.delete(f'{tmp_dir_converted_image}*')
-        self.delete(f'{tmp_dir_source_image}*')
+        self.helper = Helper(source_extension, converted_extension)
         self.coordinate = []
         self.errors = []
         self.run_compare_excel(list_of_files)
@@ -41,7 +37,7 @@ class ExcelCompareImage(Helper):
     # opens the document
     # takes a screenshot by coordinates
     def get_screenshots(self, tmp_file_name, path_to_save_screen, statistics_exel):
-        Helper.run(tmp_dir_in_test, tmp_file_name, exel)
+        self.helper.run(self.helper.tmp_dir_in_test, tmp_file_name, self.helper.exel)
         sleep(wait_for_opening)
         win32gui.EnumWindows(self.get_coord_exel, self.coordinate)
         coordinate = self.coordinate[0]
@@ -77,30 +73,30 @@ class ExcelCompareImage(Helper):
         for converted_file in list_of_files:
             if converted_file.endswith((".xlsx", ".XLSX")):
                 source_file, tmp_name_converted_file, \
-                tmp_name_source_file, tmp_name = self.preparing_files_for_test(converted_file,
-                                                                               converted_extension,
-                                                                               source_extension)
+                tmp_name_source_file, tmp_name = self.helper.preparing_files_for_test(converted_file,
+                                                                                      converted_extension,
+                                                                                      source_extension)
                 print(f'[bold green]In test[/bold green] {converted_file}')
-                statistics_exel = Excel.opener_exel(tmp_dir_in_test, tmp_name)
+                statistics_exel = Excel.opener_exel(self.helper.tmp_dir_in_test, tmp_name)
 
                 if statistics_exel != {}:
                     print(statistics_exel['num_of_sheets'])
                     print(f'[bold green]In test[/bold green] {converted_file}')
                     self.get_screenshots(tmp_name_converted_file,
-                                         tmp_dir_converted_image,
+                                         self.helper.tmp_dir_converted_image,
                                          statistics_exel)
 
                     print(f'[bold green]In test[/bold green] {source_file}')
                     self.get_screenshots(tmp_name_source_file,
-                                         tmp_dir_source_image,
+                                         self.helper.tmp_dir_source_image,
                                          statistics_exel)
 
                     print('compare?')
-                    CompareImage(converted_file)
+                    CompareImage(converted_file, source_extension, converted_extension, self.helper, koff=100)
                 else:
                     print(f"[bold red]Can't open source file[/bold red]")
-                    self.copy_to_folder(converted_file,
-                                        source_file,
-                                        failed_source)
+                    self.helper.copy_to_folder(converted_file,
+                                               source_file,
+                                               self.helper.result_folder)
 
-        self.delete(tmp_dir_in_test)
+        self.helper.delete(self.helper.tmp_dir_in_test)
