@@ -6,4 +6,5 @@ rich
 tqdm
 pywin32
 transliterate
+invoke
 https://github.com/pyinstaller/pyinstaller/archive/develop.zip

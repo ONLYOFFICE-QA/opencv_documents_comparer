@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 version = '6.4.1.44'
 
 # Path to source documents
@@ -10,5 +11,5 @@ wait_for_press = 0.5
 
 # To test from the names array
 list_of_file_names = [
-    '_4__.docx'
+    'Текст эффекты списки.pptx'
 ]
