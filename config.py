@@ -2,9 +2,9 @@
 version = '6.4.1.44'
 
 # Path to source documents
-source_doc_folder = f'd:/ProjectsAndVM/data_db/files/'
+source_doc_folder = 'd:/ProjectsAndVM/data_db/files/'
 # Path to converted documents
-converted_doc_folder = f'd:/ProjectsAndVM/data_db/results/'
+converted_doc_folder = 'd:/ProjectsAndVM/data_db/results/'
 
 wait_for_opening = 8
 wait_for_press = 0.5

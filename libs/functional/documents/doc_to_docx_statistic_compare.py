@@ -16,8 +16,11 @@ converted_extension = 'docx'
 
 class Word:
 
-    def __init__(self, helper=Helper(source_extension, converted_extension)):
-        self.helper = helper
+    def __init__(self, helper=''):
+        if helper == '':
+            self.helper = Helper(source_extension, converted_extension)
+        else:
+            self.helper = helper
         self.run_compare_word_statistic(os.listdir(self.helper.converted_doc_folder))
 
     @staticmethod
