@@ -1,36 +1,36 @@
 from invoke import task
 
-from runner import *
+from libs.helpers.runner import *
 
 
 @task(name="doc-docx")
-def doc_docx_statistic(im=False, st=False, l=False):
+def doc_docx_statistic(c, im=False, st=False, ls=False):
     if st:
         doc_docx_compare_statistic()
     elif im:
-        if l:
-            run_doc_docx_compare_image(list_of_file_names)
+        if ls:
+            run_doc_docx_compare_image(list=True)
         else:
-            run_doc_docx_compare_image(os.listdir(converted_doc_folder))
+            run_doc_docx_compare_image()
     else:
         run_doc_docx_full_test()
 
 
 @task(name="ppt-pptx")
-def run_ppt_pptx(full=False, l=False):
-    if l:
-        run_ppt_pptx_list()
+def run_ppt_pptx(c, full=False, ls=False):
+    if ls:
+        run_ppt_pptx(list=True)
     elif full:
-        run_ppt_pptx_full()
+        run_ppt_pptx()
 
 
 @task(name="xls-xlsx")
-def run_xls_xlsx(im=False, st=False, l=False):
+def run_xls_xlsx(c, im=False, st=False, ls=False):
     if im:
-        if l:
-            run_xls_xlsx_compare_image(list_of_file_names)
+        if ls:
+            run_xls_xlsx_compare_image(list=True)
         else:
-            run_xls_xlsx_compare_image(os.listdir(converted_doc_folder))
+            run_xls_xlsx_compare_image()
     elif st:
         run_xls_xlsx_compare_statistic()
     else:

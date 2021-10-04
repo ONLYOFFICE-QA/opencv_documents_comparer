@@ -17,8 +17,8 @@ converted_extension = 'pptx'
 
 class PowerPoint:
 
-    def __init__(self, list_of_files):
-        self.helper = Helper(source_extension, converted_extension)
+    def __init__(self, list_of_files, helper=Helper(source_extension, converted_extension)):
+        self.helper = helper
         self.coordinate = []
         self.errors = []
         self.run_compare_pp(list_of_files)
