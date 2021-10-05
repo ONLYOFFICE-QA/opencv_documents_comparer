@@ -10,21 +10,12 @@ from rich import print
 from config import *
 from libs.functional.spreadsheets.xls_to_xlsx_statistic_compare import Excel
 from libs.helpers.compare_image import CompareImage
-from libs.helpers.helper import Helper
 
 source_extension = 'xls'
 converted_extension = 'xlsx'
 
 
-class ExcelCompareImage:
-    def __init__(self, list_of_files, helper=''):
-        if helper == '':
-            self.helper = Helper(source_extension, converted_extension)
-        else:
-            self.helper = helper
-        self.coordinate = []
-        self.errors = []
-        self.run_compare_excel(list_of_files)
+class ExcelCompareImage(Excel):
 
     # gets the coordinates of the window
     # sets the size and position of the window
@@ -72,7 +63,7 @@ class ExcelCompareImage:
         # sb.call(f'powershell.exe kill -Name WINWORD', shell=True)
         sb.call(["TASKKILL", "/IM", "EXCEL.EXE", "/t", "/f"], shell=True)
 
-    def run_compare_excel(self, list_of_files):
+    def run_compare_excel_img(self, list_of_files):
         for converted_file in list_of_files:
             if converted_file.endswith((".xlsx", ".XLSX")):
                 source_file, tmp_name_converted_file, \

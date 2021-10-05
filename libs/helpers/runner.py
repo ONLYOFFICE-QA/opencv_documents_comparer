@@ -9,88 +9,87 @@ from libs.functional.documents.doc_to_docx_image_compare import WordCompareImg
 from libs.functional.documents.doc_to_docx_statistic_compare import Word
 from libs.functional.presentation.ppt_to_pptx_compare import PowerPoint
 from libs.functional.spreadsheets.xls_to_xlsx_image_compare import ExcelCompareImage
-from libs.functional.spreadsheets.xls_to_xlsx_statistic_compare import Excel
 from libs.helpers.get_error import run_get_errors_pp, run_get_error_exel
-from libs.helpers.helper import Helper
 
 
 def doc_docx_compare_statistic():
     for execution_time in tqdm(range(1)):
-        helper = Helper('doc', 'docx')
+        word = Word()
         sb.call(f'powershell.exe kill -Name WINWORD', shell=True)
         error_processing = Process(target=run_get_errors_pp)
         error_processing.start()
         sb.call(f'powershell.exe kill -Name WINWORD', shell=True)
-        Word(helper)
+        word.run_compare_word_statistic(os.listdir(word.helper.converted_doc_folder))
         error_processing.terminate()
+
 
 
 def run_doc_docx_compare_image(list_of_files=False):
     for execution_time in tqdm(range(1)):
-        helper = Helper('doc', 'docx')
+        word_compare = WordCompareImg()
         sb.call(f'powershell.exe kill -Name WINWORD', shell=True)
         if list_of_files:
-            WordCompareImg(list_of_file_names, helper)
+            word_compare.run_compare_word(word_compare.helper.list_of_file_names)
         else:
-            WordCompareImg(os.listdir(helper.converted_doc_folder), helper)
+            word_compare.run_compare_word(os.listdir(word_compare.helper.converted_doc_folder))
         sb.call(f'powershell.exe kill -Name WINWORD', shell=True)
 
 
 def run_doc_docx_full_test():
     for execution_time in tqdm(range(1)):
-        helper = Helper('doc', 'docx')
+        word = WordCompareImg()
         sb.call(f'powershell.exe kill -Name WINWORD', shell=True)
         error_processing = Process(target=run_get_errors_pp)
         error_processing.start()
         sb.call(f'powershell.exe kill -Name WINWORD', shell=True)
-        Word(helper)
-        WordCompareImg(os.listdir(helper.differences_statistic), helper)
+        word.run_compare_word_statistic(os.listdir(word.helper.converted_doc_folder))
+        word.run_compare_word(os.listdir(word.helper.differences_statistic))
         error_processing.terminate()
 
 
 def run_ppt_pptx_compare(list_of_files=False):
     for execution_time in tqdm(range(1)):
-        helper = Helper('ppt', 'pptx')
+        power_point = PowerPoint()
         sb.call(f'powershell.exe kill -Name POWERPNT', shell=True)
         if list_of_files:
-            PowerPoint(list_of_file_names, helper)
+            power_point.run_compare_pp(os.listdir(power_point.helper.list_of_file_names))
         else:
-            PowerPoint(os.listdir(helper.converted_doc_folder), helper)
+            power_point.run_compare_pp(os.listdir(power_point.helper.converted_doc_folder))
         sb.call(f'powershell.exe kill -Name POWERPNT', shell=True)
 
 
 def run_xls_xlsx_compare_image(list_of_files=False):
     for i in tqdm(range(1)):
-        helper = Helper('xls', 'xlsx')
+        excel = ExcelCompareImage()
         sb.call(f'powershell.exe kill -Name EXCEL', shell=True)
         error_processing = Process(target=run_get_error_exel)
         error_processing.start()
         if list_of_files:
-            ExcelCompareImage(list_of_file_names, helper)
+            excel.run_compare_excel_img(os.listdir(list_of_file_names))
         else:
-            ExcelCompareImage(os.listdir(helper.converted_doc_folder), helper)
+            excel.run_compare_excel_img(os.listdir(excel.helper.converted_doc_folder))
         error_processing.terminate()
         sb.call(f'powershell.exe kill -Name EXCEL', shell=True)
 
 
 def run_xls_xlsx_compare_statistic():
     for execution_time in tqdm(range(1)):
-        helper = Helper('xls', 'xlsx')
+        excel = ExcelCompareImage()
         sb.call(f'powershell.exe kill -Name EXCEL', shell=True)
         error_processing = Process(target=run_get_error_exel)
         error_processing.start()
-        Excel(os.listdir(helper.converted_doc_folder), helper)
+        excel.run_compare_exel_statistic(os.listdir(excel.helper.converted_doc_folder))
         error_processing.terminate()
         sb.call(f'powershell.exe kill -Name EXCEL', shell=True)
 
 
 def run_xls_xlsx_full():
     for execution_time in tqdm(range(1)):
-        helper = Helper('xls', 'xlsx')
+        excel = ExcelCompareImage()
         sb.call(f'powershell.exe kill -Name EXCEL', shell=True)
         error_processing = Process(target=run_get_error_exel)
         error_processing.start()
-        Excel(os.listdir(helper.converted_doc_folder), helper)
-        ExcelCompareImage(helper.differences_statistic, helper)
+        excel.run_compare_exel_statistic(os.listdir(excel.helper.converted_doc_folder))
+        excel.run_compare_excel_img(excel.helper.differences_statistic)
         error_processing.terminate()
         sb.call(f'powershell.exe kill -Name EXCEL', shell=True)

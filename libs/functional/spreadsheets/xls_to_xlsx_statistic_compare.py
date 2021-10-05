@@ -18,14 +18,10 @@ converted_extension = 'xlsx'
 
 class Excel:
 
-    def __init__(self, list_of_files, helper=''):
-        if helper == '':
-            self.helper = Helper(source_extension, converted_extension)
-        else:
-            self.helper = helper
+    def __init__(self):
+        self.helper = Helper(source_extension, converted_extension)
         self.coordinate = []
         self.errors = []
-        self.run_compare_exel(list_of_files)
 
     @staticmethod
     def get_exel_statistic(wb):
@@ -76,7 +72,7 @@ class Excel:
             statistics_exel = {}
             return statistics_exel
 
-    def run_compare_exel(self, list_of_files):
+    def run_compare_exel_statistic(self, list_of_files):
         with io.open('./report.csv', 'w', encoding="utf-8") as csvfile:
             writer = csv.writer(csvfile, delimiter=';')
             writer.writerow(['File_name', 'statistic'])

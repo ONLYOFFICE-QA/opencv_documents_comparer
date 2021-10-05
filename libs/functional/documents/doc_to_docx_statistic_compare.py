@@ -1,7 +1,6 @@
 import csv
 import io
 import json
-import os
 import subprocess as sb
 
 from rich import print
@@ -16,12 +15,9 @@ converted_extension = 'docx'
 
 class Word:
 
-    def __init__(self, helper=''):
-        if helper == '':
-            self.helper = Helper(source_extension, converted_extension)
-        else:
-            self.helper = helper
-        self.run_compare_word_statistic(os.listdir(self.helper.converted_doc_folder))
+    def __init__(self):
+        self.helper = Helper(source_extension, converted_extension)
+        self.coordinate = []
 
     @staticmethod
     def get_word_statistic(word_app):

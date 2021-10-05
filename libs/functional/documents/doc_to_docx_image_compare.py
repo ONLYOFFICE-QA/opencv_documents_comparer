@@ -9,21 +9,12 @@ from rich import print
 from config import *
 from libs.functional.documents.doc_to_docx_statistic_compare import Word
 from libs.helpers.compare_image import CompareImage
-from libs.helpers.helper import Helper
 
 source_extension = 'doc'
 converted_extension = 'docx'
 
 
-class WordCompareImg:
-
-    def __init__(self, list_of_files, helper=''):
-        if helper == '':
-            self.helper = Helper(source_extension, converted_extension)
-        else:
-            self.helper = helper
-        self.coordinate = []
-        self.run_compare_word(list_of_files)
+class WordCompareImg(Word):
 
     # gets the coordinates of the window
     # sets the size and position of the window
