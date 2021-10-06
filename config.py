@@ -11,5 +11,5 @@ wait_for_press = 0.5
 
 # To test from the names array
 list_of_file_names = [
-    '2.pptx'
+    ''
 ]

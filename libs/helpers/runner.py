@@ -29,7 +29,7 @@ def run_doc_docx_compare_image(list_of_files=False):
         word_compare = WordCompareImg()
         sb.call(f'powershell.exe kill -Name WINWORD', shell=True)
         if list_of_files:
-            word_compare.run_compare_word(word_compare.helper.list_of_file_names)
+            word_compare.run_compare_word(list_of_file_names)
         else:
             word_compare.run_compare_word(os.listdir(word_compare.helper.converted_doc_folder))
         sb.call(f'powershell.exe kill -Name WINWORD', shell=True)
@@ -52,7 +52,7 @@ def run_ppt_pptx_compare(list_of_files=False):
         power_point = PowerPoint()
         sb.call(f'powershell.exe kill -Name POWERPNT', shell=True)
         if list_of_files:
-            power_point.run_compare_pp(os.listdir(power_point.helper.list_of_file_names))
+            power_point.run_compare_pp(list_of_file_names)
         else:
             power_point.run_compare_pp(os.listdir(power_point.helper.converted_doc_folder))
         sb.call(f'powershell.exe kill -Name POWERPNT', shell=True)
@@ -65,7 +65,7 @@ def run_xls_xlsx_compare_image(list_of_files=False):
         error_processing = Process(target=run_get_error_exel)
         error_processing.start()
         if list_of_files:
-            excel.run_compare_excel_img(os.listdir(list_of_file_names))
+            excel.run_compare_excel_img(list_of_file_names)
         else:
             excel.run_compare_excel_img(os.listdir(excel.helper.converted_doc_folder))
         error_processing.terminate()
