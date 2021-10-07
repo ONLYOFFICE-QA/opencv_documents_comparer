@@ -2,11 +2,12 @@
 
 ## Description
 
-Script to open and compare documents in ms office
+Script to open and compare documents in MS Office
 
 ## Requirements:
 
 * Python
+* MS Office 2019
 
 ## Installing Python Libraries:
 
