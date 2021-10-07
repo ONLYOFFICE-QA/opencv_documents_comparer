@@ -11,22 +11,17 @@ from win32com.client import Dispatch
 
 from libs.helpers.helper import Helper
 from libs.helpers.logger import *
-from variables import *
 
-extension_source = 'xls'
-extension_converted = 'xlsx'
+source_extension = 'xls'
+converted_extension = 'xlsx'
 
 
-class Excel(Helper):
+class Excel:
 
-    def __init__(self, list_of_files):
-        self.create_project_dirs()
-        self.delete(f'{tmp_dir_in_test}*')
-        self.delete(f'{tmp_dir_converted_image}*')
-        self.delete(f'{tmp_dir_source_image}*')
+    def __init__(self):
+        self.helper = Helper(source_extension, converted_extension)
         self.coordinate = []
         self.errors = []
-        self.run_compare_exel(list_of_files)
 
     @staticmethod
     def get_exel_statistic(wb):
@@ -77,36 +72,36 @@ class Excel(Helper):
             statistics_exel = {}
             return statistics_exel
 
-    def run_compare_exel(self, list_of_files):
+    def run_compare_exel_statistic(self, list_of_files):
         with io.open('./report.csv', 'w', encoding="utf-8") as csvfile:
             writer = csv.writer(csvfile, delimiter=';')
             writer.writerow(['File_name', 'statistic'])
             for converted_file in track(list_of_files, description='Comparing Excel Metadata...'):
                 if converted_file.endswith((".xlsx", ".XLSX")):
                     source_file, tmp_name_converted_file, \
-                    tmp_name_source_file, tmp_name = self.preparing_files_for_test(converted_file,
-                                                                                   converted_extension,
-                                                                                   source_extension)
+                    tmp_name_source_file, tmp_name = self.helper.preparing_files_for_test(converted_file,
+                                                                                          converted_extension,
+                                                                                          source_extension)
 
                     print(f'[bold green]In test[/bold green] {source_file}')
-                    statistics_exel_after = self.opener_exel(tmp_dir_in_test, tmp_name_source_file)
+                    statistics_exel_after = self.opener_exel(self.helper.tmp_dir_in_test, tmp_name_source_file)
                     print(f'[bold green]In test[/bold green] {converted_file}')
-                    statistics_exel_before = self.opener_exel(tmp_dir_in_test, tmp_name_converted_file)
+                    statistics_exel_before = self.opener_exel(self.helper.tmp_dir_in_test, tmp_name_converted_file)
 
                     if statistics_exel_after == {} or statistics_exel_before == {}:
                         print("[bold red]Can't open source file, copy to untested[/bold red]")
-                        self.copy_to_folder(converted_file,
-                                            source_file,
-                                            untested_folder)
+                        self.helper.copy_to_folder(converted_file,
+                                                   source_file,
+                                                   self.helper.untested_folder)
 
                     else:
-                        modified = self.dict_compare(statistics_exel_before, statistics_exel_after)
+                        modified = self.helper.dict_compare(statistics_exel_before, statistics_exel_after)
                         if modified != {}:
                             print(modified)
-                            self.copy_to_folder(converted_file,
-                                                source_file,
-                                                differences_statistic)
+                            self.helper.copy_to_folder(converted_file,
+                                                       source_file,
+                                                       self.helper.differences_statistic)
                             modified_keys = [converted_file, modified]
                             writer.writerow(modified_keys)
 
-            self.delete(tmp_dir_in_test)
+            self.helper.delete(self.helper.tmp_dir_in_test)
