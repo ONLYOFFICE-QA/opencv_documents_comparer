@@ -8,10 +8,9 @@ def run_doc_docx(c, im=False, st=False, ls=False):
     if st:
         doc_docx_compare_statistic()
     elif im:
-        if ls:
-            run_doc_docx_compare_image(list_of_files=True)
-        else:
-            run_doc_docx_compare_image()
+        run_doc_docx_compare_image()
+    elif ls:
+        run_doc_docx_compare_image(list_of_files=True)
     else:
         run_doc_docx_full_test()
 
@@ -27,10 +26,9 @@ def run_ppt_pptx(c, ls=False):
 @task(name="xls_xlsx")
 def run_xls_xlsx(c, im=False, st=False, ls=False):
     if im:
-        if ls:
-            run_xls_xlsx_compare_image(list_of_files=True)
-        else:
-            run_xls_xlsx_compare_image()
+        run_xls_xlsx_compare_image()
+    elif ls:
+        run_xls_xlsx_compare_image(list_of_files=True)
     elif st:
         run_xls_xlsx_compare_statistic()
     else:

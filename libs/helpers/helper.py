@@ -11,7 +11,6 @@ from config import *
 
 class Helper:
     def __init__(self, source_extension, converted_extension):
-        print('\n[bold red]INIT[/bold red]')
 
         self.converted_extension = converted_extension
         self.source_extension = source_extension
