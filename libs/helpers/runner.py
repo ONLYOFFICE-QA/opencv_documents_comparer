@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import os
 import subprocess as sb
 from multiprocessing import Process

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import subprocess as sb
 from time import sleep
 
@@ -123,7 +124,7 @@ class PowerPoint:
                         sb.call(["TASKKILL", "/IM", "POWERPNT.EXE", "/t", "/f"], shell=True)
                         CompareImage(converted_file, source_extension, converted_extension, self.helper)
 
-        self.helper.delete(self.helper.tmp_dir_in_test)
+        self.helper.delete(f'{self.helper.tmp_dir_in_test}*')
         pass
 
     pass

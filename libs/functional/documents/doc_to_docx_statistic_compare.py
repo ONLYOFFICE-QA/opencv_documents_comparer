@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import csv
 import io
 import json
@@ -107,4 +108,4 @@ class Word:
                         else:
                             print('[bold green]Passed[/bold green]')
 
-        self.helper.delete(self.helper.tmp_dir_in_test)
+        self.helper.delete(f'{self.helper.tmp_dir_in_test}*')

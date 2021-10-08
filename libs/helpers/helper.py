@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import json
 import os
 import random
@@ -51,12 +52,22 @@ class Helper:
         if os.path.exists(path_from) and not os.path.exists(path_to):
             shutil.copyfile(path_from, path_to)
 
+    @staticmethod
+    def random_name(path_for_check, extension):
+        while True:
+            name = f'{random.randint(5000, 50000000)}.{extension}'
+            if not os.path.exists(f'{path_for_check}{name}'):
+                return name
+
     def preparing_files_for_test(self, converted_file_name, extension_converted, extension_source):
         source_file = converted_file_name.replace(f'.{extension_converted}', f'.{extension_source}')
-        tmp_name_converted_file = f'{random.randint(5000, 50000)}.{extension_converted}'
+        tmp_name_converted_file = self.random_name(self.tmp_dir_in_test, extension_converted)
+
         tmp_name_source_file = tmp_name_converted_file.replace(f'.{extension_converted}',
                                                                f'.{extension_source}')
-        tmp_name = f'{random.randint(5000, 50000)}.{extension_source}'
+
+        tmp_name = self.random_name(self.tmp_dir_in_test, extension_source)
+
         self.copy(f'{self.source_doc_folder}{source_file}',
                   f'{self.tmp_dir_in_test}{tmp_name}')
         self.copy(f'{self.converted_doc_folder}{converted_file_name}',

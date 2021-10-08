@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import subprocess as sb
 from time import sleep
 

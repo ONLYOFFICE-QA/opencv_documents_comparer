@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import math
 import subprocess as sb
 from time import sleep
@@ -93,4 +94,4 @@ class ExcelCompareImage(Excel):
                                                source_file,
                                                self.helper.result_folder)
 
-        self.helper.delete(self.helper.tmp_dir_in_test)
+        self.helper.delete(f'{self.helper.tmp_dir_in_test}*')

@@ -11,5 +11,6 @@ wait_for_press = 0.5
 
 # To test from the names array
 list_of_file_names = [
-    ''
+    'المجال_الخامس_توكيد_الجودة_والمساءلة.docx',
+    'حرب الخليج الثانية-2.docx'
 ]
