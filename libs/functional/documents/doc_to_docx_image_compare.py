@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import subprocess as sb
 from time import sleep
 
@@ -73,4 +74,4 @@ class WordCompareImg(Word):
 
                     CompareImage(converted_file, source_extension, converted_extension, self.helper)
 
-        self.helper.delete(self.helper.tmp_dir_in_test)
+        self.helper.delete(f'{self.helper.tmp_dir_in_test}*')

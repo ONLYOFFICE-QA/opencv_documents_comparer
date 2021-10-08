@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import csv
 import io
 import subprocess as sb
@@ -104,4 +105,4 @@ class Excel:
                             modified_keys = [converted_file, modified]
                             writer.writerow(modified_keys)
 
-            self.helper.delete(self.helper.tmp_dir_in_test)
+            self.helper.delete(f'{self.helper.tmp_dir_in_test}*')
