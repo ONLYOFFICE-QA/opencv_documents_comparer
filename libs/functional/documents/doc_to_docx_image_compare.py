@@ -54,6 +54,12 @@ class WordCompareImg(Word):
     def run_compare_word(self, list_of_files):
         for converted_file in list_of_files:
             if converted_file.endswith((".docx", ".DOCX")):
+                if converted_file == 'Integrated ICT for development' \
+                                     ' program Recommendations for ' \
+                                     'USAID Macedonia focused on ' \
+                                     'education and workforce training.docx':
+                    converted_file = 'IntegratedICTfordevelopment_renamed.docx'
+
                 source_file, tmp_name_converted_file, \
                 tmp_name_source_file, tmp_name = self.helper.preparing_files_for_test(converted_file,
                                                                                       converted_extension,
