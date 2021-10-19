@@ -50,12 +50,12 @@ class ExcelCompareImage(Excel):
             num_of_row = statistics_exel[f'{num_of_sheet}_nrows'] / 65
             pg.hotkey('ctrl', 'home', interval=0.2)
             for pgdwn in range(math.ceil(num_of_row)):
-                pg.press('pgdn', interval=0.5)
                 CompareImage.grab_coordinate_exel(path_to_save_screen,
                                                   tmp_file_name,
                                                   list_num,
                                                   page_num,
                                                   coordinate)
+                pg.press('pgdn', interval=0.5)
                 num_of_sheet += 1
                 page_num += 1
             pg.hotkey('ctrl', 'pgdn', interval=0.2)

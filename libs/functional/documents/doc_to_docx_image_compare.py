@@ -67,7 +67,6 @@ class WordCompareImg(Word):
             pg.press('pgdn')
             sleep(wait_for_press)
             page_num += 1
-        # sb.call(f'powershell.exe kill -Name WINWORD', shell=True)
         sb.call(["taskkill", "/IM", "WINWORD.EXE"], shell=True)
         sb.call(["taskkill", "/IM", "WINWORD.EXE"], shell=True)
 

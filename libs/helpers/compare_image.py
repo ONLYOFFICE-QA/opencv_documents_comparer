@@ -17,6 +17,23 @@ class CompareImage:
         self.helper = helper
         self.start_to_compare_images(file_name, koff)
 
+    @staticmethod
+    def find_contours(img):
+        img = cv2.imread(img)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        _, binary = cv2.threshold(gray, 125, 255, cv2.THRESH_BINARY)
+        contours, hierarchy = cv2.findContours(binary, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        # x, y, w, h = cv2.boundingRect(contours)
+        for c in contours:
+            # print(c)
+            # get the bounding rect
+            x, y, w, h = cv2.boundingRect(c)
+            if h >= 500:
+                # to save the images
+                img = img[y:y + h, x:x + w]
+                return img
+
     def compare_img(self, before_conversion, after_conversion, image_name, converted_file, koff):
         folder_name = converted_file.replace(f'.{converted_file.split(".")[-1]}', '')
         folder_name = re.sub(r"^\s+|\n|\r|\s|\s+$", '', folder_name)
@@ -25,9 +42,12 @@ class CompareImage:
         Helper.create_dir(f'{self.helper.passed}{folder_name}/{screen_folder}')
         image_name = image_name.split('.')[0]
         sheet = image_name.split('_')[-1]
-
-        before = cv2.imread(before_conversion)
-        after = cv2.imread(after_conversion)
+        if converted_file.endswith((".xlsx", ".XLSX", ".docx", ".DOCX", ".pptx", ".PPTX")):
+            before = cv2.imread(before_conversion)
+            after = cv2.imread(after_conversion)
+        else:
+            before = self.find_contours(before_conversion)
+            after = self.find_contours(after_conversion)
         before_gray = cv2.cvtColor(before, cv2.COLOR_BGR2GRAY)
         after_gray = cv2.cvtColor(after, cv2.COLOR_BGR2GRAY)
 
@@ -115,7 +135,6 @@ class CompareImage:
     def start_to_compare_images(self, file_name, koff):
         list_of_images = os.listdir(self.helper.tmp_dir_converted_image)
         for image_name in track(list_of_images, description='Comparing In Progress'):
-
             if os.path.exists(f'{self.helper.tmp_dir_source_image}{image_name}') \
                     and os.path.exists(f'{self.helper.tmp_dir_converted_image}{image_name}'):
 
