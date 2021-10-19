@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import re
+
 import cv2
 import imageio
 import numpy as np
@@ -17,6 +19,7 @@ class CompareImage:
 
     def compare_img(self, before_conversion, after_conversion, image_name, converted_file, koff):
         folder_name = converted_file.replace(f'.{converted_file.split(".")[-1]}', '')
+        folder_name = re.sub(r"^\s+|\n|\r|\s|\s+$", '', folder_name)
         screen_folder = 'screen'
         Helper.create_dir(f'{self.helper.passed}{folder_name}')
         Helper.create_dir(f'{self.helper.passed}{folder_name}/{screen_folder}')
