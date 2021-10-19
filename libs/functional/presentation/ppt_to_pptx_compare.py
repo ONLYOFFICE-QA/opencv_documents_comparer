@@ -122,7 +122,7 @@ class PowerPoint:
                                             tmp_name_source_file,
                                             slide_count)
                         sb.call(["TASKKILL", "/IM", "POWERPNT.EXE", "/t", "/f"], shell=True)
-                        CompareImage(converted_file, source_extension, converted_extension, self.helper)
+                        CompareImage(converted_file, self.helper)
 
         self.helper.delete(f'{self.helper.tmp_dir_in_test}*')
         pass

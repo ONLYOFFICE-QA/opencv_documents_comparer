@@ -13,7 +13,7 @@ from libs.helpers.helper import *
 
 class CompareImage:
 
-    def __init__(self, file_name, source_extension, converted_extension, helper, koff=98):
+    def __init__(self, file_name, helper, koff=98):
         self.helper = helper
         self.start_to_compare_images(file_name, koff)
 

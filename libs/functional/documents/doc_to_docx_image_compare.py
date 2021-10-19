@@ -78,6 +78,6 @@ class WordCompareImg(Word):
                                          self.helper.tmp_dir_source_image,
                                          num_of_sheets)
 
-                    CompareImage(converted_file, source_extension, converted_extension, self.helper)
+                    CompareImage(converted_file, self.helper)
 
         self.helper.delete(f'{self.helper.tmp_dir_in_test}*')

@@ -87,7 +87,7 @@ class ExcelCompareImage(Excel):
                                          statistics_exel)
 
                     print('compare?')
-                    CompareImage(converted_file, source_extension, converted_extension, self.helper, koff=100)
+                    CompareImage(converted_file, self.helper, koff=100)
                 else:
                     print(f"[bold red]Can't open source file[/bold red]")
                     self.helper.copy_to_folder(converted_file,
