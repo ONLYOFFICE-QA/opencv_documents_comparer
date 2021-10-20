@@ -38,6 +38,8 @@ by files with different statistics
 
 ```invoke doc-docx --ls``` - To compare images by file names from the array in "config.py"
 
+```invoke doc-docx --df``` - To compare images by files with different statistics
+
 #### Compare ppt to pptx:
 
 ```invoke ppt-pptx``` - To compare images by file names from “converted_doc_folder”

@@ -73,15 +73,15 @@ def check_errors_exel():
             errors.clear()
 
 
-def run_get_errors_pp():
+def run_get_errors_word():
     while True:
         win32gui.EnumWindows(get_windows_title, errors)
         sleep(0.2)
         if errors:
-            check_pp()
+            check_word()
 
 
-def check_pp():
+def check_word():
     if errors[0] == '#32770':
         print(errors)
         if errors[1] == 'Microsoft Word':

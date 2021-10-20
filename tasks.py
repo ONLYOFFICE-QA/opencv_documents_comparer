@@ -4,13 +4,15 @@ from libs.helpers.runner import *
 
 
 @task(name="doc-docx")
-def run_doc_docx(c, im=False, st=False, ls=False):
+def run_doc_docx(c, im=False, st=False, ls=False, df=False):
     if st:
         doc_docx_compare_statistic()
     elif im:
         run_doc_docx_compare_image()
     elif ls:
         run_doc_docx_compare_image(list_of_files=True)
+    elif df:
+        run_doc_docx_compare_image(differences_statistic=True)
     else:
         run_doc_docx_full_test()
 

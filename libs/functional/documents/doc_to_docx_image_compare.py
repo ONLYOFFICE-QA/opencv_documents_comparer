@@ -10,6 +10,7 @@ from rich import print
 from config import *
 from libs.functional.documents.doc_to_docx_statistic_compare import Word
 from libs.helpers.compare_image import CompareImage
+from libs.helpers.get_error import check_word
 
 source_extension = 'doc'
 converted_extension = 'docx'
@@ -29,12 +30,31 @@ class WordCompareImg(Word):
                 self.coordinate.clear()
                 self.coordinate.append(win32gui.GetWindowRect(hwnd))
 
+    def check_error_word(self, hwnd, ctx):
+        if win32gui.IsWindowVisible(hwnd):
+            if win32gui.GetClassName(hwnd) == '#32770' \
+                    or win32gui.GetClassName(hwnd) == 'bosa_sdm_msword' \
+                    or win32gui.GetClassName(hwnd) == 'ThunderDFrame' \
+                    or win32gui.GetClassName(hwnd) == 'NUIDialog':
+                win32gui.ShowWindow(hwnd, win32con.SW_NORMAL)
+                win32gui.SetForegroundWindow(hwnd)
+
+                self.errors.clear()
+                self.errors.append(win32gui.GetClassName(hwnd))
+                self.errors.append(win32gui.GetWindowText(hwnd))
+
     # opens the document
     # takes a screenshot by coordinates
     def get_screenshots(self, tmp_file_name, path_to_save_screen, num_of_sheets):
         self.helper.run(self.helper.tmp_dir_in_test, tmp_file_name, 'WINWORD.EXE')
         sleep(wait_for_opening)
         win32gui.EnumWindows(self.get_coord_word, self.coordinate)
+        for num_errors in range(5):
+            win32gui.EnumWindows(self.check_error_word, self.errors)
+            sleep(0.2)
+            if self.errors:
+                check_word()
+
         coordinate = self.coordinate[0]
         coordinate = (coordinate[0],
                       coordinate[1] + 170,

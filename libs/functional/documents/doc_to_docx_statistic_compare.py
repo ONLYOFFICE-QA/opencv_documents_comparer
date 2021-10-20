@@ -19,6 +19,7 @@ class Word:
     def __init__(self):
         self.helper = Helper(source_extension, converted_extension)
         self.coordinate = []
+        self.errors = []
 
     @staticmethod
     def get_word_statistic(word_app):

@@ -72,8 +72,8 @@ class PowerPoint:
             coordinate = self.coordinate[0]
             coordinate = (coordinate[0] + 350,
                           coordinate[1] + 170,
-                          coordinate[2] - 50,
-                          coordinate[3] - 20)
+                          coordinate[2] - 120,
+                          coordinate[3] - 100)
             page_num = 1
             for page in range(slide_count):
                 CompareImage.grab_coordinate(path_to_save_screen, file_name, page_num, coordinate)
