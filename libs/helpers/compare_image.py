@@ -42,20 +42,27 @@ class CompareImage:
         Helper.create_dir(f'{self.helper.passed}{folder_name}/{screen_folder}')
         image_name = image_name.split('.')[0]
         sheet = image_name.split('_')[-1]
-        if converted_file.endswith((".xlsx", ".XLSX", ".docx", ".DOCX", ".pptx", ".PPTX")):
+        if converted_file.endswith((".xlsx", ".XLSX", ".docx", ".DOCX")):
             before = cv2.imread(before_conversion)
             after = cv2.imread(after_conversion)
         else:
             before = self.find_contours(before_conversion)
             after = self.find_contours(after_conversion)
+
+        before_full = cv2.imread(before_conversion)
+        after_full = cv2.imread(after_conversion)
         before_gray = cv2.cvtColor(before, cv2.COLOR_BGR2GRAY)
         after_gray = cv2.cvtColor(after, cv2.COLOR_BGR2GRAY)
 
-        after_for_collage = self.put_text(after, f'After')
-        before_for_collage = self.put_text(before, f'Before')
+        after_for_collage = self.put_text(after_full, f'After')
+        before_for_collage = self.put_text(before_full, f'Before')
         collage = np.hstack([before_for_collage, after_for_collage])
-
-        (score, diff) = structural_similarity(before_gray, after_gray, full=True)
+        try:
+            (score, diff) = structural_similarity(before_gray, after_gray, full=True)
+        except Exception:
+            before_gray = cv2.cvtColor(before_full, cv2.COLOR_BGR2GRAY)
+            after_gray = cv2.cvtColor(after_full, cv2.COLOR_BGR2GRAY)
+            (score, diff) = structural_similarity(before_gray, after_gray, full=True)
 
         diff = (diff * 255).astype("uint8")
 

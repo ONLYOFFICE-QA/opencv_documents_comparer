@@ -11,6 +11,7 @@ from win32com.client import Dispatch
 from config import *
 from libs.helpers.compare_image import CompareImage
 from libs.helpers.helper import Helper
+from libs.helpers.logger import *
 
 source_extension = 'ppt'
 converted_extension = 'pptx'
@@ -22,6 +23,26 @@ class PowerPoint:
         self.helper = Helper(source_extension, converted_extension)
         self.coordinate = []
         self.errors = []
+
+    @staticmethod
+    def prepare_windows():
+        try:
+            pg.click('libs/templates/view.png')
+            pg.moveTo(100, 0)
+            sleep(0.2)
+            try:
+                pg.click('libs/templates/normal_view.png')
+            except Exception:
+                print('normal')
+            pg.click('libs/templates/scale.png')
+            pg.moveTo(100, 0)
+            pg.press('down', presses=3)
+            pg.press('enter')
+            sleep(0.5)
+
+        except Exception:
+            log.info('\nppt_pptx\nfailed to prepare slide resolution')
+        pass
 
     # gets the coordinates of the window
     # sets the size and position of the window
@@ -74,6 +95,7 @@ class PowerPoint:
                           coordinate[1] + 170,
                           coordinate[2] - 120,
                           coordinate[3] - 100)
+            self.prepare_windows()
             page_num = 1
             for page in range(slide_count):
                 CompareImage.grab_coordinate(path_to_save_screen, file_name, page_num, coordinate)
