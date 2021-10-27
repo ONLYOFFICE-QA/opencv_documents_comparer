@@ -30,47 +30,42 @@ def run_get_error_exel():
         win32gui.EnumWindows(get_windows_title, errors)
         sleep(0.2)
         if errors:
-            check_errors_exel()
+            check_errors_excel(errors)
+            errors.clear()
 
 
-def check_errors_exel():
-    if errors[0] == '#32770':
-        if errors[1] == 'Microsoft Visual Basic':
+def check_errors_excel(array_of_errors):
+    if array_of_errors[0] == '#32770':
+        if array_of_errors[1] == 'Microsoft Visual Basic':
             sb.call(["TASKKILL", "/IM", "EXCEL.EXE", "/t", "/f"], shell=True)
-            errors.clear()
-        elif errors[1] == 'Удаление нескольких элементов':
-            errors.clear()
+        elif array_of_errors[1] == 'Удаление нескольких элементов':
+            pass
 
-        elif errors[1] == 'Microsoft Excel':
+        elif array_of_errors[1] == 'Microsoft Excel':
             log.info('Microsoft Excel')
             pg.press('left')
             pg.press('enter')
             sleep(1)
             pg.press('enter')
-            errors.clear()
 
-        elif errors[1] == 'Monopoly':
+        elif array_of_errors[1] == 'Monopoly':
             log.info('Monopoly')
             pg.press('enter')
-            errors.clear()
 
-    elif errors[0] == 'ThunderDFrame':
-        if errors[1] == 'Functions List':
+    elif array_of_errors[0] == 'ThunderDFrame':
+        if array_of_errors[1] == 'Functions List':
             print('Functions List')
             pg.hotkey('alt', 'f4')
-            errors.clear()
 
-        elif errors[1] == 'Select Players and Times':
+        elif array_of_errors[1] == 'Select Players and Times':
             log.info('Select Players and Times')
             pg.press('tab', presses=6, interval=0.2)
             pg.press('enter', interval=0.2)
-            errors.clear()
 
-    elif errors[0] == 'NUIDialog':
-        if errors[1] == 'Microsoft Excel' or errors[1] == 'Microsoft Excel - проверка совместимости':
+    elif array_of_errors[0] == 'NUIDialog':
+        if array_of_errors[1] == 'Microsoft Excel' or array_of_errors[1] == 'Microsoft Excel - проверка совместимости':
             print('Microsoft Excel')
             pg.press('enter')
-            errors.clear()
 
 
 def run_get_errors_word():
@@ -78,48 +73,40 @@ def run_get_errors_word():
         win32gui.EnumWindows(get_windows_title, errors)
         sleep(0.2)
         if errors:
-            check_word()
+            check_word(errors)
+            errors.clear()
 
 
-def check_word():
-    if errors[0] == '#32770':
-        print(errors)
-        if errors[1] == 'Microsoft Word':
-            print(errors[1])
+def check_word(array_of_errors):
+    if array_of_errors[0] == '#32770':
+        print(array_of_errors)
+        if array_of_errors[1] == 'Microsoft Word':
+            print(array_of_errors[1])
             pg.press('left')
             pg.press('enter')
-            errors.clear()
 
-        elif errors[1] == 'Microsoft Visual Basic for Applications':
-            print(errors[1])
+        elif array_of_errors[1] == 'Microsoft Visual Basic for Applications':
+            print(array_of_errors[1])
             pg.press('enter')
-            errors.clear()
 
-        elif errors[1] == 'Удаление нескольких элементов':
-            print(errors[1])
+        elif array_of_errors[1] == 'Удаление нескольких элементов':
+            print(array_of_errors[1])
             # pg.press('enter')
-            errors.clear()
 
-        elif errors[1] == 'Сохранить как':
-            print(errors[1])
+        elif array_of_errors[1] == 'Сохранить как':
+            print(array_of_errors[1])
             sb.call(f'powershell.exe kill -Name WINWORD', shell=True)
-            errors.clear()
 
-    elif errors[0] == 'bosa_sdm_msword':
-        print(errors[1])
-        if errors[1] == 'Преобразование файла':
+    elif array_of_errors[0] == 'bosa_sdm_msword':
+        print(array_of_errors[1])
+        if array_of_errors[1] == 'Преобразование файла':
             pg.press('enter')
-            errors.clear()
 
-        elif errors[1] == 'Пароль':
+        elif array_of_errors[1] == 'Пароль':
             pg.press('tab')
             pg.press('enter')
-            errors.clear()
 
-        elif errors[1] == 'Показать исправления':
+        elif array_of_errors[1] == 'Показать исправления':
             sleep(1)
             pg.press('tab', presses=3)
             pg.press('enter')
-            errors.clear()
-            pass
-

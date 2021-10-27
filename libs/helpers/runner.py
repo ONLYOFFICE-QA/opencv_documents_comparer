@@ -29,22 +29,22 @@ def run_doc_docx_compare_image(list_of_files=False, differences_statistic=False)
         word_compare = WordCompareImg()
         sb.call(f'powershell.exe kill -Name WINWORD', shell=True)
         if list_of_files:
-            error_processing = Process(target=run_get_errors_word)
-            error_processing.start()
+            # error_processing = Process(target=run_get_errors_word)
+            # error_processing.start()
             word_compare.run_compare_word(list_of_file_names)
-            error_processing.terminate()
+            # error_processing.terminate()
 
         elif differences_statistic:
-            error_processing = Process(target=run_get_errors_word)
-            error_processing.start()
+            # error_processing = Process(target=run_get_errors_word)
+            # error_processing.start()
             word_compare.run_compare_word(os.listdir(word_compare.helper.differences_statistic))
-            error_processing.terminate()
+            # error_processing.terminate()
 
         else:
-            error_processing = Process(target=run_get_errors_word)
-            error_processing.start()
+            # error_processing = Process(target=run_get_errors_word)
+            # error_processing.start()
             word_compare.run_compare_word(os.listdir(word_compare.helper.converted_doc_folder))
-            error_processing.terminate()
+            # error_processing.terminate()
         sb.call(f'powershell.exe kill -Name WINWORD', shell=True)
 
 

@@ -48,13 +48,14 @@ class WordCompareImg(Word):
     def get_screenshots(self, tmp_file_name, path_to_save_screen, num_of_sheets):
         self.helper.run(self.helper.tmp_dir_in_test, tmp_file_name, 'WINWORD.EXE')
         sleep(wait_for_opening)
-        win32gui.EnumWindows(self.get_coord_word, self.coordinate)
         for num_errors in range(5):
             win32gui.EnumWindows(self.check_error_word, self.errors)
             sleep(0.2)
             if self.errors:
-                check_word()
+                check_word(self.errors)
+                self.errors.clear()
 
+        win32gui.EnumWindows(self.get_coord_word, self.coordinate)
         coordinate = self.coordinate[0]
         coordinate = (coordinate[0],
                       coordinate[1] + 170,
