@@ -19,8 +19,8 @@ class CompareImage:
 
     @staticmethod
     def find_contours(img):
-        img = cv2.imread(img)
-        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        img_source = cv2.imread(img)
+        img = cv2.cvtColor(img_source, cv2.COLOR_BGR2RGB)
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         _, binary = cv2.threshold(gray, 125, 255, cv2.THRESH_BINARY)
         contours, hierarchy = cv2.findContours(binary, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
@@ -33,6 +33,8 @@ class CompareImage:
                 # to save the images
                 img = img[y:y + h, x:x + w]
                 return img
+            else:
+                return img_source
 
     def compare_img(self, before_conversion, after_conversion, image_name, converted_file, koff):
         folder_name = converted_file.replace(f'.{converted_file.split(".")[-1]}', '')
@@ -42,7 +44,7 @@ class CompareImage:
         Helper.create_dir(f'{self.helper.passed}{folder_name}/{screen_folder}')
         image_name = image_name.split('.')[0]
         sheet = image_name.split('_')[-1]
-        if converted_file.endswith((".xlsx", ".XLSX", ".docx", ".DOCX")):
+        if converted_file.endswith((".xlsx", ".XLSX")):
             before = cv2.imread(before_conversion)
             after = cv2.imread(after_conversion)
         else:
@@ -51,20 +53,20 @@ class CompareImage:
 
         before_full = cv2.imread(before_conversion)
         after_full = cv2.imread(after_conversion)
-        before_gray = cv2.cvtColor(before, cv2.COLOR_BGR2GRAY)
-        after_gray = cv2.cvtColor(after, cv2.COLOR_BGR2GRAY)
-
         after_for_collage = self.put_text(after_full, f'After')
         before_for_collage = self.put_text(before_full, f'Before')
         collage = np.hstack([before_for_collage, after_for_collage])
+
         try:
+            before_gray = cv2.cvtColor(before, cv2.COLOR_BGR2GRAY)
+            after_gray = cv2.cvtColor(after, cv2.COLOR_BGR2GRAY)
             (score, diff) = structural_similarity(before_gray, after_gray, full=True)
+            diff = (diff * 255).astype("uint8")
         except Exception:
             before_gray = cv2.cvtColor(before_full, cv2.COLOR_BGR2GRAY)
             after_gray = cv2.cvtColor(after_full, cv2.COLOR_BGR2GRAY)
             (score, diff) = structural_similarity(before_gray, after_gray, full=True)
-
-        diff = (diff * 255).astype("uint8")
+            diff = (diff * 255).astype("uint8")
 
         thresh = cv2.threshold(diff, 0, 255, cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)[1]
         contours = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
