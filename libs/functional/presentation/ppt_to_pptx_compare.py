@@ -27,14 +27,14 @@ class PowerPoint:
     @staticmethod
     def prepare_windows():
         try:
-            pg.click('libs/templates/view.png')
+            pg.click('libs/templates/powerpoint/view.png')
             pg.moveTo(100, 0)
             sleep(0.2)
             try:
-                pg.click('libs/templates/normal_view.png')
+                pg.click('libs/templates/powerpoint/normal_view.png')
             except Exception:
                 print('normal')
-            pg.click('libs/templates/scale.png')
+            pg.click('libs/templates/powerpoint/scale.png')
             pg.moveTo(100, 0)
             pg.press('down', presses=3)
             pg.press('enter')
@@ -66,6 +66,14 @@ class PowerPoint:
                 self.errors.clear()
                 print(win32gui.GetClassName(hwnd))
                 self.errors.append(win32gui.GetClassName(hwnd))
+            elif win32gui.GetClassName(hwnd) == 'NUIDialog':
+                win32gui.ShowWindow(hwnd, win32con.SW_NORMAL)
+                win32gui.SetForegroundWindow(hwnd)
+                sleep(0.5)
+                self.errors.clear()
+                print(win32gui.GetClassName(hwnd))
+                pg.press('enter')
+                sleep(2)
 
     @staticmethod
     def opener_power_point(path_for_open, file_name):

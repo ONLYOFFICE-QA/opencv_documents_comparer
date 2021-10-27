@@ -29,6 +29,14 @@ class ExcelCompareImage(Excel):
                 self.coordinate.clear()
                 self.coordinate.append(win32gui.GetWindowRect(hwnd))
 
+    @staticmethod
+    def prepare_windows():
+        try:
+            pg.click('libs/templates/excel/turn_on_content.png')
+            pg.moveTo(100, 0)
+        except Exception:
+            pass
+
     # opens the document
     # takes a screenshot by coordinates
     def get_screenshots(self, tmp_file_name, path_to_save_screen, statistics_exel):
@@ -39,8 +47,9 @@ class ExcelCompareImage(Excel):
         coordinate = (coordinate[0] + 10,
                       coordinate[1] + 170,
                       coordinate[2] - 30,
-                      coordinate[3] - 20)
+                      coordinate[3] - 70)
 
+        self.prepare_windows()
         page_num = 1
         list_num = 1
         for press in range(5):
