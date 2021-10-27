@@ -36,7 +36,8 @@ class PowerPoint:
                 print('normal')
             pg.click('libs/templates/powerpoint/scale.png')
             pg.moveTo(100, 0)
-            pg.press('down', presses=3)
+            pg.press('tab')
+            pg.write('100')
             pg.press('enter')
             sleep(0.5)
 
