@@ -32,7 +32,7 @@ class ExcelCompareImage(Excel):
     @staticmethod
     def prepare_windows():
         try:
-            pg.click('libs/templates/excel/turn_on_content.png')
+            pg.click('libs/image_templates/excel/turn_on_content.png')
             pg.moveTo(100, 0)
         except Exception:
             pass

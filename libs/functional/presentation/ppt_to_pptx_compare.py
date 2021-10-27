@@ -27,14 +27,14 @@ class PowerPoint:
     @staticmethod
     def prepare_windows():
         try:
-            pg.click('libs/templates/powerpoint/view.png')
+            pg.click('libs/image_templates/powerpoint/view.png')
             pg.moveTo(100, 0)
             sleep(0.2)
             try:
-                pg.click('libs/templates/powerpoint/normal_view.png')
+                pg.click('libs/image_templates/powerpoint/normal_view.png')
             except Exception:
                 print('normal')
-            pg.click('libs/templates/powerpoint/scale.png')
+            pg.click('libs/image_templates/powerpoint/scale.png')
             pg.moveTo(100, 0)
             pg.press('tab')
             pg.write('100', interval=0.1)
