@@ -46,6 +46,7 @@ class WordCompareImg(Word):
     # opens the document
     # takes a screenshot by coordinates
     def get_screenshots(self, tmp_file_name, path_to_save_screen, num_of_sheets):
+        sb.call(f'powershell.exe kill -Name WINWORD', shell=True)
         self.helper.run(self.helper.tmp_dir_in_test, tmp_file_name, 'WINWORD.EXE')
         sleep(wait_for_opening)
         for num_errors in range(5):
@@ -74,16 +75,15 @@ class WordCompareImg(Word):
     def run_compare_word(self, list_of_files):
         for converted_file in list_of_files:
             if converted_file.endswith((".docx", ".DOCX")):
+                source_file, tmp_name_converted_file, \
+                tmp_name_source_file, tmp_name = self.helper.preparing_files_for_test(converted_file,
+                                                                                      converted_extension,
+                                                                                      source_extension)
                 if converted_file == 'Integrated ICT for development' \
                                      ' program Recommendations for ' \
                                      'USAID Macedonia focused on ' \
                                      'education and workforce training.docx':
                     converted_file = 'IntegratedICTfordevelopment_renamed.docx'
-
-                source_file, tmp_name_converted_file, \
-                tmp_name_source_file, tmp_name = self.helper.preparing_files_for_test(converted_file,
-                                                                                      converted_extension,
-                                                                                      source_extension)
                 print(f'[bold green]In test[/bold green] {converted_file}')
                 num_of_sheets = Word.word_opener(f'{self.helper.tmp_dir_in_test}{tmp_name}')
 

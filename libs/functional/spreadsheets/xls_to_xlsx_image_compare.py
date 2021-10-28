@@ -80,6 +80,10 @@ class ExcelCompareImage(Excel):
                 tmp_name_source_file, tmp_name = self.helper.preparing_files_for_test(converted_file,
                                                                                       converted_extension,
                                                                                       source_extension)
+                if converted_file == '1000+Most+Common+Words+in+English+-+Numbers+' \
+                                     '+Vocabulary+for+ESL+EFL+TEFL+TOEFL+TESL+' \
+                                     'English+Learners.xlsx':
+                    converted_file = '1000MostCommon_renamed.xlsx'
                 print(f'[bold green]In test[/bold green] {converted_file}')
                 statistics_exel = Excel.opener_exel(self.helper.tmp_dir_in_test, tmp_name)
 
