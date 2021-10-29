@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import subprocess as sb
+from multiprocessing import Process
 from time import sleep
 
 import pyautogui as pg
@@ -10,7 +11,6 @@ from rich import print
 from config import *
 from libs.functional.documents.doc_to_docx_statistic_compare import Word
 from libs.helpers.compare_image import CompareImage
-from libs.helpers.get_error import check_word
 
 source_extension = 'doc'
 converted_extension = 'docx'
@@ -30,18 +30,13 @@ class WordCompareImg(Word):
                 self.coordinate.clear()
                 self.coordinate.append(win32gui.GetWindowRect(hwnd))
 
-    def check_error_word(self, hwnd, ctx):
-        if win32gui.IsWindowVisible(hwnd):
-            if win32gui.GetClassName(hwnd) == '#32770' \
-                    or win32gui.GetClassName(hwnd) == 'bosa_sdm_msword' \
-                    or win32gui.GetClassName(hwnd) == 'ThunderDFrame' \
-                    or win32gui.GetClassName(hwnd) == 'NUIDialog':
-                win32gui.ShowWindow(hwnd, win32con.SW_NORMAL)
-                win32gui.SetForegroundWindow(hwnd)
-
-                self.errors.clear()
-                self.errors.append(win32gui.GetClassName(hwnd))
-                self.errors.append(win32gui.GetWindowText(hwnd))
+    def prepare_word_windows(self):
+        win32gui.EnumWindows(self.check_errors.get_windows_title, self.check_errors.errors)
+        if self.check_errors.errors:
+            error_processing = Process(target=self.check_errors.run_get_errors_word)
+            error_processing.start()
+            sleep(7)
+            error_processing.terminate()
 
     # opens the document
     # takes a screenshot by coordinates
@@ -49,12 +44,7 @@ class WordCompareImg(Word):
         sb.call(f'powershell.exe kill -Name WINWORD', shell=True)
         self.helper.run(self.helper.tmp_dir_in_test, tmp_file_name, 'WINWORD.EXE')
         sleep(wait_for_opening)
-        for num_errors in range(5):
-            win32gui.EnumWindows(self.check_error_word, self.errors)
-            sleep(0.2)
-            if self.errors:
-                check_word(self.errors)
-                self.errors.clear()
+        self.prepare_word_windows()
 
         win32gui.EnumWindows(self.get_coord_word, self.coordinate)
         coordinate = self.coordinate[0]
@@ -69,7 +59,6 @@ class WordCompareImg(Word):
             pg.press('pgdn')
             sleep(wait_for_press)
             page_num += 1
-        sb.call(["taskkill", "/IM", "WINWORD.EXE"], shell=True)
         sb.call(["taskkill", "/IM", "WINWORD.EXE"], shell=True)
 
     def run_compare_word(self, list_of_files):

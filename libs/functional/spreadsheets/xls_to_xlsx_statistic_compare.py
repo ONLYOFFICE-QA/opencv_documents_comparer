@@ -3,13 +3,13 @@ import csv
 import io
 import subprocess as sb
 import traceback
+from multiprocessing import Process
 
-import win32con
-import win32gui
 from rich import print
 from rich.progress import track
 from win32com.client import Dispatch
 
+from libs.helpers.get_error import CheckErrors
 from libs.helpers.helper import Helper
 from libs.helpers.logger import *
 
@@ -20,9 +20,9 @@ converted_extension = 'xlsx'
 class Excel:
 
     def __init__(self):
+        self.check_errors = CheckErrors()
         self.helper = Helper(source_extension, converted_extension)
         self.coordinate = []
-        self.errors = []
 
     @staticmethod
     def get_exel_statistic(wb):
@@ -41,21 +41,10 @@ class Excel:
             statistics_exel[f'{num_of_sheet}_ncols'] = ncols
             num_of_sheet += 1
         return statistics_exel
-        pass
 
-    def get_windows_title(self, hwnd, ctx):
-        if win32gui.IsWindowVisible(hwnd):
-            if win32gui.GetClassName(hwnd) == '#32770' or win32gui.GetClassName(hwnd) == 'bosa_sdm_msword':
-                # hwnd = win32gui.FindWindow(None, "Telegram (15125)")
-                win32gui.ShowWindow(hwnd, win32con.SW_NORMAL)
-                win32gui.SetForegroundWindow(hwnd)
-
-                self.errors.clear()
-                self.errors.append(win32gui.GetClassName(hwnd))
-                self.errors.append(win32gui.GetWindowText(hwnd))
-
-    @staticmethod
-    def opener_exel(path_for_open, file_name):
+    def opener_exel(self, path_for_open, file_name):
+        error_processing = Process(target=self.check_errors.run_get_error_exel)
+        error_processing.start()
         try:
             xl = Dispatch("Excel.Application")
             xl.Visible = False  # otherwise excel is hidden
@@ -63,6 +52,7 @@ class Excel:
             statistics_exel = Excel.get_exel_statistic(wb)
             wb.Close(False)
             xl.Quit()
+            error_processing.terminate()
             return statistics_exel
 
         except Exception as e:
@@ -71,6 +61,7 @@ class Excel:
             sb.call(["TASKKILL", "/IM", "EXCEL.EXE", "/t", "/f"], shell=True)
             log.critical(f'\nFile name: {file_name}\n Error:\n{error}')
             statistics_exel = {}
+            error_processing.terminate()
             return statistics_exel
 
     def run_compare_exel_statistic(self, list_of_files):
