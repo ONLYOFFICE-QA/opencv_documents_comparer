@@ -38,8 +38,7 @@ class CompareImage:
             else:
                 print(f'[bold red] File not found [/bold red]{image_name}')
 
-        Helper.delete(f'{self.helper.tmp_dir_converted_image}*')
-        Helper.delete(f'{self.helper.tmp_dir_source_image}*')
+        self.helper.tmp_cleaner()
 
     def compare_img(self, image_before_conversion, image_after_conversion, image_name, koff):
         image_name = image_name.split('.')[0]
@@ -47,7 +46,6 @@ class CompareImage:
         file_name_for_gif = f'{image_name}_similarity.gif'
         before_full = cv2.imread(image_before_conversion)
         after_full = cv2.imread(image_after_conversion)
-        collage = self.collage(after_full, before_full)
 
         if self.converted_file.endswith((".xlsx", ".XLSX")):
             after, before, similarity = self.find_difference(after_full, before_full)
@@ -60,8 +58,10 @@ class CompareImage:
                 after, before, similarity = self.find_difference(after_full, before_full)
 
         print(f"{self.converted_file} Sheet: {sheet} similarity: {similarity}")
+
         before = self.put_text(before, f'Before sheet {sheet}. Similarity {round(similarity, 3)}%')
         after = self.put_text(after, f'After sheet {sheet}. Similarity {round(similarity, 3)}%')
+        collage = np.hstack([after_full, before_full])
         images = [before, after]
         if similarity < koff:
             self.write_down_results(collage, images, file_name_for_gif, sheet)
@@ -124,12 +124,6 @@ class CompareImage:
         similarity = score * 100
         return after, before, similarity
 
-    def collage(self, image1, image2):
-        after_for_collage = self.put_text(image1, f'After')
-        before_for_collage = self.put_text(image2, f'Before')
-        collage = np.hstack([before_for_collage, after_for_collage])
-        return collage
-
     @staticmethod
     def put_text(image, text):
         color = (0, 0, 255)
@@ -139,7 +133,6 @@ class CompareImage:
                     1,
                     color=color,
                     thickness=2)
-
         return image
 
     @staticmethod
