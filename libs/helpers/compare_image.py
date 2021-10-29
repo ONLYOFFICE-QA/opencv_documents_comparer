@@ -14,6 +14,7 @@ from libs.helpers.helper import *
 class CompareImage:
 
     def __init__(self, converted_file, helper, koff=98):
+        self.koff = koff
         self.helper = helper
         self.converted_file = converted_file
         self.screen_folder = 'screen'
@@ -23,9 +24,9 @@ class CompareImage:
         self.folder_name = re.sub(r"^\s+|\n|\r|\s|\s+$", '', self.folder_name)
         Helper.create_dir(f'{self.helper.passed}{self.folder_name}')
         Helper.create_dir(f'{self.helper.passed}{self.folder_name}/{self.screen_folder}')
-        self.start_to_compare_images(koff)
+        self.start_to_compare_images()
 
-    def start_to_compare_images(self, koff):
+    def start_to_compare_images(self):
         for image_name in track(os.listdir(self.helper.tmp_dir_converted_image), description='Comparing In Progress'):
             if os.path.exists(f'{self.helper.tmp_dir_source_image}{image_name}') \
                     and os.path.exists(f'{self.helper.tmp_dir_converted_image}{image_name}'):
@@ -33,14 +34,14 @@ class CompareImage:
                 self.compare_img(f'{self.helper.tmp_dir_source_image}{image_name}',
                                  f'{self.helper.tmp_dir_converted_image}{image_name}',
                                  image_name,
-                                 koff)
+                                 )
 
             else:
                 print(f'[bold red] File not found [/bold red]{image_name}')
 
         self.helper.tmp_cleaner()
 
-    def compare_img(self, image_before_conversion, image_after_conversion, image_name, koff):
+    def compare_img(self, image_before_conversion, image_after_conversion, image_name):
         image_name = image_name.split('.')[0]
         sheet = image_name.split('_')[-1]
         file_name_for_gif = f'{image_name}_similarity.gif'
@@ -63,7 +64,7 @@ class CompareImage:
         after = self.put_text(after, f'After sheet {sheet}. Similarity {round(similarity, 3)}%')
         collage = np.hstack([after_full, before_full])
         images = [before, after]
-        if similarity < koff:
+        if similarity < self.koff:
             self.write_down_results(collage, images, file_name_for_gif, sheet)
         else:
             print('[bold green]passed[/bold green]')
