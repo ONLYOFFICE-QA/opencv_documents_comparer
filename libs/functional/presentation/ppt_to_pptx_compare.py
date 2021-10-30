@@ -27,6 +27,13 @@ class PowerPoint:
     @staticmethod
     def prepare_windows():
         try:
+            try:
+                pg.click('libs/image_templates/excel/turn_on_content.png')
+                pg.moveTo(100, 0)
+                pg.click('libs/image_templates/excel/turn_on_content.png')
+            except Exception:
+                print('Content on')
+                pass
             pg.click('libs/image_templates/powerpoint/view.png')
             pg.moveTo(100, 0)
             sleep(0.2)
