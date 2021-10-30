@@ -50,6 +50,7 @@ class CompareImage:
 
         if self.converted_file.endswith((".xlsx", ".XLSX")):
             after, before, similarity = self.find_difference(after_full, before_full)
+            pass
         else:
             before = self.find_contours(image_before_conversion)
             after = self.find_contours(image_after_conversion)
@@ -57,12 +58,13 @@ class CompareImage:
                 after, before, similarity = self.find_difference(after, before)
             except Exception:
                 after, before, similarity = self.find_difference(after_full, before_full)
+                pass
 
         print(f"{self.converted_file} Sheet: {sheet} similarity: {similarity}")
 
         before = self.put_text(before, f'Before sheet {sheet}. Similarity {round(similarity, 3)}%')
         after = self.put_text(after, f'After sheet {sheet}. Similarity {round(similarity, 3)}%')
-        collage = np.hstack([after_full, before_full])
+        collage = self.collage(after_full, before_full)
         images = [before, after]
         if similarity < self.koff:
             self.write_down_results(collage, images, file_name_for_gif, sheet)
@@ -74,6 +76,12 @@ class CompareImage:
             cv2.imwrite(
                 f'{self.helper.passed}{self.folder_name}/{self.screen_folder}/{self.converted_file}_{sheet}_collage.png',
                 collage)
+
+    def collage(self, after_img, before_img):
+        after_for_collage = self.put_text(after_img, f'After')
+        before_for_collage = self.put_text(before_img, f'Before')
+        collage = np.hstack([before_for_collage, after_for_collage])
+        return collage
 
     def write_down_results(self, collage, images, file_name_for_gif, sheet):
         self.helper.create_dir(f'{self.helper.differences_compare_image}{self.folder_name}')
@@ -103,8 +111,6 @@ class CompareImage:
                 # to save the images
                 img = img[y:y + h, x:x + w]
                 return img
-            else:
-                return img_source
 
     @staticmethod
     def find_difference(after, before):

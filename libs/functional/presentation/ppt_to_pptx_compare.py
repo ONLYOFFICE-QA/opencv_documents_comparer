@@ -117,7 +117,6 @@ class PowerPoint:
             pg.press('enter')
             sb.call(["TASKKILL", "/IM", "POWERPNT.EXE", "/t", "/f"], shell=True)
             return self.errors[0]
-        sb.call(["TASKKILL", "/IM", "POWERPNT.EXE", "/t", "/f"], shell=True)
 
     def run_compare_pp(self, list_of_files):
         for converted_file in list_of_files:
@@ -152,7 +151,7 @@ class PowerPoint:
                         self.get_screenshot(self.helper.tmp_dir_source_image,
                                             tmp_name_source_file,
                                             slide_count)
-                        sb.call(["TASKKILL", "/IM", "POWERPNT.EXE", "/t", "/f"], shell=True)
+
                         CompareImage(converted_file, self.helper)
 
         self.helper.delete(f'{self.helper.tmp_dir_in_test}*')
