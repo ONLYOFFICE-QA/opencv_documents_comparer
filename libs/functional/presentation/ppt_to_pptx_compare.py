@@ -38,6 +38,28 @@ class PowerPoint:
         pg.press('enter')
         sleep(0.5)
 
+    # Preparing the window
+    # Setting the resolution  for the slide
+    # Setting the window display mode
+    @staticmethod
+    def prepare_windows_hot_keys():
+        try:
+            pg.click('libs/image_templates/excel/turn_on_content.png')
+            pg.moveTo(100, 0)
+            pg.click('libs/image_templates/excel/turn_on_content.png')
+        except Exception:
+            pass
+        pg.hotkey('alt', 'j')
+        pg.press('x')
+        pg.hotkey('alt', 'j')
+        pg.press('q')
+        pg.press('f')
+        sleep(0.1)
+        pg.press('tab')
+        pg.write('100', interval=0.1)
+        pg.press('enter')
+        sleep(0.5)
+
     # gets the coordinates of the window
     # sets the size and position of the window
     def get_coord_pp(self, hwnd, ctx):
@@ -97,7 +119,7 @@ class PowerPoint:
                           coordinate[1] + 170,
                           coordinate[2] - 120,
                           coordinate[3] - 100)
-            self.prepare_windows()
+            self.prepare_windows_hot_keys()
             page_num = 1
             for page in range(slide_count):
                 CompareImage.grab_coordinate(path_to_save_screen, file_name, page_num, coordinate)
