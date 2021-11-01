@@ -15,15 +15,17 @@ pip install -r requirements.txt
 
 ## Getting Started
 
-### Change config.py file.
+* Turn on the dark theme in ms office
 
-- Set environment variables
-  - version - the document server version (Example: "6.4.1.44")
-  - source_doc_folder - path to folders with documents before conversion, the folder names must match the file
-    extension(if the file extension in the folder is ".doc", then the folder name must be "doc")
-  - converted_doc_folder - path to folders with documents after conversion. The names of folders should have the
-    form "```<version>_<extension before conversion>_<extension after conversion>```" (Example: "6.4.1.44_doc_docx").
-- list_of_file_names - array for selective comparison by filename
+
+* Change config.py file.
+  - Set environment variables
+    - version - the document server version (Example: "6.4.1.44")
+    - source_doc_folder - path to folders with documents before conversion, the folder names must match the file
+      extension(if the file extension in the folder is ".doc", then the folder name must be "doc")
+    - converted_doc_folder - path to folders with documents after conversion. The names of folders should have the
+      form "```<version>_<extension before conversion>_<extension after conversion>```" (Example: "6.4.1.44_doc_docx").
+  - list_of_file_names - array for selective comparison by filename
 
 ### Commands for starting a document comparison
 

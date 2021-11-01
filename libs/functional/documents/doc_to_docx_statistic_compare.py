@@ -3,11 +3,13 @@ import csv
 import io
 import json
 import subprocess as sb
+from multiprocessing import Process
 
 from rich import print
 from rich.progress import track
 from win32com.client import Dispatch
 
+from libs.helpers.get_error import CheckErrors
 from libs.helpers.helper import Helper
 
 source_extension = 'doc'
@@ -17,9 +19,9 @@ converted_extension = 'docx'
 class Word:
 
     def __init__(self):
+        self.check_errors = CheckErrors()
         self.helper = Helper(source_extension, converted_extension)
         self.coordinate = []
-        self.errors = []
 
     @staticmethod
     def get_word_statistic(word_app):
@@ -33,8 +35,9 @@ class Word:
         }
         return statistics_word
 
-    @staticmethod
-    def word_opener(path_to_file):
+    def word_opener(self, path_to_file):
+        error_processing = Process(target=self.check_errors.run_get_errors_word)
+        error_processing.start()
         word_app = Dispatch('Word.Application')
         word_app.Visible = False
         # word_app.DisplayAlerts = False
@@ -43,9 +46,11 @@ class Word:
             statistics_word = Word.get_word_statistic(word_app)
             word_app.Close(False)
             sb.call(["taskkill", "/IM", "WINWORD.EXE"])
+            error_processing.terminate()
             return statistics_word
         except Exception:
             statistics_word = {}
+            error_processing.terminate()
             return statistics_word
 
     def run_compare_word_statistic(self, list_of_files):

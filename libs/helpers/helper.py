@@ -42,9 +42,7 @@ class Helper:
         self.tmp_dir_in_test = self.tmp_dir + 'in_test/'
 
         self.create_project_dirs()
-        self.delete(f'{self.tmp_dir_in_test}*')
-        self.delete(f'{self.tmp_dir_converted_image}*')
-        self.delete(f'{self.tmp_dir_source_image}*')
+        self.tmp_cleaner()
 
     # path insert with file name
     @staticmethod
@@ -101,6 +99,17 @@ class Helper:
 
     def run(self, path, file_name, office):
         sb.Popen([f"{self.ms_office}{office}", '-t', f"{path}{file_name}"])
+
+    def tmp_cleaner(self):
+        os.system("taskkill /t /f /im  WINWORD.EXE")
+        os.system("taskkill /t /f /im  POWERPNT.EXE")
+        os.system("taskkill /t /f /im  EXCEL.EXE")
+        # sb.call(f'powershell.exe kill -Name WINWORD', shell=False)
+        # sb.call(f'powershell.exe kill -Name POWERPNT', shell=False)
+        # sb.call(f'powershell.exe kill -Name EXCEL', shell=False)
+        self.delete(f'{self.tmp_dir_in_test}*')
+        self.delete(f'{self.tmp_dir_converted_image}*')
+        self.delete(f'{self.tmp_dir_source_image}*')
 
     @staticmethod
     def create_word_json(word, file_name_for_save, path_for_save):

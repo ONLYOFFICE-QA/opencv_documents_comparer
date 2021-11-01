@@ -1,5 +1,7 @@
 from invoke import task
 
+from libs.helpers.compare_image import CompareImage
+from libs.helpers.helper import Helper
 from libs.helpers.runner import *
 
 
@@ -35,3 +37,10 @@ def run_xls_xlsx(c, im=False, st=False, ls=False):
         run_xls_xlsx_compare_statistic()
     else:
         run_xls_xlsx_full()
+
+
+# for test
+@task(name="cmp")
+def compare_image(c):
+    helper = Helper('doc', 'docx')
+    CompareImage('file.docx', helper)

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import subprocess as sb
+from multiprocessing import Process
 from time import sleep
 
 import pyautogui as pg
@@ -10,7 +11,6 @@ from rich import print
 from config import *
 from libs.functional.documents.doc_to_docx_statistic_compare import Word
 from libs.helpers.compare_image import CompareImage
-from libs.helpers.get_error import check_word
 
 source_extension = 'doc'
 converted_extension = 'docx'
@@ -30,31 +30,22 @@ class WordCompareImg(Word):
                 self.coordinate.clear()
                 self.coordinate.append(win32gui.GetWindowRect(hwnd))
 
-    def check_error_word(self, hwnd, ctx):
-        if win32gui.IsWindowVisible(hwnd):
-            if win32gui.GetClassName(hwnd) == '#32770' \
-                    or win32gui.GetClassName(hwnd) == 'bosa_sdm_msword' \
-                    or win32gui.GetClassName(hwnd) == 'ThunderDFrame' \
-                    or win32gui.GetClassName(hwnd) == 'NUIDialog':
-                win32gui.ShowWindow(hwnd, win32con.SW_NORMAL)
-                win32gui.SetForegroundWindow(hwnd)
-
-                self.errors.clear()
-                self.errors.append(win32gui.GetClassName(hwnd))
-                self.errors.append(win32gui.GetWindowText(hwnd))
+    def prepare_word_windows(self):
+        win32gui.EnumWindows(self.check_errors.get_windows_title, self.check_errors.errors)
+        if self.check_errors.errors:
+            error_processing = Process(target=self.check_errors.run_get_errors_word)
+            error_processing.start()
+            sleep(7)
+            error_processing.terminate()
 
     # opens the document
     # takes a screenshot by coordinates
     def get_screenshots(self, tmp_file_name, path_to_save_screen, num_of_sheets):
         self.helper.run(self.helper.tmp_dir_in_test, tmp_file_name, 'WINWORD.EXE')
         sleep(wait_for_opening)
-        win32gui.EnumWindows(self.get_coord_word, self.coordinate)
-        for num_errors in range(5):
-            win32gui.EnumWindows(self.check_error_word, self.errors)
-            sleep(0.2)
-            if self.errors:
-                check_word()
+        self.prepare_word_windows()
 
+        win32gui.EnumWindows(self.get_coord_word, self.coordinate)
         coordinate = self.coordinate[0]
         coordinate = (coordinate[0],
                       coordinate[1] + 170,
@@ -67,25 +58,22 @@ class WordCompareImg(Word):
             pg.press('pgdn')
             sleep(wait_for_press)
             page_num += 1
-        # sb.call(f'powershell.exe kill -Name WINWORD', shell=True)
-        sb.call(["taskkill", "/IM", "WINWORD.EXE"], shell=True)
         sb.call(["taskkill", "/IM", "WINWORD.EXE"], shell=True)
 
     def run_compare_word(self, list_of_files):
         for converted_file in list_of_files:
             if converted_file.endswith((".docx", ".DOCX")):
+                source_file, tmp_name_converted_file, \
+                tmp_name_source_file, tmp_name = self.helper.preparing_files_for_test(converted_file,
+                                                                                      converted_extension,
+                                                                                      source_extension)
                 if converted_file == 'Integrated ICT for development' \
                                      ' program Recommendations for ' \
                                      'USAID Macedonia focused on ' \
                                      'education and workforce training.docx':
                     converted_file = 'IntegratedICTfordevelopment_renamed.docx'
-
-                source_file, tmp_name_converted_file, \
-                tmp_name_source_file, tmp_name = self.helper.preparing_files_for_test(converted_file,
-                                                                                      converted_extension,
-                                                                                      source_extension)
                 print(f'[bold green]In test[/bold green] {converted_file}')
-                num_of_sheets = Word.word_opener(f'{self.helper.tmp_dir_in_test}{tmp_name}')
+                num_of_sheets = self.word_opener(f'{self.helper.tmp_dir_in_test}{tmp_name}')
 
                 if num_of_sheets != {}:
                     num_of_sheets = num_of_sheets['num_of_sheets']

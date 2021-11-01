@@ -11,6 +11,7 @@ from win32com.client import Dispatch
 from config import *
 from libs.helpers.compare_image import CompareImage
 from libs.helpers.helper import Helper
+from libs.helpers.logger import *
 
 source_extension = 'ppt'
 converted_extension = 'pptx'
@@ -22,6 +23,34 @@ class PowerPoint:
         self.helper = Helper(source_extension, converted_extension)
         self.coordinate = []
         self.errors = []
+
+    @staticmethod
+    def prepare_windows():
+        try:
+            try:
+                pg.click('libs/image_templates/excel/turn_on_content.png')
+                pg.moveTo(100, 0)
+                pg.click('libs/image_templates/excel/turn_on_content.png')
+            except Exception:
+                print('Content on')
+                pass
+            pg.click('libs/image_templates/powerpoint/view.png')
+            pg.moveTo(100, 0)
+            sleep(0.2)
+            try:
+                pg.click('libs/image_templates/powerpoint/normal_view.png')
+            except Exception:
+                print('normal')
+            pg.click('libs/image_templates/powerpoint/scale.png')
+            pg.moveTo(100, 0)
+            pg.press('tab')
+            pg.write('100', interval=0.1)
+            pg.press('enter')
+            sleep(0.5)
+
+        except Exception:
+            log.info('\nppt_pptx\nfailed to prepare slide resolution')
+        pass
 
     # gets the coordinates of the window
     # sets the size and position of the window
@@ -45,6 +74,14 @@ class PowerPoint:
                 self.errors.clear()
                 print(win32gui.GetClassName(hwnd))
                 self.errors.append(win32gui.GetClassName(hwnd))
+            elif win32gui.GetClassName(hwnd) == 'NUIDialog':
+                win32gui.ShowWindow(hwnd, win32con.SW_NORMAL)
+                win32gui.SetForegroundWindow(hwnd)
+                sleep(0.5)
+                self.errors.clear()
+                print(win32gui.GetClassName(hwnd))
+                pg.press('enter')
+                sleep(2)
 
     @staticmethod
     def opener_power_point(path_for_open, file_name):
@@ -74,6 +111,7 @@ class PowerPoint:
                           coordinate[1] + 170,
                           coordinate[2] - 120,
                           coordinate[3] - 100)
+            self.prepare_windows()
             page_num = 1
             for page in range(slide_count):
                 CompareImage.grab_coordinate(path_to_save_screen, file_name, page_num, coordinate)
@@ -86,7 +124,6 @@ class PowerPoint:
             pg.press('enter')
             sb.call(["TASKKILL", "/IM", "POWERPNT.EXE", "/t", "/f"], shell=True)
             return self.errors[0]
-        sb.call(["TASKKILL", "/IM", "POWERPNT.EXE", "/t", "/f"], shell=True)
 
     def run_compare_pp(self, list_of_files):
         for converted_file in list_of_files:
@@ -121,7 +158,7 @@ class PowerPoint:
                         self.get_screenshot(self.helper.tmp_dir_source_image,
                                             tmp_name_source_file,
                                             slide_count)
-                        sb.call(["TASKKILL", "/IM", "POWERPNT.EXE", "/t", "/f"], shell=True)
+
                         CompareImage(converted_file, self.helper)
 
         self.helper.delete(f'{self.helper.tmp_dir_in_test}*')
