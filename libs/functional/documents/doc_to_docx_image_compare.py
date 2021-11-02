@@ -24,7 +24,9 @@ class WordCompareImg(Word):
         if win32gui.IsWindowVisible(hwnd):
             if win32gui.GetClassName(hwnd) == 'OpusApp':
                 win32gui.ShowWindow(hwnd, win32con.SW_NORMAL)
+                self.shell.SendKeys('%')
                 win32gui.SetForegroundWindow(hwnd)
+                self.shell.SendKeys(' ')
                 win32gui.MoveWindow(hwnd, 0, 0, 2000, 1400, True)
                 sleep(0.5)
                 self.coordinate.clear()
@@ -37,6 +39,8 @@ class WordCompareImg(Word):
             error_processing.start()
             sleep(7)
             error_processing.terminate()
+        pg.hotkey('alt', 'j')
+        pg.press('1')
 
     # opens the document
     # takes a screenshot by coordinates
