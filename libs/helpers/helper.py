@@ -5,9 +5,11 @@ import random
 import shutil
 import subprocess as sb
 
+import pyautogui as pg
 from rich import print
 
 from config import *
+from libs.helpers.logger import *
 
 
 class Helper:
@@ -32,8 +34,8 @@ class Helper:
         self.differences_compare_image = f'{self.result_folder}differences_compare_image/'
         self.passed = f'{self.result_folder}passed/'
 
-        self.untested_folder = f'{self.data}untested/'
-        self.failed_source = f'{self.data}failed_source/'
+        self.untested_folder = f'{self.result_folder}untested/'
+        self.failed_source = f'{self.result_folder}failed_source/'
 
         # static tmp
         self.tmp_dir = self.data + 'tmp/'
@@ -43,6 +45,16 @@ class Helper:
 
         self.create_project_dirs()
         self.tmp_cleaner()
+
+    @staticmethod
+    def click(path):
+        try:
+            pg.click(path)
+            # pg.moveTo(100, 0)
+        except Exception:
+            log.info(f'\nppt_pptx\nfailed to click: {path}')
+            pass
+        pass
 
     # path insert with file name
     @staticmethod
