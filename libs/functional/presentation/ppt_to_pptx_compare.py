@@ -11,7 +11,6 @@ from win32com.client import Dispatch
 from config import *
 from libs.helpers.compare_image import CompareImage
 from libs.helpers.helper import Helper
-from libs.helpers.logger import *
 
 source_extension = 'ppt'
 converted_extension = 'pptx'
@@ -23,34 +22,21 @@ class PowerPoint:
         self.helper = Helper(source_extension, converted_extension)
         self.coordinate = []
         self.errors = []
+        self.click = self.helper.click
 
-    @staticmethod
-    def prepare_windows():
-        try:
-            try:
-                pg.click('libs/image_templates/excel/turn_on_content.png')
-                pg.moveTo(100, 0)
-                pg.click('libs/image_templates/excel/turn_on_content.png')
-            except Exception:
-                print('Content on')
-                pass
-            pg.click('libs/image_templates/powerpoint/view.png')
-            pg.moveTo(100, 0)
-            sleep(0.2)
-            try:
-                pg.click('libs/image_templates/powerpoint/normal_view.png')
-            except Exception:
-                print('normal')
-            pg.click('libs/image_templates/powerpoint/scale.png')
-            pg.moveTo(100, 0)
-            pg.press('tab')
-            pg.write('100', interval=0.1)
-            pg.press('enter')
-            sleep(0.5)
-
-        except Exception:
-            log.info('\nppt_pptx\nfailed to prepare slide resolution')
-        pass
+    def prepare_windows(self):
+        self.click('libs/image_templates/excel/turn_on_content.png')
+        self.click('libs/image_templates/excel/turn_on_content.png')
+        sleep(0.2)
+        self.click('libs/image_templates/powerpoint/ok.png')
+        self.click('libs/image_templates/powerpoint/view.png')
+        sleep(0.2)
+        self.click('libs/image_templates/powerpoint/normal_view.png')
+        self.click('libs/image_templates/powerpoint/scale.png')
+        pg.press('tab')
+        pg.write('100', interval=0.1)
+        pg.press('enter')
+        sleep(0.5)
 
     # gets the coordinates of the window
     # sets the size and position of the window
