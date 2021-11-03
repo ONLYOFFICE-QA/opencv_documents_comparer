@@ -99,6 +99,7 @@ class CheckErrors:
         elif array_of_errors[0] == 'bosa_sdm_msword':
             print(array_of_errors[1])
             if array_of_errors[1] == 'Преобразование файла':
+                print('press enter')
                 pg.press('enter')
 
             elif array_of_errors[1] == 'Пароль':

@@ -26,19 +26,22 @@ class WordCompareImg(Word):
                 win32gui.ShowWindow(hwnd, win32con.SW_NORMAL)
                 self.shell.SendKeys('%')
                 win32gui.SetForegroundWindow(hwnd)
-                self.shell.SendKeys(' ')
                 win32gui.MoveWindow(hwnd, 0, 0, 2000, 1400, True)
                 sleep(0.5)
                 self.coordinate.clear()
                 self.coordinate.append(win32gui.GetWindowRect(hwnd))
 
-    def prepare_word_windows(self):
+    def check_error(self):
         win32gui.EnumWindows(self.check_errors.get_windows_title, self.check_errors.errors)
         if self.check_errors.errors:
+            print(f'Error: {self.check_errors.errors}')
             error_processing = Process(target=self.check_errors.run_get_errors_word)
             error_processing.start()
-            sleep(7)
+            sleep(5)
             error_processing.terminate()
+
+    @staticmethod
+    def prepare_word_windows():
         pg.hotkey('alt', 'j')
         pg.press('1')
 
@@ -47,7 +50,7 @@ class WordCompareImg(Word):
     def get_screenshots(self, tmp_file_name, path_to_save_screen, num_of_sheets):
         self.helper.run(self.helper.tmp_dir_in_test, tmp_file_name, 'WINWORD.EXE')
         sleep(wait_for_opening)
-        self.prepare_word_windows()
+        self.check_error()
 
         win32gui.EnumWindows(self.get_coord_word, self.coordinate)
         coordinate = self.coordinate[0]
@@ -55,6 +58,8 @@ class WordCompareImg(Word):
                       coordinate[1] + 170,
                       coordinate[2] - 30,
                       coordinate[3] - 20)
+
+        self.prepare_word_windows()
         page_num = 1
         for page in range(int(num_of_sheets)):
             CompareImage.grab_coordinate(path_to_save_screen, tmp_file_name, page_num, coordinate)
