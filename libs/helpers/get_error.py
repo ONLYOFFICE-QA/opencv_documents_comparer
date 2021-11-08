@@ -50,7 +50,7 @@ class CheckErrors:
 
             elif array_of_errors[1] == 'Microsoft Excel':
                 log.info('Microsoft Excel')
-                pg.press('left')
+                # pg.press('left')
                 pg.press('enter')
                 sleep(1)
                 pg.press('enter')
