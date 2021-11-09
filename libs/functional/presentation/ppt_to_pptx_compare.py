@@ -119,7 +119,7 @@ class PowerPoint:
                           coordinate[1] + 170,
                           coordinate[2] - 120,
                           coordinate[3] - 100)
-            self.prepare_windows_hot_keys()
+            self.prepare_windows()
             page_num = 1
             for page in range(slide_count):
                 CompareImage.grab_coordinate(path_to_save_screen, file_name, page_num, coordinate)
