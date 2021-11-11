@@ -40,6 +40,13 @@ class CheckErrors:
                 self.check_word(self.errors)
                 self.errors.clear()
 
+    def run_get_errors_pp(self):
+        while True:
+            win32gui.EnumWindows(self.get_windows_title, self.errors)
+            if self.errors:
+                self.check_pp(self.errors)
+                self.errors.clear()
+
     @staticmethod
     def check_errors_excel(array_of_errors):
         if array_of_errors[0] == '#32770':
@@ -109,4 +116,12 @@ class CheckErrors:
             elif array_of_errors[1] == 'Показать исправления':
                 sleep(1)
                 pg.press('tab', presses=3)
+                pg.press('enter')
+
+    @staticmethod
+    def check_pp(array_of_errors):
+        if array_of_errors[0] == 'NUIDialog':
+            print(array_of_errors[1])
+            if array_of_errors[1] == 'Пароль':
+                pg.press('right', presses=2)
                 pg.press('enter')

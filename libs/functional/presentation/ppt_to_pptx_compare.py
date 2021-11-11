@@ -100,7 +100,7 @@ class PowerPoint:
 
     def opener_power_point(self, path_for_open, file_name):
         try:
-            error_processing = Process(target=self.check_errors.run_get_errors_word)
+            error_processing = Process(target=self.check_errors.run_get_errors_pp)
             error_processing.start()
             presentation = Dispatch("PowerPoint.application")
             presentation = presentation.Presentations.Open(f'{path_for_open}{file_name}')
