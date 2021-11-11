@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import subprocess as sb
+from multiprocessing import Process
 from time import sleep
 
 import pyautogui as pg
@@ -10,6 +11,7 @@ from win32com.client import Dispatch
 
 from config import *
 from libs.helpers.compare_image import CompareImage
+from libs.helpers.get_error import CheckErrors
 from libs.helpers.helper import Helper
 
 source_extension = 'ppt'
@@ -19,9 +21,11 @@ converted_extension = 'pptx'
 class PowerPoint:
 
     def __init__(self):
+        self.check_errors = CheckErrors()
         self.helper = Helper(source_extension, converted_extension)
         self.coordinate = []
         self.errors = []
+        self.shell = Dispatch("WScript.Shell")
         self.click = self.helper.click
 
     def prepare_windows(self):
@@ -66,6 +70,7 @@ class PowerPoint:
         if win32gui.IsWindowVisible(hwnd):
             if win32gui.GetClassName(hwnd) == 'PPTFrameClass':
                 win32gui.ShowWindow(hwnd, win32con.SW_NORMAL)
+                self.shell.SendKeys('%')
                 win32gui.SetForegroundWindow(hwnd)
                 win32gui.MoveWindow(hwnd, 0, 0, 2200, 1420, True)
                 sleep(0.5)
@@ -77,6 +82,7 @@ class PowerPoint:
         if win32gui.IsWindowVisible(hwnd):
             if win32gui.GetClassName(hwnd) == '#32770':
                 win32gui.ShowWindow(hwnd, win32con.SW_NORMAL)
+                self.shell.SendKeys('%')
                 win32gui.SetForegroundWindow(hwnd)
                 sleep(0.5)
                 self.errors.clear()
@@ -84,6 +90,7 @@ class PowerPoint:
                 self.errors.append(win32gui.GetClassName(hwnd))
             elif win32gui.GetClassName(hwnd) == 'NUIDialog':
                 win32gui.ShowWindow(hwnd, win32con.SW_NORMAL)
+                self.shell.SendKeys('%')
                 win32gui.SetForegroundWindow(hwnd)
                 sleep(0.5)
                 self.errors.clear()
@@ -91,18 +98,21 @@ class PowerPoint:
                 pg.press('enter')
                 sleep(2)
 
-    @staticmethod
-    def opener_power_point(path_for_open, file_name):
+    def opener_power_point(self, path_for_open, file_name):
         try:
+            error_processing = Process(target=self.check_errors.run_get_errors_word)
+            error_processing.start()
             presentation = Dispatch("PowerPoint.application")
             presentation = presentation.Presentations.Open(f'{path_for_open}{file_name}')
             slide_count = len(presentation.Slides)
             print(slide_count)
             presentation.Close()
             sb.call(["taskkill", "/IM", "POWERPNT.EXE"])
+            error_processing.terminate()
             return slide_count
 
         except Exception:
+            error_processing.terminate()
             sb.call(["taskkill", "/IM", "POWERPNT.EXE"])
             return 'None'
 
@@ -119,6 +129,7 @@ class PowerPoint:
                           coordinate[1] + 170,
                           coordinate[2] - 120,
                           coordinate[3] - 100)
+
             self.prepare_windows()
             page_num = 1
             for page in range(slide_count):
