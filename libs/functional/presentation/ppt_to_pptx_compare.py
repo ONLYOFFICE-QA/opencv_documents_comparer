@@ -29,12 +29,11 @@ class PowerPoint:
         self.click = self.helper.click
 
     def prepare_windows(self):
-        self.shell.SendKeys(' ')
         self.click('libs/image_templates/excel/turn_on_content.png')
         self.click('libs/image_templates/excel/turn_on_content.png')
         sleep(0.2)
         self.click('libs/image_templates/powerpoint/ok.png')
-        self.click('libs/image_templates/powerpoint/view2.png')
+        self.click('libs/image_templates/powerpoint/view.png')
         sleep(0.2)
         self.click('libs/image_templates/powerpoint/normal_view.png')
         self.click('libs/image_templates/powerpoint/scale.png')
