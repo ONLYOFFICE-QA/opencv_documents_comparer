@@ -23,6 +23,7 @@ class Word:
         self.helper = Helper(source_extension, converted_extension)
         self.coordinate = []
         self.shell = Dispatch("WScript.Shell")
+        self.click = self.helper.click
 
     @staticmethod
     def get_word_statistic(word_app):

@@ -40,10 +40,10 @@ class WordCompareImg(Word):
             sleep(5)
             error_processing.terminate()
 
-    @staticmethod
-    def prepare_word_windows():
-        pg.hotkey('alt', 'j')
-        pg.press('1')
+    def prepare_word_windows(self):
+        self.click('libs/image_templates/powerpoint/view.png')
+        sleep(0.3)
+        self.click('libs/image_templates/word/resolution100.png')
 
     # opens the document
     # takes a screenshot by coordinates
