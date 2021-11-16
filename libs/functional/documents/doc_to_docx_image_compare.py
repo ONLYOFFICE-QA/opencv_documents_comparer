@@ -44,6 +44,7 @@ class WordCompareImg(Word):
         self.click('libs/image_templates/powerpoint/view.png')
         sleep(0.3)
         self.click('libs/image_templates/word/resolution100.png')
+        sleep(0.5)
 
     # opens the document
     # takes a screenshot by coordinates

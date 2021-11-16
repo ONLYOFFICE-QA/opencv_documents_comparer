@@ -34,6 +34,7 @@ class PowerPoint:
         sleep(0.2)
         self.click('libs/image_templates/powerpoint/ok.png')
         self.click('libs/image_templates/powerpoint/view.png')
+        pg.click()
         sleep(0.2)
         self.click('libs/image_templates/powerpoint/normal_view.png')
         self.click('libs/image_templates/powerpoint/scale.png')
