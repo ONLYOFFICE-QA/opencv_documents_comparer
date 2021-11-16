@@ -65,20 +65,26 @@ class ExcelCompareImage(Excel):
         for page in range(int(statistics_exel['num_of_sheets'])):
             num_of_sheet = 1
             num_of_row = statistics_exel[f'{num_of_sheet}_nrows'] / 65
-            pg.hotkey('ctrl', 'home', interval=0.1)
+            pg.hotkey('ctrl', 'home', interval=0.2)
+            CompareImage.grab_coordinate_exel(path_to_save_screen,
+                                              tmp_file_name,
+                                              list_num,
+                                              page_num,
+                                              coordinate)
+            page_num += 1
             for pgdwn in range(math.ceil(num_of_row)):
+                pg.press('pgdn', interval=0.5)
                 CompareImage.grab_coordinate_exel(path_to_save_screen,
                                                   tmp_file_name,
                                                   list_num,
                                                   page_num,
                                                   coordinate)
-                pg.press('pgdn', interval=0.5)
                 num_of_sheet += 1
                 page_num += 1
             pg.hotkey('ctrl', 'pgdn', interval=0.05)
             sleep(wait_for_press)
             list_num += 1
-        sb.call(["TASKKILL", "/IM", "EXCEL.EXE", "/t", "/f"], shell=True)
+        sb.call(["TASKKILL", "/IM", "EXCEL.EXE"], shell=True)
 
     def run_compare_excel_img(self, list_of_files):
         for converted_file in list_of_files:
