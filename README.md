@@ -6,7 +6,7 @@ Script to open and compare documents in MS Office
 
 ## Requirements:
 
-* Python
+* Python 3.9.7
 * MS Office 2019
 
 ## Installing Python Libraries:
@@ -34,9 +34,9 @@ pip install -r requirements.txt
 ```invoke doc-docx``` - To compare document statistics by filenames from "converted_doc_folder", and then compare images
 by files with different statistics
 
-```invoke doc-docx --st``` - To compare document statistics by file names from “converted_doc_folder”
+```invoke doc-docx --st``` - To compare document statistics by file names from ï¿½converted_doc_folderï¿½
 
-```invoke doc-docx --im``` - To compare images by file names from “converted_doc_folder”
+```invoke doc-docx --im``` - To compare images by file names from ï¿½converted_doc_folderï¿½
 
 ```invoke doc-docx --ls``` - To compare images by file names from the array in "config.py"
 
@@ -44,7 +44,7 @@ by files with different statistics
 
 #### Compare ppt to pptx:
 
-```invoke ppt-pptx``` - To compare images by file names from “converted_doc_folder”
+```invoke ppt-pptx``` - To compare images by file names from ï¿½converted_doc_folderï¿½
 
 ```invoke ppt-pptx --ls``` - To compare images by file names from the array in "config.py"
 
@@ -53,8 +53,8 @@ by files with different statistics
 ```invoke xls-xlsx``` - To compare document statistics by filenames from "converted_doc_folder", and then compare images
 by files with different statistics
 
-```invoke xls-xlsx --st``` - To compare document statistics by file names from “converted_doc_folder”
+```invoke xls-xlsx --st``` - To compare document statistics by file names from ï¿½converted_doc_folderï¿½
 
-```invoke xls-xlsx --im``` - To compare images by file names from “converted_doc_folder”
+```invoke xls-xlsx --im``` - To compare images by file names from ï¿½converted_doc_folderï¿½
 
 ```invoke xls-xlsx --ls``` - To compare images by file names from the array in "config.py"
