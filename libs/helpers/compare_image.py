@@ -44,7 +44,7 @@ class CompareImage:
     def compare_img(self, image_before_conversion, image_after_conversion, image_name):
         image_name = image_name.split('.')[0]
         sheet = image_name.split('_')[-1]
-        file_name_for_gif = f'{image_name}_similarity.gif'
+        file_name_for_gif = f'sheet_{sheet}_similarity.gif'
         before_full = cv2.imread(image_before_conversion)
         after_full = cv2.imread(image_after_conversion)
 
@@ -74,7 +74,7 @@ class CompareImage:
                             images,
                             duration=1)
             cv2.imwrite(
-                f'{self.helper.passed}{self.folder_name}/{self.screen_folder}/{self.converted_file}_{sheet}_collage.png',
+                f'{self.helper.passed}{self.folder_name}/{self.screen_folder}/sheet_{sheet}_collage.png',
                 collage)
 
     def collage(self, after_img, before_img):
@@ -91,7 +91,7 @@ class CompareImage:
                                    f'{self.helper.differences_compare_image}{self.folder_name}/')
         cv2.imwrite(
             f'{self.helper.differences_compare_image}{self.folder_name}/{self.screen_folder}/'
-            f'{self.converted_file}_{sheet}_collage.png',
+            f'sheet_{sheet}_collage.png',
             collage)
         imageio.mimsave(f'{self.helper.differences_compare_image}{self.folder_name}/gif/{file_name_for_gif}',
                         images,
