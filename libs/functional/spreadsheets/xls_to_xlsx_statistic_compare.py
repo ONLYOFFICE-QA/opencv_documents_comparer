@@ -23,6 +23,7 @@ class Excel:
         self.check_errors = CheckErrors()
         self.helper = Helper(source_extension, converted_extension)
         self.coordinate = []
+        self.click = self.helper.click
 
     @staticmethod
     def get_exel_statistic(wb):

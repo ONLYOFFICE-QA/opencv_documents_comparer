@@ -51,7 +51,11 @@ class CheckErrors:
     def check_errors_excel(array_of_errors):
         if array_of_errors[0] == '#32770':
             if array_of_errors[1] == 'Microsoft Visual Basic':
-                sb.call(["TASKKILL", "/IM", "EXCEL.EXE", "/t", "/f"], shell=True)
+                try:
+                    pg.click("libs/image_templates/excel/end.png")
+                except Exception:
+                    sb.call(["TASKKILL", "/IM", "EXCEL.EXE", "/t", "/f"], shell=True)
+
             elif array_of_errors[1] == 'Удаление нескольких элементов':
                 pass
 

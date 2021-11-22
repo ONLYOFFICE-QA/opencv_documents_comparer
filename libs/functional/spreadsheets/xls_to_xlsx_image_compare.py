@@ -31,12 +31,8 @@ class ExcelCompareImage(Excel):
                 self.coordinate.append(win32gui.GetWindowRect(hwnd))
 
     def prepare_excel_windows(self):
-        try:
-            pg.click('libs/image_templates/excel/turn_on_content.png')
-            pg.moveTo(100, 0)
-            sleep(1)
-        except Exception:
-            pass
+        self.click('libs/image_templates/excel/turn_on_content.png')
+        sleep(1)
 
         win32gui.EnumWindows(self.check_errors.get_windows_title, self.check_errors.errors)
         if self.check_errors.errors:
