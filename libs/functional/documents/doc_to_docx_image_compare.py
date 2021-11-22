@@ -43,8 +43,9 @@ class WordCompareImg(Word):
     def prepare_word_windows(self):
         self.click('libs/image_templates/powerpoint/view.png')
         sleep(0.3)
+        self.click('libs/image_templates/word/one_page.png')
         self.click('libs/image_templates/word/resolution100.png')
-        sleep(0.5)
+        sleep(1)
 
     # opens the document
     # takes a screenshot by coordinates
@@ -63,7 +64,7 @@ class WordCompareImg(Word):
         self.prepare_word_windows()
         page_num = 1
         for page in range(int(num_of_sheets)):
-            CompareImage.grab_coordinate(path_to_save_screen, tmp_file_name, page_num, coordinate)
+            CompareImage.grab_coordinate(path_to_save_screen, page_num, coordinate)
             # pg.click()
             pg.press('pgdn')
             sleep(wait_for_press)
