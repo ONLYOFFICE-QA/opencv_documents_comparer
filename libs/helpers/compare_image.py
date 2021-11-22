@@ -44,7 +44,7 @@ class CompareImage:
     def compare_img(self, image_before_conversion, image_after_conversion, image_name):
         image_name = image_name.split('.')[0]
         sheet = image_name.split('_')[-1]
-        file_name_for_gif = f'sheet_{sheet}_similarity.gif'
+        file_name_for_gif = f'{image_name}_similarity.gif'
         before_full = cv2.imread(image_before_conversion)
         after_full = cv2.imread(image_after_conversion)
 
@@ -67,14 +67,14 @@ class CompareImage:
         collage = self.collage(after_full, before_full)
         images = [before, after]
         if similarity < self.koff:
-            self.write_down_results(collage, images, file_name_for_gif, sheet)
+            self.write_down_results(collage, images, file_name_for_gif, image_name)
         else:
             print('[bold green]passed[/bold green]')
             imageio.mimsave(f'{self.helper.passed}{self.folder_name}/{file_name_for_gif}',
                             images,
                             duration=1)
             cv2.imwrite(
-                f'{self.helper.passed}{self.folder_name}/{self.screen_folder}/sheet_{sheet}_collage.png',
+                f'{self.helper.passed}{self.folder_name}/{self.screen_folder}/{image_name}_collage.png',
                 collage)
 
     def collage(self, after_img, before_img):
@@ -83,7 +83,7 @@ class CompareImage:
         collage = np.hstack([before_for_collage, after_for_collage])
         return collage
 
-    def write_down_results(self, collage, images, file_name_for_gif, sheet):
+    def write_down_results(self, collage, images, file_name_for_gif, image_name):
         self.helper.create_dir(f'{self.helper.differences_compare_image}{self.folder_name}')
         self.helper.create_dir(f'{self.helper.differences_compare_image}{self.folder_name}/gif/')
         self.helper.create_dir(f'{self.helper.differences_compare_image}{self.folder_name}/{self.screen_folder}')
@@ -91,7 +91,7 @@ class CompareImage:
                                    f'{self.helper.differences_compare_image}{self.folder_name}/')
         cv2.imwrite(
             f'{self.helper.differences_compare_image}{self.folder_name}/{self.screen_folder}/'
-            f'sheet_{sheet}_collage.png',
+            f'{image_name}_collage.png',
             collage)
         imageio.mimsave(f'{self.helper.differences_compare_image}{self.folder_name}/gif/{file_name_for_gif}',
                         images,
@@ -146,13 +146,13 @@ class CompareImage:
     def grab_coordinate_exel(path, filename, list_num, number_of_pages, coordinate):
         img_name = filename.replace(f'.{filename.split(".")[-1]}', '')
         image = ImageGrab.grab(bbox=coordinate)
-        image.save(path + img_name + str(f'_list_{list_num}_page_{number_of_pages}') + '.png', 'PNG')
+        image.save(path + str(f'_list_{list_num}_page_{number_of_pages}') + '.png', 'PNG')
 
     @staticmethod
     def grab_coordinate(path, filename, number_of_pages, coordinate):
         img_name = filename.replace(f'.{filename.split(".")[-1]}', '')
         image = ImageGrab.grab(bbox=coordinate)
-        image.save(path + img_name + str(f'_{number_of_pages}') + '.png', 'PNG')
+        image.save(path + str(f'page_{number_of_pages}') + '.png', 'PNG')
 
     @staticmethod
     def grab(path, filename, number_of_pages):
