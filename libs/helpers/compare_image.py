@@ -143,14 +143,12 @@ class CompareImage:
         return image
 
     @staticmethod
-    def grab_coordinate_exel(path, filename, list_num, number_of_pages, coordinate):
-        img_name = filename.replace(f'.{filename.split(".")[-1]}', '')
+    def grab_coordinate_exel(path, list_num, number_of_pages, coordinate):
         image = ImageGrab.grab(bbox=coordinate)
         image.save(path + str(f'_list_{list_num}_page_{number_of_pages}') + '.png', 'PNG')
 
     @staticmethod
-    def grab_coordinate(path, filename, number_of_pages, coordinate):
-        img_name = filename.replace(f'.{filename.split(".")[-1]}', '')
+    def grab_coordinate(path, number_of_pages, coordinate):
         image = ImageGrab.grab(bbox=coordinate)
         image.save(path + str(f'page_{number_of_pages}') + '.png', 'PNG')
 

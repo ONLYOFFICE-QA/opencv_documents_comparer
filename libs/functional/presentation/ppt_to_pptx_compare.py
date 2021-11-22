@@ -100,9 +100,9 @@ class PowerPoint:
                 sleep(2)
 
     def opener_power_point(self, path_for_open, file_name):
+        error_processing = Process(target=self.check_errors.run_get_errors_pp)
+        error_processing.start()
         try:
-            error_processing = Process(target=self.check_errors.run_get_errors_pp)
-            error_processing.start()
             presentation = Dispatch("PowerPoint.application")
             presentation = presentation.Presentations.Open(f'{path_for_open}{file_name}')
             slide_count = len(presentation.Slides)
@@ -134,7 +134,7 @@ class PowerPoint:
             self.prepare_windows()
             page_num = 1
             for page in range(slide_count):
-                CompareImage.grab_coordinate(path_to_save_screen, file_name, page_num, coordinate)
+                CompareImage.grab_coordinate(path_to_save_screen, page_num, coordinate)
                 pg.press('pgdn')
                 sleep(wait_for_press)
                 page_num += 1
