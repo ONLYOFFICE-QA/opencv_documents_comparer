@@ -30,18 +30,21 @@ class Excel:
         statistics_exel = {
             'num_of_sheets': f'{wb.Sheets.Count}',
         }
-
-        num_of_sheet = 1
-        for sh in wb.Sheets:
-            ws = wb.Worksheets(sh.Name)
-            used = ws.UsedRange
-            nrows = used.Row + used.Rows.Count - 1
-            ncols = used.Column + used.Columns.Count - 1
-            statistics_exel[f'{num_of_sheet}_page_name'] = sh.Name
-            statistics_exel[f'{num_of_sheet}_nrows'] = nrows
-            statistics_exel[f'{num_of_sheet}_ncols'] = ncols
-            num_of_sheet += 1
-        return statistics_exel
+        try:
+            num_of_sheet = 1
+            for sh in wb.Sheets:
+                ws = wb.Worksheets(sh.Name)
+                used = ws.UsedRange
+                nrows = used.Row + used.Rows.Count - 1
+                ncols = used.Column + used.Columns.Count - 1
+                statistics_exel[f'{num_of_sheet}_page_name'] = sh.Name
+                statistics_exel[f'{num_of_sheet}_nrows'] = nrows
+                statistics_exel[f'{num_of_sheet}_ncols'] = ncols
+                num_of_sheet += 1
+            return statistics_exel
+        except Exception:
+            print('[bold red]Failed to get full statistics_exel[/bold red]')
+            return statistics_exel
 
     def opener_exel(self, path_for_open, file_name):
         error_processing = Process(target=self.check_errors.run_get_error_exel)
@@ -49,7 +52,7 @@ class Excel:
         try:
             xl = Dispatch("Excel.Application")
             xl.Visible = False  # otherwise excel is hidden
-            wb = xl.Workbooks.Open(f'{path_for_open}{file_name}', ReadOnly=True)
+            wb = xl.Workbooks.Open(f'{path_for_open}{file_name}')
             statistics_exel = Excel.get_exel_statistic(wb)
             wb.Close(False)
             xl.Quit()
