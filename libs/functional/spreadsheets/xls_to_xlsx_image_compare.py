@@ -31,15 +31,21 @@ class ExcelCompareImage(Excel):
                 self.coordinate.append(win32gui.GetWindowRect(hwnd))
 
     def prepare_excel_windows(self):
-        self.click('libs/image_templates/excel/turn_on_content.png')
-        sleep(1)
+        try:
+            pg.click('libs/image_templates/excel/turn_on_content.png')
+            sleep(1)
 
-        win32gui.EnumWindows(self.check_errors.get_windows_title, self.check_errors.errors)
-        if self.check_errors.errors:
-            error_processing = Process(target=self.check_errors.run_get_error_exel)
-            error_processing.start()
-            sleep(7)
-            error_processing.terminate()
+            win32gui.EnumWindows(self.check_errors.get_windows_title, self.check_errors.errors)
+            if self.check_errors.errors:
+                error_processing = Process(target=self.check_errors.run_get_error_exel)
+                error_processing.start()
+                sleep(7)
+                error_processing.terminate()
+                sleep(1)
+                win32gui.EnumWindows(self.get_coord_exel, self.coordinate)
+        except Exception:
+            print("turn_on_content.png not found")
+            pass
 
     # opens the document
     # takes a screenshot by coordinates
@@ -60,13 +66,17 @@ class ExcelCompareImage(Excel):
             pg.hotkey('ctrl', 'pgup', interval=0.05)
         for page in range(int(statistics_exel['num_of_sheets'])):
             num_of_sheet = 1
-            num_of_row = statistics_exel[f'{num_of_sheet}_nrows'] / 65
             pg.hotkey('ctrl', 'home', interval=0.2)
             CompareImage.grab_coordinate_exel(path_to_save_screen,
                                               list_num,
                                               page_num,
                                               coordinate)
             page_num += 1
+            if f'{num_of_sheet}_nrows' in statistics_exel:
+                num_of_row = statistics_exel[f'{num_of_sheet}_nrows'] / 65
+            else:
+                print(f'[bold red]{num_of_sheet}_nrows not found[/bold red]')
+                num_of_row = 2
             for pgdwn in range(math.ceil(num_of_row)):
                 pg.press('pgdn', interval=0.5)
                 CompareImage.grab_coordinate_exel(path_to_save_screen,
@@ -78,7 +88,8 @@ class ExcelCompareImage(Excel):
             pg.hotkey('ctrl', 'pgdn', interval=0.05)
             sleep(wait_for_press)
             list_num += 1
-        sb.call(["TASKKILL", "/IM", "EXCEL.EXE"], shell=True)
+        # sb.call(["TASKKILL", "/IM", "EXCEL.EXE"], shell=True)
+        sb.call(["TASKKILL", "/IM", "EXCEL.EXE", "/t", "/f"], shell=True)
 
     def run_compare_excel_img(self, list_of_files):
         for converted_file in list_of_files:

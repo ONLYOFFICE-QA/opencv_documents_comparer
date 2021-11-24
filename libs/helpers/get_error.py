@@ -3,7 +3,6 @@ import subprocess as sb
 from time import sleep
 
 import pyautogui as pg
-import win32con
 import win32gui
 
 from libs.helpers.logger import *
@@ -19,7 +18,7 @@ class CheckErrors:
                     or win32gui.GetClassName(hwnd) == 'bosa_sdm_msword' \
                     or win32gui.GetClassName(hwnd) == 'ThunderDFrame' \
                     or win32gui.GetClassName(hwnd) == 'NUIDialog':
-                win32gui.ShowWindow(hwnd, win32con.SW_NORMAL)
+                # win32gui.ShowWindow(hwnd, win32con.SW_NORMAL)
                 win32gui.SetForegroundWindow(hwnd)
 
                 self.errors.clear()
