@@ -35,9 +35,10 @@ class WordCompareImg(Word):
         win32gui.EnumWindows(self.check_errors.get_windows_title, self.check_errors.errors)
         if self.check_errors.errors:
             print(f'Error: {self.check_errors.errors}')
+            self.check_errors.errors.clear()
             error_processing = Process(target=self.check_errors.run_get_errors_word)
             error_processing.start()
-            sleep(5)
+            sleep(7)
             error_processing.terminate()
 
     def prepare_word_windows(self):
@@ -45,6 +46,7 @@ class WordCompareImg(Word):
         sleep(0.3)
         self.click('libs/image_templates/word/one_page.png')
         self.click('libs/image_templates/word/resolution100.png')
+        pg.moveTo(100, 0)
         sleep(1)
 
     # opens the document
