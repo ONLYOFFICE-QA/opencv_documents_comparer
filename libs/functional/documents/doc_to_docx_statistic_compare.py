@@ -69,10 +69,10 @@ class Word:
                                                                                           converted_extension,
                                                                                           source_extension)
                     print(f'[bold green]In test[/bold green] {source_file}')
-                    source_statistics = Word.word_opener(f'{self.helper.tmp_dir_in_test}{tmp_name_source_file}')
+                    source_statistics = self.word_opener(f'{self.helper.tmp_dir_in_test}{tmp_name_source_file}')
 
                     print(f'[bold green]In test[/bold green] {converted_file}')
-                    converted_statistics = Word.word_opener(f'{self.helper.tmp_dir_in_test}{tmp_name_converted_file}')
+                    converted_statistics = self.word_opener(f'{self.helper.tmp_dir_in_test}{tmp_name_converted_file}')
 
                     if source_statistics == {} or converted_statistics == {}:
                         print('[bold red]Opening error[/bold red]')
