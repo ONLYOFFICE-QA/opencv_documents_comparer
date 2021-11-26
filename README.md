@@ -31,30 +31,36 @@ pip install -r requirements.txt
 
 #### Compare doc to docx:
 
-```invoke doc-docx``` - To compare document statistics by filenames from "converted_doc_folder", and then compare images
-by files with different statistics
+```invoke doc-docx``` - To compare images by file names from "converted_doc_folder"
 
-```invoke doc-docx --st``` - To compare document statistics by file names from �converted_doc_folder�
+```invoke doc-docx --st``` - To compare document statistics by file names from "converted_doc_folder"
 
-```invoke doc-docx --im``` - To compare images by file names from �converted_doc_folder�
+```invoke doc-docx --full``` - To compare document statistics by filenames from "converted_doc_folder", and then compare
+images by files with different statistics
 
 ```invoke doc-docx --ls``` - To compare images by file names from the array in "config.py"
 
 ```invoke doc-docx --df``` - To compare images by files with different statistics
 
+```invoke doc-docx --cl``` - To compare images by file names from the clipboard
+
 #### Compare ppt to pptx:
 
-```invoke ppt-pptx``` - To compare images by file names from �converted_doc_folder�
+```invoke ppt-pptx``` - To compare images by file names from "converted_doc_folder"
 
 ```invoke ppt-pptx --ls``` - To compare images by file names from the array in "config.py"
 
+```invoke ppt-pptx --cl``` - To compare images by file names from the clipboard
+
 #### Compare xls to xlsx:
 
-```invoke xls-xlsx``` - To compare document statistics by filenames from "converted_doc_folder", and then compare images
-by files with different statistics
+```invoke xls-xlsx``` - To compare images by file names from "converted_doc_folder"
 
-```invoke xls-xlsx --st``` - To compare document statistics by file names from �converted_doc_folder�
+```invoke xls-xlsx --st``` - To compare document statistics by file names from "converted_doc_folder"
 
-```invoke xls-xlsx --im``` - To compare images by file names from �converted_doc_folder�
+```invoke xls-xlsx --full``` - To compare document statistics by filenames from "converted_doc_folder", and then compare
+images by files with different statistics
 
 ```invoke xls-xlsx --ls``` - To compare images by file names from the array in "config.py"
+
+```invoke xls-xlsx --cl``` - To compare images by file names from the clipboard
