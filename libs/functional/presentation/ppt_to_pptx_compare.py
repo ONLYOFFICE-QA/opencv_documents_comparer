@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 import subprocess as sb
 from multiprocessing import Process
 from time import sleep
@@ -24,7 +25,6 @@ class PowerPoint:
         self.check_errors = CheckErrors()
         self.helper = Helper(source_extension, converted_extension)
         self.coordinate = []
-        self.errors = []
         self.shell = Dispatch("WScript.Shell")
         self.click = self.helper.click
 
@@ -59,23 +59,18 @@ class PowerPoint:
     # Checks the window title
     def check_error(self, hwnd, ctx):
         if win32gui.IsWindowVisible(hwnd):
-            if win32gui.GetClassName(hwnd) == '#32770':
-                win32gui.ShowWindow(hwnd, win32con.SW_NORMAL)
+            if win32gui.GetClassName(hwnd) == '#32770' or \
+                    win32gui.GetClassName(hwnd) == 'NUIDialog':
                 self.shell.SendKeys('%')
                 win32gui.SetForegroundWindow(hwnd)
                 sleep(0.5)
-                self.errors.clear()
-                print(win32gui.GetClassName(hwnd))
-                self.errors.append(win32gui.GetClassName(hwnd))
-            elif win32gui.GetClassName(hwnd) == 'NUIDialog':
-                win32gui.ShowWindow(hwnd, win32con.SW_NORMAL)
-                self.shell.SendKeys('%')
-                win32gui.SetForegroundWindow(hwnd)
-                sleep(0.5)
-                self.errors.clear()
-                print(win32gui.GetClassName(hwnd))
-                pg.press('enter')
-                sleep(2)
+                self.check_errors.errors.clear()
+                self.check_errors.errors.append(win32gui.GetClassName(hwnd))
+                self.check_errors.errors.append(win32gui.GetWindowText(hwnd))
+                if win32gui.GetClassName(hwnd) == 'NUIDialog':
+                    pg.press('enter')
+                    sleep(2)
+                    self.check_errors.errors.clear()
 
     def opener_power_point(self, path_for_open, file_name):
         error_processing = Process(target=self.check_errors.run_get_errors_pp)
@@ -84,7 +79,7 @@ class PowerPoint:
             presentation = Dispatch("PowerPoint.application")
             presentation = presentation.Presentations.Open(f'{path_for_open}{file_name}')
             slide_count = len(presentation.Slides)
-            print(slide_count)
+            print(f"Number of Slides:{slide_count}")
             presentation.Close()
             return slide_count
 
@@ -93,15 +88,16 @@ class PowerPoint:
 
         finally:
             error_processing.terminate()
-            sb.call(["taskkill", "/IM", "POWERPNT.EXE"])
+            sb.call(["taskkill", "/IM", "POWERPNT.EXE"], shell=True)
 
     # opens the document
     # takes a screenshot by coordinates
     def get_screenshot(self, path_to_save_screen, file_name, slide_count):
         self.helper.run(self.helper.tmp_dir_in_test, file_name, self.helper.power_point)
         sleep(wait_for_opening)
-        win32gui.EnumWindows(self.check_error, self.errors)
-        if not self.errors:
+        # check errors
+        win32gui.EnumWindows(self.check_error, self.check_errors.errors)
+        if not self.check_errors.errors:
             win32gui.EnumWindows(self.get_coord_pp, self.coordinate)
             coordinate = self.coordinate[0]
             coordinate = (coordinate[0] + 350,
@@ -117,11 +113,6 @@ class PowerPoint:
                 sleep(wait_for_press)
                 page_num += 1
             sb.call(["taskkill", "/IM", "POWERPNT.EXE"])
-            return 'successes'
-        elif self.errors and self.errors[0] == '#32770':
-            pg.press('enter')
-            sb.call(["TASKKILL", "/IM", "POWERPNT.EXE", "/t", "/f"], shell=True)
-            return self.errors[0]
 
     def run_compare_pp(self, list_of_files):
         for converted_file in list_of_files:
@@ -130,36 +121,38 @@ class PowerPoint:
                 tmp_name_source_file, tmp_name = self.helper.preparing_files_for_test(converted_file,
                                                                                       converted_extension,
                                                                                       source_extension)
-                slide_count = self.opener_power_point(self.helper.tmp_dir_in_test,
-                                                      tmp_name)
 
-                if slide_count == 'None':
-                    print("[bold red]Can't open source file[/bold red]")
-                    self.helper.copy_to_folder(converted_file,
-                                               source_file,
-                                               self.helper.failed_source)
+                slide_count = self.opener_power_point(self.helper.tmp_dir_in_test, tmp_name)
 
-                else:
+                if slide_count != 'None':
                     print(f'[bold green]In test[/bold green] {converted_file}')
-                    error = self.get_screenshot(self.helper.tmp_dir_converted_image,
-                                                tmp_name_converted_file,
-                                                slide_count)
+                    self.get_screenshot(self.helper.tmp_dir_converted_image,
+                                        tmp_name_converted_file,
+                                        slide_count)
 
-                    if error == "#32770":
-                        print('[bold red]ERROR, copy to "untested folder"[/bold red]')
+                    if self.check_errors.errors \
+                            and self.check_errors.errors[0] == "#32770" \
+                            and self.check_errors.errors[1] == "Microsoft PowerPoint":
+                        print('[bold red]ERROR, copied to "untested folder"[/bold red]')
+
+                        pg.press('enter')
+                        os.system("taskkill /t /f /im  POWERPNT.EXE")
                         self.helper.copy_to_folder(converted_file,
                                                    source_file,
                                                    self.helper.untested_folder)
-                        self.errors.clear()
-
+                        self.check_errors.errors.clear()
                     else:
+                        print(f'[bold green]In test[/bold green] {source_file}')
                         self.get_screenshot(self.helper.tmp_dir_source_image,
                                             tmp_name_source_file,
                                             slide_count)
 
                         CompareImage(converted_file, self.helper)
 
-        self.helper.delete(f'{self.helper.tmp_dir_in_test}*')
-        pass
+                else:
+                    print("[bold red]Can't open source file[/bold red]")
+                    self.helper.copy_to_folder(converted_file,
+                                               source_file,
+                                               self.helper.failed_source)
 
-    pass
+        self.helper.delete(f'{self.helper.tmp_dir_in_test}*')
