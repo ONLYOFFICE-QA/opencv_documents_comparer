@@ -66,6 +66,16 @@ def run_xls_xlsx(c, full=False, st=False, ls=False, cl=False):
             excel.run_compare_excel_img(os.listdir(excel.helper.converted_doc_folder))
 
 
+@task(name="compare")
+def full_test(c):
+    word = WordCompareImg()
+    word.run_compare_word(os.listdir(word.helper.converted_doc_folder))
+    power_point = PowerPoint()
+    power_point.run_compare_pp(os.listdir(power_point.helper.converted_doc_folder))
+    excel = ExcelCompareImage()
+    excel.run_compare_excel_img(os.listdir(excel.helper.converted_doc_folder))
+
+
 # for test
 @task(name="cmp")
 def compare_image(c):
