@@ -52,7 +52,7 @@ def run_xls_xlsx(c, full=False, st=False, ls=False, cl=False):
     for execution_time in tqdm(range(1)):
         excel = ExcelCompareImage()
         if full:
-            excel.run_compare_exel_statistic(os.listdir(excel.helper.converted_doc_folder))
+            excel.run_compare_excel_statistic(os.listdir(excel.helper.converted_doc_folder))
             excel.run_compare_excel_img(excel.helper.differences_statistic)
         elif ls:
             excel.run_compare_excel_img(list_of_file_names)
@@ -61,7 +61,7 @@ def run_xls_xlsx(c, full=False, st=False, ls=False, cl=False):
             list_of_files = list_of_files.split("\n")
             excel.run_compare_excel_img(list_of_files)
         elif st:
-            excel.run_compare_exel_statistic(os.listdir(excel.helper.converted_doc_folder))
+            excel.run_compare_excel_statistic(os.listdir(excel.helper.converted_doc_folder))
         else:
             excel.run_compare_excel_img(os.listdir(excel.helper.converted_doc_folder))
 

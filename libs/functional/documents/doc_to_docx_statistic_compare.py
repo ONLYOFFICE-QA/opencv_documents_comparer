@@ -42,18 +42,19 @@ class Word:
         error_processing.start()
         word_app = Dispatch('Word.Application')
         word_app.Visible = False
-        # word_app.DisplayAlerts = False
         try:
             word_app = word_app.Documents.Open(f'{path_to_file}', None, True)
             statistics_word = Word.get_word_statistic(word_app)
             word_app.Close(False)
-            sb.call(["taskkill", "/IM", "WINWORD.EXE"])
-            error_processing.terminate()
             return statistics_word
+
         except Exception:
             statistics_word = {}
-            error_processing.terminate()
             return statistics_word
+
+        finally:
+            error_processing.terminate()
+            sb.call(["taskkill", "/IM", "WINWORD.EXE"])
 
     def run_compare_word_statistic(self, list_of_files):
         with io.open('./report.csv', 'w', encoding="utf-8") as csvfile:
@@ -84,7 +85,7 @@ class Word:
                         modified = self.helper.dict_compare(source_statistics, converted_statistics)
 
                         if modified != {}:
-                            print('[bold red]Differences_statistic[/bold red]')
+                            print('[bold red]Differences[/bold red]')
                             print(modified)
                             self.helper.copy_to_folder(converted_file,
                                                        source_file,

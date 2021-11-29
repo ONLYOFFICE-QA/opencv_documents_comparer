@@ -67,7 +67,6 @@ class WordCompareImg(Word):
         page_num = 1
         for page in range(int(num_of_sheets)):
             CompareImage.grab_coordinate(path_to_save_screen, page_num, coordinate)
-            # pg.click()
             pg.press('pgdn')
             sleep(wait_for_press)
             page_num += 1
@@ -85,6 +84,7 @@ class WordCompareImg(Word):
                                      'USAID Macedonia focused on ' \
                                      'education and workforce training.docx':
                     converted_file = 'IntegratedICTfordevelopment_renamed.docx'
+
                 print(f'[bold green]In test[/bold green] {converted_file}')
                 num_of_sheets = self.word_opener(f'{self.helper.tmp_dir_in_test}{tmp_name}')
 

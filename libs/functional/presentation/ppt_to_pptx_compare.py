@@ -43,28 +43,6 @@ class PowerPoint:
         pg.press('enter')
         sleep(0.5)
 
-    # Preparing the window
-    # Setting the resolution  for the slide
-    # Setting the window display mode
-    @staticmethod
-    def prepare_windows_hot_keys():
-        try:
-            pg.click('libs/image_templates/excel/turn_on_content.png')
-            pg.moveTo(100, 0)
-            pg.click('libs/image_templates/excel/turn_on_content.png')
-        except Exception:
-            pass
-        pg.hotkey('alt', 'j')
-        pg.press('x')
-        pg.hotkey('alt', 'j')
-        pg.press('q')
-        pg.press('f')
-        sleep(0.1)
-        pg.press('tab')
-        pg.write('100', interval=0.1)
-        pg.press('enter')
-        sleep(0.5)
-
     # gets the coordinates of the window
     # sets the size and position of the window
     def get_coord_pp(self, hwnd, ctx):
@@ -108,14 +86,14 @@ class PowerPoint:
             slide_count = len(presentation.Slides)
             print(slide_count)
             presentation.Close()
-            sb.call(["taskkill", "/IM", "POWERPNT.EXE"])
-            error_processing.terminate()
             return slide_count
 
         except Exception:
+            return 'None'
+
+        finally:
             error_processing.terminate()
             sb.call(["taskkill", "/IM", "POWERPNT.EXE"])
-            return 'None'
 
     # opens the document
     # takes a screenshot by coordinates
@@ -168,7 +146,7 @@ class PowerPoint:
                                                 slide_count)
 
                     if error == "#32770":
-                        print('[bold red]ERROR, copy to "not tested" [/bold red]')
+                        print('[bold red]ERROR, copy to "untested folder"[/bold red]')
                         self.helper.copy_to_folder(converted_file,
                                                    source_file,
                                                    self.helper.untested_folder)

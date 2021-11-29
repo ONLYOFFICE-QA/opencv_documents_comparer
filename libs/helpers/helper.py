@@ -9,7 +9,6 @@ import pyautogui as pg
 from rich import print
 
 from config import *
-from libs.helpers.logger import *
 
 
 class Helper:
@@ -50,9 +49,8 @@ class Helper:
     def click(path):
         try:
             pg.click(path)
-            # pg.moveTo(100, 0)
         except Exception:
-            log.info(f'\nppt_pptx\nfailed to click: {path}')
+            print(f'failed to click: {path}')
             pass
         pass
 

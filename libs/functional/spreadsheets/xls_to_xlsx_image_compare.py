@@ -41,8 +41,9 @@ class ExcelCompareImage(Excel):
                 error_processing.start()
                 sleep(7)
                 error_processing.terminate()
-                sleep(1)
+                sleep(0.5)
                 win32gui.EnumWindows(self.get_coord_exel, self.coordinate)
+
         except Exception:
             print("turn_on_content.png not found")
             pass
@@ -75,8 +76,9 @@ class ExcelCompareImage(Excel):
             if f'{num_of_sheet}_nrows' in statistics_exel:
                 num_of_row = statistics_exel[f'{num_of_sheet}_nrows'] / 65
             else:
-                print(f'[bold red]{num_of_sheet}_nrows not found[/bold red]')
+                print(f'[bold red]On {num_of_sheet} sheet, the number of lines is not found[/bold red]')
                 num_of_row = 2
+
             for pgdwn in range(math.ceil(num_of_row)):
                 pg.press('pgdn', interval=0.5)
                 CompareImage.grab_coordinate_exel(path_to_save_screen,
@@ -88,7 +90,7 @@ class ExcelCompareImage(Excel):
             pg.hotkey('ctrl', 'pgdn', interval=0.05)
             sleep(wait_for_press)
             list_num += 1
-        # sb.call(["TASKKILL", "/IM", "EXCEL.EXE"], shell=True)
+
         sb.call(["TASKKILL", "/IM", "EXCEL.EXE", "/t", "/f"], shell=True)
 
     def run_compare_excel_img(self, list_of_files):
@@ -102,11 +104,12 @@ class ExcelCompareImage(Excel):
                                      '+Vocabulary+for+ESL+EFL+TEFL+TOEFL+TESL+' \
                                      'English+Learners.xlsx':
                     converted_file = '1000MostCommon_renamed.xlsx'
+
                 print(f'[bold green]In test[/bold green] {converted_file}')
-                statistics_exel = self.opener_exel(self.helper.tmp_dir_in_test, tmp_name)
+                statistics_exel = self.opener_excel(self.helper.tmp_dir_in_test, tmp_name)
 
                 if statistics_exel != {}:
-                    print(statistics_exel['num_of_sheets'])
+                    print(f"Number of sheets: {statistics_exel['num_of_sheets']}")
                     print(f'[bold green]In test[/bold green] {converted_file}')
                     self.get_screenshots(tmp_name_converted_file,
                                          self.helper.tmp_dir_converted_image,
@@ -117,12 +120,12 @@ class ExcelCompareImage(Excel):
                                          self.helper.tmp_dir_source_image,
                                          statistics_exel)
 
-                    print('compare?')
                     CompareImage(converted_file, self.helper, koff=100)
+
                 else:
                     print(f"[bold red]Can't open source file[/bold red]")
                     self.helper.copy_to_folder(converted_file,
                                                source_file,
-                                               self.helper.result_folder)
+                                               self.helper.untested_folder)
 
         self.helper.delete(f'{self.helper.tmp_dir_in_test}*')
