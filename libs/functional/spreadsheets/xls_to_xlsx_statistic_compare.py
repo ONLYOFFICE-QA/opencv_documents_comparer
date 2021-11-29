@@ -74,7 +74,8 @@ class Excel:
         with io.open('./report.csv', 'w', encoding="utf-8") as csvfile:
             writer = csv.writer(csvfile, delimiter=';')
             writer.writerow(['File_name', 'statistic'])
-            for converted_file in track(list_of_files, description='Comparing Excel Metadata...\n'):
+            for converted_file in track(list_of_files,
+                                        description='[bold blue]Comparing Excel Statistic...[/bold blue]\n'):
                 if converted_file.endswith((".xlsx", ".XLSX")):
                     source_file, tmp_name_converted_file, \
                     tmp_name_source_file, tmp_name = self.helper.preparing_files_for_test(converted_file,
@@ -95,7 +96,7 @@ class Excel:
                     else:
                         modified = self.helper.dict_compare(source_statistics, converted_statistics)
                         if modified != {}:
-                            print(modified)
+                            print(f'[bold red]Differences: {modified}[/bold red]')
                             self.helper.copy_to_folder(converted_file,
                                                        source_file,
                                                        self.helper.differences_statistic)

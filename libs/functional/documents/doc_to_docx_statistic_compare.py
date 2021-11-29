@@ -2,7 +2,6 @@
 import csv
 import io
 import json
-import subprocess as sb
 from multiprocessing import Process
 
 from rich import print
@@ -54,7 +53,6 @@ class Word:
 
         finally:
             error_processing.terminate()
-            sb.call(["taskkill", "/IM", "WINWORD.EXE"])
 
     def run_compare_word_statistic(self, list_of_files):
         with io.open('./report.csv', 'w', encoding="utf-8") as csvfile:
@@ -63,16 +61,16 @@ class Word:
                              'characters_with_spaces', 'number_of_paragraph'])
 
             for converted_file in track(list_of_files,
-                                        description='[bold blue]Comparing doc and docx statistic... [/bold blue]\n\n'):
+                                        description='[bold blue]Comparing Word Statistic... [/bold blue]\n'):
+
                 if converted_file.endswith((".docx", ".DOCX")):
                     source_file, tmp_name_converted_file, \
                     tmp_name_source_file, tmp_name = self.helper.preparing_files_for_test(converted_file,
                                                                                           converted_extension,
                                                                                           source_extension)
-                    print(f'[bold green]In test[/bold green] {source_file}')
+                    print(f'[bold green]In test[/bold green] {source_file} '
+                          f'[bold green]and[/bold green] {converted_file}')
                     source_statistics = self.word_opener(f'{self.helper.tmp_dir_in_test}{tmp_name_source_file}')
-
-                    print(f'[bold green]In test[/bold green] {converted_file}')
                     converted_statistics = self.word_opener(f'{self.helper.tmp_dir_in_test}{tmp_name_converted_file}')
 
                     if source_statistics == {} or converted_statistics == {}:
@@ -85,8 +83,7 @@ class Word:
                         modified = self.helper.dict_compare(source_statistics, converted_statistics)
 
                         if modified != {}:
-                            print('[bold red]Differences[/bold red]')
-                            print(modified)
+                            print(f'[bold red]Differences: {modified}[/bold red]')
                             self.helper.copy_to_folder(converted_file,
                                                        source_file,
                                                        self.helper.differences_statistic)
@@ -114,7 +111,5 @@ class Word:
                             # Saving differences in json
                             with open(f'{self.helper.differences_statistic}{converted_file}_difference.json', 'w') as f:
                                 json.dump(modified, f)
-                        else:
-                            print('[bold green]Passed[/bold green]')
 
         self.helper.delete(f'{self.helper.tmp_dir_in_test}*')

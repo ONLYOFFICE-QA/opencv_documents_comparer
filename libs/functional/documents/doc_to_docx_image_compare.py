@@ -95,6 +95,7 @@ class WordCompareImg(Word):
                                          self.helper.tmp_dir_converted_image,
                                          num_of_sheets)
 
+                    print(f'[bold green]In test[/bold green] {source_file}')
                     self.get_screenshots(tmp_name_source_file,
                                          self.helper.tmp_dir_source_image,
                                          num_of_sheets)
