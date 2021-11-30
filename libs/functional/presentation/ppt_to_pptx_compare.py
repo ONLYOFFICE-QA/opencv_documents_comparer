@@ -59,8 +59,9 @@ class PowerPoint:
     # Checks the window title
     def check_error(self, hwnd, ctx):
         if win32gui.IsWindowVisible(hwnd):
-            if win32gui.GetClassName(hwnd) == '#32770' or \
-                    win32gui.GetClassName(hwnd) == 'NUIDialog':
+            if win32gui.GetClassName(hwnd) == '#32770' \
+                    and win32gui.GetWindowText(hwnd) == "Microsoft PowerPoint" \
+                    or win32gui.GetClassName(hwnd) == 'NUIDialog':
                 self.shell.SendKeys('%')
                 win32gui.SetForegroundWindow(hwnd)
                 sleep(0.5)
