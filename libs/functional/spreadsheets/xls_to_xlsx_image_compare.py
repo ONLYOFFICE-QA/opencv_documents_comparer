@@ -37,6 +37,8 @@ class ExcelCompareImage(Excel):
 
             win32gui.EnumWindows(self.check_errors.get_windows_title, self.check_errors.errors)
             if self.check_errors.errors:
+                print(self.check_errors.errors)
+                self.check_errors.errors.clear()
                 error_processing = Process(target=self.check_errors.run_get_error_exel)
                 error_processing.start()
                 sleep(7)
