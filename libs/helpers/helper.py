@@ -34,7 +34,7 @@ class Helper:
         self.passed = f'{self.result_folder}passed/'
 
         self.untested_folder = f'{self.result_folder}untested/'
-        self.failed_source = f'{self.result_folder}failed_source/'
+        self.failed_source = f'{self.result_folder}failed_to_open_file/'
 
         # static tmp
         self.tmp_dir = self.data + 'tmp/'

@@ -7,6 +7,7 @@ from time import sleep
 import pyautogui as pg
 import win32con
 import win32gui
+from loguru import logger
 from rich import print
 from win32com.client import Dispatch
 
@@ -14,8 +15,6 @@ from config import *
 from libs.helpers.compare_image import CompareImage
 from libs.helpers.get_error import CheckErrors
 from libs.helpers.helper import Helper
-
-# from loguru import logger
 
 source_extension = 'ppt'
 converted_extension = 'pptx'
@@ -29,8 +28,10 @@ class PowerPoint:
         self.coordinate = []
         self.shell = Dispatch("WScript.Shell")
         self.click = self.helper.click
-        # logger.add('./logs/debug.log', format="{time} {level} {message}",
-        #            level="DEBUG", rotation="1 week")
+        logger.add('./logs/ppt_pptx.log',
+                   format="{time} {level} {message}",
+                   level="DEBUG",
+                   mode='w')
 
     def prepare_windows(self):
         self.click('libs/image_templates/excel/turn_on_content.png')
@@ -77,14 +78,14 @@ class PowerPoint:
                     sleep(2)
                     self.check_errors.errors.clear()
 
-    def opener_power_point(self, path_for_open, file_name):
-        error_processing = Process(target=self.check_errors.run_get_errors_pp)
+    def opener_power_point(self, path_for_open, file_name, file_name_for_log):
+        error_processing = Process(target=self.check_errors.run_get_errors_pp, args=(file_name_for_log,))
         error_processing.start()
         try:
             presentation = Dispatch("PowerPoint.application")
             presentation = presentation.Presentations.Open(f'{path_for_open}{file_name}')
             slide_count = len(presentation.Slides)
-            print(f"Number of Slides:{slide_count}")
+            print(f"[bold blue]Number of Slides[/bold blue]:{slide_count}")
             presentation.Close()
             return slide_count
 
@@ -127,7 +128,7 @@ class PowerPoint:
                                                                                       converted_extension,
                                                                                       source_extension)
 
-                slide_count = self.opener_power_point(self.helper.tmp_dir_in_test, tmp_name)
+                slide_count = self.opener_power_point(self.helper.tmp_dir_in_test, tmp_name, source_file)
 
                 if slide_count != 'None':
                     print(f'[bold green]In test[/bold green] {converted_file}')
@@ -138,24 +139,28 @@ class PowerPoint:
                     if self.check_errors.errors \
                             and self.check_errors.errors[0] == "#32770" \
                             and self.check_errors.errors[1] == "Microsoft PowerPoint":
-                        print('[bold red]ERROR, copied to "untested folder"[/bold red]')
-                        # logger.error(f"ERROR, copied file: {converted_file} to 'untested folder'")
+                        logger.error(f"'an error has occurred while opening the file'. "
+                                     f"Copied files: {converted_file} and {source_file} to 'untested'")
                         pg.press('enter')
                         os.system("taskkill /t /f /im  POWERPNT.EXE")
                         self.helper.copy_to_folder(converted_file,
                                                    source_file,
                                                    self.helper.untested_folder)
                         self.check_errors.errors.clear()
-                    else:
+                    elif not self.check_errors.errors:
                         print(f'[bold green]In test[/bold green] {source_file}')
                         self.get_screenshot(self.helper.tmp_dir_source_image,
                                             tmp_name_source_file,
                                             slide_count)
 
                         CompareImage(converted_file, self.helper)
+                    else:
+                        logger.debug(f"Error message: {self.check_errors.errors} Filename: {converted_file}")
 
                 else:
-                    print("[bold red]Can't open source file[/bold red]")
+                    logger.error(f"Can't open {source_file}. Copied files"
+                                 "to 'failed_to_open_file'")
+
                     self.helper.copy_to_folder(converted_file,
                                                source_file,
                                                self.helper.failed_source)
