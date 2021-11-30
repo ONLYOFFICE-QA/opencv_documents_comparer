@@ -23,15 +23,12 @@ converted_extension = 'pptx'
 class PowerPoint:
 
     def __init__(self):
-        self.check_errors = CheckErrors()
         self.helper = Helper(source_extension, converted_extension)
+        self.check_errors = CheckErrors()
         self.coordinate = []
         self.shell = Dispatch("WScript.Shell")
         self.click = self.helper.click
-        logger.add('./logs/ppt_pptx.log',
-                   format="{time} {level} {message}",
-                   level="DEBUG",
-                   mode='w')
+        logger.info(f'The {source_extension}_{converted_extension} comparison on version: {version} is running.')
 
     def prepare_windows(self):
         self.click('libs/image_templates/excel/turn_on_content.png')

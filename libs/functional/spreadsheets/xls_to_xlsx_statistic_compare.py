@@ -10,6 +10,7 @@ from rich import print
 from rich.progress import track
 from win32com.client import Dispatch
 
+from config import version
 from libs.helpers.get_error import CheckErrors
 from libs.helpers.helper import Helper
 
@@ -20,14 +21,11 @@ converted_extension = 'xlsx'
 class Excel:
 
     def __init__(self):
-        self.check_errors = CheckErrors()
         self.helper = Helper(source_extension, converted_extension)
+        self.check_errors = CheckErrors()
         self.coordinate = []
         self.click = self.helper.click
-        logger.add('./logs/xls_xlsx.log',
-                   format="{time} {level} {message}",
-                   level="DEBUG",
-                   mode='w')
+        logger.info(f'The {source_extension}_{converted_extension} comparison on version: {version} is running.')
 
     @staticmethod
     def get_excel_statistic(wb, file_name_for_log):

@@ -10,9 +10,6 @@ from loguru import logger
 class CheckErrors:
     def __init__(self):
         self.errors = []
-        logger.add('./logs/error_checker.log',
-                   format="{time} {level} {message}",
-                   level="DEBUG")
 
     def get_windows_title(self, hwnd, ctx):
         if win32gui.IsWindowVisible(hwnd):
