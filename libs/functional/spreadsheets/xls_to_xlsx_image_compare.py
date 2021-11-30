@@ -7,6 +7,7 @@ from time import sleep
 import pyautogui as pg
 import win32con
 import win32gui
+from loguru import logger
 from rich import print
 
 from config import *
@@ -30,16 +31,15 @@ class ExcelCompareImage(Excel):
                 self.coordinate.clear()
                 self.coordinate.append(win32gui.GetWindowRect(hwnd))
 
-    def prepare_excel_windows(self):
+    def prepare_excel_windows(self, file_name_for_log):
         try:
             pg.click('libs/image_templates/excel/turn_on_content.png')
             sleep(1)
 
             win32gui.EnumWindows(self.check_errors.get_windows_title, self.check_errors.errors)
             if self.check_errors.errors:
-                print(self.check_errors.errors)
                 self.check_errors.errors.clear()
-                error_processing = Process(target=self.check_errors.run_get_error_exel)
+                error_processing = Process(target=self.check_errors.run_get_error_exel, args=(file_name_for_log,))
                 error_processing.start()
                 sleep(7)
                 error_processing.terminate()
@@ -52,7 +52,7 @@ class ExcelCompareImage(Excel):
 
     # opens the document
     # takes a screenshot by coordinates
-    def get_screenshots(self, tmp_file_name, path_to_save_screen, statistics_exel):
+    def get_screenshots(self, tmp_file_name, path_to_save_screen, statistics_exel, file_name_for_log):
         self.helper.run(self.helper.tmp_dir_in_test, tmp_file_name, self.helper.exel)
         sleep(wait_for_opening)
         win32gui.EnumWindows(self.get_coord_exel, self.coordinate)
@@ -62,7 +62,7 @@ class ExcelCompareImage(Excel):
                       coordinate[2] - 30,
                       coordinate[3] - 70)
 
-        self.prepare_excel_windows()
+        self.prepare_excel_windows(file_name_for_log)
         page_num = 1
         list_num = 1
         for press in range(int(statistics_exel['num_of_sheets'])):
@@ -78,7 +78,7 @@ class ExcelCompareImage(Excel):
             if f'{num_of_sheet}_nrows' in statistics_exel:
                 num_of_row = statistics_exel[f'{num_of_sheet}_nrows'] / 65
             else:
-                print(f'[bold red]On {num_of_sheet} sheet, the number of lines is not found[/bold red]')
+                logger.error(f'On {num_of_sheet} sheet, the number of lines is not found in File {file_name_for_log}')
                 num_of_row = 2
 
             for pgdwn in range(math.ceil(num_of_row)):
@@ -108,23 +108,25 @@ class ExcelCompareImage(Excel):
                     converted_file = '1000MostCommon_renamed.xlsx'
 
                 print(f'[bold green]In test[/bold green] {converted_file}')
-                statistics_exel = self.opener_excel(self.helper.tmp_dir_in_test, tmp_name)
+                statistics_exel = self.opener_excel(self.helper.tmp_dir_in_test, tmp_name, source_file)
 
                 if statistics_exel != {}:
                     print(f"Number of sheets: {statistics_exel['num_of_sheets']}")
                     self.get_screenshots(tmp_name_converted_file,
                                          self.helper.tmp_dir_converted_image,
-                                         statistics_exel)
+                                         statistics_exel,
+                                         converted_file)
 
                     print(f'[bold green]In test[/bold green] {source_file}')
                     self.get_screenshots(tmp_name_source_file,
                                          self.helper.tmp_dir_source_image,
-                                         statistics_exel)
+                                         statistics_exel,
+                                         source_file)
 
                     CompareImage(converted_file, self.helper, koff=100)
 
                 else:
-                    print(f"[bold red]Can't open source file[/bold red]")
+                    logger.error(f"Can't open file{source_file}. Copied files to 'untested'")
                     self.helper.copy_to_folder(converted_file,
                                                source_file,
                                                self.helper.untested_folder)

@@ -5,13 +5,13 @@ import subprocess as sb
 import traceback
 from multiprocessing import Process
 
+from loguru import logger
 from rich import print
 from rich.progress import track
 from win32com.client import Dispatch
 
 from libs.helpers.get_error import CheckErrors
 from libs.helpers.helper import Helper
-from libs.helpers.logger import *
 
 source_extension = 'xls'
 converted_extension = 'xlsx'
@@ -24,9 +24,13 @@ class Excel:
         self.helper = Helper(source_extension, converted_extension)
         self.coordinate = []
         self.click = self.helper.click
+        logger.add('./logs/xls_xlsx.log',
+                   format="{time} {level} {message}",
+                   level="DEBUG",
+                   mode='w')
 
     @staticmethod
-    def get_excel_statistic(wb):
+    def get_excel_statistic(wb, file_name_for_log):
         statistics_exel = {
             'num_of_sheets': f'{wb.Sheets.Count}',
         }
@@ -44,26 +48,25 @@ class Excel:
             return statistics_exel
 
         except Exception:
-            print('[bold red]Failed to get full statistics excel[/bold red]')
+            logger.exception(f'Failed to get full statistics excel from file: {file_name_for_log}')
             return statistics_exel
 
-    def opener_excel(self, path_for_open, file_name):
-        error_processing = Process(target=self.check_errors.run_get_error_exel)
+    def opener_excel(self, path_for_open, file_name, file_name_for_log):
+        error_processing = Process(target=self.check_errors.run_get_error_exel, args=(file_name_for_log,))
         error_processing.start()
         try:
             xl = Dispatch("Excel.Application")
             xl.Visible = False  # otherwise excel is hidden
             wb = xl.Workbooks.Open(f'{path_for_open}{file_name}')
-            statistics_excel = Excel.get_excel_statistic(wb)
+            statistics_excel = Excel.get_excel_statistic(wb, file_name_for_log)
             wb.Close(False)
             xl.Quit()
             return statistics_excel
 
         except Exception as e:
             error = traceback.format_exc()
-            print('[bold red] Error:\n [/bold red]', error)
+            logger.exception(f'{error} happened while opening file: {file_name_for_log}')
             sb.call(["TASKKILL", "/IM", "EXCEL.EXE", "/t", "/f"], shell=True)
-            log.critical(f'\nFile name: {file_name}\n Error:\n{error}')
             statistics_excel = {}
             return statistics_excel
 
@@ -84,8 +87,10 @@ class Excel:
 
                     print(f'[bold green]In test[/bold green] {source_file} '
                           f'[bold green]and[/bold green] {converted_file}')
-                    source_statistics = self.opener_excel(self.helper.tmp_dir_in_test, tmp_name_source_file)
-                    converted_statistics = self.opener_excel(self.helper.tmp_dir_in_test, tmp_name_converted_file)
+                    source_statistics = self.opener_excel(self.helper.tmp_dir_in_test, tmp_name_source_file,
+                                                          source_file)
+                    converted_statistics = self.opener_excel(self.helper.tmp_dir_in_test, tmp_name_converted_file,
+                                                             converted_file)
 
                     if source_statistics == {} or converted_statistics == {}:
                         print("[bold red]Can't open source file, copy to untested[/bold red]")
