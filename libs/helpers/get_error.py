@@ -49,8 +49,8 @@ class CheckErrors:
 
     @staticmethod
     def check_errors_excel(array_of_errors, filename):
+        logger.debug(f'{array_of_errors} for file: {filename}')
         if array_of_errors[0] == '#32770':
-            logger.debug(f'{array_of_errors} for file: {filename}')
             if array_of_errors[1] == 'Microsoft Visual Basic':
                 try:
                     pg.click("libs/image_templates/excel/end.png")
@@ -85,8 +85,8 @@ class CheckErrors:
 
     @staticmethod
     def check_word(array_of_errors, filename):
+        logger.debug(f'{array_of_errors} for file: {filename}')
         if array_of_errors[0] == '#32770':
-            logger.debug(f'{array_of_errors} for file: {filename}')
             if array_of_errors[1] == 'Microsoft Word':
                 print(array_of_errors[1])
                 pg.press('left')
@@ -104,7 +104,6 @@ class CheckErrors:
                 sb.call(f'powershell.exe kill -Name WINWORD', shell=True)
 
         elif array_of_errors[0] == 'bosa_sdm_msword':
-            logger.debug(f'{array_of_errors} for file: {filename}')
             if array_of_errors[1] == 'Преобразование файла':
                 print('press enter')
                 pg.press('enter')
@@ -120,8 +119,8 @@ class CheckErrors:
 
     @staticmethod
     def check_pp(array_of_errors, filename):
+        logger.debug(f'{array_of_errors} for file: {filename}')
         if array_of_errors[0] == 'NUIDialog':
-            logger.debug(f'{array_of_errors} for file: {filename}')
             if array_of_errors[1] == 'Пароль':
                 pg.press('right', presses=2)
                 pg.press('enter')
