@@ -15,6 +15,8 @@ from libs.helpers.compare_image import CompareImage
 from libs.helpers.get_error import CheckErrors
 from libs.helpers.helper import Helper
 
+# from loguru import logger
+
 source_extension = 'ppt'
 converted_extension = 'pptx'
 
@@ -27,6 +29,8 @@ class PowerPoint:
         self.coordinate = []
         self.shell = Dispatch("WScript.Shell")
         self.click = self.helper.click
+        # logger.add('./logs/debug.log', format="{time} {level} {message}",
+        #            level="DEBUG", rotation="1 week")
 
     def prepare_windows(self):
         self.click('libs/image_templates/excel/turn_on_content.png')
@@ -135,7 +139,7 @@ class PowerPoint:
                             and self.check_errors.errors[0] == "#32770" \
                             and self.check_errors.errors[1] == "Microsoft PowerPoint":
                         print('[bold red]ERROR, copied to "untested folder"[/bold red]')
-
+                        # logger.error(f"ERROR, copied file: {converted_file} to 'untested folder'")
                         pg.press('enter')
                         os.system("taskkill /t /f /im  POWERPNT.EXE")
                         self.helper.copy_to_folder(converted_file,
