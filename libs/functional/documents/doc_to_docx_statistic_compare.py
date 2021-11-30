@@ -4,6 +4,7 @@ import io
 import json
 from multiprocessing import Process
 
+from loguru import logger
 from rich import print
 from rich.progress import track
 from win32com.client import Dispatch
@@ -23,6 +24,10 @@ class Word:
         self.coordinate = []
         self.shell = Dispatch("WScript.Shell")
         self.click = self.helper.click
+        logger.add('./logs/doc_docx.log',
+                   format="{time} {level} {message}",
+                   level="DEBUG",
+                   mode='w')
 
     @staticmethod
     def get_word_statistic(word_app):
@@ -36,8 +41,8 @@ class Word:
         }
         return statistics_word
 
-    def word_opener(self, path_to_file):
-        error_processing = Process(target=self.check_errors.run_get_errors_word)
+    def word_opener(self, path_to_file, file_name_for_log):
+        error_processing = Process(target=self.check_errors.run_get_errors_word, args=(file_name_for_log,))
         error_processing.start()
         word_app = Dispatch('Word.Application')
         word_app.Visible = False
@@ -70,14 +75,18 @@ class Word:
                                                                                           source_extension)
                     print(f'[bold green]In test[/bold green] {source_file} '
                           f'[bold green]and[/bold green] {converted_file}')
-                    source_statistics = self.word_opener(f'{self.helper.tmp_dir_in_test}{tmp_name_source_file}')
-                    converted_statistics = self.word_opener(f'{self.helper.tmp_dir_in_test}{tmp_name_converted_file}')
+                    source_statistics = self.word_opener(f'{self.helper.tmp_dir_in_test}{tmp_name_source_file}',
+                                                         source_file)
+                    converted_statistics = self.word_opener(f'{self.helper.tmp_dir_in_test}{tmp_name_converted_file}',
+                                                            converted_file)
 
                     if source_statistics == {} or converted_statistics == {}:
-                        print('[bold red]Opening error[/bold red]')
+                        logger.error(f"Can't open {source_file} or {converted_file}. Copied files"
+                                     "to 'failed_to_open_file'")
+
                         self.helper.copy_to_folder(converted_file,
                                                    source_file,
-                                                   self.helper.untested_folder)
+                                                   self.helper.failed_source)
 
                     else:
                         modified = self.helper.dict_compare(source_statistics, converted_statistics)
@@ -98,10 +107,12 @@ class Word:
                                 modified_keys.append(modified['word_count']) if key == 'word_count' \
                                     else modified_keys.append(' ')
                                 modified_keys.append(modified[
-                                                         'number_of_characters_without_spaces']) if key == 'number_of_characters_without_spaces' \
+                                                         'number_of_characters_without_spaces']) \
+                                    if key == 'number_of_characters_without_spaces' \
                                     else modified_keys.append(' ')
                                 modified_keys.append(modified[
-                                                         'number_of_characters_with_spaces']) if key == 'number_of_characters_with_spaces' \
+                                                         'number_of_characters_with_spaces']) \
+                                    if key == 'number_of_characters_with_spaces' \
                                     else modified_keys.append(' ')
                                 modified_keys.append(modified['number_of_paragraph']) if key == 'number_of_paragraph' \
                                     else modified_keys.append(' ')
