@@ -50,7 +50,7 @@ class Helper:
         logger.add(f'./logs/{source_extension}_{converted_extension}.log',
                    format="{time} {level} {message}",
                    level="DEBUG",
-                   mode='w')
+                   mode='a')
         logger.add('./logs/all_logs.log',
                    format="{time} {level} {message}",
                    level="DEBUG",

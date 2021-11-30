@@ -37,7 +37,10 @@ class CompareImage:
                                  )
 
             else:
-                print(f'[bold red] File not found [/bold red]{image_name}')
+                logger.error(f'Image {image_name} not found, copied to "Untested"')
+                self.helper.copy_to_folder(self.converted_file,
+                                           self.source_file,
+                                           self.helper.untested_folder)
 
         self.helper.delete(f'{self.helper.tmp_dir_converted_image}*')
         self.helper.delete(f'{self.helper.tmp_dir_source_image}*')
