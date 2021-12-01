@@ -50,11 +50,7 @@ class Helper:
         logger.add(f'./logs/{source_extension}_{converted_extension}.log',
                    format="{time} {level} {message}",
                    level="DEBUG",
-                   mode='a')
-        logger.add('./logs/all_logs.log',
-                   format="{time} {level} {message}",
-                   level="DEBUG",
-                   rotation='1 week',
+                   rotation='5 MB',
                    compression='zip')
 
         self.create_project_dirs()
