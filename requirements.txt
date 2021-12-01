@@ -7,3 +7,4 @@ tqdm==4.62.3
 pywin32==302
 invoke==1.6.0
 pyperclip==1.8.2
+Loguru==0.5.3
