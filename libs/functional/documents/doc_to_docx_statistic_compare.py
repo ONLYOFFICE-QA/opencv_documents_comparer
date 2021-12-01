@@ -112,4 +112,4 @@ class Word:
                             with open(f'{self.helper.differences_statistic}{converted_file}_difference.json', 'w') as f:
                                 json.dump(modified, f)
 
-        self.helper.delete(f'{self.helper.tmp_dir_in_test}*')
+            self.helper.tmp_cleaner()

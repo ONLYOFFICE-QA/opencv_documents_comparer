@@ -102,4 +102,4 @@ class WordCompareImg(Word):
 
                     CompareImage(converted_file, self.helper)
 
-        self.helper.delete(f'{self.helper.tmp_dir_in_test}*')
+            self.helper.tmp_cleaner()

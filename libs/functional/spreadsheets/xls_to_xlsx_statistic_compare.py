@@ -104,4 +104,4 @@ class Excel:
                             modified_keys = [converted_file, modified]
                             writer.writerow(modified_keys)
 
-            self.helper.delete(f'{self.helper.tmp_dir_in_test}*')
+            self.helper.tmp_cleaner()

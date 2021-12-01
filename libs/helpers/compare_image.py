@@ -39,7 +39,8 @@ class CompareImage:
             else:
                 print(f'[bold red] File not found [/bold red]{image_name}')
 
-        self.helper.tmp_cleaner()
+        self.helper.delete(f'{self.helper.tmp_dir_converted_image}*')
+        self.helper.delete(f'{self.helper.tmp_dir_source_image}*')
 
     def compare_img(self, image_before_conversion, image_after_conversion, image_name):
         image_name = image_name.split('.')[0]

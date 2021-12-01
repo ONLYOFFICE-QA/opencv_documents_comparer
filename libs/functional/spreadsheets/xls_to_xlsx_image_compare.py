@@ -112,7 +112,6 @@ class ExcelCompareImage(Excel):
 
                 if statistics_exel != {}:
                     print(f"Number of sheets: {statistics_exel['num_of_sheets']}")
-                    print(f'[bold green]In test[/bold green] {converted_file}')
                     self.get_screenshots(tmp_name_converted_file,
                                          self.helper.tmp_dir_converted_image,
                                          statistics_exel)
@@ -130,4 +129,4 @@ class ExcelCompareImage(Excel):
                                                source_file,
                                                self.helper.untested_folder)
 
-        self.helper.delete(f'{self.helper.tmp_dir_in_test}*')
+            self.helper.tmp_cleaner()

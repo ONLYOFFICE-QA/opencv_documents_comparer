@@ -156,4 +156,4 @@ class PowerPoint:
                                                source_file,
                                                self.helper.failed_source)
 
-        self.helper.delete(f'{self.helper.tmp_dir_in_test}*')
+            self.helper.tmp_cleaner()
