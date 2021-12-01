@@ -87,6 +87,7 @@ class PowerPoint:
             return slide_count
 
         except Exception:
+            logger.exception(f'Exception while opening slide. {file_name_for_log}')
             return 'None'
 
         finally:
@@ -156,7 +157,7 @@ class PowerPoint:
 
                 else:
                     logger.error(f"Can't open {source_file}. Copied files"
-                                 "to 'failed_to_open_file'")
+                                 " to 'failed_to_open_file'")
 
                     self.helper.copy_to_folder(converted_file,
                                                source_file,
