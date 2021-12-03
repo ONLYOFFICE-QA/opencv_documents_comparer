@@ -79,19 +79,19 @@ class PowerPoint:
     def opener_power_point(self, path_for_open, file_name):
         error_processing = Process(target=self.check_errors.run_get_errors_pp, args=(self.file_name_for_log,))
         error_processing.start()
+        presentation = Dispatch("PowerPoint.application")
         try:
-            presentation = Dispatch("PowerPoint.application")
             presentation = presentation.Presentations.Open(f'{path_for_open}{file_name}')
             slide_count = len(presentation.Slides)
             print(f"[bold blue]Number of Slides[/bold blue]:{slide_count}")
-            presentation.Close()
             return slide_count
 
         except Exception:
-            logger.exception(f'Exception while opening slide. {self.file_name_for_log}')
+            logger.exception(f'Exception while opening presentation. {self.file_name_for_log}')
             return 'None'
 
         finally:
+            presentation.Close()
             error_processing.terminate()
             sb.call(["taskkill", "/IM", "POWERPNT.EXE"], shell=True)
 
