@@ -91,7 +91,6 @@ class PowerPoint:
             return 'None'
 
         finally:
-            presentation.Close()
             error_processing.terminate()
             sb.call(["taskkill", "/IM", "POWERPNT.EXE"], shell=True)
 
