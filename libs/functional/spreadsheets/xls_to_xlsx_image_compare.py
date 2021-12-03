@@ -7,6 +7,7 @@ from time import sleep
 import pyautogui as pg
 import win32con
 import win32gui
+from loguru import logger
 from rich import print
 
 from config import *
@@ -37,9 +38,8 @@ class ExcelCompareImage(Excel):
 
             win32gui.EnumWindows(self.check_errors.get_windows_title, self.check_errors.errors)
             if self.check_errors.errors:
-                print(self.check_errors.errors)
                 self.check_errors.errors.clear()
-                error_processing = Process(target=self.check_errors.run_get_error_exel)
+                error_processing = Process(target=self.check_errors.run_get_error_exel, args=(self.file_name_for_log,))
                 error_processing.start()
                 sleep(7)
                 error_processing.terminate()
@@ -78,7 +78,8 @@ class ExcelCompareImage(Excel):
             if f'{num_of_sheet}_nrows' in statistics_exel:
                 num_of_row = statistics_exel[f'{num_of_sheet}_nrows'] / 65
             else:
-                print(f'[bold red]On {num_of_sheet} sheet, the number of lines is not found[/bold red]')
+                logger.error(f'On {num_of_sheet} sheet, '
+                             f'the number of lines is not found in File {self.file_name_for_log}')
                 num_of_row = 2
 
             for pgdwn in range(math.ceil(num_of_row)):
@@ -107,6 +108,8 @@ class ExcelCompareImage(Excel):
                                      'English+Learners.xlsx':
                     converted_file = '1000MostCommon_renamed.xlsx'
 
+                self.file_name_for_log = converted_file
+
                 print(f'[bold green]In test[/bold green] {converted_file}')
                 statistics_exel = self.opener_excel(self.helper.tmp_dir_in_test, tmp_name)
 
@@ -124,7 +127,7 @@ class ExcelCompareImage(Excel):
                     CompareImage(converted_file, self.helper, koff=100)
 
                 else:
-                    print(f"[bold red]Can't open source file[/bold red]")
+                    logger.error(f"Can't open file{source_file}. Copied files to 'untested'")
                     self.helper.copy_to_folder(converted_file,
                                                source_file,
                                                self.helper.untested_folder)

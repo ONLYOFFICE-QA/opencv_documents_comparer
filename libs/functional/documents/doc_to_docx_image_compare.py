@@ -6,6 +6,7 @@ from time import sleep
 import pyautogui as pg
 import win32con
 import win32gui
+from loguru import logger
 from rich import print
 
 from config import *
@@ -34,9 +35,8 @@ class WordCompareImg(Word):
     def check_error(self):
         win32gui.EnumWindows(self.check_errors.get_windows_title, self.check_errors.errors)
         if self.check_errors.errors:
-            print(f'Error: {self.check_errors.errors}')
             self.check_errors.errors.clear()
-            error_processing = Process(target=self.check_errors.run_get_errors_word)
+            error_processing = Process(target=self.check_errors.run_get_errors_word, args=(self.file_name_for_log,))
             error_processing.start()
             sleep(7)
             error_processing.terminate()
@@ -85,6 +85,8 @@ class WordCompareImg(Word):
                                      'education and workforce training.docx':
                     converted_file = 'IntegratedICTfordevelopment_renamed.docx'
 
+                self.file_name_for_log = converted_file
+
                 print(f'[bold green]In test[/bold green] {converted_file}')
                 num_of_sheets = self.word_opener(f'{self.helper.tmp_dir_in_test}{tmp_name}')
 
@@ -102,4 +104,13 @@ class WordCompareImg(Word):
 
                     CompareImage(converted_file, self.helper)
 
-            self.helper.tmp_cleaner()
+                elif num_of_sheets == {}:
+                    logger.error(f"Can't get number of pages in {source_file}. Copied files "
+                                 "to 'failed_to_open_file'")
+                    self.helper.copy_to_folder(converted_file,
+                                               source_file,
+                                               self.helper.failed_source)
+                else:
+                    logger.debug(f"Debug. Num of sheets: {num_of_sheets}")
+
+        self.helper.tmp_cleaner()

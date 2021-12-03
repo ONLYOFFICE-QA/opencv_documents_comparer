@@ -4,8 +4,10 @@ import os
 import random
 import shutil
 import subprocess as sb
+import sys
 
 import pyautogui as pg
+from loguru import logger
 from rich import print
 
 from config import *
@@ -34,13 +36,22 @@ class Helper:
         self.passed = f'{self.result_folder}passed/'
 
         self.untested_folder = f'{self.result_folder}untested/'
-        self.failed_source = f'{self.result_folder}failed_source/'
+        self.failed_source = f'{self.result_folder}failed_to_open_file/'
 
         # static tmp
         self.tmp_dir = self.data + 'tmp/'
         self.tmp_dir_converted_image = self.tmp_dir + 'converted_image/'
         self.tmp_dir_source_image = self.tmp_dir + 'source_image/'
         self.tmp_dir_in_test = self.tmp_dir + 'in_test/'
+
+        # Create loggers
+        logger.remove()
+        logger.add(sys.stdout)
+        logger.add(f'./logs/{source_extension}_{converted_extension}.log',
+                   format="{time} {level} {message}",
+                   level="DEBUG",
+                   rotation='5 MB',
+                   compression='zip')
 
         self.create_project_dirs()
         self.tmp_cleaner()
@@ -49,10 +60,8 @@ class Helper:
     def click(path):
         try:
             pg.click(path)
-        except Exception:
-            print(f'failed to click: {path}')
+        except TypeError:
             pass
-        pass
 
     # path insert with file name
     @staticmethod

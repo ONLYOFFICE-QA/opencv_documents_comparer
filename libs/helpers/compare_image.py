@@ -27,7 +27,9 @@ class CompareImage:
         self.start_to_compare_images()
 
     def start_to_compare_images(self):
-        for image_name in track(os.listdir(self.helper.tmp_dir_converted_image), description='Comparing In Progress'):
+        for image_name in track(os.listdir(self.helper.tmp_dir_converted_image),
+                                description='[bold blue]Comparing In Progress[/bold blue]'):
+
             if os.path.exists(f'{self.helper.tmp_dir_source_image}{image_name}') \
                     and os.path.exists(f'{self.helper.tmp_dir_converted_image}{image_name}'):
 
@@ -37,7 +39,10 @@ class CompareImage:
                                  )
 
             else:
-                print(f'[bold red] File not found [/bold red]{image_name}')
+                logger.error(f'Image {image_name} not found, copied to "Untested"')
+                self.helper.copy_to_folder(self.converted_file,
+                                           self.source_file,
+                                           self.helper.untested_folder)
 
         self.helper.delete(f'{self.helper.tmp_dir_converted_image}*')
         self.helper.delete(f'{self.helper.tmp_dir_source_image}*')

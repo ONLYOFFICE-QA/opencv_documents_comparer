@@ -4,8 +4,7 @@ from time import sleep
 
 import pyautogui as pg
 import win32gui
-
-from libs.helpers.logger import *
+from loguru import logger
 
 
 class CheckErrors:
@@ -24,29 +23,30 @@ class CheckErrors:
                 self.errors.append(win32gui.GetClassName(hwnd))
                 self.errors.append(win32gui.GetWindowText(hwnd))
 
-    def run_get_error_exel(self):
+    def run_get_error_exel(self, filename):
         while True:
             win32gui.EnumWindows(self.get_windows_title, self.errors)
             if self.errors:
-                self.check_errors_excel(self.errors)
+                self.check_errors_excel(self.errors, filename)
                 self.errors.clear()
 
-    def run_get_errors_word(self):
+    def run_get_errors_word(self, filename):
         while True:
             win32gui.EnumWindows(self.get_windows_title, self.errors)
             if self.errors:
-                self.check_word(self.errors)
+                self.check_word(self.errors, filename)
                 self.errors.clear()
 
-    def run_get_errors_pp(self):
+    def run_get_errors_pp(self, filename):
         while True:
             win32gui.EnumWindows(self.get_windows_title, self.errors)
             if self.errors:
-                self.check_pp(self.errors)
+                self.check_pp(self.errors, filename)
                 self.errors.clear()
 
     @staticmethod
-    def check_errors_excel(array_of_errors):
+    def check_errors_excel(array_of_errors, filename):
+        logger.error(f'"{array_of_errors}" happened while opening: {filename}')
         if array_of_errors[0] == '#32770':
             if array_of_errors[1] == 'Microsoft Visual Basic':
                 try:
@@ -58,13 +58,11 @@ class CheckErrors:
                 pass
 
             elif array_of_errors[1] == 'Microsoft Excel':
-                log.info('Microsoft Excel')
                 pg.press('enter')
                 sleep(1)
                 pg.press('enter')
 
             elif array_of_errors[1] == 'Monopoly':
-                log.info('Monopoly')
                 pg.press('enter')
 
         elif array_of_errors[0] == 'ThunderDFrame':
@@ -73,7 +71,6 @@ class CheckErrors:
                 pg.hotkey('alt', 'f4')
 
             elif array_of_errors[1] == 'Select Players and Times':
-                log.info('Select Players and Times')
                 pg.press('tab', presses=6, interval=0.2)
                 pg.press('enter', interval=0.2)
 
@@ -84,9 +81,9 @@ class CheckErrors:
                 pg.press('enter')
 
     @staticmethod
-    def check_word(array_of_errors):
+    def check_word(array_of_errors, filename):
+        logger.error(f'"{array_of_errors}" happened while opening: {filename}')
         if array_of_errors[0] == '#32770':
-            print(array_of_errors)
             if array_of_errors[1] == 'Microsoft Word':
                 print(array_of_errors[1])
                 pg.press('left')
@@ -104,7 +101,6 @@ class CheckErrors:
                 sb.call(f'powershell.exe kill -Name WINWORD', shell=True)
 
         elif array_of_errors[0] == 'bosa_sdm_msword':
-            print(array_of_errors[1])
             if array_of_errors[1] == 'Преобразование файла':
                 print('press enter')
                 pg.press('enter')
@@ -119,9 +115,9 @@ class CheckErrors:
                 pg.press('enter')
 
     @staticmethod
-    def check_pp(array_of_errors):
+    def check_pp(array_of_errors, filename):
+        logger.error(f'"{array_of_errors}" happened while opening: {filename}')
         if array_of_errors[0] == 'NUIDialog':
-            print(array_of_errors[1])
             if array_of_errors[1] == 'Пароль':
                 pg.press('right', presses=2)
                 pg.press('enter')

@@ -10,3 +10,4 @@ build/
 /tools.py
 /report.csv
 /Error_exel.csv
+/logs/
