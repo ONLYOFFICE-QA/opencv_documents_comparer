@@ -35,7 +35,6 @@ class WordCompareImg(Word):
     def check_error(self):
         win32gui.EnumWindows(self.check_errors.get_windows_title, self.check_errors.errors)
         if self.check_errors.errors:
-            logger.error(f"'{self.check_errors.errors}', happened while opening: '{self.file_name_for_log}'")
             self.check_errors.errors.clear()
             error_processing = Process(target=self.check_errors.run_get_errors_word, args=(self.file_name_for_log,))
             error_processing.start()
