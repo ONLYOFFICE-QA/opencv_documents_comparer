@@ -92,7 +92,7 @@ class WordCompareImg(Word):
 
                 if num_of_sheets != {}:
                     num_of_sheets = num_of_sheets['num_of_sheets']
-                    print(f"Number of pages: {num_of_sheets}")
+                    print(f"[bold blue]Number of pages:[/bold blue] {num_of_sheets}")
                     self.get_screenshots(tmp_name_converted_file,
                                          self.helper.tmp_dir_converted_image,
                                          num_of_sheets)
@@ -113,4 +113,4 @@ class WordCompareImg(Word):
                 else:
                     logger.debug(f"Debug. Num of sheets: {num_of_sheets}")
 
-        self.helper.tmp_cleaner()
+            self.helper.tmp_cleaner()

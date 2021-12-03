@@ -67,7 +67,6 @@ class CheckErrors:
 
         elif array_of_errors[0] == 'ThunderDFrame':
             if array_of_errors[1] == 'Functions List':
-                print('Functions List')
                 pg.hotkey('alt', 'f4')
 
             elif array_of_errors[1] == 'Select Players and Times':
@@ -77,7 +76,6 @@ class CheckErrors:
         elif array_of_errors[0] == 'NUIDialog':
             if array_of_errors[1] == 'Microsoft Excel' \
                     or array_of_errors[1] == 'Microsoft Excel - проверка совместимости':
-                print('Microsoft Excel')
                 pg.press('enter')
 
     @staticmethod
@@ -85,24 +83,20 @@ class CheckErrors:
         logger.error(f'"{array_of_errors}" happened while opening: {filename}')
         if array_of_errors[0] == '#32770':
             if array_of_errors[1] == 'Microsoft Word':
-                print(array_of_errors[1])
                 pg.press('left')
                 pg.press('enter')
 
             elif array_of_errors[1] == 'Microsoft Visual Basic for Applications':
-                print(array_of_errors[1])
                 pg.press('enter')
 
             elif array_of_errors[1] == 'Удаление нескольких элементов':
                 print(array_of_errors[1])
 
             elif array_of_errors[1] == 'Сохранить как':
-                print(array_of_errors[1])
                 sb.call(f'powershell.exe kill -Name WINWORD', shell=True)
 
         elif array_of_errors[0] == 'bosa_sdm_msword':
             if array_of_errors[1] == 'Преобразование файла':
-                print('press enter')
                 pg.press('enter')
 
             elif array_of_errors[1] == 'Пароль':
@@ -110,7 +104,7 @@ class CheckErrors:
                 pg.press('enter')
 
             elif array_of_errors[1] == 'Показать исправления':
-                sleep(1)
+                sleep(2)
                 pg.press('tab', presses=3)
                 pg.press('enter')
 

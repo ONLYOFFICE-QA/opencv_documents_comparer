@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import csv
 import io
-import subprocess as sb
+import os
 import traceback
 from multiprocessing import Process
 
@@ -64,11 +64,11 @@ class Excel:
         except Exception:
             error = traceback.format_exc()
             logger.exception(f'{error} happened while opening file: {self.file_name_for_log}')
-            sb.call(["TASKKILL", "/IM", "EXCEL.EXE", "/t", "/f"], shell=True)
             statistics_excel = {}
             return statistics_excel
 
         finally:
+            os.system("taskkill /t /im  EXCEL.EXE")
             error_processing.terminate()
 
     def run_compare_excel_statistic(self, list_of_files):

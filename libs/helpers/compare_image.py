@@ -66,7 +66,8 @@ class CompareImage:
                 after, before, similarity = self.find_difference(after_full, before_full)
                 pass
 
-        print(f"{self.converted_file} Sheet: {sheet} similarity: {similarity}")
+        print(f"[bold blue]{self.converted_file}[/bold blue] Sheet: {sheet} "
+              f"[bold blue]similarity[/bold blue]: {similarity}")
 
         before = self.put_text(before, f'Before sheet {sheet}. Similarity {round(similarity, 3)}%')
         after = self.put_text(after, f'After sheet {sheet}. Similarity {round(similarity, 3)}%')

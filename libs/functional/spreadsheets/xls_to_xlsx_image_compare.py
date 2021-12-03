@@ -79,7 +79,7 @@ class ExcelCompareImage(Excel):
                 num_of_row = statistics_exel[f'{num_of_sheet}_nrows'] / 65
             else:
                 logger.error(f'On {num_of_sheet} sheet, '
-                             f'the number of lines is not found in File {self.file_name_for_log}')
+                             f'the number of lines is not found in file {self.file_name_for_log}')
                 num_of_row = 2
 
             for pgdwn in range(math.ceil(num_of_row)):
@@ -114,7 +114,7 @@ class ExcelCompareImage(Excel):
                 statistics_exel = self.opener_excel(self.helper.tmp_dir_in_test, tmp_name)
 
                 if statistics_exel != {}:
-                    print(f"Number of sheets: {statistics_exel['num_of_sheets']}")
+                    print(f"[bold blue]Number of sheets[/bold blue]: {statistics_exel['num_of_sheets']}")
                     self.get_screenshots(tmp_name_converted_file,
                                          self.helper.tmp_dir_converted_image,
                                          statistics_exel)

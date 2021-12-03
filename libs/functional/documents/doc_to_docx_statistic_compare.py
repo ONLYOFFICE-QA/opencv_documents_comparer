@@ -2,6 +2,7 @@
 import csv
 import io
 import json
+import os
 from multiprocessing import Process
 
 from loguru import logger
@@ -59,6 +60,7 @@ class Word:
             return statistics_word
 
         finally:
+            os.system("taskkill /t /im  WINWORD.EXE")
             error_processing.terminate()
 
     def run_compare_word_statistic(self, list_of_files):
