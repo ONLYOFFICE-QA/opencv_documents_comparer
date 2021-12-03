@@ -25,32 +25,36 @@ class Word:
         self.coordinate = []
         self.shell = Dispatch("WScript.Shell")
         self.click = self.helper.click
+        self.file_name_for_log = ''
         logger.info(f'The {source_extension}_{converted_extension} comparison on version: {version} is running.')
 
-    @staticmethod
-    def get_word_statistic(word_app):
-        statistics_word = {
-            'num_of_sheets': f'{word_app.ComputeStatistics(2)}',
-            'number_of_lines': f'{word_app.ComputeStatistics(1)}',
-            'word_count': f'{word_app.ComputeStatistics(0)}',
-            'number_of_characters_without_spaces': f'{word_app.ComputeStatistics(3)}',
-            'number_of_characters_with_spaces': f'{word_app.ComputeStatistics(5)}',
-            'number_of_paragraph': f'{word_app.ComputeStatistics(4)}',
-        }
-        return statistics_word
+    def get_word_statistic(self, word_app):
+        try:
+            statistics_word = {
+                'num_of_sheets': f'{word_app.ComputeStatistics(2)}',
+                'number_of_lines': f'{word_app.ComputeStatistics(1)}',
+                'word_count': f'{word_app.ComputeStatistics(0)}',
+                'number_of_characters_without_spaces': f'{word_app.ComputeStatistics(3)}',
+                'number_of_characters_with_spaces': f'{word_app.ComputeStatistics(5)}',
+                'number_of_paragraph': f'{word_app.ComputeStatistics(4)}',
+            }
+            return statistics_word
+        except Exception:
+            logger.exception(f'Exception while getting statistics, {self.file_name_for_log}')
 
-    def word_opener(self, path_to_file, file_name_for_log):
-        error_processing = Process(target=self.check_errors.run_get_errors_word, args=(file_name_for_log,))
+    def word_opener(self, path_to_file):
+        error_processing = Process(target=self.check_errors.run_get_errors_word, args=(self.file_name_for_log,))
         error_processing.start()
         word_app = Dispatch('Word.Application')
         word_app.Visible = False
         try:
             word_app = word_app.Documents.Open(f'{path_to_file}', None, True)
-            statistics_word = Word.get_word_statistic(word_app)
+            statistics_word = self.get_word_statistic(word_app)
             word_app.Close(False)
             return statistics_word
 
         except Exception:
+            logger.exception(f'Exception while opening: {self.file_name_for_log}')
             statistics_word = {}
             return statistics_word
 
@@ -71,12 +75,11 @@ class Word:
                     tmp_name_source_file, tmp_name = self.helper.preparing_files_for_test(converted_file,
                                                                                           converted_extension,
                                                                                           source_extension)
+                    self.file_name_for_log = converted_file
                     print(f'[bold green]In test[/bold green] {source_file} '
                           f'[bold green]and[/bold green] {converted_file}')
-                    source_statistics = self.word_opener(f'{self.helper.tmp_dir_in_test}{tmp_name_source_file}',
-                                                         source_file)
-                    converted_statistics = self.word_opener(f'{self.helper.tmp_dir_in_test}{tmp_name_converted_file}',
-                                                            converted_file)
+                    source_statistics = self.word_opener(f'{self.helper.tmp_dir_in_test}{tmp_name_source_file}')
+                    converted_statistics = self.word_opener(f'{self.helper.tmp_dir_in_test}{tmp_name_converted_file}')
 
                     if source_statistics == {} or converted_statistics == {}:
                         logger.error(f"Can't open {source_file} or {converted_file}. Copied files"

@@ -32,12 +32,12 @@ class WordCompareImg(Word):
                 self.coordinate.clear()
                 self.coordinate.append(win32gui.GetWindowRect(hwnd))
 
-    def check_error(self, file_name_for_log):
+    def check_error(self):
         win32gui.EnumWindows(self.check_errors.get_windows_title, self.check_errors.errors)
         if self.check_errors.errors:
-            logger.error(f"{self.check_errors.errors}, when opening file {file_name_for_log}")
+            logger.error(f"'{self.check_errors.errors}', happened while opening: '{self.file_name_for_log}'")
             self.check_errors.errors.clear()
-            error_processing = Process(target=self.check_errors.run_get_errors_word, args=(file_name_for_log,))
+            error_processing = Process(target=self.check_errors.run_get_errors_word, args=(self.file_name_for_log,))
             error_processing.start()
             sleep(7)
             error_processing.terminate()
@@ -52,10 +52,10 @@ class WordCompareImg(Word):
 
     # opens the document
     # takes a screenshot by coordinates
-    def get_screenshots(self, tmp_file_name, path_to_save_screen, num_of_sheets, file_name_for_log):
+    def get_screenshots(self, tmp_file_name, path_to_save_screen, num_of_sheets):
         self.helper.run(self.helper.tmp_dir_in_test, tmp_file_name, 'WINWORD.EXE')
         sleep(wait_for_opening)
-        self.check_error(file_name_for_log)
+        self.check_error()
 
         win32gui.EnumWindows(self.get_coord_word, self.coordinate)
         coordinate = self.coordinate[0]
@@ -86,32 +86,32 @@ class WordCompareImg(Word):
                                      'education and workforce training.docx':
                     converted_file = 'IntegratedICTfordevelopment_renamed.docx'
 
+                self.file_name_for_log = converted_file
+
                 print(f'[bold green]In test[/bold green] {converted_file}')
-                num_of_sheets = self.word_opener(f'{self.helper.tmp_dir_in_test}{tmp_name}', source_file)
+                num_of_sheets = self.word_opener(f'{self.helper.tmp_dir_in_test}{tmp_name}')
 
                 if num_of_sheets != {}:
                     num_of_sheets = num_of_sheets['num_of_sheets']
                     print(f"Number of pages: {num_of_sheets}")
                     self.get_screenshots(tmp_name_converted_file,
                                          self.helper.tmp_dir_converted_image,
-                                         num_of_sheets,
-                                         converted_file)
+                                         num_of_sheets)
 
                     print(f'[bold green]In test[/bold green] {source_file}')
                     self.get_screenshots(tmp_name_source_file,
                                          self.helper.tmp_dir_source_image,
-                                         num_of_sheets,
-                                         source_file)
+                                         num_of_sheets)
 
                     CompareImage(converted_file, self.helper)
 
                 elif num_of_sheets == {}:
-                    logger.error(f"Can't get number of pages in {source_file}. Copied files"
+                    logger.error(f"Can't get number of pages in {source_file}. Copied files "
                                  "to 'failed_to_open_file'")
                     self.helper.copy_to_folder(converted_file,
                                                source_file,
                                                self.helper.failed_source)
                 else:
-                    logger.debug(f"Num of sheets: {num_of_sheets}")
+                    logger.debug(f"Debug. Num of sheets: {num_of_sheets}")
 
         self.helper.tmp_cleaner()

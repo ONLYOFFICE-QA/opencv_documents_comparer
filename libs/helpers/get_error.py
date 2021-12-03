@@ -46,7 +46,7 @@ class CheckErrors:
 
     @staticmethod
     def check_errors_excel(array_of_errors, filename):
-        logger.debug(f'{array_of_errors} for file: {filename}')
+        logger.error(f'"{array_of_errors}" happened while opening: {filename}')
         if array_of_errors[0] == '#32770':
             if array_of_errors[1] == 'Microsoft Visual Basic':
                 try:
@@ -82,7 +82,7 @@ class CheckErrors:
 
     @staticmethod
     def check_word(array_of_errors, filename):
-        logger.debug(f'{array_of_errors} for file: {filename}')
+        logger.error(f'"{array_of_errors}" happened while opening: {filename}')
         if array_of_errors[0] == '#32770':
             if array_of_errors[1] == 'Microsoft Word':
                 print(array_of_errors[1])
@@ -116,7 +116,7 @@ class CheckErrors:
 
     @staticmethod
     def check_pp(array_of_errors, filename):
-        logger.debug(f'{array_of_errors} for file: {filename}')
+        logger.error(f'"{array_of_errors}" happened while opening: {filename}')
         if array_of_errors[0] == 'NUIDialog':
             if array_of_errors[1] == 'Пароль':
                 pg.press('right', presses=2)

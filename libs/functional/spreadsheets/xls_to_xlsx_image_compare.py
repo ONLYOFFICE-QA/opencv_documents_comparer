@@ -31,7 +31,7 @@ class ExcelCompareImage(Excel):
                 self.coordinate.clear()
                 self.coordinate.append(win32gui.GetWindowRect(hwnd))
 
-    def prepare_excel_windows(self, file_name_for_log):
+    def prepare_excel_windows(self):
         try:
             pg.click('libs/image_templates/excel/turn_on_content.png')
             sleep(1)
@@ -39,7 +39,7 @@ class ExcelCompareImage(Excel):
             win32gui.EnumWindows(self.check_errors.get_windows_title, self.check_errors.errors)
             if self.check_errors.errors:
                 self.check_errors.errors.clear()
-                error_processing = Process(target=self.check_errors.run_get_error_exel, args=(file_name_for_log,))
+                error_processing = Process(target=self.check_errors.run_get_error_exel, args=(self.file_name_for_log,))
                 error_processing.start()
                 sleep(7)
                 error_processing.terminate()
@@ -52,7 +52,7 @@ class ExcelCompareImage(Excel):
 
     # opens the document
     # takes a screenshot by coordinates
-    def get_screenshots(self, tmp_file_name, path_to_save_screen, statistics_exel, file_name_for_log):
+    def get_screenshots(self, tmp_file_name, path_to_save_screen, statistics_exel):
         self.helper.run(self.helper.tmp_dir_in_test, tmp_file_name, self.helper.exel)
         sleep(wait_for_opening)
         win32gui.EnumWindows(self.get_coord_exel, self.coordinate)
@@ -62,7 +62,7 @@ class ExcelCompareImage(Excel):
                       coordinate[2] - 30,
                       coordinate[3] - 70)
 
-        self.prepare_excel_windows(file_name_for_log)
+        self.prepare_excel_windows()
         page_num = 1
         list_num = 1
         for press in range(int(statistics_exel['num_of_sheets'])):
@@ -78,7 +78,8 @@ class ExcelCompareImage(Excel):
             if f'{num_of_sheet}_nrows' in statistics_exel:
                 num_of_row = statistics_exel[f'{num_of_sheet}_nrows'] / 65
             else:
-                logger.error(f'On {num_of_sheet} sheet, the number of lines is not found in File {file_name_for_log}')
+                logger.error(f'On {num_of_sheet} sheet, '
+                             f'the number of lines is not found in File {self.file_name_for_log}')
                 num_of_row = 2
 
             for pgdwn in range(math.ceil(num_of_row)):
@@ -107,21 +108,21 @@ class ExcelCompareImage(Excel):
                                      'English+Learners.xlsx':
                     converted_file = '1000MostCommon_renamed.xlsx'
 
+                self.file_name_for_log = converted_file
+
                 print(f'[bold green]In test[/bold green] {converted_file}')
-                statistics_exel = self.opener_excel(self.helper.tmp_dir_in_test, tmp_name, source_file)
+                statistics_exel = self.opener_excel(self.helper.tmp_dir_in_test, tmp_name)
 
                 if statistics_exel != {}:
                     print(f"Number of sheets: {statistics_exel['num_of_sheets']}")
                     self.get_screenshots(tmp_name_converted_file,
                                          self.helper.tmp_dir_converted_image,
-                                         statistics_exel,
-                                         converted_file)
+                                         statistics_exel)
 
                     print(f'[bold green]In test[/bold green] {source_file}')
                     self.get_screenshots(tmp_name_source_file,
                                          self.helper.tmp_dir_source_image,
-                                         statistics_exel,
-                                         source_file)
+                                         statistics_exel)
 
                     CompareImage(converted_file, self.helper, koff=100)
 

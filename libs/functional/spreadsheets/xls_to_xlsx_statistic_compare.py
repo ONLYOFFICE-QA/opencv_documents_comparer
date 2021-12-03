@@ -25,10 +25,10 @@ class Excel:
         self.check_errors = CheckErrors()
         self.coordinate = []
         self.click = self.helper.click
+        self.file_name_for_log = ''
         logger.info(f'The {source_extension}_{converted_extension} comparison on version: {version} is running.')
 
-    @staticmethod
-    def get_excel_statistic(wb, file_name_for_log):
+    def get_excel_statistic(self, wb):
         statistics_exel = {
             'num_of_sheets': f'{wb.Sheets.Count}',
         }
@@ -46,24 +46,24 @@ class Excel:
             return statistics_exel
 
         except Exception:
-            logger.exception(f'Failed to get full statistics excel from file: {file_name_for_log}')
+            logger.exception(f'Failed to get full statistics excel from file: {self.file_name_for_log}')
             return statistics_exel
 
-    def opener_excel(self, path_for_open, file_name, file_name_for_log):
-        error_processing = Process(target=self.check_errors.run_get_error_exel, args=(file_name_for_log,))
+    def opener_excel(self, path_for_open, file_name):
+        error_processing = Process(target=self.check_errors.run_get_error_exel, args=(self.file_name_for_log,))
         error_processing.start()
         try:
             xl = Dispatch("Excel.Application")
             xl.Visible = False  # otherwise excel is hidden
             wb = xl.Workbooks.Open(f'{path_for_open}{file_name}')
-            statistics_excel = Excel.get_excel_statistic(wb, file_name_for_log)
+            statistics_excel = self.get_excel_statistic(wb)
             wb.Close(False)
             xl.Quit()
             return statistics_excel
 
-        except Exception as e:
+        except Exception:
             error = traceback.format_exc()
-            logger.exception(f'{error} happened while opening file: {file_name_for_log}')
+            logger.exception(f'{error} happened while opening file: {self.file_name_for_log}')
             sb.call(["TASKKILL", "/IM", "EXCEL.EXE", "/t", "/f"], shell=True)
             statistics_excel = {}
             return statistics_excel
@@ -83,12 +83,12 @@ class Excel:
                                                                                           converted_extension,
                                                                                           source_extension)
 
+                    self.file_name_for_log = converted_file
+
                     print(f'[bold green]In test[/bold green] {source_file} '
                           f'[bold green]and[/bold green] {converted_file}')
-                    source_statistics = self.opener_excel(self.helper.tmp_dir_in_test, tmp_name_source_file,
-                                                          source_file)
-                    converted_statistics = self.opener_excel(self.helper.tmp_dir_in_test, tmp_name_converted_file,
-                                                             converted_file)
+                    source_statistics = self.opener_excel(self.helper.tmp_dir_in_test, tmp_name_source_file)
+                    converted_statistics = self.opener_excel(self.helper.tmp_dir_in_test, tmp_name_converted_file)
 
                     if source_statistics == {} or converted_statistics == {}:
                         print("[bold red]Can't open source file, copy to untested[/bold red]")
