@@ -86,7 +86,7 @@ class PowerPoint:
             return slide_count
 
         except Exception:
-            logger.exception(f'Exception while opening presentation. {self.file_name_for_log}')
+            logger.error(f'Exception while opening presentation. {self.file_name_for_log}')
             return 'None'
 
         finally:
