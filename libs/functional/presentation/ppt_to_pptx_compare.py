@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import os
-import subprocess as sb
 from multiprocessing import Process
 from time import sleep
 
@@ -92,7 +91,15 @@ class PowerPoint:
 
         finally:
             error_processing.terminate()
-            sb.call(["taskkill", "/IM", "POWERPNT.EXE"], shell=True)
+            self.close_presentation(presentation)
+
+    def close_presentation(self, presentation):
+        try:
+            presentation.close()
+        except Exception:
+            logger.debug(f'Exception while closing presentation. {self.file_name_for_log}')
+        finally:
+            os.system("taskkill /im  POWERPNT.EXE")
 
     # opens the document
     # takes a screenshot by coordinates
@@ -116,7 +123,7 @@ class PowerPoint:
                 pg.press('pgdn')
                 sleep(wait_for_press)
                 page_num += 1
-            sb.call(["taskkill", "/IM", "POWERPNT.EXE"])
+            os.system("taskkill /im  POWERPNT.EXE")
 
     def run_compare_pp(self, list_of_files):
         for converted_file in list_of_files:
