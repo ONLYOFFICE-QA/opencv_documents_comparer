@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import math
-import subprocess as sb
 from multiprocessing import Process
 from time import sleep
 
@@ -93,8 +92,6 @@ class ExcelCompareImage(Excel):
             pg.hotkey('ctrl', 'pgdn', interval=0.05)
             sleep(wait_for_press)
             list_num += 1
-
-        sb.call(["TASKKILL", "/IM", "EXCEL.EXE", "/t", "/f"], shell=True)
 
     def run_compare_excel_img(self, list_of_files):
         for converted_file in list_of_files:
