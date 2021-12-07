@@ -41,7 +41,7 @@ class Word:
             }
             return statistics_word
         except Exception:
-            logger.exception(f'Exception while getting statistics, {self.file_name_for_log}')
+            logger.error(f'Exception while getting statistics, {self.file_name_for_log}')
 
     def word_opener(self, path_to_file):
         error_processing = Process(target=self.check_errors.run_get_errors_word, args=(self.file_name_for_log,))

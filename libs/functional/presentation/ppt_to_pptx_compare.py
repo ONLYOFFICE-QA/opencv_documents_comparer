@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import os
-import subprocess as sb
 from multiprocessing import Process
 from time import sleep
 
@@ -87,12 +86,20 @@ class PowerPoint:
             return slide_count
 
         except Exception:
-            logger.exception(f'Exception while opening presentation. {self.file_name_for_log}')
+            logger.error(f'Exception while opening presentation. {self.file_name_for_log}')
             return 'None'
 
         finally:
             error_processing.terminate()
-            sb.call(["taskkill", "/IM", "POWERPNT.EXE"], shell=True)
+            self.close_presentation(presentation)
+
+    def close_presentation(self, presentation):
+        try:
+            presentation.close()
+        except Exception:
+            logger.debug(f'Exception while closing presentation. {self.file_name_for_log}')
+        finally:
+            os.system("taskkill /im  POWERPNT.EXE")
 
     # opens the document
     # takes a screenshot by coordinates
@@ -116,7 +123,7 @@ class PowerPoint:
                 pg.press('pgdn')
                 sleep(wait_for_press)
                 page_num += 1
-            sb.call(["taskkill", "/IM", "POWERPNT.EXE"])
+            os.system("taskkill /im  POWERPNT.EXE")
 
     def run_compare_pp(self, list_of_files):
         for converted_file in list_of_files:
@@ -125,11 +132,10 @@ class PowerPoint:
                 tmp_name_source_file, tmp_name = self.helper.preparing_files_for_test(converted_file,
                                                                                       converted_extension,
                                                                                       source_extension)
+                self.file_name_for_log = converted_file
 
                 print(f'[bold green]In test[/bold green] {converted_file}')
                 slide_count = self.opener_power_point(self.helper.tmp_dir_in_test, tmp_name)
-
-                self.file_name_for_log = converted_file
 
                 if slide_count != 'None':
                     self.get_screenshot(self.helper.tmp_dir_converted_image,
