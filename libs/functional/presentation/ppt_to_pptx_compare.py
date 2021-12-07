@@ -132,11 +132,10 @@ class PowerPoint:
                 tmp_name_source_file, tmp_name = self.helper.preparing_files_for_test(converted_file,
                                                                                       converted_extension,
                                                                                       source_extension)
+                self.file_name_for_log = converted_file
 
                 print(f'[bold green]In test[/bold green] {converted_file}')
                 slide_count = self.opener_power_point(self.helper.tmp_dir_in_test, tmp_name)
-
-                self.file_name_for_log = converted_file
 
                 if slide_count != 'None':
                     self.get_screenshot(self.helper.tmp_dir_converted_image,
