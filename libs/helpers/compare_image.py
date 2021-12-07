@@ -27,7 +27,9 @@ class CompareImage:
         self.start_to_compare_images()
 
     def start_to_compare_images(self):
-        for image_name in track(os.listdir(self.helper.tmp_dir_converted_image), description='Comparing In Progress'):
+        for image_name in track(os.listdir(self.helper.tmp_dir_converted_image),
+                                description='[bold blue]Comparing In Progress[/bold blue]'):
+
             if os.path.exists(f'{self.helper.tmp_dir_source_image}{image_name}') \
                     and os.path.exists(f'{self.helper.tmp_dir_converted_image}{image_name}'):
 
@@ -37,9 +39,15 @@ class CompareImage:
                                  )
 
             else:
-                print(f'[bold red] File not found [/bold red]{image_name}')
+                logger.error(f'Image {image_name} not found, '
+                             f'copied file {self.converted_file} and {self.source_file} to "Untested"')
 
-        self.helper.tmp_cleaner()
+                self.helper.copy_to_folder(self.converted_file,
+                                           self.source_file,
+                                           self.helper.untested_folder)
+
+        self.helper.delete(f'{self.helper.tmp_dir_converted_image}*')
+        self.helper.delete(f'{self.helper.tmp_dir_source_image}*')
 
     def compare_img(self, image_before_conversion, image_after_conversion, image_name):
         image_name = image_name.split('.')[0]
@@ -60,21 +68,22 @@ class CompareImage:
                 after, before, similarity = self.find_difference(after_full, before_full)
                 pass
 
-        print(f"{self.converted_file} Sheet: {sheet} similarity: {similarity}")
+        print(f"[bold blue]{self.converted_file}[/bold blue] Sheet: {sheet} "
+              f"[bold blue]similarity[/bold blue]: {similarity}")
 
         before = self.put_text(before, f'Before sheet {sheet}. Similarity {round(similarity, 3)}%')
         after = self.put_text(after, f'After sheet {sheet}. Similarity {round(similarity, 3)}%')
         collage = self.collage(after_full, before_full)
         images = [before, after]
         if similarity < self.koff:
-            self.write_down_results(collage, images, file_name_for_gif, sheet)
+            self.write_down_results(collage, images, file_name_for_gif, image_name)
         else:
             print('[bold green]passed[/bold green]')
             imageio.mimsave(f'{self.helper.passed}{self.folder_name}/{file_name_for_gif}',
                             images,
                             duration=1)
             cv2.imwrite(
-                f'{self.helper.passed}{self.folder_name}/{self.screen_folder}/{self.converted_file}_{sheet}_collage.png',
+                f'{self.helper.passed}{self.folder_name}/{self.screen_folder}/{image_name}_collage.png',
                 collage)
 
     def collage(self, after_img, before_img):
@@ -83,7 +92,7 @@ class CompareImage:
         collage = np.hstack([before_for_collage, after_for_collage])
         return collage
 
-    def write_down_results(self, collage, images, file_name_for_gif, sheet):
+    def write_down_results(self, collage, images, file_name_for_gif, image_name):
         self.helper.create_dir(f'{self.helper.differences_compare_image}{self.folder_name}')
         self.helper.create_dir(f'{self.helper.differences_compare_image}{self.folder_name}/gif/')
         self.helper.create_dir(f'{self.helper.differences_compare_image}{self.folder_name}/{self.screen_folder}')
@@ -91,7 +100,7 @@ class CompareImage:
                                    f'{self.helper.differences_compare_image}{self.folder_name}/')
         cv2.imwrite(
             f'{self.helper.differences_compare_image}{self.folder_name}/{self.screen_folder}/'
-            f'{self.converted_file}_{sheet}_collage.png',
+            f'{image_name}_collage.png',
             collage)
         imageio.mimsave(f'{self.helper.differences_compare_image}{self.folder_name}/gif/{file_name_for_gif}',
                         images,
@@ -143,16 +152,14 @@ class CompareImage:
         return image
 
     @staticmethod
-    def grab_coordinate_exel(path, filename, list_num, number_of_pages, coordinate):
-        img_name = filename.replace(f'.{filename.split(".")[-1]}', '')
+    def grab_coordinate_exel(path, list_num, number_of_pages, coordinate):
         image = ImageGrab.grab(bbox=coordinate)
-        image.save(path + img_name + str(f'_list_{list_num}_page_{number_of_pages}') + '.png', 'PNG')
+        image.save(path + str(f'_list_{list_num}_page_{number_of_pages}') + '.png', 'PNG')
 
     @staticmethod
-    def grab_coordinate(path, filename, number_of_pages, coordinate):
-        img_name = filename.replace(f'.{filename.split(".")[-1]}', '')
+    def grab_coordinate(path, number_of_pages, coordinate):
         image = ImageGrab.grab(bbox=coordinate)
-        image.save(path + img_name + str(f'_{number_of_pages}') + '.png', 'PNG')
+        image.save(path + str(f'page_{number_of_pages}') + '.png', 'PNG')
 
     @staticmethod
     def grab(path, filename, number_of_pages):

@@ -6,6 +6,7 @@ from time import sleep
 import pyautogui as pg
 import win32con
 import win32gui
+from loguru import logger
 from rich import print
 
 from config import *
@@ -34,16 +35,19 @@ class WordCompareImg(Word):
     def check_error(self):
         win32gui.EnumWindows(self.check_errors.get_windows_title, self.check_errors.errors)
         if self.check_errors.errors:
-            print(f'Error: {self.check_errors.errors}')
-            error_processing = Process(target=self.check_errors.run_get_errors_word)
+            self.check_errors.errors.clear()
+            error_processing = Process(target=self.check_errors.run_get_errors_word, args=(self.file_name_for_log,))
             error_processing.start()
-            sleep(5)
+            sleep(7)
             error_processing.terminate()
 
-    @staticmethod
-    def prepare_word_windows():
-        pg.hotkey('alt', 'j')
-        pg.press('1')
+    def prepare_word_windows(self):
+        self.click('libs/image_templates/powerpoint/view.png')
+        sleep(0.3)
+        self.click('libs/image_templates/word/one_page.png')
+        self.click('libs/image_templates/word/resolution100.png')
+        pg.moveTo(100, 0)
+        sleep(1)
 
     # opens the document
     # takes a screenshot by coordinates
@@ -62,8 +66,7 @@ class WordCompareImg(Word):
         self.prepare_word_windows()
         page_num = 1
         for page in range(int(num_of_sheets)):
-            CompareImage.grab_coordinate(path_to_save_screen, tmp_file_name, page_num, coordinate)
-            # pg.click()
+            CompareImage.grab_coordinate(path_to_save_screen, page_num, coordinate)
             pg.press('pgdn')
             sleep(wait_for_press)
             page_num += 1
@@ -81,20 +84,33 @@ class WordCompareImg(Word):
                                      'USAID Macedonia focused on ' \
                                      'education and workforce training.docx':
                     converted_file = 'IntegratedICTfordevelopment_renamed.docx'
+
+                self.file_name_for_log = converted_file
+
                 print(f'[bold green]In test[/bold green] {converted_file}')
                 num_of_sheets = self.word_opener(f'{self.helper.tmp_dir_in_test}{tmp_name}')
 
                 if num_of_sheets != {}:
                     num_of_sheets = num_of_sheets['num_of_sheets']
-                    print(f"Number of pages: {num_of_sheets}")
+                    print(f"[bold blue]Number of pages:[/bold blue] {num_of_sheets}")
                     self.get_screenshots(tmp_name_converted_file,
                                          self.helper.tmp_dir_converted_image,
                                          num_of_sheets)
 
+                    print(f'[bold green]In test[/bold green] {source_file}')
                     self.get_screenshots(tmp_name_source_file,
                                          self.helper.tmp_dir_source_image,
                                          num_of_sheets)
 
                     CompareImage(converted_file, self.helper)
 
-        self.helper.delete(f'{self.helper.tmp_dir_in_test}*')
+                elif num_of_sheets == {}:
+                    logger.error(f"Can't get number of pages in {source_file}. Copied files "
+                                 "to 'failed_to_open_file'")
+                    self.helper.copy_to_folder(converted_file,
+                                               source_file,
+                                               self.helper.failed_source)
+                else:
+                    logger.debug(f"Debug. Num of sheets: {num_of_sheets}")
+
+            self.helper.tmp_cleaner()
