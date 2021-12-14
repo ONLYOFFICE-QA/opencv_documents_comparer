@@ -137,7 +137,7 @@ class ExcelCompareImage(Excel):
                                              self.helper.tmp_dir_source_image,
                                              statistics_exel)
 
-                        CompareImage(converted_file, self.helper, koff=100)
+                        CompareImage(converted_file, self.helper, koff=99.5)
 
                     elif self.check_errors.errors \
                             and self.check_errors.errors[0] == "#32770" \
