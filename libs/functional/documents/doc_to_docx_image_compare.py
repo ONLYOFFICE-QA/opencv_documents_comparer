@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import subprocess as sb
+import os
 from multiprocessing import Process
 from time import sleep
 
@@ -75,7 +75,8 @@ class WordCompareImg(Word):
             pg.press('pgdn')
             sleep(wait_for_press)
             page_num += 1
-        sb.call(["taskkill", "/IM", "WINWORD.EXE"], shell=True)
+        pg.hotkey('ctrl', 'z')
+        os.system("taskkill /t /im  WINWORD.EXE")
 
     def run_compare_word(self, list_of_files):
         for converted_file in list_of_files:
