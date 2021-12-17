@@ -77,6 +77,8 @@ class CheckErrors:
             if array_of_errors[1] == 'Microsoft Excel' \
                     or array_of_errors[1] == 'Microsoft Excel - проверка совместимости':
                 pg.press('enter')
+        else:
+            logger.debug(f'"New Event {array_of_errors}" happened while opening: {filename}')
 
     @staticmethod
     def check_word(array_of_errors, filename):
@@ -108,6 +110,12 @@ class CheckErrors:
                 pg.press('tab', presses=3)
                 pg.press('enter')
 
+        elif array_of_errors[0] == 'NUIDialog' and array_of_errors[1] == 'Microsoft Word':
+            pg.press('enter')
+
+        else:
+            logger.debug(f'"New Event {array_of_errors}" happened while opening: {filename}')
+
     @staticmethod
     def check_pp(array_of_errors, filename):
         logger.error(f'"{array_of_errors}" happened while opening: {filename}')
@@ -115,3 +123,5 @@ class CheckErrors:
             if array_of_errors[1] == 'Пароль':
                 pg.press('right', presses=2)
                 pg.press('enter')
+        else:
+            logger.debug(f'"New Event {array_of_errors}" happened while opening: {filename}')
