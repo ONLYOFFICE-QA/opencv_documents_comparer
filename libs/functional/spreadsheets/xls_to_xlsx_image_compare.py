@@ -106,6 +106,7 @@ class ExcelCompareImage(Excel):
                 pg.hotkey('ctrl', 'pgdn', interval=0.05)
                 sleep(wait_for_press)
                 list_num += 1
+            pg.hotkey('ctrl', 'z')
             os.system("taskkill /t /im  EXCEL.EXE")
 
     def run_compare_excel_img(self, list_of_files):
