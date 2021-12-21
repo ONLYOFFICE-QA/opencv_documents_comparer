@@ -47,7 +47,8 @@ class Excel:
             return statistics_exel
 
         except Exception:
-            logger.error(f'Failed to get full statistics excel from file: {self.file_name_for_log}')
+            logger.error(f'\nFailed to get full statistics excel from file: {self.file_name_for_log}\n '
+                         f'statistics: {statistics_exel}')
             return statistics_exel
 
     def opener_excel(self, path_for_open, file_name):

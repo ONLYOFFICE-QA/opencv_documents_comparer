@@ -60,7 +60,6 @@ class ExcelCompareImage(Excel):
                 win32gui.EnumWindows(self.get_coord_exel, self.coordinate)
 
         except Exception:
-            print("turn_on_content.png not found")
             pass
 
     def close_excel(self):
@@ -82,15 +81,16 @@ class ExcelCompareImage(Excel):
     def get_screenshots(self, tmp_file_name, path_to_save_screen, statistics_exel):
         self.helper.run(self.helper.tmp_dir_in_test, tmp_file_name, self.helper.exel)
         sleep(wait_for_opening)
-        win32gui.EnumWindows(self.get_coord_exel, self.coordinate)
-        coordinate = self.coordinate[0]
-        coordinate = (coordinate[0] + 10,
-                      coordinate[1] + 170,
-                      coordinate[2] - 30,
-                      coordinate[3] - 70)
         # check errors
         win32gui.EnumWindows(self.check_error, self.check_errors.errors)
         if not self.check_errors.errors:
+            win32gui.EnumWindows(self.get_coord_exel, self.coordinate)
+            coordinate = self.coordinate[0]
+            coordinate = (coordinate[0] + 10,
+                          coordinate[1] + 170,
+                          coordinate[2] - 30,
+                          coordinate[3] - 70)
+
             self.prepare_excel_windows()
             list_num = 1
             for press in range(int(statistics_exel['num_of_sheets'])):
@@ -106,8 +106,6 @@ class ExcelCompareImage(Excel):
                 if f'{list_num}_nrows' in statistics_exel:
                     num_of_row = statistics_exel[f'{list_num}_nrows'] / 65
                 else:
-                    logger.error(f'On {list_num} sheet, '
-                                 f'the number of lines is not found in file {self.file_name_for_log}')
                     num_of_row = 2
 
                 for pgdwn in range(math.ceil(num_of_row)):
@@ -151,7 +149,11 @@ class ExcelCompareImage(Excel):
                         self.get_screenshots(tmp_name_source_file,
                                              self.helper.tmp_dir_source_image,
                                              statistics_exel)
-
+                        if self.check_errors.errors \
+                                and self.check_errors.errors[0] == "#32770" \
+                                and self.check_errors.errors[1] == "Microsoft Excel":
+                            pg.press('alt')
+                            pg.press('enter')
                         CompareImage(converted_file, self.helper, koff=99.5)
 
                     elif self.check_errors.errors \
