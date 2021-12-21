@@ -45,7 +45,7 @@ class WordCompareImg(Word):
         self.click('libs/image_templates/word/layout.png')
         sleep(0.3)
         self.click('libs/image_templates/word/transfers.png')
-        pg.press('down', presses=2, interval=0.1)
+        pg.press('down', interval=0.1)
         pg.press('enter')
         self.click('libs/image_templates/powerpoint/view.png')
         sleep(0.3)
