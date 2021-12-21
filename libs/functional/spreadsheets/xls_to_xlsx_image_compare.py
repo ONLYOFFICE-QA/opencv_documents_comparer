@@ -34,6 +34,8 @@ class ExcelCompareImage(Excel):
     def check_error(self, hwnd, ctx):
         if win32gui.IsWindowVisible(hwnd):
             if win32gui.GetClassName(hwnd) == '#32770' \
+                    and win32gui.GetWindowText(hwnd) == "Microsoft Excel" \
+                    or win32gui.GetClassName(hwnd) == 'NUIDialog' \
                     and win32gui.GetWindowText(hwnd) == "Microsoft Excel":
                 self.shell.SendKeys('%')
                 win32gui.SetForegroundWindow(hwnd)
@@ -60,6 +62,20 @@ class ExcelCompareImage(Excel):
         except Exception:
             print("turn_on_content.png not found")
             pass
+
+    def close_excel(self):
+        pg.hotkey('ctrl', 'z')
+        os.system("taskkill /t /im  EXCEL.EXE")
+        sleep(0.2)
+        win32gui.EnumWindows(self.check_error, self.check_errors.errors)
+        if self.check_errors.errors \
+                and self.check_errors.errors[0] == 'NUIDialog' \
+                and self.check_errors.errors[1] == "Microsoft Excel":
+            pg.press('alt')
+            pg.press('right')
+            pg.press('enter')
+            self.check_errors.errors.clear()
+        pass
 
     # opens the document
     # takes a screenshot by coordinates
@@ -105,9 +121,7 @@ class ExcelCompareImage(Excel):
                 pg.hotkey('ctrl', 'pgdn', interval=0.05)
                 list_num += 1
                 sleep(wait_for_press)
-
-            pg.hotkey('ctrl', 'z')
-            os.system("taskkill /t /im  EXCEL.EXE")
+            self.close_excel()
 
     def run_compare_excel_img(self, list_of_files):
         for converted_file in list_of_files:
