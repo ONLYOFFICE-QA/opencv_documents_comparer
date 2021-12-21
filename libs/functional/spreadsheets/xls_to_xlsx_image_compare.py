@@ -76,36 +76,36 @@ class ExcelCompareImage(Excel):
         win32gui.EnumWindows(self.check_error, self.check_errors.errors)
         if not self.check_errors.errors:
             self.prepare_excel_windows()
-            page_num = 1
             list_num = 1
             for press in range(int(statistics_exel['num_of_sheets'])):
                 pg.hotkey('ctrl', 'pgup', interval=0.05)
-            for page in range(int(statistics_exel['num_of_sheets'])):
-                num_of_sheet = 1
+            for sheet in range(int(statistics_exel['num_of_sheets'])):
                 pg.hotkey('ctrl', 'home', interval=0.2)
+                page_num = 1
                 CompareImage.grab_coordinate_exel(path_to_save_screen,
                                                   list_num,
                                                   page_num,
                                                   coordinate)
-                page_num += 1
-                if f'{num_of_sheet}_nrows' in statistics_exel:
-                    num_of_row = statistics_exel[f'{num_of_sheet}_nrows'] / 65
+
+                if f'{list_num}_nrows' in statistics_exel:
+                    num_of_row = statistics_exel[f'{list_num}_nrows'] / 65
                 else:
-                    logger.error(f'On {num_of_sheet} sheet, '
+                    logger.error(f'On {list_num} sheet, '
                                  f'the number of lines is not found in file {self.file_name_for_log}')
                     num_of_row = 2
 
                 for pgdwn in range(math.ceil(num_of_row)):
                     pg.press('pgdn', interval=0.5)
+                    page_num += 1
                     CompareImage.grab_coordinate_exel(path_to_save_screen,
                                                       list_num,
                                                       page_num,
                                                       coordinate)
-                    num_of_sheet += 1
-                    page_num += 1
+
                 pg.hotkey('ctrl', 'pgdn', interval=0.05)
-                sleep(wait_for_press)
                 list_num += 1
+                sleep(wait_for_press)
+
             pg.hotkey('ctrl', 'z')
             os.system("taskkill /t /im  EXCEL.EXE")
 
