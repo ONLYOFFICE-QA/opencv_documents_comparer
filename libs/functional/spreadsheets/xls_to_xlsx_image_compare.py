@@ -76,50 +76,51 @@ class ExcelCompareImage(Excel):
             self.check_errors.errors.clear()
         pass
 
-    # opens the document
-    # takes a screenshot by coordinates
-    def get_screenshots(self, tmp_file_name, path_to_save_screen, statistics_exel):
+    def open_excel_with_cmd(self, tmp_file_name):
         self.helper.run(self.helper.tmp_dir_in_test, tmp_file_name, self.helper.exel)
         sleep(wait_for_opening)
         # check errors
         win32gui.EnumWindows(self.check_error, self.check_errors.errors)
-        if not self.check_errors.errors:
-            win32gui.EnumWindows(self.get_coord_exel, self.coordinate)
-            coordinate = self.coordinate[0]
-            coordinate = (coordinate[0] + 10,
-                          coordinate[1] + 170,
-                          coordinate[2] - 30,
-                          coordinate[3] - 70)
 
-            self.prepare_excel_windows()
-            list_num = 1
-            for press in range(int(statistics_exel['num_of_sheets'])):
-                pg.hotkey('ctrl', 'pgup', interval=0.05)
-            for sheet in range(int(statistics_exel['num_of_sheets'])):
-                pg.hotkey('ctrl', 'home', interval=0.2)
-                page_num = 1
+    # opens the document
+    # takes a screenshot by coordinates
+    def get_screenshots(self, path_to_save_screen, statistics_exel):
+        self.prepare_excel_windows()
+        list_num = 1
+        win32gui.EnumWindows(self.get_coord_exel, self.coordinate)
+        coordinate = self.coordinate[0]
+        coordinate = (coordinate[0] + 10,
+                      coordinate[1] + 170,
+                      coordinate[2] - 30,
+                      coordinate[3] - 70)
+
+        for press in range(int(statistics_exel['num_of_sheets'])):
+            pg.hotkey('ctrl', 'pgup', interval=0.05)
+        for sheet in range(int(statistics_exel['num_of_sheets'])):
+            pg.hotkey('ctrl', 'home', interval=0.2)
+            page_num = 1
+            CompareImage.grab_coordinate_exel(path_to_save_screen,
+                                              list_num,
+                                              page_num,
+                                              coordinate)
+
+            if f'{list_num}_nrows' in statistics_exel:
+                num_of_row = statistics_exel[f'{list_num}_nrows'] / 65
+            else:
+                num_of_row = 2
+
+            for pgdwn in range(math.ceil(num_of_row)):
+                pg.press('pgdn', interval=0.5)
+                page_num += 1
                 CompareImage.grab_coordinate_exel(path_to_save_screen,
                                                   list_num,
                                                   page_num,
                                                   coordinate)
 
-                if f'{list_num}_nrows' in statistics_exel:
-                    num_of_row = statistics_exel[f'{list_num}_nrows'] / 65
-                else:
-                    num_of_row = 2
-
-                for pgdwn in range(math.ceil(num_of_row)):
-                    pg.press('pgdn', interval=0.5)
-                    page_num += 1
-                    CompareImage.grab_coordinate_exel(path_to_save_screen,
-                                                      list_num,
-                                                      page_num,
-                                                      coordinate)
-
-                pg.hotkey('ctrl', 'pgdn', interval=0.05)
-                list_num += 1
-                sleep(wait_for_press)
-            self.close_excel()
+            pg.hotkey('ctrl', 'pgdn', interval=0.05)
+            list_num += 1
+            sleep(wait_for_press)
+        self.close_excel()
 
     def run_compare_excel_img(self, list_of_files):
         for converted_file in list_of_files:
@@ -140,20 +141,21 @@ class ExcelCompareImage(Excel):
 
                 if statistics_exel != {}:
                     print(f"[bold blue]Number of sheets[/bold blue]: {statistics_exel['num_of_sheets']}")
-                    self.get_screenshots(tmp_name_converted_file,
-                                         self.helper.tmp_dir_converted_image,
-                                         statistics_exel)
 
+                    self.open_excel_with_cmd(tmp_name_converted_file)
                     if not self.check_errors.errors:
+                        self.get_screenshots(self.helper.tmp_dir_converted_image, statistics_exel)
+
                         print(f'[bold green]In test[/bold green] {source_file}')
-                        self.get_screenshots(tmp_name_source_file,
-                                             self.helper.tmp_dir_source_image,
-                                             statistics_exel)
+                        self.open_excel_with_cmd(tmp_name_source_file)
                         if self.check_errors.errors \
                                 and self.check_errors.errors[0] == "#32770" \
                                 and self.check_errors.errors[1] == "Microsoft Excel":
                             pg.press('alt')
                             pg.press('enter')
+                            self.check_errors.errors.clear()
+
+                        self.get_screenshots(self.helper.tmp_dir_source_image, statistics_exel)
                         CompareImage(converted_file, self.helper, koff=99.5)
 
                     elif self.check_errors.errors \
@@ -168,6 +170,7 @@ class ExcelCompareImage(Excel):
                                                    source_file,
                                                    self.helper.untested_folder)
                         self.check_errors.errors.clear()
+
                     else:
                         logger.debug(f"Error message: {self.check_errors.errors} Filename: {converted_file}")
                         self.check_errors.errors.clear()
