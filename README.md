@@ -6,7 +6,7 @@ Script to open and compare documents in MS Office
 
 ## Requirements:
 
-* Python 3.9.7
+* Python 3.10
 * MS Office 2019
 
 ## Installing Python Libraries:
