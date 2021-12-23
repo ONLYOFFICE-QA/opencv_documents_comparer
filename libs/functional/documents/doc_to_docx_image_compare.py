@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import subprocess as sb
+import os
 from multiprocessing import Process
 from time import sleep
 
@@ -42,6 +42,11 @@ class WordCompareImg(Word):
             error_processing.terminate()
 
     def prepare_word_windows(self):
+        self.click('libs/image_templates/word/layout.png')
+        sleep(0.3)
+        self.click('libs/image_templates/word/transfers.png')
+        pg.press('down', interval=0.1)
+        pg.press('enter')
         self.click('libs/image_templates/powerpoint/view.png')
         sleep(0.3)
         self.click('libs/image_templates/word/one_page.png')
@@ -70,7 +75,8 @@ class WordCompareImg(Word):
             pg.press('pgdn')
             sleep(wait_for_press)
             page_num += 1
-        sb.call(["taskkill", "/IM", "WINWORD.EXE"], shell=True)
+        pg.hotkey('ctrl', 'z')
+        os.system("taskkill /t /im  WINWORD.EXE")
 
     def run_compare_word(self, list_of_files):
         for converted_file in list_of_files:
