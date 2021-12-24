@@ -18,6 +18,11 @@ class Helper:
 
         self.converted_extension = converted_extension
         self.source_extension = source_extension
+        self.source_file = None
+        self.converted_file = None
+        self.tmp_name_converted_file = None
+        self.tmp_name_source_file = None
+        self.tmp_name = None
 
         self.ms_office = 'C:/Program Files (x86)/Microsoft Office/root/Office16/'
         self.word = 'WINWORD.EXE'
@@ -28,7 +33,8 @@ class Helper:
         self.data = self.project_folder + '/data/'
 
         self.source_doc_folder = f'{source_doc_folder}{self.source_extension}/'
-        self.converted_doc_folder = f'{converted_doc_folder}{version}_{self.source_extension}_{self.converted_extension}/'
+        self.converted_doc_folder = f'{converted_doc_folder}{version}_{self.source_extension}' \
+                                    f'_{self.converted_extension}/'
 
         self.result_folder = f'{self.data}{version}_{self.source_extension}_{self.converted_extension}/'
         self.differences_statistic = f'{self.result_folder}differences_statistic/'
@@ -76,22 +82,21 @@ class Helper:
             if not os.path.exists(f'{path_for_check}{name}'):
                 return name
 
-    def preparing_files_for_test(self, converted_file_name, extension_converted, extension_source):
-        source_file = converted_file_name.replace(f'.{extension_converted}', f'.{extension_source}')
-        tmp_name_converted_file = self.random_name(self.tmp_dir_in_test, extension_converted)
+    def preparing_files_for_test(self):
+        self.source_file = self.converted_file.replace(f'.{self.converted_extension}', f'.{self.source_extension}')
+        self.tmp_name_converted_file = self.random_name(self.tmp_dir_in_test, self.converted_extension)
 
-        tmp_name_source_file = tmp_name_converted_file.replace(f'.{extension_converted}',
-                                                               f'.{extension_source}')
+        self.tmp_name_source_file = self.tmp_name_converted_file.replace(f'.{self.converted_extension}',
+                                                                         f'.{self.source_extension}')
 
-        tmp_name = self.random_name(self.tmp_dir_in_test, extension_source)
+        self.tmp_name = self.random_name(self.tmp_dir_in_test, self.source_extension)
 
-        self.copy(f'{self.source_doc_folder}{source_file}',
-                  f'{self.tmp_dir_in_test}{tmp_name}')
-        self.copy(f'{self.converted_doc_folder}{converted_file_name}',
-                  f'{self.tmp_dir_in_test}{tmp_name_converted_file}')
-        self.copy(f'{self.source_doc_folder}{source_file}',
-                  f'{self.tmp_dir_in_test}{tmp_name_source_file}')
-        return source_file, tmp_name_converted_file, tmp_name_source_file, tmp_name
+        self.copy(f'{self.source_doc_folder}{self.source_file}',
+                  f'{self.tmp_dir_in_test}{self.tmp_name}')
+        self.copy(f'{self.converted_doc_folder}{self.converted_file}',
+                  f'{self.tmp_dir_in_test}{self.tmp_name_converted_file}')
+        self.copy(f'{self.source_doc_folder}{self.source_file}',
+                  f'{self.tmp_dir_in_test}{self.tmp_name_source_file}')
 
     @staticmethod
     def move(path_from, path_to):
@@ -141,12 +146,15 @@ class Helper:
             json.dump(statistics_word, f)
         return statistics_word
 
-    def copy_to_folder(self, converted_file, source_file, path_to_folder):
-        self.copy(f'{self.converted_doc_folder}{converted_file}',
-                  f'{path_to_folder}{converted_file}')
+    def copy_to_folder(self, path_to_folder):
+        if self.converted_file is not None and self.source_file is not None:
+            self.copy(f'{self.converted_doc_folder}{self.converted_file}',
+                      f'{path_to_folder}{self.converted_file}')
 
-        self.copy(f'{self.source_doc_folder}{source_file}',
-                  f'{path_to_folder}{source_file}')
+            self.copy(f'{self.source_doc_folder}{self.source_file}',
+                      f'{path_to_folder}{self.source_file}')
+        else:
+            logger.debug(f'Filename is not found')
 
     def create_project_dirs(self):
         print('\n')

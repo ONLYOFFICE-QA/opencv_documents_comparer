@@ -25,9 +25,9 @@ class PowerPoint:
         self.helper = Helper(source_extension, converted_extension)
         self.check_errors = CheckErrors()
         self.coordinate = []
+        self.slide_count = None
         self.shell = Dispatch("WScript.Shell")
         self.click = self.helper.click
-        self.file_name_for_log = ''
         logger.info(f'The {source_extension}_{converted_extension} comparison on version: {version} is running.')
 
     def prepare_windows(self):
@@ -76,18 +76,17 @@ class PowerPoint:
                     self.check_errors.errors.clear()
 
     def opener_power_point(self, path_for_open, file_name):
-        error_processing = Process(target=self.check_errors.run_get_errors_pp, args=(self.file_name_for_log,))
+        error_processing = Process(target=self.check_errors.run_get_errors_pp, args=(self.helper.converted_file,))
         error_processing.start()
         presentation = Dispatch("PowerPoint.application")
         try:
             presentation = presentation.Presentations.Open(f'{path_for_open}{file_name}')
-            slide_count = len(presentation.Slides)
-            print(f"[bold blue]Number of Slides[/bold blue]:{slide_count}")
-            return slide_count
+            self.slide_count = len(presentation.Slides)
+            print(f"[bold blue]Number of Slides[/bold blue]:{self.slide_count}")
 
         except Exception:
-            logger.error(f'Exception while opening presentation. {self.file_name_for_log}')
-            return 'None'
+            logger.error(f'Exception while opening presentation. {self.helper.converted_file}')
+            self.slide_count = None
 
         finally:
             error_processing.terminate()
@@ -97,13 +96,13 @@ class PowerPoint:
         try:
             presentation.close()
         except Exception:
-            logger.debug(f'Exception while closing presentation. {self.file_name_for_log}')
+            logger.debug(f'Exception while closing presentation. {self.helper.converted_file}')
         finally:
             os.system("taskkill /im  POWERPNT.EXE")
 
     # opens the document
     # takes a screenshot by coordinates
-    def get_screenshot(self, path_to_save_screen, file_name, slide_count):
+    def get_screenshot(self, path_to_save_screen, file_name):
         self.helper.run(self.helper.tmp_dir_in_test, file_name, self.helper.power_point)
         sleep(wait_for_opening)
         # check errors
@@ -118,7 +117,7 @@ class PowerPoint:
 
             self.prepare_windows()
             page_num = 1
-            for page in range(slide_count):
+            for page in range(self.slide_count):
                 CompareImage.grab_coordinate(path_to_save_screen, page_num, coordinate)
                 pg.press('pgdn')
                 sleep(wait_for_press)
@@ -126,51 +125,43 @@ class PowerPoint:
             os.system("taskkill /im  POWERPNT.EXE")
 
     def run_compare_pp(self, list_of_files):
-        for converted_file in list_of_files:
-            if converted_file.endswith((".pptx", ".PPTX")):
-                source_file, tmp_name_converted_file, \
-                tmp_name_source_file, tmp_name = self.helper.preparing_files_for_test(converted_file,
-                                                                                      converted_extension,
-                                                                                      source_extension)
-                self.file_name_for_log = converted_file
+        for self.helper.converted_file in list_of_files:
+            if self.helper.converted_file.endswith((".pptx", ".PPTX")):
+                self.helper.preparing_files_for_test()
 
-                print(f'[bold green]In test[/bold green] {converted_file}')
-                slide_count = self.opener_power_point(self.helper.tmp_dir_in_test, tmp_name)
+                print(f'[bold green]In test[/bold green] {self.helper.converted_file}')
+                self.opener_power_point(self.helper.tmp_dir_in_test, self.helper.tmp_name)
 
-                if slide_count != 'None':
+                if self.slide_count is not None:
                     self.get_screenshot(self.helper.tmp_dir_converted_image,
-                                        tmp_name_converted_file,
-                                        slide_count)
+                                        self.helper.tmp_name_converted_file)
 
                     if self.check_errors.errors \
                             and self.check_errors.errors[0] == "#32770" \
                             and self.check_errors.errors[1] == "Microsoft PowerPoint":
 
                         logger.error(f"'an error has occurred while opening the file'. "
-                                     f"Copied files: {converted_file} and {source_file} to 'untested'")
+                                     f"Copied files: {self.helper.converted_file} "
+                                     f"and {self.helper.source_file} to 'untested'")
 
                         pg.press('enter')
                         os.system("taskkill /t /f /im  POWERPNT.EXE")
-                        self.helper.copy_to_folder(converted_file,
-                                                   source_file,
-                                                   self.helper.untested_folder)
+                        self.helper.copy_to_folder(self.helper.untested_folder)
                         self.check_errors.errors.clear()
                     elif not self.check_errors.errors:
-                        print(f'[bold green]In test[/bold green] {source_file}')
+                        print(f'[bold green]In test[/bold green] {self.helper.source_file}')
                         self.get_screenshot(self.helper.tmp_dir_source_image,
-                                            tmp_name_source_file,
-                                            slide_count)
+                                            self.helper.tmp_name_source_file)
 
-                        CompareImage(converted_file, self.helper)
+                        CompareImage(self.helper)
                     else:
-                        logger.debug(f"Error message: {self.check_errors.errors} Filename: {converted_file}")
+                        logger.debug(
+                            f"Error message: {self.check_errors.errors} Filename: {self.helper.converted_file}")
 
                 else:
-                    logger.error(f"Can't open {source_file}. Copied files"
+                    logger.error(f"Can't open {self.helper.source_file}. Copied files"
                                  " to 'failed_to_open_file'")
 
-                    self.helper.copy_to_folder(converted_file,
-                                               source_file,
-                                               self.helper.failed_source)
+                    self.helper.copy_to_folder(self.helper.failed_source)
 
             self.helper.tmp_cleaner()
