@@ -26,6 +26,7 @@ class Excel:
         self.coordinate = []
         self.click = self.helper.click
         self.file_name_for_log = ''
+        self.shell = Dispatch("WScript.Shell")
         logger.info(f'The {source_extension}_{converted_extension} comparison on version: {version} is running.')
 
     def get_excel_statistic(self, wb):
@@ -46,7 +47,8 @@ class Excel:
             return statistics_exel
 
         except Exception:
-            logger.error(f'Failed to get full statistics excel from file: {self.file_name_for_log}')
+            logger.error(f'\nFailed to get full statistics excel from file: {self.file_name_for_log}\n '
+                         f'statistics: {statistics_exel}')
             return statistics_exel
 
     def opener_excel(self, path_for_open, file_name):
@@ -54,7 +56,7 @@ class Excel:
         error_processing.start()
         try:
             xl = Dispatch("Excel.Application")
-            xl.Visible = False  # otherwise excel is hidden
+            xl.Visible = False
             wb = xl.Workbooks.Open(f'{path_for_open}{file_name}')
             statistics_excel = self.get_excel_statistic(wb)
             wb.Close(False)
