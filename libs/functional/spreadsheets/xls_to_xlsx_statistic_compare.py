@@ -53,21 +53,28 @@ class Excel:
         error_processing = Process(target=self.check_errors.run_get_error_exel, args=(self.helper.converted_file,))
         error_processing.start()
         try:
-            xl = Dispatch("Excel.Application")
-            xl.Visible = False
-            wb = xl.Workbooks.Open(f'{self.helper.tmp_dir_in_test}{file_name}')
-            self.get_excel_statistic(wb)
-            wb.Close(False)
-            xl.Quit()
-
+            excel = Dispatch("Excel.Application")
+            excel.Visible = False
+            workbooks = excel.Workbooks.Open(f'{self.helper.tmp_dir_in_test}{file_name}')
+            self.get_excel_statistic(workbooks)
+            self.close_opener_excel(excel, workbooks)
         except Exception:
             error = traceback.format_exc()
             logger.error(f'{error} happened while opening file: {self.helper.converted_file}')
             self.statistics_excel = None
 
         finally:
-            os.system("taskkill /t /im  EXCEL.EXE")
             error_processing.terminate()
+
+    def close_opener_excel(self, excel, workbooks):
+        try:
+            workbooks.Close(False)
+            excel.Quit()
+        except Exception:
+            error = traceback.format_exc()
+            logger.error(f'{error} happened while closing file: {self.helper.converted_file}')
+        finally:
+            os.system("taskkill /t /im  EXCEL.EXE")
 
     def run_compare_excel_statistic(self, list_of_files):
         with io.open('./report.csv', 'w', encoding="utf-8") as csvfile:
