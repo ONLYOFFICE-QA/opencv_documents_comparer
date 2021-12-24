@@ -13,14 +13,11 @@ from libs.helpers.helper import *
 
 class CompareImage:
 
-    def __init__(self, converted_file, helper, koff=98):
+    def __init__(self, helper, koff=98):
         self.koff = koff
         self.helper = helper
-        self.converted_file = converted_file
         self.screen_folder = 'screen'
-        self.source_file = converted_file.replace(f'.{self.helper.converted_extension}',
-                                                  f'.{self.helper.source_extension}')
-        self.folder_name = converted_file.replace(f'.{converted_file.split(".")[-1]}', '')
+        self.folder_name = self.helper.converted_file.replace(f'.{self.helper.converted_file.split(".")[-1]}', '')
         self.folder_name = re.sub(r"^\s+|\n|\r|\s|\s+$", '', self.folder_name)
         Helper.create_dir(f'{self.helper.passed}{self.folder_name}')
         Helper.create_dir(f'{self.helper.passed}{self.folder_name}/{self.screen_folder}')
@@ -40,11 +37,10 @@ class CompareImage:
 
             else:
                 logger.error(f'Image {image_name} not found, '
-                             f'copied file {self.converted_file} and {self.source_file} to "Untested"')
+                             f'copied file {self.helper.converted_file.converted_file} '
+                             f'and {self.helper.converted_file.source_file} to "Untested"')
 
-                self.helper.copy_to_folder(self.converted_file,
-                                           self.source_file,
-                                           self.helper.untested_folder)
+                self.helper.copy_to_folder(self.helper.untested_folder)
 
         self.helper.delete(f'{self.helper.tmp_dir_converted_image}*')
         self.helper.delete(f'{self.helper.tmp_dir_source_image}*')
@@ -56,7 +52,7 @@ class CompareImage:
         before_full = cv2.imread(image_before_conversion)
         after_full = cv2.imread(image_after_conversion)
 
-        if self.converted_file.endswith((".xlsx", ".XLSX")):
+        if self.helper.converted_file.endswith((".xlsx", ".XLSX")):
             after, before, similarity = self.find_difference(after_full, before_full)
             pass
         else:
@@ -68,7 +64,7 @@ class CompareImage:
                 after, before, similarity = self.find_difference(after_full, before_full)
                 pass
 
-        print(f"[bold blue]{self.converted_file}[/bold blue] Sheet: {sheet} "
+        print(f"[bold blue]{self.helper.converted_file}[/bold blue] Sheet: {sheet} "
               f"[bold blue]similarity[/bold blue]: {similarity}")
 
         before = self.put_text(before, f'Before sheet {sheet}. Similarity {round(similarity, 3)}%')
@@ -96,8 +92,7 @@ class CompareImage:
         self.helper.create_dir(f'{self.helper.differences_compare_image}{self.folder_name}')
         self.helper.create_dir(f'{self.helper.differences_compare_image}{self.folder_name}/gif/')
         self.helper.create_dir(f'{self.helper.differences_compare_image}{self.folder_name}/{self.screen_folder}')
-        self.helper.copy_to_folder(self.converted_file, self.source_file,
-                                   f'{self.helper.differences_compare_image}{self.folder_name}/')
+        self.helper.copy_to_folder(f'{self.helper.differences_compare_image}{self.folder_name}/')
         cv2.imwrite(
             f'{self.helper.differences_compare_image}{self.folder_name}/{self.screen_folder}/'
             f'{image_name}_collage.png',
