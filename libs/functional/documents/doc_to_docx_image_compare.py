@@ -36,7 +36,7 @@ class WordCompareImg(Word):
         win32gui.EnumWindows(self.check_errors.get_windows_title, self.check_errors.errors)
         if self.check_errors.errors:
             self.check_errors.errors.clear()
-            error_processing = Process(target=self.check_errors.run_get_errors_word, args=(self.file_name_for_log,))
+            error_processing = Process(target=self.check_errors.run_get_errors_word, args=(self.helper.converted_file,))
             error_processing.start()
             sleep(7)
             error_processing.terminate()
@@ -56,8 +56,8 @@ class WordCompareImg(Word):
 
     # opens the document
     # takes a screenshot by coordinates
-    def get_screenshots(self, tmp_file_name, path_to_save_screen, num_of_sheets):
-        self.helper.run(self.helper.tmp_dir_in_test, tmp_file_name, 'WINWORD.EXE')
+    def get_screenshots(self, path_to_save_screen, file_name):
+        self.helper.run(self.helper.tmp_dir_in_test, file_name, 'WINWORD.EXE')
         sleep(wait_for_opening)
         self.check_error()
 
@@ -70,7 +70,7 @@ class WordCompareImg(Word):
 
         self.prepare_word_windows()
         page_num = 1
-        for page in range(int(num_of_sheets)):
+        for page in range(int(self.statistics_word['num_of_sheets'])):
             CompareImage.grab_coordinate(path_to_save_screen, page_num, coordinate)
             pg.press('pgdn')
             sleep(wait_for_press)
@@ -79,44 +79,33 @@ class WordCompareImg(Word):
         os.system("taskkill /t /im  WINWORD.EXE")
 
     def run_compare_word(self, list_of_files):
-        for converted_file in list_of_files:
-            if converted_file.endswith((".docx", ".DOCX")):
-                source_file, tmp_name_converted_file, \
-                tmp_name_source_file, tmp_name = self.helper.preparing_files_for_test(converted_file,
-                                                                                      converted_extension,
-                                                                                      source_extension)
-                if converted_file == 'Integrated ICT for development' \
-                                     ' program Recommendations for ' \
-                                     'USAID Macedonia focused on ' \
-                                     'education and workforce training.docx':
-                    converted_file = 'IntegratedICTfordevelopment_renamed.docx'
+        for self.helper.converted_file in list_of_files:
+            if self.helper.converted_file.endswith((".docx", ".DOCX")):
+                self.helper.preparing_files_for_test()
 
-                self.file_name_for_log = converted_file
+                if self.helper.converted_file == 'Integrated ICT for development' \
+                                                 ' program Recommendations for ' \
+                                                 'USAID Macedonia focused on ' \
+                                                 'education and workforce training.docx':
+                    self.helper.converted_file = 'IntegratedICTfordevelopment_renamed.docx'
 
-                print(f'[bold green]In test[/bold green] {converted_file}')
-                num_of_sheets = self.word_opener(f'{self.helper.tmp_dir_in_test}{tmp_name}')
+                print(f'[bold green]In test[/bold green] {self.helper.converted_file}')
+                self.word_opener(self.helper.tmp_name)
 
-                if num_of_sheets != {}:
-                    num_of_sheets = num_of_sheets['num_of_sheets']
-                    print(f"[bold blue]Number of pages:[/bold blue] {num_of_sheets}")
-                    self.get_screenshots(tmp_name_converted_file,
-                                         self.helper.tmp_dir_converted_image,
-                                         num_of_sheets)
+                if self.statistics_word is not None:
+                    print(f"[bold blue]Number of pages:[/bold blue] {self.statistics_word['num_of_sheets']}")
+                    self.get_screenshots(self.helper.tmp_dir_converted_image, self.helper.tmp_name_converted_file)
 
-                    print(f'[bold green]In test[/bold green] {source_file}')
-                    self.get_screenshots(tmp_name_source_file,
-                                         self.helper.tmp_dir_source_image,
-                                         num_of_sheets)
+                    print(f'[bold green]In test[/bold green] {self.helper.source_file}')
+                    self.get_screenshots(self.helper.tmp_dir_source_image, self.helper.tmp_name_source_file)
 
-                    CompareImage(converted_file, self.helper)
+                    CompareImage(self.helper)
 
-                elif num_of_sheets == {}:
-                    logger.error(f"Can't get number of pages in {source_file}. Copied files "
+                elif self.statistics_word is None:
+                    logger.error(f"Can't get number of pages in {self.helper.source_file}. Copied files "
                                  "to 'failed_to_open_file'")
-                    self.helper.copy_to_folder(converted_file,
-                                               source_file,
-                                               self.helper.failed_source)
+                    self.helper.copy_to_folder(self.helper.failed_source)
                 else:
-                    logger.debug(f"Debug. Num of sheets: {num_of_sheets}")
+                    logger.debug(f"Debug. Statistics word: {self.statistics_word}")
 
             self.helper.tmp_cleaner()
