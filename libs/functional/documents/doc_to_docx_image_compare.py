@@ -54,12 +54,26 @@ class WordCompareImg(Word):
         pg.moveTo(100, 0)
         sleep(1)
 
-    # opens the document
-    # takes a screenshot by coordinates
-    def get_screenshots(self, path_to_save_screen, file_name):
+    def open_word_with_cmd(self, file_name):
         self.helper.run(self.helper.tmp_dir_in_test, file_name, 'WINWORD.EXE')
         sleep(wait_for_opening)
         self.check_error()
+
+    def close_word_with_cmd(self):
+        pg.hotkey('ctrl', 'z')
+        os.system("taskkill /t /im  WINWORD.EXE")
+        sleep(0.2)
+        win32gui.EnumWindows(self.check_errors.get_windows_title, self.check_errors.errors)
+        if self.check_errors.errors \
+                and self.check_errors.errors[0] == 'NUIDialog' \
+                and self.check_errors.errors[1] == "Microsoft Word":
+            pg.press('right')
+            pg.press('enter')
+            self.check_errors.errors.clear()
+
+    # opens the document
+    # takes a screenshot by coordinates
+    def get_screenshots(self, path_to_save_screen):
 
         win32gui.EnumWindows(self.get_coord_word, self.coordinate)
         coordinate = self.coordinate[0]
@@ -75,8 +89,6 @@ class WordCompareImg(Word):
             pg.press('pgdn')
             sleep(wait_for_press)
             page_num += 1
-        pg.hotkey('ctrl', 'z')
-        os.system("taskkill /t /im  WINWORD.EXE")
 
     def run_compare_word(self, list_of_files):
         for self.helper.converted_file in list_of_files:
@@ -90,14 +102,19 @@ class WordCompareImg(Word):
                     self.helper.converted_file = 'IntegratedICTfordevelopment_renamed.docx'
 
                 print(f'[bold green]In test[/bold green] {self.helper.converted_file}')
+                # Getting Statistics
                 self.word_opener(self.helper.tmp_name)
 
                 if self.statistics_word is not None:
                     print(f"[bold blue]Number of pages:[/bold blue] {self.statistics_word['num_of_sheets']}")
-                    self.get_screenshots(self.helper.tmp_dir_converted_image, self.helper.tmp_name_converted_file)
+                    self.open_word_with_cmd(self.helper.tmp_name_converted_file)
+                    self.get_screenshots(self.helper.tmp_dir_converted_image)
+                    self.close_word_with_cmd()
 
                     print(f'[bold green]In test[/bold green] {self.helper.source_file}')
-                    self.get_screenshots(self.helper.tmp_dir_source_image, self.helper.tmp_name_source_file)
+                    self.open_word_with_cmd(self.helper.tmp_name_source_file)
+                    self.get_screenshots(self.helper.tmp_dir_source_image)
+                    self.close_word_with_cmd()
 
                     CompareImage(self.helper)
 
