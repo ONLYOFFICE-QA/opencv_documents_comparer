@@ -82,7 +82,8 @@ class CheckErrors:
 
     @staticmethod
     def check_word(array_of_errors, filename):
-        logger.error(f'"{array_of_errors}" happened while opening: {filename}')
+        if not array_of_errors[1] == 'Преобразование файла':
+            logger.error(f'"{array_of_errors}" happened while opening: {filename}')
         if array_of_errors[0] == '#32770':
             if array_of_errors[1] == 'Microsoft Word':
                 pg.press('left')
