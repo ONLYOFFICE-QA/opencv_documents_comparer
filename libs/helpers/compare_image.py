@@ -37,8 +37,8 @@ class CompareImage:
 
             else:
                 logger.error(f'Image {image_name} not found, '
-                             f'copied file {self.helper.converted_file.converted_file} '
-                             f'and {self.helper.converted_file.source_file} to "Untested"')
+                             f'copied file {self.helper.converted_file} '
+                             f'and {self.helper.source_file} to "Untested"')
 
                 self.helper.copy_to_folder(self.helper.untested_folder)
 

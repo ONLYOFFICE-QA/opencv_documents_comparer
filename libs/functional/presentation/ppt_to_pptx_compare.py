@@ -100,13 +100,15 @@ class PowerPoint:
         finally:
             os.system("taskkill /im  POWERPNT.EXE")
 
-    # opens the document
-    # takes a screenshot by coordinates
-    def get_screenshot(self, path_to_save_screen, file_name):
+    def open_presentation_with_cmd(self, file_name):
         self.helper.run(self.helper.tmp_dir_in_test, file_name, self.helper.power_point)
         sleep(wait_for_opening)
         # check errors
         win32gui.EnumWindows(self.check_error, self.check_errors.errors)
+
+    # opens the document
+    # takes a screenshot by coordinates
+    def get_screenshot(self, path_to_save_screen):
         if not self.check_errors.errors:
             win32gui.EnumWindows(self.get_coord_pp, self.coordinate)
             coordinate = self.coordinate[0]
@@ -122,7 +124,18 @@ class PowerPoint:
                 pg.press('pgdn')
                 sleep(wait_for_press)
                 page_num += 1
-            os.system("taskkill /im  POWERPNT.EXE")
+
+    def close_presentation_with_cmd(self):
+        pg.hotkey('ctrl', 'z')
+        os.system("taskkill /im  POWERPNT.EXE")
+        sleep(0.2)
+        win32gui.EnumWindows(self.check_errors.get_windows_title, self.check_errors.errors)
+        if self.check_errors.errors \
+                and self.check_errors.errors[0] == 'NUIDialog':
+            pg.press('right')
+            pg.press('enter')
+            self.check_errors.errors.clear()
+        pass
 
     def run_compare_pp(self, list_of_files):
         for self.helper.converted_file in list_of_files:
@@ -133,9 +146,7 @@ class PowerPoint:
                 self.opener_power_point(self.helper.tmp_dir_in_test, self.helper.tmp_name)
 
                 if self.slide_count is not None:
-                    self.get_screenshot(self.helper.tmp_dir_converted_image,
-                                        self.helper.tmp_name_converted_file)
-
+                    self.open_presentation_with_cmd(self.helper.tmp_name_converted_file)
                     if self.check_errors.errors \
                             and self.check_errors.errors[0] == "#32770" \
                             and self.check_errors.errors[1] == "Microsoft PowerPoint":
@@ -148,15 +159,21 @@ class PowerPoint:
                         os.system("taskkill /t /f /im  POWERPNT.EXE")
                         self.helper.copy_to_folder(self.helper.untested_folder)
                         self.check_errors.errors.clear()
+
                     elif not self.check_errors.errors:
+                        self.get_screenshot(self.helper.tmp_dir_converted_image)
+                        self.close_presentation_with_cmd()
+
                         print(f'[bold green]In test[/bold green] {self.helper.source_file}')
-                        self.get_screenshot(self.helper.tmp_dir_source_image,
-                                            self.helper.tmp_name_source_file)
+                        self.open_presentation_with_cmd(self.helper.tmp_name_source_file)
+                        self.get_screenshot(self.helper.tmp_dir_source_image)
+                        self.close_presentation_with_cmd()
 
                         CompareImage(self.helper)
+
                     else:
-                        logger.debug(
-                            f"Error message: {self.check_errors.errors} Filename: {self.helper.converted_file}")
+                        logger.debug(f"Error message: {self.check_errors.errors} "
+                                     f"Filename: {self.helper.converted_file}")
 
                 else:
                     logger.error(f"Can't open {self.helper.source_file}. Copied files"
