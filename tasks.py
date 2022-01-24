@@ -6,7 +6,9 @@ from invoke import task
 from tqdm import tqdm
 
 from config import *
-from libs.functional.documents.doc_to_docx_image_compare import WordCompareImg
+from libs.functional.documents.doc_to_docx_image_compare import DocDocxCompareImg
+from libs.functional.documents.doc_to_docx_statistic_compare import DocDocxStatisticsCompare
+from libs.functional.documents.rtf_to_docx_image_compare import RtfDocxCompareImg
 from libs.functional.presentation.ppt_to_pptx_compare import PowerPoint
 from libs.functional.spreadsheets.xls_to_xlsx_image_compare import ExcelCompareImage
 from libs.helpers.compare_image import CompareImage
@@ -16,22 +18,38 @@ from libs.helpers.helper import Helper
 @task(name="doc-docx")
 def run_doc_docx(c, full=False, st=False, ls=False, df=False, cl=False):
     for execution_time in tqdm(range(1)):
-        word = WordCompareImg()
+        img_compare = DocDocxCompareImg()
         if st:
-            word.run_compare_word_statistic(os.listdir(word.helper.converted_doc_folder))
+            statistics_compare = DocDocxStatisticsCompare()
+            statistics_compare.run_compare_word_statistic(os.listdir(img_compare.helper.converted_doc_folder))
         elif full:
-            word.run_compare_word_statistic(os.listdir(word.helper.converted_doc_folder))
-            word.run_compare_word(os.listdir(word.helper.differences_statistic))
+            statistics_compare = DocDocxStatisticsCompare()
+            statistics_compare.run_compare_word_statistic(os.listdir(img_compare.helper.converted_doc_folder))
+            img_compare.run_compare_word(os.listdir(img_compare.helper.differences_statistic))
         elif ls:
-            word.run_compare_word(list_of_file_names)
+            img_compare.run_compare_word(list_of_file_names)
         elif cl:
             list_of_files = pc.paste()
             list_of_files = list_of_files.split("\n")
-            word.run_compare_word(list_of_files)
+            img_compare.run_compare_word(list_of_files)
         elif df:
-            word.run_compare_word(os.listdir(word.helper.differences_statistic))
+            img_compare.run_compare_word(os.listdir(img_compare.helper.differences_statistic))
         else:
-            word.run_compare_word(os.listdir(word.helper.converted_doc_folder))
+            img_compare.run_compare_word(os.listdir(img_compare.helper.converted_doc_folder))
+
+
+@task(name="rtf-docx")
+def run_rtf_docx(c, ls=False, cl=False):
+    for execution_time in tqdm(range(1)):
+        img_compare = RtfDocxCompareImg()
+        if ls:
+            img_compare.run_compare_rtf_docx(list_of_file_names)
+        elif cl:
+            list_of_files = pc.paste()
+            list_of_files = list_of_files.split("\n")
+            img_compare.run_compare_rtf_docx(list_of_files)
+        else:
+            img_compare.run_compare_rtf_docx(os.listdir(img_compare.word.helper.converted_doc_folder))
 
 
 @task(name="ppt-pptx")
@@ -68,7 +86,7 @@ def run_xls_xlsx(c, full=False, st=False, ls=False, cl=False):
 
 @task(name="compare")
 def full_test(c):
-    word = WordCompareImg()
+    word = DocDocxCompareImg()
     word.run_compare_word(os.listdir(word.helper.converted_doc_folder))
     power_point = PowerPoint()
     power_point.run_compare_pp(os.listdir(power_point.helper.converted_doc_folder))
