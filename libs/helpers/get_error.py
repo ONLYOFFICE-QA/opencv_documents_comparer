@@ -114,6 +114,11 @@ class CheckErrors:
         elif array_of_errors[0] == 'NUIDialog' and array_of_errors[1] == 'Microsoft Word':
             pg.press('enter')
 
+        elif array_of_errors[0] == 'NUIDialog' \
+                and array_of_errors[1] == 'Извещение системы безопасности Microsoft Word':
+            pg.press('left')
+            pg.press('enter')
+
         else:
             logger.debug(f'"New Event {array_of_errors}" happened while opening: {filename}')
 
