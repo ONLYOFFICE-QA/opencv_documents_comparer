@@ -53,7 +53,7 @@ class Helper:
         # Create loggers
         logger.remove()
         logger.add(sys.stdout)
-        logger.add(f'./logs/{source_extension}_{converted_extension}.log',
+        logger.add(f'{self.result_folder}{source_extension}_{converted_extension}_{version}.log',
                    format="{time} {level} {message}",
                    level="DEBUG",
                    rotation='5 MB',
