@@ -18,7 +18,8 @@ class CompareImage:
         self.helper = helper
         self.screen_folder = 'screen'
         self.folder_name = self.helper.converted_file.replace(f'.{self.helper.converted_file.split(".")[-1]}', '')
-        self.folder_name = re.sub(r"^\s+|\n|\r|\s|\s+$", '', self.folder_name)
+        self.folder_name = re.sub(r"^\s+|\n|\r|\.|,|-|\s|\s+$", '', self.folder_name)
+        self.folder_name = self.folder_name[:35]
         Helper.create_dir(f'{self.helper.passed}{self.folder_name}')
         Helper.create_dir(f'{self.helper.passed}{self.folder_name}/{self.screen_folder}')
         self.start_to_compare_images()

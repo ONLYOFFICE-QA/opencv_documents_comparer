@@ -21,12 +21,6 @@ class DocDocxCompareImg:
             if self.helper.converted_file.endswith((".docx", ".DOCX")):
                 self.helper.preparing_files_for_test()
 
-                if self.helper.converted_file == 'Integrated ICT for development' \
-                                                 ' program Recommendations for ' \
-                                                 'USAID Macedonia focused on ' \
-                                                 'education and workforce training.docx':
-                    self.helper.converted_file = 'IntegratedICTfordevelopment_renamed.docx'
-
                 print(f'[bold green]In test[/bold green] {self.helper.converted_file}')
                 # Getting Statistics
                 self.word.word_opener(self.helper.tmp_name)
