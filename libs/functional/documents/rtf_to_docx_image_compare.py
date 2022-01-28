@@ -8,15 +8,15 @@ from libs.helpers.compare_image import CompareImage
 from libs.helpers.helper import Helper
 
 
-class DocDocxCompareImg:
+class RtfDocxCompareImg:
+
     def __init__(self):
-        self.source_extension = 'doc'
+        self.source_extension = 'rtf'
         self.converted_extension = 'docx'
         self.helper = Helper(self.source_extension, self.converted_extension)
         self.word = Word(self.helper)
-        pass
 
-    def run_compare_word(self, list_of_files):
+    def run_compare_rtf_docx(self, list_of_files):
         for self.helper.converted_file in list_of_files:
             if self.helper.converted_file.endswith((".docx", ".DOCX")):
                 self.helper.preparing_files_for_test()

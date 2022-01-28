@@ -1,65 +1,26 @@
 # -*- coding: utf-8 -*-
+
 import csv
 import io
 import json
-import os
-from multiprocessing import Process
 
 from loguru import logger
 from rich import print
 from rich.progress import track
-from win32com.client import Dispatch
 
-from config import version
-from libs.helpers.get_error import CheckErrors
+from libs.functional.documents.word import Word
 from libs.helpers.helper import Helper
 
-source_extension = 'doc'
-converted_extension = 'docx'
 
-
-class Word:
+# comparison of statistical data doc-docx documents
+class DocDocxStatisticsCompare:
 
     def __init__(self):
-        self.helper = Helper(source_extension, converted_extension)
-        self.check_errors = CheckErrors()
-        self.coordinate = []
-        self.statistics_word = None
-        self.shell = Dispatch("WScript.Shell")
-        self.click = self.helper.click
-        logger.info(f'The {source_extension}_{converted_extension} comparison on version: {version} is running.')
-
-    def get_word_statistic(self, word_app):
-        try:
-            self.statistics_word = {
-                'num_of_sheets': f'{word_app.ComputeStatistics(2)}',
-                'number_of_lines': f'{word_app.ComputeStatistics(1)}',
-                'word_count': f'{word_app.ComputeStatistics(0)}',
-                'number_of_characters_without_spaces': f'{word_app.ComputeStatistics(3)}',
-                'number_of_characters_with_spaces': f'{word_app.ComputeStatistics(5)}',
-                'number_of_paragraph': f'{word_app.ComputeStatistics(4)}',
-            }
-
-        except Exception:
-            logger.error(f'Exception while getting statistics, {self.helper.converted_file}')
-            self.statistics_word = None
-
-    def word_opener(self, file_name_for_open):
-        error_processing = Process(target=self.check_errors.run_get_errors_word, args=(self.helper.converted_file,))
-        error_processing.start()
-        word_app = Dispatch('Word.Application')
-        word_app.Visible = False
-        try:
-            word_app = word_app.Documents.Open(f'{self.helper.tmp_dir_in_test}{file_name_for_open}', None, True)
-            self.get_word_statistic(word_app)
-            word_app.Close(False)
-
-        except Exception:
-            logger.exception(f'Exception while opening: {self.helper.converted_file}')
-
-        finally:
-            os.system("taskkill /t /im  WINWORD.EXE")
-            error_processing.terminate()
+        self.source_extension = 'doc'
+        self.converted_extension = 'docx'
+        self.helper = Helper(self.source_extension, self.converted_extension)
+        self.word = Word(self.helper)
+        pass
 
     def run_compare_word_statistic(self, list_of_files):
         with io.open('./report.csv', 'w', encoding="utf-8") as csvfile:
@@ -76,10 +37,10 @@ class Word:
                     print(f'[bold green]In test[/bold green] {self.helper.source_file} '
                           f'[bold green]and[/bold green] {self.helper.converted_file}')
 
-                    self.word_opener(f'{self.helper.tmp_name_source_file}')
-                    source_statistics = self.statistics_word
-                    self.word_opener(f'{self.helper.tmp_name_converted_file}')
-                    converted_statistics = self.statistics_word
+                    self.word.word_opener(f'{self.helper.tmp_name_source_file}')
+                    source_statistics = self.word.statistics_word
+                    self.word.word_opener(f'{self.helper.tmp_name_converted_file}')
+                    converted_statistics = self.word.statistics_word
 
                     if source_statistics is None or converted_statistics is None:
                         logger.error(f"Can't open {self.helper.source_file} "
