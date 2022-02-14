@@ -18,6 +18,8 @@ class RtfDocxCompareImg:
 
     def run_compare_rtf_docx(self, list_of_files):
         for self.helper.converted_file in list_of_files:
+            if self.helper.converted_file.endswith((".rtf", ".RTF")):
+                self.helper.converted_file = self.helper.converted_file.replace('.rtf', '.docx')
             if self.helper.converted_file.endswith((".docx", ".DOCX")):
                 self.helper.preparing_files_for_test()
 
