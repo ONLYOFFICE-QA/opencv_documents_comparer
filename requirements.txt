@@ -1,10 +1,10 @@
-opencv-python==4.5.4.60
-numpy==1.21.5
-scikit-image==0.19.1
+opencv-python==4.5.5.64
+numpy==1.22.3
+scikit-image==0.19.2
 PyAutoGUI==0.9.53
-rich==10.16.1
-tqdm==4.62.3
+rich==12.0.0
+tqdm==4.63.0
 pywin32==303
 invoke==1.6.0
 pyperclip==1.8.2
-Loguru==0.5.3
+Loguru==0.6.0
