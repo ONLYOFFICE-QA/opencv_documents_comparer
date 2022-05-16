@@ -9,7 +9,7 @@ from config import *
 from libs.functional.documents.doc_to_docx_image_compare import DocDocxCompareImg
 from libs.functional.documents.doc_to_docx_statistic_compare import DocDocxStatisticsCompare
 from libs.functional.documents.rtf_to_docx_image_compare import RtfDocxCompareImg
-from libs.functional.presentation.ppt_to_pptx_compare import PowerPoint
+from libs.functional.presentation.ppt_to_pptx_compare import PptPptxCompareImg
 from libs.functional.spreadsheets.xls_to_xlsx_image_compare import ExcelCompareImage
 from libs.helpers.compare_image import CompareImage
 from libs.helpers.helper import Helper
@@ -54,7 +54,7 @@ def run_rtf_docx(c, ls=False, cl=False):
 
 @task(name="ppt-pptx")
 def run_ppt_pptx(c, ls=False, cl=False):
-    power_point = PowerPoint()
+    power_point = PptPptxCompareImg()
     if ls:
         power_point.run_compare_pp(list_of_file_names)
     elif cl:
@@ -88,7 +88,7 @@ def run_xls_xlsx(c, full=False, st=False, ls=False, cl=False):
 def full_test(c):
     word = DocDocxCompareImg()
     word.run_compare_word(os.listdir(word.helper.converted_doc_folder))
-    power_point = PowerPoint()
+    power_point = PptPptxCompareImg()
     power_point.run_compare_pp(os.listdir(power_point.helper.converted_doc_folder))
     excel = ExcelCompareImage()
     excel.run_compare_excel_img(os.listdir(excel.helper.converted_doc_folder))
