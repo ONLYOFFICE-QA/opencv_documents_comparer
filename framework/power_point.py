@@ -11,7 +11,7 @@ from loguru import logger
 from rich import print
 from win32com.client import Dispatch
 
-from config import *
+from config import wait_for_opening, wait_for_press
 from libs.helpers.compare_image import CompareImage
 from libs.helpers.get_error import CheckErrors
 
@@ -25,8 +25,6 @@ class PowerPoint:
         self.slide_count = None
         self.shell = Dispatch("WScript.Shell")
         self.click = self.helper.click
-        logger.info(f'The {self.helper.source_extension}_{self.helper.converted_extension}'
-                    f'comparison on version: {version} is running.')
 
     def prepare_windows(self):
         self.click('libs/image_templates/excel/turn_on_content.png')

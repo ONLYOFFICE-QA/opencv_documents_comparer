@@ -6,18 +6,21 @@ import pyautogui as pg
 from loguru import logger
 from rich import print
 
-from libs.functional.presentation.libre_presentation import LibrePresentation
-from libs.functional.presentation.power_point import PowerPoint
+from config import version
+from framework.libre_presentation import LibrePresentation
+from framework.power_point import PowerPoint
 from libs.helpers.compare_image import CompareImage
 from libs.helpers.helper import Helper
 
 
-class LibreOdp:
+class OdpPptxCompare:
 
     def __init__(self):
         self.helper = Helper('odp', 'pptx')
         self.power_point = PowerPoint(self.helper)
         self.libre = LibrePresentation(self.helper)
+        logger.info(f'The {self.helper.source_extension} to {self.helper.converted_extension} '
+                    f'comparison on version: {version} is running.')
 
     def run_compare_odp_pptx(self, list_of_files):
         for self.helper.converted_file in list_of_files:
@@ -31,7 +34,7 @@ class LibreOdp:
                     self.power_point.open_presentation_with_cmd(self.helper.tmp_name_converted_file)
                     if self.power_point.check_errors.errors \
                             and self.power_point.check_errors.errors[0] == "#32770" \
-                            and self.power_point.check_errors.errors[1] == "Microsoft PptPptxCompareImg":
+                            and self.power_point.check_errors.errors[1] == "Microsoft PowerPoint":
 
                         logger.error(f"'an error has occurred while opening the file'. "
                                      f"Copied files: {self.helper.converted_file} "
@@ -51,7 +54,7 @@ class LibreOdp:
                         self.libre.get_screenshot_odp(self.helper.tmp_dir_source_image, self.power_point.slide_count)
                         self.libre.close_presentation()
 
-                        CompareImage(self.helper, libre=True)
+                        CompareImage(self.helper, odp=True)
 
                     else:
                         logger.debug(f"Error message: {self.power_point.check_errors.errors} "

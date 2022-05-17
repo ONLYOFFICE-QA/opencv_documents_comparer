@@ -13,8 +13,8 @@ from libs.helpers.helper import *
 
 class CompareImage:
 
-    def __init__(self, helper, koff=98, libre=False):
-        self.libre = libre
+    def __init__(self, helper, koff=98, odp=False):
+        self.odp = odp
         self.koff = koff
         self.helper = helper
         self.screen_folder = 'screen'
@@ -58,8 +58,8 @@ class CompareImage:
             after, before, similarity = self.find_difference(after_full, before_full)
             pass
         else:
-            if self.libre:
-                before = self.find_contours_for_libre(image_before_conversion)
+            if self.odp:
+                before = self.find_contours(image_before_conversion, odp=True)
             else:
                 before = self.find_contours(image_before_conversion)
             after = self.find_contours(image_after_conversion)
@@ -109,7 +109,7 @@ class CompareImage:
         pass
 
     @staticmethod
-    def find_contours(img):
+    def find_contours(img, odp=False):
         img_source = cv2.imread(img)
         img = cv2.cvtColor(img_source, cv2.COLOR_BGR2RGB)
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -119,21 +119,10 @@ class CompareImage:
             x, y, w, h = cv2.boundingRect(c)
             if h >= 500:
                 # to save the images
-                img = img[y:y + h, x:x + w]
-                return img
-
-    @staticmethod
-    def find_contours_for_libre(img):
-        img_source = cv2.imread(img)
-        img = cv2.cvtColor(img_source, cv2.COLOR_BGR2RGB)
-        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        _, binary = cv2.threshold(gray, 125, 255, cv2.THRESH_BINARY)
-        contours, hierarchy = cv2.findContours(binary, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-        for c in contours:
-            x, y, w, h = cv2.boundingRect(c)
-            if h >= 500:
-                # to save the images
-                img = img[y:y + h + 1, x:x + w + 1]
+                if odp:
+                    img = img[y:y + h + 1, x:x + w + 1]
+                else:
+                    img = img[y:y + h, x:x + w]
                 return img
 
     @staticmethod

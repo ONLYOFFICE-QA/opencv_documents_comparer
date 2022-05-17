@@ -5,10 +5,9 @@ from time import sleep
 import pyautogui as pg
 import win32con
 import win32gui
-from loguru import logger
 from win32com.client import Dispatch
 
-from config import *
+from config import wait_for_opening, wait_for_press
 from libs.helpers.compare_image import CompareImage
 from libs.helpers.get_error import CheckErrors
 
@@ -21,26 +20,23 @@ class LibrePresentation:
         self.coordinate = []
         self.shell = Dispatch("WScript.Shell")
         self.click = self.helper.click
-        logger.info(f'The {self.helper.source_extension}_{self.helper.converted_extension}'
-                    f'comparison on version: {version} is running.')
 
     @staticmethod
     def prepare_windows_hot_keys():
-        pg.press('alt')
-        pg.press('right', presses=2)
-        pg.press('down')
-        pg.press('enter')
-
-        pg.press('alt')
-        pg.press('right', presses=2)
-        pg.press('up', presses=2)
-        pg.press('enter')
-        pg.press('up')
-        pg.press('enter')
-        pg.hotkey('ctrl', 'a')
+        pg.press('alt', interval=0.1)
+        pg.press('right', presses=2, interval=0.1)
+        pg.press('down', interval=0.1)
+        pg.press('enter', interval=0.1)
+        pg.press('alt', interval=0.1)
+        pg.press('right', presses=2, interval=0.1)
+        pg.press('up', presses=2, interval=0.1)
+        pg.press('enter', interval=0.1)
+        pg.press('up', interval=0.1)
+        pg.press('enter', interval=0.1)
+        pg.hotkey('ctrl', 'a', interval=0.1)
         sleep(0.1)
         pg.write('100', interval=0.1)
-        pg.press('enter')
+        pg.press('enter', interval=0.1)
         sleep(0.5)
 
     def get_coord(self, hwnd, ctx):
@@ -72,16 +68,6 @@ class LibrePresentation:
         win32gui.EnumWindows(self.check_error, self.check_errors.errors)
 
     def get_screenshot_odp(self, path_to_save_screen, slide_count):
-        win32gui.EnumWindows(self.check_error, self.check_errors.errors)
-        if self.check_errors.errors:
-            if self.check_errors.errors[0] == 'SALFRAME' and self.check_errors.errors[1] == 'Восстановление документа LibreOffice 7.2':
-                pg.press('tab', interval=0.05)
-                pg.press('right', interval=0.05)
-                pg.press('enter', interval=0.05)
-                pg.press('left', interval=0.05)
-                pg.press('enter', interval=0.05)
-                sleep(1)
-
         win32gui.EnumWindows(self.get_coord, self.coordinate)
         coordinate = self.coordinate[0]
         coordinate = (coordinate[0] + 350,

@@ -5,7 +5,8 @@ import pyautogui as pg
 from loguru import logger
 from rich import print
 
-from libs.functional.presentation.power_point import PowerPoint
+from config import version
+from framework.power_point import PowerPoint
 from libs.helpers.compare_image import CompareImage
 from libs.helpers.helper import Helper
 
@@ -15,6 +16,8 @@ class PptPptxCompareImg:
     def __init__(self):
         self.helper = Helper('ppt', 'pptx')
         self.power_point = PowerPoint(self.helper)
+        logger.info(f'The {self.helper.source_extension} to {self.helper.converted_extension} '
+                    f'comparison on version: {version} is running.')
 
     def run_compare_pp(self, list_of_files):
         for self.helper.converted_file in list_of_files:

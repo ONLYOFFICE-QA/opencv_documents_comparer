@@ -9,7 +9,7 @@ from config import *
 from libs.functional.documents.doc_to_docx_image_compare import DocDocxCompareImg
 from libs.functional.documents.doc_to_docx_statistic_compare import DocDocxStatisticsCompare
 from libs.functional.documents.rtf_to_docx_image_compare import RtfDocxCompareImg
-from libs.functional.presentation.odp_to_pptx_compare import LibreOdp
+from libs.functional.presentation.odp_to_pptx_compare import OdpPptxCompare
 from libs.functional.presentation.ppt_to_pptx_compare import PptPptxCompareImg
 from libs.functional.spreadsheets.xls_to_xlsx_image_compare import ExcelCompareImage
 from libs.helpers.compare_image import CompareImage
@@ -68,15 +68,15 @@ def run_ppt_pptx(c, ls=False, cl=False):
 
 @task(name="odp-pptx")
 def run_odp_pptx(c, ls=False, cl=False):
-    power_point = LibreOdp()
+    comparer = OdpPptxCompare()
     if ls:
-        power_point.run_compare_odp_pptx(list_of_file_names)
+        comparer.run_compare_odp_pptx(list_of_file_names)
     elif cl:
         list_of_files = pc.paste()
         list_of_files = list_of_files.split("\n")
-        power_point.run_compare_odp_pptx(list_of_files)
+        comparer.run_compare_odp_pptx(list_of_files)
     else:
-        power_point.run_compare_odp_pptx(os.listdir(power_point.helper.converted_doc_folder))
+        comparer.run_compare_odp_pptx(os.listdir(comparer.helper.converted_doc_folder))
 
 
 @task(name="xls_xlsx")
