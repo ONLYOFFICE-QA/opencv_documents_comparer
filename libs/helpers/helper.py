@@ -24,7 +24,8 @@ class Helper:
         self.tmp_name_source_file = None
         self.tmp_name = None
 
-        self.ms_office = 'C:/Program Files (x86)/Microsoft Office/root/Office16/'
+        self.ms_office = ms_office
+        self.libre_office = libre_office
         self.word = 'WINWORD.EXE'
         self.power_point = 'POWERPNT.EXE'
         self.exel = 'EXCEL.EXE'
@@ -83,16 +84,25 @@ class Helper:
                 return name
 
     def preparing_files_for_test(self):
-        self.source_file = self.converted_file.replace(f'.{self.converted_extension}', f'.{self.source_extension}')
-        self.tmp_name_converted_file = self.random_name(self.tmp_dir_in_test, self.converted_extension)
+        self.source_file = self.converted_file.replace(f'.{self.converted_extension}',
+                                                       f'.{self.source_extension}')
+
+        self.tmp_name_converted_file = self.random_name(self.tmp_dir_in_test,
+                                                        self.converted_extension)
 
         self.tmp_name_source_file = self.tmp_name_converted_file.replace(f'.{self.converted_extension}',
                                                                          f'.{self.source_extension}')
 
-        self.tmp_name = self.random_name(self.tmp_dir_in_test, self.source_extension)
+        if self.source_extension != 'odp':
+            self.tmp_name = self.random_name(self.tmp_dir_in_test, self.source_extension)
+        else:
+            self.tmp_name = self.random_name(self.tmp_dir_in_test, self.converted_extension)
 
-        self.copy(f'{self.source_doc_folder}{self.source_file}',
-                  f'{self.tmp_dir_in_test}{self.tmp_name}')
+        if self.source_extension != 'odp':
+            self.copy(f'{self.source_doc_folder}{self.source_file}', f'{self.tmp_dir_in_test}{self.tmp_name}')
+        else:
+            self.copy(f'{self.converted_doc_folder}{self.converted_file}', f'{self.tmp_dir_in_test}{self.tmp_name}')
+
         self.copy(f'{self.converted_doc_folder}{self.converted_file}',
                   f'{self.tmp_dir_in_test}{self.tmp_name_converted_file}')
         self.copy(f'{self.source_doc_folder}{self.source_file}',
@@ -123,6 +133,9 @@ class Helper:
 
     def run(self, path, file_name, office):
         sb.Popen([f"{self.ms_office}{office}", '-t', f"{path}{file_name}"])
+
+    def run_libre_with_cmd(self, path, file_name):
+        sb.Popen([f"{self.libre_office}\simpress.exe", '-o', f"{path}{file_name}"])
 
     def tmp_cleaner(self):
         os.system("taskkill /t /f /im  WINWORD.EXE")
