@@ -8,6 +8,7 @@ Script to open and compare documents in MS Office
 
 * Python 3.10
 * MS Office 2019
+* LibreOffice Community Version: 7.3.0.3
 
 ## Installing Python Libraries
 
@@ -16,7 +17,7 @@ pip install -r requirements.txt
 ## Getting Started
 
 * MS office settings
-  * Turn on the dark theme in ms office
+  * Turn on the dark theme in ms office and in LibreOffice
   * In MS PowerPoint change
     ```Options\Advanced\Display\Open all documents using this views```
     on ```Normal - slide only```
@@ -72,3 +73,11 @@ pip install -r requirements.txt
 ```invoke xls-xlsx --ls``` - To compare images by file names from the array in "config.py"
 
 ```invoke xls-xlsx --cl``` - To compare images by file names from the clipboard
+
+#### Compare odp to pptx
+
+```invoke odp-pptx``` - To compare images by file names from "converted_doc_folder"
+
+```invoke odp-pptx --ls``` - To compare images by file names from the array in "config.py"
+
+```invoke odp-pptx --cl``` - To compare images by file names from the clipboard

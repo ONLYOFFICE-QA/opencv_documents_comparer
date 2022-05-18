@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 import os
 
 import pyautogui as pg
@@ -6,20 +7,22 @@ from loguru import logger
 from rich import print
 
 from config import version
+from framework.libre_presentation import LibrePresentation
 from framework.power_point import PowerPoint
 from libs.helpers.compare_image import CompareImage
 from libs.helpers.helper import Helper
 
 
-class PptPptxCompareImg:
+class OdpPptxCompare:
 
     def __init__(self):
-        self.helper = Helper('ppt', 'pptx')
+        self.helper = Helper('odp', 'pptx')
         self.power_point = PowerPoint(self.helper)
+        self.libre = LibrePresentation(self.helper)
         logger.info(f'The {self.helper.source_extension} to {self.helper.converted_extension} '
                     f'comparison on version: {version} is running.')
 
-    def run_compare_pp(self, list_of_files):
+    def run_compare_odp_pptx(self, list_of_files):
         for self.helper.converted_file in list_of_files:
             if self.helper.converted_file.endswith((".pptx", ".PPTX")):
                 self.helper.preparing_files_for_test()
@@ -31,7 +34,7 @@ class PptPptxCompareImg:
                     self.power_point.open_presentation_with_cmd(self.helper.tmp_name_converted_file)
                     if self.power_point.check_errors.errors \
                             and self.power_point.check_errors.errors[0] == "#32770" \
-                            and self.power_point.check_errors.errors[1] == "Microsoft PptPptxCompareImg":
+                            and self.power_point.check_errors.errors[1] == "Microsoft PowerPoint":
 
                         logger.error(f"'an error has occurred while opening the file'. "
                                      f"Copied files: {self.helper.converted_file} "
@@ -47,11 +50,11 @@ class PptPptxCompareImg:
                         self.power_point.close_presentation_with_cmd()
 
                         print(f'[bold green]In test[/] {self.helper.source_file}')
-                        self.power_point.open_presentation_with_cmd(self.helper.tmp_name_source_file)
-                        self.power_point.get_screenshot(self.helper.tmp_dir_source_image)
-                        self.power_point.close_presentation_with_cmd()
+                        self.libre.open_presentation_with_cmd(self.helper.tmp_name_source_file)
+                        self.libre.get_screenshot_odp(self.helper.tmp_dir_source_image, self.power_point.slide_count)
+                        self.libre.close_presentation()
 
-                        CompareImage(self.helper)
+                        CompareImage(self.helper, odp=True)
 
                     else:
                         logger.debug(f"Error message: {self.power_point.check_errors.errors} "

@@ -13,7 +13,8 @@ from libs.helpers.helper import *
 
 class CompareImage:
 
-    def __init__(self, helper, koff=98):
+    def __init__(self, helper, koff=98, odp=False):
+        self.odp = odp
         self.koff = koff
         self.helper = helper
         self.screen_folder = 'screen'
@@ -57,8 +58,12 @@ class CompareImage:
             after, before, similarity = self.find_difference(after_full, before_full)
             pass
         else:
-            before = self.find_contours(image_before_conversion)
+            if self.odp:
+                before = self.find_contours(image_before_conversion, odp=True)
+            else:
+                before = self.find_contours(image_before_conversion)
             after = self.find_contours(image_after_conversion)
+
             try:
                 after, before, similarity = self.find_difference(after, before)
             except Exception:
@@ -104,7 +109,7 @@ class CompareImage:
         pass
 
     @staticmethod
-    def find_contours(img):
+    def find_contours(img, odp=False):
         img_source = cv2.imread(img)
         img = cv2.cvtColor(img_source, cv2.COLOR_BGR2RGB)
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -114,7 +119,10 @@ class CompareImage:
             x, y, w, h = cv2.boundingRect(c)
             if h >= 500:
                 # to save the images
-                img = img[y:y + h, x:x + w]
+                if odp:
+                    img = img[y:y + h + 1, x:x + w + 1]
+                else:
+                    img = img[y:y + h, x:x + w]
                 return img
 
     @staticmethod
