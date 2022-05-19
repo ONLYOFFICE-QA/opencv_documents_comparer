@@ -12,30 +12,32 @@ from libs.functional.documents.rtf_to_docx_image_compare import RtfDocxCompareIm
 from libs.functional.presentation.odp_to_pptx_compare import OdpPptxCompare
 from libs.functional.presentation.ppt_to_pptx_compare import PptPptxCompareImg
 from libs.functional.spreadsheets.xls_to_xlsx_image_compare import ExcelCompareImage
-from libs.helpers.compare_image import CompareImage
-from libs.helpers.helper import Helper
 
 
 @task(name="doc-docx")
 def run_doc_docx(c, full=False, st=False, ls=False, df=False, cl=False):
     for execution_time in tqdm(range(1)):
-        img_compare = DocDocxCompareImg()
         if st:
             statistics_compare = DocDocxStatisticsCompare()
-            statistics_compare.run_compare_word_statistic(os.listdir(img_compare.helper.converted_doc_folder))
+            statistics_compare.run_compare_word_statistic(os.listdir(statistics_compare.helper.converted_doc_folder))
         elif full:
+            img_compare = DocDocxCompareImg()
             statistics_compare = DocDocxStatisticsCompare()
             statistics_compare.run_compare_word_statistic(os.listdir(img_compare.helper.converted_doc_folder))
             img_compare.run_compare_word(os.listdir(img_compare.helper.differences_statistic))
         elif ls:
+            img_compare = DocDocxCompareImg()
             img_compare.run_compare_word(list_of_file_names)
         elif cl:
+            img_compare = DocDocxCompareImg()
             list_of_files = pc.paste()
             list_of_files = list_of_files.split("\n")
             img_compare.run_compare_word(list_of_files)
         elif df:
+            img_compare = DocDocxCompareImg()
             img_compare.run_compare_word(os.listdir(img_compare.helper.differences_statistic))
         else:
+            img_compare = DocDocxCompareImg()
             img_compare.run_compare_word(os.listdir(img_compare.helper.converted_doc_folder))
 
 
@@ -106,10 +108,3 @@ def full_test(c):
     power_point.run_compare_pp(os.listdir(power_point.helper.converted_doc_folder))
     excel = ExcelCompareImage()
     excel.run_compare_excel_img(os.listdir(excel.helper.converted_doc_folder))
-
-
-# for test
-@task(name="cmp")
-def compare_image(c):
-    helper = Helper('doc', 'docx')
-    CompareImage('file.docx', helper)

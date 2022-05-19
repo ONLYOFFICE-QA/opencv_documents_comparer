@@ -3,18 +3,18 @@
 from loguru import logger
 from rich import print
 
-from libs.functional.documents.word import Word
+from config import version
+from framework.word import Word
 from libs.helpers.compare_image import CompareImage
 from libs.helpers.helper import Helper
 
 
 class DocDocxCompareImg:
     def __init__(self):
-        self.source_extension = 'doc'
-        self.converted_extension = 'docx'
-        self.helper = Helper(self.source_extension, self.converted_extension)
+        self.helper = Helper('doc', 'docx')
         self.word = Word(self.helper)
-        pass
+        logger.info(f'The {self.helper.source_extension} to {self.helper.converted_extension} '
+                    f'comparison on version: {version} is running.')
 
     def run_compare_word(self, list_of_files):
         for self.helper.converted_file in list_of_files:

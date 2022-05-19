@@ -10,9 +10,9 @@ import win32gui
 from loguru import logger
 from win32com.client import Dispatch
 
-from config import version, wait_for_opening, wait_for_press
+from config import wait_for_opening, wait_for_press
 from libs.helpers.compare_image import CompareImage
-from libs.helpers.get_error import CheckErrors
+from libs.helpers.error_handler import CheckErrors
 
 
 # methods for working with Word
@@ -25,8 +25,6 @@ class Word:
         self.statistics_word = None
         self.shell = Dispatch("WScript.Shell")
         self.click = self.helper.click
-        logger.info(f'The {self.helper.source_extension}_{self.helper.converted_extension} '
-                    f'comparison on version: {version} is running.')
 
     # gets the coordinates of the window
     # sets the size and position of the window
