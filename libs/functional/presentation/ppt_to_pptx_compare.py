@@ -31,7 +31,7 @@ class PptPptxCompareImg:
                     self.power_point.open_presentation_with_cmd(self.helper.tmp_name_converted_file)
                     if self.power_point.check_errors.errors \
                             and self.power_point.check_errors.errors[0] == "#32770" \
-                            and self.power_point.check_errors.errors[1] == "Microsoft PptPptxCompareImg":
+                            and self.power_point.check_errors.errors[1] == "Microsoft PowerPoint":
 
                         logger.error(f"'an error has occurred while opening the file'. "
                                      f"Copied files: {self.helper.converted_file} "
