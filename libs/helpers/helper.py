@@ -42,8 +42,8 @@ class Helper:
         self.differences_compare_image = f'{self.result_folder}differences_compare_image/'
         self.passed = f'{self.result_folder}passed/'
 
-        self.untested_folder = f'{self.result_folder}untested/'
-        self.failed_source = f'{self.result_folder}failed_to_open_file/'
+        self.untested_folder = f'{self.result_folder}failed_to_open_converted_file/'
+        self.failed_source = f'{self.result_folder}failed_to_open_source_file/'
 
         # tmp
         self.tmp_dir = self.data + 'tmp/'
