@@ -3,7 +3,8 @@
 from loguru import logger
 from rich import print
 
-from libs.functional.documents.word import Word
+from config import version
+from framework.word import Word
 from libs.helpers.compare_image import CompareImage
 from libs.helpers.helper import Helper
 
@@ -11,10 +12,10 @@ from libs.helpers.helper import Helper
 class RtfDocxCompareImg:
 
     def __init__(self):
-        self.source_extension = 'rtf'
-        self.converted_extension = 'docx'
-        self.helper = Helper(self.source_extension, self.converted_extension)
+        self.helper = Helper('rtf', 'docx')
         self.word = Word(self.helper)
+        logger.info(f'The {self.helper.source_extension} to {self.helper.converted_extension} '
+                    f'comparison on version: {version} is running.')
 
     def run_compare_rtf_docx(self, list_of_files):
         for self.helper.converted_file in list_of_files:

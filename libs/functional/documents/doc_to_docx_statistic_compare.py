@@ -8,19 +8,18 @@ from loguru import logger
 from rich import print
 from rich.progress import track
 
-from libs.functional.documents.word import Word
+from config import version
+from framework.word import Word
 from libs.helpers.helper import Helper
 
 
 # comparison of statistical data doc-docx documents
 class DocDocxStatisticsCompare:
-
     def __init__(self):
-        self.source_extension = 'doc'
-        self.converted_extension = 'docx'
-        self.helper = Helper(self.source_extension, self.converted_extension)
+        self.helper = Helper('doc', 'docx')
         self.word = Word(self.helper)
-        pass
+        logger.info(f'The {self.helper.source_extension}  to {self.helper.converted_extension} '
+                    f'comparison of statistical data on version: {version} is running.')
 
     def run_compare_word_statistic(self, list_of_files):
         with io.open('./report.csv', 'w', encoding="utf-8") as csvfile:

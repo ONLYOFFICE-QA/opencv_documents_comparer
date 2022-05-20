@@ -9,7 +9,7 @@ from win32com.client import Dispatch
 
 from config import wait_for_opening, wait_for_press
 from libs.helpers.compare_image import CompareImage
-from libs.helpers.get_error import CheckErrors
+from libs.helpers.error_handler import CheckErrors
 
 
 class LibrePresentation:

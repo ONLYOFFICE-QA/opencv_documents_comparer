@@ -45,7 +45,7 @@ class Helper:
         self.untested_folder = f'{self.result_folder}untested/'
         self.failed_source = f'{self.result_folder}failed_to_open_file/'
 
-        # static tmp
+        # tmp
         self.tmp_dir = self.data + 'tmp/'
         self.tmp_dir_converted_image = self.tmp_dir + 'converted_image/'
         self.tmp_dir_source_image = self.tmp_dir + 'source_image/'

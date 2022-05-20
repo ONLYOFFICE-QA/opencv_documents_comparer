@@ -11,7 +11,7 @@ from rich.progress import track
 from win32com.client import Dispatch
 
 from config import version
-from libs.helpers.get_error import CheckErrors
+from libs.helpers.error_handler import CheckErrors
 from libs.helpers.helper import Helper
 
 source_extension = 'xls'
