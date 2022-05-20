@@ -30,7 +30,7 @@ class OpenerPptx:
 
                     logger.error(f"'an error has occurred while opening the file'. "
                                  f"Copied files: {self.helper.converted_file} "
-                                 f"and {self.helper.source_file} to 'untested'")
+                                 f"and {self.helper.source_file} to 'failed_to_open_converted_file'")
 
                     pg.press('enter')
                     os.system("taskkill /t /f /im  POWERPNT.EXE")
