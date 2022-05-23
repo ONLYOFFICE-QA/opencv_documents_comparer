@@ -48,6 +48,17 @@ class Word:
             sleep(7)
             error_processing.terminate()
 
+    def check_error_for_opener(self, hwnd, ctx):
+        if win32gui.IsWindowVisible(hwnd):
+            if win32gui.GetClassName(hwnd) == '#32770' \
+                    and win32gui.GetWindowText(hwnd) == "Microsoft Word":
+                self.shell.SendKeys('%')
+                win32gui.SetForegroundWindow(hwnd)
+                sleep(0.5)
+                self.check_errors.errors.clear()
+                self.check_errors.errors.append(win32gui.GetClassName(hwnd))
+                self.check_errors.errors.append(win32gui.GetWindowText(hwnd))
+
     def prepare_word_windows(self):
         self.click('libs/image_templates/word/layout.png')
         sleep(0.3)
@@ -61,6 +72,11 @@ class Word:
         pg.moveTo(100, 0)
         sleep(1)
 
+    def open_word_with_cmd_for_opener(self, file_name):
+        self.helper.run(self.helper.tmp_dir_in_test, file_name, 'WINWORD.EXE')
+        sleep(wait_for_opening)
+        win32gui.EnumWindows(self.check_error_for_opener, self.check_errors.errors)
+
     def open_word_with_cmd(self, file_name):
         self.helper.run(self.helper.tmp_dir_in_test, file_name, 'WINWORD.EXE')
         sleep(wait_for_opening)
@@ -68,6 +84,7 @@ class Word:
 
     def close_word_with_cmd(self):
         pg.hotkey('ctrl', 'z')
+        pg.press('esc')
         os.system("taskkill /t /im  WINWORD.EXE")
         sleep(0.2)
         win32gui.EnumWindows(self.check_errors.get_windows_title, self.check_errors.errors)

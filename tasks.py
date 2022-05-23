@@ -12,6 +12,7 @@ from libs.functional.documents.rtf_to_docx_image_compare import RtfDocxCompareIm
 from libs.functional.presentation.odp_to_pptx_compare import OdpPptxCompare
 from libs.functional.presentation.ppt_to_pptx_compare import PptPptxCompareImg
 from libs.functional.spreadsheets.xls_to_xlsx_image_compare import ExcelCompareImage
+from libs.openers.opener_docx_with_ms_word import OpenerDocx
 from libs.openers.opener_pptx_with_ms_power_point import OpenerPptx
 
 
@@ -114,6 +115,21 @@ def opener_pptx(c, odp=False, ppt=False):
         opener.run_opener(os.listdir(opener.helper.converted_doc_folder))
         opener = OpenerPptx('odp')
         opener.run_opener(os.listdir(opener.helper.converted_doc_folder))
+
+
+@task(name="opener_docx")
+def opener_docx(c, doc=False, rtf=False):
+    if doc:
+        opener = OpenerDocx('doc')
+        opener.run_opener_word(os.listdir(opener.helper.converted_doc_folder))
+    elif rtf:
+        opener = OpenerDocx('rtf')
+        opener.run_opener_word(os.listdir(opener.helper.converted_doc_folder))
+    else:
+        opener = OpenerDocx('doc')
+        opener.run_opener_word(os.listdir(opener.helper.converted_doc_folder))
+        opener = OpenerDocx('rtf')
+        opener.run_opener_word(os.listdir(opener.helper.converted_doc_folder))
 
 
 @task(name="compare")
