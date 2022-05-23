@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import os
-
 import pyautogui as pg
 from loguru import logger
 from rich import print
@@ -32,16 +30,17 @@ class OpenerPptx:
                                  f"Copied files: {self.helper.converted_file} "
                                  f"and {self.helper.source_file} to 'failed_to_open_converted_file'")
 
-                    pg.press('enter')
-                    os.system("taskkill /t /f /im  POWERPNT.EXE")
+                    pg.press('esc', presses=3, interval=0.2)
+                    self.power_point.close_presentation_with_hotkey()
                     self.helper.copy_to_folder(self.helper.untested_folder)
                     self.power_point.check_errors.errors.clear()
 
                 elif not self.power_point.check_errors.errors:
-                    self.power_point.close_presentation_with_cmd()
+                    self.power_point.close_presentation_with_hotkey()
 
                 else:
-                    logger.debug(f"Error message: {self.power_point.check_errors.errors} "
+                    logger.debug(f"New Error "
+                                 f"Error message: {self.power_point.check_errors.errors} "
                                  f"Filename: {self.helper.converted_file}")
                     self.helper.copy_to_folder(self.helper.failed_source)
             self.helper.tmp_cleaner()

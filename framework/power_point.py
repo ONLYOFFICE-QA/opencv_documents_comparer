@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 import os
 from multiprocessing import Process
 from time import sleep
@@ -54,6 +53,14 @@ class PowerPoint:
                 self.coordinate.clear()
                 self.coordinate.append(win32gui.GetWindowRect(hwnd))
 
+    def set_foreground_window(self, hwnd, ctx):
+        if win32gui.IsWindowVisible(hwnd):
+            if win32gui.GetClassName(hwnd) == 'PPTFrameClass':
+                win32gui.ShowWindow(hwnd, win32con.SW_NORMAL)
+                self.shell.SendKeys('%')
+                win32gui.SetForegroundWindow(hwnd)
+                pg.press('esc')
+
     # Checks the window title
     def check_error(self, hwnd, ctx):
         if win32gui.IsWindowVisible(hwnd):
@@ -101,7 +108,6 @@ class PowerPoint:
         sleep(wait_for_opening)
         # check errors
         win32gui.EnumWindows(self.check_error, self.check_errors.errors)
-        print(self.check_errors, self.check_errors.errors)
 
     # opens the document
     # takes a screenshot by coordinates
@@ -122,9 +128,10 @@ class PowerPoint:
                 sleep(wait_for_press)
                 page_num += 1
 
-    def close_presentation_with_cmd(self):
-        pg.hotkey('ctrl', 'z')
-        os.system("taskkill /im  POWERPNT.EXE")
+    def close_presentation_with_hotkey(self):
+        win32gui.EnumWindows(self.set_foreground_window, self.coordinate)
+        pg.hotkey('ctrl', 'z', interval=0.2)
+        pg.hotkey('ctrl', 'q', interval=0.2)
         sleep(0.2)
         win32gui.EnumWindows(self.check_errors.get_windows_title, self.check_errors.errors)
         if self.check_errors.errors \

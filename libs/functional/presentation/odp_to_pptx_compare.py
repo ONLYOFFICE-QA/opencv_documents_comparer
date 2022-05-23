@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-
-import os
-
 import pyautogui as pg
 from loguru import logger
 from rich import print
@@ -40,14 +37,14 @@ class OdpPptxCompare:
                                      f"Copied files: {self.helper.converted_file} "
                                      f"and {self.helper.source_file} to 'failed_to_open_converted_file'")
 
-                        pg.press('enter')
-                        os.system("taskkill /t /f /im  POWERPNT.EXE")
+                        pg.press('esc', presses=3, interval=0.2)
+                        self.power_point.close_presentation_with_hotkey()
                         self.helper.copy_to_folder(self.helper.untested_folder)
                         self.power_point.check_errors.errors.clear()
 
                     elif not self.power_point.check_errors.errors:
                         self.power_point.get_screenshot(self.helper.tmp_dir_converted_image)
-                        self.power_point.close_presentation_with_cmd()
+                        self.power_point.close_presentation_with_hotkey()
 
                         print(f'[bold green]In test[/] {self.helper.source_file}')
                         self.libre.open_presentation_with_cmd(self.helper.tmp_name_source_file)
