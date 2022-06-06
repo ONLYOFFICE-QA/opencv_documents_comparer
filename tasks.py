@@ -12,8 +12,10 @@ from libs.functional.documents.rtf_to_docx_image_compare import RtfDocxCompareIm
 from libs.functional.presentation.odp_to_pptx_compare import OdpPptxCompare
 from libs.functional.presentation.ppt_to_pptx_compare import PptPptxCompareImg
 from libs.functional.spreadsheets.xls_to_xlsx_image_compare import ExcelCompareImage
+from libs.functional.spreadsheets.xls_to_xlsx_statistic_compare import StatisticCompare
 from libs.openers.opener_docx_with_ms_word import OpenerDocx
 from libs.openers.opener_pptx_with_ms_power_point import OpenerPptx
+from libs.openers.opener_xlsx_with_ms_excell import OpenerXlsx
 
 
 @task(name="doc-docx")
@@ -86,23 +88,28 @@ def run_odp_pptx(c, ls=False, cl=False):
 @task(name="xls_xlsx")
 def run_xls_xlsx(c, full=False, st=False, ls=False, cl=False):
     for execution_time in tqdm(range(1)):
-        excel = ExcelCompareImage()
         if full:
-            excel.run_compare_excel_statistic(os.listdir(excel.helper.converted_doc_folder))
+            excel = ExcelCompareImage()
+            statistic_comparer = StatisticCompare()
+            statistic_comparer.run_compare_excel_statistic(os.listdir(excel.helper.converted_doc_folder))
             excel.run_compare_excel_img(excel.helper.differences_statistic)
         elif ls:
+            excel = ExcelCompareImage()
             excel.run_compare_excel_img(list_of_file_names)
         elif cl:
+            excel = ExcelCompareImage()
             list_of_files = pc.paste()
             list_of_files = list_of_files.split("\n")
             excel.run_compare_excel_img(list_of_files)
         elif st:
-            excel.run_compare_excel_statistic(os.listdir(excel.helper.converted_doc_folder))
+            statistic_comparer = StatisticCompare()
+            statistic_comparer.run_compare_excel_statistic(os.listdir(statistic_comparer.helper.converted_doc_folder))
         else:
+            excel = ExcelCompareImage()
             excel.run_compare_excel_img(os.listdir(excel.helper.converted_doc_folder))
 
 
-@task(name="opener_pptx")
+@task
 def opener_pptx(c, odp=False, ppt=False):
     if odp:
         opener = OpenerPptx('odp')
@@ -117,7 +124,7 @@ def opener_pptx(c, odp=False, ppt=False):
         opener.run_opener(os.listdir(opener.helper.converted_doc_folder))
 
 
-@task(name="opener_docx")
+@task
 def opener_docx(c, doc=False, rtf=False):
     if doc:
         opener = OpenerDocx('doc')
