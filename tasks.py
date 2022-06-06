@@ -139,6 +139,21 @@ def opener_docx(c, doc=False, rtf=False):
         opener.run_opener_word(os.listdir(opener.helper.converted_doc_folder))
 
 
+@task
+def opener_xlsx(c, xls=False, ods=False):
+    if xls:
+        opener = OpenerXlsx('xls')
+        opener.run_opener_xlsx(os.listdir(opener.helper.converted_doc_folder))
+    elif ods:
+        opener = OpenerXlsx('ods')
+        opener.run_opener_xlsx(os.listdir(opener.helper.converted_doc_folder))
+    else:
+        opener = OpenerXlsx('xls')
+        opener.run_opener_xlsx(os.listdir(opener.helper.converted_doc_folder))
+        opener = OpenerXlsx('ods')
+        opener.run_opener_xlsx(os.listdir(opener.helper.converted_doc_folder))
+
+
 @task(name="compare")
 def full_test(c):
     word = DocDocxCompareImg()
