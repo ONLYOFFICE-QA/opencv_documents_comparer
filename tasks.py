@@ -110,13 +110,15 @@ def run_xls_xlsx(c, full=False, st=False, ls=False, cl=False):
 
 
 @task
-def opener_pptx(c, odp=False, ppt=False):
+def opener_pptx(c, odp=False, ppt=False, ls=False):
     if odp:
         opener = OpenerPptx('odp')
-        opener.run_opener(os.listdir(opener.helper.converted_doc_folder))
+        files_array = list_of_file_names if ls else os.listdir(opener.helper.converted_doc_folder)
+        opener.run_opener(files_array)
     elif ppt:
         opener = OpenerPptx('ppt')
-        opener.run_opener(os.listdir(opener.helper.converted_doc_folder))
+        files_array = list_of_file_names if ls else os.listdir(opener.helper.converted_doc_folder)
+        opener.run_opener(files_array)
     else:
         opener = OpenerPptx('ppt')
         opener.run_opener(os.listdir(opener.helper.converted_doc_folder))
@@ -125,13 +127,15 @@ def opener_pptx(c, odp=False, ppt=False):
 
 
 @task
-def opener_docx(c, doc=False, rtf=False):
+def opener_docx(c, doc=False, rtf=False, ls=False):
     if doc:
         opener = OpenerDocx('doc')
-        opener.run_opener_word(os.listdir(opener.helper.converted_doc_folder))
+        files_array = list_of_file_names if ls else os.listdir(opener.helper.converted_doc_folder)
+        opener.run_opener_word(files_array)
     elif rtf:
         opener = OpenerDocx('rtf')
-        opener.run_opener_word(os.listdir(opener.helper.converted_doc_folder))
+        files_array = list_of_file_names if ls else os.listdir(opener.helper.converted_doc_folder)
+        opener.run_opener_word(files_array)
     else:
         opener = OpenerDocx('doc')
         opener.run_opener_word(os.listdir(opener.helper.converted_doc_folder))
@@ -140,13 +144,16 @@ def opener_docx(c, doc=False, rtf=False):
 
 
 @task
-def opener_xlsx(c, xls=False, ods=False):
+def opener_xlsx(c, xls=False, ods=False, ls=False):
     if xls:
         opener = OpenerXlsx('xls')
-        opener.run_opener_xlsx(os.listdir(opener.helper.converted_doc_folder))
+        files_array = list_of_file_names if ls else os.listdir(opener.helper.converted_doc_folder)
+        opener.run_opener_xlsx(files_array)
+
     elif ods:
         opener = OpenerXlsx('ods')
-        opener.run_opener_xlsx(os.listdir(opener.helper.converted_doc_folder))
+        files_array = list_of_file_names if ls else os.listdir(opener.helper.converted_doc_folder)
+        opener.run_opener_xlsx(files_array)
     else:
         opener = OpenerXlsx('xls')
         opener.run_opener_xlsx(os.listdir(opener.helper.converted_doc_folder))
