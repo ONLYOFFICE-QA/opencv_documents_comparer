@@ -19,6 +19,13 @@ class OpenerXlsx:
     def run_opener_xlsx(self, list_of_files):
         for self.helper.converted_file in list_of_files:
             if self.helper.converted_file.endswith((".xlsx", ".XLSX")):
+                if self.helper.converted_file in self.helper.exception_files["xlsx_files_opening_error_named_range"]:
+                    # named range https://bugzilla.onlyoffice.com/show_bug.cgi?id=52628
+                    continue
+                if self.helper.converted_file in self.helper.exception_files["xlsx_files_opening_error_shape"]:
+                    # https://bugzilla.onlyoffice.com/show_bug.cgi?id=57544
+                    continue
+
                 self.helper.preparing_files_for_test()
 
                 if self.helper.converted_file == '1000+Most+Common+Words+in+English+-+Numbers+' \

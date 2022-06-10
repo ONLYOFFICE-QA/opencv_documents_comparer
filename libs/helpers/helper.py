@@ -32,6 +32,7 @@ class Helper:
 
         self.project_folder = os.getcwd()
         self.data = self.project_folder + '/data/'
+        self.exception_files = self.read_json(f"{self.project_folder}/libs/helpers/exception_file.json")
 
         self.source_doc_folder = f'{source_doc_folder}{self.source_extension}/'
         self.converted_doc_folder = f'{converted_doc_folder}{version}_{self.source_extension}' \
@@ -62,6 +63,12 @@ class Helper:
 
         self.create_project_dirs()
         self.tmp_cleaner()
+
+    @staticmethod
+    def read_json(path_to_json):
+        with open(path_to_json) as file:
+            json_data = json.load(file)
+        return json_data
 
     @staticmethod
     def click(path):
