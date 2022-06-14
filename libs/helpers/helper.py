@@ -143,6 +143,7 @@ class Helper:
         os.system("taskkill /t /f /im  WINWORD.EXE")
         os.system("taskkill /t /f /im  POWERPNT.EXE")
         os.system("taskkill /t /f /im  EXCEL.EXE")
+        os.system("taskkill /im  soffice.bin")
         self.delete(f'{self.tmp_dir_in_test}*')
         self.delete(f'{self.tmp_dir_converted_image}*')
         self.delete(f'{self.tmp_dir_source_image}*')

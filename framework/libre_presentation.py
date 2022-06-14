@@ -53,7 +53,8 @@ class LibrePresentation:
     # Checks the window title
     def check_error(self, hwnd, ctx):
         if win32gui.IsWindowVisible(hwnd):
-            if win32gui.GetClassName(hwnd) == 'SALFRAME':
+            if win32gui.GetClassName(hwnd) == 'SALSUBFRAME' \
+                    or win32gui.GetClassName(hwnd) == '#32770':
                 win32gui.ShowWindow(hwnd, win32con.SW_NORMAL)
                 win32gui.SetForegroundWindow(hwnd)
                 sleep(0.5)
