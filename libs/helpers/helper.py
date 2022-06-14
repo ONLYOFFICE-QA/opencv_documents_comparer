@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-import json
 import os
+import json
 import random
 import shutil
 import subprocess as sb
 import sys
+import codecs
 
 import pyautogui as pg
 from loguru import logger
@@ -66,7 +67,7 @@ class Helper:
 
     @staticmethod
     def read_json(path_to_json):
-        with open(path_to_json) as file:
+        with codecs.open(path_to_json, "r", "utf_8_sig") as file:
             json_data = json.load(file)
         return json_data
 
