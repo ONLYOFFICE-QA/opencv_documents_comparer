@@ -84,6 +84,11 @@ class LibrePresentation:
             sleep(wait_for_press)
             page_num += 1
 
-    @staticmethod
-    def close_presentation():
+    def close_presentation(self):
         pg.hotkey('ctrl', 'q')
+        sleep(0.2)
+        win32gui.EnumWindows(self.check_error, self.check_errors.errors)
+        if self.check_errors.errors and self.check_errors.errors[1] == "Сохранить документ?":
+            pg.press('right')
+            pg.press('enter')
+            self.check_errors.errors.clear()
