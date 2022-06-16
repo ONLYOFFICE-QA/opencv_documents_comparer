@@ -15,6 +15,7 @@ from libs.functional.spreadsheets.xls_to_xlsx_image_compare import ExcelCompareI
 from libs.functional.spreadsheets.xls_to_xlsx_statistic_compare import StatisticCompare
 from libs.openers.opener_docx_with_ms_word import OpenerDocx
 from libs.openers.opener_odp_with_libre_office import OpenerOdp
+from libs.openers.opener_ods_with_libre_office import OpenerOds
 from libs.openers.opener_odt_with_libre_office import OpenerOdt
 from libs.openers.opener_pptx_with_ms_power_point import OpenerPptx
 from libs.openers.opener_xlsx_with_ms_excell import OpenerXlsx
@@ -175,6 +176,13 @@ def opener_odt(c, ls=False):
     opener = OpenerOdt('docx')
     files_array = list_of_file_names if ls else os.listdir(opener.helper.converted_doc_folder)
     opener.run_opener_odp(files_array)
+
+
+@task
+def opener_ods(c, ls=False):
+    opener = OpenerOds('xlsx')
+    files_array = list_of_file_names if ls else os.listdir(opener.helper.converted_doc_folder)
+    opener.run_opener_ods(files_array)
 
 
 @task(name="compare")
