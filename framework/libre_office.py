@@ -12,7 +12,7 @@ from libs.helpers.compare_image import CompareImage
 from libs.helpers.error_handler import CheckErrors
 
 
-class LibrePresentation:
+class LibreOffice:
 
     def __init__(self, helper):
         self.helper = helper
@@ -62,7 +62,7 @@ class LibrePresentation:
                 self.check_errors.errors.append(win32gui.GetClassName(hwnd))
                 self.check_errors.errors.append(win32gui.GetWindowText(hwnd))
 
-    def open_presentation_with_cmd(self, file_name):
+    def open_libre_office_with_cmd(self, file_name):
         self.helper.run_libre_with_cmd(self.helper.tmp_dir_in_test, file_name)
         sleep(wait_for_opening)
         # check errors
@@ -84,7 +84,7 @@ class LibrePresentation:
             sleep(wait_for_press)
             page_num += 1
 
-    def close_presentation(self):
+    def close_libre(self):
         pg.hotkey('ctrl', 'q')
         sleep(0.2)
         win32gui.EnumWindows(self.check_error, self.check_errors.errors)

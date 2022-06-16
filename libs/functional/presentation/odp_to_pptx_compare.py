@@ -4,7 +4,7 @@ from loguru import logger
 from rich import print
 
 from config import version
-from framework.libre_presentation import LibrePresentation
+from framework.libre_office import LibreOffice
 from framework.power_point import PowerPoint
 from libs.helpers.compare_image import CompareImage
 from libs.helpers.helper import Helper
@@ -15,7 +15,7 @@ class OdpPptxCompare:
     def __init__(self):
         self.helper = Helper('odp', 'pptx')
         self.power_point = PowerPoint(self.helper)
-        self.libre = LibrePresentation(self.helper)
+        self.libre = LibreOffice(self.helper)
         logger.info(f'The {self.helper.source_extension} to {self.helper.converted_extension} '
                     f'comparison on version: {version} is running.')
 
@@ -47,9 +47,9 @@ class OdpPptxCompare:
                         self.power_point.close_presentation_with_hotkey()
 
                         print(f'[bold green]In test[/] {self.helper.source_file}')
-                        self.libre.open_presentation_with_cmd(self.helper.tmp_name_source_file)
+                        self.libre.open_libre_office_with_cmd(self.helper.tmp_name_source_file)
                         self.libre.get_screenshot_odp(self.helper.tmp_dir_source_image, self.power_point.slide_count)
-                        self.libre.close_presentation()
+                        self.libre.close_libre()
 
                         CompareImage(self.helper, odp=True)
 
