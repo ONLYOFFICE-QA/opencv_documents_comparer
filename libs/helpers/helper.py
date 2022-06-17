@@ -46,6 +46,7 @@ class Helper:
 
         self.untested_folder = f'{self.result_folder}failed_to_open_converted_file/'
         self.failed_source = f'{self.result_folder}failed_to_open_source_file/'
+        self.opener_errors = f'{self.result_folder}opener_errors_{converted_extension}/'
 
         # tmp
         self.tmp_dir = self.data + 'tmp/'

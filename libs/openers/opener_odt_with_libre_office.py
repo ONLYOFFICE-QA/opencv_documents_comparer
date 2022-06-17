@@ -12,6 +12,7 @@ class OpenerOdt:
     def __init__(self, source_extension):
         self.helper = Helper(source_extension, 'odt')
         self.libre = LibreOffice(self.helper)
+        self.helper.create_dir(self.helper.opener_errors)
         logger.info(f'Opener {self.helper.converted_extension} with LibreOffice on version: {version} is running.')
 
     def run_opener_odp(self, list_of_files):
@@ -26,7 +27,7 @@ class OpenerOdt:
                                  f"Copied files: {self.helper.converted_file} "
                                  f"and {self.helper.source_file} to 'failed_to_open_converted_file'")
 
-                    self.helper.copy_to_folder(self.helper.untested_folder)
+                    self.helper.copy_to_folder(self.helper.opener_errors)
                     pg.press('enter')
                     self.libre.check_errors.errors.clear()
                     self.libre.close_libre()

@@ -14,6 +14,7 @@ class OpenerXlsx:
     def __init__(self, source_extension):
         self.helper = Helper(source_extension, 'xlsx')
         self.excel = Excel(self.helper)
+        self.helper.create_dir(self.helper.opener_errors)
         logger.info(f'Opener {self.helper.converted_extension} with ms Excel on version: {version} is running.')
 
     def run_opener_xlsx(self, list_of_files):
@@ -47,7 +48,7 @@ class OpenerXlsx:
 
                     pg.press('enter')
                     self.excel.close_excel()
-                    self.helper.copy_to_folder(self.helper.untested_folder)
+                    self.helper.copy_to_folder(self.helper.opener_errors)
                     self.excel.check_errors.errors.clear()
                 else:
                     logger.debug(f"Error message: {self.excel.check_errors.errors} "

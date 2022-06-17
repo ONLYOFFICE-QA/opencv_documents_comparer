@@ -12,6 +12,7 @@ class OpenerDocx:
     def __init__(self, source_extension):
         self.helper = Helper(source_extension, 'docx')
         self.word = Word(self.helper)
+        self.helper.create_dir(self.helper.opener_errors)
         logger.info(f'Opener {self.helper.converted_extension} with ms Word on version: {version} is running.')
 
     def run_opener_word(self, list_of_files):
@@ -31,7 +32,7 @@ class OpenerDocx:
 
                     pg.press('esc', presses=3, interval=0.2)
                     self.word.close_word_with_cmd()
-                    self.helper.copy_to_folder(self.helper.untested_folder)
+                    self.helper.copy_to_folder(self.helper.opener_errors)
                     self.word.check_errors.errors.clear()
                 elif not self.word.check_errors.errors:
                     self.word.close_word_with_cmd()

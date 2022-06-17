@@ -13,6 +13,7 @@ class OpenerPptx:
     def __init__(self, source_extension):
         self.helper = Helper(source_extension, 'pptx')
         self.power_point = PowerPoint(self.helper)
+        self.helper.create_dir(self.helper.opener_errors)
         logger.info(f'Opener {self.helper.converted_extension} with ms PowerPoint on version: {version} is running.')
 
     def run_opener(self, list_of_files):
@@ -32,7 +33,7 @@ class OpenerPptx:
 
                     pg.press('esc', presses=3, interval=0.2)
                     self.power_point.close_presentation_with_hotkey()
-                    self.helper.copy_to_folder(self.helper.untested_folder)
+                    self.helper.copy_to_folder(self.helper.opener_errors)
                     self.power_point.check_errors.errors.clear()
 
                 elif not self.power_point.check_errors.errors:
