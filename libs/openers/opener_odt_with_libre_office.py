@@ -22,7 +22,14 @@ class OpenerOdt:
 
                 print(f'[bold green]In test[/] {self.helper.converted_file}')
                 self.libre.open_libre_office_with_cmd(self.helper.tmp_name_converted_file)
-                if self.libre.check_errors.errors:
+                if self.libre.check_errors.errors \
+                        and self.libre.check_errors.errors[1] == "Восстановление документа LibreOffice 7.3":
+                    logger.debug("Восстановление документа LibreOffice 7.3")
+                    self.libre.close_file_recovery_window()
+                    self.libre.check_errors.errors.clear()
+
+                elif self.libre.check_errors.errors\
+                        and self.libre.check_errors.errors[1] == "Ошибка":
                     logger.error(f"'an error has occurred while opening the file'. "
                                  f"Copied files: {self.helper.converted_file} "
                                  f"and {self.helper.source_file} to 'failed_to_open_converted_file'")

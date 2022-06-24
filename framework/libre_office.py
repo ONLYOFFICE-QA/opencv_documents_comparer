@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+import os
 from time import sleep
 
 import pyautogui as pg
@@ -54,7 +54,9 @@ class LibreOffice:
     def check_error(self, hwnd, ctx):
         if win32gui.IsWindowVisible(hwnd):
             if win32gui.GetClassName(hwnd) == 'SALSUBFRAME' \
-                    or win32gui.GetClassName(hwnd) == '#32770':
+                    or win32gui.GetClassName(hwnd) == '#32770' \
+                    or win32gui.GetClassName(hwnd) == 'SALFRAME' \
+                    and win32gui.GetWindowText(hwnd) == 'Восстановление документа LibreOffice 7.3':
                 win32gui.ShowWindow(hwnd, win32con.SW_NORMAL)
                 win32gui.SetForegroundWindow(hwnd)
                 sleep(0.5)
@@ -84,11 +86,20 @@ class LibreOffice:
             sleep(wait_for_press)
             page_num += 1
 
+    @staticmethod
+    def close_file_recovery_window():
+        pg.press('tab', presses=2, interval=0.2)
+        pg.press('enter', interval=0.2)
+        pg.press('left', interval=0.2)
+        pg.press('enter', interval=0.2)
+        sleep(wait_for_opening)
+
     def close_libre(self):
         pg.hotkey('ctrl', 'q')
-        sleep(0.2)
+        sleep(0.5)
         win32gui.EnumWindows(self.check_error, self.check_errors.errors)
         if self.check_errors.errors and self.check_errors.errors[1] == "Сохранить документ?":
             pg.press('right')
             pg.press('enter')
             self.check_errors.errors.clear()
+        os.system("taskkill /im  soffice.bin")
