@@ -17,32 +17,11 @@ class OpenerOdp:
 
     def run_opener_odp(self, list_of_files):
         for self.helper.converted_file in list_of_files:
-            if self.helper.converted_file.endswith((".odp", ".ODP")):
-                self.helper.preparing_files_for_test()
-
-                print(f'[bold green]In test[/] {self.helper.converted_file}')
-                self.libre.open_libre_office_with_cmd(self.helper.tmp_name_converted_file)
-                if self.libre.check_errors.errors \
-                        and self.libre.check_errors.errors[1] == "Восстановление документа LibreOffice 7.3":
-                    logger.debug("Восстановление документа LibreOffice 7.3")
-                    self.libre.close_file_recovery_window()
-                    self.libre.check_errors.errors.clear()
-
-                elif self.libre.check_errors.errors \
-                        and self.libre.check_errors.errors[1] == "Ошибка":
-                    logger.error(f"'an error has occurred while opening the file'. "
-                                 f"Copied files: {self.helper.converted_file} "
-                                 f"and {self.helper.source_file} to 'failed_to_open_converted_file'")
-
-                    self.helper.copy_to_folder(self.helper.opener_errors)
-                    pg.press('enter')
-                    self.libre.check_errors.errors.clear()
-                    self.libre.close_libre()
-
-                elif not self.libre.check_errors.errors:
-                    self.libre.close_libre()
-
-                else:
-                    logger.debug(f"Error message: {self.libre.check_errors.errors} "
-                                 f"Filename: {self.helper.converted_file}")
+            if not self.helper.converted_file.endswith((".odp", ".ODP")):
+                continue
+            self.helper.preparing_files_for_test()
+            print(f'[bold green]In test[/] {self.helper.converted_file}')
+            self.libre.open_libre_office_with_cmd(self.helper.tmp_name_converted_file)
+            self.libre.errors_handler_when_opening()
+            self.libre.close_libre()
             self.helper.tmp_cleaner()

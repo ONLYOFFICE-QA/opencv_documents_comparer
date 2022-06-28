@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 from time import sleep
+from loguru import logger
 
 import pyautogui as pg
 import win32con
@@ -56,7 +57,8 @@ class LibreOffice:
             if win32gui.GetClassName(hwnd) == 'SALSUBFRAME' \
                     or win32gui.GetClassName(hwnd) == '#32770' \
                     or win32gui.GetClassName(hwnd) == 'SALFRAME' \
-                    and win32gui.GetWindowText(hwnd) == 'Восстановление документа LibreOffice 7.3':
+                    and win32gui.GetWindowText(hwnd) == 'Восстановление документа LibreOffice 7.3' \
+                    or win32gui.GetWindowText(hwnd) == 'Отчёт о сбое':
                 win32gui.ShowWindow(hwnd, win32con.SW_NORMAL)
                 win32gui.SetForegroundWindow(hwnd)
                 sleep(0.5)
@@ -67,8 +69,7 @@ class LibreOffice:
     def open_libre_office_with_cmd(self, file_name):
         self.helper.run_libre_with_cmd(self.helper.tmp_dir_in_test, file_name)
         sleep(wait_for_opening)
-        # check errors
-        win32gui.EnumWindows(self.check_error, self.check_errors.errors)
+        self.events_handler_when_opening()  # check events when opening
 
     def get_screenshot_odp(self, path_to_save_screen, slide_count):
         win32gui.EnumWindows(self.get_coord, self.coordinate)
@@ -86,10 +87,50 @@ class LibreOffice:
             sleep(wait_for_press)
             page_num += 1
 
+    def events_handler_when_opening(self):
+        win32gui.EnumWindows(self.check_error, self.check_errors.errors)
+        if self.check_errors.errors \
+                and self.check_errors.errors[1] == "Восстановление документа LibreOffice 7.3":
+            logger.debug(f"Восстановление документа LibreOffice 7.3 {self.helper.converted_file}")
+            self.close_file_recovery_window()
+            self.check_errors.errors.clear()
+        elif self.check_errors.errors \
+                and self.check_errors.errors[1] == 'Отчёт о сбое':
+            logger.debug(f"Отчёт о сбое {self.helper.converted_file}")
+            pg.press('esc', interval=0.5)
+            self.check_errors.errors.clear()
+            win32gui.EnumWindows(self.check_error, self.check_errors.errors)
+            if self.check_errors.errors \
+                    and self.check_errors.errors[1] == "Восстановление документа LibreOffice 7.3":
+                self.close_file_recovery_window()
+                self.check_errors.errors.clear()
+
+    def events_handler_when_closing(self):
+        win32gui.EnumWindows(self.check_error, self.check_errors.errors)
+        if self.check_errors.errors and self.check_errors.errors[1] == "Сохранить документ?":
+            pg.press('right')
+            pg.press('enter')
+            self.check_errors.errors.clear()
+
+    def errors_handler_when_opening(self):
+        win32gui.EnumWindows(self.check_error, self.check_errors.errors)
+        if self.check_errors.errors \
+                and self.check_errors.errors[1] == "Ошибка":
+            logger.error(f"'an error has occurred while opening the file'. "
+                         f"Copied files: {self.helper.converted_file} "
+                         f"and {self.helper.source_file} to 'failed_to_open_converted_file'")
+
+            self.helper.copy_to_folder(self.helper.opener_errors)
+            pg.press('enter')
+            self.check_errors.errors.clear()
+        elif self.check_errors.errors:
+            logger.debug(f"Error message: {self.check_errors.errors} "
+                         f"Filename: {self.helper.converted_file}")
+            self.check_errors.errors.clear()
+
     @staticmethod
     def close_file_recovery_window():
-        pg.press('tab', presses=2, interval=0.2)
-        pg.press('enter', interval=0.2)
+        pg.press('esc', interval=0.2)
         pg.press('left', interval=0.2)
         pg.press('enter', interval=0.2)
         sleep(wait_for_opening)
@@ -97,9 +138,5 @@ class LibreOffice:
     def close_libre(self):
         pg.hotkey('ctrl', 'q')
         sleep(0.5)
-        win32gui.EnumWindows(self.check_error, self.check_errors.errors)
-        if self.check_errors.errors and self.check_errors.errors[1] == "Сохранить документ?":
-            pg.press('right')
-            pg.press('enter')
-            self.check_errors.errors.clear()
+        self.events_handler_when_closing()  # check events when closing
         os.system("taskkill /im  soffice.bin")
