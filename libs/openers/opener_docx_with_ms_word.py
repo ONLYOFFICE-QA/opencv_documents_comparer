@@ -17,30 +17,12 @@ class OpenerDocx:
 
     def run_opener_word(self, list_of_files):
         for self.helper.converted_file in list_of_files:
-            if self.helper.converted_file.endswith((".docx", ".DOCX")):
-                self.helper.preparing_files_for_test()
+            if not self.helper.converted_file.endswith((".docx", ".DOCX")):
+                continue
+            self.helper.preparing_files_for_test()
 
-                print(f'[bold green]In test[/bold green] {self.helper.converted_file}')
-                self.word.open_word_with_cmd_for_opener(self.helper.tmp_name_converted_file)
-                if self.word.check_errors.errors \
-                        and self.word.check_errors.errors[0] == "#32770" \
-                        and self.word.check_errors.errors[1] == "Microsoft Word":
-
-                    logger.error(f"'an error has occurred while opening the file'. "
-                                 f"Copied files: {self.helper.converted_file} "
-                                 f"and {self.helper.source_file} to 'failed_to_open_converted_file'")
-
-                    pg.press('esc', presses=3, interval=0.2)
-                    self.word.close_word_with_cmd()
-                    self.helper.copy_to_folder(self.helper.opener_errors)
-                    self.word.check_errors.errors.clear()
-                elif not self.word.check_errors.errors:
-                    self.word.close_word_with_cmd()
-
-                else:
-                    logger.debug(f"New Error "
-                                 f"Error message: {self.word.check_errors.errors} "
-                                 f"Filename: {self.helper.converted_file}")
-                    self.word.close_word_with_cmd()
-                    self.helper.copy_to_folder(self.helper.failed_source)
+            print(f'[bold green]In test[/bold green] {self.helper.converted_file}')
+            self.word.open_word_with_cmd_for_opener(self.helper.tmp_name_converted_file)
+            self.word.errors_handler_when_opening()
+            self.word.close_word_with_cmd()
             self.helper.tmp_cleaner()
