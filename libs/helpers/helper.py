@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-import json
 import os
+import json
 import random
 import shutil
 import subprocess as sb
 import sys
+import codecs
 
 import pyautogui as pg
 from loguru import logger
@@ -32,6 +33,7 @@ class Helper:
 
         self.project_folder = os.getcwd()
         self.data = self.project_folder + '/data/'
+        self.exception_files = self.read_json(f"{self.project_folder}/libs/helpers/exception_file.json")
 
         self.source_doc_folder = f'{source_doc_folder}{self.source_extension}/'
         self.converted_doc_folder = f'{converted_doc_folder}{version}_{self.source_extension}' \
@@ -42,8 +44,9 @@ class Helper:
         self.differences_compare_image = f'{self.result_folder}differences_compare_image/'
         self.passed = f'{self.result_folder}passed/'
 
-        self.untested_folder = f'{self.result_folder}untested/'
-        self.failed_source = f'{self.result_folder}failed_to_open_file/'
+        self.untested_folder = f'{self.result_folder}failed_to_open_converted_file/'
+        self.failed_source = f'{self.result_folder}failed_to_open_source_file/'
+        self.opener_errors = f'{self.result_folder}opener_errors_{converted_extension}_version_{version}/'
 
         # tmp
         self.tmp_dir = self.data + 'tmp/'
@@ -62,6 +65,12 @@ class Helper:
 
         self.create_project_dirs()
         self.tmp_cleaner()
+
+    @staticmethod
+    def read_json(path_to_json):
+        with codecs.open(path_to_json, "r", "utf_8_sig") as file:
+            json_data = json.load(file)
+        return json_data
 
     @staticmethod
     def click(path):
@@ -135,6 +144,7 @@ class Helper:
         os.system("taskkill /t /f /im  WINWORD.EXE")
         os.system("taskkill /t /f /im  POWERPNT.EXE")
         os.system("taskkill /t /f /im  EXCEL.EXE")
+        os.system("taskkill /t /f /im  soffice.bin")
         self.delete(f'{self.tmp_dir_in_test}*')
         self.delete(f'{self.tmp_dir_converted_image}*')
         self.delete(f'{self.tmp_dir_source_image}*')

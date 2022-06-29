@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-import os
 
 import pyperclip as pc
 from invoke import task
 from tqdm import tqdm
+import os
 
 from config import *
 from libs.functional.documents.doc_to_docx_image_compare import DocDocxCompareImg
@@ -12,6 +12,13 @@ from libs.functional.documents.rtf_to_docx_image_compare import RtfDocxCompareIm
 from libs.functional.presentation.odp_to_pptx_compare import OdpPptxCompare
 from libs.functional.presentation.ppt_to_pptx_compare import PptPptxCompareImg
 from libs.functional.spreadsheets.xls_to_xlsx_image_compare import ExcelCompareImage
+from libs.functional.spreadsheets.xls_to_xlsx_statistic_compare import StatisticCompare
+from libs.openers.opener_docx_with_ms_word import OpenerDocx
+from libs.openers.opener_odp_with_libre_office import OpenerOdp
+from libs.openers.opener_ods_with_libre_office import OpenerOds
+from libs.openers.opener_odt_with_libre_office import OpenerOdt
+from libs.openers.opener_pptx_with_ms_power_point import OpenerPptx
+from libs.openers.opener_xlsx_with_ms_excell import OpenerXlsx
 
 
 @task(name="doc-docx")
@@ -84,20 +91,98 @@ def run_odp_pptx(c, ls=False, cl=False):
 @task(name="xls_xlsx")
 def run_xls_xlsx(c, full=False, st=False, ls=False, cl=False):
     for execution_time in tqdm(range(1)):
-        excel = ExcelCompareImage()
         if full:
-            excel.run_compare_excel_statistic(os.listdir(excel.helper.converted_doc_folder))
+            excel = ExcelCompareImage()
+            statistic_comparer = StatisticCompare()
+            statistic_comparer.run_compare_excel_statistic(os.listdir(excel.helper.converted_doc_folder))
             excel.run_compare_excel_img(excel.helper.differences_statistic)
         elif ls:
+            excel = ExcelCompareImage()
             excel.run_compare_excel_img(list_of_file_names)
         elif cl:
+            excel = ExcelCompareImage()
             list_of_files = pc.paste()
             list_of_files = list_of_files.split("\n")
             excel.run_compare_excel_img(list_of_files)
         elif st:
-            excel.run_compare_excel_statistic(os.listdir(excel.helper.converted_doc_folder))
+            statistic_comparer = StatisticCompare()
+            statistic_comparer.run_compare_excel_statistic(os.listdir(statistic_comparer.helper.converted_doc_folder))
         else:
+            excel = ExcelCompareImage()
             excel.run_compare_excel_img(os.listdir(excel.helper.converted_doc_folder))
+
+
+@task
+def opener_pptx(c, odp=False, ppt=False, ls=False):
+    if odp:
+        opener = OpenerPptx('odp')
+        files_array = list_of_file_names if ls else os.listdir(opener.helper.converted_doc_folder)
+        opener.run_opener(files_array)
+    elif ppt:
+        opener = OpenerPptx('ppt')
+        files_array = list_of_file_names if ls else os.listdir(opener.helper.converted_doc_folder)
+        opener.run_opener(files_array)
+    else:
+        opener = OpenerPptx('ppt')
+        opener.run_opener(os.listdir(opener.helper.converted_doc_folder))
+        opener = OpenerPptx('odp')
+        opener.run_opener(os.listdir(opener.helper.converted_doc_folder))
+
+
+@task
+def opener_docx(c, doc=False, rtf=False, ls=False):
+    if doc:
+        opener = OpenerDocx('doc')
+        files_array = list_of_file_names if ls else os.listdir(opener.helper.converted_doc_folder)
+        opener.run_opener_word(files_array)
+    elif rtf:
+        opener = OpenerDocx('rtf')
+        files_array = list_of_file_names if ls else os.listdir(opener.helper.converted_doc_folder)
+        opener.run_opener_word(files_array)
+    else:
+        opener = OpenerDocx('doc')
+        opener.run_opener_word(os.listdir(opener.helper.converted_doc_folder))
+        opener = OpenerDocx('rtf')
+        opener.run_opener_word(os.listdir(opener.helper.converted_doc_folder))
+
+
+@task
+def opener_xlsx(c, xls=False, ods=False, ls=False):
+    if xls:
+        opener = OpenerXlsx('xls')
+        files_array = list_of_file_names if ls else os.listdir(opener.helper.converted_doc_folder)
+        opener.run_opener_xlsx(files_array)
+
+    elif ods:
+        opener = OpenerXlsx('ods')
+        files_array = list_of_file_names if ls else os.listdir(opener.helper.converted_doc_folder)
+        opener.run_opener_xlsx(files_array)
+    else:
+        opener = OpenerXlsx('xls')
+        opener.run_opener_xlsx(os.listdir(opener.helper.converted_doc_folder))
+        opener = OpenerXlsx('ods')
+        opener.run_opener_xlsx(os.listdir(opener.helper.converted_doc_folder))
+
+
+@task
+def opener_odp(c, ls=False):
+    opener = OpenerOdp('pptx')
+    files_array = list_of_file_names if ls else os.listdir(opener.helper.converted_doc_folder)
+    opener.run_opener_odp(files_array)
+
+
+@task
+def opener_odt(c, ls=False):
+    opener = OpenerOdt('docx')
+    files_array = list_of_file_names if ls else os.listdir(opener.helper.converted_doc_folder)
+    opener.run_opener_odp(files_array)
+
+
+@task
+def opener_ods(c, ls=False):
+    opener = OpenerOds('xlsx')
+    files_array = list_of_file_names if ls else os.listdir(opener.helper.converted_doc_folder)
+    opener.run_opener_ods(files_array)
 
 
 @task(name="compare")
