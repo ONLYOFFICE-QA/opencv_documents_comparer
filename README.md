@@ -81,3 +81,22 @@ pip install -r requirements.txt
 ```invoke odp-pptx --ls``` - To compare images by file names from the array in "config.py"
 
 ```invoke odp-pptx --cl``` - To compare images by file names from the clipboard
+
+### Commands for starting openers
+
+`invoke opener-docx` - To open docx with ms Word
+
+`invoke opener-xlsx` - To open xlsx with ms Excel
+
+`invoke opener-pptx` - To open docx with ms PP
+
+`invoke opener-ods` - To open ods with LibreOffice
+
+`invoke opener-odt` - To open odt with LibreOffice
+
+`invoke opener-odp` - To open odp with LibreOffice
+
+To check the opening of a particular conversion direction,
+add a flag with the source extension. example:
+
+`invoke opener-docx --doc` - Checking document opening after doc=>docx conversion
