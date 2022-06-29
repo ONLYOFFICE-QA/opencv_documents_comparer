@@ -8,6 +8,7 @@ from time import sleep
 import win32con
 import win32gui
 import pyautogui as pg
+from rich import print
 
 from loguru import logger
 from win32com.client import Dispatch
@@ -70,10 +71,34 @@ class Excel:
         except Exception:
             pass
 
-    def close_excel(self):
-        pg.hotkey('ctrl', 'z')
-        os.system("taskkill /t /im  EXCEL.EXE")
-        sleep(0.2)
+    def open_excel_with_cmd(self, tmp_file_name):
+        self.helper.run(self.helper.tmp_dir_in_test, tmp_file_name, self.helper.exel)
+        sleep(wait_for_opening)
+
+    def errors_handler_when_opening(self):
+        win32gui.EnumWindows(self.check_error, self.check_errors.errors)
+        if self.check_errors.errors \
+                and self.check_errors.errors[0] == "#32770" \
+                and self.check_errors.errors[1] == "Microsoft Excel":
+            logger.error(f"'an error has occurred while opening the file'. "
+                         f"Copied files: {self.helper.converted_file} "
+                         f"and {self.helper.source_file} to 'untested'")
+
+            pg.press('enter')
+            self.helper.copy_to_folder(self.helper.opener_errors)
+            self.check_errors.errors.clear()
+            return False
+
+        elif not self.check_errors.errors:
+            return True
+
+        else:
+            logger.debug(f"Error message: {self.check_errors.errors} "
+                         f"Filename: {self.helper.converted_file}")
+            self.check_errors.errors.clear()
+            return False
+
+    def events_handler_when_closing(self):
         win32gui.EnumWindows(self.check_error, self.check_errors.errors)
         if self.check_errors.errors \
                 and self.check_errors.errors[0] == 'NUIDialog' \
@@ -82,13 +107,15 @@ class Excel:
             pg.press('right')
             pg.press('enter')
             self.check_errors.errors.clear()
-        pass
 
-    def open_excel_with_cmd(self, tmp_file_name):
-        self.helper.run(self.helper.tmp_dir_in_test, tmp_file_name, self.helper.exel)
-        sleep(wait_for_opening)
-        # check errors
+    def events_handler_when_opening_source_file(self):
         win32gui.EnumWindows(self.check_error, self.check_errors.errors)
+        if self.check_errors.errors \
+                and self.check_errors.errors[0] == "#32770" \
+                and self.check_errors.errors[1] == "Microsoft Excel":
+            pg.press('alt')
+            pg.press('enter')
+            self.check_errors.errors.clear()
 
     # opens the document
     # takes a screenshot by coordinates
@@ -128,7 +155,6 @@ class Excel:
             pg.hotkey('ctrl', 'pgdn', interval=0.05)
             list_num += 1
             sleep(wait_for_press)
-        self.close_excel()
 
     def get_excel_statistic(self, wb):
         self.statistics_excel = {
@@ -159,13 +185,25 @@ class Excel:
             workbooks = excel.Workbooks.Open(f'{self.helper.tmp_dir_in_test}{file_name}')
             self.get_excel_statistic(workbooks)
             self.close_opener_excel(excel, workbooks)
+            print(f"[bold blue]Number of sheets[/]: {self.statistics_excel['num_of_sheets']}")
+            return True
+
         except Exception:
             error = traceback.format_exc()
             logger.error(f'{error} happened while opening file: {self.helper.converted_file}')
             self.statistics_excel = None
+            logger.error(f"Can't open file: {self.helper.source_file}. Copied files to 'untested'")
+            self.helper.copy_to_folder(self.helper.failed_source)
+            return False
 
         finally:
             error_processing.terminate()
+
+    def close_excel(self):
+        pg.hotkey('ctrl', 'z')
+        os.system("taskkill /t /im  EXCEL.EXE")
+        sleep(0.2)
+        self.events_handler_when_closing()
 
     def close_opener_excel(self, excel, workbooks):
         try:
