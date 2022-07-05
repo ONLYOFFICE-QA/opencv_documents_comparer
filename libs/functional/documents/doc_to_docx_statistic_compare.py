@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
-
 import csv
 import io
-import json
 
 from loguru import logger
 from rich import print
@@ -10,14 +8,13 @@ from rich.progress import track
 
 from config import version
 from framework.word import Word
-from libs.helpers.helper import Helper
 
 
-# comparison of statistical data doc-docx documents
+# comparison of statistical results doc-docx documents
 class DocDocxStatisticsCompare:
     def __init__(self):
-        self.helper = Helper('doc', 'docx')
-        self.word = Word(self.helper)
+        self.word = Word('doc', 'docx')
+        self.helper = self.word.helper
         logger.info(f'The {self.helper.source_extension}  to {self.helper.converted_extension} '
                     f'comparison of statistical data on version: {version} is running.')
 
@@ -34,10 +31,10 @@ class DocDocxStatisticsCompare:
                 self.helper.preparing_files_for_test()
 
                 print(f'[bold green]In test {self.helper.source_file} and {self.helper.converted_file}[/]')
-                if not self.word.word_opener(f'{self.helper.tmp_name_source_file}'):
+                if not self.word.word_opener_for_getting_statistic(f'{self.helper.tmp_name_source_file}'):
                     continue
                 source_statistics = self.word.statistics_word
-                if not self.word.word_opener(f'{self.helper.tmp_name_converted_file}'):
+                if not self.word.word_opener_for_getting_statistic(f'{self.helper.tmp_name_converted_file}'):
                     continue
                 converted_statistics = self.word.statistics_word
                 modified = self.helper.dict_compare(source_statistics, converted_statistics)

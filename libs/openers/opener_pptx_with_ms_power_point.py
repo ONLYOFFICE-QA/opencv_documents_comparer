@@ -4,14 +4,12 @@ from rich import print
 
 from config import version
 from framework.power_point import PowerPoint
-from libs.helpers.helper import Helper
 
 
 class OpenerPptx:
-
     def __init__(self, source_extension):
-        self.helper = Helper(source_extension, 'pptx')
-        self.power_point = PowerPoint(self.helper)
+        self.power_point = PowerPoint(source_extension, 'pptx')
+        self.helper = self.power_point.helper
         self.helper.create_dir(self.helper.opener_errors)
         logger.info(f'Opener {self.helper.converted_extension} with ms PowerPoint on version: {version} is running.')
 

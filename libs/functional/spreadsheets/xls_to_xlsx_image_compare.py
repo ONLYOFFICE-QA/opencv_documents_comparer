@@ -6,13 +6,12 @@ from config import *
 from framework.excel import Excel
 
 from libs.helpers.compare_image import CompareImage
-from libs.helpers.helper import Helper
 
 
 class ExcelCompareImage:
     def __init__(self):
-        self.helper = Helper('xls', 'xlsx')
-        self.excel = Excel(self.helper)
+        self.excel = Excel('xls', 'xlsx')
+        self.helper = self.excel.helper
         logger.info(f'The {self.helper.source_extension} to {self.helper.converted_extension} '
                     f'comparison on version: {version} is running.')
 

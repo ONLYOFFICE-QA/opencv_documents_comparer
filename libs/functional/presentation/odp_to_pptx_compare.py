@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import pyautogui as pg
 from loguru import logger
 from rich import print
 
@@ -7,14 +6,12 @@ from config import version
 from framework.libre_office import LibreOffice
 from framework.power_point import PowerPoint
 from libs.helpers.compare_image import CompareImage
-from libs.helpers.helper import Helper
 
 
 class OdpPptxCompare:
-
     def __init__(self):
-        self.helper = Helper('odp', 'pptx')
-        self.power_point = PowerPoint(self.helper)
+        self.power_point = PowerPoint('odp', 'pptx')
+        self.helper = self.power_point.helper
         self.libre = LibreOffice(self.helper)
         logger.info(f'The {self.helper.source_extension} to {self.helper.converted_extension} '
                     f'comparison on version: {version} is running.')

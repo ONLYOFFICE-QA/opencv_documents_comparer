@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from loguru import logger
 from rich import print
-import pyautogui as pg
 
 from config import version
 from framework.libre_office import LibreOffice

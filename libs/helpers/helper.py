@@ -26,12 +26,9 @@ class Helper:
 
         self.ms_office = ms_office
         self.libre_office = libre_office
-        self.word = 'WINWORD.EXE'
-        self.power_point = 'POWERPNT.EXE'
-        self.exel = 'EXCEL.EXE'
 
         self.project_folder = os.getcwd()
-        self.data = self.project_folder + '/data/'
+        self.data = self.project_folder + '/results/'
         self.exception_files = self.read_json(f"{self.project_folder}/libs/helpers/exception_file.json")
 
         self.source_doc_folder = f'{source_doc_folder}{self.source_extension}/'
@@ -48,7 +45,7 @@ class Helper:
         self.opener_errors = f'{self.result_folder}opener_errors_{converted_extension}_version_{version}/'
 
         # tmp
-        self.tmp_dir = self.data + 'tmp/'
+        self.tmp_dir = f"{self.project_folder}/tmp/"
         self.tmp_dir_converted_image = self.tmp_dir + 'converted_image/'
         self.tmp_dir_source_image = self.tmp_dir + 'source_image/'
         self.tmp_dir_in_test = self.tmp_dir + 'in_test/'
@@ -121,8 +118,12 @@ class Helper:
             os.mkdir(path_to_dir)
 
     @staticmethod
+    def app_opener(open_command):
+        sb.Popen(open_command)
+
+    @staticmethod
     def delete(what_delete):
-        sb.call(f'powershell.exe rm {what_delete} -Force -Recurse', shell=True)
+        sb.call(f"powershell.exe rm {what_delete} -Force -Recurse", shell=True)
 
     @staticmethod
     def dict_compare(source_statistics, converted_statistics):
@@ -132,12 +133,6 @@ class Helper:
         modified = {o: (f'Source {source_statistics[o]}', f'Converted {converted_statistics[o]}')
                     for o in shared_keys if source_statistics[o] != converted_statistics[o]}
         return modified
-
-    def run(self, path, file_name, office):
-        sb.Popen([f"{self.ms_office}{office}", '-t', f"{path}{file_name}"])
-
-    def run_libre_with_cmd(self, path, file_name):
-        sb.Popen([f"{self.libre_office}\simpress.exe", '-o', f"{path}{file_name}"])
 
     @staticmethod
     def terminate_process():

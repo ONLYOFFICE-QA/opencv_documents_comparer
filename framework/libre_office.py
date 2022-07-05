@@ -8,13 +8,12 @@ import win32con
 import win32gui
 from win32com.client import Dispatch
 
-from config import wait_for_opening, wait_for_press
+from config import wait_for_opening, wait_for_press, libre_office
 from libs.helpers.compare_image import CompareImage
 from libs.helpers.error_handler import CheckErrors
 
 
 class LibreOffice:
-
     def __init__(self, helper):
         self.helper = helper
         self.check_errors = CheckErrors()
@@ -67,7 +66,7 @@ class LibreOffice:
                 self.check_errors.errors.append(win32gui.GetWindowText(hwnd))
 
     def open_libre_office_with_cmd(self, file_name):
-        self.helper.run_libre_with_cmd(self.helper.tmp_dir_in_test, file_name)
+        self.helper.app_opener(f"{libre_office}/simpress.exe -o {self.helper.tmp_dir_in_test}{file_name}")
         sleep(wait_for_opening)
         self.events_handler_when_opening()  # check events when opening
 

@@ -13,15 +13,16 @@ from rich import print
 from loguru import logger
 from win32com.client import Dispatch
 
-from config import wait_for_press, wait_for_opening
+from config import wait_for_press, wait_for_opening, ms_office
 from libs.helpers.compare_image import CompareImage
 from libs.helpers.error_handler import CheckErrors
+from libs.helpers.helper import Helper
 
 
 # methods for working with Excel
 class Excel:
-    def __init__(self, helper):
-        self.helper = helper
+    def __init__(self,  source_extension, converted_extension):
+        self.helper = Helper(source_extension, converted_extension)
         self.check_errors = CheckErrors()
         self.coordinate = []
         self.statistics_excel = None
@@ -72,7 +73,7 @@ class Excel:
             pass
 
     def open_excel_with_cmd(self, tmp_file_name):
-        self.helper.run(self.helper.tmp_dir_in_test, tmp_file_name, self.helper.exel)
+        self.helper.app_opener(f"{ms_office}/EXCEL.EXE -t {self.helper.tmp_dir_in_test}{tmp_file_name}")
         sleep(wait_for_opening)
 
     def errors_handler_when_opening(self):

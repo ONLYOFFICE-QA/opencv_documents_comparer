@@ -1,4 +1,4 @@
-data/
+results/
 env/
 .idea/
 /configure.json
@@ -11,3 +11,5 @@ build/
 /report.csv
 /Error_exel.csv
 /logs/
+/results/
+/tmp/

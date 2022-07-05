@@ -8,13 +8,12 @@ from rich.progress import track
 
 from config import version
 from framework.excel import Excel
-from libs.helpers.helper import Helper
 
 
 class StatisticCompare:
     def __init__(self):
-        self.helper = Helper('xls', 'xlsx')
-        self.excel = Excel(self.helper)
+        self.excel = Excel('xls', 'xlsx')
+        self.helper = self.excel.helper
         logger.info(f'The {self.helper.source_extension} to {self.helper.converted_extension} '
                     f'comparison of statistical data on version: {version} is running.')
 

@@ -5,13 +5,12 @@ from rich import print
 from config import version
 from framework.power_point import PowerPoint
 from libs.helpers.compare_image import CompareImage
-from libs.helpers.helper import Helper
 
 
 class PptPptxCompareImg:
     def __init__(self):
-        self.helper = Helper('ppt', 'pptx')
-        self.power_point = PowerPoint(self.helper)
+        self.power_point = PowerPoint('ppt', 'pptx')
+        self.helper = self.power_point.helper
         logger.info(f'The {self.helper.source_extension} to {self.helper.converted_extension} '
                     f'comparison on version: {version} is running.')
 

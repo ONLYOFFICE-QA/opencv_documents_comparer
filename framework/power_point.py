@@ -10,15 +10,15 @@ from loguru import logger
 from rich import print
 from win32com.client import Dispatch
 
-from config import wait_for_opening, wait_for_press
+from config import wait_for_opening, wait_for_press, ms_office
 from libs.helpers.compare_image import CompareImage
 from libs.helpers.error_handler import CheckErrors
+from libs.helpers.helper import Helper
 
 
 class PowerPoint:
-
-    def __init__(self, helper):
-        self.helper = helper
+    def __init__(self, source_extension, converted_extension):
+        self.helper = Helper(source_extension, converted_extension)
         self.check_errors = CheckErrors()
         self.coordinate = []
         self.slide_count = None
@@ -108,7 +108,7 @@ class PowerPoint:
             os.system("taskkill /im  POWERPNT.EXE")
 
     def open_presentation_with_cmd(self, file_name):
-        self.helper.run(self.helper.tmp_dir_in_test, file_name, self.helper.power_point)
+        self.helper.app_opener(f"{ms_office}/POWERPNT.EXE -t {self.helper.tmp_dir_in_test}{file_name}")
         sleep(wait_for_opening)
 
     def errors_handler_when_opening(self):

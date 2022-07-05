@@ -5,13 +5,12 @@ from rich import print
 from config import version
 from framework.word import Word
 from libs.helpers.compare_image import CompareImage
-from libs.helpers.helper import Helper
 
 
 class RtfDocxCompareImg:
     def __init__(self):
-        self.helper = Helper('rtf', 'docx')
-        self.word = Word(self.helper)
+        self.word = Word('rtf', 'docx')
+        self.helper = self.word.helper
         logger.info(f'The {self.helper.source_extension} to {self.helper.converted_extension} '
                     f'comparison on version: {version} is running.')
 
@@ -24,7 +23,7 @@ class RtfDocxCompareImg:
             self.helper.preparing_files_for_test()
 
             print(f'[bold green]In test[/] {self.helper.converted_file}')
-            if not self.word.word_opener(self.helper.tmp_name):  # Getting Statistics
+            if not self.word.word_opener_for_getting_statistic(self.helper.tmp_name):  # Getting Statistics
                 continue
             self.word.open_word_with_cmd(self.helper.tmp_name_converted_file)
             if not self.word.errors_handler_when_opening():

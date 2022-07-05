@@ -4,13 +4,12 @@ from rich import print
 
 from config import version
 from framework.excel import Excel
-from libs.helpers.helper import Helper
 
 
 class OpenerXlsx:
     def __init__(self, source_extension):
-        self.helper = Helper(source_extension, 'xlsx')
-        self.excel = Excel(self.helper)
+        self.excel = Excel(source_extension, 'xlsx')
+        self.helper = self.excel.helper
         self.helper.create_dir(self.helper.opener_errors)
         logger.info(f'Opener {self.helper.converted_extension} with ms Excel on version: {version} is running.')
 

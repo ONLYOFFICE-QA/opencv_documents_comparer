@@ -10,15 +10,16 @@ from loguru import logger
 from win32com.client import Dispatch
 from rich import print
 
-from config import wait_for_opening, wait_for_press
+from config import wait_for_opening, wait_for_press, ms_office
 from libs.helpers.compare_image import CompareImage
 from libs.helpers.error_handler import CheckErrors
+from libs.helpers.helper import Helper
 
 
 # methods for working with Word
 class Word:
-    def __init__(self, helper):
-        self.helper = helper
+    def __init__(self, source_extension, converted_extension):
+        self.helper = Helper(source_extension, converted_extension)
         self.check_errors = CheckErrors()
         self.coordinate = []
         self.statistics_word = None
@@ -37,6 +38,17 @@ class Word:
                 sleep(0.5)
                 self.coordinate.clear()
                 self.coordinate.append(win32gui.GetWindowRect(hwnd))
+
+    def check_error_for_opener(self, hwnd, ctx):
+        if win32gui.IsWindowVisible(hwnd):
+            if win32gui.GetClassName(hwnd) == '#32770' \
+                    and win32gui.GetWindowText(hwnd) == "Microsoft Word":
+                self.shell.SendKeys('%')
+                win32gui.SetForegroundWindow(hwnd)
+                sleep(0.5)
+                self.check_errors.errors.clear()
+                self.check_errors.errors.append(win32gui.GetClassName(hwnd))
+                self.check_errors.errors.append(win32gui.GetWindowText(hwnd))
 
     def statistic_report_generation(self, modified):
         modified_keys = [self.helper.converted_file]
@@ -59,17 +71,6 @@ class Word:
                 else modified_keys.append(' ')
         return modified_keys
 
-    def check_error_for_opener(self, hwnd, ctx):
-        if win32gui.IsWindowVisible(hwnd):
-            if win32gui.GetClassName(hwnd) == '#32770' \
-                    and win32gui.GetWindowText(hwnd) == "Microsoft Word":
-                self.shell.SendKeys('%')
-                win32gui.SetForegroundWindow(hwnd)
-                sleep(0.5)
-                self.check_errors.errors.clear()
-                self.check_errors.errors.append(win32gui.GetClassName(hwnd))
-                self.check_errors.errors.append(win32gui.GetWindowText(hwnd))
-
     def prepare_word_windows(self):
         self.click('libs/image_templates/word/layout.png')
         sleep(0.3)
@@ -83,8 +84,8 @@ class Word:
         pg.moveTo(100, 0)
         sleep(1)
 
-    def open_word_with_cmd_for_opener(self, file_name):
-        self.helper.run(self.helper.tmp_dir_in_test, file_name, 'WINWORD.EXE')
+    def open_word_with_cmd(self, file_name):
+        self.helper.app_opener(f"{ms_office}WINWORD.EXE -t {self.helper.tmp_dir_in_test}{file_name}")
         sleep(wait_for_opening)
 
     def errors_handler_when_opening(self):
@@ -101,8 +102,10 @@ class Word:
             self.helper.copy_to_folder(self.helper.opener_errors)
             self.check_errors.errors.clear()
             return False
+
         elif not self.check_errors.errors:
             return True
+
         else:
             logger.debug(f"New Error "
                          f"Error message: {self.check_errors.errors} "
@@ -127,10 +130,6 @@ class Word:
             error_processing.start()
             sleep(7)
             error_processing.terminate()
-
-    def open_word_with_cmd(self, file_name):
-        self.helper.run(self.helper.tmp_dir_in_test, file_name, 'WINWORD.EXE')
-        sleep(wait_for_opening)
 
     def close_word_with_cmd(self):
         pg.hotkey('ctrl', 'z')
@@ -172,7 +171,7 @@ class Word:
             logger.error(f'Exception while getting statistics, {self.helper.converted_file}')
             self.statistics_word = None
 
-    def word_opener(self, file_name_for_open):
+    def word_opener_for_getting_statistic(self, file_name_for_open):
         error_processing = Process(target=self.check_errors.run_get_errors_word, args=(self.helper.converted_file,))
         error_processing.start()
         word_app = Dispatch('Word.Application')
