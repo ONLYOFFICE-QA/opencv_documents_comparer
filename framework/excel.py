@@ -85,6 +85,7 @@ class Excel:
                          f"and {self.helper.source_file} to 'untested'")
 
             pg.press('enter')
+            self.helper.create_dir(self.helper.opener_errors)
             self.helper.copy_to_folder(self.helper.opener_errors)
             self.check_errors.errors.clear()
             return False
