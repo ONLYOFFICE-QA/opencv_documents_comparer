@@ -119,7 +119,7 @@ class LibreOffice:
             logger.error(f"'an error has occurred while opening the file'. "
                          f"Copied files: {self.helper.converted_file} "
                          f"and {self.helper.source_file} to 'failed_to_open_converted_file'")
-
+            self.helper.create_dir(self.helper.opener_errors)
             self.helper.copy_to_folder(self.helper.opener_errors)
             pg.press('enter')
             self.check_errors.errors.clear()

@@ -122,6 +122,7 @@ class PowerPoint:
                          f"and {self.helper.source_file} to 'failed_to_open_converted_file'")
 
             pg.press('esc', presses=3, interval=0.2)
+            self.helper.create_dir(self.helper.opener_errors)
             self.helper.copy_to_folder(self.helper.opener_errors)
             self.check_errors.errors.clear()
             return False
