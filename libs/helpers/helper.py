@@ -6,6 +6,9 @@ import shutil
 import subprocess as sb
 import sys
 import codecs
+from time import sleep
+
+import psutil
 
 import pyautogui as pg
 from loguru import logger
@@ -16,7 +19,6 @@ from config import *
 
 class Helper:
     def __init__(self, source_extension, converted_extension):
-
         self.converted_extension = converted_extension
         self.source_extension = source_extension
         self.source_file = None
@@ -140,11 +142,16 @@ class Helper:
     def run_libre_with_cmd(self, path, file_name):
         sb.Popen([f"{self.libre_office}\simpress.exe", '-o', f"{path}{file_name}"])
 
+    @staticmethod
+    def terminate_process():
+        terminate_process_list = ['WINWORD.EXE', 'POWERPNT.EXE', 'EXCEL.EXE', 'soffice.bin']
+        for process in psutil.process_iter():
+            for terminate_process in terminate_process_list:
+                if terminate_process in process.name():
+                    process.terminate()
+
     def tmp_cleaner(self):
-        os.system("taskkill /t /f /im  WINWORD.EXE")
-        os.system("taskkill /t /f /im  POWERPNT.EXE")
-        os.system("taskkill /t /f /im  EXCEL.EXE")
-        os.system("taskkill /t /f /im  soffice.bin")
+        self.terminate_process()
         self.delete(f'{self.tmp_dir_in_test}*')
         self.delete(f'{self.tmp_dir_converted_image}*')
         self.delete(f'{self.tmp_dir_source_image}*')

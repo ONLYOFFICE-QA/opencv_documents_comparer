@@ -1,10 +1,13 @@
 opencv-python==4.6.0.66
-numpy==1.23.0
+numpy==1.23.1
 scikit-image==0.19.3
 PyAutoGUI==0.9.53
-rich==12.4.4
+rich==12.5.1
 tqdm==4.64.0
 pywin32==304
 invoke==1.7.1
 pyperclip==1.8.2
 Loguru==0.6.0
+psutil~=5.9.1
+imageio==2.19.5
+Pillow~=9.2.0
