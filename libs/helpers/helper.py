@@ -6,10 +6,7 @@ import shutil
 import subprocess as sb
 import sys
 import codecs
-from time import sleep
-
 import psutil
-
 import pyautogui as pg
 from loguru import logger
 from rich import print
