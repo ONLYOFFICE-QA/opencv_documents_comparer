@@ -84,7 +84,7 @@ class Excel:
                          f"Copied files: {self.helper.converted_file} "
                          f"and {self.helper.source_file} to 'untested'")
 
-            pg.press('enter')
+            pg.press('enter', presses=5)
             self.helper.create_dir(self.helper.opener_errors)
             self.helper.copy_to_folder(self.helper.opener_errors)
             self.check_errors.errors.clear()
