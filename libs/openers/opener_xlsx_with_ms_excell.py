@@ -21,9 +21,6 @@ class OpenerXlsx:
             if self.helper.converted_file in self.helper.exception_files["xlsx_files_opening_error_named_range"]:
                 # named range https://bugzilla.onlyoffice.com/show_bug.cgi?id=52628
                 continue
-            if self.helper.converted_file in self.helper.exception_files["xlsx_files_opening_error_shape"]:
-                # https://bugzilla.onlyoffice.com/show_bug.cgi?id=57544
-                continue
             self.helper.preparing_files_for_test()
             print(f'[bold green]In test[/] {self.helper.converted_file}')
             self.excel.open_excel_with_cmd(self.helper.tmp_name_converted_file)
