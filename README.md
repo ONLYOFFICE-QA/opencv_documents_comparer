@@ -34,7 +34,13 @@ pip install -r requirements.txt
     The names of folders should have the
       form "```<version>_<extension before conversion>_<extension after conversion>```"
       (Example: "6.4.1.44_doc_docx").
-  * list_of_file_names - array for selective comparison by filename
+    * list_of_file_names - array for selective comparison by filename
+
+* Sending messages to Telegram
+* To send termination reports of the script to Telegram,
+you need to add 2 environment variables
+  * TELEGRAM_TOKEN - with a token from your bot on telegram
+  * CHANNEL_ID - with the channel id on telegram
 
 ### Commands for starting a document comparison
 
