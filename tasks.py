@@ -139,7 +139,7 @@ def opener_pptx(c, odp=False, ppt=False, ls=False):
 
 
 @task
-def opener_docx(c, doc=False, rtf=False, ls=False):
+def opener_docx(c, doc=False, rtf=False, pdf=False, ls=False):
     if doc:
         opener = OpenerDocx('doc')
         files_array = list_of_file_names if ls else os.listdir(opener.helper.converted_doc_folder)
@@ -150,6 +150,11 @@ def opener_docx(c, doc=False, rtf=False, ls=False):
         files_array = list_of_file_names if ls else os.listdir(opener.helper.converted_doc_folder)
         opener.run_opener_word(files_array)
         Telegram.send_message('Rtf => Docx opening check completed')
+    elif pdf:
+        opener = OpenerDocx('pdf')
+        files_array = list_of_file_names if ls else os.listdir(opener.helper.converted_doc_folder)
+        opener.run_opener_word(files_array)
+        Telegram.send_message('Pdf => Docx opening check completed')
     else:
         opener = OpenerDocx('doc')
         opener.run_opener_word(os.listdir(opener.helper.converted_doc_folder))
