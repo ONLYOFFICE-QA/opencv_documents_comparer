@@ -25,6 +25,7 @@ class PowerPoint:
         self.shell = Dispatch("WScript.Shell")
         self.click = self.helper.click
         self.errors_handler = False
+        self.waiting_time = False
 
     def prepare_windows(self):
         self.click('libs/image_templates/excel/turn_on_content.png')
@@ -108,8 +109,31 @@ class PowerPoint:
             os.system("taskkill /im  POWERPNT.EXE")
 
     def open_presentation_with_cmd(self, file_name):
+        self.check_errors.errors.clear()
         self.helper.run(self.helper.tmp_dir_in_test, file_name, self.helper.power_point)
-        sleep(wait_for_opening)
+        self.waiting_for_opening_power_point()
+
+    def check_open_power_point(self, hwnd, ctx):
+        if win32gui.IsWindowVisible(hwnd):
+            if win32gui.GetClassName(hwnd) == 'PPTFrameClass' and win32gui.GetWindowText(hwnd) != '':
+                self.waiting_time = True
+
+    def waiting_for_opening_power_point(self):
+        self.waiting_time = False
+        stop_waiting = 1
+        while True:
+            win32gui.EnumWindows(self.check_open_power_point, self.waiting_time)
+            if self.waiting_time:
+                sleep(2)
+                break
+            sleep(0.5)
+            stop_waiting += 1
+            if stop_waiting == 1000:
+                logger.error(f"'Too long to open "
+                             f"Copied files: {self.helper.converted_file} "
+                             f"and {self.helper.source_file} to 'failed_to_open_converted_file/too_long_to_open_files'")
+                self.helper.copy_to_folder(self.helper.too_long_to_open_files)
+                break
 
     def errors_handler_when_opening(self):
         win32gui.EnumWindows(self.check_error, self.check_errors.errors)
