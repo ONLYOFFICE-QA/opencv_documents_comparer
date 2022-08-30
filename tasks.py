@@ -124,12 +124,12 @@ def opener_pptx(c, odp=False, ppt=False, ls=False):
         opener = OpenerPptx('odp')
         files_array = list_of_file_names if ls else os.listdir(opener.helper.converted_doc_folder)
         opener.run_opener(files_array)
-        Telegram.send_message('Odp => Pptx opening check completed')
+        Telegram.send_message('Odp=>Pptx opening check completed') if not ls else print('Pptx opening check completed')
     elif ppt:
         opener = OpenerPptx('ppt')
         files_array = list_of_file_names if ls else os.listdir(opener.helper.converted_doc_folder)
         opener.run_opener(files_array)
-        Telegram.send_message('Ppt => Pptx opening check completed')
+        Telegram.send_message('Ppt=>Pptx opening check completed') if not ls else print('Pptx opening check completed')
     else:
         opener = OpenerPptx('ppt')
         opener.run_opener(os.listdir(opener.helper.converted_doc_folder))
@@ -144,17 +144,17 @@ def opener_docx(c, doc=False, rtf=False, pdf=False, ls=False):
         opener = OpenerDocx('doc')
         files_array = list_of_file_names if ls else os.listdir(opener.helper.converted_doc_folder)
         opener.run_opener_word(files_array)
-        Telegram.send_message('Doc => Docx opening check completed')
+        Telegram.send_message('Doc=>Docx opening check completed') if not ls else print('Docx opening check completed')
     elif rtf:
         opener = OpenerDocx('rtf')
         files_array = list_of_file_names if ls else os.listdir(opener.helper.converted_doc_folder)
         opener.run_opener_word(files_array)
-        Telegram.send_message('Rtf => Docx opening check completed')
+        Telegram.send_message('Rtf=>Docx opening check completed') if not ls else print('Docx opening check completed')
     elif pdf:
         opener = OpenerDocx('pdf')
         files_array = list_of_file_names if ls else os.listdir(opener.helper.converted_doc_folder)
         opener.run_opener_word(files_array)
-        Telegram.send_message('Pdf => Docx opening check completed')
+        Telegram.send_message('Pdf=>Docx opening check completed') if not ls else print('Docx opening check completed')
     else:
         opener = OpenerDocx('doc')
         opener.run_opener_word(os.listdir(opener.helper.converted_doc_folder))
@@ -169,13 +169,13 @@ def opener_xlsx(c, xls=False, ods=False, ls=False):
         opener = OpenerXlsx('xls')
         files_array = list_of_file_names if ls else os.listdir(opener.helper.converted_doc_folder)
         opener.run_opener_xlsx(files_array)
-        Telegram.send_message('Xls => Xlsx opening check completed')
+        Telegram.send_message('Xls=>Xlsx opening check completed') if not ls else print('Xlsx opening check completed')
 
     elif ods:
         opener = OpenerXlsx('ods')
         files_array = list_of_file_names if ls else os.listdir(opener.helper.converted_doc_folder)
         opener.run_opener_xlsx(files_array)
-        Telegram.send_message('Ods => Xlsx opening check completed')
+        Telegram.send_message('Ods=>Xlsx opening check completed') if not ls else print('Xlsx opening check completed')
     else:
         opener = OpenerXlsx('xls')
         opener.run_opener_xlsx(os.listdir(opener.helper.converted_doc_folder))
@@ -183,12 +183,13 @@ def opener_xlsx(c, xls=False, ods=False, ls=False):
         opener.run_opener_xlsx(os.listdir(opener.helper.converted_doc_folder))
         Telegram.send_message('Ods => Xlsx and Xls => Xlsx opening check completed')
 
+
 @task
 def opener_odp(c, ls=False):
     opener = OpenerOdp('pptx')
     files_array = list_of_file_names if ls else os.listdir(opener.helper.converted_doc_folder)
     opener.run_opener_odp(files_array)
-    Telegram.send_message('Odp opening check completed')
+    Telegram.send_message('Odp opening check completed') if not ls else print('Odp opening check completed')
 
 
 @task
@@ -196,7 +197,7 @@ def opener_odt(c, ls=False):
     opener = OpenerOdt('docx')
     files_array = list_of_file_names if ls else os.listdir(opener.helper.converted_doc_folder)
     opener.run_opener_odp(files_array)
-    Telegram.send_message('Odt opening check completed')
+    Telegram.send_message('Odt opening check completed') if not ls else print('Odt opening check completed')
 
 
 @task
@@ -204,7 +205,7 @@ def opener_ods(c, ls=False):
     opener = OpenerOds('xlsx')
     files_array = list_of_file_names if ls else os.listdir(opener.helper.converted_doc_folder)
     opener.run_opener_ods(files_array)
-    Telegram.send_message('Ods opening check completed')
+    Telegram.send_message('Ods opening check completed') if not ls else print('Ods opening check completed')
 
 
 @task(name="compare")
