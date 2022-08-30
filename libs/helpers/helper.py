@@ -49,9 +49,9 @@ class Helper:
 
         # tmp
         self.tmp_dir = self.data + 'tmp/'
-        self.tmp_dir_converted_image = self.tmp_dir + 'converted_image/'
-        self.tmp_dir_source_image = self.tmp_dir + 'source_image/'
-        self.tmp_dir_in_test = self.tmp_dir + 'in_test/'
+        self.tmp_dir_converted_image = f"{self.tmp_dir}converted_image/"
+        self.tmp_dir_source_image = f"{self.tmp_dir}source_image/"
+        self.tmp_dir_in_test = f"{self.tmp_dir}in_test/"
 
         # Create loggers
         logger.remove()
@@ -118,7 +118,7 @@ class Helper:
     @staticmethod
     def create_dir(path_to_dir):
         if not os.path.exists(path_to_dir):
-            os.mkdir(path_to_dir)
+            os.makedirs(path_to_dir)
 
     @staticmethod
     def delete(what_delete):
@@ -169,6 +169,7 @@ class Helper:
 
     def copy_to_folder(self, path_to_folder):
         if self.converted_file is not None and self.source_file is not None:
+            self.create_dir(path_to_folder)
             self.copy(f'{self.converted_doc_folder}{self.converted_file}',
                       f'{path_to_folder}{self.converted_file}')
 
@@ -178,15 +179,8 @@ class Helper:
             logger.debug(f'Filename is not found')
 
     def create_project_dirs(self):
-        print('\n')
-        self.create_dir(self.data)
         self.create_dir(self.result_folder)
-        self.create_dir(self.tmp_dir)
-        self.create_dir(self.passed)
         self.create_dir(self.tmp_dir_source_image)
         self.create_dir(self.tmp_dir_converted_image)
         self.create_dir(self.tmp_dir_in_test)
-        self.create_dir(self.differences_statistic)
-        self.create_dir(self.untested_folder)
-        self.create_dir(self.differences_compare_image)
-        self.create_dir(self.failed_source)
+
