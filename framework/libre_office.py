@@ -164,4 +164,3 @@ class LibreOffice:
         pg.hotkey('ctrl', 'q')
         sleep(0.5)
         self.events_handler_when_closing()  # check events when closing
-        os.system("taskkill /im  soffice.bin")
