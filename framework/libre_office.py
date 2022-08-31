@@ -85,7 +85,7 @@ class LibreOffice:
         while True:
             win32gui.EnumWindows(self.check_open_libre_office, self.waiting_time)
             if self.waiting_time:
-                sleep(2)
+                sleep(wait_for_opening)
                 break
             sleep(0.5)
             stop_waiting += 1
