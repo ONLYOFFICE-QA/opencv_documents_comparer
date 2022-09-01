@@ -10,7 +10,7 @@ from loguru import logger
 from rich import print
 from win32com.client import Dispatch
 
-from config import wait_for_opening, wait_for_press
+from config import wait_for_opening
 from libs.helpers.compare_image import CompareImage
 from libs.helpers.error_handler import CheckErrors
 
@@ -186,7 +186,7 @@ class PowerPoint:
             for page in range(self.slide_count):
                 CompareImage.grab_coordinate(path_to_save_screen, page_num, coordinate)
                 pg.press('pgdn')
-                sleep(wait_for_press)
+                sleep(0.5)
                 page_num += 1
 
     def close_presentation_with_hotkey(self):

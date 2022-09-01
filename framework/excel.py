@@ -13,7 +13,7 @@ from rich import print
 from loguru import logger
 from win32com.client import Dispatch
 
-from config import wait_for_press, wait_for_opening
+from config import wait_for_opening
 from libs.helpers.compare_image import CompareImage
 from libs.helpers.error_handler import CheckErrors
 
@@ -181,8 +181,8 @@ class Excel:
                                                   coordinate)
 
             pg.hotkey('ctrl', 'pgdn', interval=0.05)
+            sleep(0.5)
             list_num += 1
-            sleep(wait_for_press)
 
     def get_excel_statistic(self, wb):
         self.statistics_excel = {

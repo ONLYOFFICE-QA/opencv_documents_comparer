@@ -10,7 +10,7 @@ from loguru import logger
 from win32com.client import Dispatch
 from rich import print
 
-from config import wait_for_opening, wait_for_press
+from config import wait_for_opening
 from libs.helpers.compare_image import CompareImage
 from libs.helpers.error_handler import CheckErrors
 
@@ -84,7 +84,7 @@ class Word:
         pg.moveTo(100, 0)
         sleep(1)
 
-    def open_word_with_cmd_for_opener(self, file_name):
+    def open_word_with_cmd(self, file_name):
         self.check_errors.errors.clear()
         self.helper.run(self.helper.tmp_dir_in_test, file_name, 'WINWORD.EXE')
         self.waiting_for_opening_word()
@@ -165,10 +165,6 @@ class Word:
             sleep(7)
             error_processing.terminate()
 
-    def open_word_with_cmd(self, file_name):
-        self.helper.run(self.helper.tmp_dir_in_test, file_name, 'WINWORD.EXE')
-        sleep(wait_for_opening)
-
     def close_word_with_cmd(self):
         pg.hotkey('ctrl', 'z')
         pg.press('esc')
@@ -191,7 +187,7 @@ class Word:
         for page in range(int(self.statistics_word['num_of_sheets'])):
             CompareImage.grab_coordinate(path_to_save_screen, page_num, coordinate)
             pg.press('pgdn')
-            sleep(wait_for_press)
+            sleep(0.5)
             page_num += 1
 
     def get_word_statistic(self, word_app):
