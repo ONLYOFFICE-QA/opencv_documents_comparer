@@ -116,6 +116,7 @@ class PowerPoint:
     def check_open_power_point(self, hwnd, ctx):
         if win32gui.IsWindowVisible(hwnd):
             if win32gui.GetClassName(hwnd) == 'PPTFrameClass' and win32gui.GetWindowText(hwnd) != '':
+                self.shell.SendKeys('%')
                 self.waiting_time = True
 
     def waiting_for_opening_power_point(self):

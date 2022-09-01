@@ -96,6 +96,7 @@ class Word:
                 self.waiting_time = True
             elif win32gui.GetClassName(hwnd) == "#32770" and win32gui.GetWindowText(hwnd) == "Microsoft Word":
                 logger.debug(f"document recovery {self.helper.converted_file}")
+                self.shell.SendKeys('%')
                 win32gui.SetForegroundWindow(hwnd)
                 pg.press('right')
                 pg.press('enter')

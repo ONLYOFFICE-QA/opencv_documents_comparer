@@ -52,6 +52,7 @@ class Excel:
                 self.check_errors.errors.clear()
                 self.check_errors.errors.append(win32gui.GetClassName(hwnd))
                 self.check_errors.errors.append(win32gui.GetWindowText(hwnd))
+                self.shell.SendKeys('%')
 
     def prepare_excel_windows(self):
         try:
@@ -80,7 +81,9 @@ class Excel:
     def check_open_excel(self, hwnd, ctx):
         if win32gui.IsWindowVisible(hwnd):
             if win32gui.GetClassName(hwnd) == 'XLMAIN' and win32gui.GetWindowText(hwnd) != '':
+                self.shell.SendKeys('%')
                 self.waiting_time = True
+                self.shell.SendKeys('%')
 
     def waiting_for_opening_excel(self):
         self.waiting_time = False

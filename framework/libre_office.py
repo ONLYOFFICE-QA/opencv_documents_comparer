@@ -77,6 +77,7 @@ class LibreOffice:
         if win32gui.IsWindowVisible(hwnd):
             if win32gui.GetClassName(hwnd) == 'SALFRAME' and win32gui.GetWindowText(hwnd) != ''\
                     or win32gui.GetClassName(hwnd) == 'SALSUBFRAME':
+                self.shell.SendKeys('%')
                 self.waiting_time = True
 
     def waiting_for_opening_libre_office(self):
