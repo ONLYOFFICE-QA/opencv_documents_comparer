@@ -12,6 +12,7 @@ from loguru import logger
 from rich import print
 
 from config import *
+from framework.telegram import Telegram
 
 
 class Helper:
@@ -46,6 +47,7 @@ class Helper:
         self.untested_folder = f'{self.result_folder}failed_to_open_converted_file/'
         self.failed_source = f'{self.result_folder}failed_to_open_source_file/'
         self.opener_errors = f'{self.result_folder}opener_errors_{converted_extension}_version_{version}/'
+        self.too_long_to_open_files = f'{self.opener_errors}/too_long_to_open_files/'
 
         # tmp
         self.tmp_dir = self.data + 'tmp/'
@@ -139,13 +141,17 @@ class Helper:
     def run_libre_with_cmd(self, path, file_name):
         sb.Popen([f"{self.libre_office}\simpress.exe", '-o', f"{path}{file_name}"])
 
-    @staticmethod
-    def terminate_process():
+    def terminate_process(self):
         terminate_process_list = ['WINWORD.EXE', 'POWERPNT.EXE', 'EXCEL.EXE', 'soffice.bin']
         for process in psutil.process_iter():
             for terminate_process in terminate_process_list:
                 if terminate_process in process.name():
-                    process.terminate()
+                    try:
+                        process.terminate()
+                    except Exception as e:
+                        Telegram.send_message(f'Exception when terminate_process: {e}\n'
+                                              f'File name: {self.converted_file}')
+                        logger.error(f'Exception when terminate_process: {e} File name: {self.converted_file}')
 
     def tmp_cleaner(self):
         self.terminate_process()
@@ -183,4 +189,3 @@ class Helper:
         self.create_dir(self.tmp_dir_source_image)
         self.create_dir(self.tmp_dir_converted_image)
         self.create_dir(self.tmp_dir_in_test)
-

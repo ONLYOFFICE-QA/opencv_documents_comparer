@@ -10,7 +10,7 @@ from loguru import logger
 from win32com.client import Dispatch
 from rich import print
 
-from config import wait_for_opening, wait_for_press
+from config import wait_for_opening
 from libs.helpers.compare_image import CompareImage
 from libs.helpers.error_handler import CheckErrors
 
@@ -24,6 +24,7 @@ class Word:
         self.statistics_word = None
         self.shell = Dispatch("WScript.Shell")
         self.click = self.helper.click
+        self.waiting_time = False
 
     # gets the coordinates of the window
     # sets the size and position of the window
@@ -83,9 +84,39 @@ class Word:
         pg.moveTo(100, 0)
         sleep(1)
 
-    def open_word_with_cmd_for_opener(self, file_name):
+    def open_word_with_cmd(self, file_name):
+        self.check_errors.errors.clear()
         self.helper.run(self.helper.tmp_dir_in_test, file_name, 'WINWORD.EXE')
-        sleep(wait_for_opening)
+        self.waiting_for_opening_word()
+
+    def check_open_word(self, hwnd, ctx):
+        if win32gui.IsWindowVisible(hwnd):
+            if win32gui.GetClassName(hwnd) == 'OpusApp' and win32gui.GetWindowText(hwnd) != "":
+                self.shell.SendKeys('%')
+                self.waiting_time = True
+            elif win32gui.GetClassName(hwnd) == "#32770" and win32gui.GetWindowText(hwnd) == "Microsoft Word":
+                logger.debug(f"document recovery {self.helper.converted_file}")
+                self.shell.SendKeys('%')
+                win32gui.SetForegroundWindow(hwnd)
+                pg.press('right')
+                pg.press('enter')
+
+    def waiting_for_opening_word(self):
+        self.waiting_time = False
+        stop_waiting = 1
+        while True:
+            win32gui.EnumWindows(self.check_open_word, self.waiting_time)
+            if self.waiting_time:
+                sleep(wait_for_opening)
+                break
+            sleep(0.5)
+            stop_waiting += 1
+            if stop_waiting == 1000:
+                logger.error(f"'Too long to open "
+                             f"Copied files: {self.helper.converted_file} "
+                             f"and {self.helper.source_file} to 'failed_to_open_converted_file/too_long_to_open_files'")
+                self.helper.copy_to_folder(self.helper.too_long_to_open_files)
+                break
 
     def errors_handler_when_opening(self):
         win32gui.EnumWindows(self.check_error_for_opener, self.check_errors.errors)
@@ -108,6 +139,7 @@ class Word:
                          f"Error message: {self.check_errors.errors} "
                          f"Filename: {self.helper.converted_file}")
             self.helper.copy_to_folder(self.helper.failed_source)
+            self.check_errors.errors.clear()
             return False
 
     def events_handler_when_closing(self):
@@ -117,7 +149,12 @@ class Word:
                 and self.check_errors.errors[1] == "Microsoft Word":
             pg.press('right')
             pg.press('enter')
-            self.check_errors.errors.clear()
+        elif self.check_errors.errors \
+                and self.check_errors.errors[0] == "#32770" \
+                and self.check_errors.errors[1] == "Microsoft Word":
+            logger.debug(f"operation aborted {self.helper.converted_file}")
+            pg.press('enter')
+        self.check_errors.errors.clear()
 
     def events_handler_when_opening(self):
         win32gui.EnumWindows(self.check_errors.get_windows_title, self.check_errors.errors)
@@ -127,10 +164,6 @@ class Word:
             error_processing.start()
             sleep(7)
             error_processing.terminate()
-
-    def open_word_with_cmd(self, file_name):
-        self.helper.run(self.helper.tmp_dir_in_test, file_name, 'WINWORD.EXE')
-        sleep(wait_for_opening)
 
     def close_word_with_cmd(self):
         pg.hotkey('ctrl', 'z')
@@ -154,7 +187,7 @@ class Word:
         for page in range(int(self.statistics_word['num_of_sheets'])):
             CompareImage.grab_coordinate(path_to_save_screen, page_num, coordinate)
             pg.press('pgdn')
-            sleep(wait_for_press)
+            sleep(0.5)
             page_num += 1
 
     def get_word_statistic(self, word_app):

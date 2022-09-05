@@ -22,7 +22,7 @@ class OpenerDocx:
             self.helper.preparing_files_for_test()
 
             print(f'[bold green]In test[/bold green] {self.helper.converted_file}')
-            self.word.open_word_with_cmd_for_opener(self.helper.tmp_name_converted_file)
+            self.word.open_word_with_cmd(self.helper.tmp_name_converted_file)
             self.word.errors_handler_when_opening()
             self.word.close_word_with_cmd()
             self.helper.tmp_cleaner()

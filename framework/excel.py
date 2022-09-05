@@ -13,7 +13,7 @@ from rich import print
 from loguru import logger
 from win32com.client import Dispatch
 
-from config import wait_for_press, wait_for_opening
+from config import wait_for_opening
 from libs.helpers.compare_image import CompareImage
 from libs.helpers.error_handler import CheckErrors
 
@@ -27,6 +27,7 @@ class Excel:
         self.statistics_excel = None
         self.click = self.helper.click
         self.shell = Dispatch("WScript.Shell")
+        self.waiting_time = False
 
     # gets the coordinates of the window
     # sets the size and position of the window
@@ -51,6 +52,7 @@ class Excel:
                 self.check_errors.errors.clear()
                 self.check_errors.errors.append(win32gui.GetClassName(hwnd))
                 self.check_errors.errors.append(win32gui.GetWindowText(hwnd))
+                self.shell.SendKeys('%')
 
     def prepare_excel_windows(self):
         try:
@@ -72,8 +74,33 @@ class Excel:
             pass
 
     def open_excel_with_cmd(self, tmp_file_name):
+        self.check_errors.errors.clear()
         self.helper.run(self.helper.tmp_dir_in_test, tmp_file_name, self.helper.exel)
-        sleep(wait_for_opening)
+        self.waiting_for_opening_excel()
+
+    def check_open_excel(self, hwnd, ctx):
+        if win32gui.IsWindowVisible(hwnd):
+            if win32gui.GetClassName(hwnd) == 'XLMAIN' and win32gui.GetWindowText(hwnd) != '':
+                self.shell.SendKeys('%')
+                self.waiting_time = True
+                self.shell.SendKeys('%')
+
+    def waiting_for_opening_excel(self):
+        self.waiting_time = False
+        stop_waiting = 1
+        while True:
+            win32gui.EnumWindows(self.check_open_excel, self.waiting_time)
+            if self.waiting_time:
+                sleep(wait_for_opening)
+                break
+            sleep(0.5)
+            stop_waiting += 1
+            if stop_waiting == 1000:
+                logger.error(f"'Too long to open "
+                             f"Copied files: {self.helper.converted_file} "
+                             f"and {self.helper.source_file} to 'failed_to_open_converted_file/too_long_to_open_files'")
+                self.helper.copy_to_folder(self.helper.too_long_to_open_files)
+                break
 
     def errors_handler_when_opening(self):
         win32gui.EnumWindows(self.check_error, self.check_errors.errors)
@@ -154,8 +181,8 @@ class Excel:
                                                   coordinate)
 
             pg.hotkey('ctrl', 'pgdn', interval=0.05)
+            sleep(0.5)
             list_num += 1
-            sleep(wait_for_press)
 
     def get_excel_statistic(self, wb):
         self.statistics_excel = {

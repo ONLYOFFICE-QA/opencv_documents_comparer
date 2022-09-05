@@ -8,7 +8,7 @@ import win32con
 import win32gui
 from win32com.client import Dispatch
 
-from config import wait_for_opening, wait_for_press
+from config import wait_for_opening
 from libs.helpers.compare_image import CompareImage
 from libs.helpers.error_handler import CheckErrors
 
@@ -21,6 +21,7 @@ class LibreOffice:
         self.coordinate = []
         self.shell = Dispatch("WScript.Shell")
         self.click = self.helper.click
+        self.waiting_time = False
 
     @staticmethod
     def prepare_windows_hot_keys():
@@ -67,9 +68,34 @@ class LibreOffice:
                 self.check_errors.errors.append(win32gui.GetWindowText(hwnd))
 
     def open_libre_office_with_cmd(self, file_name):
+        self.check_errors.errors.clear()
         self.helper.run_libre_with_cmd(self.helper.tmp_dir_in_test, file_name)
-        sleep(wait_for_opening)
+        self.waiting_for_opening_libre_office()
         self.events_handler_when_opening()  # check events when opening
+
+    def check_open_libre_office(self, hwnd, ctx):
+        if win32gui.IsWindowVisible(hwnd):
+            if win32gui.GetClassName(hwnd) == 'SALFRAME' and win32gui.GetWindowText(hwnd) != ''\
+                    or win32gui.GetClassName(hwnd) == 'SALSUBFRAME':
+                self.shell.SendKeys('%')
+                self.waiting_time = True
+
+    def waiting_for_opening_libre_office(self):
+        self.waiting_time = False
+        stop_waiting = 1
+        while True:
+            win32gui.EnumWindows(self.check_open_libre_office, self.waiting_time)
+            if self.waiting_time:
+                sleep(wait_for_opening)
+                break
+            sleep(0.5)
+            stop_waiting += 1
+            if stop_waiting == 1000:
+                logger.error(f"'Too long to open "
+                             f"Copied files: {self.helper.converted_file} "
+                             f"and {self.helper.source_file} to 'failed_to_open_converted_file'")
+                self.helper.copy_to_folder(self.helper.opener_errors)
+                break
 
     def get_screenshot_odp(self, path_to_save_screen, slide_count):
         win32gui.EnumWindows(self.get_coord, self.coordinate)
@@ -84,7 +110,7 @@ class LibreOffice:
         for page in range(slide_count):
             CompareImage.grab_coordinate(path_to_save_screen, page_num, coordinate)
             pg.press('pgdn')
-            sleep(wait_for_press)
+            sleep(0.5)
             page_num += 1
 
     def events_handler_when_opening(self):
@@ -139,4 +165,3 @@ class LibreOffice:
         pg.hotkey('ctrl', 'q')
         sleep(0.5)
         self.events_handler_when_closing()  # check events when closing
-        os.system("taskkill /im  soffice.bin")
