@@ -26,7 +26,6 @@ class Excel:
         self.coordinate = []
         self.statistics_excel = None
         self.click = self.helper.click
-        self.shell = Dispatch("WScript.Shell")
         self.waiting_time = False
 
     # gets the coordinates of the window
@@ -36,7 +35,6 @@ class Excel:
             if win32gui.GetClassName(hwnd) == 'XLMAIN':
                 win32gui.ShowWindow(hwnd, win32con.SW_MAXIMIZE)
                 win32gui.SetForegroundWindow(hwnd)
-                sleep(0.5)
                 self.coordinate.clear()
                 self.coordinate.append(win32gui.GetWindowRect(hwnd))
 
@@ -46,13 +44,10 @@ class Excel:
                     and win32gui.GetWindowText(hwnd) == "Microsoft Excel" \
                     or win32gui.GetClassName(hwnd) == 'NUIDialog' \
                     and win32gui.GetWindowText(hwnd) == "Microsoft Excel":
-                self.shell.SendKeys('%')
                 win32gui.SetForegroundWindow(hwnd)
-                sleep(0.5)
                 self.check_errors.errors.clear()
                 self.check_errors.errors.append(win32gui.GetClassName(hwnd))
                 self.check_errors.errors.append(win32gui.GetWindowText(hwnd))
-                self.shell.SendKeys('%')
 
     def prepare_excel_windows(self):
         try:
@@ -81,9 +76,7 @@ class Excel:
     def check_open_excel(self, hwnd, ctx):
         if win32gui.IsWindowVisible(hwnd):
             if win32gui.GetClassName(hwnd) == 'XLMAIN' and win32gui.GetWindowText(hwnd) != '':
-                self.shell.SendKeys('%')
                 self.waiting_time = True
-                self.shell.SendKeys('%')
 
     def waiting_for_opening_excel(self):
         self.waiting_time = False

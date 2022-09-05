@@ -19,7 +19,6 @@ class LibreOffice:
         self.helper = helper
         self.check_errors = CheckErrors()
         self.coordinate = []
-        self.shell = Dispatch("WScript.Shell")
         self.click = self.helper.click
         self.waiting_time = False
 
@@ -48,7 +47,6 @@ class LibreOffice:
                 win32gui.ShowWindow(hwnd, win32con.SW_NORMAL)
                 win32gui.SetForegroundWindow(hwnd)
                 win32gui.MoveWindow(hwnd, 0, 0, 2200, 1420, True)
-                sleep(0.5)
                 self.coordinate.clear()
                 self.coordinate.append(win32gui.GetWindowRect(hwnd))
 
@@ -62,7 +60,6 @@ class LibreOffice:
                     or win32gui.GetWindowText(hwnd) == 'Отчёт о сбое':
                 win32gui.ShowWindow(hwnd, win32con.SW_NORMAL)
                 win32gui.SetForegroundWindow(hwnd)
-                sleep(0.5)
                 self.check_errors.errors.clear()
                 self.check_errors.errors.append(win32gui.GetClassName(hwnd))
                 self.check_errors.errors.append(win32gui.GetWindowText(hwnd))
@@ -77,7 +74,6 @@ class LibreOffice:
         if win32gui.IsWindowVisible(hwnd):
             if win32gui.GetClassName(hwnd) == 'SALFRAME' and win32gui.GetWindowText(hwnd) != ''\
                     or win32gui.GetClassName(hwnd) == 'SALSUBFRAME':
-                self.shell.SendKeys('%')
                 self.waiting_time = True
 
     def waiting_for_opening_libre_office(self):

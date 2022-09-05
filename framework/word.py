@@ -22,7 +22,6 @@ class Word:
         self.check_errors = CheckErrors()
         self.coordinate = []
         self.statistics_word = None
-        self.shell = Dispatch("WScript.Shell")
         self.click = self.helper.click
         self.waiting_time = False
 
@@ -32,10 +31,8 @@ class Word:
         if win32gui.IsWindowVisible(hwnd):
             if win32gui.GetClassName(hwnd) == 'OpusApp':
                 win32gui.ShowWindow(hwnd, win32con.SW_NORMAL)
-                self.shell.SendKeys('%')
                 win32gui.SetForegroundWindow(hwnd)
                 win32gui.MoveWindow(hwnd, 0, 0, 2000, 1400, True)
-                sleep(0.5)
                 self.coordinate.clear()
                 self.coordinate.append(win32gui.GetWindowRect(hwnd))
 
@@ -64,9 +61,7 @@ class Word:
         if win32gui.IsWindowVisible(hwnd):
             if win32gui.GetClassName(hwnd) == '#32770' \
                     and win32gui.GetWindowText(hwnd) == "Microsoft Word":
-                self.shell.SendKeys('%')
                 win32gui.SetForegroundWindow(hwnd)
-                sleep(0.5)
                 self.check_errors.errors.clear()
                 self.check_errors.errors.append(win32gui.GetClassName(hwnd))
                 self.check_errors.errors.append(win32gui.GetWindowText(hwnd))
@@ -92,11 +87,9 @@ class Word:
     def check_open_word(self, hwnd, ctx):
         if win32gui.IsWindowVisible(hwnd):
             if win32gui.GetClassName(hwnd) == 'OpusApp' and win32gui.GetWindowText(hwnd) != "":
-                self.shell.SendKeys('%')
                 self.waiting_time = True
             elif win32gui.GetClassName(hwnd) == "#32770" and win32gui.GetWindowText(hwnd) == "Microsoft Word":
                 logger.debug(f"document recovery {self.helper.converted_file}")
-                self.shell.SendKeys('%')
                 win32gui.SetForegroundWindow(hwnd)
                 pg.press('right')
                 pg.press('enter')

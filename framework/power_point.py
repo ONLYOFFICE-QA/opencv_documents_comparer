@@ -22,7 +22,6 @@ class PowerPoint:
         self.check_errors = CheckErrors()
         self.coordinate = []
         self.slide_count = None
-        self.shell = Dispatch("WScript.Shell")
         self.click = self.helper.click
         self.errors_handler = False
         self.waiting_time = False
@@ -48,18 +47,16 @@ class PowerPoint:
         if win32gui.IsWindowVisible(hwnd):
             if win32gui.GetClassName(hwnd) == 'PPTFrameClass':
                 win32gui.ShowWindow(hwnd, win32con.SW_NORMAL)
-                self.shell.SendKeys('%')
                 win32gui.SetForegroundWindow(hwnd)
                 win32gui.MoveWindow(hwnd, 0, 0, 2200, 1420, True)
-                sleep(0.5)
                 self.coordinate.clear()
                 self.coordinate.append(win32gui.GetWindowRect(hwnd))
 
-    def set_foreground_window(self, hwnd, ctx):
+    @staticmethod
+    def set_foreground_window(hwnd, ctx):
         if win32gui.IsWindowVisible(hwnd):
             if win32gui.GetClassName(hwnd) == 'PPTFrameClass':
                 win32gui.ShowWindow(hwnd, win32con.SW_NORMAL)
-                self.shell.SendKeys('%')
                 win32gui.SetForegroundWindow(hwnd)
                 pg.press('esc')
 
@@ -69,9 +66,7 @@ class PowerPoint:
             if win32gui.GetClassName(hwnd) == '#32770' \
                     and win32gui.GetWindowText(hwnd) == "Microsoft PowerPoint" \
                     or win32gui.GetClassName(hwnd) == 'NUIDialog':
-                self.shell.SendKeys('%')
                 win32gui.SetForegroundWindow(hwnd)
-                sleep(0.5)
                 self.check_errors.errors.clear()
                 self.check_errors.errors.append(win32gui.GetClassName(hwnd))
                 self.check_errors.errors.append(win32gui.GetWindowText(hwnd))
@@ -116,7 +111,6 @@ class PowerPoint:
     def check_open_power_point(self, hwnd, ctx):
         if win32gui.IsWindowVisible(hwnd):
             if win32gui.GetClassName(hwnd) == 'PPTFrameClass' and win32gui.GetWindowText(hwnd) != '':
-                self.shell.SendKeys('%')
                 self.waiting_time = True
 
     def waiting_for_opening_power_point(self):
