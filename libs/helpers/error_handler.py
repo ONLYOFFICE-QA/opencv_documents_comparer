@@ -18,7 +18,6 @@ class CheckErrors:
                     or win32gui.GetClassName(hwnd) == 'ThunderDFrame' \
                     or win32gui.GetClassName(hwnd) == 'NUIDialog':
                 win32gui.SetForegroundWindow(hwnd)
-
                 self.errors.clear()
                 self.errors.append(win32gui.GetClassName(hwnd))
                 self.errors.append(win32gui.GetWindowText(hwnd))
