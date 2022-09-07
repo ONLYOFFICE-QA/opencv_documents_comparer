@@ -208,6 +208,17 @@ def opener_ods(c, ls=False):
     Telegram.send_message('Ods opening check completed') if not ls else print('Ods opening check completed')
 
 
+@task
+def opener_full(c):
+    opener_pptx(c)
+    opener_docx(c)
+    opener_xlsx(c)
+    opener_ods(c)
+    opener_odp(c)
+    opener_odt(c)
+    Telegram.send_message('Full test of the openers completed')
+
+
 @task(name="compare")
 def full_test(c):
     word = DocDocxCompareImg()
