@@ -24,38 +24,35 @@ class Excel:
     def __init__(self, helper):
         self.helper = helper
         self.check_errors = CheckErrors()
+        self.errors = self.check_errors.errors
         self.click = self.helper.click
         self.statistics_excel = None
         self.windows_handler_number = None
 
     def check_error(self, hwnd, ctx):
         if win32gui.IsWindowVisible(hwnd):
-            class_name = win32gui.GetClassName(hwnd)
-            window_text = win32gui.GetWindowText(hwnd)
+            class_name, window_text = win32gui.GetClassName(hwnd), win32gui.GetWindowText(hwnd)
             if class_name == '#32770' and window_text == "Microsoft Excel" \
                     or class_name == 'NUIDialog' and window_text == "Microsoft Excel":
                 win32gui.SetForegroundWindow(hwnd)
-                self.check_errors.errors.clear()
-                self.check_errors.errors.append(class_name)
-                self.check_errors.errors.append(window_text)
+                self.errors.clear()
+                self.errors.append(class_name)
+                self.errors.append(window_text)
 
     def prepare_excel_for_test(self):
-        try:
-            pg.click('libs/image_templates/excel/turn_on_content.png')
+        if self.click('libs/image_templates/excel/turn_on_content.png'):
             sleep(1)
-            win32gui.EnumWindows(self.check_errors.get_windows_title, self.check_errors.errors)
-            if self.check_errors.errors:
-                self.check_errors.errors.clear()
+            win32gui.EnumWindows(self.check_errors.get_windows_title, self.errors)
+            if self.errors:
+                self.errors.clear()
                 error_processing = Process(target=self.check_errors.run_get_error_exel,
                                            args=(self.helper.converted_file,))
                 error_processing.start()
                 sleep(7)
                 error_processing.terminate()
-        except Exception:
-            pass
 
     def open_excel_with_cmd(self, tmp_file_name):
-        self.check_errors.errors.clear()
+        self.errors.clear()
         self.helper.run(self.helper.tmp_dir_in_test, tmp_file_name, self.helper.exel)
         self.waiting_for_opening_excel()
 
@@ -75,43 +72,37 @@ class Excel:
             sleep(0.5)
             stop_waiting += 1
             if stop_waiting == 1000:
-                logger.error(f"'Too long to open file: {self.helper.converted_file})")
+                logger.error(f"'Too long to open file: {self.helper.converted_file}")
                 self.helper.copy_to_folder(self.helper.too_long_to_open_files)
                 break
 
     def errors_handler_when_opening(self):
-        win32gui.EnumWindows(self.check_error, self.check_errors.errors)
-        if self.check_errors.errors \
-                and self.check_errors.errors[0] == "#32770" \
-                and self.check_errors.errors[1] == "Microsoft Excel":
+        win32gui.EnumWindows(self.check_error, self.errors)
+        if self.errors and self.errors[0] == "#32770" and self.errors[1] == "Microsoft Excel":
             logger.error(f"'an error has occurred while opening' when opening file: {self.helper.converted_file}.")
             pg.press('enter', presses=5)
             self.helper.copy_to_folder(self.helper.opener_errors)
-            self.check_errors.errors.clear()
+            self.errors.clear()
             return False
-        elif not self.check_errors.errors:
+        elif not self.errors:
             return True
         else:
-            logger.debug(f"New Error\nError message: {self.check_errors.errors}\nFile: {self.helper.converted_file}")
-            self.check_errors.errors.clear()
+            logger.debug(f"New Error\nError message: {self.errors}\nFile: {self.helper.converted_file}")
+            self.errors.clear()
             return False
 
     def events_handler_when_closing(self):
-        win32gui.EnumWindows(self.check_error, self.check_errors.errors)
-        if self.check_errors.errors \
-                and self.check_errors.errors[0] == 'NUIDialog' \
-                and self.check_errors.errors[1] == "Microsoft Excel":
+        win32gui.EnumWindows(self.check_error, self.errors)
+        if self.errors and self.errors[0] == 'NUIDialog' and self.errors[1] == "Microsoft Excel":
             pg.press('right')
             pg.press('enter')
-            self.check_errors.errors.clear()
+            self.errors.clear()
 
     def events_handler_when_opening_source_file(self):
-        win32gui.EnumWindows(self.check_error, self.check_errors.errors)
-        if self.check_errors.errors \
-                and self.check_errors.errors[0] == "#32770" \
-                and self.check_errors.errors[1] == "Microsoft Excel":
+        win32gui.EnumWindows(self.check_error, self.errors)
+        if self.errors and self.errors[0] == "#32770" and self.errors[1] == "Microsoft Excel":
             pg.press('enter')
-            self.check_errors.errors.clear()
+            self.errors.clear()
 
     def set_windows_size_excel(self):
         win32gui.ShowWindow(self.windows_handler_number, win32con.SW_MAXIMIZE)
@@ -175,7 +166,7 @@ class Excel:
                 num_of_sheet += 1
 
         except Exception as e:
-            massage = f'Failed to get full statistics excel from file: {self.helper.converted_file}\n '\
+            massage = f'Failed to get full statistics excel from file: {self.helper.converted_file}\n'\
                       f'statistics: {self.statistics_excel}\nException: {e}'
             logger.error(massage)
             Telegram.send_message(massage)

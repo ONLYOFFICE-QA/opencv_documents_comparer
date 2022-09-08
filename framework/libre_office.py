@@ -17,6 +17,7 @@ class LibreOffice:
     def __init__(self, helper):
         self.helper = helper
         self.check_errors = CheckErrors()
+        self.errors = self.check_errors.errors
         self.click = self.helper.click
         self.windows_handler_number = None
 
@@ -46,18 +47,17 @@ class LibreOffice:
     # Checks the window title
     def check_error(self, hwnd, ctx):
         if win32gui.IsWindowVisible(hwnd):
-            class_name = win32gui.GetClassName(hwnd)
-            window_text = win32gui.GetWindowText(hwnd)
+            class_name, window_text = win32gui.GetClassName(hwnd), win32gui.GetWindowText(hwnd)
             if class_name == 'SALSUBFRAME' or class_name == '#32770' or class_name == 'SALFRAME':
                 if window_text == 'Восстановление документа LibreOffice 7.3' or window_text == 'Отчёт о сбое':
                     win32gui.ShowWindow(hwnd, win32con.SW_NORMAL)
                     win32gui.SetForegroundWindow(hwnd)
-                    self.check_errors.errors.clear()
-                    self.check_errors.errors.append(win32gui.GetClassName(hwnd))
-                    self.check_errors.errors.append(win32gui.GetWindowText(hwnd))
+                    self.errors.clear()
+                    self.errors.append(win32gui.GetClassName(hwnd))
+                    self.errors.append(win32gui.GetWindowText(hwnd))
 
     def open_libre_office_with_cmd(self, file_name):
-        self.check_errors.errors.clear()
+        self.errors.clear()
         self.helper.run_libre_with_cmd(self.helper.tmp_dir_in_test, file_name)
         self.waiting_for_opening_libre_office()
         self.events_handler_when_opening()  # check events when opening
@@ -109,37 +109,37 @@ class LibreOffice:
             logger.error(massage)
 
     def events_handler_when_opening(self):
-        win32gui.EnumWindows(self.check_error, self.check_errors.errors)
-        if self.check_errors.errors and self.check_errors.errors[1] == "Восстановление документа LibreOffice 7.3":
+        win32gui.EnumWindows(self.check_error, self.errors)
+        if self.errors and self.errors[1] == "Восстановление документа LibreOffice 7.3":
             logger.debug(f"Восстановление документа LibreOffice 7.3 {self.helper.converted_file}")
             self.close_file_recovery_window()
-            self.check_errors.errors.clear()
-        elif self.check_errors.errors and self.check_errors.errors[1] == 'Отчёт о сбое':
+            self.errors.clear()
+        elif self.errors and self.errors[1] == 'Отчёт о сбое':
             logger.debug(f"Отчёт о сбое {self.helper.converted_file}")
             pg.press('esc', interval=0.5)
-            self.check_errors.errors.clear()
-            win32gui.EnumWindows(self.check_error, self.check_errors.errors)
-            if self.check_errors.errors and self.check_errors.errors[1] == "Восстановление документа LibreOffice 7.3":
+            self.errors.clear()
+            win32gui.EnumWindows(self.check_error, self.errors)
+            if self.errors and self.errors[1] == "Восстановление документа LibreOffice 7.3":
                 self.close_file_recovery_window()
-                self.check_errors.errors.clear()
+                self.errors.clear()
 
     def events_handler_when_closing(self):
-        win32gui.EnumWindows(self.check_error, self.check_errors.errors)
-        if self.check_errors.errors and self.check_errors.errors[1] == "Сохранить документ?":
+        win32gui.EnumWindows(self.check_error, self.errors)
+        if self.errors and self.errors[1] == "Сохранить документ?":
             pg.press('right')
             pg.press('enter')
-            self.check_errors.errors.clear()
+            self.errors.clear()
 
     def errors_handler_when_opening(self):
-        win32gui.EnumWindows(self.check_error, self.check_errors.errors)
-        if self.check_errors.errors and self.check_errors.errors[1] == "Ошибка":
+        win32gui.EnumWindows(self.check_error, self.errors)
+        if self.errors and self.errors[1] == "Ошибка":
             logger.error(f"'an error has occurred while opening the file' File: {self.helper.converted_file}")
             self.helper.copy_to_folder(self.helper.opener_errors)
             pg.press('enter')
-            self.check_errors.errors.clear()
-        elif self.check_errors.errors:
-            logger.debug(f"Error message: {self.check_errors.errors} Filename: {self.helper.converted_file}")
-            self.check_errors.errors.clear()
+            self.errors.clear()
+        elif self.errors:
+            logger.debug(f"Error message: {self.errors} Filename: {self.helper.converted_file}")
+            self.errors.clear()
 
     @staticmethod
     def close_file_recovery_window():

@@ -21,18 +21,19 @@ class Word:
     def __init__(self, helper):
         self.helper = helper
         self.check_errors = CheckErrors()
+        self.errors = self.check_errors.errors
         self.click = self.helper.click
         self.statistics_word = None
         self.windows_handler_number = None
 
     def check_error_for_opener(self, hwnd, ctx):
-        if win32gui.IsWindowVisible(hwnd) \
-                and win32gui.GetClassName(hwnd) == "#32770" \
-                and win32gui.GetWindowText(hwnd) == "Microsoft Word":
-            self.check_errors.errors.clear()
-            win32gui.SetForegroundWindow(hwnd)
-            self.check_errors.errors.append("#32770")
-            self.check_errors.errors.append("Microsoft Word")
+        if win32gui.IsWindowVisible(hwnd):
+            class_name, window_text = win32gui.GetClassName(hwnd), win32gui.GetWindowText(hwnd)
+            if class_name == "#32770" and window_text == "Microsoft Word":
+                self.errors.clear()
+                win32gui.SetForegroundWindow(hwnd)
+                self.errors.append(class_name)
+                self.errors.append(window_text)
 
     # sets the size and position of the window
     def set_windows_size_word(self):
@@ -54,15 +55,16 @@ class Word:
         sleep(0.5)
 
     def open_word_with_cmd(self, file_name):
-        self.check_errors.errors.clear()
+        self.errors.clear()
         self.helper.run(self.helper.tmp_dir_in_test, file_name, 'WINWORD.EXE')
         self.waiting_for_opening_word()
 
     def check_open_word(self, hwnd, ctx):
         if win32gui.IsWindowVisible(hwnd):
-            if win32gui.GetClassName(hwnd) == 'OpusApp' and win32gui.GetWindowText(hwnd) != "":
+            class_name, window_text = win32gui.GetClassName(hwnd), win32gui.GetWindowText(hwnd)
+            if class_name == 'OpusApp' and window_text != "":
                 self.windows_handler_number = hwnd
-            elif win32gui.GetClassName(hwnd) == "#32770" and win32gui.GetWindowText(hwnd) == "Microsoft Word":
+            elif class_name == "#32770" and window_text == "Microsoft Word":
                 logger.debug(f"document recovery {self.helper.converted_file}")
                 win32gui.SetForegroundWindow(hwnd)
                 pg.press('right')
@@ -84,42 +86,36 @@ class Word:
                 break
 
     def errors_handler_when_opening(self):
-        win32gui.EnumWindows(self.check_error_for_opener, self.check_errors.errors)
-        if self.check_errors.errors \
-                and self.check_errors.errors[0] == "#32770"\
-                and self.check_errors.errors[1] == "Microsoft Word":
+        win32gui.EnumWindows(self.check_error_for_opener, self.errors)
+        if self.errors and self.errors[0] == "#32770" and self.errors[1] == "Microsoft Word":
             logger.error(f"'an error has occurred while opening' when opening file: {self.helper.converted_file}.")
             pg.press('esc', presses=3, interval=0.2)
             self.helper.copy_to_folder(self.helper.opener_errors)
-            self.check_errors.errors.clear()
+            self.errors.clear()
             return False
-        elif not self.check_errors.errors:
+        elif not self.errors:
             return True
         else:
-            logger.debug(f"New Error\nError message: {self.check_errors.errors}\nFile: {self.helper.converted_file}")
+            logger.debug(f"New Error\nError message: {self.errors}\nFile: {self.helper.converted_file}")
             self.helper.copy_to_folder(self.helper.failed_source)
-            self.check_errors.errors.clear()
+            self.errors.clear()
             return False
 
     def events_handler_when_closing(self):
-        win32gui.EnumWindows(self.check_errors.get_windows_title, self.check_errors.errors)
-        if self.check_errors.errors \
-                and self.check_errors.errors[0] == "NUIDialog" \
-                and self.check_errors.errors[1] == "Microsoft Word":
+        win32gui.EnumWindows(self.check_errors.get_windows_title, self.errors)
+        if self.errors and self.errors[0] == "NUIDialog" and self.errors[1] == "Microsoft Word":
             print(f'Save file: {self.helper.converted_file}')
             pg.press('right')
             pg.press('enter')
-        elif self.check_errors.errors \
-                and self.check_errors.errors[0] == "#32770" \
-                and self.check_errors.errors[1] == "Microsoft Word":
+        elif self.errors and self.errors[0] == "#32770" and self.errors[1] == "Microsoft Word":
             logger.debug(f"operation aborted {self.helper.converted_file}")
             pg.press('enter')
-        self.check_errors.errors.clear()
+        self.errors.clear()
 
     def events_handler_when_opening(self):
-        win32gui.EnumWindows(self.check_errors.get_windows_title, self.check_errors.errors)
-        if self.check_errors.errors:
-            self.check_errors.errors.clear()
+        win32gui.EnumWindows(self.check_errors.get_windows_title, self.errors)
+        if self.errors:
+            self.errors.clear()
             error_processing = Process(target=self.check_errors.run_get_errors_word, args=(self.helper.converted_file,))
             error_processing.start()
             sleep(7)
