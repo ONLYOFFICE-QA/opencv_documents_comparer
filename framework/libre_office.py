@@ -48,8 +48,9 @@ class LibreOffice:
     def check_error(self, hwnd, ctx):
         if win32gui.IsWindowVisible(hwnd):
             class_name, window_text = win32gui.GetClassName(hwnd), win32gui.GetWindowText(hwnd)
+            window_text_errors_array = ['Восстановление документа LibreOffice 7.3', 'Отчёт о сбое', 'Ошибка']
             if class_name == 'SALSUBFRAME' or class_name == '#32770' or class_name == 'SALFRAME':
-                if window_text == 'Восстановление документа LibreOffice 7.3' or window_text == 'Отчёт о сбое':
+                if window_text in window_text_errors_array:
                     win32gui.ShowWindow(hwnd, win32con.SW_NORMAL)
                     win32gui.SetForegroundWindow(hwnd)
                     self.errors.clear()
