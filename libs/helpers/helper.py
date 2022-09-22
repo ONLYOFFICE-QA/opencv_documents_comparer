@@ -77,8 +77,9 @@ class Helper:
     def click(path):
         try:
             pg.click(path)
+            return True
         except TypeError:
-            pass
+            return False
 
     # path insert with file name
     @staticmethod
