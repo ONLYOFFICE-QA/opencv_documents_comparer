@@ -18,6 +18,9 @@ class OpenerOds:
         for self.helper.converted_file in list_of_files:
             if not self.helper.converted_file.endswith((".ods", ".ODS")):
                 continue
+            if self.helper.converted_file == 'rank_prf-09.ods':
+                # https://bugzilla.onlyoffice.com/show_bug.cgi?id=59118
+                continue
             self.helper.preparing_files_for_test()
 
             print(f'[bold green]In test[/] {self.helper.converted_file}')
