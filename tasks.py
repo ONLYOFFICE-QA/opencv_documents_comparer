@@ -124,18 +124,22 @@ def opener_pptx(c, odp=False, ppt=False, ls=False):
         opener = OpenerPptx('odp')
         files_array = list_of_file_names if ls else os.listdir(opener.helper.converted_doc_folder)
         opener.run_opener(files_array)
-        Telegram.send_message('Odp=>Pptx opening check completed') if not ls else print('Pptx opening check completed')
+        massage = f'odp=>pptx opening check completed on version: {version}\n' \
+                  f'Files with errors when opening:\n`{opener.powerpoint.errors_files_when_opening}`'
+        passed_files = [file for file in list_of_file_names if file not in opener.powerpoint.errors_files_when_opening]
     elif ppt:
         opener = OpenerPptx('ppt')
         files_array = list_of_file_names if ls else os.listdir(opener.helper.converted_doc_folder)
         opener.run_opener(files_array)
-        Telegram.send_message('Ppt=>Pptx opening check completed') if not ls else print('Pptx opening check completed')
+        massage = f'ppt=>pptx opening check completed on version: {version}\n' \
+                  f'Files with errors when opening:\n`{opener.powerpoint.errors_files_when_opening}`'
+        passed_files = [file for file in list_of_file_names if file not in opener.powerpoint.errors_files_when_opening]
     else:
-        opener = OpenerPptx('ppt')
-        opener.run_opener(os.listdir(opener.helper.converted_doc_folder))
-        opener = OpenerPptx('odp')
-        opener.run_opener(os.listdir(opener.helper.converted_doc_folder))
-        Telegram.send_message('Ppt => Pptx and Odp => Pptx opening check completed')
+        opener_pptx(c, ppt=True)
+        opener_pptx(c, odp=True)
+        massage = 'Ppt => Pptx and Odp => Pptx opening check completed'
+        passed_files = []
+    Telegram.send_message(massage) if not ls else print(f'{massage}\n\nPassed files:\n`{passed_files}`')
 
 
 @task
@@ -144,23 +148,29 @@ def opener_docx(c, doc=False, rtf=False, pdf=False, ls=False):
         opener = OpenerDocx('doc')
         files_array = list_of_file_names if ls else os.listdir(opener.helper.converted_doc_folder)
         opener.run_opener_word(files_array)
-        Telegram.send_message('Doc=>Docx opening check completed') if not ls else print('Docx opening check completed')
+        massage = f'Doc=>Docx opening check completed on version: {version}\n' \
+                  f'Files with errors when opening:\n`{opener.word.errors_files_when_opening}`'
+        passed_files = [file for file in list_of_file_names if file not in opener.word.errors_files_when_opening]
     elif rtf:
         opener = OpenerDocx('rtf')
         files_array = list_of_file_names if ls else os.listdir(opener.helper.converted_doc_folder)
         opener.run_opener_word(files_array)
-        Telegram.send_message('Rtf=>Docx opening check completed') if not ls else print('Docx opening check completed')
+        massage = f'Rtf=>Docx opening check completed on version: {version}\n' \
+                  f'Files with errors when opening:\n`{opener.word.errors_files_when_opening}`'
+        passed_files = [file for file in list_of_file_names if file not in opener.word.errors_files_when_opening]
     elif pdf:
         opener = OpenerDocx('pdf')
         files_array = list_of_file_names if ls else os.listdir(opener.helper.converted_doc_folder)
         opener.run_opener_word(files_array)
-        Telegram.send_message('Pdf=>Docx opening check completed') if not ls else print('Docx opening check completed')
+        massage = f'Pdf=>Doc opening check completed on version: {version}\n' \
+                  f'Files with errors when opening:\n`{opener.word.errors_files_when_opening}`'
+        passed_files = [file for file in list_of_file_names if file not in opener.word.errors_files_when_opening]
     else:
-        opener = OpenerDocx('doc')
-        opener.run_opener_word(os.listdir(opener.helper.converted_doc_folder))
-        opener = OpenerDocx('rtf')
-        opener.run_opener_word(os.listdir(opener.helper.converted_doc_folder))
-        Telegram.send_message('Doc => Docx and Rtf => Docx opening check completed')
+        opener_docx(c, doc=True)
+        opener_docx(c, rtf=True)
+        passed_files = []
+        massage = 'Doc => Docx and Rtf => Docx opening check completed'
+    Telegram.send_message(massage) if not ls else print(f'{massage}\n\nPassed files:\n`{passed_files}`')
 
 
 @task
@@ -177,10 +187,8 @@ def opener_xlsx(c, xls=False, ods=False, ls=False):
         opener.run_opener_xlsx(files_array)
         Telegram.send_message('Ods=>Xlsx opening check completed') if not ls else print('Xlsx opening check completed')
     else:
-        opener = OpenerXlsx('xls')
-        opener.run_opener_xlsx(os.listdir(opener.helper.converted_doc_folder))
-        opener = OpenerXlsx('ods')
-        opener.run_opener_xlsx(os.listdir(opener.helper.converted_doc_folder))
+        opener_xlsx(c, xls=True)
+        opener_xlsx(c, ods=True)
         Telegram.send_message('Ods => Xlsx and Xls => Xlsx opening check completed')
 
 
@@ -189,7 +197,10 @@ def opener_odp(c, ls=False):
     opener = OpenerOdp('pptx')
     files_array = list_of_file_names if ls else os.listdir(opener.helper.converted_doc_folder)
     opener.run_opener_odp(files_array)
-    Telegram.send_message('Odp opening check completed') if not ls else print('Odp opening check completed')
+    massage = f'Odp opening check completed on version: {version}\n' \
+              f'Files with errors when opening:\n `{opener.libre.errors_files_when_opening}`'
+    passed_files = [file for file in list_of_file_names if file not in opener.libre.errors_files_when_opening]
+    Telegram.send_message(massage) if not ls else print(f"{massage}\n\nPassed files:\n`{passed_files}`")
 
 
 @task
@@ -197,7 +208,10 @@ def opener_odt(c, ls=False):
     opener = OpenerOdt('docx')
     files_array = list_of_file_names if ls else os.listdir(opener.helper.converted_doc_folder)
     opener.run_opener_odp(files_array)
-    Telegram.send_message('Odt opening check completed') if not ls else print('Odt opening check completed')
+    massage = f'docx=>odt opening check completed on version: {version}\n' \
+              f'Files with errors when opening:\n `{opener.libre.errors_files_when_opening}`'
+    passed_files = [file for file in list_of_file_names if file not in opener.libre.errors_files_when_opening]
+    Telegram.send_message(massage) if not ls else print(f"{massage}\n\nPassed files:\n`{passed_files}`")
 
 
 @task
@@ -205,7 +219,10 @@ def opener_ods(c, ls=False):
     opener = OpenerOds('xlsx')
     files_array = list_of_file_names if ls else os.listdir(opener.helper.converted_doc_folder)
     opener.run_opener_ods(files_array)
-    Telegram.send_message('Ods opening check completed') if not ls else print('Ods opening check completed')
+    massage = f'xlsx=>ods opening check completed on version: {version}\n' \
+              f'Files with errors when opening:\n `{opener.libre.errors_files_when_opening}`'
+    passed_files = [file for file in list_of_file_names if file not in opener.libre.errors_files_when_opening]
+    Telegram.send_message(massage) if not ls else print(f"{massage}\n\nPassed files:\n`{passed_files}`")
 
 
 @task
