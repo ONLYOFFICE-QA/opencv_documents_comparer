@@ -124,14 +124,14 @@ def opener_pptx(c, odp=False, ppt=False, ls=False):
         opener = OpenerPptx('odp')
         files_array = list_of_file_names if ls else os.listdir(opener.helper.converted_doc_folder)
         opener.run_opener(files_array)
-        massage = f'odp=>pptx opening check completed on version: {version}\n' \
+        massage = f'Odp=>Pptx opening check completed on version: {version}\n' \
                   f'Files with errors when opening:\n`{opener.powerpoint.errors_files_when_opening}`'
         passed_files = [file for file in list_of_file_names if file not in opener.powerpoint.errors_files_when_opening]
     elif ppt:
         opener = OpenerPptx('ppt')
         files_array = list_of_file_names if ls else os.listdir(opener.helper.converted_doc_folder)
         opener.run_opener(files_array)
-        massage = f'ppt=>pptx opening check completed on version: {version}\n' \
+        massage = f'Ppt=>Pptx opening check completed on version: {version}\n' \
                   f'Files with errors when opening:\n`{opener.powerpoint.errors_files_when_opening}`'
         passed_files = [file for file in list_of_file_names if file not in opener.powerpoint.errors_files_when_opening]
     else:

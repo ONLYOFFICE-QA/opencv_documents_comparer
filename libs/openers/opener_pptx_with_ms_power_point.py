@@ -11,7 +11,7 @@ class OpenerPptx:
 
     def __init__(self, source_extension):
         self.helper = Helper(source_extension, 'pptx')
-        self.power_point = PowerPoint(self.helper)
+        self.powerpoint = PowerPoint(self.helper)
         self.helper.create_dir(self.helper.opener_errors)
         logger.info(f'Opener {self.helper.converted_extension} with ms PowerPoint on version: {version} is running.')
 
@@ -21,7 +21,7 @@ class OpenerPptx:
                 continue
             self.helper.preparing_files_for_test()
             print(f'[bold green]In test[/] {self.helper.converted_file}')
-            self.power_point.open_presentation_with_cmd(self.helper.tmp_name_converted_file)
-            self.power_point.errors_handler_when_opening()
-            self.power_point.close_presentation_with_hotkey()
+            self.powerpoint.open_presentation_with_cmd(self.helper.tmp_name_converted_file)
+            self.powerpoint.errors_handler_when_opening()
+            self.powerpoint.close_presentation_with_hotkey()
             self.helper.tmp_cleaner()
