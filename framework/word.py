@@ -25,6 +25,7 @@ class Word:
         self.click = self.helper.click
         self.statistics_word = None
         self.windows_handler_number = None
+        self.errors_files_when_opening = []
 
     def check_error_for_opener(self, hwnd, ctx):
         if win32gui.IsWindowVisible(hwnd):
@@ -90,6 +91,7 @@ class Word:
         if self.errors and self.errors[0] == "#32770" and self.errors[1] == "Microsoft Word":
             logger.error(f"'an error has occurred while opening' when opening file: {self.helper.converted_file}.")
             pg.press('esc', presses=3, interval=0.2)
+            self.errors_files_when_opening.append(self.helper.converted_file)
             self.helper.copy_to_folder(self.helper.opener_errors)
             self.errors.clear()
             return False
