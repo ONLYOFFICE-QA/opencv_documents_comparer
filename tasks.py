@@ -179,17 +179,22 @@ def opener_xlsx(c, xls=False, ods=False, ls=False):
         opener = OpenerXlsx('xls')
         files_array = list_of_file_names if ls else os.listdir(opener.helper.converted_doc_folder)
         opener.run_opener_xlsx(files_array)
-        Telegram.send_message('Xls=>Xlsx opening check completed') if not ls else print('Xlsx opening check completed')
-
+        massage = f'Xls=>Xlsx opening check completed on version: {version}\n' \
+                  f'Files with errors when opening:\n`{opener.excel.errors_files_when_opening}`'
+        passed_files = [file for file in list_of_file_names if file not in opener.excel.errors_files_when_opening]
     elif ods:
         opener = OpenerXlsx('ods')
         files_array = list_of_file_names if ls else os.listdir(opener.helper.converted_doc_folder)
         opener.run_opener_xlsx(files_array)
-        Telegram.send_message('Ods=>Xlsx opening check completed') if not ls else print('Xlsx opening check completed')
+        massage = f'Ods=>Xlsx opening check completed on version: {version}\n' \
+                  f'Files with errors when opening:\n`{opener.excel.errors_files_when_opening}`'
+        passed_files = [file for file in list_of_file_names if file not in opener.excel.errors_files_when_opening]
     else:
         opener_xlsx(c, xls=True)
         opener_xlsx(c, ods=True)
-        Telegram.send_message('Ods => Xlsx and Xls => Xlsx opening check completed')
+        passed_files = []
+        massage = f'Xls=>Xlsx and Ods=>Xlsx opening check completed'
+    Telegram.send_message(massage) if not ls else print(f'{massage}\n\nPassed files:\n`{passed_files}`')
 
 
 @task
