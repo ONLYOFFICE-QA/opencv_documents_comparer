@@ -20,6 +20,7 @@ class LibreOffice:
         self.errors = self.check_errors.errors
         self.click = self.helper.click
         self.windows_handler_number = None
+        self.errors_files_when_opening = []
 
     @staticmethod
     def prepare_windows_hot_keys():
@@ -135,6 +136,7 @@ class LibreOffice:
         win32gui.EnumWindows(self.check_error, self.errors)
         if self.errors and self.errors[1] == "Ошибка":
             logger.error(f"'an error has occurred while opening the file' File: {self.helper.converted_file}")
+            self.errors_files_when_opening.append(self.helper.converted_file)
             self.helper.copy_to_folder(self.helper.opener_errors)
             pg.press('enter')
             self.errors.clear()

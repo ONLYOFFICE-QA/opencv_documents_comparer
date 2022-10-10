@@ -25,6 +25,7 @@ class PowerPoint:
         self.click = self.helper.click
         self.slide_count = None
         self.windows_handler_number = None
+        self.errors_files_when_opening = []
 
     def prepare_presentation_for_test(self):
         self.click('libs/image_templates/excel/turn_on_content.png')
@@ -111,6 +112,7 @@ class PowerPoint:
         win32gui.EnumWindows(self.check_error, self.errors)
         if self.errors and self.errors[0] == "#32770" and self.errors[1] == "Microsoft PowerPoint":
             logger.error(f"'an error has occurred while opening the file' Files: {self.helper.converted_file}")
+            self.errors_files_when_opening.append(self.helper.converted_file)
             pg.press('esc', presses=3, interval=0.2)
             self.helper.copy_to_folder(self.helper.opener_errors)
             self.errors.clear()

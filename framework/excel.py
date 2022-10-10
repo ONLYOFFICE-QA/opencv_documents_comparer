@@ -28,6 +28,7 @@ class Excel:
         self.click = self.helper.click
         self.statistics_excel = None
         self.windows_handler_number = None
+        self.errors_files_when_opening = []
 
     def check_error(self, hwnd, ctx):
         if win32gui.IsWindowVisible(hwnd):
@@ -81,6 +82,7 @@ class Excel:
         if self.errors and self.errors[0] == "#32770" and self.errors[1] == "Microsoft Excel":
             logger.error(f"'an error has occurred while opening' when opening file: {self.helper.converted_file}.")
             pg.press('enter', presses=5)
+            self.errors_files_when_opening.append(self.helper.converted_file)
             self.helper.copy_to_folder(self.helper.opener_errors)
             self.errors.clear()
             return False
