@@ -1,24 +1,19 @@
 # -*- coding: utf-8 -*-
-from time import sleep
-from loguru import logger
-
-import pyautogui as pg
-import win32con
-import win32gui
-
-from config import wait_for_opening
+from data.StaticData import StaticData
 from framework.telegram import Telegram
 from libs.helpers.compare_image import CompareImage
 from libs.helpers.error_handler import CheckErrors
+from libs.helpers.fileutils import FileUtils
+import config
+from management import *
 
 
 class LibreOffice:
 
-    def __init__(self, helper):
-        self.helper = helper
+    def __init__(self, doc_helper):
+        self.doc_helper = doc_helper
         self.check_errors = CheckErrors()
         self.errors = self.check_errors.errors
-        self.click = self.helper.click
         self.windows_handler_number = None
         self.errors_files_when_opening = []
 
@@ -60,7 +55,7 @@ class LibreOffice:
 
     def open_libre_office_with_cmd(self, file_name):
         self.errors.clear()
-        self.helper.run_libre_with_cmd(self.helper.tmp_dir_in_test, file_name)
+        FileUtils.run_command(f"{config.libre_office}/{StaticData.LIBRE} -o {StaticData.TMP_DIR_IN_TEST}/{file_name}")
         self.waiting_for_opening_libre_office()
         self.events_handler_when_opening()  # check events when opening
 
@@ -76,13 +71,13 @@ class LibreOffice:
         while True:
             win32gui.EnumWindows(self.check_open_libre_office, self.windows_handler_number)
             if self.windows_handler_number:
-                sleep(wait_for_opening)
+                sleep(config.wait_for_opening)
                 break
             sleep(0.5)
             stop_waiting += 1
             if stop_waiting == 1000:
-                logger.error(f"'Too long to open file: {self.helper.converted_file}")
-                self.helper.copy_to_folder(self.helper.opener_errors)
+                logger.error(f"'Too long to open file: {self.doc_helper.converted_file}")
+                self.doc_helper.copy_testing_files_to_folder(self.doc_helper.opener_errors)
                 break
 
     def get_coordinate_libreoffice(self):
@@ -101,23 +96,23 @@ class LibreOffice:
             self.prepare_windows_hot_keys()
             page_num = 1
             for page in range(slide_count):
-                CompareImage.grab_coordinate(path_to_save_screen, page_num, coordinate)
+                CompareImage.grab_coordinate(f"{path_to_save_screen}/page_{page_num}.png", coordinate)
                 pg.press('pgdn')
                 sleep(0.5)
                 page_num += 1
         else:
-            massage = f'Invalid window handle when get_screenshot, File: {self.helper.converted_file}'
+            massage = f'Invalid window handle when get_screenshot, File: {self.doc_helper.converted_file}'
             Telegram.send_message(massage)
             logger.error(massage)
 
     def events_handler_when_opening(self):
         win32gui.EnumWindows(self.check_error, self.errors)
         if self.errors and self.errors[1] == "Восстановление документа LibreOffice 7.3":
-            logger.debug(f"Восстановление документа LibreOffice 7.3 {self.helper.converted_file}")
+            logger.debug(f"Восстановление документа LibreOffice 7.3 {self.doc_helper.converted_file}")
             self.close_file_recovery_window()
             self.errors.clear()
         elif self.errors and self.errors[1] == 'Отчёт о сбое':
-            logger.debug(f"Отчёт о сбое {self.helper.converted_file}")
+            logger.debug(f"Отчёт о сбое {self.doc_helper.converted_file}")
             pg.press('esc', interval=0.5)
             self.errors.clear()
             win32gui.EnumWindows(self.check_error, self.errors)
@@ -135,13 +130,13 @@ class LibreOffice:
     def errors_handler_when_opening(self):
         win32gui.EnumWindows(self.check_error, self.errors)
         if self.errors and self.errors[1] == "Ошибка":
-            logger.error(f"'an error has occurred while opening the file' File: {self.helper.converted_file}")
-            self.errors_files_when_opening.append(self.helper.converted_file)
-            self.helper.copy_to_folder(self.helper.opener_errors)
+            logger.error(f"'an error has occurred while opening the file' File: {self.doc_helper.converted_file}")
+            self.errors_files_when_opening.append(self.doc_helper.converted_file)
+            self.doc_helper.copy_testing_files_to_folder(self.doc_helper.opener_errors)
             pg.press('enter')
             self.errors.clear()
         elif self.errors:
-            logger.debug(f"Error message: {self.errors} Filename: {self.helper.converted_file}")
+            logger.debug(f"Error message: {self.errors} Filename: {self.doc_helper.converted_file}")
             self.errors.clear()
 
     @staticmethod
@@ -149,7 +144,7 @@ class LibreOffice:
         pg.press('esc', interval=0.2)
         pg.press('left', interval=0.2)
         pg.press('enter', interval=0.2)
-        sleep(wait_for_opening)
+        sleep(config.wait_for_opening)
 
     def close_libre(self):
         pg.hotkey('ctrl', 'q')
