@@ -1,31 +1,20 @@
 # -*- coding: utf-8 -*-
-import math
-import os
-import traceback
-from multiprocessing import Process
-from time import sleep
-
-import win32con
-import win32gui
-import pyautogui as pg
-from rich import print
-
-from loguru import logger
-from win32com.client import Dispatch
-
-from config import wait_for_opening
+from data.StaticData import StaticData
 from framework.telegram import Telegram
 from libs.helpers.compare_image import CompareImage
 from libs.helpers.error_handler import CheckErrors
+from libs.helpers.fileutils import FileUtils
+import math
+import config
+from management import *
 
 
 # methods for working with Excel
 class Excel:
-    def __init__(self, helper):
-        self.helper = helper
+    def __init__(self, doc_helper):
+        self.doc_helper = doc_helper
         self.check_errors = CheckErrors()
         self.errors = self.check_errors.errors
-        self.click = self.helper.click
         self.statistics_excel = None
         self.windows_handler_number = None
         self.errors_files_when_opening = []
@@ -41,20 +30,20 @@ class Excel:
                 self.errors.append(window_text)
 
     def prepare_excel_for_test(self):
-        if self.click('libs/image_templates/excel/turn_on_content.png'):
+        if FileUtils.click('/excel/turn_on_content.png'):
             sleep(1)
             win32gui.EnumWindows(self.check_errors.get_windows_title, self.errors)
             if self.errors:
                 self.errors.clear()
                 error_processing = Process(target=self.check_errors.run_get_error_exel,
-                                           args=(self.helper.converted_file,))
+                                           args=(self.doc_helper.converted_file,))
                 error_processing.start()
                 sleep(7)
                 error_processing.terminate()
 
-    def open_excel_with_cmd(self, tmp_file_name):
+    def open_excel_with_cmd(self, file_name):
         self.errors.clear()
-        self.helper.run(self.helper.tmp_dir_in_test, tmp_file_name, self.helper.exel)
+        FileUtils.run_command(f"{config.ms_office}/{StaticData.EXCEL} -t {StaticData.TMP_DIR_IN_TEST}/{file_name}")
         self.waiting_for_opening_excel()
 
     def check_open_excel(self, hwnd, ctx):
@@ -68,28 +57,28 @@ class Excel:
         while True:
             win32gui.EnumWindows(self.check_open_excel, self.windows_handler_number)
             if self.windows_handler_number:
-                sleep(wait_for_opening)
+                sleep(config.wait_for_opening)
                 break
             sleep(0.5)
             stop_waiting += 1
             if stop_waiting == 1000:
-                logger.error(f"'Too long to open file: {self.helper.converted_file}")
-                self.helper.copy_to_folder(self.helper.too_long_to_open_files)
+                logger.error(f"'Too long to open file: {self.doc_helper.converted_file}")
+                self.doc_helper.copy_to_folder(self.doc_helper.too_long_to_open_files)
                 break
 
     def errors_handler_when_opening(self):
         win32gui.EnumWindows(self.check_error, self.errors)
         if self.errors and self.errors[0] == "#32770" and self.errors[1] == "Microsoft Excel":
-            logger.error(f"'an error has occurred while opening' when opening file: {self.helper.converted_file}.")
+            logger.error(f"'an error has occurred while opening' when opening file: {self.doc_helper.converted_file}.")
             pg.press('enter', presses=5)
-            self.errors_files_when_opening.append(self.helper.converted_file)
-            self.helper.copy_to_folder(self.helper.opener_errors)
+            self.errors_files_when_opening.append(self.doc_helper.converted_file)
+            self.doc_helper.copy_to_folder(self.doc_helper.opener_errors)
             self.errors.clear()
             return False
         elif not self.errors:
             return True
         else:
-            logger.debug(f"New Error\nError message: {self.errors}\nFile: {self.helper.converted_file}")
+            logger.debug(f"New Error\nError message: {self.errors}\nFile: {self.doc_helper.converted_file}")
             self.errors.clear()
             return False
 
@@ -123,7 +112,7 @@ class Excel:
 
     # opens the document
     # takes a screenshot by coordinates
-    def get_screenshots(self, path_to_save_screen):
+    def get_screenshots(self, path_to_save):
         if win32gui.IsWindow(self.windows_handler_number):
             self.set_windows_size_excel()
             coordinate = self.get_coordinate_exel()
@@ -134,7 +123,7 @@ class Excel:
             for sheet in range(int(self.statistics_excel['num_of_sheets'])):
                 pg.hotkey('ctrl', 'home', interval=0.2)
                 page_num = 1
-                CompareImage.grab_coordinate_exel(path_to_save_screen, list_num, page_num, coordinate)
+                CompareImage.grab_coordinate(f"{path_to_save}/list_{list_num}_page_{page_num}.png", coordinate)
                 if f'{list_num}_nrows' in self.statistics_excel:
                     num_of_row = self.statistics_excel[f'{list_num}_nrows'] / 65
                 else:
@@ -142,12 +131,12 @@ class Excel:
                 for pgdwn in range(math.ceil(num_of_row)):
                     pg.press('pgdn', interval=0.5)
                     page_num += 1
-                    CompareImage.grab_coordinate_exel(path_to_save_screen, list_num, page_num, coordinate)
+                    CompareImage.grab_coordinate(f"{path_to_save}/list_{list_num}_page_{page_num}.png", coordinate)
                 pg.hotkey('ctrl', 'pgdn', interval=0.05)
                 sleep(0.5)
                 list_num += 1
         else:
-            message = f'Invalid window handle when get_screenshot, file: {self.helper.converted_file}'
+            message = f'Invalid window handle when get_screenshot, file: {self.doc_helper.converted_file}'
             Telegram.send_message(message)
             logger.error(message)
 
@@ -168,28 +157,27 @@ class Excel:
                 num_of_sheet += 1
 
         except Exception as e:
-            massage = f'Failed to get full statistics excel from file: {self.helper.converted_file}\n'\
+            massage = f'Failed to get full statistics excel from file: {self.doc_helper.converted_file}\n' \
                       f'statistics: {self.statistics_excel}\nException: {e}'
             logger.error(massage)
             Telegram.send_message(massage)
 
-    def opener_excel(self, file_name):
-        error_processing = Process(target=self.check_errors.run_get_error_exel, args=(self.helper.converted_file,))
+    def get_information_about_table(self, file_name):
+        error_processing = Process(target=self.check_errors.run_get_error_exel, args=(self.doc_helper.converted_file,))
         error_processing.start()
         try:
             excel = Dispatch("Excel.Application")
             excel.Visible = False
-            workbooks = excel.Workbooks.Open(f'{self.helper.tmp_dir_in_test}{file_name}')
+            workbooks = excel.Workbooks.Open(f'{self.doc_helper.tmp_dir_in_test}{file_name}')
             self.get_excel_statistic(workbooks)
             self.close_opener_excel(excel, workbooks)
             print(f"[bold blue]Number of sheets[/]: {self.statistics_excel['num_of_sheets']}")
             return True
 
         except Exception as e:
-            error = traceback.format_exc()
-            logger.error(f'{error} happened while opening file: {self.helper.converted_file} \nException: {e}')
+            logger.error(f'{e} happened while opening file: {self.doc_helper.converted_file} \nException: {e}')
             self.statistics_excel = None
-            self.helper.copy_to_folder(self.helper.failed_source)
+            self.doc_helper.copy_to_folder(self.doc_helper.failed_source)
             return False
 
         finally:
@@ -206,7 +194,6 @@ class Excel:
             workbooks.Close(False)
             excel.Quit()
         except Exception as e:
-            error = traceback.format_exc()
-            logger.error(f'{error} happened while closing file: {self.helper.converted_file}\nException: {e}')
+            logger.error(f'{e} happened while closing file: {self.doc_helper.converted_file}\nException: {e}')
         finally:
             os.system("taskkill /t /im  EXCEL.EXE")
