@@ -1,27 +1,18 @@
 # -*- coding: utf-8 -*-
-from loguru import logger
-from rich import print
-
-from config import version
+from management import *
 from framework.power_point import PowerPoint
-from libs.helpers.helper import Helper
+import config
 
 
-class OpenerPptx:
-
-    def __init__(self, source_extension):
-        self.helper = Helper(source_extension, 'pptx')
-        self.powerpoint = PowerPoint(self.helper)
-        self.helper.create_dir(self.helper.opener_errors)
-        logger.info(f'Opener {self.helper.converted_extension} with ms PowerPoint on version: {version} is running.')
-
+class OpenerPptx(PowerPoint):
     def run_opener(self, list_of_files):
-        for self.helper.converted_file in list_of_files:
-            if not self.helper.converted_file.endswith((".pptx", ".PPTX")):
+        logger.info(f'Opener {self.doc_helper.converted_extension} with ms PP on version: {config.version} is running.')
+        for self.doc_helper.converted_file in list_of_files:
+            if not self.doc_helper.converted_file.endswith((".pptx", ".PPTX")):
                 continue
-            self.helper.preparing_files_for_test()
-            print(f'[bold green]In test[/] {self.helper.converted_file}')
-            self.powerpoint.open_presentation_with_cmd(self.helper.tmp_name_converted_file)
-            self.powerpoint.errors_handler_when_opening()
-            self.powerpoint.close_presentation_with_hotkey()
-            self.helper.tmp_cleaner()
+            self.doc_helper.preparing_files_for_opening_test()
+            print(f'[bold green]In test[/] {self.doc_helper.converted_file}')
+            self.open_presentation_with_cmd(self.doc_helper.tmp_converted_file)
+            self.errors_handler_when_opening()
+            self.close_presentation_with_hotkey()
+            self.doc_helper.tmp_cleaner()
