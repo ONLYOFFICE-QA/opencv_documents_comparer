@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
-import config
 from framework.libre_office import LibreOffice
 from framework.power_point import PowerPoint
-from libs.helpers.compare_image import CompareImage
+from framework.compare_image import CompareImage
 from management import *
 
 
@@ -27,5 +26,5 @@ class OdpPptxCompare(PowerPoint, LibreOffice):
             self.get_screenshot_odp(self.doc_helper.TMP_DIR_SOURCE_IMG, self.slide_count)
             self.close_libre()
 
-            CompareImage(self.doc_helper)
+            CompareImage()
             self.doc_helper.tmp_cleaner()

@@ -30,8 +30,7 @@ class DocHelper:
     def create_logger(self):
         logger.remove()
         logger.add(sys.stdout)
-        logger.add(f'{StaticData.LOGS_FOLDER}'
-                   f'{self.source_extension}_{self.converted_extension}_{version}.log',
+        logger.add(f'{StaticData.LOGS_FOLDER}/{self.source_extension}_{self.converted_extension}_{version}.log',
                    format="{time} {level} {message}",
                    level="DEBUG",
                    rotation='5 MB',

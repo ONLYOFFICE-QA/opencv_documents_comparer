@@ -2,7 +2,7 @@
 from config import version
 from data.StaticData import StaticData
 from framework.excel import Excel
-from libs.helpers.compare_image import CompareImage
+from framework.compare_image import CompareImage
 from management import *
 
 

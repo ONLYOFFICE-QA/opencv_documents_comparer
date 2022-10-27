@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from config import version
 from framework.power_point import PowerPoint
-from libs.helpers.compare_image import CompareImage
+from framework.compare_image import CompareImage
 from management import *
 from data.StaticData import StaticData
 
@@ -29,5 +29,5 @@ class PptPptxCompareImg(PowerPoint):
             self.get_screenshot(StaticData.TMP_DIR_SOURCE_IMG)
             self.close_presentation_with_hotkey()
 
-            CompareImage(self.doc_helper)
+            CompareImage()
             self.doc_helper.tmp_cleaner()

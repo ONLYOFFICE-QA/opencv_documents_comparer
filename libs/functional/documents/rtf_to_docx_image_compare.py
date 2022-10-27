@@ -2,7 +2,7 @@
 from config import version
 from data.StaticData import StaticData
 from framework.word import Word
-from libs.helpers.compare_image import CompareImage
+from framework.compare_image import CompareImage
 from management import *
 
 
@@ -33,5 +33,5 @@ class RtfDocxCompareImg(Word):
             self.get_screenshots(StaticData.TMP_DIR_SOURCE_IMG)
             self.close_word_with_cmd()
 
-            CompareImage(self.doc_helper)
+            CompareImage()
             self.doc_helper.tmp_cleaner()

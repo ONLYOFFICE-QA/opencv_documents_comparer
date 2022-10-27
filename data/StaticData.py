@@ -4,9 +4,10 @@ from management import *
 
 
 class StaticData:
+    DOC_HELPER = None
     PROJECT_FOLDER = os.getcwd()
     RESULTS = f'{PROJECT_FOLDER}/results/'
-    LOGS_FOLDER = f"{PROJECT_FOLDER}/logs"
+    LOGS_FOLDER = f"{PROJECT_FOLDER}/logs/"
 
     # tmp
     TMP_DIR = f'{PROJECT_FOLDER}/tmp/'

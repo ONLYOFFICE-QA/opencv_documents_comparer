@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from data.StaticData import StaticData
 from framework.telegram import Telegram
-from libs.helpers.compare_image import CompareImage
+from framework.compare_image import CompareImage
 from libs.helpers.error_handler import CheckErrors
 from libs.helpers.fileutils import FileUtils
 import math
@@ -11,8 +11,8 @@ from management import *
 
 # methods for working with Excel
 class Excel:
-    def __init__(self, doc_helper):
-        self.doc_helper = doc_helper
+    def __init__(self):
+        self.doc_helper = StaticData.DOC_HELPER
         self.check_errors = CheckErrors()
         self.errors = self.check_errors.errors
         self.statistics_excel = None
