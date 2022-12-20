@@ -80,9 +80,9 @@ class DocActions:
 
     def tmp_cleaner(self):
         self.terminate_process()
-        FileUtils.delete(f'{StaticData.TMP_DIR_IN_TEST}', all_from_folder=True)
-        FileUtils.delete(f'{StaticData.TMP_DIR_CONVERTED_IMG}', all_from_folder=True)
-        FileUtils.delete(f'{StaticData.TMP_DIR_SOURCE_IMG}', all_from_folder=True)
+        FileUtils.delete(f'{StaticData.TMP_DIR_IN_TEST}', all_from_folder=True, silence=True)
+        FileUtils.delete(f'{StaticData.TMP_DIR_CONVERTED_IMG}', all_from_folder=True, silence=True)
+        FileUtils.delete(f'{StaticData.TMP_DIR_SOURCE_IMG}', all_from_folder=True, silence=True)
 
     def copy_testing_files_to_folder(self, dir_path):
         if self.converted_file and self.source_file:
@@ -99,8 +99,8 @@ class DocActions:
         FileUtils.create_dir(StaticData.TMP_DIR_IN_TEST)
 
     def create_massage_for_tg(self, errors_array, ls):
-        massage = f'{self.source_extension}=>{self.converted_extension}' \
-                  f'opening check completed on version:{version}\n' \
+        massage = f'{self.source_extension}=>{self.converted_extension} ' \
+                  f'opening check completed on version: {version}\n' \
                   f'Files with errors when opening:\n`{errors_array}`'
         passed_files = [file for file in config.list_of_file_names if file not in errors_array]
         Telegram.send_message(massage) if not ls else print(f'{massage}\n\nPassed files:\n{passed_files}')

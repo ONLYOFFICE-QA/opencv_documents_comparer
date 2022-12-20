@@ -14,7 +14,7 @@ from libs.openers.opener_odp_with_libre_office import OpenerOdp
 from libs.openers.opener_ods_with_libre_office import OpenerOds
 from libs.openers.opener_odt_with_libre_office import OpenerOdt
 from libs.openers.opener_pptx_with_ms_power_point import OpenerPptx
-from libs.openers.opener_xlsx_with_ms_excell import OpenerXlsx
+from libs.openers.opener_xlsx_with_ms_excel import OpenerXlsx
 from invoke import task
 
 
@@ -69,7 +69,7 @@ def opener_pptx(c, odp=False, ppt=False, ls=False):
     else:
         opener_pptx(c, ppt=True, ls=ls)
         opener_pptx(c, odp=True, ls=ls)
-        Telegram.send_message('Doc=>Docx and Rtf => Docx opening check completed')
+        Telegram.send_message('Ppt=>Pptx and Odp => Pptx opening check completed')
     opener = OpenerPptx()
     opener.run_opener(StaticData.DOC_ACTIONS.get_file_array(ls=ls))
     StaticData.DOC_ACTIONS.create_massage_for_tg(opener.files_with_errors_when_opening, ls=ls)

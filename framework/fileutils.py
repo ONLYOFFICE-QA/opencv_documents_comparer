@@ -47,16 +47,20 @@ class FileUtils:
                 print(f'[bold red]Crate folder warning. Folder not created: {path_to_dir}')
 
     @staticmethod
-    def delete(what_delete, all_from_folder=False):
+    def delete(what_delete, all_from_folder=False, silence=False):
+        if not os.path.exists(what_delete):
+            return print(f"[red]delete warning path not exist: {what_delete}")
         if os.path.isdir(what_delete):
             shutil.rmtree(what_delete, ignore_errors=True)
             if all_from_folder:
                 FileUtils.create_dir(what_delete)
                 if any(os.scandir(what_delete)):
-                    print(f"[bold red]delete warning. Error while delete all from folder. Not empty: {what_delete}")
+                    return print(f"[red]delete warning. Error while delete all from folder.Not empty: {what_delete}")
+                return print(f'[green]Folder is cleared') if not os.path.exists(what_delete) and not silence else None
         elif os.path.isfile(what_delete):
             os.remove(what_delete)
-        print(f"[bold red]Error while delete: {what_delete}") if os.path.exists(what_delete) else None
+        print(f'[green]Object Deleted:[/] {what_delete}') if not os.path.exists(what_delete) and not silence else None
+        print(f"[red]Error while delete: {what_delete}") if os.path.exists(what_delete) else None
 
     @staticmethod
     def run_command(command):

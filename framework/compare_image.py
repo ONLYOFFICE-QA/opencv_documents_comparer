@@ -60,7 +60,7 @@ class CompareImage:
         else:
             try:
                 self.find_difference(self.find_contours(self.source_img), self.find_contours(self.converted_img))
-            except ValueError:
+            except Exception:
                 self.find_difference(self.source_img, self.converted_img)
         self.put_information_on_img()
 

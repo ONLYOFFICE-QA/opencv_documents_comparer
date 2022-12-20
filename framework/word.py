@@ -124,8 +124,7 @@ class Word:
         if errors:
             match errors:
                 case ['#32770', 'Microsoft Word']:
-                    logger.error(
-                        f"'an error has occurred while opening' when opening file: {self.doc_helper.converted_file}.")
+                    logger.error(f"'an error has occurred while opening file: {self.doc_helper.converted_file}.")
                     pg.press('esc', presses=3, interval=0.2)
                     self.files_with_errors_when_opening.append(self.doc_helper.converted_file)
                     self.doc_helper.copy_testing_files_to_folder(self.doc_helper.opener_errors)
@@ -156,7 +155,15 @@ class Word:
                     logger.debug(message)
                     Telegram.send_message(message)
 
-    def events_handler_when_opening(self):
+    def events_handler_when_opening(self, opener_test=False):
+        if opener_test:
+            errors = self.get_errors()
+            if errors:
+                match errors:
+                    case['bosa_sdm_msword', 'Пароль']:
+                        pg.press('tab')
+                        pg.press('enter')
+            return
         if self.get_errors():
             error_processing = Process(target=self.errors_handler_for_thread)
             error_processing.start()
