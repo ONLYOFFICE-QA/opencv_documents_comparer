@@ -2,18 +2,21 @@
 from data.StaticData import StaticData
 from framework.telegram import Telegram
 from framework.compare_image import CompareImage
-from libs.helpers.error_handler import CheckErrors
-from libs.helpers.fileutils import FileUtils
-import config
-from management import *
+import subprocess as sb
+from framework.fileutils import FileUtils
+import pyautogui as pg
+from loguru import logger
+from time import sleep
+import win32con
+import win32gui
+import configuration as config
 
 
 class LibreOffice:
 
     def __init__(self):
-        self.doc_helper = StaticData.DOC_HELPER
-        self.check_errors = CheckErrors()
-        self.errors = self.check_errors.errors
+        self.doc_helper = StaticData.DOC_ACTIONS
+        self.errors = []
         self.windows_handler_number = None
         self.errors_files_when_opening = []
 
@@ -55,7 +58,7 @@ class LibreOffice:
 
     def open_libre_office_with_cmd(self, file_name):
         self.errors.clear()
-        FileUtils.run_command(f"{config.libre_office}/{StaticData.LIBRE} -o {StaticData.TMP_DIR_IN_TEST}/{file_name}")
+        sb.Popen(f"{config.libre_office}/{StaticData.LIBRE} -o {StaticData.TMP_DIR_IN_TEST}/{file_name}")
         self.waiting_for_opening_libre_office()
         self.events_handler_when_opening()  # check events when opening
 

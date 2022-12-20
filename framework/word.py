@@ -1,31 +1,73 @@
 # -*- coding: utf-8 -*-
+import subprocess as sb
+import pyautogui as pg
+from loguru import logger
+from rich import print
+from multiprocessing import Process
+from time import sleep
+import win32con
+import win32gui
+from win32com.client import Dispatch
+import configuration as config
+
 from data.StaticData import StaticData
 from framework.telegram import Telegram
 from framework.compare_image import CompareImage
-from libs.helpers.error_handler import CheckErrors
-from libs.helpers.fileutils import FileUtils
-import config
-from management import *
+from framework.fileutils import FileUtils
 
 
 # methods for working with Word
 class Word:
     def __init__(self):
-        self.doc_helper = StaticData.DOC_HELPER
-        self.check_errors = CheckErrors()
-        self.errors = self.check_errors.errors
+        self.doc_helper = StaticData.DOC_ACTIONS
         self.statistics_word = None
         self.windows_handler_number = None
-        self.errors_files_when_opening = []
+        self.files_with_errors_when_opening = []
+        self.num_of_page = ''
 
-    def check_error_for_opener(self, hwnd, ctx):
-        if win32gui.IsWindowVisible(hwnd):
-            class_name, window_text = win32gui.GetClassName(hwnd), win32gui.GetWindowText(hwnd)
-            if class_name == "#32770" and window_text == "Microsoft Word":
-                self.errors.clear()
-                win32gui.SetForegroundWindow(hwnd)
-                self.errors.append(class_name)
-                self.errors.append(window_text)
+    @staticmethod
+    def get_errors():
+        errors = []
+
+        def get_windows_title(hwnd, ctx):
+            if win32gui.IsWindowVisible(hwnd):
+                class_name, window_text = win32gui.GetClassName(hwnd), win32gui.GetWindowText(hwnd)
+                if class_name in ['#32770', 'bosa_sdm_msword', 'ThunderDFrame', 'NUIDialog']:
+                    win32gui.SetForegroundWindow(hwnd)
+                    errors.append(class_name)
+                    errors.append(window_text)
+
+        win32gui.EnumWindows(get_windows_title, errors)
+        return errors
+
+    def errors_handler_for_thread(self):
+        while True:
+            errors = self.get_errors()
+            if errors:
+                match errors:
+                    case ['#32770', 'Microsoft Word'] | \
+                         ['NUIDialog', 'Извещение системы безопасности Microsoft Word']:
+                        pg.press('left')
+                        pg.press('enter')
+                    case ['#32770', 'Microsoft Visual Basic for Applications'] | \
+                         ['bosa_sdm_msword', 'Преобразование файла'] | \
+                         ['NUIDialog', 'Microsoft Word']:
+                        pg.press('enter')
+                    case ['bosa_sdm_msword', 'Пароль']:
+                        pg.press('tab')
+                        pg.press('enter')
+                    case ['#32770', 'Удаление нескольких элементов']:
+                        print(errors)
+                    case ['#32770', 'Сохранить как']:
+                        sb.call(f'powershell.exe kill -Name WINWORD', shell=True)
+                    case ['bosa_sdm_msword', 'Показать исправления']:
+                        sleep(2)
+                        pg.press('tab', presses=3)
+                        pg.press('enter')
+                    case _:
+                        message = f"New Event {errors} happened while opening: {self.doc_helper.converted_file})"
+                        logger.debug(message)
+                        Telegram.send_message(message)
 
     # sets the size and position of the window
     def set_windows_size_word(self):
@@ -48,20 +90,19 @@ class Word:
         sleep(0.5)
 
     def open_word_with_cmd(self, file_name):
-        self.errors.clear()
-        FileUtils.run_command(f"{config.ms_office}/{StaticData.WORD} -t {StaticData.TMP_DIR_IN_TEST}/{file_name}")
+        sb.Popen(f"{config.ms_office}/{StaticData.WORD} -t {StaticData.TMP_DIR_IN_TEST}/{file_name}")
         self.waiting_for_opening_word()
 
     def check_open_word(self, hwnd, ctx):
         if win32gui.IsWindowVisible(hwnd):
-            class_name, window_text = win32gui.GetClassName(hwnd), win32gui.GetWindowText(hwnd)
-            if class_name == 'OpusApp' and window_text != "":
-                self.windows_handler_number = hwnd
-            elif class_name == "#32770" and window_text == "Microsoft Word":
-                logger.debug(f"document recovery {self.doc_helper.converted_file}")
-                win32gui.SetForegroundWindow(hwnd)
-                pg.press('right')
-                pg.press('enter')
+            match [win32gui.GetClassName(hwnd), win32gui.GetWindowText(hwnd)]:
+                case ['OpusApp', window_text] if window_text != "":
+                    self.windows_handler_number = hwnd
+                case ['#32770', "Microsoft Word"]:
+                    logger.debug(f"document recovery {self.doc_helper.converted_file}")
+                    win32gui.SetForegroundWindow(hwnd)
+                    pg.press('right')
+                    pg.press('enter')
 
     def waiting_for_opening_word(self):
         self.windows_handler_number = None
@@ -79,32 +120,41 @@ class Word:
                 break
 
     def errors_handler_when_opening(self):
-        win32gui.EnumWindows(self.check_error_for_opener, self.errors)
-        if self.errors and self.errors[0] == "#32770" and self.errors[1] == "Microsoft Word":
-            logger.error(f"'an error has occurred while opening' when opening file: {self.doc_helper.converted_file}.")
-            pg.press('esc', presses=3, interval=0.2)
-            self.errors_files_when_opening.append(self.doc_helper.converted_file)
-            self.doc_helper.copy_testing_files_to_folder(self.doc_helper.opener_errors)
-            self.errors.clear()
-            return False
-        elif not self.errors:
-            return True
-        else:
-            logger.debug(f"New Error\nError message: {self.errors}\nFile: {self.doc_helper.converted_file}")
-            self.doc_helper.copy_testing_files_to_folder(self.doc_helper.failed_source)
-            self.errors.clear()
-            return False
+        errors = self.get_errors()
+        if errors:
+            match errors:
+                case ['#32770', 'Microsoft Word']:
+                    logger.error(
+                        f"'an error has occurred while opening' when opening file: {self.doc_helper.converted_file}.")
+                    pg.press('esc', presses=3, interval=0.2)
+                    self.files_with_errors_when_opening.append(self.doc_helper.converted_file)
+                    self.doc_helper.copy_testing_files_to_folder(self.doc_helper.opener_errors)
+                    return False
+                case _:
+                    message = f"New Error\nModule: errors_handler_when_opening" \
+                              f"Error message: {errors}\nFile: {self.doc_helper.converted_file}"
+                    logger.debug(message)
+                    Telegram.send_message(message)
+                    self.doc_helper.copy_testing_files_to_folder(self.doc_helper.failed_source)
+                    return False
+        return True
 
     def events_handler_when_closing(self):
-        win32gui.EnumWindows(self.check_errors.get_windows_title, self.errors)
-        if self.errors and self.errors[0] == "NUIDialog" and self.errors[1] == "Microsoft Word":
-            print(f'Save file: {self.doc_helper.converted_file}')
-            pg.press('right')
-            pg.press('enter')
-        elif self.errors and self.errors[0] == "#32770" and self.errors[1] == "Microsoft Word":
-            logger.debug(f"operation aborted {self.doc_helper.converted_file}")
-            pg.press('enter')
-        self.errors.clear()
+        errors = self.get_errors()
+        if errors:
+            match errors:
+                case ["NUIDialog", "Microsoft Word"]:
+                    print(f'Save file: {self.doc_helper.converted_file}')
+                    pg.press('right')
+                    pg.press('enter')
+                case ["#32770", "Microsoft Word"]:
+                    logger.debug(f"operation aborted {self.doc_helper.converted_file}")
+                    pg.press('enter')
+                case _:
+                    message = f"New Error\nModule: events_handler_when_closing" \
+                              f"Error message: {errors}\nFile: {self.doc_helper.converted_file}"
+                    logger.debug(message)
+                    Telegram.send_message(message)
 
     def events_handler_when_opening(self):
         win32gui.EnumWindows(self.check_errors.get_windows_title, self.errors)
@@ -168,7 +218,7 @@ class Word:
             self.statistics_word = None
 
     def get_information_about_document(self, file_name):
-        error_processing = Process(target=self.check_errors.run_get_errors_word, args=(self.doc_helper.converted_file,))
+        error_processing = Process(target=self.errors_handler_for_thread)
         error_processing.start()
         word_app = Dispatch('Word.Application')
         word_app.Visible = False

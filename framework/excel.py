@@ -1,49 +1,81 @@
 # -*- coding: utf-8 -*-
+import math
+import win32gui
+from loguru import logger
+from multiprocessing import Process
+from rich import print
+import configuration as config
+import subprocess as sb
+import pyautogui as pg
+from time import sleep
+import win32con
+from win32com.client import Dispatch
+
 from data.StaticData import StaticData
 from framework.telegram import Telegram
 from framework.compare_image import CompareImage
-from libs.helpers.error_handler import CheckErrors
-from libs.helpers.fileutils import FileUtils
-import math
-import config
-from management import *
+from framework.fileutils import FileUtils
 
 
 # methods for working with Excel
 class Excel:
     def __init__(self):
-        self.doc_helper = StaticData.DOC_HELPER
-        self.check_errors = CheckErrors()
-        self.errors = self.check_errors.errors
+        self.doc_helper = StaticData.DOC_ACTIONS
+        self.errors = []
         self.statistics_excel = None
         self.windows_handler_number = None
-        self.errors_files_when_opening = []
+        self.files_with_errors_when_opening = []
+        self.num_of_sheets = ''
 
-    def check_error(self, hwnd, ctx):
+    def get_windows_title(self, hwnd, ctx):
         if win32gui.IsWindowVisible(hwnd):
             class_name, window_text = win32gui.GetClassName(hwnd), win32gui.GetWindowText(hwnd)
-            if class_name == '#32770' and window_text == "Microsoft Excel" \
-                    or class_name == 'NUIDialog' and window_text == "Microsoft Excel":
+            if class_name in ['#32770', 'NUIDialog', 'ThunderDFrame']:
                 win32gui.SetForegroundWindow(hwnd)
                 self.errors.clear()
                 self.errors.append(class_name)
                 self.errors.append(window_text)
 
+    def error_handler_for_thread(self):
+        while True:
+            win32gui.EnumWindows(self.get_windows_title, self.errors)
+            if self.errors:
+                match self.errors:
+                    case ['#32770', 'Microsoft Visual Basic']:
+                        if not FileUtils.click('excel/end.png'):
+                            sb.call(f'powershell.exe kill -Name EXCEL', shell=True)
+                    case ['#32770', 'Microsoft Excel']:
+                        pg.press('enter')
+                        sleep(1)
+                        pg.press('enter')
+                    case ['#32770', 'Monopoly'] | \
+                         ['NUIDialog', ('Microsoft Excel' | 'Microsoft Excel - проверка совместимости')]:
+                        pg.press('enter')
+                    case ['ThunderDFrame', 'Functions List']:
+                        pg.hotkey('alt', 'f4')
+                    case ['ThunderDFrame', 'Select Players and Times']:
+                        pg.press('tab', presses=6, interval=0.2)
+                        pg.press('enter', interval=0.2)
+                    case _:
+                        message = f'New Event: {self.errors} while opening: {self.doc_helper.converted_file}'
+                        logger.debug(message)
+                        Telegram.send_message(message)
+                self.errors.clear()
+
     def prepare_excel_for_test(self):
         if FileUtils.click('/excel/turn_on_content.png'):
             sleep(1)
-            win32gui.EnumWindows(self.check_errors.get_windows_title, self.errors)
+            win32gui.EnumWindows(self.get_windows_title, self.errors)
             if self.errors:
                 self.errors.clear()
-                error_processing = Process(target=self.check_errors.run_get_error_exel,
-                                           args=(self.doc_helper.converted_file,))
+                error_processing = Process(target=self.error_handler_for_thread)
                 error_processing.start()
                 sleep(7)
                 error_processing.terminate()
 
     def open_excel_with_cmd(self, file_name):
         self.errors.clear()
-        FileUtils.run_command(f"{config.ms_office}/{StaticData.EXCEL} -t {StaticData.TMP_DIR_IN_TEST}/{file_name}")
+        sb.Popen(f"{config.ms_office}/{StaticData.EXCEL} -t {StaticData.TMP_DIR_IN_TEST}/{file_name}")
         self.waiting_for_opening_excel()
 
     def check_open_excel(self, hwnd, ctx):
@@ -62,17 +94,17 @@ class Excel:
             sleep(0.5)
             stop_waiting += 1
             if stop_waiting == 1000:
-                logger.error(f"'Too long to open file: {self.doc_helper.converted_file}")
-                self.doc_helper.copy_to_folder(self.doc_helper.too_long_to_open_files)
+                logger.error(f"Too long to open file: {self.doc_helper.converted_file}")
+                self.doc_helper.copy_testing_files_to_folder(self.doc_helper.too_long_to_open_files)
                 break
 
     def errors_handler_when_opening(self):
-        win32gui.EnumWindows(self.check_error, self.errors)
+        win32gui.EnumWindows(self.get_windows_title, self.errors)
         if self.errors and self.errors[0] == "#32770" and self.errors[1] == "Microsoft Excel":
             logger.error(f"'an error has occurred while opening' when opening file: {self.doc_helper.converted_file}.")
             pg.press('enter', presses=5)
-            self.errors_files_when_opening.append(self.doc_helper.converted_file)
-            self.doc_helper.copy_to_folder(self.doc_helper.opener_errors)
+            self.files_with_errors_when_opening.append(self.doc_helper.converted_file)
+            self.doc_helper.copy_testing_files_to_folder(self.doc_helper.opener_errors)
             self.errors.clear()
             return False
         elif not self.errors:
@@ -83,14 +115,14 @@ class Excel:
             return False
 
     def events_handler_when_closing(self):
-        win32gui.EnumWindows(self.check_error, self.errors)
+        win32gui.EnumWindows(self.get_windows_title, self.errors)
         if self.errors and self.errors[0] == 'NUIDialog' and self.errors[1] == "Microsoft Excel":
             pg.press('right')
             pg.press('enter')
             self.errors.clear()
 
     def events_handler_when_opening_source_file(self):
-        win32gui.EnumWindows(self.check_error, self.errors)
+        win32gui.EnumWindows(self.get_windows_title, self.errors)
         if self.errors and self.errors[0] == "#32770" and self.errors[1] == "Microsoft Excel":
             pg.press('enter')
             self.errors.clear()
