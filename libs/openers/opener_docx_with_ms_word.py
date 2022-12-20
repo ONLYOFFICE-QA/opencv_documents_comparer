@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
-from config import version
+from loguru import logger
+from rich import print
+
+from configuration import version
 from framework.word import Word
-from management import *
 
 
 class OpenerDocx(Word):
     def run_opener(self, list_of_files):
         logger.info(f'Opener {self.doc_helper.converted_extension} with ms Word on version: {version} is running.')
         for self.doc_helper.converted_file in list_of_files:
-            if not self.doc_helper.converted_file.endswith((".docx", ".DOCX")):
+            if not self.doc_helper.converted_file.lower().endswith(".docx"):
                 continue
             self.doc_helper.preparing_files_for_opening_test()
             print(f'[bold green]In test[/] {self.doc_helper.converted_file}')

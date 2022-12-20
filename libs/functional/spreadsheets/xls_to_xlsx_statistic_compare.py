@@ -1,13 +1,18 @@
 # -*- coding: utf-8 -*-
-from config import version
+from loguru import logger
+from rich import print
+from rich.progress import track
+import csv
+import io
+import configuration as config
+
 from framework.excel import Excel
-from management import io, logger, track, csv
 
 
 class StatisticCompare(Excel):
     def run_compare_statistic(self, files_array):
         logger.info(f'The {self.doc_helper.source_extension} to {self.doc_helper.converted_extension} '
-                    f'comparison of statistical data on version: {version} is running.')
+                    f'comparison of statistical data on version: {config.version} is running.')
         with io.open('./report.csv', 'w', encoding="utf-8") as csvfile:
             writer = csv.writer(csvfile, delimiter=';')
             writer.writerow(['File_name', 'statistic'])

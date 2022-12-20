@@ -157,11 +157,8 @@ class Word:
                     Telegram.send_message(message)
 
     def events_handler_when_opening(self):
-        win32gui.EnumWindows(self.check_errors.get_windows_title, self.errors)
-        if self.errors:
-            self.errors.clear()
-            error_processing = Process(target=self.check_errors.run_get_errors_word,
-                                       args=(self.doc_helper.converted_file,))
+        if self.get_errors():
+            error_processing = Process(target=self.errors_handler_for_thread)
             error_processing.start()
             sleep(7)
             error_processing.terminate()
@@ -169,7 +166,7 @@ class Word:
     def close_word_with_cmd(self):
         pg.hotkey('ctrl', 'z')
         pg.press('esc')
-        os.system("taskkill /t /im  WINWORD.EXE")
+        FileUtils.run_command("taskkill /t /im  WINWORD.EXE")
         sleep(0.2)
         self.events_handler_when_closing()
 
@@ -226,14 +223,14 @@ class Word:
             word_app = word_app.Documents.Open(f'{StaticData.TMP_DIR_IN_TEST}{file_name}', None, True)
             self.get_word_statistic(word_app)
             word_app.Close(False)
-            print(f"[bold blue]Number of pages:[/] {self.statistics_word['num_of_sheets']}")
+            self.num_of_page = self.statistics_word['num_of_sheets']
             return True
         except Exception as e:
             logger.exception(f"Can't get number of pages in {self.doc_helper.source_file}. Exception: {e}")
             self.doc_helper.copy_testing_files_to_folder(self.doc_helper.failed_source)
             return False
         finally:
-            os.system("taskkill /t /im  WINWORD.EXE")
+            FileUtils.run_command("taskkill /t /im  WINWORD.EXE")
             error_processing.terminate()
 
     def statistic_report_generation(self, modified):

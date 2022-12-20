@@ -2,7 +2,7 @@
 from framework.libre_office import LibreOffice
 from framework.power_point import PowerPoint
 from framework.compare_image import CompareImage
-from management import *
+from rich import print
 
 
 class OdpPptxCompare(PowerPoint, LibreOffice):

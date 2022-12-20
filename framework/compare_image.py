@@ -11,23 +11,23 @@ from rich import print
 from skimage.metrics import structural_similarity
 
 from data.StaticData import StaticData
-from libs.helpers.fileutils import FileUtils
+from framework.fileutils import FileUtils
 
 
 class CompareImage:
     def __init__(self, coefficient=98):
         self.coefficient = coefficient
-        self.doc_helper = StaticData.DOC_HELPER
+        self.helper = StaticData.DOC_ACTIONS
         self.similarity: int = 0
         self.image_name, self.sheet_num, self.gif_name = '', '', ''
         self.source_img, self.converted_img, self.src_processed_img, self.cnv_processed_img = [], [], [], []
         self.result_folder_name = self.get_result_folder_name()
-        self.img_comparison_diff_dir = f'{self.doc_helper.result_folder}img_comparison_diff/{self.result_folder_name}/'
-        self.passed = f'{self.doc_helper.result_folder}passed/'
+        self.img_comparison_diff_dir = f'{self.helper.result_folder}/img_comparison_diff/{self.result_folder_name}/'
+        self.passed = f'{self.helper.result_folder}/passed/'
         self.start_compare_images()
 
     def get_result_folder_name(self):
-        result_folder_name = self.doc_helper.converted_file.replace(f'.{self.doc_helper.converted_extension}', '')
+        result_folder_name = self.helper.converted_file.replace(f'.{self.helper.converted_extension}', '')
         result_folder_name = re.sub(r"^\s+|\n|\r|\.|,|-|\s|\s+$", '', result_folder_name)
         result_folder_name = result_folder_name[:35]
         return result_folder_name
@@ -35,35 +35,37 @@ class CompareImage:
     def start_compare_images(self):
         description = "[bold blue]Comparing In Progress[/]"
         for self.image_name in track(os.listdir(StaticData.TMP_DIR_CONVERTED_IMG), description=description):
-            if os.path.exists(f'{StaticData.TMP_DIR_SOURCE_IMG}{self.image_name}') \
-                    and os.path.exists(f'{StaticData.TMP_DIR_CONVERTED_IMG}{self.image_name}'):
-                self.sheet_num = self.image_name.split('_')[-1]
+            if os.path.exists(f'{StaticData.TMP_DIR_SOURCE_IMG}/{self.image_name}') \
+                    and os.path.exists(f'{StaticData.TMP_DIR_CONVERTED_IMG}/{self.image_name}'):
+                self.sheet_num = self.image_name.split('_')[-1].replace('.png', '')
                 self.gif_name = f"{self.image_name.split('.')[0]}_similarity.gif"
                 self.source_img = cv2.imread(f'{StaticData.TMP_DIR_SOURCE_IMG}{self.image_name}')
                 self.converted_img = cv2.imread(f'{StaticData.TMP_DIR_CONVERTED_IMG}{self.image_name}')
                 self.image_handler()
-                self.save_result() if self.similarity < self.coefficient else print('[bold green]passed[/]')
+                print(f"[blue]{self.helper.converted_file} Sheet: {self.sheet_num} similarity[/]: {self.similarity}")
+                self.save_result() if self.similarity < self.coefficient else print('[bold green]passed')
             else:
                 logger.error(f'Image {self.image_name} not found, copied file to "Untested"')
-                self.doc_helper.copy_testing_files_to_folder(self.doc_helper.untested_folder)
+                self.helper.copy_testing_files_to_folder(self.helper.untested_folder)
 
-    def image_handler(self):
-        if self.doc_helper.converted_file.endswith((".xlsx", ".XLSX")):
-            self.find_difference(self.source_img, self.converted_img)
-        else:
-            try:
-                self.find_difference(self.find_contours(self.source_img), self.find_contours(self.converted_img))
-            except Exception as e:
-                print(f"Exception {e}")
-                self.find_difference(self.source_img, self.converted_img)
+    def put_information_on_img(self):
         self.put_text(self.converted_img, f'After')
         self.put_text(self.source_img, f'Before')
         self.put_text(self.src_processed_img, f'Before sheet: {self.sheet_num}. Similarity{self.similarity}%')
         self.put_text(self.cnv_processed_img, f'After sheet: {self.sheet_num}. Similarity{self.similarity}%')
-        print(f"[bold blue]{self.doc_helper.converted_file} Sheet:{self.sheet_num} similarity[/]:{self.similarity}")
+
+    def image_handler(self):
+        if self.helper.converted_file.lower().endswith(".xlsx"):
+            self.find_difference(self.source_img, self.converted_img)
+        else:
+            try:
+                self.find_difference(self.find_contours(self.source_img), self.find_contours(self.converted_img))
+            except ValueError:
+                self.find_difference(self.source_img, self.converted_img)
+        self.put_information_on_img()
 
     def save_result(self):
-        self.doc_helper.copy_testing_files_to_folder(self.img_comparison_diff_dir)
+        self.helper.copy_testing_files_to_folder(self.img_comparison_diff_dir)
         FileUtils.create_dir(f'{self.img_comparison_diff_dir}/gif/')
         FileUtils.create_dir(f'{self.img_comparison_diff_dir}/screen/')
         collage = np.hstack([self.source_img, self.converted_img])
@@ -78,11 +80,7 @@ class CompareImage:
         for contour in contours:
             x, y, w, h = cv2.boundingRect(contour)
             if h >= 500:
-                if self.doc_helper.source_extension == 'odp':
-                    rgb = rgb[y:y + h + 1, x:x + w + 1]
-                else:
-                    rgb = rgb[y:y + h, x:x + w]
-                return rgb
+                return rgb[y:y + h + 1, x:x + w + 1] if self.helper.source_extension == 'odp' else rgb[y:y + h, x:x + w]
 
     def find_difference(self, src_img, cnv_img):
         before_gray, after_gray = cv2.cvtColor(src_img, cv2.COLOR_BGR2GRAY), cv2.cvtColor(cnv_img, cv2.COLOR_BGR2GRAY)

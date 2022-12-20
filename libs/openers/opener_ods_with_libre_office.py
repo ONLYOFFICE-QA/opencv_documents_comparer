@@ -2,16 +2,15 @@
 from loguru import logger
 from rich import print
 
-from config import version
+from configuration import version
 from framework.libre_office import LibreOffice
-from libs.helpers.fileutils import FileUtils
 
 
 class OpenerOds(LibreOffice):
     def run_opener(self, list_of_files):
         logger.info(f'Opener {self.doc_helper.converted_extension} with LibreOffice on version: {version} is running.')
         for self.doc_helper.converted_file in list_of_files:
-            if not self.doc_helper.converted_file.endswith((".ods", ".ODS")):
+            if not self.doc_helper.converted_file.lower().endswith(".ods"):
                 continue
             if self.doc_helper.converted_file == 'rank_prf-09.ods':
                 # https://bugzilla.onlyoffice.com/show_bug.cgi?id=59118

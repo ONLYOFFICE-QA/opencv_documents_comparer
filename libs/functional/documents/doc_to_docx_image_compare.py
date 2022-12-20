@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-import config
 from data.StaticData import StaticData
 from framework.word import Word
 from framework.compare_image import CompareImage
-from management import *
+from loguru import logger
+from rich import print
+import configuration as config
 
 
 class DocDocxCompareImg(Word):
@@ -18,6 +19,7 @@ class DocDocxCompareImg(Word):
             print(f'[bold green]In test[/] {self.doc_helper.converted_file}')
             if not self.get_information_about_document(self.doc_helper.tmp_file_for_get_statistic):
                 continue
+            print(f"[bold blue]Number of pages:[/] {self.num_of_page}")
             self.open_word_with_cmd(self.doc_helper.tmp_converted_file)
             if not self.errors_handler_when_opening():
                 self.close_word_with_cmd()

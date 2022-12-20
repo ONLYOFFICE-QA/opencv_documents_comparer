@@ -2,7 +2,7 @@
 from loguru import logger
 from rich import print
 
-from config import version
+from configuration import version
 from data.StaticData import StaticData
 from framework.excel import Excel
 
@@ -11,7 +11,7 @@ class OpenerXlsx(Excel):
     def run_opener(self, list_of_files):
         logger.info(f'Opener {self.doc_helper.converted_extension} with ms Excel on version: {version} is running.')
         for self.doc_helper.converted_file in list_of_files:
-            if not self.doc_helper.converted_file.endswith((".xlsx", ".XLSX")):
+            if not self.doc_helper.converted_file.lower().endswith(".xlsx"):
                 continue
             if self.doc_helper.converted_file in StaticData.EXCEPTION_FILES["xlsx_files_opening_error_named_range"]:
                 # named range https://bugzilla.onlyoffice.com/show_bug.cgi?id=52628

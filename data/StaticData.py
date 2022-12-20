@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-from libs.helpers.fileutils import FileUtils
-from management import *
+import os
+
+from framework.fileutils import FileUtils
 
 
 class StaticData:
-    DOC_HELPER = None
+    DOC_ACTIONS = None
     PROJECT_FOLDER = os.getcwd()
     RESULTS = f'{PROJECT_FOLDER}/results/'
     LOGS_FOLDER = f"{PROJECT_FOLDER}/logs/"

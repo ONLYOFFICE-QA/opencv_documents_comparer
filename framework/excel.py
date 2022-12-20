@@ -173,9 +173,7 @@ class Excel:
             logger.error(message)
 
     def get_excel_statistic(self, wb):
-        self.statistics_excel = {
-            'num_of_sheets': f'{wb.Sheets.Count}',
-        }
+        self.statistics_excel = {'num_of_sheets': f'{wb.Sheets.Count}'}
         try:
             num_of_sheet = 1
             for sh in wb.Sheets:
@@ -187,7 +185,6 @@ class Excel:
                 self.statistics_excel[f'{num_of_sheet}_nrows'] = nrows
                 self.statistics_excel[f'{num_of_sheet}_ncols'] = ncols
                 num_of_sheet += 1
-
         except Exception as e:
             massage = f'Failed to get full statistics excel from file: {self.doc_helper.converted_file}\n' \
                       f'statistics: {self.statistics_excel}\nException: {e}'
@@ -195,21 +192,21 @@ class Excel:
             Telegram.send_message(massage)
 
     def get_information_about_table(self, file_name):
-        error_processing = Process(target=self.check_errors.run_get_error_exel, args=(self.doc_helper.converted_file,))
+        error_processing = Process(target=self.error_handler_for_thread, args=(self.doc_helper.converted_file,))
         error_processing.start()
         try:
             excel = Dispatch("Excel.Application")
             excel.Visible = False
-            workbooks = excel.Workbooks.Open(f'{self.doc_helper.tmp_dir_in_test}{file_name}')
+            workbooks = excel.Workbooks.Open(f'{StaticData.TMP_DIR_IN_TEST}/{file_name}')
             self.get_excel_statistic(workbooks)
             self.close_opener_excel(excel, workbooks)
-            print(f"[bold blue]Number of sheets[/]: {self.statistics_excel['num_of_sheets']}")
+            self.num_of_sheets = self.statistics_excel['num_of_sheets']
             return True
 
         except Exception as e:
             logger.error(f'{e} happened while opening file: {self.doc_helper.converted_file} \nException: {e}')
             self.statistics_excel = None
-            self.doc_helper.copy_to_folder(self.doc_helper.failed_source)
+            self.doc_helper.copy_testing_files_to_folder(self.doc_helper.failed_source)
             return False
 
         finally:
@@ -217,7 +214,7 @@ class Excel:
 
     def close_excel(self):
         pg.hotkey('ctrl', 'z')
-        os.system("taskkill /t /im  EXCEL.EXE")
+        FileUtils.run_command(f"taskkill /im  {StaticData.EXCEL}")
         sleep(0.2)
         self.events_handler_when_closing()
 
@@ -228,4 +225,4 @@ class Excel:
         except Exception as e:
             logger.error(f'{e} happened while closing file: {self.doc_helper.converted_file}\nException: {e}')
         finally:
-            os.system("taskkill /t /im  EXCEL.EXE")
+            FileUtils.run_command("taskkill /t /im  EXCEL.EXE")

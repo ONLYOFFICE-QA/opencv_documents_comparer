@@ -1,14 +1,11 @@
 # -*- coding: utf-8 -*-
-
 import csv
 import io
-import json
+import configuration as config
 
 from loguru import logger
 from rich import print
 from rich.progress import track
-
-from config import version
 from framework.word import Word
 
 
@@ -16,7 +13,7 @@ from framework.word import Word
 class DocDocxStatisticsCompare(Word):
     def run_compare_statistic(self, file_array):
         logger.info(f'The {self.doc_helper.source_extension}  to {self.doc_helper.converted_extension} '
-                    f'comparison of statistical data on version: {version} is running.')
+                    f'comparison of statistical data on version: {config.version} is running.')
         with io.open('./report.csv', 'w', encoding="utf-8") as csvfile:
             writer = csv.writer(csvfile, delimiter=';')
             writer.writerow(['File_name', 'num_of_sheets', 'number_of_lines', 'word_count', 'characters_without_spaces',

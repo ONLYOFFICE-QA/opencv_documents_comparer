@@ -1,17 +1,19 @@
 # -*- coding: utf-8 -*-
-from config import version
+from loguru import logger
+from rich import print
+import configuration as config
+
 from framework.power_point import PowerPoint
 from framework.compare_image import CompareImage
-from management import *
 from data.StaticData import StaticData
 
 
 class PptPptxCompareImg(PowerPoint):
     def run_compare(self, list_of_files):
         logger.info(f'The {self.doc_helper.source_extension} to {self.doc_helper.converted_extension} '
-                    f'comparison on version: {version} is running.')
+                    f'comparison on version: {config.version} is running.')
         for self.doc_helper.converted_file in list_of_files:
-            if not self.doc_helper.converted_file.endswith((".pptx", ".PPTX")):
+            if not self.doc_helper.converted_file.lower().endswith(".pptx"):
                 continue
             self.doc_helper.preparing_files_for_compare_test()
             print(f'[bold green]In test[/] {self.doc_helper.converted_file}')
