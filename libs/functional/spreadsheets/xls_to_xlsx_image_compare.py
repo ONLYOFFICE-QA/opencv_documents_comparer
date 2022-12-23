@@ -1,47 +1,42 @@
 # -*- coding: utf-8 -*-
 from loguru import logger
 from rich import print
+import configuration as config
 
-from config import *
+from data.StaticData import StaticData
 from framework.excel import Excel
-
-from libs.helpers.compare_image import CompareImage
-from libs.helpers.helper import Helper
+from framework.compare_image import CompareImage
 
 
-class ExcelCompareImage:
-    def __init__(self):
-        self.helper = Helper('xls', 'xlsx')
-        self.excel = Excel(self.helper)
-        logger.info(f'The {self.helper.source_extension} to {self.helper.converted_extension} '
-                    f'comparison on version: {version} is running.')
-
-    def run_compare_excel_img(self, list_of_files):
-        for self.helper.converted_file in list_of_files:
-            if not self.helper.converted_file.endswith((".xlsx", ".XLSX")):
+class ExcelCompareImage(Excel):
+    def run_compare(self, list_of_files):
+        logger.info(f'The {self.doc_helper.source_extension} to {self.doc_helper.converted_extension} '
+                    f'comparison on version: {config.version} is running.')
+        for self.doc_helper.converted_file in list_of_files:
+            if not self.doc_helper.converted_file.endswith((".xlsx", ".XLSX")):
                 continue
+            self.doc_helper.preparing_files_for_compare_test()
+            if self.doc_helper.converted_file == '1000+Most+Common+Words+in+English+-+Numbers+' \
+                                                 '+Vocabulary+for+ESL+EFL+TEFL+TOEFL+TESL+' \
+                                                 'English+Learners.xlsx':
+                self.doc_helper.converted_file = '1000MostCommon_renamed.xlsx'
 
-            self.helper.preparing_files_for_test()
-
-            if self.helper.converted_file == '1000+Most+Common+Words+in+English+-+Numbers+' \
-                                             '+Vocabulary+for+ESL+EFL+TEFL+TOEFL+TESL+' \
-                                             'English+Learners.xlsx':
-                self.helper.converted_file = '1000MostCommon_renamed.xlsx'
-
-            print(f'[bold green]In test[/] {self.helper.converted_file}')
-            if not self.excel.opener_excel(self.helper.tmp_name):
+            print(f'[bold green]In test[/] {self.doc_helper.converted_file}')
+            if not self.get_information_about_table(self.doc_helper.tmp_file_for_get_statistic):
                 continue
-            self.excel.open_excel_with_cmd(self.helper.tmp_name_converted_file)
-            if not self.excel.errors_handler_when_opening():
-                self.excel.close_excel()
+            print(f"[bold blue]Number of sheets[/]: {self.num_of_sheets}")
+            self.open_excel_with_cmd(self.doc_helper.tmp_converted_file)
+            if not self.errors_handler_when_opening():
+                self.close_excel()
                 continue
-            self.excel.get_screenshots(self.helper.tmp_dir_converted_image)
-            self.excel.close_excel()
+            self.get_screenshots(StaticData.TMP_DIR_CONVERTED_IMG)
+            self.close_excel()
 
-            print(f'[bold green]In test[/] {self.helper.source_file}')
-            self.excel.open_excel_with_cmd(self.helper.tmp_name_source_file)
-            self.excel.events_handler_when_opening_source_file()
-            self.excel.get_screenshots(self.helper.tmp_dir_source_image)
-            self.excel.close_excel()
-            CompareImage(self.helper, koff=99.5)
-            self.helper.tmp_cleaner()
+            print(f'[bold green]In test[/] {self.doc_helper.source_file}')
+            self.open_excel_with_cmd(self.doc_helper.tmp_source_file)
+            self.events_handler_when_opening_source_file()
+            self.get_screenshots(StaticData.TMP_DIR_SOURCE_IMG)
+            self.close_excel()
+
+            CompareImage(coefficient=100)
+            self.doc_helper.tmp_cleaner()

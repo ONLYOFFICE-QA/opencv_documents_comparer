@@ -1,44 +1,40 @@
 # -*- coding: utf-8 -*-
 from loguru import logger
 from rich import print
+import configuration as config
 
-from config import version
+from data.StaticData import StaticData
 from framework.word import Word
-from libs.helpers.compare_image import CompareImage
-from libs.helpers.helper import Helper
+from framework.compare_image import CompareImage
 
 
-class RtfDocxCompareImg:
-    def __init__(self):
-        self.helper = Helper('rtf', 'docx')
-        self.word = Word(self.helper)
-        logger.info(f'The {self.helper.source_extension} to {self.helper.converted_extension} '
-                    f'comparison on version: {version} is running.')
-
-    def run_compare_rtf_docx(self, list_of_files):
-        for self.helper.converted_file in list_of_files:
-            if self.helper.converted_file.endswith((".rtf", ".RTF")):
-                self.helper.converted_file = self.helper.converted_file.replace('.rtf', '.docx')
-            if not self.helper.converted_file.endswith((".docx", ".DOCX")):
+class RtfDocxCompareImg(Word):
+    def run_compare(self, list_of_files):
+        logger.info(f'The {self.doc_helper.source_extension} to {self.doc_helper.converted_extension} '
+                    f'comparison on version: {config.version} is running.')
+        for self.doc_helper.converted_file in list_of_files:
+            if self.doc_helper.converted_file.endswith((".rtf", ".RTF")):
+                self.doc_helper.converted_file = self.doc_helper.converted_file.replace('.rtf', '.docx')
+            if not self.doc_helper.converted_file.endswith((".docx", ".DOCX")):
                 continue
-            self.helper.preparing_files_for_test()
-
-            print(f'[bold green]In test[/] {self.helper.converted_file}')
-            if not self.word.word_opener(self.helper.tmp_name):  # Getting Statistics
+            self.doc_helper.preparing_files_for_compare_test()
+            print(f'[bold green]In test[/] {self.doc_helper.converted_file}')
+            if not self.get_information_about_document(self.doc_helper.tmp_converted_file):  # Getting Statistics
                 continue
-            self.word.open_word_with_cmd(self.helper.tmp_name_converted_file)
-            if not self.word.errors_handler_when_opening():
-                self.word.close_word_with_cmd()
+            print(f"[bold blue]Number of pages:[/] {self.num_of_page}")
+            self.open_word_with_cmd(self.doc_helper.tmp_converted_file)
+            if not self.errors_handler_when_opening():
+                self.close_word_with_cmd()
                 continue
-            self.word.events_handler_when_opening()
-            self.word.get_screenshots(self.helper.tmp_dir_converted_image)
-            self.word.close_word_with_cmd()
+            self.events_handler_when_opening()
+            self.get_screenshots(StaticData.TMP_DIR_CONVERTED_IMG)
+            self.close_word_with_cmd()
 
-            print(f'[bold green]In test[/] {self.helper.source_file}')
-            self.word.open_word_with_cmd(self.helper.tmp_name_source_file)
-            self.word.events_handler_when_opening()
-            self.word.get_screenshots(self.helper.tmp_dir_source_image)
-            self.word.close_word_with_cmd()
+            print(f'[bold green]In test[/] {self.doc_helper.source_file}')
+            self.open_word_with_cmd(self.doc_helper.tmp_source_file)
+            self.events_handler_when_opening()
+            self.get_screenshots(StaticData.TMP_DIR_SOURCE_IMG)
+            self.close_word_with_cmd()
 
-            CompareImage(self.helper)
-            self.helper.tmp_cleaner()
+            CompareImage()
+            self.doc_helper.tmp_cleaner()

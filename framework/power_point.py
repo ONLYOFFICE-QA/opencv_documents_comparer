@@ -1,42 +1,41 @@
 # -*- coding: utf-8 -*-
 import os
-from multiprocessing import Process
-from time import sleep
-
 import pyautogui as pg
-import win32con
-import win32gui
 from loguru import logger
 from rich import print
+from multiprocessing import Process
+from time import sleep
+import win32con
+import win32gui
 from win32com.client import Dispatch
+import configuration as config
+import subprocess as sb
 
-from config import wait_for_opening
+from data.StaticData import StaticData
 from framework.telegram import Telegram
-from libs.helpers.compare_image import CompareImage
-from libs.helpers.error_handler import CheckErrors
+from framework.compare_image import CompareImage
+from framework.fileutils import FileUtils
 
 
 class PowerPoint:
-
-    def __init__(self, helper):
-        self.helper = helper
-        self.check_errors = CheckErrors()
-        self.errors = self.check_errors.errors
-        self.click = self.helper.click
+    def __init__(self):
+        self.doc_helper = StaticData.DOC_ACTIONS
+        self.errors = []
         self.slide_count = None
         self.windows_handler_number = None
-        self.errors_files_when_opening = []
+        self.files_with_errors_when_opening = []
 
-    def prepare_presentation_for_test(self):
-        self.click('libs/image_templates/excel/turn_on_content.png')
-        self.click('libs/image_templates/excel/turn_on_content.png')
+    @staticmethod
+    def prepare_presentation_for_test():
+        FileUtils.click('/excel/turn_on_content.png')
+        FileUtils.click('/excel/turn_on_content.png')
         sleep(0.2)
-        self.click('libs/image_templates/powerpoint/ok.png')
-        self.click('libs/image_templates/powerpoint/view.png')
+        FileUtils.click('/powerpoint/ok.png')
+        FileUtils.click('/powerpoint/view.png')
         pg.click()
         sleep(0.2)
-        self.click('libs/image_templates/powerpoint/normal_view.png')
-        self.click('libs/image_templates/powerpoint/scale.png')
+        FileUtils.click('/powerpoint/normal_view.png')
+        FileUtils.click('/powerpoint/scale.png')
         pg.press('tab')
         pg.write('100', interval=0.1)
         pg.press('enter')
@@ -49,7 +48,7 @@ class PowerPoint:
         win32gui.SetForegroundWindow(self.windows_handler_number)
 
     # Checks the window title
-    def check_error(self, hwnd, ctx):
+    def get_windows_title(self, hwnd, ctx):
         if win32gui.IsWindowVisible(hwnd):
             class_name, window_text = win32gui.GetClassName(hwnd), win32gui.GetWindowText(hwnd)
             if class_name == '#32770' and window_text == "Microsoft PowerPoint" or class_name == 'NUIDialog':
@@ -57,35 +56,47 @@ class PowerPoint:
                 self.errors.clear()
                 self.errors.append(class_name)
                 self.errors.append(window_text)
-                if class_name == 'NUIDialog':
-                    pg.press('enter')
-                    sleep(2)
-                    self.errors.clear()
 
-    def opener_power_point(self, path_for_open, file_name):
-        error_processing = Process(target=self.check_errors.run_get_errors_pp, args=(self.helper.converted_file,))
+    def error_handler_for_thread(self, filename):
+        while True:
+            win32gui.EnumWindows(self.get_windows_title, self.errors)
+            if self.errors:
+                match self.errors:
+                    case ['NUIDialog', 'Пароль']:
+                        logger.error(f'"{self.errors}" happened while opening: {self.doc_helper.converted_file}')
+                        pg.press('right', presses=2)
+                        pg.press('enter')
+                    case _:
+                        massage = f'"New Event {self.errors}" happened while opening: {self.doc_helper.converted_file}'
+                        logger.debug(massage)
+                        Telegram.send_message(massage)
+            self.errors.clear()
+
+    def get_slide_count(self):
+        error_processing = Process(target=self.error_handler_for_thread)
         error_processing.start()
         presentation = Dispatch("PowerPoint.application")
         try:
-            presentation = presentation.Presentations.Open(f'{path_for_open}{file_name}')
+            presentation = presentation.Presentations.Open(f'{StaticData.TMP_DIR_IN_TEST}'
+                                                           f'{self.doc_helper.tmp_file_for_get_statistic}')
             self.slide_count = len(presentation.Slides)
-            print(f"[bold blue]Number of Slides[/bold blue]:{self.slide_count}")
+            print(f"[bold blue]Number of Slides[/]:{self.slide_count}")
             return True
 
         except Exception as e:
-            logger.error(f'Exception while opening presentation. {self.helper.converted_file}\nException: {e}')
+            logger.error(f'Exception while opening presentation. {self.doc_helper.converted_file}\nException: {e}')
             self.slide_count = None
-            self.helper.copy_to_folder(self.helper.failed_source)
+            self.doc_helper.copy_testing_files_to_folder()
             return False
 
         finally:
             error_processing.terminate()
             self.close_presentation_with_hotkey()
-            os.system("taskkill /im  POWERPNT.EXE")
+            FileUtils.run_command(f"taskkill /im {StaticData.POWERPOINT}")
 
     def open_presentation_with_cmd(self, file_name):
         self.errors.clear()
-        self.helper.run(self.helper.tmp_dir_in_test, file_name, self.helper.power_point)
+        sb.Popen(f"{config.ms_office}/{StaticData.POWERPOINT} -t {StaticData.TMP_DIR_IN_TEST}/{file_name}")
         self.waiting_for_opening_power_point()
 
     def check_open_power_point(self, hwnd, ctx):
@@ -99,33 +110,37 @@ class PowerPoint:
         while True:
             win32gui.EnumWindows(self.check_open_power_point, self.windows_handler_number)
             if self.windows_handler_number:
-                sleep(wait_for_opening)
+                sleep(config.wait_for_opening)
                 break
             sleep(0.5)
             stop_waiting += 1
             if stop_waiting == 1000:
-                logger.error(f"'Too long to open file: {self.helper.converted_file} ")
-                self.helper.copy_to_folder(self.helper.too_long_to_open_files)
+                logger.error(f"'Too long to open file: {self.doc_helper.converted_file} ")
+                self.doc_helper.copy_testing_files_to_folder()
                 break
 
     def errors_handler_when_opening(self):
-        win32gui.EnumWindows(self.check_error, self.errors)
-        if self.errors and self.errors[0] == "#32770" and self.errors[1] == "Microsoft PowerPoint":
-            logger.error(f"'an error has occurred while opening the file' Files: {self.helper.converted_file}")
-            self.errors_files_when_opening.append(self.helper.converted_file)
+        win32gui.EnumWindows(self.get_windows_title, self.errors)
+        if self.errors and self.errors[0] == 'NUIDialog':
+            pg.press('enter')
+            sleep(2)
+            self.errors.clear()
+        elif self.errors and self.errors[0] == "#32770" and self.errors[1] == "Microsoft PowerPoint":
+            logger.error(f"'an error has occurred while opening the file' Files: {self.doc_helper.converted_file}")
+            self.files_with_errors_when_opening.append(self.doc_helper.converted_file)
             pg.press('esc', presses=3, interval=0.2)
-            self.helper.copy_to_folder(self.helper.opener_errors)
+            self.doc_helper.copy_testing_files_to_folder(self.doc_helper.opener_errors)
             self.errors.clear()
             return False
         elif not self.errors:
             return True
         else:
-            logger.debug(f"New Error\nError message: {self.errors}\nFile: {self.helper.converted_file}")
-            self.helper.copy_to_folder(self.helper.failed_source)
+            logger.debug(f"New Error\nError message: {self.errors}\nFile: {self.doc_helper.converted_file}")
+            self.doc_helper.copy_testing_files_to_folder()
             return False
 
     def events_handler_when_closing(self):
-        win32gui.EnumWindows(self.check_errors.get_windows_title, self.errors)
+        win32gui.EnumWindows(self.get_windows_title, self.errors)
         if self.errors and self.errors[0] == 'NUIDialog':
             pg.press('right')
             pg.press('enter')
@@ -150,12 +165,12 @@ class PowerPoint:
             self.prepare_presentation_for_test()
             page_num = 1
             for page in range(self.slide_count):
-                CompareImage.grab_coordinate(path_to_save_screen, page_num, coordinate)
+                CompareImage.grab_coordinate(f"{path_to_save_screen}/page_{page_num}.png", coordinate)
                 pg.press('pgdn')
                 sleep(0.5)
                 page_num += 1
         else:
-            massage = f'Invalid window handle when get_screenshot, File: {self.helper.converted_file}'
+            massage = f'Invalid window handle when get_screenshot, File: {self.doc_helper.converted_file}'
             Telegram.send_message(massage)
             logger.error(massage)
 
