@@ -12,7 +12,32 @@ Script to open and compare documents in MS Office
 
 ## Installing Python Libraries
 
-pip install -r requirements.txt
+### First you need to install the package manager poetry
+
+* Unix system
+  * Run command:
+  `curl -sSL <https://install.python-poetry.org> | python3 -`
+  * Add Poetry to your PATH
+  `$HOME/.local/bin`
+* Windows
+  * Run command in powershell:
+  `(Invoke-WebRequest -Uri https://install.python-poetry.org
+   -UseBasicParsing).Content | py -`
+  * Add Poetry to your PATH
+  `%APPDATA%\Python\Scripts`
+
+To install the dependencies via poetry, run the command
+`poetry install`
+
+To activate the virtual environment, run the command
+`poetry shell`
+
+### If installing dependencies is only possible via pip
+
+* Create the `requirements.txt` file from poetry.lock with the command:
+`python make_requirements.py`
+* To install the dependencies via pip:
+`pip install -r requirements.txt`
 
 ## Getting Started
 
