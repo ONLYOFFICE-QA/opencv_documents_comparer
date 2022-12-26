@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-from data.StaticData import StaticData
+from data.project_configurator import ProjectConfig
 from framework.telegram import Telegram
 from framework.compare_image import CompareImage
 import subprocess as sb
-from framework.fileutils import FileUtils
+from framework.FileUtils import FileUtils
 import pyautogui as pg
 from loguru import logger
 from time import sleep
@@ -15,7 +15,7 @@ import configuration as config
 class LibreOffice:
 
     def __init__(self):
-        self.doc_helper = StaticData.DOC_ACTIONS
+        self.doc_helper = ProjectConfig.DOC_ACTIONS
         self.errors = []
         self.windows_handler_number = None
         self.errors_files_when_opening = []
@@ -58,7 +58,7 @@ class LibreOffice:
 
     def open_libre_office_with_cmd(self, file_name):
         self.errors.clear()
-        sb.Popen(f"{config.libre_office}/{StaticData.LIBRE} -o {StaticData.TMP_DIR_IN_TEST}/{file_name}")
+        sb.Popen(f"{config.libre_office}/{ProjectConfig.LIBRE} -o {ProjectConfig.TMP_DIR_IN_TEST}/{file_name}")
         self.waiting_for_opening_libre_office()
         self.events_handler_when_opening()  # check events when opening
 

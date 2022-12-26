@@ -3,7 +3,7 @@ from loguru import logger
 from rich import print
 
 from configuration import version
-from data.StaticData import StaticData
+from data.project_configurator import ProjectConfig
 from framework.excel import Excel
 
 
@@ -13,7 +13,7 @@ class OpenerXlsx(Excel):
         for self.doc_helper.converted_file in list_of_files:
             if not self.doc_helper.converted_file.lower().endswith(".xlsx"):
                 continue
-            if self.doc_helper.converted_file in StaticData.EXCEPTION_FILES["xlsx_files_opening_error_named_range"]:
+            if self.doc_helper.converted_file in ProjectConfig.EXCEPTION_FILES["xlsx_files_opening_error_named_range"]:
                 # named range https://bugzilla.onlyoffice.com/show_bug.cgi?id=52628
                 continue
             self.doc_helper.preparing_files_for_opening_test()

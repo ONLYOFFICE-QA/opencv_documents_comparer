@@ -10,14 +10,14 @@ from rich.progress import track
 from rich import print
 from skimage.metrics import structural_similarity
 
-from data.StaticData import StaticData
-from framework.fileutils import FileUtils
+from data.project_configurator import ProjectConfig
+from framework.FileUtils import FileUtils
 
 
 class CompareImage:
     def __init__(self, coefficient=98):
         self.coefficient = coefficient
-        self.helper = StaticData.DOC_ACTIONS
+        self.helper = ProjectConfig.DOC_ACTIONS
         self.similarity: int = 0
         self.image_name, self.sheet_num, self.gif_name = '', '', ''
         self.source_img, self.converted_img, self.src_processed_img, self.cnv_processed_img = [], [], [], []
@@ -34,13 +34,13 @@ class CompareImage:
 
     def start_compare_images(self):
         description = "[bold blue]Comparing In Progress[/]"
-        for self.image_name in track(os.listdir(StaticData.TMP_DIR_CONVERTED_IMG), description=description):
-            if os.path.exists(f'{StaticData.TMP_DIR_SOURCE_IMG}/{self.image_name}') \
-                    and os.path.exists(f'{StaticData.TMP_DIR_CONVERTED_IMG}/{self.image_name}'):
+        for self.image_name in track(os.listdir(ProjectConfig.TMP_DIR_CONVERTED_IMG), description=description):
+            if os.path.exists(f'{ProjectConfig.TMP_DIR_SOURCE_IMG}/{self.image_name}') \
+                    and os.path.exists(f'{ProjectConfig.TMP_DIR_CONVERTED_IMG}/{self.image_name}'):
                 self.sheet_num = self.image_name.split('_')[-1].replace('.png', '')
                 self.gif_name = f"{self.image_name.split('.')[0]}_similarity.gif"
-                self.source_img = cv2.imread(f'{StaticData.TMP_DIR_SOURCE_IMG}{self.image_name}')
-                self.converted_img = cv2.imread(f'{StaticData.TMP_DIR_CONVERTED_IMG}{self.image_name}')
+                self.source_img = cv2.imread(f'{ProjectConfig.TMP_DIR_SOURCE_IMG}{self.image_name}')
+                self.converted_img = cv2.imread(f'{ProjectConfig.TMP_DIR_CONVERTED_IMG}{self.image_name}')
                 self.image_handler()
                 print(f"[blue]{self.helper.converted_file} Sheet: {self.sheet_num} similarity[/]: {self.similarity}")
                 self.save_result() if self.similarity < self.coefficient else print('[bold green]passed')

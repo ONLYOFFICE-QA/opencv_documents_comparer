@@ -11,15 +11,16 @@ from win32com.client import Dispatch
 import configuration as config
 import subprocess as sb
 
-from data.StaticData import StaticData
+from data.project_configurator import ProjectConfig
+from framework.actions.document_actions import DocActions
 from framework.telegram import Telegram
 from framework.compare_image import CompareImage
-from framework.fileutils import FileUtils
+from framework.FileUtils import FileUtils
 
 
 class PowerPoint:
     def __init__(self):
-        self.doc_helper = StaticData.DOC_ACTIONS
+        self.doc_helper = ProjectConfig.DOC_ACTIONS
         self.errors = []
         self.slide_count = None
         self.windows_handler_number = None
@@ -27,15 +28,15 @@ class PowerPoint:
 
     @staticmethod
     def prepare_presentation_for_test():
-        FileUtils.click('/excel/turn_on_content.png')
-        FileUtils.click('/excel/turn_on_content.png')
+        DocActions.click('/excel/turn_on_content.png')
+        DocActions.click('/excel/turn_on_content.png')
         sleep(0.2)
-        FileUtils.click('/powerpoint/ok.png')
-        FileUtils.click('/powerpoint/view.png')
+        DocActions.click('/powerpoint/ok.png')
+        DocActions.click('/powerpoint/view.png')
         pg.click()
         sleep(0.2)
-        FileUtils.click('/powerpoint/normal_view.png')
-        FileUtils.click('/powerpoint/scale.png')
+        DocActions.click('/powerpoint/normal_view.png')
+        DocActions.click('/powerpoint/scale.png')
         pg.press('tab')
         pg.write('100', interval=0.1)
         pg.press('enter')
@@ -77,7 +78,7 @@ class PowerPoint:
         error_processing.start()
         presentation = Dispatch("PowerPoint.application")
         try:
-            presentation = presentation.Presentations.Open(f'{StaticData.TMP_DIR_IN_TEST}'
+            presentation = presentation.Presentations.Open(f'{ProjectConfig.TMP_DIR_IN_TEST}'
                                                            f'{self.doc_helper.tmp_file_for_get_statistic}')
             self.slide_count = len(presentation.Slides)
             print(f"[bold blue]Number of Slides[/]:{self.slide_count}")
@@ -92,11 +93,11 @@ class PowerPoint:
         finally:
             error_processing.terminate()
             self.close_presentation_with_hotkey()
-            FileUtils.run_command(f"taskkill /im {StaticData.POWERPOINT}")
+            FileUtils.run_command(f"taskkill /im {ProjectConfig.POWERPOINT}")
 
     def open_presentation_with_cmd(self, file_name):
         self.errors.clear()
-        sb.Popen(f"{config.ms_office}/{StaticData.POWERPOINT} -t {StaticData.TMP_DIR_IN_TEST}/{file_name}")
+        sb.Popen(f"{config.ms_office}/{ProjectConfig.POWERPOINT} -t {ProjectConfig.TMP_DIR_IN_TEST}/{file_name}")
         self.waiting_for_opening_power_point()
 
     def check_open_power_point(self, hwnd, ctx):

@@ -3,7 +3,6 @@ import math
 import win32gui
 from loguru import logger
 from multiprocessing import Process
-from rich import print
 import configuration as config
 import subprocess as sb
 import pyautogui as pg
@@ -11,16 +10,17 @@ from time import sleep
 import win32con
 from win32com.client import Dispatch
 
-from data.StaticData import StaticData
+from data.project_configurator import ProjectConfig
+from framework.actions.document_actions import DocActions
 from framework.telegram import Telegram
 from framework.compare_image import CompareImage
-from framework.fileutils import FileUtils
+from framework.FileUtils import FileUtils
 
 
 # methods for working with Excel
 class Excel:
     def __init__(self):
-        self.doc_helper = StaticData.DOC_ACTIONS
+        self.doc_helper = ProjectConfig.DOC_ACTIONS
         self.errors = []
         self.statistics_excel = None
         self.windows_handler_number = None
@@ -42,7 +42,7 @@ class Excel:
             if self.errors:
                 match self.errors:
                     case ['#32770', 'Microsoft Visual Basic']:
-                        if not FileUtils.click('excel/end.png'):
+                        if not DocActions.click('excel/end.png'):
                             sb.call(f'powershell.exe kill -Name EXCEL', shell=True)
                     case ['#32770', 'Microsoft Excel']:
                         pg.press('enter')
@@ -63,7 +63,7 @@ class Excel:
                 self.errors.clear()
 
     def prepare_excel_for_test(self):
-        if FileUtils.click('/excel/turn_on_content.png'):
+        if DocActions.click('/excel/turn_on_content.png'):
             sleep(1)
             win32gui.EnumWindows(self.get_windows_title, self.errors)
             if self.errors:
@@ -75,7 +75,7 @@ class Excel:
 
     def open_excel_with_cmd(self, file_name):
         self.errors.clear()
-        sb.Popen(f"{config.ms_office}/{StaticData.EXCEL} -t {StaticData.TMP_DIR_IN_TEST}/{file_name}")
+        sb.Popen(f"{config.ms_office}/{ProjectConfig.EXCEL} -t {ProjectConfig.TMP_DIR_IN_TEST}/{file_name}")
         self.waiting_for_opening_excel()
 
     def check_open_excel(self, hwnd, ctx):
@@ -197,7 +197,7 @@ class Excel:
         try:
             excel = Dispatch("Excel.Application")
             excel.Visible = False
-            workbooks = excel.Workbooks.Open(f'{StaticData.TMP_DIR_IN_TEST}/{file_name}')
+            workbooks = excel.Workbooks.Open(f'{ProjectConfig.TMP_DIR_IN_TEST}/{file_name}')
             self.get_excel_statistic(workbooks)
             self.close_opener_excel(excel, workbooks)
             self.num_of_sheets = self.statistics_excel['num_of_sheets']
@@ -214,7 +214,7 @@ class Excel:
 
     def close_excel(self):
         pg.hotkey('ctrl', 'z')
-        FileUtils.run_command(f"taskkill /im  {StaticData.EXCEL}")
+        FileUtils.run_command(f"taskkill /im  {ProjectConfig.EXCEL}")
         sleep(0.2)
         self.events_handler_when_closing()
 

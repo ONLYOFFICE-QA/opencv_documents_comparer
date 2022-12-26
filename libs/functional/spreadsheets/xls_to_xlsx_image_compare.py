@@ -3,7 +3,7 @@ from loguru import logger
 from rich import print
 import configuration as config
 
-from data.StaticData import StaticData
+from data.project_configurator import ProjectConfig
 from framework.excel import Excel
 from framework.compare_image import CompareImage
 
@@ -29,13 +29,13 @@ class ExcelCompareImage(Excel):
             if not self.errors_handler_when_opening():
                 self.close_excel()
                 continue
-            self.get_screenshots(StaticData.TMP_DIR_CONVERTED_IMG)
+            self.get_screenshots(ProjectConfig.TMP_DIR_CONVERTED_IMG)
             self.close_excel()
 
             print(f'[bold green]In test[/] {self.doc_helper.source_file}')
             self.open_excel_with_cmd(self.doc_helper.tmp_source_file)
             self.events_handler_when_opening_source_file()
-            self.get_screenshots(StaticData.TMP_DIR_SOURCE_IMG)
+            self.get_screenshots(ProjectConfig.TMP_DIR_SOURCE_IMG)
             self.close_excel()
 
             CompareImage(coefficient=100)

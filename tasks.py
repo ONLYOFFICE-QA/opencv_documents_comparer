@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-from data.StaticData import StaticData
+from data.project_configurator import ProjectConfig
+from framework.actions.core_actions import CoreActions
+from framework.actions.host_actions import HostActions
 from framework.telegram import Telegram
 from libs.functional.presentation.odp_to_pptx_compare import OdpPptxCompare
 from libs.functional.presentation.ppt_to_pptx_compare import PptPptxCompareImg
@@ -20,8 +22,8 @@ from invoke import task
 
 @task
 def doc_docx(c, st=False, ls=False, df=False, cl=False):
-    StaticData.DOC_ACTIONS = DocActions(source_extension='doc', converted_extension='docx')
-    files_array = StaticData.DOC_ACTIONS.get_file_array(ls=ls, df=df, cl=cl)
+    ProjectConfig.DOC_ACTIONS = DocActions(source_extension='doc', converted_extension='docx')
+    files_array = ProjectConfig.DOC_ACTIONS.get_file_array(ls=ls, df=df, cl=cl)
     comparer = DocDocxCompareImg() if not st else DocDocxStatisticsCompare()
     comparer.run_compare(files_array) if not st else comparer.run_compare_statistic(files_array)
     Telegram.send_message('doc-docx comparison completed')
@@ -29,32 +31,32 @@ def doc_docx(c, st=False, ls=False, df=False, cl=False):
 
 @task
 def rtf_docx(c, ls=False, cl=False):
-    StaticData.DOC_ACTIONS = DocActions(source_extension='rtf', converted_extension='docx')
+    ProjectConfig.DOC_ACTIONS = DocActions(source_extension='rtf', converted_extension='docx')
     comparer = RtfDocxCompareImg()
-    comparer.run_compare(StaticData.DOC_ACTIONS.get_file_array(ls=ls, cl=cl))
+    comparer.run_compare(ProjectConfig.DOC_ACTIONS.get_file_array(ls=ls, cl=cl))
     Telegram.send_message('rtf-docx comparison completed')
 
 
 @task
 def ppt_pptx(c, ls=False, cl=False):
-    StaticData.DOC_ACTIONS = DocActions(source_extension='ppt', converted_extension='pptx')
+    ProjectConfig.DOC_ACTIONS = DocActions(source_extension='ppt', converted_extension='pptx')
     comparer = PptPptxCompareImg()
-    comparer.run_compare(StaticData.DOC_ACTIONS.get_file_array(ls=ls, cl=cl))
+    comparer.run_compare(ProjectConfig.DOC_ACTIONS.get_file_array(ls=ls, cl=cl))
     Telegram.send_message('ppt-pptx comparison completed')
 
 
 @task
 def odp_pptx(c, ls=False, cl=False):
-    StaticData.DOC_ACTIONS = DocActions(source_extension='odp', converted_extension='pptx')
+    ProjectConfig.DOC_ACTIONS = DocActions(source_extension='odp', converted_extension='pptx')
     comparer = OdpPptxCompare()
-    comparer.run_compare(StaticData.DOC_ACTIONS.get_file_array(ls=ls, cl=cl))
+    comparer.run_compare(ProjectConfig.DOC_ACTIONS.get_file_array(ls=ls, cl=cl))
     Telegram.send_message('odp-pptx comparison completed')
 
 
 @task
 def xls_xlsx(c, st=False, ls=False, cl=False):
-    StaticData.DOC_ACTIONS = DocActions(source_extension='xls', converted_extension='xlsx')
-    files_array = StaticData.DOC_ACTIONS.get_file_array(ls=ls, cl=cl)
+    ProjectConfig.DOC_ACTIONS = DocActions(source_extension='xls', converted_extension='xlsx')
+    files_array = ProjectConfig.DOC_ACTIONS.get_file_array(ls=ls, cl=cl)
     comparer = ExcelCompareImage() if not st else StatisticCompare()
     comparer.run_compare(files_array) if not st else comparer.run_compare_statistic(files_array)
     Telegram.send_message('xls-xlsx comparison completed')
@@ -63,72 +65,72 @@ def xls_xlsx(c, st=False, ls=False, cl=False):
 @task
 def opener_pptx(c, odp=False, ppt=False, ls=False):
     if odp:
-        StaticData.DOC_ACTIONS = DocActions(source_extension='odp', converted_extension='pptx')
+        ProjectConfig.DOC_ACTIONS = DocActions(source_extension='odp', converted_extension='pptx')
     elif ppt:
-        StaticData.DOC_ACTIONS = DocActions(source_extension='ppt', converted_extension='pptx')
+        ProjectConfig.DOC_ACTIONS = DocActions(source_extension='ppt', converted_extension='pptx')
     else:
         opener_pptx(c, ppt=True, ls=ls)
         opener_pptx(c, odp=True, ls=ls)
         Telegram.send_message('Ppt=>Pptx and Odp => Pptx opening check completed')
     opener = OpenerPptx()
-    opener.run_opener(StaticData.DOC_ACTIONS.get_file_array(ls=ls))
-    StaticData.DOC_ACTIONS.create_massage_for_tg(opener.files_with_errors_when_opening, ls=ls)
+    opener.run_opener(ProjectConfig.DOC_ACTIONS.get_file_array(ls=ls))
+    ProjectConfig.DOC_ACTIONS.create_massage_for_tg(opener.files_with_errors_when_opening, ls=ls)
 
 
 @task
 def opener_docx(c, doc=False, rtf=False, pdf=False, ls=False):
     if doc:
-        StaticData.DOC_ACTIONS = DocActions(source_extension='doc', converted_extension='docx')
+        ProjectConfig.DOC_ACTIONS = DocActions(source_extension='doc', converted_extension='docx')
     elif rtf:
-        StaticData.DOC_ACTIONS = DocActions(source_extension='rtf', converted_extension='docx')
+        ProjectConfig.DOC_ACTIONS = DocActions(source_extension='rtf', converted_extension='docx')
     elif pdf:
-        StaticData.DOC_ACTIONS = DocActions(source_extension='pdf', converted_extension='docx')
+        ProjectConfig.DOC_ACTIONS = DocActions(source_extension='pdf', converted_extension='docx')
     else:
         opener_docx(c, doc=True, ls=ls)
         opener_docx(c, rtf=True, ls=ls)
         Telegram.send_message('Doc=>Docx and Rtf=>Docx opening check completed')
     opener = OpenerDocx()
-    opener.run_opener(StaticData.DOC_ACTIONS.get_file_array(ls=ls))
-    StaticData.DOC_ACTIONS.create_massage_for_tg(opener.files_with_errors_when_opening, ls=ls)
+    opener.run_opener(ProjectConfig.DOC_ACTIONS.get_file_array(ls=ls))
+    ProjectConfig.DOC_ACTIONS.create_massage_for_tg(opener.files_with_errors_when_opening, ls=ls)
 
 
 @task
 def opener_xlsx(c, xls=False, ods=False, ls=False):
     if xls:
-        StaticData.DOC_ACTIONS = DocActions(source_extension='xls', converted_extension='xlsx')
+        ProjectConfig.DOC_ACTIONS = DocActions(source_extension='xls', converted_extension='xlsx')
     elif ods:
-        StaticData.DOC_ACTIONS = DocActions(source_extension='ods', converted_extension='xlsx')
+        ProjectConfig.DOC_ACTIONS = DocActions(source_extension='ods', converted_extension='xlsx')
     else:
         opener_xlsx(c, xls=True, ls=ls)
         opener_xlsx(c, ods=True, ls=ls)
         Telegram.send_message('Xls=>Xlsx and Ods=>Xlsx opening check completed')
     opener = OpenerXlsx()
-    opener.run_opener(StaticData.DOC_ACTIONS.get_file_array(ls=ls))
-    StaticData.DOC_ACTIONS.create_massage_for_tg(opener.files_with_errors_when_opening, ls=ls)
+    opener.run_opener(ProjectConfig.DOC_ACTIONS.get_file_array(ls=ls))
+    ProjectConfig.DOC_ACTIONS.create_massage_for_tg(opener.files_with_errors_when_opening, ls=ls)
 
 
 @task
 def opener_odp(c, ls=False):
-    StaticData.DOC_ACTIONS = DocActions(source_extension='pptx', converted_extension='odp')
+    ProjectConfig.DOC_ACTIONS = DocActions(source_extension='pptx', converted_extension='odp')
     opener = OpenerOdp()
-    opener.run_opener(StaticData.DOC_ACTIONS.get_file_array(ls=ls))
-    StaticData.DOC_ACTIONS.create_massage_for_tg(opener.errors_files_when_opening, ls=ls)
+    opener.run_opener(ProjectConfig.DOC_ACTIONS.get_file_array(ls=ls))
+    ProjectConfig.DOC_ACTIONS.create_massage_for_tg(opener.errors_files_when_opening, ls=ls)
 
 
 @task
 def opener_odt(c, ls=False):
-    StaticData.DOC_ACTIONS = DocActions(source_extension='docx', converted_extension='odt')
+    ProjectConfig.DOC_ACTIONS = DocActions(source_extension='docx', converted_extension='odt')
     opener = OpenerOdt()
-    opener.run_opener(StaticData.DOC_ACTIONS.get_file_array(ls=ls))
-    StaticData.DOC_ACTIONS.create_massage_for_tg(opener.errors_files_when_opening, ls=ls)
+    opener.run_opener(ProjectConfig.DOC_ACTIONS.get_file_array(ls=ls))
+    ProjectConfig.DOC_ACTIONS.create_massage_for_tg(opener.errors_files_when_opening, ls=ls)
 
 
 @task
 def opener_ods(c, ls=False):
-    StaticData.DOC_ACTIONS = DocActions(source_extension='xlsx', converted_extension='ods')
+    ProjectConfig.DOC_ACTIONS = DocActions(source_extension='xlsx', converted_extension='ods')
     opener = OpenerOds()
-    opener.run_opener(StaticData.DOC_ACTIONS.get_file_array(ls=ls))
-    StaticData.DOC_ACTIONS.create_massage_for_tg(opener.errors_files_when_opening, ls=ls)
+    opener.run_opener(ProjectConfig.DOC_ACTIONS.get_file_array(ls=ls))
+    ProjectConfig.DOC_ACTIONS.create_massage_for_tg(opener.errors_files_when_opening, ls=ls)
 
 
 @task

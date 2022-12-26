@@ -5,7 +5,7 @@ import configuration as config
 
 from framework.power_point import PowerPoint
 from framework.compare_image import CompareImage
-from data.StaticData import StaticData
+from data.project_configurator import ProjectConfig
 
 
 class PptPptxCompareImg(PowerPoint):
@@ -23,12 +23,12 @@ class PptPptxCompareImg(PowerPoint):
             if not self.errors_handler_when_opening():
                 self.close_presentation_with_hotkey()
                 continue
-            self.get_screenshot(StaticData.TMP_DIR_CONVERTED_IMG)
+            self.get_screenshot(ProjectConfig.TMP_DIR_CONVERTED_IMG)
             self.close_presentation_with_hotkey()
 
             print(f'[bold green]In test[/] {self.doc_helper.source_file}')
             self.open_presentation_with_cmd(self.doc_helper.tmp_source_file)
-            self.get_screenshot(StaticData.TMP_DIR_SOURCE_IMG)
+            self.get_screenshot(ProjectConfig.TMP_DIR_SOURCE_IMG)
             self.close_presentation_with_hotkey()
 
             CompareImage()

@@ -3,7 +3,7 @@ from loguru import logger
 from rich import print
 import configuration as config
 
-from data.StaticData import StaticData
+from data.project_configurator import ProjectConfig
 from framework.word import Word
 from framework.compare_image import CompareImage
 
@@ -27,13 +27,13 @@ class RtfDocxCompareImg(Word):
                 self.close_word_with_cmd()
                 continue
             self.events_handler_when_opening()
-            self.get_screenshots(StaticData.TMP_DIR_CONVERTED_IMG)
+            self.get_screenshots(ProjectConfig.TMP_DIR_CONVERTED_IMG)
             self.close_word_with_cmd()
 
             print(f'[bold green]In test[/] {self.doc_helper.source_file}')
             self.open_word_with_cmd(self.doc_helper.tmp_source_file)
             self.events_handler_when_opening()
-            self.get_screenshots(StaticData.TMP_DIR_SOURCE_IMG)
+            self.get_screenshots(ProjectConfig.TMP_DIR_SOURCE_IMG)
             self.close_word_with_cmd()
 
             CompareImage()
