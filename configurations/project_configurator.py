@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import re
 from os import getcwd
 from os.path import join
 
@@ -43,7 +44,7 @@ class ProjectConfig:
 
     @staticmethod
     def reports_dir():
-        return join(ProjectConfig.PROJECT_DIR, 'reports')
+        return join(ProjectConfig.PROJECT_DIR, 'reports', re.sub(r'(\d+).(\d+).(\d+).(\d+)', r'\1.\2.\3', st.version))
 
     @staticmethod
     def all_fonts_js():
