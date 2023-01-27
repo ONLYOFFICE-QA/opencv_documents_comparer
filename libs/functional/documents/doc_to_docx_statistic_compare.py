@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 import csv
 import io
-import configuration as config
 
 from loguru import logger
 from rich import print
 from rich.progress import track
+
+import settings as config
 from framework.word import Word
 
 

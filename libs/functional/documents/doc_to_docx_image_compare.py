@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-from data.project_configurator import ProjectConfig
-from framework.word import Word
-from framework.compare_image import CompareImage
 from loguru import logger
 from rich import print
-import configuration as config
+
+import settings as config
+from configurations.project_configurator import ProjectConfig
+from framework.compare_image import CompareImage
+from framework.word import Word
 
 
 class DocDocxCompareImg(Word):

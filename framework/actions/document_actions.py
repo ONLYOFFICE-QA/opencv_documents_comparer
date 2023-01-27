@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
-from loguru import logger
-import random
-from os import walk, listdir
-from os.path import join, exists
 import sys
-import psutil
-import pyperclip as pc
-import pyautogui as pg
-import configuration as config
+from os import walk, listdir
+from os.path import join, basename
 
-from configuration import version, converted_docs, source_docs
-from data.project_configurator import ProjectConfig
-from framework.telegram import Telegram
+import psutil
+import pyautogui as pg
+import pyperclip as pc
+from loguru import logger
+
+import settings as config
+from configurations.project_configurator import ProjectConfig
 from framework.FileUtils import FileUtils
+from framework.telegram import Telegram
+from settings import version, converted_docs, source_docs
 
 
 class DocActions:
@@ -22,16 +22,17 @@ class DocActions:
         self.source_file, self.converted_file = '', ''
         self.tmp_converted_file, self.tmp_source_file, self.tmp_file_for_get_statistic = '', '', ''
         # paths to document folders
-        self.source_doc_folder: str = f'{source_docs}/{source_extension}/'
-        self.converted_doc_folder: str = f'{converted_docs}/{version}_{source_extension}_{converted_extension}/'
+        self.source_doc_folder: str = join(source_docs, source_extension)
+        self.converted_doc_folder: str = join(converted_docs, f"{version}_{source_extension}_{converted_extension}")
         # results dirs
-        self.result_folder: str = f'{ProjectConfig.RESULTS}/{version}_{source_extension}_{converted_extension}/'
-        self.differences_statistic: str = f'{self.result_folder}/differences_statistic/'
-        self.untested_folder: str = f'{self.result_folder}/failed_to_open_converted_file/'
-        self.failed_source: str = f'{self.result_folder}/failed_to_open_source_file/'
-        self.opener_errors: str = f'{self.result_folder}/opener_errors_{converted_extension}_version_{version}/'
-        self.too_long_to_open_files: str = f'{self.opener_errors}/too_long_to_open_files/'
+        self.result_folder: str = join(ProjectConfig.RESULTS, f"{version}_{source_extension}_{converted_extension}")
+        self.differences_statistic: str = join(self.result_folder, 'diff_statistic')
+        self.untested_folder: str = join(self.result_folder, 'failed_to_open_converted_file')
+        self.failed_source: str = join(self.result_folder, 'failed_to_open_source_file')
+        self.opener_errors: str = join(self.result_folder, f"opener_errors_{converted_extension}_version_{version}")
+        self.too_long_to_open_files: str = join(self.opener_errors, 'too_long_to_open_files')
         self.create_logger()
+        self.terminate_process()
         self.tmp_cleaner()
 
     def create_logger(self):
@@ -44,17 +45,10 @@ class DocActions:
                    compression='zip')
 
     @staticmethod
-    def random_name(file_extension):
-        while True:
-            random_file_name = f'{random.randint(5000, 50000000)}.{file_extension}'
-            if not exists(join(ProjectConfig.TMP_DIR_IN_TEST, random_file_name)):
-                return random_file_name
-
-    @staticmethod
     def copy_for_test(path_to_files):
-        tmp_name = DocActions.random_name(path_to_files.split(".")[-1])
-        FileUtils.copy(path_to_files, join(ProjectConfig.TMP_DIR_IN_TEST, tmp_name))
-        return tmp_name
+        tmp_file_path = FileUtils.random_name(ProjectConfig.TMP_DIR_IN_TEST, path_to_files.split(".")[-1])
+        FileUtils.copy(path_to_files, tmp_file_path)
+        return tmp_file_path
 
     def preparing_files_for_opening_test(self):
         self.tmp_converted_file = self.copy_for_test(join(self.converted_doc_folder, self.converted_file))
@@ -78,8 +72,8 @@ class DocActions:
                         message = f'Exception when terminate_process: {e}\nFile name: {self.converted_file}'
                         logger.debug(message)
 
-    def tmp_cleaner(self):
-        self.terminate_process()
+    @staticmethod
+    def tmp_cleaner():
         FileUtils.delete(f'{ProjectConfig.TMP_DIR_IN_TEST}', all_from_folder=True, silence=True)
         FileUtils.delete(f'{ProjectConfig.TMP_DIR_CONVERTED_IMG}', all_from_folder=True, silence=True)
         FileUtils.delete(f'{ProjectConfig.TMP_DIR_SOURCE_IMG}', all_from_folder=True, silence=True)
@@ -108,9 +102,8 @@ class DocActions:
 
     @staticmethod
     def click(path_to_image):
-        from data.project_configurator import ProjectConfig
         try:
-            pg.click(f'{ProjectConfig.PROJECT_DIR}/data/image_templates/{path_to_image}')
+            pg.click(join(ProjectConfig.PROJECT_DIR, 'data', 'image_templates', path_to_image))
             return True
         except TypeError:
             return False
@@ -119,25 +112,20 @@ class DocActions:
     def last_modified_report():
         return FileUtils.last_modified_file(ProjectConfig.CSTM_REPORT_DIR)
 
-    def prepare_files_for_openers(self, input_format, output_format, x2t_version):
-        result_folder = f"{ProjectConfig.result_dir()}/{x2t_version}_{input_format}_{output_format}"
-        FileUtils.create_dir(result_folder)
-        self.copy_result_x2ttester(result_folder, output_format, delete=False)
-
     @staticmethod
     def copy_result_x2ttester(path_to, output_format, delete=False):
-        for root, dirs, files in walk(f"{ProjectConfig.tmp_result_dir()}"):
-            if output_format in ["png", "jpg"]:
-                for dirname in dirs:
-                    if output_format and dirname.lower().endswith(f".{output_format.lower()}"):
-                        FileUtils.copy(join(root, dirname), join(path_to, dirname), silence=True)
-            else:
-                for filename in files:
-                    if output_format and filename.lower().endswith(f".{output_format.lower()}"):
-                        FileUtils.copy(join(root, filename), join(path_to, filename), silence=True)
-        FileUtils.delete(f"{ProjectConfig.tmp_result_dir()}") if delete else None
+        FileUtils.create_dir(path_to)
+        if output_format in ["png", "jpg"]:
+            for root, dirs, files in walk(ProjectConfig.tmp_result_dir()):
+                for dir_name in dirs:
+                    if output_format and dir_name.lower().endswith(f".{output_format.lower()}"):
+                        FileUtils.copy(join(root, dir_name), join(path_to, dir_name), silence=True)
+        else:
+            for file_path in FileUtils.get_files_by_extensions(ProjectConfig.tmp_result_dir(), f".{output_format}"):
+                FileUtils.copy(file_path, join(path_to, basename(file_path)), silence=True)
+        FileUtils.delete(ProjectConfig.tmp_result_dir()) if delete else None
 
-    def get_file_array(self, ls=False, df=False, cl=False):
+    def generate_file_array(self, ls=False, df=False, cl=False):
         if ls:
             files_array = config.files_array
         elif cl:

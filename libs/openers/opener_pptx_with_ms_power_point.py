@@ -2,8 +2,8 @@
 from loguru import logger
 from rich import print
 
-from configuration import version
 from framework.power_point import PowerPoint
+from settings import version
 
 
 class OpenerPptx(PowerPoint):

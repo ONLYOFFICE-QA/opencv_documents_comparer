@@ -1,20 +1,21 @@
 # -*- coding: utf-8 -*-
 import math
+import subprocess as sb
+from multiprocessing import Process
+from time import sleep
+
+import pyautogui as pg
+import win32con
 import win32gui
 from loguru import logger
-from multiprocessing import Process
-import configuration as config
-import subprocess as sb
-import pyautogui as pg
-from time import sleep
-import win32con
 from win32com.client import Dispatch
 
-from data.project_configurator import ProjectConfig
-from framework.actions.document_actions import DocActions
-from framework.telegram import Telegram
-from framework.compare_image import CompareImage
+import settings as config
+from configurations.project_configurator import ProjectConfig
 from framework.FileUtils import FileUtils
+from framework.actions.document_actions import DocActions
+from framework.compare_image import CompareImage
+from framework.telegram import Telegram
 
 
 # methods for working with Excel
@@ -73,9 +74,9 @@ class Excel:
                 sleep(7)
                 error_processing.terminate()
 
-    def open_excel_with_cmd(self, file_name):
+    def open_excel_with_cmd(self, file_path):
         self.errors.clear()
-        sb.Popen(f"{config.ms_office}/{ProjectConfig.EXCEL} -t {ProjectConfig.TMP_DIR_IN_TEST}/{file_name}")
+        sb.Popen(f"{config.ms_office}/{ProjectConfig.EXCEL} -t {file_path}")
         self.waiting_for_opening_excel()
 
     def check_open_excel(self, hwnd, ctx):
@@ -191,13 +192,13 @@ class Excel:
             logger.error(massage)
             Telegram.send_message(massage)
 
-    def get_information_about_table(self, file_name):
+    def get_information_about_table(self, file_path):
         error_processing = Process(target=self.error_handler_for_thread, args=(self.doc_helper.converted_file,))
         error_processing.start()
         try:
             excel = Dispatch("Excel.Application")
             excel.Visible = False
-            workbooks = excel.Workbooks.Open(f'{ProjectConfig.TMP_DIR_IN_TEST}/{file_name}')
+            workbooks = excel.Workbooks.Open(f'{file_path}')
             self.get_excel_statistic(workbooks)
             self.close_opener_excel(excel, workbooks)
             self.num_of_sheets = self.statistics_excel['num_of_sheets']

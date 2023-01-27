@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 from loguru import logger
 from rich import print
-import configuration as config
 
-from data.project_configurator import ProjectConfig
-from framework.excel import Excel
+import settings as config
+from configurations.project_configurator import ProjectConfig
 from framework.compare_image import CompareImage
+from framework.excel import Excel
 
 
 class ExcelCompareImage(Excel):

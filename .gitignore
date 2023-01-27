@@ -13,3 +13,7 @@ build/
 /logs/
 /tmp/
 /results/
+/core/
+/reports/
+/report.txt
+/conversion_result/

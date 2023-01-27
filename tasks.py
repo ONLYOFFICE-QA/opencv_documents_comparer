@@ -23,7 +23,7 @@ from invoke import task
 @task
 def doc_docx(c, st=False, ls=False, df=False, cl=False):
     ProjectConfig.DOC_ACTIONS = DocActions(source_extension='doc', converted_extension='docx')
-    files_array = ProjectConfig.DOC_ACTIONS.get_file_array(ls=ls, df=df, cl=cl)
+    files_array = ProjectConfig.DOC_ACTIONS.generate_file_array(ls=ls, df=df, cl=cl)
     comparer = DocDocxCompareImg() if not st else DocDocxStatisticsCompare()
     comparer.run_compare(files_array) if not st else comparer.run_compare_statistic(files_array)
     Telegram.send_message('doc-docx comparison completed')
@@ -33,7 +33,7 @@ def doc_docx(c, st=False, ls=False, df=False, cl=False):
 def rtf_docx(c, ls=False, cl=False):
     ProjectConfig.DOC_ACTIONS = DocActions(source_extension='rtf', converted_extension='docx')
     comparer = RtfDocxCompareImg()
-    comparer.run_compare(ProjectConfig.DOC_ACTIONS.get_file_array(ls=ls, cl=cl))
+    comparer.run_compare(ProjectConfig.DOC_ACTIONS.generate_file_array(ls=ls, cl=cl))
     Telegram.send_message('rtf-docx comparison completed')
 
 
@@ -41,7 +41,7 @@ def rtf_docx(c, ls=False, cl=False):
 def ppt_pptx(c, ls=False, cl=False):
     ProjectConfig.DOC_ACTIONS = DocActions(source_extension='ppt', converted_extension='pptx')
     comparer = PptPptxCompareImg()
-    comparer.run_compare(ProjectConfig.DOC_ACTIONS.get_file_array(ls=ls, cl=cl))
+    comparer.run_compare(ProjectConfig.DOC_ACTIONS.generate_file_array(ls=ls, cl=cl))
     Telegram.send_message('ppt-pptx comparison completed')
 
 
@@ -49,14 +49,14 @@ def ppt_pptx(c, ls=False, cl=False):
 def odp_pptx(c, ls=False, cl=False):
     ProjectConfig.DOC_ACTIONS = DocActions(source_extension='odp', converted_extension='pptx')
     comparer = OdpPptxCompare()
-    comparer.run_compare(ProjectConfig.DOC_ACTIONS.get_file_array(ls=ls, cl=cl))
+    comparer.run_compare(ProjectConfig.DOC_ACTIONS.generate_file_array(ls=ls, cl=cl))
     Telegram.send_message('odp-pptx comparison completed')
 
 
 @task
 def xls_xlsx(c, st=False, ls=False, cl=False):
     ProjectConfig.DOC_ACTIONS = DocActions(source_extension='xls', converted_extension='xlsx')
-    files_array = ProjectConfig.DOC_ACTIONS.get_file_array(ls=ls, cl=cl)
+    files_array = ProjectConfig.DOC_ACTIONS.generate_file_array(ls=ls, cl=cl)
     comparer = ExcelCompareImage() if not st else StatisticCompare()
     comparer.run_compare(files_array) if not st else comparer.run_compare_statistic(files_array)
     Telegram.send_message('xls-xlsx comparison completed')
@@ -73,7 +73,7 @@ def opener_pptx(c, odp=False, ppt=False, ls=False):
         opener_pptx(c, odp=True, ls=ls)
         Telegram.send_message('Ppt=>Pptx and Odp => Pptx opening check completed')
     opener = OpenerPptx()
-    opener.run_opener(ProjectConfig.DOC_ACTIONS.get_file_array(ls=ls))
+    opener.run_opener(ProjectConfig.DOC_ACTIONS.generate_file_array(ls=ls))
     ProjectConfig.DOC_ACTIONS.create_massage_for_tg(opener.files_with_errors_when_opening, ls=ls)
 
 
@@ -90,7 +90,7 @@ def opener_docx(c, doc=False, rtf=False, pdf=False, ls=False):
         opener_docx(c, rtf=True, ls=ls)
         Telegram.send_message('Doc=>Docx and Rtf=>Docx opening check completed')
     opener = OpenerDocx()
-    opener.run_opener(ProjectConfig.DOC_ACTIONS.get_file_array(ls=ls))
+    opener.run_opener(ProjectConfig.DOC_ACTIONS.generate_file_array(ls=ls))
     ProjectConfig.DOC_ACTIONS.create_massage_for_tg(opener.files_with_errors_when_opening, ls=ls)
 
 
@@ -105,7 +105,7 @@ def opener_xlsx(c, xls=False, ods=False, ls=False):
         opener_xlsx(c, ods=True, ls=ls)
         Telegram.send_message('Xls=>Xlsx and Ods=>Xlsx opening check completed')
     opener = OpenerXlsx()
-    opener.run_opener(ProjectConfig.DOC_ACTIONS.get_file_array(ls=ls))
+    opener.run_opener(ProjectConfig.DOC_ACTIONS.generate_file_array(ls=ls))
     ProjectConfig.DOC_ACTIONS.create_massage_for_tg(opener.files_with_errors_when_opening, ls=ls)
 
 
@@ -113,7 +113,7 @@ def opener_xlsx(c, xls=False, ods=False, ls=False):
 def opener_odp(c, ls=False):
     ProjectConfig.DOC_ACTIONS = DocActions(source_extension='pptx', converted_extension='odp')
     opener = OpenerOdp()
-    opener.run_opener(ProjectConfig.DOC_ACTIONS.get_file_array(ls=ls))
+    opener.run_opener(ProjectConfig.DOC_ACTIONS.generate_file_array(ls=ls))
     ProjectConfig.DOC_ACTIONS.create_massage_for_tg(opener.errors_files_when_opening, ls=ls)
 
 
@@ -121,7 +121,7 @@ def opener_odp(c, ls=False):
 def opener_odt(c, ls=False):
     ProjectConfig.DOC_ACTIONS = DocActions(source_extension='docx', converted_extension='odt')
     opener = OpenerOdt()
-    opener.run_opener(ProjectConfig.DOC_ACTIONS.get_file_array(ls=ls))
+    opener.run_opener(ProjectConfig.DOC_ACTIONS.generate_file_array(ls=ls))
     ProjectConfig.DOC_ACTIONS.create_massage_for_tg(opener.errors_files_when_opening, ls=ls)
 
 
@@ -129,7 +129,7 @@ def opener_odt(c, ls=False):
 def opener_ods(c, ls=False):
     ProjectConfig.DOC_ACTIONS = DocActions(source_extension='xlsx', converted_extension='ods')
     opener = OpenerOds()
-    opener.run_opener(ProjectConfig.DOC_ACTIONS.get_file_array(ls=ls))
+    opener.run_opener(ProjectConfig.DOC_ACTIONS.generate_file_array(ls=ls))
     ProjectConfig.DOC_ACTIONS.create_massage_for_tg(opener.errors_files_when_opening, ls=ls)
 
 

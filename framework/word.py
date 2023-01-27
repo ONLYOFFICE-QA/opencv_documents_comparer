@@ -1,25 +1,27 @@
 # -*- coding: utf-8 -*-
 import subprocess as sb
-import pyautogui as pg
-from loguru import logger
-from rich import print
 from multiprocessing import Process
 from time import sleep
+
+import pyautogui as pg
 import win32con
 import win32gui
+from loguru import logger
+from rich import print
 from win32com.client import Dispatch
-import configuration as config
 
-from data.StaticData import StaticData
-from framework.telegram import Telegram
+import settings as config
+from configurations.project_configurator import ProjectConfig
+from framework.FileUtils import FileUtils
+from framework.actions.document_actions import DocActions
 from framework.compare_image import CompareImage
-from framework.fileutils import FileUtils
+from framework.telegram import Telegram
 
 
 # methods for working with Word
 class Word:
     def __init__(self):
-        self.doc_helper = StaticData.DOC_ACTIONS
+        self.doc_helper = ProjectConfig.DOC_ACTIONS
         self.statistics_word = None
         self.windows_handler_number = None
         self.files_with_errors_when_opening = []
@@ -77,20 +79,20 @@ class Word:
 
     @staticmethod
     def prepare_document_for_test():
-        FileUtils.click('/word/layout.png')
+        DocActions.click('/word/layout.png')
         sleep(0.3)
-        FileUtils.click('/word/transfers.png')
+        DocActions.click('/word/transfers.png')
         pg.press('down', interval=0.1)
         pg.press('enter')
-        FileUtils.click('/powerpoint/view.png')
+        DocActions.click('/powerpoint/view.png')
         sleep(0.3)
-        FileUtils.click('/word/one_page.png')
-        FileUtils.click('/word/resolution100.png')
+        DocActions.click('/word/one_page.png')
+        DocActions.click('/word/resolution100.png')
         pg.moveTo(100, 0)
         sleep(0.5)
 
-    def open_word_with_cmd(self, file_name):
-        sb.Popen(f"{config.ms_office}/{StaticData.WORD} -t {StaticData.TMP_DIR_IN_TEST}/{file_name}")
+    def open_word_with_cmd(self, file_path):
+        sb.Popen(f"{config.ms_office}/{ProjectConfig.WORD} -t {file_path}")
         self.waiting_for_opening_word()
 
     def check_open_word(self, hwnd, ctx):
@@ -221,13 +223,13 @@ class Word:
             logger.exception(f'Exception while getting statistics, {self.doc_helper.converted_file}\nException: {e}')
             self.statistics_word = None
 
-    def get_information_about_document(self, file_name):
+    def get_information_about_document(self, file_path):
         error_processing = Process(target=self.errors_handler_for_thread)
         error_processing.start()
         word_app = Dispatch('Word.Application')
         word_app.Visible = False
         try:
-            word_app = word_app.Documents.Open(f'{StaticData.TMP_DIR_IN_TEST}{file_name}', None, True)
+            word_app = word_app.Documents.Open(f'{file_path}', None, True)
             self.get_word_statistic(word_app)
             word_app.Close(False)
             self.num_of_page = self.statistics_word['num_of_sheets']

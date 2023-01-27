@@ -2,8 +2,8 @@
 from loguru import logger
 from rich import print
 
-from configuration import version
 from framework.word import Word
+from settings import version
 
 
 class OpenerDocx(Word):

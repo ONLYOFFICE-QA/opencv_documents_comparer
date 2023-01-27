@@ -2,9 +2,9 @@
 from loguru import logger
 from rich import print
 
-from configuration import version
-from data.project_configurator import ProjectConfig
+from configurations.project_configurator import ProjectConfig
 from framework.excel import Excel
+from settings import version
 
 
 class OpenerXlsx(Excel):

@@ -2,8 +2,8 @@
 from loguru import logger
 from rich import print
 
-from configuration import version
 from framework.libre_office import LibreOffice
+from settings import version
 
 
 class OpenerOdt(LibreOffice):

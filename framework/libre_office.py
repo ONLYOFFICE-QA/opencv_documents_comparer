@@ -1,15 +1,17 @@
 # -*- coding: utf-8 -*-
-from data.project_configurator import ProjectConfig
-from framework.telegram import Telegram
-from framework.compare_image import CompareImage
 import subprocess as sb
-from framework.FileUtils import FileUtils
-import pyautogui as pg
-from loguru import logger
+from os.path import join
 from time import sleep
+
+import pyautogui as pg
 import win32con
 import win32gui
-import configuration as config
+from loguru import logger
+
+import settings as config
+from configurations.project_configurator import ProjectConfig
+from framework.compare_image import CompareImage
+from framework.telegram import Telegram
 
 
 class LibreOffice:
@@ -56,9 +58,9 @@ class LibreOffice:
                     self.errors.append(win32gui.GetClassName(hwnd))
                     self.errors.append(win32gui.GetWindowText(hwnd))
 
-    def open_libre_office_with_cmd(self, file_name):
+    def open_libre_office_with_cmd(self, file_path):
         self.errors.clear()
-        sb.Popen(f"{config.libre_office}/{ProjectConfig.LIBRE} -o {ProjectConfig.TMP_DIR_IN_TEST}/{file_name}")
+        sb.Popen(f"{join(config.libre_office, ProjectConfig.LIBRE)} -o {file_path}")
         self.waiting_for_opening_libre_office()
         self.events_handler_when_opening()  # check events when opening
 
@@ -99,7 +101,7 @@ class LibreOffice:
             self.prepare_windows_hot_keys()
             page_num = 1
             for page in range(slide_count):
-                CompareImage.grab_coordinate(f"{path_to_save_screen}/page_{page_num}.png", coordinate)
+                CompareImage.grab_coordinate(join(path_to_save_screen, f'page_{page_num}.png'), coordinate)
                 pg.press('pgdn')
                 sleep(0.5)
                 page_num += 1

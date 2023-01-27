@@ -1,21 +1,22 @@
 # -*- coding: utf-8 -*-
-import os
-import pyautogui as pg
-from loguru import logger
-from rich import print
+import subprocess as sb
 from multiprocessing import Process
+from os.path import join
 from time import sleep
+
+import pyautogui as pg
 import win32con
 import win32gui
+from loguru import logger
+from rich import print
 from win32com.client import Dispatch
-import configuration as config
-import subprocess as sb
 
-from data.project_configurator import ProjectConfig
-from framework.actions.document_actions import DocActions
-from framework.telegram import Telegram
-from framework.compare_image import CompareImage
+import settings as config
+from configurations.project_configurator import ProjectConfig
 from framework.FileUtils import FileUtils
+from framework.actions.document_actions import DocActions
+from framework.compare_image import CompareImage
+from framework.telegram import Telegram
 
 
 class PowerPoint:
@@ -78,8 +79,7 @@ class PowerPoint:
         error_processing.start()
         presentation = Dispatch("PowerPoint.application")
         try:
-            presentation = presentation.Presentations.Open(f'{ProjectConfig.TMP_DIR_IN_TEST}'
-                                                           f'{self.doc_helper.tmp_file_for_get_statistic}')
+            presentation = presentation.Presentations.Open(file_path)
             self.slide_count = len(presentation.Slides)
             print(f"[bold blue]Number of Slides[/]:{self.slide_count}")
             return True
@@ -95,9 +95,9 @@ class PowerPoint:
             self.close_presentation_with_hotkey()
             FileUtils.run_command(f"taskkill /im {ProjectConfig.POWERPOINT}")
 
-    def open_presentation_with_cmd(self, file_name):
+    def open_presentation_with_cmd(self, file_path):
         self.errors.clear()
-        sb.Popen(f"{config.ms_office}/{ProjectConfig.POWERPOINT} -t {ProjectConfig.TMP_DIR_IN_TEST}/{file_name}")
+        sb.Popen(f"{config.ms_office}/{ProjectConfig.POWERPOINT} -t {file_path}")
         self.waiting_for_opening_power_point()
 
     def check_open_power_point(self, hwnd, ctx):
@@ -166,7 +166,7 @@ class PowerPoint:
             self.prepare_presentation_for_test()
             page_num = 1
             for page in range(self.slide_count):
-                CompareImage.grab_coordinate(f"{path_to_save_screen}/page_{page_num}.png", coordinate)
+                CompareImage.grab_coordinate(join(path_to_save_screen, f"page_{page_num}.png"), coordinate)
                 pg.press('pgdn')
                 sleep(0.5)
                 page_num += 1

@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-from data.project_configurator import ProjectConfig
+from rich import print
+
+from configurations.project_configurator import ProjectConfig
+from framework.compare_image import CompareImage
 from framework.libre_office import LibreOffice
 from framework.power_point import PowerPoint
-from framework.compare_image import CompareImage
-from rich import print
 
 
 class OdpPptxCompare(PowerPoint, LibreOffice):

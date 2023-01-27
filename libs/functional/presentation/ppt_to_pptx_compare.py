@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 from loguru import logger
 from rich import print
-import configuration as config
 
-from framework.power_point import PowerPoint
+import settings as config
+from configurations.project_configurator import ProjectConfig
 from framework.compare_image import CompareImage
-from data.project_configurator import ProjectConfig
+from framework.power_point import PowerPoint
 
 
 class PptPptxCompareImg(PowerPoint):
