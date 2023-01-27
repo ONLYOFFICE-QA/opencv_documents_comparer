@@ -4,6 +4,7 @@ import subprocess as sb
 from os import chdir, listdir, scandir
 from os.path import join, isdir, isfile
 
+import requests
 from rich import print
 from rich.progress import track
 
@@ -55,8 +56,7 @@ class CoreActions:
             if self.branch != branch:
                 self.branch = branch
                 self.url = self.generate_url()
-            core_status, stderr = FileUtils.run_command(f'curl --head {self.url}')
-            if '200 OK' in core_status.split('\r')[0]:
+            if requests.head(self.url).status_code == 200:
                 return core_status
 
         raise print(f"[bold red]Core not found, check version and branch settings\n"
