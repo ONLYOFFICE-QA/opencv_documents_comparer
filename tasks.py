@@ -1,23 +1,61 @@
 # -*- coding: utf-8 -*-
-from data.project_configurator import ProjectConfig
-from framework.actions.core_actions import CoreActions
-from framework.actions.host_actions import HostActions
-from framework.telegram import Telegram
-from libs.functional.presentation.odp_to_pptx_compare import OdpPptxCompare
-from libs.functional.presentation.ppt_to_pptx_compare import PptPptxCompareImg
-from libs.functional.spreadsheets.xls_to_xlsx_image_compare import ExcelCompareImage
-from libs.functional.spreadsheets.xls_to_xlsx_statistic_compare import StatisticCompare
-from libs.functional.documents.doc_to_docx_image_compare import DocDocxCompareImg
-from libs.functional.documents.doc_to_docx_statistic_compare import DocDocxStatisticsCompare
-from libs.functional.documents.rtf_to_docx_image_compare import RtfDocxCompareImg
-from framework.actions.document_actions import DocActions
-from libs.openers.opener_docx_with_ms_word import OpenerDocx
-from libs.openers.opener_odp_with_libre_office import OpenerOdp
-from libs.openers.opener_ods_with_libre_office import OpenerOds
-from libs.openers.opener_odt_with_libre_office import OpenerOdt
-from libs.openers.opener_pptx_with_ms_power_point import OpenerPptx
-from libs.openers.opener_xlsx_with_ms_excel import OpenerXlsx
+import platform
+
 from invoke import task
+
+import settings
+from configurations.project_configurator import ProjectConfig
+from framework.actions.core_actions import CoreActions
+from framework.actions.document_actions import DocActions
+from framework.actions.report_actions import ReportActions
+from framework.actions.x2t_actions import X2t
+from framework.converter import Converter
+from framework.telegram import Telegram
+from framework.xmllint import XmlLint
+
+os = platform.system().lower()
+if os == 'windows':
+    from libs.functional.presentation.odp_to_pptx_compare import OdpPptxCompare
+    from libs.functional.presentation.ppt_to_pptx_compare import PptPptxCompareImg
+    from libs.functional.spreadsheets.xls_to_xlsx_image_compare import ExcelCompareImage
+    from libs.functional.spreadsheets.xls_to_xlsx_statistic_compare import StatisticCompare
+    from libs.functional.documents.doc_to_docx_image_compare import DocDocxCompareImg
+    from libs.functional.documents.doc_to_docx_statistic_compare import DocDocxStatisticsCompare
+    from libs.functional.documents.rtf_to_docx_image_compare import RtfDocxCompareImg
+    from libs.openers.opener_docx_with_ms_word import OpenerDocx
+    from libs.openers.opener_odp_with_libre_office import OpenerOdp
+    from libs.openers.opener_ods_with_libre_office import OpenerOds
+    from libs.openers.opener_odt_with_libre_office import OpenerOdt
+    from libs.openers.opener_pptx_with_ms_power_point import OpenerPptx
+    from libs.openers.opener_xlsx_with_ms_excel import OpenerXlsx
+
+
+@task
+def core(c, force=False, cp=False, update_tools=False):
+    core_actions = CoreActions()
+    core_actions.update_x2ttester_tools() if update_tools else core_actions.getting_core(force=force, copy_tools=cp)
+
+
+@task
+def convert(c, dr=None, ls=False):
+    converter = Converter()
+    report = ReportActions()
+    if dr:
+        input_format, output_format = converter.getting_formats(dr)
+        converter.conversion_via_x2ttester(input_format, output_format, ls=ls)
+        if settings.delete != '1':
+            result_folder = f"{ProjectConfig.result_dir()}/{X2t.x2t_version()}_{input_format}_{output_format}"
+            DocActions.copy_result_x2ttester(result_folder, output_format)
+        xmllint(c, ph=ProjectConfig.tmp_result_dir())
+    else:
+        converter.convert_from_extension_array()
+    report.out_x2ttester_report_csv(DocActions.last_modified_report())
+
+
+@task
+def xmllint(c, path=ProjectConfig.tmp_result_dir()):
+    xmllint = XmlLint()
+    xmllint.run_tests(path_to_files=path)
 
 
 @task
@@ -134,7 +172,13 @@ def opener_ods(c, ls=False):
 
 
 @task
-def opener_full(c):
+def opener_full(c, cnv=False):
+    if cnv:
+        try:
+            core(c)
+        except Exception as e:
+            print(f"{e}\n{'-' * 90}")
+        convert(c)
     opener_pptx(c)
     opener_docx(c)
     opener_xlsx(c)
