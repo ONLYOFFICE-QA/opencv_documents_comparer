@@ -44,41 +44,41 @@ class FileUtils:
     @staticmethod
     def copy(path_from, path_to, silence=False):
         if not exists(path_from):
-            return print(f"[red]copy warning: path not exist: {path_from}")
+            return print(f"[bold red]|COPY WARNING| Path from not exist: {path_from}")
         if isdir(path_from):
             copytree(path_from, path_to)
         elif isfile(path_from):
             copyfile(path_from, path_to)
         if exists(path_to):
-            return print(f'[green]Copied To: {path_to}') if not silence else None
-        return print(f'[red]copy warning, File not copied: {path_to}')
+            return print(f'[green]|INFO| Copied to: {path_to}') if not silence else None
+        return print(f'[bold red]|COPY WARNING| File not copied: {path_to}')
 
     @staticmethod
     def last_modified_file(dir_path):
         files = [file for file in listdir(dir_path) if file != '.DS_Store']
         files = [join(dir_path, file) for file in files if isfile(join(dir_path, file))]
-        return max(files, key=getctime) if files else print('[bold red]last modified file not found')
+        return max(files, key=getctime) if files else print('[bold red]|WARNING| Last modified file not found')
 
     @staticmethod
     def move(path_from, path_to):
         if exists(path_from):
             move(path_from, path_to)
-            return print("[bold red]Move warning. File not moved") if not exists(path_to) else None
-        return print(f"[bold red]Move warning. File not exist: {path_from}")
+            return print("[bold red]|MOVE WARNING| File not moved") if not exists(path_to) else None
+        return print(f"[bold red]|MOVE WARNING| File not exist: {path_from}")
 
     @staticmethod
     def create_dir(path_to_dir, silence=False):
         if not exists(path_to_dir):
             makedirs(path_to_dir)
             if isdir(path_to_dir):
-                return print(f'[green]Folder Created: {path_to_dir}') if not silence else None
-            return print(f'[bold red]Create folder warning. Folder not created: {path_to_dir}')
+                return print(f'[green]|INFO| Folder Created: {path_to_dir}') if not silence else None
+            return print(f'[bold red]|WARNING| Create folder warning. Folder not created: {path_to_dir}')
 
     @staticmethod
     def unpacking_via_7zip(archive_path, execute_path, delete=False):
         with py7zr.SevenZipFile(archive_path, 'r') as archive:
             archive.extractall(path=execute_path)
-            print(f'[green]Unpack Completed.')
+            print(f'[green]|INFO| Unpack Completed.')
         FileUtils.delete(archive_path, silence=True) if delete else ''
 
     @staticmethod
@@ -91,19 +91,19 @@ class FileUtils:
     @staticmethod
     def delete(what_delete, all_from_folder=False, silence=False):
         if not exists(what_delete):
-            return print(f"[red]Delete warning. path not exist: {what_delete}") if not silence else None
+            return print(f"[bold red]|DELETE WARNING| Path not exist: {what_delete}") if not silence else None
         if isdir(what_delete):
             rmtree(what_delete, ignore_errors=True)
             if all_from_folder:
                 FileUtils.create_dir(what_delete)
                 if any(scandir(what_delete)):
-                    return print(f"[red]Delete warning. Error while delete all from folder: {what_delete}")
-                return print(f'[green]Folder is cleared') if not silence else None
+                    return print(f"[bold red]|DELETE WARNING| Error while delete all from folder: {what_delete}")
+                return print(f'[green]|INFO| Folder is cleared') if not silence else None
         elif isfile(what_delete):
             remove(what_delete)
         if exists(what_delete):
-            return print(f"[red]Delete warning. Folder exist: {what_delete}")
-        print(f'[green]Deleted: {what_delete}') if not silence else None
+            return print(f"[bold red]|DELETE WARNING| Folder is not deleted: {what_delete}")
+        print(f'[green]|INFO| Deleted: {what_delete}') if not silence else None
 
     @staticmethod
     def random_name(path, extension=None):
