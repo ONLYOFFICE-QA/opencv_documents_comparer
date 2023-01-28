@@ -2,12 +2,12 @@
 
 import codecs
 import json
-import random
-import shutil
-import subprocess as sb
 import zipfile
 from os import listdir, makedirs, scandir, remove, walk
 from os.path import exists, isfile, isdir, join, getctime
+from random import randint
+from shutil import move, copytree, copyfile, rmtree
+from subprocess import Popen, PIPE
 
 import py7zr
 from rich import print
@@ -46,9 +46,9 @@ class FileUtils:
         if not exists(path_from):
             return print(f"[red]copy warning: path not exist: {path_from}")
         if isdir(path_from):
-            shutil.copytree(path_from, path_to)
+            copytree(path_from, path_to)
         elif isfile(path_from):
-            shutil.copyfile(path_from, path_to)
+            copyfile(path_from, path_to)
         if exists(path_to):
             return print(f'[green]Copied To: {path_to}') if not silence else None
         return print(f'[red]copy warning, File not copied: {path_to}')
@@ -62,7 +62,7 @@ class FileUtils:
     @staticmethod
     def move(path_from, path_to):
         if exists(path_from):
-            shutil.move(path_from, path_to)
+            move(path_from, path_to)
             return print("[bold red]Move warning. File not moved") if not exists(path_to) else None
         return print(f"[bold red]Move warning. File not exist: {path_from}")
 
@@ -93,7 +93,7 @@ class FileUtils:
         if not exists(what_delete):
             return print(f"[red]Delete warning. path not exist: {what_delete}") if not silence else None
         if isdir(what_delete):
-            shutil.rmtree(what_delete, ignore_errors=True)
+            rmtree(what_delete, ignore_errors=True)
             if all_from_folder:
                 FileUtils.create_dir(what_delete)
                 if any(scandir(what_delete)):
@@ -108,14 +108,14 @@ class FileUtils:
     @staticmethod
     def random_name(path, extension=None):
         while True:
-            random_name = f'{random.randint(500, 50000)}.{extension}' if extension else f'{random.randint(500, 50000)}'
+            random_name = f'{randint(500, 50000)}.{extension}' if extension else f'{randint(500, 50000)}'
             random_object_path = join(path, random_name)
             if not exists(random_object_path):
                 return random_object_path
 
     @staticmethod
     def run_command(command):
-        popen = sb.Popen(command, stdout=sb.PIPE, stderr=sb.PIPE, shell=True)
+        popen = Popen(command, stdout=PIPE, stderr=PIPE, shell=True)
         stdout, stderr = popen.communicate()
         popen.wait()
         stdout = stdout.strip().decode('utf-8', errors='ignore')
