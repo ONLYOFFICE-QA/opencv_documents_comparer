@@ -48,7 +48,6 @@ class CoreActions:
         return f"{host}/{self.os}/core/{self.branch}/{self.version}/{self.build}/{self.arch}/core.7z"
 
     def check_core_on_server(self):
-        core_status = ''
         branch_array = ["release", "hotfix"]
         branch_array.remove(self.branch) if self.branch in branch_array else None
         branch_array.insert(0, self.branch)
@@ -56,11 +55,12 @@ class CoreActions:
             if self.branch != branch:
                 self.branch = branch
                 self.url = self.generate_url()
-            if requests.head(self.url).status_code == 200:
+            core_status = requests.head(self.url)
+            if core_status.status_code == 200:
                 return core_status
 
         raise print(f"[bold red]Core not found, check version and branch settings\n"
-                    f"URL: {self.url}\nCurl response:\n{core_status}[/]")
+                    f"URL: {self.url}\nCurl response:\n{requests.head(self.url).status_code}[/]")
 
     def change_core_access(self):
         if self.os == 'windows':
@@ -136,15 +136,14 @@ class CoreActions:
     def getting_core(self, force=False, copy_tools=False):
         print('[green]-' * 90)
         core_status = self.check_core_on_server()
-        core_data = self.getting_core_date(core_status)
-        self.check_updated_core(core_data=core_data, force=force)
+        self.check_updated_core(core_data=core_status.headers['Last-Modified'], force=force)
         self.download_core()
         FileUtils.unpacking_via_7zip(ProjectConfig.core_archive(), ProjectConfig.core_dir(), delete=True)
         self.fix_double_core_folder(ProjectConfig.core_dir())
         if copy_tools:
             self.copy_x2ttester_tools(join(ProjectConfig.tools_dir(), self.os), ProjectConfig.core_dir())
             print(f"[blue]x2t tools copied from: {ProjectConfig.tools_dir()}/{self.os}")
-        self.write_core_date_on_file(core_data)
+        self.write_core_date_on_file(core_status.headers['Last-Modified'])
         self.change_core_access()
         self.xml.generate_doc_renderer_config()
         print('[green]-' * 90)
