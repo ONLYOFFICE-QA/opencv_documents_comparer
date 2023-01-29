@@ -15,17 +15,17 @@ from framework.singleton import singleton
 @singleton
 class XmlActions:
     def __init__(self):
-        self.host_config = HostActions()
+        self.host = HostActions()
 
     def generate_x2t_path(self):
-        if not isfile(f"{ProjectConfig.core_dir()}/{self.host_config.x2t}"):
-            raise print(f'[bold red]Check x2t File, path: {ProjectConfig.core_dir()}/{self.host_config.x2t}[/]')
-        return f"{ProjectConfig.core_dir()}/{self.host_config.x2t}"
+        if not isfile(join(ProjectConfig.core_dir(), self.host.x2t)):
+            raise print(f'[bold red]Check x2t File, path: {ProjectConfig.core_dir()}/{self.host.x2t}[/]')
+        return join(ProjectConfig.core_dir(), self.host.x2t)
 
     @staticmethod
     def generate_number_of_cores():
         if config.cores == '':
-            raise print('[bold red]Please enter the number of cores in settings.py[/]')
+            raise print('[bold red]Please enter the number of cores in settings.py')
         return config.cores
 
     def generate_doc_renderer_config(self):
@@ -51,11 +51,15 @@ class XmlActions:
     def generate_output_dir():
         return FileUtils.delete_last_slash(ProjectConfig.tmp_result_dir())
 
-    @staticmethod
-    def generate_report_path(input_format, output_format, x2tversion):
-        ProjectConfig.CSTM_REPORT_DIR = join(ProjectConfig.reports_dir(), f"{x2tversion}_conversion_reports")
+    def generate_report_name(self):
+        report_name = f"{x2tversion}_{input_format}_{output_format}.csv"
+        pass
+
+    def generate_report_path(self, input_format, output_format, x2tversion):
+        ProjectConfig.CSTM_REPORT_DIR = join(ProjectConfig.reports_dir(), self.host.os, f"conversion")
         FileUtils.create_dir(ProjectConfig.CSTM_REPORT_DIR)
-        return join(ProjectConfig.CSTM_REPORT_DIR, f"{x2tversion}_{input_format}_{output_format}.csv")
+        report_name = f"{x2tversion}_{input_format}_{output_format}.csv"
+        return join(ProjectConfig.CSTM_REPORT_DIR, report_name)
 
     def generate_x2ttester_parameters(self, input_format=None, output_format=None, files_list_path=None, x2tversion=''):
         root = ET.Element("Settings")

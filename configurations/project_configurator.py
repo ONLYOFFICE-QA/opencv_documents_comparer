@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import re
 from os import getcwd
 from os.path import join
 
@@ -12,7 +11,7 @@ class ProjectConfig:
     CSTM_REPORT_DIR = None
     PROJECT_DIR = getcwd()
     RESULTS = join(PROJECT_DIR, 'results')
-    LOGS_FOLDER = join(PROJECT_DIR, 'logs')
+    LOGS_DIR = join(PROJECT_DIR, 'logs')
     ASSETS_DIR = join(PROJECT_DIR, 'assets')
 
     # tmp
@@ -44,7 +43,7 @@ class ProjectConfig:
 
     @staticmethod
     def reports_dir():
-        return join(ProjectConfig.PROJECT_DIR, 'reports', re.sub(r'(\d+).(\d+).(\d+).(\d+)', r'\1.\2.\3', st.version))
+        return join(ProjectConfig.PROJECT_DIR, 'reports')
 
     @staticmethod
     def all_fonts_js():
@@ -64,4 +63,4 @@ class ProjectConfig:
 
     @staticmethod
     def result_dir():
-        return st.converted_docs if st.converted_docs else join(ProjectConfig.result_dir(), 'conversion_result')
+        return st.converted_docs if st.converted_docs else join(ProjectConfig.PROJECT_DIR, 'result')

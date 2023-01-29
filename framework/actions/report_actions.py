@@ -15,8 +15,8 @@ class ReportActions:
         pd.set_option("expand_frame_repr", False)
 
     @staticmethod
-    def csv_writer(file_name, mode, message):
-        with open(file_name, mode, newline='') as csv_file:
+    def csv_writer(file_path, mode, message):
+        with open(file_path, mode, newline='') as csv_file:
             writer = csv.writer(csv_file, delimiter='\t')
             writer.writerow(message)
 
@@ -31,9 +31,8 @@ class ReportActions:
         )
         df = df.drop(columns=['Log', 'Input_size', 'Time', 'Output_file'], axis=1)
         df_errors = df[df.Output_size == 0.0]
-        df_passed = df[df.Output_size != 0.0]
         errors_array = [file for file in df_errors.Input_file.unique() if 'Time: ' not in file]
-        passed_array = [file for file in df_passed.Input_file.unique() if 'Time: ' not in file]
+        passed_array = [file for file in df[df.Output_size != 0.0].Input_file.unique() if 'Time: ' not in file]
         print(f"[bold red]\n{'-' * 90}\n{df_errors}\n{'-' * 90}\nFiles with errors:\n{errors_array}")
         print(f"[bold green]\n{'-' * 90}\nNum passed files:\n{len(passed_array)}")
         print(f"[blue]Report path: {x2ttester_report_csv}")
