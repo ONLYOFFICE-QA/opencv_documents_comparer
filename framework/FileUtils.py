@@ -2,12 +2,13 @@
 
 import codecs
 import json
+import string
 import zipfile
 from os import listdir, makedirs, scandir, remove, walk
-from os.path import exists, isfile, isdir, join, getctime
-from random import randint
+from os.path import exists, isfile, isdir, join, getctime, basename
+from random import randint, choice
 from shutil import move, copytree, copyfile, rmtree
-from subprocess import Popen, PIPE
+from subprocess import Popen, PIPE, getoutput
 
 import py7zr
 from rich import print
@@ -104,6 +105,14 @@ class FileUtils:
         if exists(what_delete):
             return print(f"[bold red]|DELETE WARNING| Folder is not deleted: {what_delete}")
         print(f'[green]|INFO| Deleted: {what_delete}') if not silence else None
+
+    @staticmethod
+    def random_string(path_to_dir, chars=string.ascii_uppercase + string.digits, num_chars=50, extension=None):
+        while True:
+            random_string = ''.join(choice(chars).lower() for _ in range(int(num_chars)))
+            random_object_path = join(path_to_dir, f"{random_string}.{extension}" if extension else random_string)
+            if not exists(random_object_path):
+                return random_object_path
 
     @staticmethod
     def random_name(path, extension=None):
