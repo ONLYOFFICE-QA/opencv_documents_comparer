@@ -77,6 +77,7 @@ class FileUtils:
 
     @staticmethod
     def unpacking_via_7zip(archive_path, execute_path, delete=False):
+        print(f'[green]|INFO| Unpacking {basename(archive_path)}.')
         with py7zr.SevenZipFile(archive_path, 'r') as archive:
             archive.extractall(path=execute_path)
             print(f'[green]|INFO| Unpack Completed.')
@@ -121,6 +122,10 @@ class FileUtils:
             random_object_path = join(path, random_name)
             if not exists(random_object_path):
                 return random_object_path
+
+    @staticmethod
+    def output_cmd(command):
+        return getoutput(command)
 
     @staticmethod
     def run_command(command):
