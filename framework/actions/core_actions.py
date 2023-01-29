@@ -32,6 +32,8 @@ class CoreActions:
         return self.config_version.split('.')[-1]
 
     def generate_branch(self):
+        if re.sub(r'(\d+).(\d+).(\d+).(\d+)', r'\3', self.config_version) != '0':
+            return "hotfix"
         return 'develop' if "99.99.99" in self.config_version else "release"
 
     def generate_build(self):
