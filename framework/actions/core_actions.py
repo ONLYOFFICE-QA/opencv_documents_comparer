@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-import re
 import subprocess as sb
-from os import chdir, listdir, scandir
+from os import listdir, scandir, chdir
 from os.path import join, isdir, isfile, basename
+from re import sub
 
 from requests import head
 from rich import print
@@ -16,42 +16,58 @@ from framework.actions.xml_actions import XmlActions
 
 
 class CoreActions:
-    def __init__(self, version=settings.version):
-        self.host = HostActions()
+    def __init__(self, version=''):
         self.xml = XmlActions()
-        self.config_version = version if version else input("Please enter version core: ")
-        self.branch = self.generate_branch()
+        self.host = HostActions()
         self.os = self.host.os
-        self.arch = self.host.arch
-        self.build = self.generate_build()
-        self.branch_version = self.generate_version()
+        self.full_version = self.check_config_version(version if version else settings.version)
+        self.branch = self.generate_branch()
+        self.major_version = self.generate_major_version(self.full_version)
+        self.build = self.generate_build(self.full_version)
+        self.url_build = self.generate_build_for_url()
         self.url = self.generate_url()
         self.branches = ["release", "hotfix", "develop"]
 
+    @staticmethod
+    def check_config_version(full_version):
+        version = full_version if full_version else input("Please enter version core: ")
+        if len([i for i in version.split('.') if i]) == 4:
+            return version
+        raise print("|WARNING| The version is entered incorrectly")
+
     def generate_build_num(self):
-        return self.config_version.split('.')[-1]
+        return self.full_version.split('.')[-1]
 
     def generate_branch(self):
-        if re.sub(r'(\d+).(\d+).(\d+).(\d+)', r'\3', self.config_version) != '0':
+        if sub(r'(\d+).(\d+).(\d+).(\d+)', r'\3', self.full_version) != '0':
             return "hotfix"
-        return 'develop' if "99.99.99" in self.config_version else "release"
+        return 'develop' if "99.99.99" in self.full_version else "release"
 
-    def generate_build(self):
+    @staticmethod
+    def generate_build(full_version):
+        if len([i for i in full_version.split('.') if i]) == 4:
+            return int(sub(r'(\d+).(\d+).(\d+).(\d+)', r'\4', full_version))
+        raise print("[bold red]|WARNING| The version is entered incorrectly")
+
+    def generate_build_for_url(self):
         if self.os == 'windows':
-            return self.config_version
-        return re.sub(r'(\d+).(\d+).(\d+).(\d+)', r'\1.\2.\3-\4', self.config_version)
+            return self.full_version
+        return f"{self.major_version}-{self.build}"
 
-    def generate_version(self):
-        return re.sub(r'(\d+).(\d+).(\d+).(\d+)', r'v\1.\2.\3', self.config_version)
+    @staticmethod
+    def generate_major_version(full_version):
+        if len([i for i in full_version.split('.') if i]) == 4:
+            return sub(r'(\d+).(\d+).(\d+).(\d+)', r'\1.\2.\3', full_version)
+        raise print("[bold red]|WARNING| The version is entered incorrectly")
 
     def generate_url(self):
         host = 'https://s3.eu-west-1.amazonaws.com/repo-doc-onlyoffice-com'
         if self.branch == 'develop':
-            return f"{host}/{self.os}/core/{self.branch}/{self.build}/{self.arch}/core.7z"
-        return f"{host}/{self.os}/core/{self.branch}/{self.branch_version}/{self.build}/{self.arch}/core.7z"
+            return f"{host}/{self.os}/core/{self.branch}/{self.url_build}/{self.host.arch}/core.7z"
+        return f"{host}/{self.os}/core/{self.branch}/v{self.major_version}/{self.url_build}/{self.host.arch}/core.7z"
 
     def check_on_server(self):
-        self.branches.remove(self.branch) if self.branch in self.branches else None
+        self.branches.remove(self.branch) if self.branch in self.branches else ...
         self.branches.insert(0, self.branch)
         for branch in self.branches:
             if self.branch != branch:
@@ -68,39 +84,33 @@ class CoreActions:
             return
         sb.call(f'chmod +x {ProjectConfig.core_dir()}/*', shell=True)
 
-    def generate_allfonts(self):
-        chdir(ProjectConfig.core_dir())
-        sb.call(join(ProjectConfig.core_dir(), self.host.standardtester))
-        chdir(ProjectConfig.PROJECT_DIR)
-
     @staticmethod
     def write_core_date_on_file(core_data):
-        with open(join(ProjectConfig.core_dir(), 'core.data'), "w") as file:
-            file.write(core_data)
+        FileUtils.file_writer(join(ProjectConfig.core_dir(), 'core.data'), core_data, mode='w')
 
     @staticmethod
     def read_core_data(core_path):
         if not isfile(join(core_path, 'core.data')):
             return None
-        with open(join(core_path, 'core.data'), "r") as file:
-            return file.read()
+        return FileUtils.file_reader(join(core_path, 'core.data'), mode='r')
 
     def check_updated_core(self, core_data=None, force=False):
         existing_core_data = self.read_core_data(ProjectConfig.core_dir())
         if core_data and existing_core_data and core_data == existing_core_data and not force:
-            print('[red]Core Already up-to-date[/]')
+            print('[red]|INFO| Core Already up-to-date[/]')
             return True
 
+        chdir(ProjectConfig.PROJECT_DIR)
         FileUtils.delete(ProjectConfig.core_dir(), silence=True)
         return False
 
-    def download_core(self, path_to_save):
-        print(f"[green]Downloading core: {self.build}\nOS:{self.os}\nURL:{self.url}")
-        sb.call(f"curl {self.url} --output {path_to_save}", shell=True)
+    def download_core(self):
+        print(f"[green]|INFO| Downloading core\nVersion: {self.full_version}\nOS: {self.os}\nURL: {self.url}")
+        FileUtils.download_file(self.url, ProjectConfig.TMP_DIR, "core.7z")
 
     @staticmethod
-    def fix_double_folder(path_to_core=ProjectConfig.core_dir()):
-        path = join(path_to_core, basename(path_to_core))
+    def fix_double_folder(core_path=ProjectConfig.core_dir()):
+        path = join(core_path, basename(core_path))
         if isdir(path):
             for file in track(listdir(path), description='[green]Fixing the double folder...'):
                 FileUtils.move(join(path, file), join(ProjectConfig.core_dir(), file))
@@ -112,7 +122,7 @@ class CoreActions:
         core_status, _ = self.check_on_server(), print('[green]-' * 90)
         if not core_status or self.check_updated_core(core_data=core_status.headers['Last-Modified'], force=force):
             return
-        self.download_core(ProjectConfig.core_archive())
+        self.download_core()
         FileUtils.unpacking_via_7zip(ProjectConfig.core_archive(), ProjectConfig.core_dir(), delete=True)
         self.fix_double_folder(ProjectConfig.core_dir())
         self.write_core_date_on_file(core_status.headers['Last-Modified'])
