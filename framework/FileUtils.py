@@ -145,6 +145,14 @@ class FileUtils:
             print(f"[red]|WARNING|Size different\nFile:{getsize(file_path)}\nOn server:{r.headers['Content-Length']}")
 
     @staticmethod
+    def find_in_line_by_key(text, key_trigger, split_by='\n', separator=':'):
+        for line in text.split(split_by):
+            if separator in line:
+                key, value = line.strip().split(separator, 1)
+                if key.lower() == key_trigger.lower():
+                    return value.strip()
+
+    @staticmethod
     def output_cmd(command):
         return getoutput(command)
 
