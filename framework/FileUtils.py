@@ -132,6 +132,19 @@ class FileUtils:
                 return random_object_path
 
     @staticmethod
+    def download_file(url, path, name=None):
+        file_path, _ = join(path, name if name else basename(url)), FileUtils.create_dir(path)
+        with get(url, stream=True) as r:
+            r.raise_for_status()
+            with open(file_path, 'wb') as file:
+                for chunk in track(r.iter_content(chunk_size=1024 * 1024), description=f'[red]Downloading:{name}'):
+                    if chunk:
+                        file.write(chunk)
+        print(f"[bold green]|INFO|File Saved to: {file_path}" if isfile(file_path) else f"[red]|WARNING|File not saved")
+        if int(getsize(file_path)) != int(r.headers['Content-Length']):
+            print(f"[red]|WARNING|Size different\nFile:{getsize(file_path)}\nOn server:{r.headers['Content-Length']}")
+
+    @staticmethod
     def output_cmd(command):
         return getoutput(command)
 
