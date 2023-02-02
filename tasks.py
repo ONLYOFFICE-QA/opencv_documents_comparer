@@ -1,20 +1,18 @@
 # -*- coding: utf-8 -*-
 import platform
+from os.path import join
 
 from invoke import task
 
-import settings
 from configurations.project_configurator import ProjectConfig
 from framework.actions.core_actions import CoreActions
 from framework.actions.document_actions import DocActions
 from framework.actions.report_actions import ReportActions
-from framework.actions.x2t_actions import X2t
 from framework.converter import Converter
 from framework.telegram import Telegram
 from framework.xmllint import XmlLint
 
-os = platform.system().lower()
-if os == 'windows':
+if platform.system().lower() == 'windows':
     from libs.functional.presentation.odp_to_pptx_compare import OdpPptxCompare
     from libs.functional.presentation.ppt_to_pptx_compare import PptPptxCompareImg
     from libs.functional.spreadsheets.xls_to_xlsx_image_compare import ExcelCompareImage
@@ -31,24 +29,25 @@ if os == 'windows':
 
 
 @task
-def core(c, force=False, cp=False, update_tools=False):
+def core(c, force=False):
     core_actions = CoreActions()
-    core_actions.update_x2ttester_tools() if update_tools else core_actions.getting_core(force=force, copy_tools=cp)
+    core_actions.getting_core(force=force)
 
 
 @task
 def convert(c, dr=None, ls=False):
-    converter = Converter()
-    report = ReportActions()
-    if dr:
-        input_format, output_format = converter.getting_formats(dr)
-        converter.conversion_via_x2ttester(input_format, output_format, ls=ls)
-        if settings.delete != '1':
-            result_folder = f"{ProjectConfig.result_dir()}/{X2t.x2t_version()}_{input_format}_{output_format}"
-            DocActions.copy_result_x2ttester(result_folder, output_format)
-        xmllint(c, ph=ProjectConfig.tmp_result_dir())
-    else:
-        converter.convert_from_extension_array()
+    converter, report = Converter(), ReportActions()
+    input_format, output_format = converter.getting_formats(dr)
+    converter.conversion_via_x2ttester(input_format, output_format, ls=ls)
+    result_folder = join(ProjectConfig.result_dir(), f"{converter.x2tversion}_{input_format}_{output_format}")
+    DocActions.copy_result_x2ttester(result_folder, output_format)
+    report.out_x2ttester_report_csv(DocActions.last_modified_report())
+
+
+@task
+def convert_array(c):
+    converter, report = Converter(), ReportActions()
+    converter.convert_from_extension_array()
     report.out_x2ttester_report_csv(DocActions.last_modified_report())
 
 
@@ -174,11 +173,8 @@ def opener_ods(c, ls=False):
 @task
 def opener_full(c, cnv=False):
     if cnv:
-        try:
-            core(c)
-        except Exception as e:
-            print(f"{e}\n{'-' * 90}")
-        convert(c)
+        core(c)
+        convert_array(c)
     opener_pptx(c)
     opener_docx(c)
     opener_xlsx(c)
