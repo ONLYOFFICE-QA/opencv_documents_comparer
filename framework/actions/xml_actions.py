@@ -5,14 +5,12 @@ from os.path import join, isfile, exists
 
 from rich import print
 
-import settings as config
+import settings
 from configurations.project_configurator import ProjectConfig
 from framework.FileUtils import FileUtils
 from framework.actions.host_actions import HostActions
-from framework.singleton import singleton
 
 
-@singleton
 class XmlActions:
     def __init__(self):
         self.host = HostActions()
@@ -24,9 +22,9 @@ class XmlActions:
 
     @staticmethod
     def generate_number_of_cores():
-        if config.cores == '':
+        if settings.cores == '':
             raise print('[bold red]Please enter the number of cores in settings.py')
-        return config.cores
+        return settings.cores
 
     def generate_doc_renderer_config(self):
         settings = ET.Element("Settings")
@@ -39,7 +37,7 @@ class XmlActions:
 
     def generate_files_list(self):
         root = ET.Element("files")
-        for file in config.files_array:
+        for file in settings.files_array:
             ET.SubElement(root, "file").text = file
         return self.write_to_xml(root)
 
@@ -51,17 +49,13 @@ class XmlActions:
     def generate_output_dir():
         return FileUtils.delete_last_slash(ProjectConfig.tmp_result_dir())
 
-    def generate_report_name(self):
-        report_name = f"{x2tversion}_{input_format}_{output_format}.csv"
-        pass
+    def generate_report_path(self, input_format, output_format, x2t_version):
+        reports_dir = ProjectConfig.conversion_report_dir()
+        report_name = f"{x2t_version}_{input_format}_{output_format}.csv"
+        FileUtils.create_dir(reports_dir)
+        return join(reports_dir, report_name)
 
-    def generate_report_path(self, input_format, output_format, x2tversion):
-        ProjectConfig.CSTM_REPORT_DIR = join(ProjectConfig.reports_dir(), self.host.os, f"conversion")
-        FileUtils.create_dir(ProjectConfig.CSTM_REPORT_DIR)
-        report_name = f"{x2tversion}_{input_format}_{output_format}.csv"
-        return join(ProjectConfig.CSTM_REPORT_DIR, report_name)
-
-    def generate_x2ttester_parameters(self, input_format=None, output_format=None, files_list_path=None, x2tversion=''):
+    def generate_x2ttester_parameters(self, input_format=None, output_format=None, files_list=None, x2tversion=''):
         root = ET.Element("Settings")
         ET.SubElement(root, "reportPath").text = self.generate_report_path(input_format, output_format, x2tversion)
         ET.SubElement(root, "inputDirectory").text = self.generate_input_dir()
@@ -72,14 +66,14 @@ class XmlActions:
             ET.SubElement(root, "input").text = input_format
         if output_format:
             ET.SubElement(root, "output").text = output_format
-        if config.errors_only in ["1", "0"]:
-            ET.SubElement(root, "errorsOnly").text = config.errors_only
-        if config.delete in ["1", "0"]:
-            ET.SubElement(root, "deleteOk").text = config.delete
-        if config.timestamp in ["1", "0"]:
-            ET.SubElement(root, "timestamp").text = config.timestamp
-        if files_list_path:
-            ET.SubElement(root, "inputFilesList").text = files_list_path
+        if settings.errors_only in ["1", "0"]:
+            ET.SubElement(root, "errorsOnly").text = settings.errors_only
+        if settings.delete in ["1", "0"]:
+            ET.SubElement(root, "deleteOk").text = settings.delete
+        if settings.timestamp in ["1", "0"]:
+            ET.SubElement(root, "timestamp").text = settings.timestamp
+        if files_list:
+            ET.SubElement(root, "inputFilesList").text = files_list
         if exists(ProjectConfig.fonts_dir()) and any(scandir(ProjectConfig.fonts_dir())):
             fonts = ET.SubElement(root, "fonts", system="0")
             ET.SubElement(fonts, "directory").text = ProjectConfig.fonts_dir()
