@@ -5,13 +5,15 @@ import json
 import string
 import zipfile
 from os import listdir, makedirs, scandir, remove, walk
-from os.path import exists, isfile, isdir, join, getctime, basename
+from os.path import exists, isfile, isdir, join, getctime, basename, getsize
 from random import randint, choice
 from shutil import move, copytree, copyfile, rmtree
 from subprocess import Popen, PIPE, getoutput
 
 import py7zr
+from requests import get
 from rich import print
+from rich.progress import track
 
 
 class FileUtils:
@@ -51,7 +53,7 @@ class FileUtils:
         elif isfile(path_from):
             copyfile(path_from, path_to)
         if exists(path_to):
-            return print(f'[green]|INFO| Copied to: {path_to}') if not silence else None
+            return print(f'[green]|INFO| Copied to: {path_to}') if not silence else ...
         return print(f'[bold red]|COPY WARNING| File not copied: {path_to}')
 
     @staticmethod
@@ -64,7 +66,7 @@ class FileUtils:
     def move(path_from, path_to):
         if exists(path_from):
             move(path_from, path_to)
-            return print("[bold red]|MOVE WARNING| File not moved") if not exists(path_to) else None
+            return print("[bold red]|MOVE WARNING| File not moved") if not exists(path_to) else ...
         return print(f"[bold red]|MOVE WARNING| File not exist: {path_from}")
 
     @staticmethod
@@ -72,7 +74,7 @@ class FileUtils:
         if not exists(path_to_dir):
             makedirs(path_to_dir)
             if isdir(path_to_dir):
-                return print(f'[green]|INFO| Folder Created: {path_to_dir}') if not silence else None
+                return print(f'[green]|INFO| Folder Created: {path_to_dir}') if not silence else ...
             return print(f'[bold red]|WARNING| Create folder warning. Folder not created: {path_to_dir}')
 
     @staticmethod
@@ -81,31 +83,30 @@ class FileUtils:
         with py7zr.SevenZipFile(archive_path, 'r') as archive:
             archive.extractall(path=execute_path)
             print(f'[green]|INFO| Unpack Completed.')
-        FileUtils.delete(archive_path, silence=True) if delete else ''
+        FileUtils.delete(archive_path, silence=True) if delete else ...
 
     @staticmethod
     def unpacking_via_zip_file(archive_path, execute_path, delete_archive=False):
-        zip_archive = zipfile.ZipFile(archive_path)
-        zip_archive.extractall(execute_path)
-        zip_archive.close()
-        FileUtils.delete(archive_path) if delete_archive else None
+        with zipfile.ZipFile(archive_path) as zip_archive:
+            zip_archive.extractall(execute_path)
+        FileUtils.delete(archive_path) if delete_archive else ...
 
     @staticmethod
     def delete(what_delete, all_from_folder=False, silence=False):
         if not exists(what_delete):
-            return print(f"[bold red]|DELETE WARNING| Path not exist: {what_delete}") if not silence else None
+            return print(f"[bold red]|DELETE WARNING| Path not exist: {what_delete}") if not silence else ...
         if isdir(what_delete):
             rmtree(what_delete, ignore_errors=True)
             if all_from_folder:
                 FileUtils.create_dir(what_delete)
                 if any(scandir(what_delete)):
                     return print(f"[bold red]|DELETE WARNING| Error while delete all from folder: {what_delete}")
-                return print(f'[green]|INFO| Folder is cleared') if not silence else None
+                return print(f'[green]|INFO| Folder is cleared') if not silence else ...
         elif isfile(what_delete):
             remove(what_delete)
         if exists(what_delete):
             return print(f"[bold red]|DELETE WARNING| Folder is not deleted: {what_delete}")
-        print(f'[green]|INFO| Deleted: {what_delete}') if not silence else None
+        print(f'[green]|INFO| Deleted: {what_delete}') if not silence else ...
 
     @staticmethod
     def random_string(path_to_dir, chars=string.ascii_uppercase + string.digits, num_chars=50, extension=None):
