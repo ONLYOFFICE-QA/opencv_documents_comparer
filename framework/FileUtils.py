@@ -23,6 +23,13 @@ class FileUtils:
             return json.load(file)
 
     @staticmethod
+    def write_json(path_to, data, mode='w'):
+        if not exists(path_to):
+            return print(f"|WARNING|The path to json file does not exist: {path_to}")
+        with open(path_to, mode) as file:
+            json.dump(data, file, indent=2)
+
+    @staticmethod
     def delete_last_slash(path):
         return path.rstrip(path[-1]) if path[-1] in ['/', '\\'] else path
 
