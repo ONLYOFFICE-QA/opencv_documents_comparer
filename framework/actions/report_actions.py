@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 import csv
+from os.path import dirname
 
 import pandas as pd
 from rich import print
 
+from framework.FileUtils import FileUtils
 from framework.singleton import singleton
 
 
@@ -16,6 +18,7 @@ class ReportActions:
 
     @staticmethod
     def csv_writer(file_path, mode, message):
+        FileUtils.create_dir(dirname(file_path))
         with open(file_path, mode, newline='') as csv_file:
             writer = csv.writer(csv_file, delimiter='\t')
             writer.writerow(message)
