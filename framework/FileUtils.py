@@ -5,7 +5,7 @@ import json
 import string
 import zipfile
 from os import listdir, makedirs, scandir, remove, walk
-from os.path import exists, isfile, isdir, join, getctime, basename, getsize
+from os.path import exists, isfile, isdir, join, getctime, basename, getsize, relpath
 from random import randint, choice
 from shutil import move, copytree, copyfile, rmtree
 from subprocess import Popen, PIPE, getoutput
@@ -91,6 +91,25 @@ class FileUtils:
             archive.extractall(path=execute_path)
             print(f'[green]|INFO| Unpack Completed.')
         FileUtils.delete(archive_path, silence=True) if delete else ...
+
+    @staticmethod
+    def compress_files(path, archive_path=None, delete=False):
+        archive = archive_path if archive_path else f"{path}.zip"
+        if not exists(path):
+            return print(f'[bold red]|COMPRESS WARNING|Path for compression does not exist: {path}')
+        print(f'[green]|INFO|Compressing: {path}')
+        with zipfile.ZipFile(archive, 'w') as zip_archive:
+            if isfile(path):
+                zip_archive.write(path, basename(path), compress_type=zipfile.ZIP_DEFLATED)
+            elif isdir(path):
+                for file in track(FileUtils.get_file_paths(path), description=f"[red]Compressing dir:{basename(path)}"):
+                    zip_archive.write(file, relpath(file, path), compress_type=zipfile.ZIP_DEFLATED)
+            else:
+                return print(f"|WARNING|The path for archiving is neither a file nor a directory. {path}")
+        if exists(archive) and getsize(archive) != 0:
+            FileUtils.delete(path) if delete else ...
+            return print(f"[green]|INFO|Success compressed: {archive}")
+        print(f"[WARNING]Archive not exists: {archive}")
 
     @staticmethod
     def unpacking_via_zip_file(archive_path, execute_path, delete_archive=False):
