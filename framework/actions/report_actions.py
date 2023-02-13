@@ -5,6 +5,7 @@ from os.path import dirname
 import pandas as pd
 from rich import print
 
+import settings
 from framework.FileUtils import FileUtils
 from framework.singleton import singleton
 
@@ -33,9 +34,9 @@ class ReportActions:
             }, inplace=True
         )
         df = df.drop(columns=['Log', 'Input_size', 'Time', 'Output_file'], axis=1)
-        df_errors = df[df.Output_size == 0.0]
+        df_errors = df[df.Output_size == 0.0] if settings.errors_only != '1' else df
         errors_array = [file for file in df_errors.Input_file.unique() if 'Time: ' not in file]
         passed_array = [file for file in df[df.Output_size != 0.0].Input_file.unique() if 'Time: ' not in file]
-        print(f"[bold red]\n{'-' * 90}\n{df_errors}\n{'-' * 90}\nFiles with errors:\n{errors_array}")
-        print(f"[bold green]\n{'-' * 90}\nNum passed files:\n{len(passed_array)}")
-        print(f"[blue]Report path: {x2ttester_report_csv}")
+        print(f"[bold red]\n{'-' * 90}\n{df_errors}\n{'-' * 90}\nFiles with errors:\n{errors_array}\n"
+              f"[bold green]\n{'-' * 90}\nNum passed files:\n{len(passed_array)}\n\n"
+              f"[blue]Report path: {x2ttester_report_csv}")
