@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-from os.path import join
+from os.path import join, getsize, basename, isdir
 
 import requests
 from loguru import logger
@@ -24,13 +24,20 @@ class Telegram:
                 logger.error(f"post_text error text: {message}")
 
     @staticmethod
-    def send_document(path_to_document, caption=''):
+    def send_document(document_path, caption=''):
         if Telegram.telegram_token and Telegram.chat_id:
-            response = requests.post(f"https://api.telegram.org/bot{Telegram.telegram_token}/sendDocument",
-                                     data={"chat_id": Telegram.chat_id, "caption": caption, "parse_mode": "Markdown"},
-                                     files={"document": open(path_to_document, 'rb')})
-            if response.status_code != 200:
-                logger.error(f"Error when sending a document")
+            if getsize(document_path) >= 50_000_000 or isdir(document_path):
+                FileUtils.compress_files(document_path, join(ProjectConfig.TMP_DIR, f'{basename(document_path)}.zip'))
+                document_path = join(ProjectConfig.TMP_DIR, f'{basename(document_path)}.zip')
+            try:
+                response = requests.post(f"https://api.telegram.org/bot{Telegram.telegram_token}/sendDocument",
+                                         data={"chat_id": Telegram.chat_id, "caption": caption,
+                                               "parse_mode": "Markdown"},
+                                         files={"document": open(document_path, 'rb')})
+                if response.status_code != 200:
+                    logger.error(f"Error when sending a document")
+            except Exception as e:
+                Telegram.send_message(f"|WARNING|Impossible to send: {document_path}. Error: {e}")
 
     @staticmethod
     def send_long_message_as_document(long_message: str):
