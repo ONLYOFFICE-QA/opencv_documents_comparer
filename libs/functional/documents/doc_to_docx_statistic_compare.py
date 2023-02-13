@@ -13,6 +13,7 @@ from framework.word import Word
 # comparison of statistical data doc-docx documents
 class DocDocxStatisticsCompare(Word):
     def run_compare_statistic(self, file_array):
+        self.doc_helper.terminate_process()
         logger.info(f'The {self.doc_helper.source_extension}  to {self.doc_helper.converted_extension} '
                     f'comparison of statistical data on version: {config.version} is running.')
         with io.open('./report.csv', 'w', encoding="utf-8") as csvfile:

@@ -9,6 +9,7 @@ from framework.power_point import PowerPoint
 
 class OdpPptxCompare(PowerPoint, LibreOffice):
     def run_compare(self, list_of_files):
+        self.doc_helper.terminate_process()
         for self.doc_helper.converted_file in list_of_files:
             if not self.doc_helper.converted_file.endswith((".pptx", ".PPTX")):
                 continue

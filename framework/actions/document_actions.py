@@ -32,13 +32,11 @@ class DocActions:
         self.opener_errors: str = join(self.result_folder, f"opener_errors_{converted_extension}_version_{version}")
         self.too_long_to_open_files: str = join(self.opener_errors, 'too_long_to_open_files')
         self.create_logger()
-        self.terminate_process()
-        self.tmp_cleaner()
 
     def create_logger(self):
         logger.remove()
         logger.add(sys.stdout)
-        logger.add(join(ProjectConfig.LOGS_FOLDER, f'{self.source_extension}_{self.converted_extension}_{version}.log'),
+        logger.add(join(ProjectConfig.LOGS_DIR, f'{self.source_extension}_{self.converted_extension}_{version}.log'),
                    format="{time} {level} {message}",
                    level="DEBUG",
                    rotation='5 MB',
@@ -69,11 +67,10 @@ class DocActions:
                     try:
                         process.terminate()
                     except Exception as e:
-                        message = f'Exception when terminate_process: {e}\nFile name: {self.converted_file}'
-                        logger.debug(message)
+                        logger.debug(f'Exception when terminate_process: {e}\nFile name: {self.converted_file}')
 
-    @staticmethod
-    def tmp_cleaner():
+    def tmp_cleaner(self):
+        self.terminate_process()
         FileUtils.delete(f'{ProjectConfig.TMP_DIR_IN_TEST}', all_from_folder=True, silence=True)
         FileUtils.delete(f'{ProjectConfig.TMP_DIR_CONVERTED_IMG}', all_from_folder=True, silence=True)
         FileUtils.delete(f'{ProjectConfig.TMP_DIR_SOURCE_IMG}', all_from_folder=True, silence=True)
@@ -110,7 +107,7 @@ class DocActions:
 
     @staticmethod
     def last_modified_report():
-        return FileUtils.last_modified_file(ProjectConfig.CSTM_REPORT_DIR)
+        return FileUtils.last_modified_file(ProjectConfig.conversion_report_dir())
 
     @staticmethod
     def copy_result_x2ttester(path_to, output_format, delete=False):

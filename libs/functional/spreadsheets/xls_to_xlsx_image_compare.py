@@ -10,6 +10,7 @@ from framework.excel import Excel
 
 class ExcelCompareImage(Excel):
     def run_compare(self, list_of_files):
+        self.doc_helper.terminate_process()
         logger.info(f'The {self.doc_helper.source_extension} to {self.doc_helper.converted_extension} '
                     f'comparison on version: {config.version} is running.')
         for self.doc_helper.converted_file in list_of_files:

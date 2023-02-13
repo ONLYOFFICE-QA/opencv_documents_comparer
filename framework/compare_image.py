@@ -26,6 +26,7 @@ class CompareImage:
         self.result_folder_name = self.get_result_folder_name()
         self.img_comparison_diff_dir = join(self.helper.result_folder, 'img_comparison_diff', self.result_folder_name)
         self.passed = join(self.helper.result_folder, 'passed')
+        self.helper.tmp_cleaner()
         FileUtils.create_dir(ProjectConfig.TMP_DIR_SOURCE_IMG, silence=True)
         FileUtils.create_dir(ProjectConfig.TMP_DIR_CONVERTED_IMG, silence=True)
         self.start_compare_images()
@@ -51,6 +52,7 @@ class CompareImage:
             else:
                 logger.error(f'Image {self.image_name} not found, copied file to "Untested"')
                 self.helper.copy_testing_files_to_folder(self.helper.untested_folder)
+        self.helper.tmp_cleaner()
 
     def put_information_on_img(self):
         self.put_text(self.converted_img, f'After')
