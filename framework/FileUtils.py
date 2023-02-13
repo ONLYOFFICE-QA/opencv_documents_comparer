@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 import codecs
 import json
 import string
@@ -170,6 +169,16 @@ class FileUtils:
                 key, value = line.strip().split(separator, 1)
                 if key.lower() == key_trigger.lower():
                     return value.strip()
+
+    @staticmethod
+    def file_reader(file_path, mode='r'):
+        with open(file_path, mode) as file:
+            return file.read()
+
+    @staticmethod
+    def file_writer(file_path, text, mode='w'):
+        with open(file_path, mode) as file:
+            file.write(text)
 
     @staticmethod
     def output_cmd(command):
