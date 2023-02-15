@@ -12,8 +12,8 @@ wait_for_opening = 2
 
 # x2ttester settings
 cores = '4'
-errors_only = '0'
-delete = '1'
+errors_only = '1'
+delete = '0'
 timestamp = '1'
 # Path to MS Office
 ms_office = 'C:/Program Files/Microsoft Office/root/Office16'
