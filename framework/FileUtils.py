@@ -87,7 +87,7 @@ class FileUtils:
 
     @staticmethod
     def compress_files(path, archive_path=None, delete=False):
-        archive = archive_path if archive_path else f"{path}.zip"
+        archive = archive_path if archive_path else join(path, f"{basename(path)}.zip")
         if not exists(path):
             return print(f'[bold red]|COMPRESS WARNING|Path for compression does not exist: {path}')
         print(f'[green]|INFO|Compressing: {path}')
@@ -96,7 +96,8 @@ class FileUtils:
                 zip_archive.write(path, basename(path), compress_type=zipfile.ZIP_DEFLATED)
             elif isdir(path):
                 for file in track(FileUtils.get_file_paths(path), description=f"[red]Compressing dir:{basename(path)}"):
-                    zip_archive.write(file, relpath(file, path), compress_type=zipfile.ZIP_DEFLATED)
+                    if basename(file) not in ['.DS_Store', f"{basename(archive)}"]:
+                        zip_archive.write(file, relpath(file, path), compress_type=zipfile.ZIP_DEFLATED)
             else:
                 return print(f"|WARNING|The path for archiving is neither a file nor a directory. {path}")
         if exists(archive) and getsize(archive) != 0:
