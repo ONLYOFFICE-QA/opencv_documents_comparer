@@ -33,19 +33,13 @@ class FileUtils:
         return path.rstrip(path[-1]) if path[-1] in ['/', '\\'] else path
 
     @staticmethod
-    def get_file_paths(dir_path):
+    def get_file_paths(dir_path, ext=''):
         files_paths = []
         for root, dirs, files in walk(dir_path):
             for filename in files:
-                files_paths.append(join(root, filename))
-        return files_paths
-
-    @staticmethod
-    def get_files_by_extensions(path_to_folder, ext):
-        files_paths = []
-        for root, dirs, files in walk(path_to_folder):
-            for filename in files:
                 if ext and filename.lower().endswith(ext if isinstance(ext, tuple) else ext.lower()):
+                    files_paths.append(join(root, filename))
+                elif not ext:
                     files_paths.append(join(root, filename))
         return files_paths
 
