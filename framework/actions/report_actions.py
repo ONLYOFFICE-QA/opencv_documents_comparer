@@ -17,10 +17,9 @@ class ReportActions:
         pd.set_option('display.max_columns', None)
         pd.set_option("expand_frame_repr", False)
 
-    @staticmethod
-    def merge_reports(reports_array, path_to_result_csv):
-        df = pd.concat([pd.read_csv(csv_) for csv_ in reports_array], ignore_index=True)
-        df.to_csv(path_to_result_csv, index=False)
+    def merge_reports(self, reports_array, result_csv_path, delimiter='\t'):
+        df = pd.concat([self.read_csv_via_pandas(csv_, delimiter) for csv_ in reports_array], ignore_index=True)
+        df.to_csv(result_csv_path, index=False, sep=delimiter)
 
     @staticmethod
     def csv_writer(file_path, mode, message):
