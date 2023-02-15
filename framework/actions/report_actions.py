@@ -18,6 +18,11 @@ class ReportActions:
         pd.set_option("expand_frame_repr", False)
 
     @staticmethod
+    def merge_reports(reports_array, path_to_result_csv):
+        df = pd.concat([pd.read_csv(csv_) for csv_ in reports_array], ignore_index=True)
+        df.to_csv(path_to_result_csv, index=False)
+
+    @staticmethod
     def csv_writer(file_path, mode, message):
         FileUtils.create_dir(dirname(file_path))
         with open(file_path, mode, newline='') as csv_file:
