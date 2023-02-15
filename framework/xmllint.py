@@ -50,7 +50,7 @@ class XmlLint:
 
     def check_xml(self, dir_path, file, xmllint_report, direction=None):
         xml_errors, parser_error = [], []
-        for xml in FileUtils.get_files_by_extensions(dir_path, '.xml'):
+        for xml in FileUtils.get_file_paths(dir_path, '.xml'):
             output = self.run_xmllint_test(xml)
             if output:
                 xml_errors.append(output.replace(dir_path, "")), parser_error.append(self.find_error_in_output(output))
@@ -58,7 +58,7 @@ class XmlLint:
         self.csv.csv_writer(xmllint_report, "a", [file, parser_error, xml_errors, direction]) if xml_errors else ...
 
     def check_ooxml_files(self, dir_path, xmllint_report, conversion_direction=None):
-        file_paths_array = FileUtils.get_files_by_extensions(dir_path, self.ooxml_formats)
+        file_paths_array = FileUtils.get_file_paths(dir_path, self.ooxml_formats)
         for file_path in track(file_paths_array, description="Check files via xmllint..."):
             print(f"[green]File in test:[/] {basename(file_path)}")
             xmllint_test_folder = FileUtils.random_name(ProjectConfig.TMP_DIR)

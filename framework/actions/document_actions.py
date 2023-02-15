@@ -105,7 +105,7 @@ class DocActions:
                     if output_format and dir_name.lower().endswith(f".{output_format.lower()}"):
                         FileUtils.copy(join(root, dir_name), join(path_to, dir_name), silence=True)
         else:
-            for file_path in FileUtils.get_files_by_extensions(ProjectConfig.tmp_result_dir(), f".{output_format}"):
+            for file_path in FileUtils.get_file_paths(ProjectConfig.tmp_result_dir(), f".{output_format}"):
                 FileUtils.copy(file_path, join(path_to, basename(file_path)), silence=True)
         FileUtils.delete(ProjectConfig.tmp_result_dir()) if delete else None
 
