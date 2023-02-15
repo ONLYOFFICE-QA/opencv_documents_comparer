@@ -14,7 +14,7 @@ from win32com.client import Dispatch
 import settings as config
 from configurations.project_configurator import ProjectConfig
 from framework.FileUtils import FileUtils
-from framework.actions.document_actions import DocActions
+from framework.actions.key_actions import KeyActions
 from framework.compare_image import CompareImage
 from framework.telegram import Telegram
 
@@ -29,15 +29,15 @@ class PowerPoint:
 
     @staticmethod
     def prepare_presentation_for_test():
-        DocActions.click('/excel/turn_on_content.png')
-        DocActions.click('/excel/turn_on_content.png')
+        KeyActions.click('/excel/turn_on_content.png')
+        KeyActions.click('/excel/turn_on_content.png')
         sleep(0.2)
-        DocActions.click('/powerpoint/ok.png')
-        DocActions.click('/powerpoint/view.png')
+        KeyActions.click('/powerpoint/ok.png')
+        KeyActions.click('/powerpoint/view.png')
         pg.click()
         sleep(0.2)
-        DocActions.click('/powerpoint/normal_view.png')
-        DocActions.click('/powerpoint/scale.png')
+        KeyActions.click('/powerpoint/normal_view.png')
+        KeyActions.click('/powerpoint/scale.png')
         pg.press('tab')
         pg.write('100', interval=0.1)
         pg.press('enter')

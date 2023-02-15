@@ -13,7 +13,7 @@ from win32com.client import Dispatch
 import settings as config
 from configurations.project_configurator import ProjectConfig
 from framework.FileUtils import FileUtils
-from framework.actions.document_actions import DocActions
+from framework.actions.key_actions import KeyActions
 from framework.compare_image import CompareImage
 from framework.telegram import Telegram
 
@@ -79,15 +79,15 @@ class Word:
 
     @staticmethod
     def prepare_document_for_test():
-        DocActions.click('/word/layout.png')
+        KeyActions.click('/word/layout.png')
         sleep(0.3)
-        DocActions.click('/word/transfers.png')
+        KeyActions.click('/word/transfers.png')
         pg.press('down', interval=0.1)
         pg.press('enter')
-        DocActions.click('/powerpoint/view.png')
+        KeyActions.click('/powerpoint/view.png')
         sleep(0.3)
-        DocActions.click('/word/one_page.png')
-        DocActions.click('/word/resolution100.png')
+        KeyActions.click('/word/one_page.png')
+        KeyActions.click('/word/resolution100.png')
         pg.moveTo(100, 0)
         sleep(0.5)
 
@@ -162,7 +162,7 @@ class Word:
             errors = self.get_errors()
             if errors:
                 match errors:
-                    case['bosa_sdm_msword', 'Пароль']:
+                    case ['bosa_sdm_msword', 'Пароль']:
                         pg.press('tab')
                         pg.press('enter')
             return

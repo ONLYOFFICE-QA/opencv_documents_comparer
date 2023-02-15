@@ -13,7 +13,7 @@ from win32com.client import Dispatch
 import settings as config
 from configurations.project_configurator import ProjectConfig
 from framework.FileUtils import FileUtils
-from framework.actions.document_actions import DocActions
+from framework.actions.key_actions import KeyActions
 from framework.compare_image import CompareImage
 from framework.telegram import Telegram
 
@@ -43,7 +43,7 @@ class Excel:
             if self.errors:
                 match self.errors:
                     case ['#32770', 'Microsoft Visual Basic']:
-                        if not DocActions.click('excel/end.png'):
+                        if not KeyActions.click('excel/end.png'):
                             sb.call(f'powershell.exe kill -Name EXCEL', shell=True)
                     case ['#32770', 'Microsoft Excel']:
                         pg.press('enter')
@@ -64,7 +64,7 @@ class Excel:
                 self.errors.clear()
 
     def prepare_excel_for_test(self):
-        if DocActions.click('/excel/turn_on_content.png'):
+        if KeyActions.click('/excel/turn_on_content.png'):
             sleep(1)
             win32gui.EnumWindows(self.get_windows_title, self.errors)
             if self.errors:
@@ -133,7 +133,7 @@ class Excel:
         win32gui.SetForegroundWindow(self.windows_handler_number)
 
     # gets the coordinates of the window
-    # sets the size and position of the window
+    # set the size and position of the window.
     def get_coordinate_exel(self):
         coordinate = [win32gui.GetWindowRect(self.windows_handler_number)]
         coordinate = coordinate[0]

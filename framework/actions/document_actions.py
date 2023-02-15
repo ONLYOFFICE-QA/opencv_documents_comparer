@@ -4,7 +4,6 @@ from os import walk, listdir
 from os.path import join, basename
 
 import psutil
-import pyautogui as pg
 import pyperclip as pc
 from loguru import logger
 
@@ -96,18 +95,6 @@ class DocActions:
             for o in d1_keys.intersection(d2_keys) if source_statistics[o] != converted_statistics[o]
         }
         return modified
-
-    @staticmethod
-    def click(path_to_image):
-        try:
-            pg.click(join(ProjectConfig.PROJECT_DIR, 'data', 'image_templates', path_to_image))
-            return True
-        except TypeError:
-            return False
-
-    @staticmethod
-    def last_modified_report():
-        return FileUtils.last_modified_file(ProjectConfig.conversion_report_dir())
 
     @staticmethod
     def copy_result_x2ttester(path_to, output_format, delete=False):
