@@ -38,17 +38,20 @@ def core(c, force=False):
 def convert(c, dr=None, ls=False):
     converter, report = Converter(), ReportActions()
     input_format, output_format = converter.getting_formats(dr)
-    converter.conversion_via_x2ttester(input_format, output_format, ls=ls)
-    result_folder = join(ProjectConfig.result_dir(), f"{converter.x2tversion}_{input_format}_{output_format}")
-    DocActions.copy_result_x2ttester(result_folder, output_format)
-    report.out_x2ttester_report_csv(DocActions.last_modified_report())
+    x2ttester_report = converter.conversion_via_x2ttester(input_format, output_format, ls=ls)
+    result_folder = join(ProjectConfig.result_dir(), f"{converter.x2t_version}_{input_format}_{output_format}")
+    DocActions.copy_result_x2ttester(result_folder, output_format) if not ls else ...
+    report.out_x2ttester_report_csv(x2ttester_report)
 
 
 @task
 def convert_array(c):
-    converter, report = Converter(), ReportActions()
-    converter.convert_from_extension_array()
-    report.out_x2ttester_report_csv(DocActions.last_modified_report())
+    converter, report, tg = Converter(), ReportActions(), Telegram()
+    xmllint_report, x2ttester_report = converter.convert_from_extension_array()
+    print(f"[red]{'-' * 90}\nXMLLINT: {report.read_csv_via_pandas(xmllint_report) if xmllint_report else None}\n\n\n"
+          f"CONVERSION: {report.out_x2ttester_report_csv(x2ttester_report)}\n[red]{'-' * 90}\n")
+    tg.send_document(xmllint_report, caption=f"`XMLLINT REPORT ON VERSION: {converter.x2t_version}`")
+    tg.send_document(x2ttester_report, caption=f"`CONVERSION REPORT ON VERSION: {converter.x2t_version}`")
 
 
 @task
