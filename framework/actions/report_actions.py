@@ -25,8 +25,11 @@ class ReportActions:
             writer.writerow(message)
 
     @staticmethod
-    def out_x2ttester_report_csv(x2ttester_report_csv):
-        df = pd.read_csv(x2ttester_report_csv, delimiter="\t")
+    def read_csv_via_pandas(csv_file, delimiter="\t"):
+        return pd.read_csv(csv_file, delimiter=delimiter)
+
+    def out_x2ttester_report_csv(self, x2ttester_report_csv):
+        df = self.read_csv_via_pandas(x2ttester_report_csv)
         df.rename(
             columns={
                 'Input file': 'Input_file', 'Output file': 'Output_file', 'Input size': 'Input_size',
