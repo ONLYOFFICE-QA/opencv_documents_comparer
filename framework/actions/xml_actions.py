@@ -2,6 +2,7 @@
 import xml.etree.cElementTree as ET
 from os import scandir
 from os.path import join, isfile, exists
+from re import sub
 
 from rich import print
 
@@ -49,15 +50,32 @@ class XmlActions:
     def generate_output_dir():
         return FileUtils.delete_last_slash(ProjectConfig.tmp_result_dir())
 
-    def generate_report_path(self, input_format, output_format, x2t_version):
-        reports_dir = ProjectConfig.conversion_report_dir()
-        report_name = f"{x2t_version}_{input_format}_{output_format}.csv"
-        FileUtils.create_dir(reports_dir)
-        return join(reports_dir, report_name)
+    @staticmethod
+    def generate_major_version(full_version):
+        if len([i for i in full_version.split('.') if i]) == 4:
+            return sub(r'(\d+).(\d+).(\d+).(\d+)', r'\1.\2.\3', full_version)
+        raise print("[bold red]|WARNING| The version is entered incorrectly")
 
-    def generate_x2ttester_parameters(self, input_format=None, output_format=None, files_list=None, x2tversion=''):
+    def generate_report_dir(self, x2t_version):
+        major_version = self.generate_major_version(x2t_version)
+        reports_dir = join(ProjectConfig.reports_dir(), major_version, self.host.os, f"conversion")
+        FileUtils.create_dir(reports_dir)
+        return reports_dir
+
+    # @param [String] input_format
+    # @param [String] output_format
+    # @param [String] x2t_version
+    # @return [String] path to report.csv and tmp report directory.
+    @staticmethod
+    def generate_report_paths(input_format, output_format, x2t_version):
+        tmp_report_dir = FileUtils.random_name(ProjectConfig.TMP_DIR)
+        report_name = f"{x2t_version}_{input_format}_{output_format}.csv"
+        FileUtils.create_dir(tmp_report_dir, silence=True)
+        return join(tmp_report_dir, report_name), tmp_report_dir
+
+    def generate_x2ttester_parameters(self, input_format=None, output_format=None, files_list=None, report_path=''):
         root = ET.Element("Settings")
-        ET.SubElement(root, "reportPath").text = self.generate_report_path(input_format, output_format, x2tversion)
+        ET.SubElement(root, "reportPath").text = report_path if report_path else ProjectConfig.reports_dir()
         ET.SubElement(root, "inputDirectory").text = self.generate_input_dir()
         ET.SubElement(root, "outputDirectory").text = self.generate_output_dir()
         ET.SubElement(root, "x2tPath").text = self.generate_x2t_path()
