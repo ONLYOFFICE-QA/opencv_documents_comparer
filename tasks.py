@@ -57,7 +57,7 @@ def convert_array(c):
 @task
 def xmllint(c, path=ProjectConfig.tmp_result_dir()):
     xmllint = XmlLint()
-    xmllint.run_tests(path_to_files=path)
+    xmllint.run_tests(dir_path=path)
 
 
 @task
