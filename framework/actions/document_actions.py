@@ -31,8 +31,10 @@ class DocActions:
         self.opener_errors: str = join(self.result_folder, f"opener_errors_{converted_extension}_version_{version}")
         self.too_long_to_open_files: str = join(self.opener_errors, 'too_long_to_open_files')
         self.create_logger()
+        FileUtils.create_dir(ProjectConfig.TMP_DIR_IN_TEST, silence=True)
 
     def create_logger(self):
+        FileUtils.create_dir(ProjectConfig.LOGS_DIR)
         logger.remove()
         logger.add(sys.stdout)
         logger.add(join(ProjectConfig.LOGS_DIR, f'{self.source_extension}_{self.converted_extension}_{version}.log'),
@@ -44,7 +46,7 @@ class DocActions:
     @staticmethod
     def copy_for_test(path_to_files):
         tmp_file_path = FileUtils.random_name(ProjectConfig.TMP_DIR_IN_TEST, path_to_files.split(".")[-1])
-        FileUtils.copy(path_to_files, tmp_file_path)
+        FileUtils.copy(path_to_files, tmp_file_path, silence=True)
         return tmp_file_path
 
     def preparing_files_for_opening_test(self):
@@ -97,17 +99,24 @@ class DocActions:
         return modified
 
     @staticmethod
+    def get_image_dir_paths(dir_path, end_dir=''):
+        dir_paths = []
+        for root, dirs, files in walk(dir_path):
+            for dir_name in dirs:
+                if end_dir and dir_name.lower().endswith(end_dir if isinstance(end_dir, tuple) else end_dir.lower()):
+                    dir_paths.append(join(root, dir_name))
+        return dir_paths
+
+    @staticmethod
     def copy_result_x2ttester(path_to, output_format, delete=False):
         FileUtils.create_dir(path_to)
         if output_format in ["png", "jpg"]:
-            for root, dirs, files in walk(ProjectConfig.tmp_result_dir()):
-                for dir_name in dirs:
-                    if output_format and dir_name.lower().endswith(f".{output_format.lower()}"):
-                        FileUtils.copy(join(root, dir_name), join(path_to, dir_name), silence=True)
+            for dir_path in DocActions.get_image_dir_paths(ProjectConfig.tmp_result_dir(), f".{output_format}"):
+                FileUtils.copy(dir_path, join(path_to, basename(dir_path)), silence=True)
         else:
             for file_path in FileUtils.get_file_paths(ProjectConfig.tmp_result_dir(), f".{output_format}"):
                 FileUtils.copy(file_path, join(path_to, basename(file_path)), silence=True)
-        FileUtils.delete(ProjectConfig.tmp_result_dir()) if delete else None
+        FileUtils.delete(ProjectConfig.tmp_result_dir()) if delete else ...
 
     def generate_file_array(self, ls=False, df=False, cl=False):
         if ls:
