@@ -3,6 +3,7 @@ import platform
 from os.path import join
 
 from invoke import task
+from rich import print
 
 from configurations.project_configurator import ProjectConfig
 from framework.actions.core_actions import CoreActions
@@ -48,8 +49,8 @@ def convert(c, dr=None, ls=False):
 def convert_array(c):
     converter, report, tg = Converter(), ReportActions(), Telegram()
     xmllint_report, x2ttester_report = converter.convert_from_extension_array()
-    print(f"[red]{'-' * 90}\nXMLLINT: {report.read_csv_via_pandas(xmllint_report) if xmllint_report else None}\n\n\n"
-          f"CONVERSION: {report.out_x2ttester_report_csv(x2ttester_report)}\n[red]{'-' * 90}\n")
+    print(f"[red]{'-' * 90}\n"f"XMLLINT:\n{report.read_csv_via_pandas(xmllint_report) if xmllint_report else None}\n")
+    report.out_x2ttester_report_csv(x2ttester_report)
     tg.send_document(xmllint_report, caption=f"`XMLLINT REPORT ON VERSION: {converter.x2t_version}`")
     tg.send_document(x2ttester_report, caption=f"`CONVERSION REPORT ON VERSION: {converter.x2t_version}`")
 
