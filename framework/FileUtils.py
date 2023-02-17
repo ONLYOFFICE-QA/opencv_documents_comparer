@@ -118,9 +118,9 @@ class FileUtils:
         if isdir(what_delete):
             rmtree(what_delete, ignore_errors=True)
             if all_from_folder:
-                FileUtils.create_dir(what_delete)
+                FileUtils.create_dir(what_delete, silence=True)
                 if any(scandir(what_delete)):
-                    return print(f"[bold red]|DELETE WARNING| Error while delete all from folder: {what_delete}")
+                    return print(f"[bold red]|DELETE WARNING| Not all files are removed from directory: {what_delete}")
                 return print(f'[green]|INFO| Folder is cleared') if not silence else ...
         elif isfile(what_delete):
             remove(what_delete)
