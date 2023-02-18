@@ -73,6 +73,10 @@ class XmlActions:
         FileUtils.create_dir(tmp_report_dir, silence=True)
         return join(tmp_report_dir, report_name), tmp_report_dir
 
+    @staticmethod
+    def generate_timeout():
+        return settings.timeout if settings.timeout else '0'
+
     def generate_x2ttester_parameters(self, input_format=None, output_format=None, files_list=None, report_path=''):
         root = ET.Element("Settings")
         ET.SubElement(root, "reportPath").text = report_path if report_path else ProjectConfig.reports_dir()
@@ -80,6 +84,7 @@ class XmlActions:
         ET.SubElement(root, "outputDirectory").text = self.generate_output_dir()
         ET.SubElement(root, "x2tPath").text = self.generate_x2t_path()
         ET.SubElement(root, "cores").text = self.generate_number_of_cores()
+        ET.SubElement(root, "timeout").text = self.generate_timeout()
         if input_format:
             ET.SubElement(root, "input").text = input_format
         if output_format:

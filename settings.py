@@ -15,6 +15,7 @@ cores = '4'
 errors_only = '1'
 delete = '0'
 timestamp = '1'
+timeout = '0'
 # Path to MS Office
 ms_office = 'C:/Program Files/Microsoft Office/root/Office16'
 # Path to LibreOffice
