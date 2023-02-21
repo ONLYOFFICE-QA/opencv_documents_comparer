@@ -11,7 +11,7 @@ from loguru import logger
 from win32com.client import Dispatch
 
 import settings as config
-from configurations.project_configurator import ProjectConfig
+from framework.StaticData import StaticData
 from framework.FileUtils import FileUtils
 from framework.actions.key_actions import KeyActions
 from framework.compare_image import CompareImage
@@ -21,12 +21,14 @@ from framework.telegram import Telegram
 # methods for working with Excel
 class Excel:
     def __init__(self):
-        self.doc_helper = ProjectConfig.DOC_ACTIONS
+        self.doc_helper = StaticData.DOC_ACTIONS
         self.errors = []
         self.statistics_excel = None
         self.windows_handler_number = None
         self.files_with_errors_when_opening = []
         self.num_of_sheets = ''
+        FileUtils.create_dir(StaticData.TMP_DIR_CONVERTED_IMG)
+        FileUtils.create_dir(StaticData.TMP_DIR_SOURCE_IMG)
 
     def get_windows_title(self, hwnd, ctx):
         if win32gui.IsWindowVisible(hwnd):
@@ -76,7 +78,7 @@ class Excel:
 
     def open_excel_with_cmd(self, file_path):
         self.errors.clear()
-        sb.Popen(f"{config.ms_office}/{ProjectConfig.EXCEL} -t {file_path}")
+        sb.Popen(f"{config.ms_office}/{StaticData.EXCEL} -t {file_path}")
         self.waiting_for_opening_excel()
 
     def check_open_excel(self, hwnd, ctx):
@@ -215,7 +217,7 @@ class Excel:
 
     def close_excel(self):
         pg.hotkey('ctrl', 'z')
-        FileUtils.run_command(f"taskkill /im  {ProjectConfig.EXCEL}")
+        FileUtils.run_command(f"taskkill /im  {StaticData.EXCEL}")
         sleep(0.2)
         self.events_handler_when_closing()
 

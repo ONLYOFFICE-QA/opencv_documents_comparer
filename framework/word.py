@@ -11,7 +11,7 @@ from rich import print
 from win32com.client import Dispatch
 
 import settings as config
-from configurations.project_configurator import ProjectConfig
+from framework.StaticData import StaticData
 from framework.FileUtils import FileUtils
 from framework.actions.key_actions import KeyActions
 from framework.compare_image import CompareImage
@@ -21,11 +21,13 @@ from framework.telegram import Telegram
 # methods for working with Word
 class Word:
     def __init__(self):
-        self.doc_helper = ProjectConfig.DOC_ACTIONS
+        self.doc_helper = StaticData.DOC_ACTIONS
         self.statistics_word = None
         self.windows_handler_number = None
         self.files_with_errors_when_opening = []
         self.num_of_page = ''
+        FileUtils.create_dir(StaticData.TMP_DIR_CONVERTED_IMG)
+        FileUtils.create_dir(StaticData.TMP_DIR_SOURCE_IMG)
 
     @staticmethod
     def get_errors():
@@ -92,7 +94,7 @@ class Word:
         sleep(0.5)
 
     def open_word_with_cmd(self, file_path):
-        sb.Popen(f"{config.ms_office}/{ProjectConfig.WORD} -t {file_path}")
+        sb.Popen(f"{config.ms_office}/{StaticData.WORD} -t {file_path}")
         self.waiting_for_opening_word()
 
     def check_open_word(self, hwnd, ctx):

@@ -6,7 +6,7 @@ import settings as st
 from framework.FileUtils import FileUtils
 
 
-class ProjectConfig:
+class StaticData:
     DOC_ACTIONS = None
     CSTM_REPORT_DIR = None
     PROJECT_DIR = getcwd()
@@ -31,36 +31,36 @@ class ProjectConfig:
 
     @staticmethod
     def documents_dir():
-        return st.source_docs if st.source_docs else join(ProjectConfig.PROJECT_DIR, 'documents')
+        return st.source_docs if st.source_docs else join(StaticData.PROJECT_DIR, 'documents')
 
     @staticmethod
     def core_dir():
-        return join(ProjectConfig.PROJECT_DIR, 'core')
+        return join(StaticData.PROJECT_DIR, 'core')
 
     @staticmethod
     def fonts_dir():
-        return join(ProjectConfig.PROJECT_DIR, 'assets', 'fonts')
+        return join(StaticData.PROJECT_DIR, 'assets', 'fonts')
 
     @staticmethod
     def reports_dir():
-        return join(ProjectConfig.PROJECT_DIR, 'reports')
+        return join(StaticData.PROJECT_DIR, 'reports')
 
     @staticmethod
     def all_fonts_js():
-        return join(ProjectConfig.core_dir(), 'fonts', 'AllFonts.js')
+        return join(StaticData.core_dir(), 'fonts', 'AllFonts.js')
 
     @staticmethod
     def tmp_result_dir():
-        return join(ProjectConfig.TMP_DIR, 'cnv')
+        return join(StaticData.TMP_DIR, 'cnv')
 
     @staticmethod
     def core_archive():
-        return join(ProjectConfig.TMP_DIR, 'core.7z')
+        return join(StaticData.TMP_DIR, 'core.7z')
 
     @staticmethod
     def tools_dir():
-        return join(ProjectConfig.PROJECT_DIR, 'tools')
+        return join(StaticData.PROJECT_DIR, 'tools')
 
     @staticmethod
     def result_dir():
-        return st.converted_docs if st.converted_docs else join(ProjectConfig.PROJECT_DIR, 'result')
+        return st.converted_docs if st.converted_docs else join(StaticData.PROJECT_DIR, 'result')

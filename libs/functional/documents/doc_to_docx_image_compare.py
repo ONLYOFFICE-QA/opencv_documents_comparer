@@ -3,7 +3,7 @@ from loguru import logger
 from rich import print
 
 import settings as config
-from configurations.project_configurator import ProjectConfig
+from framework.StaticData import StaticData
 from framework.compare_image import CompareImage
 from framework.word import Word
 
@@ -27,12 +27,12 @@ class DocDocxCompareImg(Word):
                 self.close_word_with_cmd()
                 continue
             self.events_handler_when_opening()
-            self.get_screenshots(ProjectConfig.TMP_DIR_CONVERTED_IMG)
+            self.get_screenshots(StaticData.TMP_DIR_CONVERTED_IMG)
             self.close_word_with_cmd()
 
             print(f'[bold green]In test[/] {self.doc_helper.source_file}')
             self.open_word_with_cmd(self.doc_helper.tmp_source_file)
-            self.get_screenshots(ProjectConfig.TMP_DIR_SOURCE_IMG)
+            self.get_screenshots(StaticData.TMP_DIR_SOURCE_IMG)
             self.close_word_with_cmd()
 
             CompareImage()

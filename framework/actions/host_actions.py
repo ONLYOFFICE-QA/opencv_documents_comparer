@@ -4,7 +4,7 @@ import platform
 
 from rich import print
 
-from configurations.project_configurator import ProjectConfig
+from framework.StaticData import StaticData
 from framework.singleton import singleton
 
 
@@ -19,7 +19,7 @@ class HostActions:
         self.host_validations()
 
     def mac_configuration(self):
-        os.environ["DYLD_LIBRARY_PATH"] = ProjectConfig.core_dir()
+        os.environ["DYLD_LIBRARY_PATH"] = StaticData.core_dir()
         self.os = 'mac'
         self.arch = platform.processor()
         self.x2t = 'x2t'

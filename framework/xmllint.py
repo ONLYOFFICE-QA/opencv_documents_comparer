@@ -5,7 +5,7 @@ from os.path import join, basename
 from rich import print
 from rich.progress import track
 
-from configurations.project_configurator import ProjectConfig
+from framework.StaticData import StaticData
 from framework.FileUtils import FileUtils
 from framework.actions.host_actions import HostActions
 from framework.actions.report_actions import ReportActions
@@ -29,7 +29,7 @@ class XmlLint:
     def generate_xmllint_report_path(self):
         x2t_version = X2t.x2t_version()
         major_version = XmlActions.generate_major_version(x2t_version)
-        report_dir = join(ProjectConfig.reports_dir(), major_version, self.host.os, f"xmllint")
+        report_dir = join(StaticData.reports_dir(), major_version, self.host.os, f"xmllint")
         FileUtils.create_dir(report_dir)
         return join(report_dir, f"{x2t_version}_{self.time_pattern}.csv")
 
@@ -61,7 +61,7 @@ class XmlLint:
         file_paths_array = FileUtils.get_file_paths(dir_path, self.ooxml_formats)
         for file_path in track(file_paths_array, description="Check files via xmllint..."):
             print(f"[green]File in test:[/] {basename(file_path)}")
-            xmllint_test_folder = FileUtils.random_name(ProjectConfig.TMP_DIR)
+            xmllint_test_folder = FileUtils.random_name(StaticData.TMP_DIR)
             FileUtils.unpacking_via_zip_file(file_path, xmllint_test_folder)
             self.check_xml(xmllint_test_folder, basename(file_path), xmllint_report, conversion_direction)
             FileUtils.delete(xmllint_test_folder, silence=True)

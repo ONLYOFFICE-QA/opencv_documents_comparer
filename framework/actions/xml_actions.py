@@ -7,7 +7,7 @@ from re import sub
 from rich import print
 
 import settings
-from configurations.project_configurator import ProjectConfig
+from framework.StaticData import StaticData
 from framework.FileUtils import FileUtils
 from framework.actions.host_actions import HostActions
 
@@ -17,9 +17,9 @@ class XmlActions:
         self.host = HostActions()
 
     def generate_x2t_path(self):
-        if not isfile(join(ProjectConfig.core_dir(), self.host.x2t)):
-            raise print(f'[bold red]Check x2t File, path: {ProjectConfig.core_dir()}/{self.host.x2t}[/]')
-        return join(ProjectConfig.core_dir(), self.host.x2t)
+        if not isfile(join(StaticData.core_dir(), self.host.x2t)):
+            raise print(f'[bold red]Check x2t File, path: {StaticData.core_dir()}/{self.host.x2t}[/]')
+        return join(StaticData.core_dir(), self.host.x2t)
 
     @staticmethod
     def generate_number_of_cores():
@@ -34,7 +34,7 @@ class XmlActions:
         ET.SubElement(settings, "allfonts").text = './fonts/AllFonts.js'
         ET.SubElement(settings, "file").text = './sdkjs/vendor/xregexp/xregexp-all-min.js'
         ET.SubElement(settings, "sdkjs").text = './sdkjs'
-        self.write_to_xml(settings, join(ProjectConfig.core_dir(), 'DoctRenderer.config'))
+        self.write_to_xml(settings, join(StaticData.core_dir(), 'DoctRenderer.config'))
 
     def generate_files_list(self):
         root = ET.Element("files")
@@ -44,11 +44,11 @@ class XmlActions:
 
     @staticmethod
     def generate_input_dir():
-        return FileUtils.delete_last_slash(ProjectConfig.documents_dir())
+        return FileUtils.delete_last_slash(StaticData.documents_dir())
 
     @staticmethod
     def generate_output_dir():
-        return FileUtils.delete_last_slash(ProjectConfig.tmp_result_dir())
+        return FileUtils.delete_last_slash(StaticData.tmp_result_dir())
 
     @staticmethod
     def generate_major_version(full_version):
@@ -58,7 +58,7 @@ class XmlActions:
 
     def generate_report_dir(self, x2t_version):
         major_version = self.generate_major_version(x2t_version)
-        reports_dir = join(ProjectConfig.reports_dir(), major_version, self.host.os, f"conversion")
+        reports_dir = join(StaticData.reports_dir(), major_version, self.host.os, f"conversion")
         FileUtils.create_dir(reports_dir)
         return reports_dir
 
@@ -68,7 +68,7 @@ class XmlActions:
     # @return [String] path to report.csv and tmp report directory.
     @staticmethod
     def generate_report_paths(input_format, output_format, x2t_version):
-        tmp_report_dir = FileUtils.random_name(ProjectConfig.TMP_DIR)
+        tmp_report_dir = FileUtils.random_name(StaticData.TMP_DIR)
         report_name = f"{x2t_version}_{input_format}_{output_format}.csv"
         FileUtils.create_dir(tmp_report_dir, silence=True)
         return join(tmp_report_dir, report_name), tmp_report_dir
@@ -79,7 +79,7 @@ class XmlActions:
 
     def generate_x2ttester_parameters(self, input_format=None, output_format=None, files_list=None, report_path=''):
         root = ET.Element("Settings")
-        ET.SubElement(root, "reportPath").text = report_path if report_path else ProjectConfig.reports_dir()
+        ET.SubElement(root, "reportPath").text = report_path if report_path else StaticData.reports_dir()
         ET.SubElement(root, "inputDirectory").text = self.generate_input_dir()
         ET.SubElement(root, "outputDirectory").text = self.generate_output_dir()
         ET.SubElement(root, "x2tPath").text = self.generate_x2t_path()
@@ -97,15 +97,15 @@ class XmlActions:
             ET.SubElement(root, "timestamp").text = settings.timestamp
         if files_list:
             ET.SubElement(root, "inputFilesList").text = files_list
-        if exists(ProjectConfig.fonts_dir()) and any(scandir(ProjectConfig.fonts_dir())):
+        if exists(StaticData.fonts_dir()) and any(scandir(StaticData.fonts_dir())):
             fonts = ET.SubElement(root, "fonts", system="0")
-            ET.SubElement(fonts, "directory").text = ProjectConfig.fonts_dir()
+            ET.SubElement(fonts, "directory").text = StaticData.fonts_dir()
         return self.write_to_xml(root)
 
     @staticmethod
     def write_to_xml(xml, path_to_xml=None):
         tree = ET.ElementTree(xml)
         ET.indent(tree, '  ')
-        path = FileUtils.random_name(ProjectConfig.core_dir(), 'xml') if not path_to_xml else path_to_xml
+        path = FileUtils.random_name(StaticData.core_dir(), 'xml') if not path_to_xml else path_to_xml
         tree.write(path, encoding="UTF-8", xml_declaration=True)
         return path

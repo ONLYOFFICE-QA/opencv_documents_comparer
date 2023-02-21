@@ -8,7 +8,7 @@ from os.path import join
 from rich import print
 from rich.prompt import Prompt
 
-from configurations.project_configurator import ProjectConfig
+from framework.StaticData import StaticData
 from framework.FileUtils import FileUtils
 from framework.actions.document_actions import DocActions
 from framework.actions.host_actions import HostActions
@@ -43,13 +43,13 @@ class Converter:
     # @param [String] input_format
     # @return Path to a x2ttester report.
     def conversion_via_x2ttester(self, input_format, output_format, ls=False):
-        chdir(ProjectConfig.core_dir())
+        chdir(StaticData.core_dir())
         self.x2t_version = X2t.x2t_version()
         print(f"[bold green]|INFO| The conversion is running on x2t version: [bold red]{self.x2t_version}")
         path_to_list = self.xml.generate_files_list() if ls else None
         report_path, tmp_report_dir = self.xml.generate_report_paths(input_format, output_format, self.x2t_version)
         tmp_xml = self.xml.generate_x2ttester_parameters(input_format, output_format, path_to_list, report_path)
-        sb.call(f"{join(ProjectConfig.core_dir(), self.host.x2ttester)} {tmp_xml}", shell=True)
+        sb.call(f"{join(StaticData.core_dir(), self.host.x2ttester)} {tmp_xml}", shell=True)
         print(f"[bold red]|INFO|{'-' * 90}\nx2t version: {self.x2t_version}\n{'-' * 90}")
         return FileUtils.last_modified_file(tmp_report_dir)
 
@@ -64,13 +64,13 @@ class Converter:
 
     def convert_from_extension_array(self):
         xmllint_report, x2ttester_reports, = None, []
-        for extensions in json.load(open(f"{ProjectConfig.PROJECT_DIR}/data/extension_array.json")).items():
+        for extensions in json.load(open(f"{StaticData.PROJECT_DIR}/data/extension_array.json")).items():
             src_ext = extensions[0]
             for cnv_ext in extensions[1]:
                 x2ttester_reports.append(self.conversion_via_x2ttester(src_ext, cnv_ext))
                 self.x2t_version = X2t.x2t_version()
-                result_dir = join(ProjectConfig.result_dir(), f"{self.x2t_version}_{src_ext}_{cnv_ext}")
+                result_dir = join(StaticData.result_dir(), f"{self.x2t_version}_{src_ext}_{cnv_ext}")
                 DocActions.copy_result_x2ttester(result_dir, cnv_ext)
-                xmllint_report = self.xmllint.run_tests(ProjectConfig.tmp_result_dir(), f"{src_ext}-{cnv_ext}")
-                FileUtils.delete(ProjectConfig.tmp_result_dir())
+                xmllint_report = self.xmllint.run_tests(StaticData.tmp_result_dir(), f"{src_ext}-{cnv_ext}")
+                FileUtils.delete(StaticData.tmp_result_dir())
         return xmllint_report, self.merge_x2ttester_reports(x2ttester_reports)

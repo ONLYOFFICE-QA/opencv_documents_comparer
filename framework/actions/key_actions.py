@@ -1,17 +1,15 @@
 # -*- coding: utf-8 -*-
-from os.path import join
-
 import pyautogui as pg
 
-from configurations.project_configurator import ProjectConfig
+from framework.StaticData import StaticData
 
 
 class KeyActions:
 
     @staticmethod
-    def click(path_to_image):
+    def click(image_path):
         try:
-            pg.click(join(ProjectConfig.PROJECT_DIR, 'data', 'image_templates', path_to_image))
+            pg.click(f"{StaticData.PROJECT_DIR}/data/image_templates/{image_path}")
             return True
         except TypeError:
             return False

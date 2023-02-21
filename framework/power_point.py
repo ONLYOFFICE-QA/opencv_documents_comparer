@@ -12,7 +12,7 @@ from rich import print
 from win32com.client import Dispatch
 
 import settings as config
-from configurations.project_configurator import ProjectConfig
+from framework.StaticData import StaticData
 from framework.FileUtils import FileUtils
 from framework.actions.key_actions import KeyActions
 from framework.compare_image import CompareImage
@@ -21,11 +21,13 @@ from framework.telegram import Telegram
 
 class PowerPoint:
     def __init__(self):
-        self.doc_helper = ProjectConfig.DOC_ACTIONS
+        self.doc_helper = StaticData.DOC_ACTIONS
         self.errors = []
         self.slide_count = None
         self.windows_handler_number = None
         self.files_with_errors_when_opening = []
+        FileUtils.create_dir(StaticData.TMP_DIR_CONVERTED_IMG)
+        FileUtils.create_dir(StaticData.TMP_DIR_SOURCE_IMG)
 
     @staticmethod
     def prepare_presentation_for_test():
@@ -74,7 +76,7 @@ class PowerPoint:
                         Telegram.send_message(massage)
             self.errors.clear()
 
-    def get_slide_count(self):
+    def get_slide_count(self, file_path):
         error_processing = Process(target=self.error_handler_for_thread)
         error_processing.start()
         presentation = Dispatch("PowerPoint.application")
@@ -93,11 +95,11 @@ class PowerPoint:
         finally:
             error_processing.terminate()
             self.close_presentation_with_hotkey()
-            FileUtils.run_command(f"taskkill /im {ProjectConfig.POWERPOINT}")
+            FileUtils.run_command(f"taskkill /im {StaticData.POWERPOINT}")
 
     def open_presentation_with_cmd(self, file_path):
         self.errors.clear()
-        sb.Popen(f"{config.ms_office}/{ProjectConfig.POWERPOINT} -t {file_path}")
+        sb.Popen(f"{config.ms_office}/{StaticData.POWERPOINT} -t {file_path}")
         self.waiting_for_opening_power_point()
 
     def check_open_power_point(self, hwnd, ctx):

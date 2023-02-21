@@ -9,7 +9,7 @@ from rich import print
 from rich.progress import track
 
 import settings
-from configurations.project_configurator import ProjectConfig
+from framework.StaticData import StaticData
 from framework.FileUtils import FileUtils
 from framework.actions.host_actions import HostActions
 from framework.actions.xml_actions import XmlActions
@@ -82,11 +82,11 @@ class CoreActions:
     def change_core_access(self):
         if self.os == 'windows':
             return
-        sb.call(f'chmod +x {ProjectConfig.core_dir()}/*', shell=True)
+        sb.call(f'chmod +x {StaticData.core_dir()}/*', shell=True)
 
     @staticmethod
     def write_core_date_on_file(core_data):
-        FileUtils.file_writer(join(ProjectConfig.core_dir(), 'core.data'), core_data, mode='w')
+        FileUtils.file_writer(join(StaticData.core_dir(), 'core.data'), core_data, mode='w')
 
     @staticmethod
     def read_core_data(core_path):
@@ -95,25 +95,25 @@ class CoreActions:
         return FileUtils.file_reader(join(core_path, 'core.data'), mode='r')
 
     def check_updated_core(self, core_data=None, force=False):
-        existing_core_data = self.read_core_data(ProjectConfig.core_dir())
+        existing_core_data = self.read_core_data(StaticData.core_dir())
         if core_data and existing_core_data and core_data == existing_core_data and not force:
             print('[red]|INFO| Core Already up-to-date[/]')
             return True
 
-        chdir(ProjectConfig.PROJECT_DIR)
-        FileUtils.delete(ProjectConfig.core_dir(), silence=True)
+        chdir(StaticData.PROJECT_DIR)
+        FileUtils.delete(StaticData.core_dir(), silence=True)
         return False
 
     def download_core(self):
         print(f"[green]|INFO| Downloading core\nVersion: {self.full_version}\nOS: {self.os}\nURL: {self.url}")
-        FileUtils.download_file(self.url, ProjectConfig.TMP_DIR, "core.7z")
+        FileUtils.download_file(self.url, StaticData.TMP_DIR, "core.7z")
 
     @staticmethod
-    def fix_double_folder(core_path=ProjectConfig.core_dir()):
+    def fix_double_folder(core_path=StaticData.core_dir()):
         path = join(core_path, basename(core_path))
         if isdir(path):
             for file in track(listdir(path), description='[green]Fixing the double folder...'):
-                FileUtils.move(join(path, file), join(ProjectConfig.core_dir(), file))
+                FileUtils.move(join(path, file), join(StaticData.core_dir(), file))
             if not any(scandir(path)):
                 return FileUtils.delete(path)
             print("[red]|WARNING| Not all objects are moved")
@@ -123,8 +123,8 @@ class CoreActions:
         if not core_status or self.check_updated_core(core_data=core_status.headers['Last-Modified'], force=force):
             return
         self.download_core()
-        FileUtils.unpacking_via_7zip(ProjectConfig.core_archive(), ProjectConfig.core_dir(), delete=True)
-        self.fix_double_folder(ProjectConfig.core_dir())
+        FileUtils.unpacking_via_7zip(StaticData.core_archive(), StaticData.core_dir(), delete=True)
+        self.fix_double_folder(StaticData.core_dir())
         self.write_core_date_on_file(core_status.headers['Last-Modified'])
         self.change_core_access()
         self.xml.generate_doc_renderer_config(), print('[green]-' * 90)

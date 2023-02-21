@@ -5,7 +5,7 @@ from os.path import join, getsize, basename, isdir
 import requests
 from loguru import logger
 
-from configurations.project_configurator import ProjectConfig
+from framework.StaticData import StaticData
 from framework.FileUtils import FileUtils
 from settings import version
 
@@ -27,8 +27,8 @@ class Telegram:
     def send_document(document_path, caption=''):
         if Telegram.telegram_token and Telegram.chat_id:
             if getsize(document_path) >= 50_000_000 or isdir(document_path):
-                FileUtils.compress_files(document_path, join(ProjectConfig.TMP_DIR, f'{basename(document_path)}.zip'))
-                document_path = join(ProjectConfig.TMP_DIR, f'{basename(document_path)}.zip')
+                FileUtils.compress_files(document_path, join(StaticData.TMP_DIR, f'{basename(document_path)}.zip'))
+                document_path = join(StaticData.TMP_DIR, f'{basename(document_path)}.zip')
             try:
                 response = requests.post(f"https://api.telegram.org/bot{Telegram.telegram_token}/sendDocument",
                                          data={"chat_id": Telegram.chat_id, "caption": caption,
@@ -42,7 +42,7 @@ class Telegram:
     @staticmethod
     def send_long_message_as_document(long_message: str):
         if Telegram.telegram_token and Telegram.chat_id:
-            report = join(ProjectConfig.TMP_DIR, 'report.txt')
+            report = join(StaticData.TMP_DIR, 'report.txt')
             with open(report, "w") as file:
                 file.write(long_message)
             Telegram.send_document(report, caption=f"report.txt\nVersion:{version}")

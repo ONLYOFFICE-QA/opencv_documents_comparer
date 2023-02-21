@@ -8,7 +8,7 @@ import pyperclip as pc
 from loguru import logger
 
 import settings as config
-from configurations.project_configurator import ProjectConfig
+from framework.StaticData import StaticData
 from framework.FileUtils import FileUtils
 from framework.telegram import Telegram
 from settings import version, converted_docs, source_docs
@@ -24,20 +24,20 @@ class DocActions:
         self.source_doc_folder: str = join(source_docs, source_extension)
         self.converted_doc_folder: str = join(converted_docs, f"{version}_{source_extension}_{converted_extension}")
         # results dirs
-        self.result_folder: str = join(ProjectConfig.RESULTS, f"{version}_{source_extension}_{converted_extension}")
+        self.result_folder: str = join(StaticData.RESULTS, f"{version}_{source_extension}_{converted_extension}")
         self.differences_statistic: str = join(self.result_folder, 'diff_statistic')
         self.untested_folder: str = join(self.result_folder, 'failed_to_open_converted_file')
         self.failed_source: str = join(self.result_folder, 'failed_to_open_source_file')
         self.opener_errors: str = join(self.result_folder, f"opener_errors_{converted_extension}_version_{version}")
         self.too_long_to_open_files: str = join(self.opener_errors, 'too_long_to_open_files')
         self.create_logger()
-        FileUtils.create_dir(ProjectConfig.TMP_DIR_IN_TEST, silence=True)
+        FileUtils.create_dir(StaticData.TMP_DIR_IN_TEST, silence=True)
 
     def create_logger(self):
-        FileUtils.create_dir(ProjectConfig.LOGS_DIR)
+        FileUtils.create_dir(StaticData.LOGS_DIR)
         logger.remove()
         logger.add(sys.stdout)
-        logger.add(join(ProjectConfig.LOGS_DIR, f'{self.source_extension}_{self.converted_extension}_{version}.log'),
+        logger.add(join(StaticData.LOGS_DIR, f'{self.source_extension}_{self.converted_extension}_{version}.log'),
                    format="{time} {level} {message}",
                    level="DEBUG",
                    rotation='5 MB',
@@ -45,7 +45,7 @@ class DocActions:
 
     @staticmethod
     def copy_for_test(path_to_files):
-        tmp_file_path = FileUtils.random_name(ProjectConfig.TMP_DIR_IN_TEST, path_to_files.split(".")[-1])
+        tmp_file_path = FileUtils.random_name(StaticData.TMP_DIR_IN_TEST, path_to_files.split(".")[-1])
         FileUtils.copy(path_to_files, tmp_file_path, silence=True)
         return tmp_file_path
 
@@ -63,7 +63,7 @@ class DocActions:
 
     def terminate_process(self):
         for process in psutil.process_iter():
-            for terminate_process in ProjectConfig.TERMINATE_PROCESS_LIST:
+            for terminate_process in StaticData.TERMINATE_PROCESS_LIST:
                 if terminate_process in process.name():
                     try:
                         process.terminate()
@@ -72,9 +72,9 @@ class DocActions:
 
     def tmp_cleaner(self):
         self.terminate_process()
-        FileUtils.delete(f'{ProjectConfig.TMP_DIR_IN_TEST}', all_from_folder=True, silence=True)
-        FileUtils.delete(f'{ProjectConfig.TMP_DIR_CONVERTED_IMG}', all_from_folder=True, silence=True)
-        FileUtils.delete(f'{ProjectConfig.TMP_DIR_SOURCE_IMG}', all_from_folder=True, silence=True)
+        FileUtils.delete(f'{StaticData.TMP_DIR_IN_TEST}', all_from_folder=True, silence=True)
+        FileUtils.delete(f'{StaticData.TMP_DIR_CONVERTED_IMG}', all_from_folder=True, silence=True)
+        FileUtils.delete(f'{StaticData.TMP_DIR_SOURCE_IMG}', all_from_folder=True, silence=True)
 
     def copy_testing_files_to_folder(self, dir_path):
         if self.converted_file and self.source_file:
@@ -111,12 +111,12 @@ class DocActions:
     def copy_result_x2ttester(path_to, output_format, delete=False):
         FileUtils.create_dir(path_to)
         if output_format in ["png", "jpg"]:
-            for dir_path in DocActions.get_image_dir_paths(ProjectConfig.tmp_result_dir(), f".{output_format}"):
+            for dir_path in DocActions.get_image_dir_paths(StaticData.tmp_result_dir(), f".{output_format}"):
                 FileUtils.copy(dir_path, join(path_to, basename(dir_path)), silence=True)
         else:
-            for file_path in FileUtils.get_file_paths(ProjectConfig.tmp_result_dir(), f".{output_format}"):
+            for file_path in FileUtils.get_file_paths(StaticData.tmp_result_dir(), f".{output_format}"):
                 FileUtils.copy(file_path, join(path_to, basename(file_path)), silence=True)
-        FileUtils.delete(ProjectConfig.tmp_result_dir()) if delete else ...
+        FileUtils.delete(StaticData.tmp_result_dir()) if delete else ...
 
     def generate_file_array(self, ls=False, df=False, cl=False):
         if ls:

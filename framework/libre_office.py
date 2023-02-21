@@ -9,7 +9,8 @@ import win32gui
 from loguru import logger
 
 import settings as config
-from configurations.project_configurator import ProjectConfig
+from framework.StaticData import StaticData
+from framework.FileUtils import FileUtils
 from framework.compare_image import CompareImage
 from framework.telegram import Telegram
 
@@ -17,10 +18,12 @@ from framework.telegram import Telegram
 class LibreOffice:
 
     def __init__(self):
-        self.doc_helper = ProjectConfig.DOC_ACTIONS
+        self.doc_helper = StaticData.DOC_ACTIONS
         self.errors = []
         self.windows_handler_number = None
         self.errors_files_when_opening = []
+        FileUtils.create_dir(StaticData.TMP_DIR_CONVERTED_IMG)
+        FileUtils.create_dir(StaticData.TMP_DIR_SOURCE_IMG)
 
     @staticmethod
     def prepare_windows_hot_keys():
@@ -60,7 +63,7 @@ class LibreOffice:
 
     def open_libre_office_with_cmd(self, file_path):
         self.errors.clear()
-        sb.Popen(f"{join(config.libre_office, ProjectConfig.LIBRE)} -o {file_path}")
+        sb.Popen(f"{join(config.libre_office, StaticData.LIBRE)} -o {file_path}")
         self.waiting_for_opening_libre_office()
         self.events_handler_when_opening()  # check events when opening
 
