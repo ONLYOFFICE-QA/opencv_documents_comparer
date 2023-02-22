@@ -26,8 +26,8 @@ class PowerPoint:
         self.slide_count = None
         self.windows_handler_number = None
         self.files_with_errors_when_opening = []
-        FileUtils.create_dir(StaticData.TMP_DIR_CONVERTED_IMG)
-        FileUtils.create_dir(StaticData.TMP_DIR_SOURCE_IMG)
+        FileUtils.create_dir(StaticData.TMP_DIR_CONVERTED_IMG, silence=True)
+        FileUtils.create_dir(StaticData.TMP_DIR_SOURCE_IMG, silence=True)
 
     @staticmethod
     def prepare_presentation_for_test():
@@ -61,7 +61,7 @@ class PowerPoint:
                 self.errors.append(class_name)
                 self.errors.append(window_text)
 
-    def error_handler_for_thread(self, filename):
+    def error_handler_for_thread(self):
         while True:
             win32gui.EnumWindows(self.get_windows_title, self.errors)
             if self.errors:
@@ -153,8 +153,8 @@ class PowerPoint:
     def get_coordinate_pp(self):
         coordinate = [win32gui.GetWindowRect(self.windows_handler_number)]
         coordinate = coordinate[0]
-        coordinate = (coordinate[0] + 350,
-                      coordinate[1] + 170,
+        coordinate = (coordinate[0] + 370,
+                      coordinate[1] + 200,
                       coordinate[2] - 120,
                       coordinate[3] - 100)
         return coordinate

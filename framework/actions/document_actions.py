@@ -78,9 +78,11 @@ class DocActions:
 
     def copy_testing_files_to_folder(self, dir_path):
         if self.converted_file and self.source_file:
-            FileUtils.create_dir(dir_path)
-            FileUtils.copy(join(self.converted_doc_folder, self.converted_file), join(dir_path, self.converted_file))
-            FileUtils.copy(join(self.source_doc_folder, self.source_file), join(dir_path, self.source_file))
+            FileUtils.create_dir(dir_path, silence=True)
+            FileUtils.copy(join(self.converted_doc_folder, self.converted_file),
+                           join(dir_path, self.converted_file), silence=True)
+            FileUtils.copy(join(self.source_doc_folder, self.source_file),
+                           join(dir_path, self.source_file), silence=True)
 
     def create_massage_for_tg(self, errors_array, ls):
         massage = f'{self.source_extension}=>{self.converted_extension} ' \

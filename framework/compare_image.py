@@ -69,8 +69,8 @@ class CompareImage:
 
     def save_result(self):
         self.helper.copy_testing_files_to_folder(self.img_comparison_diff_dir)
-        FileUtils.create_dir(join(self.img_comparison_diff_dir, 'gif'))
-        FileUtils.create_dir(join(self.img_comparison_diff_dir, 'screen'))
+        FileUtils.create_dir(join(self.img_comparison_diff_dir, 'gif'), silence=True)
+        FileUtils.create_dir(join(self.img_comparison_diff_dir, 'screen'), silence=True)
         collage = np.hstack([self.source_img, self.converted_img])
         cv2.imwrite(join(self.img_comparison_diff_dir, 'screen', f"{self.image_name}_collage.png"), collage)
         images = [self.src_processed_img, self.cnv_processed_img]

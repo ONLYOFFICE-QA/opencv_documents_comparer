@@ -91,8 +91,8 @@ class LibreOffice:
     def get_coordinate_libreoffice(self):
         coordinate = [win32gui.GetWindowRect(self.windows_handler_number)]
         coordinate = coordinate[0]
-        coordinate = (coordinate[0] + 350,
-                      coordinate[1] + 170,
+        coordinate = (coordinate[0] + 370,
+                      coordinate[1] + 200,
                       coordinate[2] - 120,
                       coordinate[3] - 100)
         return coordinate
