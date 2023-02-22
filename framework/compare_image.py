@@ -1,17 +1,19 @@
 # -*- coding: utf-8 -*-
 import os
 import re
-from loguru import logger
+from os.path import join
+
 import cv2
 import imageio
 import numpy as np
 from PIL import ImageGrab
-from rich.progress import track
+from loguru import logger
 from rich import print
+from rich.progress import track
 from skimage.metrics import structural_similarity
 
-from data.StaticData import StaticData
-from framework.fileutils import FileUtils
+from framework.StaticData import StaticData
+from framework.FileUtils import FileUtils
 
 
 class CompareImage:
@@ -22,8 +24,8 @@ class CompareImage:
         self.image_name, self.sheet_num, self.gif_name = '', '', ''
         self.source_img, self.converted_img, self.src_processed_img, self.cnv_processed_img = [], [], [], []
         self.result_folder_name = self.get_result_folder_name()
-        self.img_comparison_diff_dir = f'{self.helper.result_folder}/img_comparison_diff/{self.result_folder_name}/'
-        self.passed = f'{self.helper.result_folder}/passed/'
+        self.img_comparison_diff_dir = join(self.helper.result_folder, 'img_comparison_diff', self.result_folder_name)
+        self.passed = join(self.helper.result_folder, 'passed')
         self.start_compare_images()
 
     def get_result_folder_name(self):
@@ -35,18 +37,19 @@ class CompareImage:
     def start_compare_images(self):
         description = "[bold blue]Comparing In Progress[/]"
         for self.image_name in track(os.listdir(StaticData.TMP_DIR_CONVERTED_IMG), description=description):
-            if os.path.exists(f'{StaticData.TMP_DIR_SOURCE_IMG}/{self.image_name}') \
-                    and os.path.exists(f'{StaticData.TMP_DIR_CONVERTED_IMG}/{self.image_name}'):
+            if os.path.exists(join(StaticData.TMP_DIR_SOURCE_IMG, self.image_name)) \
+                    and os.path.exists(join(StaticData.TMP_DIR_CONVERTED_IMG, self.image_name)):
                 self.sheet_num = self.image_name.split('_')[-1].replace('.png', '')
                 self.gif_name = f"{self.image_name.split('.')[0]}_similarity.gif"
-                self.source_img = cv2.imread(f'{StaticData.TMP_DIR_SOURCE_IMG}{self.image_name}')
-                self.converted_img = cv2.imread(f'{StaticData.TMP_DIR_CONVERTED_IMG}{self.image_name}')
+                self.source_img = cv2.imread(join(StaticData.TMP_DIR_SOURCE_IMG, self.image_name))
+                self.converted_img = cv2.imread(join(StaticData.TMP_DIR_CONVERTED_IMG, self.image_name))
                 self.image_handler()
                 print(f"[blue]{self.helper.converted_file} Sheet: {self.sheet_num} similarity[/]: {self.similarity}")
                 self.save_result() if self.similarity < self.coefficient else print('[bold green]passed')
             else:
                 logger.error(f'Image {self.image_name} not found, copied file to "Untested"')
                 self.helper.copy_testing_files_to_folder(self.helper.untested_folder)
+        self.helper.tmp_cleaner()
 
     def put_information_on_img(self):
         self.put_text(self.converted_img, f'After')
@@ -66,12 +69,12 @@ class CompareImage:
 
     def save_result(self):
         self.helper.copy_testing_files_to_folder(self.img_comparison_diff_dir)
-        FileUtils.create_dir(f'{self.img_comparison_diff_dir}/gif/')
-        FileUtils.create_dir(f'{self.img_comparison_diff_dir}/screen/')
+        FileUtils.create_dir(join(self.img_comparison_diff_dir, 'gif'), silence=True)
+        FileUtils.create_dir(join(self.img_comparison_diff_dir, 'screen'), silence=True)
         collage = np.hstack([self.source_img, self.converted_img])
-        cv2.imwrite(f'{self.img_comparison_diff_dir}/screen/{self.image_name}_collage.png', collage)
+        cv2.imwrite(join(self.img_comparison_diff_dir, 'screen', f"{self.image_name}_collage.png"), collage)
         images = [self.src_processed_img, self.cnv_processed_img]
-        imageio.mimsave(f'{self.img_comparison_diff_dir}/gif/{self.gif_name}', images, duration=1)
+        imageio.mimsave(join(self.img_comparison_diff_dir, 'gif', self.gif_name), images, duration=1)
 
     def find_contours(self, img):
         rgb, gray = cv2.cvtColor(img, cv2.COLOR_BGR2RGB), cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)

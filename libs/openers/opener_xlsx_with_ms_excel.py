@@ -2,13 +2,14 @@
 from loguru import logger
 from rich import print
 
-from configuration import version
-from data.StaticData import StaticData
+from framework.StaticData import StaticData
 from framework.excel import Excel
+from settings import version
 
 
 class OpenerXlsx(Excel):
     def run_opener(self, list_of_files):
+        self.doc_helper.terminate_process()
         logger.info(f'Opener {self.doc_helper.converted_extension} with ms Excel on version: {version} is running.')
         for self.doc_helper.converted_file in list_of_files:
             if not self.doc_helper.converted_file.lower().endswith(".xlsx"):

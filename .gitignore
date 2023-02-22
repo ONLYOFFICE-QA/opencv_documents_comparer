@@ -13,3 +13,9 @@ build/
 /logs/
 /tmp/
 /results/
+/core/
+/reports/
+/report.txt
+/conversion_result/
+__pycache__
+.DS_Store

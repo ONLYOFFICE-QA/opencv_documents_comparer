@@ -1,19 +1,21 @@
 # -*- coding: utf-8 -*-
-from data.StaticData import StaticData
+from rich import print
+
+from framework.StaticData import StaticData
+from framework.compare_image import CompareImage
 from framework.libre_office import LibreOffice
 from framework.power_point import PowerPoint
-from framework.compare_image import CompareImage
-from rich import print
 
 
 class OdpPptxCompare(PowerPoint, LibreOffice):
     def run_compare(self, list_of_files):
+        self.doc_helper.terminate_process()
         for self.doc_helper.converted_file in list_of_files:
             if not self.doc_helper.converted_file.endswith((".pptx", ".PPTX")):
                 continue
             self.doc_helper.preparing_files_for_compare_test()
             print(f'[bold green]In test[/] {self.doc_helper.converted_file}')
-            if not self.get_slide_count():
+            if not self.get_slide_count(self.doc_helper.tmp_file_for_get_statistic):
                 continue
             self.open_presentation_with_cmd(self.doc_helper.tmp_converted_file)
             if not self.errors_handler_when_opening():

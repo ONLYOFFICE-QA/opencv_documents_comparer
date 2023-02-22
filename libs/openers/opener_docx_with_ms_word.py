@@ -2,12 +2,13 @@
 from loguru import logger
 from rich import print
 
-from configuration import version
 from framework.word import Word
+from settings import version
 
 
 class OpenerDocx(Word):
     def run_opener(self, list_of_files):
+        self.doc_helper.terminate_process()
         logger.info(f'Opener {self.doc_helper.converted_extension} with ms Word on version: {version} is running.')
         for self.doc_helper.converted_file in list_of_files:
             if not self.doc_helper.converted_file.lower().endswith(".docx"):

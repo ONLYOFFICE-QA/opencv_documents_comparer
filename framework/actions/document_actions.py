@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
-from loguru import logger
-import random
-import os
-from os.path import join
 import sys
+from os import walk, listdir
+from os.path import join, basename
+
 import psutil
 import pyperclip as pc
-import configuration as config
+from loguru import logger
 
-from configuration import version, converted_doc_folder, source_doc_folder
-from data.StaticData import StaticData
+import settings as config
+from framework.StaticData import StaticData
+from framework.FileUtils import FileUtils
 from framework.telegram import Telegram
-from framework.fileutils import FileUtils
+from settings import version, converted_docs, source_docs
 
 
 class DocActions:
@@ -21,40 +21,33 @@ class DocActions:
         self.source_file, self.converted_file = '', ''
         self.tmp_converted_file, self.tmp_source_file, self.tmp_file_for_get_statistic = '', '', ''
         # paths to document folders
-        self.source_doc_folder: str = f'{source_doc_folder}/{source_extension}/'
-        self.converted_doc_folder: str = f'{converted_doc_folder}/{version}_{source_extension}_{converted_extension}/'
+        self.source_doc_folder: str = join(source_docs, source_extension)
+        self.converted_doc_folder: str = join(converted_docs, f"{version}_{source_extension}_{converted_extension}")
         # results dirs
-        self.result_folder: str = f'{StaticData.RESULTS}/{version}_{source_extension}_{converted_extension}/'
-        self.differences_statistic: str = f'{self.result_folder}/differences_statistic/'
-        self.untested_folder: str = f'{self.result_folder}/failed_to_open_converted_file/'
-        self.failed_source: str = f'{self.result_folder}/failed_to_open_source_file/'
-        self.opener_errors: str = f'{self.result_folder}/opener_errors_{converted_extension}_version_{version}/'
-        self.too_long_to_open_files: str = f'{self.opener_errors}/too_long_to_open_files/'
+        self.result_folder: str = join(StaticData.RESULTS, f"{version}_{source_extension}_{converted_extension}")
+        self.differences_statistic: str = join(self.result_folder, 'diff_statistic')
+        self.untested_folder: str = join(self.result_folder, 'failed_to_open_converted_file')
+        self.failed_source: str = join(self.result_folder, 'failed_to_open_source_file')
+        self.opener_errors: str = join(self.result_folder, f"opener_errors_{converted_extension}_version_{version}")
+        self.too_long_to_open_files: str = join(self.opener_errors, 'too_long_to_open_files')
         self.create_logger()
-        self.create_tmp_dirs()
-        self.tmp_cleaner()
+        FileUtils.create_dir(StaticData.TMP_DIR_IN_TEST, silence=True)
 
     def create_logger(self):
+        FileUtils.create_dir(StaticData.LOGS_DIR)
         logger.remove()
         logger.add(sys.stdout)
-        logger.add(join(StaticData.LOGS_FOLDER, f'{self.source_extension}_{self.converted_extension}_{version}.log'),
+        logger.add(join(StaticData.LOGS_DIR, f'{self.source_extension}_{self.converted_extension}_{version}.log'),
                    format="{time} {level} {message}",
                    level="DEBUG",
                    rotation='5 MB',
                    compression='zip')
 
     @staticmethod
-    def random_name(file_extension):
-        while True:
-            random_file_name = f'{random.randint(5000, 50000000)}.{file_extension}'
-            if not os.path.exists(join(StaticData.TMP_DIR_IN_TEST, random_file_name)):
-                return random_file_name
-
-    @staticmethod
     def copy_for_test(path_to_files):
-        tmp_name = DocActions.random_name(path_to_files.split(".")[-1])
-        FileUtils.copy(path_to_files, join(StaticData.TMP_DIR_IN_TEST, tmp_name))
-        return tmp_name
+        tmp_file_path = FileUtils.random_name(StaticData.TMP_DIR_IN_TEST, path_to_files.split(".")[-1])
+        FileUtils.copy(path_to_files, tmp_file_path, silence=True)
+        return tmp_file_path
 
     def preparing_files_for_opening_test(self):
         self.tmp_converted_file = self.copy_for_test(join(self.converted_doc_folder, self.converted_file))
@@ -75,8 +68,7 @@ class DocActions:
                     try:
                         process.terminate()
                     except Exception as e:
-                        message = f'Exception when terminate_process: {e}\nFile name: {self.converted_file}'
-                        logger.debug(message)
+                        logger.debug(f'Exception when terminate_process: {e}\nFile name: {self.converted_file}')
 
     def tmp_cleaner(self):
         self.terminate_process()
@@ -86,23 +78,17 @@ class DocActions:
 
     def copy_testing_files_to_folder(self, dir_path):
         if self.converted_file and self.source_file:
-            FileUtils.create_dir(dir_path)
-            FileUtils.copy(join(self.converted_doc_folder, self.converted_file), join(dir_path, self.converted_file))
-            FileUtils.copy(join(self.source_doc_folder, self.source_file), join(dir_path, self.source_file))
-        else:
-            logger.debug(f'Filename is not found')
-
-    @staticmethod
-    def create_tmp_dirs():
-        FileUtils.create_dir(StaticData.TMP_DIR_SOURCE_IMG)
-        FileUtils.create_dir(StaticData.TMP_DIR_CONVERTED_IMG)
-        FileUtils.create_dir(StaticData.TMP_DIR_IN_TEST)
+            FileUtils.create_dir(dir_path, silence=True)
+            FileUtils.copy(join(self.converted_doc_folder, self.converted_file),
+                           join(dir_path, self.converted_file), silence=True)
+            FileUtils.copy(join(self.source_doc_folder, self.source_file),
+                           join(dir_path, self.source_file), silence=True)
 
     def create_massage_for_tg(self, errors_array, ls):
         massage = f'{self.source_extension}=>{self.converted_extension} ' \
                   f'opening check completed on version: {version}\n' \
                   f'Files with errors when opening:\n`{errors_array}`'
-        passed_files = [file for file in config.list_of_file_names if file not in errors_array]
+        passed_files = [file for file in config.files_array if file not in errors_array]
         Telegram.send_message(massage) if not ls else print(f'{massage}\n\nPassed files:\n{passed_files}')
 
     @staticmethod
@@ -114,13 +100,33 @@ class DocActions:
         }
         return modified
 
-    def get_file_array(self, ls=False, df=False, cl=False):
+    @staticmethod
+    def get_image_dir_paths(dir_path, end_dir=''):
+        dir_paths = []
+        for root, dirs, files in walk(dir_path):
+            for dir_name in dirs:
+                if end_dir and dir_name.lower().endswith(end_dir if isinstance(end_dir, tuple) else end_dir.lower()):
+                    dir_paths.append(join(root, dir_name))
+        return dir_paths
+
+    @staticmethod
+    def copy_result_x2ttester(path_to, output_format, delete=False):
+        FileUtils.create_dir(path_to)
+        if output_format in ["png", "jpg"]:
+            for dir_path in DocActions.get_image_dir_paths(StaticData.tmp_result_dir(), f".{output_format}"):
+                FileUtils.copy(dir_path, join(path_to, basename(dir_path)), silence=True)
+        else:
+            for file_path in FileUtils.get_file_paths(StaticData.tmp_result_dir(), f".{output_format}"):
+                FileUtils.copy(file_path, join(path_to, basename(file_path)), silence=True)
+        FileUtils.delete(StaticData.tmp_result_dir()) if delete else ...
+
+    def generate_file_array(self, ls=False, df=False, cl=False):
         if ls:
-            files_array = config.list_of_file_names
+            files_array = config.files_array
         elif cl:
             files_array = pc.paste().split("\n")
         elif df:
-            files_array = (os.listdir(self.differences_statistic))
+            files_array = (listdir(self.differences_statistic))
         else:
-            files_array = os.listdir(self.converted_doc_folder)
+            files_array = listdir(self.converted_doc_folder)
         return files_array

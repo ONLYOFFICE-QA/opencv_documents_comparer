@@ -11,4 +11,3 @@ with open("poetry.lock") as t:
     for package in lock['package']:
         with open("requirements.txt", 'a') as file:
             file.write(f"{package['name']}=={package['version']}\n")
-sb.call('pip uninstall tomlkit -y', shell=True)

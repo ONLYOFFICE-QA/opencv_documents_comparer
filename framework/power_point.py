@@ -1,20 +1,22 @@
 # -*- coding: utf-8 -*-
-import os
-import pyautogui as pg
-from loguru import logger
-from rich import print
+import subprocess as sb
 from multiprocessing import Process
+from os.path import join
 from time import sleep
+
+import pyautogui as pg
 import win32con
 import win32gui
+from loguru import logger
+from rich import print
 from win32com.client import Dispatch
-import configuration as config
-import subprocess as sb
 
-from data.StaticData import StaticData
-from framework.telegram import Telegram
+import settings as config
+from framework.StaticData import StaticData
+from framework.FileUtils import FileUtils
+from framework.actions.key_actions import KeyActions
 from framework.compare_image import CompareImage
-from framework.fileutils import FileUtils
+from framework.telegram import Telegram
 
 
 class PowerPoint:
@@ -24,18 +26,20 @@ class PowerPoint:
         self.slide_count = None
         self.windows_handler_number = None
         self.files_with_errors_when_opening = []
+        FileUtils.create_dir(StaticData.TMP_DIR_CONVERTED_IMG, silence=True)
+        FileUtils.create_dir(StaticData.TMP_DIR_SOURCE_IMG, silence=True)
 
     @staticmethod
     def prepare_presentation_for_test():
-        FileUtils.click('/excel/turn_on_content.png')
-        FileUtils.click('/excel/turn_on_content.png')
+        KeyActions.click('/excel/turn_on_content.png')
+        KeyActions.click('/excel/turn_on_content.png')
         sleep(0.2)
-        FileUtils.click('/powerpoint/ok.png')
-        FileUtils.click('/powerpoint/view.png')
+        KeyActions.click('/powerpoint/ok.png')
+        KeyActions.click('/powerpoint/view.png')
         pg.click()
         sleep(0.2)
-        FileUtils.click('/powerpoint/normal_view.png')
-        FileUtils.click('/powerpoint/scale.png')
+        KeyActions.click('/powerpoint/normal_view.png')
+        KeyActions.click('/powerpoint/scale.png')
         pg.press('tab')
         pg.write('100', interval=0.1)
         pg.press('enter')
@@ -57,7 +61,7 @@ class PowerPoint:
                 self.errors.append(class_name)
                 self.errors.append(window_text)
 
-    def error_handler_for_thread(self, filename):
+    def error_handler_for_thread(self):
         while True:
             win32gui.EnumWindows(self.get_windows_title, self.errors)
             if self.errors:
@@ -72,13 +76,12 @@ class PowerPoint:
                         Telegram.send_message(massage)
             self.errors.clear()
 
-    def get_slide_count(self):
+    def get_slide_count(self, file_path):
         error_processing = Process(target=self.error_handler_for_thread)
         error_processing.start()
         presentation = Dispatch("PowerPoint.application")
         try:
-            presentation = presentation.Presentations.Open(f'{StaticData.TMP_DIR_IN_TEST}'
-                                                           f'{self.doc_helper.tmp_file_for_get_statistic}')
+            presentation = presentation.Presentations.Open(file_path)
             self.slide_count = len(presentation.Slides)
             print(f"[bold blue]Number of Slides[/]:{self.slide_count}")
             return True
@@ -94,9 +97,9 @@ class PowerPoint:
             self.close_presentation_with_hotkey()
             FileUtils.run_command(f"taskkill /im {StaticData.POWERPOINT}")
 
-    def open_presentation_with_cmd(self, file_name):
+    def open_presentation_with_cmd(self, file_path):
         self.errors.clear()
-        sb.Popen(f"{config.ms_office}/{StaticData.POWERPOINT} -t {StaticData.TMP_DIR_IN_TEST}/{file_name}")
+        sb.Popen(f"{config.ms_office}/{StaticData.POWERPOINT} -t {file_path}")
         self.waiting_for_opening_power_point()
 
     def check_open_power_point(self, hwnd, ctx):
@@ -150,8 +153,8 @@ class PowerPoint:
     def get_coordinate_pp(self):
         coordinate = [win32gui.GetWindowRect(self.windows_handler_number)]
         coordinate = coordinate[0]
-        coordinate = (coordinate[0] + 350,
-                      coordinate[1] + 170,
+        coordinate = (coordinate[0] + 370,
+                      coordinate[1] + 200,
                       coordinate[2] - 120,
                       coordinate[3] - 100)
         return coordinate
@@ -165,7 +168,7 @@ class PowerPoint:
             self.prepare_presentation_for_test()
             page_num = 1
             for page in range(self.slide_count):
-                CompareImage.grab_coordinate(f"{path_to_save_screen}/page_{page_num}.png", coordinate)
+                CompareImage.grab_coordinate(join(path_to_save_screen, f"page_{page_num}.png"), coordinate)
                 pg.press('pgdn')
                 sleep(0.5)
                 page_num += 1

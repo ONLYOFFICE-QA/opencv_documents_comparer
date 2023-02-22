@@ -1,15 +1,18 @@
 # -*- coding: utf-8 -*-
-from data.StaticData import StaticData
-from framework.telegram import Telegram
-from framework.compare_image import CompareImage
 import subprocess as sb
-from framework.fileutils import FileUtils
-import pyautogui as pg
-from loguru import logger
+from os.path import join
 from time import sleep
+
+import pyautogui as pg
 import win32con
 import win32gui
-import configuration as config
+from loguru import logger
+
+import settings as config
+from framework.StaticData import StaticData
+from framework.FileUtils import FileUtils
+from framework.compare_image import CompareImage
+from framework.telegram import Telegram
 
 
 class LibreOffice:
@@ -19,6 +22,8 @@ class LibreOffice:
         self.errors = []
         self.windows_handler_number = None
         self.errors_files_when_opening = []
+        FileUtils.create_dir(StaticData.TMP_DIR_CONVERTED_IMG)
+        FileUtils.create_dir(StaticData.TMP_DIR_SOURCE_IMG)
 
     @staticmethod
     def prepare_windows_hot_keys():
@@ -56,9 +61,9 @@ class LibreOffice:
                     self.errors.append(win32gui.GetClassName(hwnd))
                     self.errors.append(win32gui.GetWindowText(hwnd))
 
-    def open_libre_office_with_cmd(self, file_name):
+    def open_libre_office_with_cmd(self, file_path):
         self.errors.clear()
-        sb.Popen(f"{config.libre_office}/{StaticData.LIBRE} -o {StaticData.TMP_DIR_IN_TEST}/{file_name}")
+        sb.Popen(f"{join(config.libre_office, StaticData.LIBRE)} -o {file_path}")
         self.waiting_for_opening_libre_office()
         self.events_handler_when_opening()  # check events when opening
 
@@ -86,8 +91,8 @@ class LibreOffice:
     def get_coordinate_libreoffice(self):
         coordinate = [win32gui.GetWindowRect(self.windows_handler_number)]
         coordinate = coordinate[0]
-        coordinate = (coordinate[0] + 350,
-                      coordinate[1] + 170,
+        coordinate = (coordinate[0] + 370,
+                      coordinate[1] + 200,
                       coordinate[2] - 120,
                       coordinate[3] - 100)
         return coordinate
@@ -99,7 +104,7 @@ class LibreOffice:
             self.prepare_windows_hot_keys()
             page_num = 1
             for page in range(slide_count):
-                CompareImage.grab_coordinate(f"{path_to_save_screen}/page_{page_num}.png", coordinate)
+                CompareImage.grab_coordinate(join(path_to_save_screen, f'page_{page_num}.png'), coordinate)
                 pg.press('pgdn')
                 sleep(0.5)
                 page_num += 1
