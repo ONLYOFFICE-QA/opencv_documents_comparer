@@ -75,9 +75,6 @@ you need to add 2 environment variables
 
 ```invoke doc-docx --st``` - To compare document statistics by file names from "converted_doc_folder"
 
-```invoke doc-docx --full``` - To compare document statistics by filenames from
-"converted_doc_folder", and then compare images by files with different statistics
-
 ```invoke doc-docx --ls``` - To compare images by file names from the array in "config.py"
 
 ```invoke doc-docx --df``` - To compare images by files with different statistics
@@ -97,9 +94,6 @@ you need to add 2 environment variables
 ```invoke xls-xlsx``` - To compare images by file names from "converted_doc_folder"
 
 ```invoke xls-xlsx --st``` - To compare document statistics by file names from "converted_doc_folder"
-
-```invoke xls-xlsx --full``` - To compare document statistics by filenames from
-"converted_doc_folder", and then compare images by files with different statistics
 
 ```invoke xls-xlsx --ls``` - To compare images by file names from the array in "config.py"
 
