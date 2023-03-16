@@ -2,7 +2,7 @@
 from loguru import logger
 from rich import print
 
-from framework.power_point import PowerPoint
+from frameworks.microsoft_office import PowerPoint
 from settings import version
 
 

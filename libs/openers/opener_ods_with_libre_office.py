@@ -2,7 +2,7 @@
 from loguru import logger
 from rich import print
 
-from framework.libre_office import LibreOffice
+from frameworks.libre_office import LibreOffice
 from settings import version
 
 
@@ -18,7 +18,7 @@ class OpenerOds(LibreOffice):
                 continue
             self.doc_helper.preparing_files_for_opening_test()
             print(f'[bold green]In test[/] {self.doc_helper.converted_file}')
-            self.open_libre_office_with_cmd(self.doc_helper.tmp_converted_file)
+            self.open_file(self.doc_helper.tmp_converted_file)
             self.errors_handler_when_opening()
             self.close_libre()
             self.doc_helper.tmp_cleaner()

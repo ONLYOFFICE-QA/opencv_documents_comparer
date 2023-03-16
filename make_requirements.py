@@ -1,13 +1,11 @@
 # -*- coding: utf-8 -*-
-import subprocess as sb
+import tomllib
 
-sb.call('pip install tomlkit==0.11.6', shell=True)
+with open('poetry.lock', 'rb') as f:
+    lock = tomllib.load(f)
 
 with open("requirements.txt", 'w') as file:
     file.write('# -*- coding: utf-8 -*-\n')
-with open("poetry.lock") as t:
-    import tomlkit
-    lock = tomlkit.parse(t.read())
-    for package in lock['package']:
-        with open("requirements.txt", 'a') as file:
-            file.write(f"{package['name']}=={package['version']}\n")
+for package in lock['package']:
+    with open("requirements.txt", 'a') as file:
+        file.write(f"{package['name']}=={package['version']}\n")

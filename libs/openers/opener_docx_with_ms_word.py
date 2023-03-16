@@ -2,7 +2,7 @@
 from loguru import logger
 from rich import print
 
-from framework.word import Word
+from frameworks.microsoft_office import Word
 from settings import version
 
 
