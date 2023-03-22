@@ -9,6 +9,7 @@ from random import randint, choice
 from shutil import move, copytree, copyfile, rmtree
 from subprocess import Popen, PIPE, getoutput
 
+import psutil
 import py7zr
 from requests import get, head
 from rich import print
@@ -47,9 +48,16 @@ class FileUtils:
         return dir_paths
 
     @staticmethod
+    def make_tmp_file(path: str, tmp_dir: str = '/tmp') -> str:
+        FileUtils.create_dir(tmp_dir) if not exists(tmp_dir) else ...
+        tmp_file_path = FileUtils.random_name(tmp_dir, path.split(".")[-1])
+        FileUtils.copy(path, tmp_file_path, silence=True)
+        return tmp_file_path
+
+    @staticmethod
     def get_paths(
             path: str,
-            extension: (tuple, str) = '',
+            extension: tuple | str = None,
             filename_array: list = None,
             exceptions: list = None
     ) -> list:
@@ -164,9 +172,9 @@ class FileUtils:
     def random_name(path, extension=None) -> str:
         while True:
             random_name = f'{randint(500, 50000)}.{extension}' if extension else f'{randint(500, 50000)}'
-            random_object_path = join(path, random_name)
-            if not exists(random_object_path):
-                return random_object_path
+            random_path = join(path, random_name)
+            if not exists(random_path):
+                return random_path
 
     @staticmethod
     def fix_double_folder(dir_path):
@@ -227,6 +235,16 @@ class FileUtils:
     @staticmethod
     def output_cmd(command):
         return getoutput(command)
+
+    @staticmethod
+    def terminate_process(name_list: list) -> None:
+        for process in psutil.process_iter():
+            for terminate_process in name_list:
+                if terminate_process in process.name():
+                    try:
+                        process.terminate()
+                    except Exception as e:
+                        print(f'|Warning| Exception when terminate process: {e}, process: {terminate_process}')
 
     @staticmethod
     def run_command(command):
