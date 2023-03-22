@@ -4,10 +4,12 @@ from os.path import join
 
 from invoke import task
 from rich import print
+from rich.prompt import Prompt
 
 import settings
 from frameworks.StaticData import StaticData
 from frameworks.documents_actions import DocActions
+from frameworks.host_control import FileUtils
 from frameworks.onlyoffice import X2ttester, Core
 from frameworks.onlyoffice.x2ttester.x2ttester_report import X2ttesterReport
 from frameworks.telegram.telegram import Telegram
@@ -22,9 +24,7 @@ if platform.system().lower() == 'windows':
     from libs.comparison.documents.doc_to_docx_statistic_compare import DocDocxStatisticsCompare
     from libs.comparison.documents.rtf_to_docx_image_compare import RtfDocxCompareImg
     from libs.openers.opener_docx_with_ms_word import OpenerDocx
-    from libs.openers.opener_odp_with_libre_office import OpenerOdp
-    from libs.openers.opener_ods_with_libre_office import OpenerOds
-    from libs.openers.opener_odt_with_libre_office import OpenerOdt
+    from frameworks.libre_office import OpenerLibre
     from libs.openers.opener_pptx_with_ms_power_point import OpenerPptx
     from libs.openers.opener_xlsx_with_ms_excel import OpenerXlsx
 
@@ -151,29 +151,22 @@ def opener_xlsx(c, xls=False, ods=False, ls=False):
 
 
 @task
-def opener_odp(c, ls=False):
-    StaticData.DOC_ACTIONS = DocActions(source_extension='pptx', converted_extension='odp')
-    opener = OpenerOdp()
-    opener.run_opener(StaticData.DOC_ACTIONS.generate_file_array(ls=ls))
-    StaticData.DOC_ACTIONS.create_massage_for_tg(opener.errors_files_when_opening, ls=ls)
+def opener_libre(c, ls=False, direction=None, path=''):
+    src, cnv = X2ttester().getting_formats(direction)
+    _path = path if path else settings.converted_docs
+    cnv_extension = [str(cnv)] if cnv else ['ods', 'odp', 'odt']
+    for ext in cnv_extension:
+        OpenerLibre(ext).open_files(
+            FileUtils.get_paths(
+                _path,
+                extension=ext,
+                dir_include=settings.version if not path else None,
+                filename_array=settings.files_array if ls else None
+            )
+        )
 
 
-@task
-def opener_odt(c, ls=False):
-    StaticData.DOC_ACTIONS = DocActions(source_extension='docx', converted_extension='odt')
-    opener = OpenerOdt()
-    opener.run_opener(StaticData.DOC_ACTIONS.generate_file_array(ls=ls))
-    StaticData.DOC_ACTIONS.create_massage_for_tg(opener.errors_files_when_opening, ls=ls)
-
-
-@task
-def opener_ods(c, ls=False):
-    StaticData.DOC_ACTIONS = DocActions(source_extension='xlsx', converted_extension='ods')
-    opener = OpenerOds()
-    opener.run_opener(StaticData.DOC_ACTIONS.generate_file_array(ls=ls))
-    StaticData.DOC_ACTIONS.create_massage_for_tg(opener.errors_files_when_opening, ls=ls)
-
-
+# Y:/scripts/opencv_documents_comparer/tst/seed_slide_deck_16x9__v1_corn_flower
 @task
 def opener_full(c, cnv=False):
     if cnv:
@@ -182,7 +175,5 @@ def opener_full(c, cnv=False):
     opener_pptx(c)
     opener_docx(c)
     opener_xlsx(c)
-    opener_ods(c)
-    opener_odp(c)
-    opener_odt(c)
+    opener_libre(c)
     Telegram.send_message('Full test of the openers completed')
