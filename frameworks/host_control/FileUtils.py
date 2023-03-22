@@ -36,18 +36,6 @@ class FileUtils:
         return path.rstrip(path[-1]) if path[-1] in ['/', '\\'] else path
 
     @staticmethod
-    def get_dir_paths(path: str, end_dir: str = None) -> list:
-        dir_paths = []
-        for root, dirs, files in walk(path):
-            for dir_name in dirs:
-                if end_dir:
-                    if dir_name.lower().endswith(end_dir if isinstance(end_dir, tuple) else end_dir.lower()):
-                        dir_paths.append(join(root, dir_name))
-                else:
-                    dir_paths.append(join(root, dir_name))
-        return dir_paths
-
-    @staticmethod
     def make_tmp_file(path: str, tmp_dir: str = '/tmp') -> str:
         FileUtils.create_dir(tmp_dir) if not exists(tmp_dir) else ...
         tmp_file_path = FileUtils.random_name(tmp_dir, path.split(".")[-1])
@@ -55,16 +43,34 @@ class FileUtils:
         return tmp_file_path
 
     @staticmethod
+    def get_dir_paths(path: str, end_dir: str = None, dir_include: str = None) -> list:
+        dir_paths = []
+        for root, dirs, files in walk(path):
+            for dir_name in dirs:
+                if end_dir:
+                    if dir_name.lower().endswith(end_dir if isinstance(end_dir, tuple) else end_dir.lower()):
+                        dir_paths.append(join(root, dir_name))
+                elif dir_include:
+                    if dir_include in dir_name:
+                        dir_paths.append(join(root, dir_name))
+                else:
+                    dir_paths.append(join(root, dir_name))
+        return dir_paths
+
+    @staticmethod
     def get_paths(
             path: str,
             extension: tuple | str = None,
             filename_array: list = None,
-            exceptions: list = None
+            exceptions: list = None,
+            dir_include: str = None
     ) -> list:
         file_paths = []
         for root, dirs, files in walk(path):
             for filename in files:
                 if exceptions and filename in exceptions:
+                    continue
+                if dir_include and dir_include not in basename(root):
                     continue
                 if filename_array:
                     file_paths.append(join(root, filename)) if filename in filename_array else ...
