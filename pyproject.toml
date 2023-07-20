@@ -22,7 +22,10 @@ imageio = "*"
 pillow = "*"
 requests = "*"
 py7zr = "*"
-pandas = "^1"
+pandas = "^2"
+mss = "^9.0.1"
+pytest = "^7.3.1"
+python-xlib = '0.33'
 
 
 [build-system]
