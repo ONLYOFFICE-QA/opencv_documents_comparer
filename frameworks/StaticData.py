@@ -1,47 +1,49 @@
 # -*- coding: utf-8 -*-
-import functools
+from dataclasses import dataclass
 from os import getcwd
 from os.path import join
 
-import settings
-from frameworks.host_control.FileUtils import FileUtils
+import config
 
 
+@dataclass(frozen=True)
 class StaticData:
-    DOC_ACTIONS = None
-    PROJECT_DIR = getcwd()
-    RESULTS = join(PROJECT_DIR, 'results')
-    LOGS_DIR = join(PROJECT_DIR, 'logs')
+    project_dir: str = getcwd()
+    results: str = join(project_dir, 'results')
+    logs_dir: str = join(project_dir, 'logs')
 
     # tmp
-    TMP_DIR = join(PROJECT_DIR, 'tmp')
-    TMP_DIR_CONVERTED_IMG = join(TMP_DIR, 'converted_image')
-    TMP_DIR_SOURCE_IMG = join(TMP_DIR, 'source_image')
-    TMP_DIR_IN_TEST = join(TMP_DIR, 'in_test')
+    tmp_dir: str = join(project_dir, 'tmp')
+    tmp_dir_converted_img: str = join(tmp_dir, 'converted_image')
+    tmp_dir_source_img: str = join(tmp_dir, 'source_image')
+    tmp_dir_in_test: str = join(tmp_dir, 'in_test')
 
-    WORD = 'WINWORD.EXE'
-    POWERPOINT = 'POWERPNT.EXE'
-    EXCEL = 'EXCEL.EXE'
-    LIBRE = 'soffice.bin'
+    word: str = 'WINWORD.EXE'
+    powerpoint: str = 'POWERPNT.EXE'
+    excel: str = 'EXCEL.EXE'
+    libre: str = 'soffice.bin'
 
-    TERMINATE_PROCESS_LIST = [WORD, POWERPOINT, EXCEL, LIBRE]
+    ignore_files = ['.DS_Store']
+    ignore_dirs = ['.git', '.idea']
+
+    terminate_process = [word, powerpoint, excel, libre]
 
     @classmethod
     def documents_dir(cls):
-        return settings.source_docs if settings.source_docs else join(cls.PROJECT_DIR, 'documents')
+        return config.source_docs if config.source_docs else join(cls.project_dir, 'documents')
 
     @classmethod
     def core_dir(cls):
-        return join(cls.PROJECT_DIR, 'core')
+        return join(cls.project_dir, 'core')
 
     @classmethod
     def fonts_dir(cls):
-        return join(cls.PROJECT_DIR, 'assets', 'fonts')
+        return join(cls.project_dir, 'assets', 'fonts')
 
     @classmethod
     def reports_dir(cls):
-        return join(cls.PROJECT_DIR, 'reports')
+        return join(cls.project_dir, 'reports')
 
     @classmethod
     def result_dir(cls):
-        return settings.converted_docs if settings.converted_docs else join(cls.PROJECT_DIR, 'result')
+        return config.converted_docs if config.converted_docs else join(cls.project_dir, 'result')
