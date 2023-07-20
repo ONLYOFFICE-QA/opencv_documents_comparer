@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
-
 import pyautogui as pg
 from time import sleep
-import settings
+import config
 
 
-class Macroses:
+class LibreMacroses:
     @staticmethod
-    def prepare_windows_hot_keys():
+    def prepare_for_test():
         pg.press('alt', interval=0.1)
         pg.press('right', presses=2, interval=0.1)
         pg.press('down', interval=0.1)
@@ -25,8 +24,8 @@ class Macroses:
         sleep(0.5)
 
     @staticmethod
-    def close_file_recovery_window():
+    def close_recovery_window():
         pg.press('esc', interval=0.2)
         pg.press('left', interval=0.2)
         pg.press('enter', interval=0.2)
-        sleep(settings.wait_for_opening)
+        sleep(2)
