@@ -1,0 +1,5 @@
+# -*- coding: utf-8 -*-
+from .onlyoffice_x2t_libs.core import Core
+from .x2ttester.x2ttester import X2tTester
+from .handlers.VersionHandler import VersionHandler
+from .x2ttester.x2t import X2t

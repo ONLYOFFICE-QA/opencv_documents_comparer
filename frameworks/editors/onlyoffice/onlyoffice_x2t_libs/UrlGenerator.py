@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from frameworks.host_control import HostInfo
-from frameworks.onlyoffice.handlers.VersionHandler import VersionHandler
+from ..handlers.VersionHandler import VersionHandler
 
 
 class UrlGenerator(VersionHandler):

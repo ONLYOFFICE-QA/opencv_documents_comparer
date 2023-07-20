@@ -8,7 +8,7 @@ from frameworks.host_control import HostInfo
 
 @singleton
 class HostConfig:
-    def __init__(self, dyld_library_path=StaticData.core_dir()):
+    def __init__(self, dyld_library_path: str = StaticData.core_dir()):
         self.dyld_library_path = dyld_library_path
         self.arch = HostInfo().arch
         self.x2t = self.executable_name('x2t')
@@ -19,7 +19,7 @@ class HostConfig:
     @staticmethod
     def executable_name(name):
         if HostInfo().os != 'windows':
-            return name.replace('.exe') if name.endswith('.exe') else name
+            return name.replace('.exe', '') if name.endswith('.exe') else name
         return f"{name}.exe"
 
     def specific_configuration_host(self):

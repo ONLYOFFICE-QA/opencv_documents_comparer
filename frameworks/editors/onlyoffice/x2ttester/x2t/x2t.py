@@ -6,14 +6,15 @@ from rich import print
 
 from frameworks.StaticData import StaticData
 from frameworks.host_control.FileUtils import FileUtils
-from frameworks.onlyoffice.x2ttester.host_config import HostConfig
+
+from ..host_config import HostConfig
 
 
 class X2t:
     @staticmethod
-    def version(x2t_dir):
+    def version(x2t_dir: str) -> str | None:
         if exists(join(x2t_dir, HostConfig().x2t)):
             chdir(x2t_dir)
             x2t_info = FileUtils.output_cmd(join(StaticData.core_dir(), HostConfig().x2t))
-            return FileUtils.find_in_line_by_key(x2t_info, 'OOX/binary file converter. Version')
-        print(f"|WARNING| X2t not exists, check path: {join(x2t_dir, HostConfig().x2t)}")
+            return FileUtils.find_in_line_by_key(x2t_info, key='OOX/binary file converter. Version')
+        print(f"[bold red]|WARNING| X2t not exists, check path: {join(x2t_dir, HostConfig().x2t)}")
