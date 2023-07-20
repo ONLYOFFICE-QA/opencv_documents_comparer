@@ -8,11 +8,11 @@ from frameworks.StaticData import StaticData
 from frameworks.host_control import KeyActions
 
 
-class Macroses:
-    IMAGE_TEMPLATES_DIR = join(StaticData.PROJECT_DIR, 'assets', 'image_templates', 'powerpoint')
+class PowerPointMacroses:
+    IMAGE_TEMPLATES_DIR = join(StaticData.project_dir, 'assets', 'image_templates', 'powerpoint')
 
     @classmethod
-    def prepare_presentation_for_test(cls):
+    def prepare_for_test(cls):
         KeyActions.click(f"{cls.IMAGE_TEMPLATES_DIR}/turn_on_content.png")
         KeyActions.click(f"{cls.IMAGE_TEMPLATES_DIR}/turn_on_content.png")
         sleep(0.2)
