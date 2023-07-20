@@ -8,10 +8,10 @@ source_docs = r''
 converted_docs = r''
 
 # Delay time after opening a document in the editors in seconds
-delay_word = 2
-delay_excel = 2
+delay_word = 1
+delay_excel = 1
 delay_power_point = 2
-delay_libre = 2
+delay_libre = 1
 
 # Maximum amount of time the document is waiting to be opened.
 max_waiting_time = 60
@@ -21,7 +21,7 @@ cores = 4
 errors_only = True
 delete = False
 timestamp = True
-timeout = 3600
+timeout = 1200
 # Path to MS Office
 ms_office = r'C:/Program Files/Microsoft Office/root/Office16'
 # Path to LibreOffice
