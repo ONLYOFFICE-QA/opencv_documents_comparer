@@ -1,0 +1,200 @@
+{
+  "52628": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=52628",
+    "description": "Named range, problems in ms Excel",
+    "directions": [
+      "xls-xlsx"
+    ],
+    "files": [
+      "A3  2(test).xlsx",
+      "A3  2.xlsx",
+      "kso 1    2  1.xlsx"
+    ]
+  },
+  "52628_ods_xlsx": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=52628",
+    "description": "Named range, problems in ms Excel",
+    "directions": [
+      "ods-xlsx"
+    ],
+    "files": [
+      "Calendario_Uscite_fumetti_FEBBRAIO 2010.xlsx",
+      "file_1_ (2).xlsx",
+      "EV Requirements v2.2.3.xlsx",
+      "Megoldasok.xlsx",
+      "tel_sprav_18.10.2013.xlsx",
+      "ValorPorExtenso.xlsx",
+      "ValorPorExtensoTeste.xlsx"
+    ]
+  },
+  "58959": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=58959",
+    "description": "",
+    "directions": [
+      "xls-xlsx",
+      "ods-xlsx"
+    ],
+    "files": [
+      "general_formulas.xlsx"
+    ]
+  },
+  "58959_ods": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=58959",
+    "description": "formula",
+    "directions": [
+      "xls-xlsx",
+      "ods-xlsx"
+    ],
+    "files": [
+      "controle de saidas estoque.xlsx",
+      "EV Requirements v2.2.3.xlsx",
+      "file_1_ (2).xlsx",
+      "Расходный_кассовый_ордер_по_форме_N_КО-2.xlsx"
+    ]
+  },
+  "2": {
+    "link": "Opening in LibreOffice over a minute",
+    "description": "Opening in LibreOffice over a minute, file opens successfully, same behavior when opening the source file in LibreOffice",
+    "directions": [
+      "xls-ods"
+    ],
+    "files": [
+      "budget proposal.ods"
+    ]
+  },
+  "3": {
+    "link": "",
+    "description": "The problem is on the ms Office 2021 side, in ms Office 2019 the files open without errors",
+    "directions": [
+      "doc-docx"
+    ],
+    "files": [
+      "CES-99-40_SW.docx",
+      "CES-99-52_SW.docx",
+      "CES-99-54_SW.docx"
+    ]
+  },
+  "4": {
+    "link": "",
+    "description": "macroses",
+    "directions": [
+      "xls-xlsx"
+    ],
+    "files": [
+      "25989735_1.xlsx",
+      "0t-1-1.xlsx"
+    ]
+  },
+  "60313": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=60313",
+    "description": "ms Excel problem, does not work with long sheet names",
+    "directions": [
+      "ods-xlsx"
+    ],
+    "files": [
+      "madhus yesterday update.xlsx",
+      "Példa I.xlsx",
+      "Példa I ures.xlsx",
+      "Fiche projet Histoire croisée.xlsx"
+    ]
+  },
+  "60279": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=60279",
+    "description": "",
+    "directions": [
+      "odp-pptx"
+    ],
+    "files": [
+      "Apache CloudStack Template 062813.pptx",
+      "Методический-кейс-методиста-ДЮСШ-Курушина-Л.В..pptx",
+      "Body-Image.pptx",
+      "GSoC2009-Presentation-BlueLogo_pt-br.pptx"
+    ]
+  },
+  "52374": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=52374",
+    "description": "",
+    "directions": [
+      "ppt-pptx"
+    ],
+    "files": [
+      "Тікбұрышты үшбұрыштарды.pptx"
+    ]
+  },
+  "60847": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=60847",
+    "description": "problems in LibreOffice",
+    "directions": [
+      "docx-odt"
+    ],
+    "files": [
+      "Educational_Plan_Board__final_(2).odt"
+    ]
+  },
+  "62331": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=62331",
+    "description": "LibreOffice Bug",
+    "directions": [
+      "docxf-odt"
+    ],
+    "files": [
+      "modello_a1.odt"
+    ]
+  },
+  "62341": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=62341",
+    "description": "",
+    "directions": [
+      "html-odt",
+      "htm-odt"
+    ],
+    "files": [
+      "4.odt",
+      "API.odt"
+    ]
+  },
+  "check_after_62341": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=62341",
+    "description": "Check after fix",
+    "directions": [
+      "mht-odt",
+      "mhtml-odt",
+      "html-odt",
+      "htm-odt"
+    ],
+    "files": [
+      "Мир ЦОД.odt",
+      "INTUIT.ruКурсПротоколыАлгоритмыЛекциСокеты.odt",
+      "Descargar Libros Digitales Gratuitos Download de Libros Gratis Ebooks.odt",
+      "Latest Free Anonymous Web Proxy List.odt",
+      "Naruto, naruto shippuuden, naruto download, naruto project, naruto downloads, naruto game, naruto gba, naruto hinata, naruto manga (1).odt",
+      "Naruto, naruto shippuuden, naruto download, naruto project, naruto downloads, naruto game, naruto gba, naruto hinata, naruto manga.odt"
+    ]
+  },
+  "62789": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=62789",
+    "description": "",
+    "directions": [
+      "rtf-docx"
+    ],
+    "files": [
+      "goldwingSetting.docx",
+      "21.haikufinal.docx"
+    ]
+  },
+  "5": {
+    "link": "",
+    "description": "ms Word it is not possible to put a picture in the inscription",
+    "directions": [
+      "odt-docx"
+    ],
+    "files": [
+      "0100GS3GettingStartedOOo3.docx",
+      "0106GS-GettingStartedWithWriter_el.docx",
+      "0106GS3-GettingStartedWithImpress_ko.docx",
+      "1438.docx",
+      "Description_of_Lex_for_Copenhagen_2009.docx",
+      "formulier1vzw.docx"
+    ]
+  }
+}

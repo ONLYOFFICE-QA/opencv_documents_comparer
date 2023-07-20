@@ -1,0 +1,155 @@
+{
+  "bug_num": {
+    "link": "",
+    "description": "",
+    "os": [
+      "linux",
+      "windows",
+      "macos"
+    ],
+    "directions": [],
+    "files": []
+  },
+  "2": {
+    "link": "",
+    "description": "Files without patterns. In will be added by editors. Not converted and its true",
+    "os": [],
+    "directions": [
+      "ppt-jpg",
+      "pptx-png",
+      "ppt-png",
+      "pptx-jpg"
+    ],
+    "files": [
+      "empty_slides_layouts.pptx",
+      "empty(слайдов нет).ppt",
+      "empty(бЂ†©§ЃҐ ≠•в).ppt"
+    ]
+  },
+  "56205": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=56205",
+    "description": "Broken files",
+    "os": [],
+    "directions": [
+      "xps-jpg",
+      "xps-png",
+      "xps-pdf"
+    ],
+    "files": [
+      "M1.1b.xps",
+      "M6.4a.xps",
+      "M6.7a.xps",
+      "M6.8a.xps"
+    ]
+  },
+  "39545": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=39545",
+    "description": "Broken file",
+    "os": [],
+    "directions": [
+      "pdf-jpg",
+      "pdf-png"
+    ],
+    "files": [
+      "Crying_behaviourANGmcP.pdf"
+    ]
+  },
+  "60795": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=60795",
+    "description": "Broken file",
+    "os": [],
+    "directions": [],
+    "files": [
+      "25igravtemn.epub",
+      "calibre.epub",
+      "diplomatariumis01bkgoog.epub",
+      "diplomatariumis04bkgoog.epub",
+      "diplomatariumis03bkgoog.epub",
+      "diplomatariumis06bkgoog.epub",
+      "diplomatariumis05bkgoog.epub",
+      "The_Plastic_Princess.epub",
+      "mesopotamia.epub",
+      "diplomatariumis00orgoog.epub"
+    ]
+  },
+  "58698": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=58698",
+    "description": "",
+    "os": [],
+    "directions": [],
+    "files": [
+      "Office Open XML Part 4 - Markup Language Reference.docx"
+    ]
+  },
+  "57465": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=57465",
+    "description": "",
+    "os": [],
+    "directions": [],
+    "files": [
+      "employee-entries.docx"
+    ]
+  },
+  "57360": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=57360",
+    "description": "",
+    "os": [],
+    "directions": [],
+    "files": [
+      "Smaller50MB.xlsb",
+      "Smaller50MB.xlsx",
+      "Smaller50MB.xlsb.xlsx"
+    ]
+  },
+  "59241": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=59241",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xlsx-ods",
+      "xlsx-ots",
+      "xlsb-ods",
+      "xlsb-ots"
+    ],
+    "files": [
+      "rank_prf-09.xlsx",
+      "rank_prf-09.xlsb"
+    ]
+  },
+  "59424": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=59424",
+    "description": "",
+    "os": [],
+    "directions": [],
+    "files": [
+      "Планировщик_АПРЕЛЬ (1).xlsb",
+      "ПЂ†≠®аЃҐй®™_АПРЕЛЬ (1).xlsb"
+    ]
+  },
+  "60796": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=60796",
+    "description": "",
+    "os": [
+      "windows"
+    ],
+    "directions": [],
+    "files": [
+      "enredobar.doc",
+      "ZAHTJEV_NAVABANKA.doc"
+    ]
+  },
+  "62856": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=62856",
+    "description": "",
+    "os": [
+      "windows"
+    ],
+    "directions": [
+      "mht-png"
+    ],
+    "files": [
+      "9yOzrhCnh_V7g3rRYkmSkElah4COVLjY8lK6xcqtfkE_.mht",
+      "ARhvUaniymtb6XZDVcKxZIY9kkieSxtwWotuwZnXFx4_.mht"
+    ]
+  }
+}
