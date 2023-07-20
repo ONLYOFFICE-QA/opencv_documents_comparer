@@ -1,8 +1,8 @@
-# compare_documents
+# Document testing project
 
 ## Description
 
-Script to open and compare documents in MS Office
+A project for testing conversion opening files after conversion and comparing documents.
 
 ## Requirements
 
@@ -34,10 +34,8 @@ To activate the virtual environment, run the command
 
 ### If installing dependencies is only possible via pip
 
-* Create the `requirements.txt` file from poetry.lock with the command:
-`python make_requirements.py`
 * To install the dependencies via pip:
-`pip install -r requirements.txt`
+`python3 install_requirements.py`
 
 ## Getting Started
 
@@ -56,72 +54,84 @@ To activate the virtual environment, run the command
       (if the file extension in the folder is ".doc",
       then the folder name must be "doc")
     * converted_doc_folder - path to folders with documents after conversion.
-    The names of folders should have the
+      The names of folders should have the
       form "```<version>_<extension before conversion>_<extension after conversion>```"
       (Example: "6.4.1.44_doc_docx").
     * list_of_file_names - array for selective comparison by filename
 
 * Sending messages to Telegram
 * To send termination reports of the script to Telegram,
-you need to add 2 environment variables
+  you need to add 2 environment variables
   * TELEGRAM_TOKEN - with a token from your bot on telegram
   * CHANNEL_ID - with the channel id on telegram
 
-### Commands for starting a document comparison
+### Command for starting a document comparison
 
-#### Compare doc to docx
+`invoke compare-test` - To compare images by file names
+from "converted_doc_folder"
 
-```invoke doc-docx``` - To compare images by file names from "converted_doc_folder"
+#### Compare test flags
 
-```invoke doc-docx --st``` - To compare document statistics by file names from "converted_doc_folder"
+`--direction` or `-d` - specifies which files to compare.
+Example: `-d doc-docx` to compare doc-docx files.
 
-```invoke doc-docx --ls``` - To compare images by file names from the array in "config.py"
+`--telegram` or `-t` - to send reports in a telegram.
 
-```invoke doc-docx --df``` - To compare images by files with different statistics
+`--ls` or `-l` - to open files from files_array in config.py
 
-```invoke doc-docx --cl``` - To compare images by file names from the clipboard
+### Command for make files for openers test via x2ttester
 
-#### Compare ppt to pptx
+`invoke make-files`
 
-```invoke ppt-pptx``` - To compare images by file names from "converted_doc_folder"
+#### Make files flags
 
-```invoke ppt-pptx --ls``` - To compare images by file names from the array in "config.py"
+`--telegram` or `-t` - to send reports in a telegram.
 
-```invoke ppt-pptx --cl``` - To compare images by file names from the clipboard
+`--direction` or `-d` - Specifies the direction for converting files.
+Example: `-d doc-docx`
 
-#### Compare xls to xlsx
+`--version` or `-v` - Specifies the version x2t libs.
+Example: `invoke make-files -v 7.4.0.163`
 
-```invoke xls-xlsx``` - To compare images by file names from "converted_doc_folder"
+### Command for starting openers
 
-```invoke xls-xlsx --st``` - To compare document statistics by file names from "converted_doc_folder"
+`invoke open-test` - Running file opening tests
 
-```invoke xls-xlsx --ls``` - To compare images by file names from the array in "config.py"
+#### Open test flags
 
-```invoke xls-xlsx --cl``` - To compare images by file names from the clipboard
+`--direction` or `-d` - specifies which files to open.
+Example: `-d docx` to open only docx files. if no required - all
+files will be opened
 
-#### Compare odp to pptx
+`--ls` or `-l` - to open files from files_array in config.py
 
-```invoke odp-pptx``` - To compare images by file names from "converted_doc_folder"
+`--path "./path/to/your/folder"` - to open files in the specified folder.
 
-```invoke odp-pptx --ls``` - To compare images by file names from the array in "config.py"
+`--telegram` or `-t` - to send reports in a telegram.
 
-```invoke odp-pptx --cl``` - To compare images by file names from the clipboard
+`--fast_test` or `-f` - to run tests without taking
+into account the tested files
 
-### Commands for starting openers
+### Command for starting conversion tests
 
-`invoke opener-docx` - To open docx with ms Word
+`invoke conversion-test`
 
-`invoke opener-xlsx` - To open xlsx with ms Excel
+#### Conversion test flags
 
-`invoke opener-pptx` - To open docx with ms PP
+`--direction` or `-d` - Specifies the direction for converting files.
+Example: `-d doc-docx`. if not required -
+conversion to all formats will be performed.
 
-`invoke opener-ods` - To open ods with LibreOffice
+`--ls` or `-l` - to conversion files from files_array in config.py
 
-`invoke opener-odt` - To open odt with LibreOffice
+`--telegram` or `-t` - to send reports in a telegram.
 
-`invoke opener-odp` - To open odp with LibreOffice
+`--version` or `-v` - Specifies the version x2t libs.
 
-To check the opening of a particular conversion direction,
-add a flag with the source extension. example:
+### Command for download x2t libs
 
-`invoke opener-docx --doc` - Checking document opening after doc=>docx conversion
+`invoke download-core`
+
+#### Download x2t libs flags
+
+`--version` or `-v` - Specifies the version x2t libs.
