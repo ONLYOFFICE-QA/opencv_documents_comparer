@@ -8,7 +8,7 @@ from frameworks.StaticData import StaticData
 from frameworks.decorators import highlighter
 from frameworks.host_control import HostInfo
 from frameworks.host_control.FileUtils import FileUtils
-from frameworks.xmllint.XmllintReport import XmllintReport
+from .XmllintReport import XmllintReport
 from frameworks.telegram import Telegram
 
 
@@ -17,7 +17,7 @@ class XmlLint:
         self.host = HostInfo()
         self.report = XmllintReport()
         self.xmllint_exceptions = []
-        self.tmp_dir = StaticData.TMP_DIR
+        self.tmp_dir = StaticData.tmp_dir
         self.full_errors, self.parser_error = [], []
         self.ooxml_formats = (
             ".docx", ".docm", ".dotx", ".dotm",
@@ -52,7 +52,7 @@ class XmlLint:
             output = self.run_test(xml)
             self.xml_error_handler(output, dir_path) if output else ...
         if self.full_errors:
-            self.report.csv_write(
+            self.report.write(
                 report_path, "a",
                 [file_name, self.parser_error, self.full_errors, conversion_direction]
             )
@@ -68,9 +68,9 @@ class XmlLint:
     def run_tests(self, dir_path, conversion_direction=None):
         if self.host.os != 'windows':
             report_path = self.report.report_path()
-            self.report.csv_write(report_path, "w", ["File", "parser_error", "Error_full", "direction"])
+            self.report.write(report_path, "w", ["File", "parser_error", "Error_full", "direction"])
             self.check_ooxml_files(dir_path, report_path, conversion_direction)
-            print(f"[bold red]{self.report.pandas_read(report_path)}")
+            print(f"[bold red]{self.report.read(report_path)}")
             Telegram.send_message(f"Exceptions: {self.xmllint_exceptions}") if self.xmllint_exceptions else ...
             print(f"[bold green]|INFO| Report created at:[/] {report_path}")
             return report_path
