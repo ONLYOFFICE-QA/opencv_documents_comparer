@@ -4,7 +4,6 @@ env/
 /configure.json
 dist/
 build/
-/tests/
 /venv/
 /template/
 /tools.py
