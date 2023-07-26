@@ -1,24 +1,47 @@
 # -*- coding: utf-8 -*-
 import json
 import os
-from os.path import join, getsize, basename, isdir
+from os.path import join, getsize, basename, isdir, isfile, expanduser
 
 import requests
 from rich import print
 from loguru import logger
 
-from frameworks.StaticData import StaticData
 from frameworks.decorators import singleton
 from frameworks.host_control import FileUtils
+import tempfile
 
 
 @singleton
 class Telegram:
-    def __init__(self):
-        self._telegram_token = os.environ.get('TELEGRAM_TOKEN')
-        self._chat_id = os.environ.get('CHANNEL_ID')
-        self.tmp_dir = StaticData.tmp_dir
-        FileUtils.create_dir(self.tmp_dir)
+    def __init__(
+            self,
+            token_path: str = None,
+            chat_id_path: str = None,
+            tmp_dir: str = tempfile.gettempdir()
+    ):
+
+        self._telegram_dir = join(expanduser('~'), '.telegram')
+        self._telegram_token = self._get_token(token_path)
+        self._chat_id = self._get_chat_id(chat_id_path)
+        self.tmp_dir = tmp_dir
+        FileUtils.create_dir(self.tmp_dir, silence=True)
+
+    def _get_token(self, token_path: str) -> str | None:
+        token_file = token_path if token_path else join(self._telegram_dir, 'token')
+        if token_file and isfile(token_file):
+            return FileUtils.file_reader(token_file).strip()
+        elif os.environ.get('TELEGRAM_TOKEN', False):
+            return os.environ.get('TELEGRAM_TOKEN')
+        print(f"[cyan]|INFO| Telegram token not exists.")
+
+    def _get_chat_id(self, chat_id_path: str) -> str | None:
+        chat_id_file = chat_id_path if chat_id_path else join(self._telegram_dir, 'chat')
+        if isfile(chat_id_file):
+            return FileUtils.file_reader(chat_id_file).strip()
+        elif os.environ.get('CHANNEL_ID', False):
+            return os.environ.get('CHANNEL_ID')
+        print(f"[cyan]|INFO| Telegram chat id not exists.")
 
     def send_message(self, message: str, out_msg=False) -> None:
         print(message) if out_msg else ...
