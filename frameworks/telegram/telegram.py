@@ -36,7 +36,7 @@ class Telegram:
         print(f"[cyan]|INFO| Telegram token not exists.")
 
     def _get_chat_id(self, chat_id_path: str) -> str | None:
-        chat_id_file = chat_id_path if chat_id_path else join(self._tg_dir, 'chat')
+        chat_id_file = chat_id_path if chat_id_path else join(self._telegram_dir, 'chat')
         if isfile(chat_id_file):
             return FileUtils.file_reader(chat_id_file).strip()
         elif os.environ.get('CHANNEL_ID', False):
