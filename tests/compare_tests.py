@@ -86,9 +86,7 @@ class CompareTest:
         for img_name in track(listdir(self.converted_screen_dir), description="[bold cyan]Comparing In Progress"):
             if exists(join(self.source_screen_dir, img_name)) and exists(join(self.converted_screen_dir, img_name)):
                 sheet_num = img_name.split('_')[-1].replace('.png', '')
-                source_img = self._find_sheet(self.image.read(join(self.source_screen_dir, img_name)), source_file)
-                conv_img = self._find_sheet(self.image.read(join(self.converted_screen_dir, img_name)), converted_file)
-                similarity, difference = self.image.find_difference(source_img, conv_img)
+                similarity, difference, source_img, conv_img = self.find_difference(source_file, converted_file, img_name)
                 similarity = round(similarity * 100, 3)
                 msg = f" [cyan]|INFO| Compare screens. Sheet: {sheet_num} similarity[/]: {similarity} %"
                 if similarity < coefficient:
@@ -102,6 +100,17 @@ class CompareTest:
                 logger.error(f'Image {img_name} not found')
         self._clean_tmp_dirs()
 
+    def find_difference(self, source_file, converted_file, img_name):
+        try:
+            source_img = self._find_sheet(self.image.read(join(self.source_screen_dir, img_name)), source_file)
+            conv_img = self._find_sheet(self.image.read(join(self.converted_screen_dir, img_name)), converted_file)
+            similarity, difference = self.image.find_difference(source_img, conv_img)
+        except ValueError:
+            source_img = self.image.read(join(self.source_screen_dir, img_name))
+            conv_img = self.image.read(join(self.converted_screen_dir, img_name))
+            similarity, difference = self.image.find_difference(source_img, conv_img)
+        return similarity, difference, source_img, conv_img
+
     def _find_sheet(self, img: np.ndarray, file_name) -> np.ndarray:
         if file_name.lower().endswith(self.document_excel.formats):
             return img
@@ -112,7 +121,7 @@ class CompareTest:
 
     def save_result(self, source_file, converted_file, source_img, converted_img, img_name, difference):
         cnv_name, source_name = basename(converted_file), basename(source_file)
-        path = join(self.result_folder, 'img_diff', re.sub(r"[\s\n\r.,\-=]+", '', cnv_name)[:35])
+        path = join(self.report_dir, 'img_diff', re.sub(r"[\s\n\r.,\-=]+", '', cnv_name)[:35])
         self._create_result_dirs(path)
         if not exists(join(path, cnv_name)):
             FileUtils.copy(converted_file, join(path, cnv_name), silence=True)
@@ -120,7 +129,11 @@ class CompareTest:
             FileUtils.copy(source_file, join(path, source_name), silence=True)
         self.image.save(join(path, 'screen', f"{img_name}_collage.png"), np.hstack([source_img, converted_img]))
         source_img, converted_img = self.image.draw_differences(source_img, converted_img, difference)
-        self.image.save_gif(join(path, 'gif', f"{splitext(img_name)[0]}_similarity.gif"), [source_img, converted_img])
+        self.image.save_gif(
+            join(path, 'gif', f"{splitext(img_name)[0]}_similarity.gif"),
+            [source_img, converted_img],
+            duration=1.0
+        )
 
     @staticmethod
     def _create_result_dirs(dir_path: str) -> None:
