@@ -225,5 +225,17 @@
       "yyzd.ppt",
       "µїБЦАЗЗБ·ОБ§Ж®.ppt"
     ]
+  },
+  "63558": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=63558",
+    "description": "",
+    "os": [
+      "macos"
+    ],
+    "directions": [],
+    "files": [
+      "54.11.xlsx",
+      "Microsoft (Demo-2012SummerOlympics).xlsx"
+    ]
   }
 }
