@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import platform
 
-from .onlyoffice import X2tTester
+from .onlyoffice import X2tTester, X2tTesterData
 from .onlyoffice import Core
 
 if platform.system().lower() == 'windows':

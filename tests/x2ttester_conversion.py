@@ -4,33 +4,35 @@ from os.path import join, basename, dirname, splitext, abspath, isdir
 from rich.progress import track
 from rich import print
 
+import config
 from frameworks.StaticData import StaticData
 from frameworks.decorators import timer
-from frameworks.editors import X2tTester
+from frameworks.editors import X2tTester, X2tTesterData
 from frameworks.editors.onlyoffice import VersionHandler, X2t
 from frameworks.host_control import FileUtils
 from .tools import X2ttesterReport
 
 
 class X2tTesterConversion:
-    def __init__(self, direction: str | None = None, version: str = None):
+    def __init__(self, direction: str | None = None, version: str = None, trough_conversion: bool = False):
+        self.trough_conversion = trough_conversion
+        self.cores = config.cores
+        self.errors_only = config.errors_only
+        self.delete = config.delete
+        self.timestamp = config.timestamp
+        self.timeout = config.timeout
         self.input_formats, self.output_formats = self._getting_formats(direction)
         self.extensions = FileUtils.read_json(f"{dirname(abspath(__file__))}/assets/extension_array.json")
-        self.project_dir = StaticData.project_dir
         self.tmp_dir = join(StaticData.tmp_dir, 'cnv')
-        self.report_tmp_dir = StaticData.tmp_dir
         self.result_dir = StaticData.result_dir()
         self.x2t_dir = StaticData.core_dir()
         self.report = X2ttesterReport()
         self.x2t_version = VersionHandler(version if version else X2t.version(StaticData.core_dir())).version
         self.img_formats = ["png", "jpg", "bmp", "gif"]
+        self.data = self._get_x2ttester_data()
+        self.x2ttester = X2tTester(self.data)
         FileUtils.delete(self.tmp_dir, all_from_folder=True, silence=True)
-        self.x2ttester = X2tTester(
-            input_dir=StaticData.documents_dir(),
-            output_dir=self.tmp_dir,
-            x2ttester_dir=self.x2t_dir,
-            fonts_dir=StaticData.fonts_dir()
-        )
+
 
     def run(self, results_path: bool | str = False, list_xml: str = None) -> str:
         """
@@ -39,11 +41,9 @@ class X2tTesterConversion:
         if True the path will be generated automatically, based on x2t version and configurable options
         :param list_xml: str — the path to the xml file with the names of the files for the test
         """
-
-        tmp_report = self.report.tmp_file(self.report_tmp_dir)
-        self.x2ttester.conversion(tmp_report, self.input_formats, self.output_formats, listxml_path=list_xml)
+        self.x2ttester.conversion(self.input_formats, self.output_formats, listxml_path=list_xml)
         self._handle_results(results_path) if results_path is not False else ...
-        return FileUtils.last_modified_file(dirname(tmp_report))
+        return FileUtils.last_modified_file(dirname(self.data.report_path))
 
     @timer
     def from_extension_json(self) -> str | None:
@@ -59,8 +59,10 @@ class X2tTesterConversion:
 
     @timer
     def from_files_list(self, files: list) -> str:
-        xml = self.x2ttester.xml.create(self.x2ttester.xml.files_list(files),
-                                        FileUtils.random_name(self.x2t_dir, 'xml'))
+        xml = self.x2ttester.xml.create(
+            self.x2ttester.xml.files_list(files),
+            FileUtils.random_name(self.x2t_dir, 'xml')
+        )
         report = self.run(list_xml=xml)
         FileUtils.delete(xml)
         return report
@@ -99,3 +101,18 @@ class X2tTesterConversion:
                 return direction.split('-')[0], direction.split('-')[1]
             return None, direction
         return None, None
+
+    def _get_x2ttester_data(self):
+        return X2tTesterData(
+            cores=self.cores,
+            input_dir=StaticData.documents_dir(),
+            output_dir=self.tmp_dir,
+            x2ttester_dir=self.x2t_dir,
+            fonts_dir=StaticData.fonts_dir(),
+            report_path=self.report.tmp_file(StaticData.tmp_dir),
+            timeout=self.timeout,
+            timestamp=self.timestamp,
+            delete=self.delete,
+            errors_only=self.errors_only,
+            trough_conversion=self.trough_conversion
+        )
