@@ -5,7 +5,7 @@
     "os": [
       "linux",
       "windows",
-      "macos"
+      "mac"
     ],
     "directions": [],
     "files": []
@@ -138,20 +138,6 @@
       "ZAHTJEV_NAVABANKA.doc"
     ]
   },
-  "62856": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=62856",
-    "description": "",
-    "os": [
-      "windows"
-    ],
-    "directions": [
-      "mht-png"
-    ],
-    "files": [
-      "9yOzrhCnh_V7g3rRYkmSkElah4COVLjY8lK6xcqtfkE_.mht",
-      "ARhvUaniymtb6XZDVcKxZIY9kkieSxtwWotuwZnXFx4_.mht"
-    ]
-  },
   "63535": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=63535",
     "description": "",
@@ -159,6 +145,7 @@
     "directions": [],
     "files": [
       "Диплом (Саня).docx",
+      "9yOzrhCnh_V7g3rRYkmSkElah4COVLjY8lK6xcqtfkE_.mht",
       "Adams S.E. - Molecular Similarity and Xenobiotic Metabolism.docx",
       "SOL_2003_WMI_mbakirov.pptx",
       "HPCUyAkLJJ8RLCkWuY3hfEzQSfzrg7TWft8Xcbf1IcE_.html"
@@ -173,64 +160,11 @@
       "Demo-2010WinterOlympics.xlsb"
     ]
   },
-  "63551": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=63551",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "!10_France.ppt",
-      "01HTML.ppt",
-      "041seouluniversityhospital.ppt",
-      "1.ppt",
-      "1111.ppt",
-      "adahee.ppt",
-      "AUTOESTIMA.ppt",
-      "Bet12ch.ppt",
-      "bgroup_long.ppt",
-      "book.ppt",
-      "businessplan.ppt",
-      "cattaneo.ppt",
-      "comas.ppt",
-      "cqdx.ppt",
-      "creacion_empresas.ppt",
-      "Csharp4.ppt",
-      "displaycard.ppt",
-      "FESCTriEleShort.ppt",
-      "formazione_ridotta_previcooper.ppt",
-      "french_hongbo_powerpoint.ppt",
-      "HARTZLINK.ppt",
-      "Info.ppt",
-      "IT1015.ppt",
-      "law_support_in8.ppt",
-      "LTC_Training.ppt",
-      "metasmart_ceccantini.ppt",
-      "MyOffice.-video.ppt",
-      "OverseasSBCPresentation.ppt",
-      "p2.ppt",
-      "PCJacqSuite.ppt",
-      "pe3_F6124.ppt",
-      "PPT_3_new.ppt",
-      "ppt_download.ppt",
-      "PRESENTACIONMAF.ppt",
-      "presentatie(2).ppt",
-      "presentation20090731.ppt",
-      "presentation_ticio_20100610.ppt",
-      "PrimerStagesOfTeaching.ppt",
-      "referat.ppt",
-      "SOL_2003_WMI_mbakirov.ppt",
-      "talk.ppt",
-      "tongxiwu.ppt",
-      "yliko_provolis.ppt",
-      "yyzd.ppt",
-      "µїБЦАЗЗБ·ОБ§Ж®.ppt"
-    ]
-  },
   "63558": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=63558",
     "description": "",
     "os": [
-      "macos"
+      "mac"
     ],
     "directions": [],
     "files": [
