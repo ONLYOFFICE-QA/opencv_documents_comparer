@@ -171,5 +171,16 @@
       "54.11.xlsx",
       "Microsoft (Demo-2012SummerOlympics).xlsx"
     ]
+  },
+  "63566": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=63566",
+    "description": "",
+    "os": [
+      "mac"
+    ],
+    "directions": [],
+    "files": [
+      "seed_slide_deck_16x9__v1_corn_flower.pptx"
+    ]
   }
 }
