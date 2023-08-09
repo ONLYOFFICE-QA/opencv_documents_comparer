@@ -138,15 +138,6 @@
       "ZAHTJEV_NAVABANKA.doc"
     ]
   },
-  "63536": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=63536",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "Demo-2010WinterOlympics.xlsb"
-    ]
-  },
   "63558": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=63558",
     "description": "",
@@ -156,7 +147,8 @@
     "directions": [],
     "files": [
       "54.11.xlsx",
-      "Microsoft (Demo-2012SummerOlympics).xlsx"
+      "Microsoft (Demo-2012SummerOlympics).xlsx",
+      "Demo-2010WinterOlympics.xlsb"
     ]
   },
   "63566": {
