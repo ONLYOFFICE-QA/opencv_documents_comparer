@@ -161,5 +161,25 @@
     "files": [
       "seed_slide_deck_16x9__v1_corn_flower.pptx"
     ]
+  },
+  "63608": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=63608",
+    "description": "",
+    "os": [
+    ],
+    "directions": [],
+    "files": [
+      "document wps writer 02Test.wps"
+    ]
+  },
+  "63609": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=63609",
+    "description": "",
+    "os": [
+    ],
+    "directions": [],
+    "files": [
+      "HPCUyAkLJJ8RLCkWuY3hfEzQSfzrg7TWft8Xcbf1IcE_.html"
+    ]
   }
 }
