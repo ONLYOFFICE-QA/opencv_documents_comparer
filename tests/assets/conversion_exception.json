@@ -138,44 +138,11 @@
       "ZAHTJEV_NAVABANKA.doc"
     ]
   },
-  "63558": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=63558",
-    "description": "",
-    "os": [
-      "mac"
-    ],
-    "directions": [],
-    "files": [
-      "54.11.xlsx",
-      "Microsoft (Demo-2012SummerOlympics).xlsx",
-      "Demo-2010WinterOlympics.xlsb"
-    ]
-  },
-  "63566": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=63566",
-    "description": "",
-    "os": [
-      "mac"
-    ],
-    "directions": [],
-    "files": [
-      "seed_slide_deck_16x9__v1_corn_flower.pptx"
-    ]
-  },
-  "63608": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=63608",
-    "description": "",
-    "os": [
-    ],
-    "directions": [],
-    "files": [
-      "document wps writer 02Test.wps"
-    ]
-  },
   "63609": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=63609",
     "description": "",
     "os": [
+      "linux"
     ],
     "directions": [],
     "files": [
