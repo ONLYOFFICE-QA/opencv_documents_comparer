@@ -11,6 +11,21 @@
       "kso 1    2  1.xlsx"
     ]
   },
+  "5": {
+    "link": "",
+    "description": "ms Word it is not possible to put a picture in the inscription",
+    "directions": [
+      "odt-docx"
+    ],
+    "files": [
+      "0100GS3GettingStartedOOo3.docx",
+      "0106GS-GettingStartedWithWriter_el.docx",
+      "0106GS3-GettingStartedWithImpress_ko.docx",
+      "1438.docx",
+      "Description_of_Lex_for_Copenhagen_2009.docx",
+      "formulier1vzw.docx"
+    ]
+  },
   "52628_ods_xlsx": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=52628",
     "description": "Named range, problems in ms Excel",
@@ -29,27 +44,16 @@
   },
   "58959": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=58959",
-    "description": "",
+    "description": "not supported RANK(5,{1;2;3;4;5;6;7},1), RANK(5,{1;2;3;4;5;6;7}",
     "directions": [
       "xls-xlsx",
       "ods-xlsx"
     ],
     "files": [
-      "general_formulas.xlsx"
-    ]
-  },
-  "58959_ods": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=58959",
-    "description": "formula",
-    "directions": [
-      "xls-xlsx",
-      "ods-xlsx"
-    ],
-    "files": [
+      "general_formulas.xlsx",
       "controle de saidas estoque.xlsx",
       "EV Requirements v2.2.3.xlsx",
-      "file_1_ (2).xlsx",
-      "Расходный_кассовый_ордер_по_форме_N_КО-2.xlsx"
+      "file_1_ (2).xlsx"
     ]
   },
   "2": {
@@ -141,36 +145,6 @@
       "modello_a1.odt"
     ]
   },
-  "62341": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=62341",
-    "description": "",
-    "directions": [
-      "html-odt",
-      "htm-odt"
-    ],
-    "files": [
-      "4.odt",
-      "API.odt"
-    ]
-  },
-  "check_after_62341": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=62341",
-    "description": "Check after fix",
-    "directions": [
-      "mht-odt",
-      "mhtml-odt",
-      "html-odt",
-      "htm-odt"
-    ],
-    "files": [
-      "Мир ЦОД.odt",
-      "INTUIT.ruКурсПротоколыАлгоритмыЛекциСокеты.odt",
-      "Descargar Libros Digitales Gratuitos Download de Libros Gratis Ebooks.odt",
-      "Latest Free Anonymous Web Proxy List.odt",
-      "Naruto, naruto shippuuden, naruto download, naruto project, naruto downloads, naruto game, naruto gba, naruto hinata, naruto manga (1).odt",
-      "Naruto, naruto shippuuden, naruto download, naruto project, naruto downloads, naruto game, naruto gba, naruto hinata, naruto manga.odt"
-    ]
-  },
   "62789": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=62789",
     "description": "",
@@ -182,19 +156,39 @@
       "21.haikufinal.docx"
     ]
   },
-  "5": {
-    "link": "",
-    "description": "ms Word it is not possible to put a picture in the inscription",
+  "63699": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=63699",
+    "description": "",
     "directions": [
-      "odt-docx"
+      "mht-docx"
     ],
     "files": [
-      "0100GS3GettingStartedOOo3.docx",
-      "0106GS-GettingStartedWithWriter_el.docx",
-      "0106GS3-GettingStartedWithImpress_ko.docx",
-      "1438.docx",
-      "Description_of_Lex_for_Copenhagen_2009.docx",
-      "formulier1vzw.docx"
+      "bash.org.ru - Цитатник Рунета.docx",
+      "Leveled Vocabulary Readers (Kindergarten).docx",
+      "LEXiTRON_solve_problem.docx",
+      "Hacking Mobile Use OPDA .docx",
+      "How to install.docx",
+      "How to install games-software's in samsung star S5233 or S5230 - Yahoo! Answers.docx",
+      "L2phx tutorial for n00bs!.docx"
+    ]
+  },
+  "63701": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=63701",
+    "description": "",
+    "directions": [
+      "mht-docx"
+    ],
+    "files": [
+      "emPoknW9U0tH8hntm7I6jO_Ux0rYKtXKZQ2AmQNUCD8_.mht",
+      "BMIGTtkkAGCPvYyGada3UJvwkeBm2wWq5y_0hsov09Q_.docx",
+      "ORACLE-BASE - Oracle Database 10g Release 2 (10_2_0_1) Installation On Red Hat E.mht",
+      "More than 200 CCNA questions  TechInterviews_com  « Interview questions for tech companies.mht",
+      "More than 200 CCNA questions  TechInterviews_com  ® Interview questions for tech companies.mht",
+      "ORACLE-BASE - Oracle Database 10g Release 2 (10_2_0_1) Installation On Red Hat E.mht",
+      "Peliculas Completas Gratis - Peliculas Completas Gratis.mht",
+      "Simple ntldr is missing fix with boot floppy, CD-R, or USB flash.mht",
+      "Small_Kids_Vocab_1_120.mht",
+      "{E}vermotion - 3D models, textures, tutorials, architecture, 3D graphic, vray, 3ds max.mht"
     ]
   }
 }
