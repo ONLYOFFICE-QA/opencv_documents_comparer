@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
+from os.path import join, dirname, realpath
+
 import pyautogui as pg
 from rich import print
 from time import sleep
 
 from frameworks.decorators import singleton
-from frameworks.host_control import Window
+
+from frameworks.host_control import Window, FileUtils
 
 from ....events import Events
 
@@ -12,34 +15,29 @@ from ....events import Events
 @singleton
 class WordEvents(Events):
 
+    def __init__(self):
+        self.warning_windows = FileUtils.read_json(join(dirname(realpath(__file__)), 'warning_window.json'))
+
     @property
     def window_class_names(self) -> list:
         return ['OpusApp', "#32770", 'bosa_sdm_msword', 'ThunderDFrame', 'NUIDialog', "MsoSplash"]
+
+    def _warning_window(self, hwnd: int) -> bool:
+        for warning_window in self.warning_windows.items():
+            data = warning_window[1]
+            if Window.get_window_info(hwnd, data['window_title'], data['window_text']):
+                print(f"[red]\n{'-' * 90}\n|WARNING WINDOW| {data['message']}\n{'-' * 90}")
+                _button_info = Window.get_window_info(hwnd, data['button_title'], data['button_name'])[0]
+                Window.click_on_button(_button_info)
+                return True
+        return False
 
     def when_opening(self, class_name, windows_text, hwnd: int = None) -> bool:
         match [class_name, windows_text]:
 
             case ['#32770', 'Microsoft Word']:
                 hwnd = Window.get_hwnd('#32770', 'Microsoft Word') if not hwnd else hwnd
-                if Window.get_window_info(hwnd, 'Static', 'Выполнить запуск в безопасном режиме?'):
-                    print(f"[red]\n{'-' * 90}\n|WARNING WINDOW| Start Word in safe mode. Clicked: 'No'\n{'-' * 90}")
-                    Window.click_on_button(Window.get_window_info(hwnd, 'Button', '&Нет')[0])
-                    raise
-                elif Window.get_window_info(hwnd, 'Static', 'Средство расстановки переносов для приложения Word'):
-                    print(f"[red]\n{'-' * 90}\n|WARNING WINDOW| Wraparound tool for Word application\n{'-' * 90}")
-                    Window.click_on_button(Window.get_window_info(hwnd, 'Button', 'ОК')[0])
-                    raise
-                elif Window.get_window_info(hwnd, 'Static',
-                                            'Документ содержит связи с другими файлами. Обновить в документе данные'):
-                    print(
-                        f"[red]\n{'-' * 90}\n|WARNING WINDOW| The document contains links to other files. Clicked: 'No'\n{'-' * 90}")
-                    Window.click_on_button(Window.get_window_info(hwnd, 'Button', 'Н&ет')[0])
-                    raise
-                elif Window.get_window_info(hwnd, 'Static',
-                                            'Этот документ содержит ссылки, которые могут указывать на другие файлы'):
-                    print(
-                        f"[red]\n{'-' * 90}\n|WARNING WINDOW| The document contains links to other files. Clicked: 'No'\n{'-' * 90}")
-                    Window.click_on_button(Window.get_window_info(hwnd, 'Button', 'Н&ет')[0])
+                if self._warning_window(hwnd):
                     raise
                 print(f"[bold red]\n{'-' * 90}\n|ERROR| an error has occurred while opening the file\n{'-' * 90}")
                 Window.close(hwnd)
