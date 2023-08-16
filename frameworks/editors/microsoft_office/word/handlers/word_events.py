@@ -35,6 +35,12 @@ class WordEvents(Events):
                         f"[red]\n{'-' * 90}\n|WARNING WINDOW| The document contains links to other files. Clicked: 'No'\n{'-' * 90}")
                     Window.click_on_button(Window.get_window_info(hwnd, 'Button', 'Н&ет')[0])
                     raise
+                elif Window.get_window_info(hwnd, 'Static',
+                                            'Этот документ содержит ссылки, которые могут указывать на другие файлы'):
+                    print(
+                        f"[red]\n{'-' * 90}\n|WARNING WINDOW| The document contains links to other files. Clicked: 'No'\n{'-' * 90}")
+                    Window.click_on_button(Window.get_window_info(hwnd, 'Button', 'Н&ет')[0])
+                    raise
                 print(f"[bold red]\n{'-' * 90}\n|ERROR| an error has occurred while opening the file\n{'-' * 90}")
                 Window.close(hwnd)
                 return True
