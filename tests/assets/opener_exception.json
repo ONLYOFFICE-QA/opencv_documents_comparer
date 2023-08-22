@@ -53,7 +53,8 @@
       "general_formulas.xlsx",
       "controle de saidas estoque.xlsx",
       "EV Requirements v2.2.3.xlsx",
-      "file_1_ (2).xlsx"
+      "file_1_ (2).xlsx",
+      "Расходный_кассовый_ордер_по_форме_N_КО-2.xlsx"
     ]
   },
   "2": {
@@ -183,6 +184,26 @@
     ],
     "files": [
       "template wps officeExcel.xlsx"
+    ]
+  },
+  "63772": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=63772",
+    "description": "",
+    "directions": [
+      "xls-xlsx"
+    ],
+    "files": [
+      "testIssues631.xlsx"
+    ]
+  },
+  "63770": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=63770",
+    "description": "",
+    "directions": [
+      "sxi-pptx"
+    ],
+    "files": [
+      "open office 1.0 MSF_Lec1.pptx"
     ]
   }
 }
