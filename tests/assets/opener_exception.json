@@ -174,5 +174,15 @@
       "Small_Kids_Vocab_1_120.mht",
       "{E}vermotion - 3D models, textures, tutorials, architecture, 3D graphic, vray, 3ds max.mht"
     ]
+  },
+  "63769": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=63769",
+    "description": "",
+    "directions": [
+      "ett-xlsx"
+    ],
+    "files": [
+      "template wps officeExcel.xlsx"
+    ]
   }
 }
