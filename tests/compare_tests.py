@@ -43,7 +43,27 @@ class CompareTest:
         self.total, self.count = 0, 1
 
     @timer
-    def run(self, converted_file_paths, source_ext, converted_ext):
+    def run_via_win32(self, converted_file_paths: list, source_ext: str, converted_ext: str):
+        power_point = PowerPoint()
+        self.total = len(converted_file_paths)
+        print(f"[bold green]\n{'-' * 90}\n|INFO| Compare on version: {version} is running.\n{'-' * 90}\n")
+        for converted_file in converted_file_paths:
+            source_file = FileUtils.get_paths(
+                self.source_dir,
+                names=[basename(converted_file).replace(f".{converted_ext}", f".{source_ext}")]
+            )[0]
+            print(f"[cyan]\n{'-' * 90}\n({self.count}/{self.total})[/] [green]In comparison test:[/] "
+                  f"{basename(source_file)} [green]and[/] {basename(converted_file)}")
+            cnv_tmp_file = FileUtils.make_tmp_file(converted_file, self.tmp_dir)
+            src_tmp_file = FileUtils.make_tmp_file(source_file, self.tmp_dir)
+            if not power_point.converter(cnv_tmp_file).to_png(self.converted_screen_dir):
+                FileUtils.delete(f'{self.converted_screen_dir}', all_from_folder=True, silence=True)
+                continue
+            power_point.converter(src_tmp_file).to_png(self.source_screen_dir)
+            self.compare_screens(converted_file, source_file)
+
+    @timer
+    def run(self, converted_file_paths: list, source_ext: str, converted_ext: str):
         self.total = len(converted_file_paths)
         print(f"[bold green]\n{'-' * 90}\n|INFO| Compare on version: {version} is running.\n{'-' * 90}\n")
         for converted_file in converted_file_paths:

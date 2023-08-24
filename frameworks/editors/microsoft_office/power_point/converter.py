@@ -28,12 +28,14 @@ class PowerPointConverter:
             print(f"[red]|ERROR| Can't to open presentation {basename(self.file_path)}.\nException: {e}")
             return None
 
-    def to_png(self, output_dir: str = None) -> None:
+    def to_png(self, output_dir: str = None) -> bool:
         if self.presentation:
             res_dir = output_dir if output_dir else self._generate_result_dir()
             FileUtils.create_dir(res_dir, silence=True)
             for i, slide in enumerate(self.presentation.Slides, start=1):
                 slide.Export(join(res_dir, f"slide_{i}.png"), "PNG")
+            return True
+        return False
 
     def _generate_result_dir(self) -> str:
         extension = splitext(self.file_path)[1]

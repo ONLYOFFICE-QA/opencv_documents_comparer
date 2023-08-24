@@ -46,24 +46,27 @@ def make_files(c, telegram=False, direction=None, version=None):
 
 
 @task
-def compare_test(c, direction: str = None, ls=False, telegram=False):
+def compare_test(c, direction: str = None, ls=False, telegram=False, win32=False):
     direction = direction if direction else Prompt.ask('Input formats with -', default=None, show_default=False)
     source_ext, converted_ext = CompareTest().getting_formats(direction)
     if not source_ext or not converted_ext:
         raise print('[bold red]|ERROR| The direction is not correct')
     print("[bold green]|INFO| Starting...")
-    CompareTest().run(
-        FileUtils.get_paths(
+
+    paths = FileUtils.get_paths(
             path=config.converted_docs,
             extension=converted_ext,
             dir_include=f"{config.version}_{source_ext}_",
             names=config.files_array if ls else None,
             exceptions_files=StaticData.ignore_files,
             exceptions_dirs=StaticData.ignore_dirs
-        ),
-        source_ext,
-        converted_ext
-    )
+        )
+
+    if win32:
+        CompareTest().run_via_win32(paths, source_ext,converted_ext)
+    else:
+        CompareTest().run(paths, source_ext,converted_ext)
+
     if telegram:
         Telegram().send_message(f"Comparison on version {config.version} completed")
 
