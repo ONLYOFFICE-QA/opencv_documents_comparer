@@ -56,6 +56,7 @@ class Image:
                 # TODO fix it for odp: return rgb[y:y + h + 1, x:x + w + 1] if source_ext == 'odp' else rgb[y:y + h,
                 #  x:x + w]
                 return rgb[y:y + h, x:x + w]
+        return img
 
     @staticmethod
     def find_difference(img_1: np.ndarray, img_2: np.ndarray) -> float:

@@ -151,8 +151,7 @@ class CompareTest:
         source_img, converted_img = self.image.draw_differences(source_img, converted_img, difference)
         self.image.save_gif(
             join(path, 'gif', f"{splitext(img_name)[0]}_similarity.gif"),
-            [source_img, converted_img],
-            duration=1.0
+            [source_img, converted_img]
         )
 
     @staticmethod

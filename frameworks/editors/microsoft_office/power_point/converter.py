@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from os.path import exists, join, dirname, basename, splitext
+from rich import print
 
 import pywintypes
 
@@ -32,6 +33,7 @@ class PowerPointConverter:
         if self.presentation:
             res_dir = output_dir if output_dir else self._generate_result_dir()
             FileUtils.create_dir(res_dir, silence=True)
+            print(f"[green]|INFO| Conversion presentation {basename(self.file_path)} to png")
             for i, slide in enumerate(self.presentation.Slides, start=1):
                 slide.Export(join(res_dir, f"slide_{i}.png"), "PNG")
             return True
