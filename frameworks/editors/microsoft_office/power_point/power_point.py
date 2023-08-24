@@ -10,6 +10,7 @@ import config
 from frameworks.StaticData import StaticData
 from frameworks.host_control import Window
 from frameworks.image_handler import Image
+from .converter import PowerPointConverter
 
 from ...editor import Editor
 from .handlers import PowerPointEvents, PowerPointMacroses
@@ -75,6 +76,10 @@ class PowerPoint(Editor):
             Image.make_screenshot(join(screen_path, f"page_{page + 1}.png"), coordinate)
             pg.press('pgdn')
             sleep(0.5)
+
+    @staticmethod
+    def converter(file_path: str) -> PowerPointConverter:
+        return PowerPointConverter(file_path)
 
     @staticmethod
     def screen_coordinate(window_coordinate: list) -> tuple:
