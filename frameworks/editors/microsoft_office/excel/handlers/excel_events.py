@@ -13,6 +13,10 @@ import subprocess as sb
 from ....events import Events
 
 
+def handler():
+    ExcelEvents().handler_for_thread()
+
+
 @singleton
 class ExcelEvents(Events):
 
@@ -92,8 +96,8 @@ class ExcelEvents(Events):
                         print(f"[red]{message}"), Telegram().send_message(message)
 
     def when_turn_on_content(self):
-        if self.get_errors():
-            error_processing = Process(target=self.handler_for_thread)
+        if Window.get_title_text(self.window_class_names):
+            error_processing = Process(target=handler)
             error_processing.start()
             sleep(7)
             error_processing.terminate()
