@@ -1,0 +1,25 @@
+name: JSON Lint
+
+on:
+  - pull_request
+jobs:
+  lint:
+    name: JSON Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get install -y jq
+
+      - name: Check JSON files
+        run: |
+          for json_file in $(find . -type f -name "*.json"); do
+            cat "$json_file" | jq . > /dev/null
+            if [ $? -ne 0 ]; then
+              echo "Invalid JSON in $json_file"
+              exit 1
+            fi
+          done
