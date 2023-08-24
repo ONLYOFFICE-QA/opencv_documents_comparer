@@ -57,6 +57,12 @@ class PowerPoint(Editor):
     def open(self, file_path: str) -> None:
         sb.Popen(f"{self.path} -t {file_path}")
 
+    @staticmethod
+    def open_via_win32(path: str) -> bool:
+        if not PowerPointConverter(path).presentation:
+            return False
+        return True
+
     def close(self, hwnd: int) -> bool:
         self._undo_changes()
         Window.close(hwnd)
