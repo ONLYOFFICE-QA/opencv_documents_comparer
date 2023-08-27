@@ -15,8 +15,6 @@ pyautogui = "*"
 rich = "*"
 pywin32 = { version = "*", markers = "sys_platform == 'win32'" }
 invoke = "*"
-pyperclip = "*"
-loguru = "*"
 psutil = "*"
 imageio = "2.20.0"
 pillow = "*"
@@ -26,6 +24,7 @@ pandas = "^2"
 mss = "^9.0.1"
 pytest = "^7.3.1"
 python-xlib = '0.33'
+pydantic = "^2"
 
 
 [build-system]
