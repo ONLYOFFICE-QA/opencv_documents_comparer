@@ -148,5 +148,19 @@
     "files": [
       "XXX & Hadoop.mht"
     ]
+  },
+  "63868": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=63868",
+    "description": "",
+    "os": [],
+    "directions": [],
+    "files": [
+      "Demo-Hayden-Management.doct",
+      "Algebra_Formuly.doct",
+      "XpertdocExcelDataSourceEn.doct",
+      "Tablica.doct",
+      "Microsoft (Demo-Hayden-Management-v1).doct",
+      "Adams S.E. - Molecular Similarity and Xenobiotic Metabolism.doct"
+    ]
   }
 }
