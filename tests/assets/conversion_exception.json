@@ -103,8 +103,10 @@
   },
   "59241": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=59241",
-    "description": "",
-    "os": [],
+    "description": "X2T_MEMORY_LIMIT=\"5GiB\"",
+    "os": [
+      "linux"
+    ],
     "directions": [
       "xlsx-ods",
       "xlsx-ots",
@@ -136,26 +138,6 @@
     "files": [
       "enredobar.doc",
       "ZAHTJEV_NAVABANKA.doc"
-    ]
-  },
-  "63609": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=63609",
-    "description": "",
-    "os": [
-      "linux"
-    ],
-    "directions": [],
-    "files": [
-      "HPCUyAkLJJ8RLCkWuY3hfEzQSfzrg7TWft8Xcbf1IcE_.html"
-    ]
-  },
-  "63750": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=63750",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "s5bQ0L2DrjpJeaqnO3rIf0ygvxD_jTHcD7brdR8BoQc_.pptx"
     ]
   },
   "63749": {
