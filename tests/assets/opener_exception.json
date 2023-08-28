@@ -196,16 +196,6 @@
       "testIssues631.xlsx"
     ]
   },
-  "63770": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=63770",
-    "description": "",
-    "directions": [
-      "sxi-pptx"
-    ],
-    "files": [
-      "open office 1.0 MSF_Lec1.pptx"
-    ]
-  },
   "63773": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=63773",
     "description": "",
