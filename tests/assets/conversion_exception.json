@@ -162,5 +162,16 @@
       "Microsoft (Demo-Hayden-Management-v1).doct",
       "Adams S.E. - Molecular Similarity and Xenobiotic Metabolism.doct"
     ]
+  },
+  "63878": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=63878",
+    "description": "",
+    "os": [],
+    "directions": [],
+    "files": [
+      "Pravila_dlya_avtorov_2016.docx",
+      "Review.docx",
+      "uch_plan_pgta.docx"
+    ]
   }
 }
