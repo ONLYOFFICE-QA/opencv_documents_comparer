@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 import json
 import os
-from os.path import join, getsize, basename, isdir, isfile, expanduser
-
 import requests
+from tempfile import gettempdir
+from os.path import join, getsize, basename, isdir, isfile, expanduser
 from rich import print
 
 from frameworks.decorators import singleton
 from frameworks.host_control import FileUtils
-import tempfile
 
 
 @singleton
@@ -17,7 +16,7 @@ class Telegram:
             self,
             token_path: str = None,
             chat_id_path: str = None,
-            tmp_dir: str = tempfile.gettempdir()
+            tmp_dir: str = gettempdir()
     ):
 
         self._telegram_dir = join(expanduser('~'), '.telegram')

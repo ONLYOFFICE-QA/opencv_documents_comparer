@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 import pyautogui as pg
-
-from frameworks.decorators import singleton
 from rich import print
 
+from frameworks.decorators import singleton
 from frameworks.host_control import Window
+
 from .libre_macroses import LibreMacroses
 from ...events import Events
 

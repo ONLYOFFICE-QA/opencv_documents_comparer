@@ -3,8 +3,9 @@ from os.path import basename
 
 from frameworks.StaticData import StaticData
 from frameworks.decorators import async_processing
-from frameworks.editors.microsoft_office.word.handlers import WordEvents
 from frameworks.host_control import FileUtils, Window, HostInfo
+
+from .handlers import WordEvents
 
 if HostInfo().os == 'windows':
     from win32com.client import Dispatch

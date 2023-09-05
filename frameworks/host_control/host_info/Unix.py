@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import platform
-
-from frameworks.decorators import singleton
 import distro
+
+from ..singleton import singleton
 
 
 @singleton

@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
+
 from frameworks.StaticData import StaticData
 from frameworks.decorators import async_processing
-from frameworks.editors.microsoft_office.excel.handlers import ExcelEvents
 from frameworks.host_control import FileUtils, HostInfo
+
+from .handlers import ExcelEvents
 
 if HostInfo().os == 'windows':
     from win32com.client import Dispatch

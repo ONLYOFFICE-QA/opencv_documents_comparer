@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import pyautogui as pg
 from time import sleep
-import config
 
 
 class LibreMacroses:

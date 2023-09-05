@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 from os.path import basename
-
 from rich import print
 from rich.progress import track
 
 from frameworks.StaticData import StaticData
 from frameworks.decorators import highlighter
 from frameworks.host_control import HostInfo, FileUtils
-from .XmllintReport import XmllintReport
 from frameworks.telegram import Telegram
+
+from .XmllintReport import XmllintReport
 
 
 class XmlLint:

@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
-from os.path import join, dirname, realpath
-
 import pyautogui as pg
+from os.path import join, dirname, realpath
 from rich import print
 from time import sleep
 
 from frameworks.decorators import singleton
-
 from frameworks.host_control import Window, FileUtils
 
 from ....events import Events

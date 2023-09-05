@@ -5,6 +5,7 @@ from os.path import join, exists
 
 from rich import print
 from frameworks.host_control import FileUtils
+
 from .Data import Data
 from .host_config import HostConfig
 from .x2ttester_xml import X2tTesterXml
