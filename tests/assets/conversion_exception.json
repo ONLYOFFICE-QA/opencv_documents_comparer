@@ -173,5 +173,19 @@
       "Review.docx",
       "uch_plan_pgta.docx"
     ]
+  },
+  "63990": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=63990",
+    "description": "",
+    "os": [],
+    "directions": [],
+    "files": [
+      "03_титульник _содержание.doc",
+      "образец.docx",
+      "Microsoft (Demo-Hayden-Management-v2).docx",
+      "Microsoft (Demo-Hayden-Management-v1).docx",
+      "rapcomnat12.docx",
+      "Lippman_rus.docx"
+    ]
   }
 }
