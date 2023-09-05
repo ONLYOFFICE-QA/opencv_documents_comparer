@@ -15,7 +15,7 @@ from requests import get, head
 from rich import print
 from rich.progress import track
 
-from .HostInfo import HostInfo
+from .host_info import HostInfo
 
 
 class FileUtils:
