@@ -54,4 +54,4 @@ class Core:
 
     def _delete_core_dir(self) -> None:
         chdir(self.project_dir)
-        FileUtils.delete(self.core_dir, silence=True)
+        FileUtils.delete(self.core_dir, stdout=False)

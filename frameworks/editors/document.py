@@ -74,4 +74,4 @@ class Document:
     @staticmethod
     @retry(max_attempts=10, interval=1, silence=True)
     def _deleter(file_path: str) -> None:
-        FileUtils.delete(file_path, silence=True)
+        FileUtils.delete(file_path, stdout=False)

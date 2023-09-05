@@ -24,7 +24,7 @@ class Telegram:
         self._telegram_token = self._get_token(token_path)
         self._chat_id = self._get_chat_id(chat_id_path)
         self.tmp_dir = tmp_dir
-        FileUtils.create_dir(self.tmp_dir, silence=True)
+        FileUtils.create_dir(self.tmp_dir, stdout=False)
 
     def send_message(self, message: str, out_msg=False) -> None:
         print(message) if out_msg else ...

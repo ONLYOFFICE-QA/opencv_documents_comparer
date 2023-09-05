@@ -39,12 +39,12 @@ class X2ttesterReport(Report):
     @staticmethod
     def tmp_file(dir_path: str) -> str:
         random_tmp_dir = FileUtils.random_name(dir_path)
-        FileUtils.create_dir(random_tmp_dir, silence=True)
+        FileUtils.create_dir(random_tmp_dir, stdout=False)
         return join(random_tmp_dir, FileUtils.random_name(random_tmp_dir, extension='.csv'))
 
     def path(self, x2t_version: str) -> str:
         dir_path = join(self.reports_dir, VersionHandler(x2t_version).without_build, "conversion", HostInfo().os)
-        FileUtils.create_dir(dir_path, silence=True)
+        FileUtils.create_dir(dir_path, stdout=False)
         return join(dir_path, f"{x2t_version}_{datetime.now().strftime('%H_%M_%S')}.csv")
 
     def merge_reports(self, x2ttester_report: list, x2t_version: str) -> str | None:

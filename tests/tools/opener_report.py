@@ -17,7 +17,7 @@ class OpenerReport:
         self.exceptions = FileUtils.read_json(f"{dirname(realpath(__file__))}/../assets/opener_exception.json")
         self.path = reports_path
         self.errors_path = f"{splitext(self.path)[0]}(errors_only).csv"
-        FileUtils.create_dir(dirname(self.path), silence=True)
+        FileUtils.create_dir(dirname(self.path), stdout=False)
 
     def _write_titles(self):
         self._writer('w', ['File_name', 'Direction', 'Exit_code', 'Bug_info', 'Version', 'File_path'])

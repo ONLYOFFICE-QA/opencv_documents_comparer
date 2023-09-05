@@ -31,7 +31,7 @@ class DocumentInfo:
         self.document.Close(False) if self.document else ...
         self.word_app.Quit()
         FileUtils.run_command(f"taskkill /im {self.word}")
-        FileUtils.delete(self.tmp_file, silence=True)
+        FileUtils.delete(self.tmp_file, stdout=False)
 
     def get(self, file_name: str = None):
         try:

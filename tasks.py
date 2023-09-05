@@ -49,8 +49,10 @@ def make_files(c, telegram=False, direction=None, version=None):
 def compare_test(c, direction: str = None, ls=False, telegram=False):
     direction = direction if direction else Prompt.ask('Input formats with -', default=None, show_default=False)
     source_ext, converted_ext = CompareTest().getting_formats(direction)
+
     if not source_ext or not converted_ext:
         raise print('[bold red]|ERROR| The direction is not correct')
+
     print("[bold green]|INFO| Starting...")
     CompareTest().run(
         FileUtils.get_paths(
@@ -64,6 +66,7 @@ def compare_test(c, direction: str = None, ls=False, telegram=False):
         source_ext,
         converted_ext
     )
+
     if telegram:
         Telegram().send_message(f"Comparison on version {config.version} completed")
 
@@ -71,11 +74,13 @@ def compare_test(c, direction: str = None, ls=False, telegram=False):
 @task
 def open_test(c, direction=None, ls=False, path='', telegram=False, new_test=False, fast_test=False):
     opener = OpenTests(continue_test=False if fast_test or path or new_test or ls else True)
+    source_ext, converted_ext = opener.getting_formats(direction)
+
     if new_test:
         warning = f"[red]{'-' * 90}\nThe results will be removed from the report:\n{opener.report.path}\n{'-' * 90}\n"
         if Prompt.ask(warning, choices=['yes', 'no'], default='no') == 'yes':
             FileUtils.delete(opener.report.path)
-    source_ext, converted_ext = opener.getting_formats(direction)
+
     opener.run(
         FileUtils.get_paths(
             path=path if path else config.converted_docs,

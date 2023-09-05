@@ -3,7 +3,7 @@ from time import sleep
 import pyautogui as pg
 
 from frameworks.StaticData import StaticData
-from frameworks.host_control import KeyActions
+from ....key_actions import KeyActions
 
 
 class WordMacroses:
