@@ -5,11 +5,8 @@ import xml.etree.cElementTree as ET
 
 from rich import print
 
-import config
 from .Data import Data
-from frameworks.editors.onlyoffice.x2ttester.host_config import HostConfig
-
-from frameworks.host_control import FileUtils
+from .host_config import HostConfig
 
 
 class X2tTesterXml:

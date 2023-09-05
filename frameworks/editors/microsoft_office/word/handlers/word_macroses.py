@@ -3,6 +3,7 @@ from time import sleep
 import pyautogui as pg
 
 from frameworks.StaticData import StaticData
+
 from ....key_actions import KeyActions
 
 

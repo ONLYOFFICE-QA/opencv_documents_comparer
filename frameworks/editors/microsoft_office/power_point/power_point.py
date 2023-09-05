@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 import subprocess as sb
+import pyautogui as pg
 from os.path import join, isfile
 from time import sleep
 from rich import print
-
-import pyautogui as pg
 
 import config
 from frameworks.StaticData import StaticData

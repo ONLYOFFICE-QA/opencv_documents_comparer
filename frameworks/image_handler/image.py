@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
-
 import cv2
 import imageio
 import numpy as np
-
-from skimage.metrics import structural_similarity
 import mss
 import mss.tools
+
+from skimage.metrics import structural_similarity
 
 
 class Image:

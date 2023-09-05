@@ -3,15 +3,15 @@ import codecs
 import json
 import string
 import zipfile
+import psutil
+import py7zr
+
 from os import listdir, makedirs, scandir, remove, walk
 from os.path import exists, isfile, isdir, join, getctime, basename, getsize, relpath
 from random import randint, choice
 from shutil import move, copytree, copyfile, rmtree
 from subprocess import Popen, PIPE, getoutput
 from tempfile import gettempdir
-
-import psutil
-import py7zr
 from requests import get, head
 from rich import print
 from rich.progress import track

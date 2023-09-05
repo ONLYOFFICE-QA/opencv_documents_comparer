@@ -5,7 +5,7 @@ from os.path import join
 from rich import print
 
 from frameworks.StaticData import StaticData
-from frameworks.host_control.FileUtils import FileUtils
+from frameworks.host_control import FileUtils
 
 from ..host_config import HostConfig
 

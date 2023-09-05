@@ -3,8 +3,10 @@ from rich import print
 
 from frameworks.StaticData import StaticData
 from frameworks.decorators import async_processing
-from frameworks.editors.microsoft_office.power_point.handlers import PowerPointEvents
 from frameworks.host_control import FileUtils, HostInfo
+
+from .handlers import PowerPointEvents
+
 
 if HostInfo().os == 'windows':
     from win32com.client import Dispatch

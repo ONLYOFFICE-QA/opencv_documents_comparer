@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from platform import system, machine, version
 
-from frameworks.decorators.decorators import singleton
 from .Unix import Unix
+from ..singleton import singleton
 
 
 @singleton

@@ -1,14 +1,12 @@
 # -*- coding: utf-8 -*-
 from os.path import basename, splitext
 from time import sleep
-
 from rich import print
 
 import config
 from frameworks.decorators import retry
 from frameworks.editors.editor import Editor
-from frameworks.host_control import FileUtils
-from frameworks.host_control import HostInfo
+from frameworks.host_control import FileUtils, HostInfo
 
 if HostInfo().os == "windows":
     from frameworks.host_control import Window

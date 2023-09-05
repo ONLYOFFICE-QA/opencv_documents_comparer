@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import csv
+import pandas as pd
+
 from os.path import dirname, isfile
 from csv import reader
-
-import pandas as pd
 from rich import print
 
 from frameworks.host_control import FileUtils

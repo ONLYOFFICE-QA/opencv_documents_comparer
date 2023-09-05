@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
-from rich import print
-
 import win32con
 import win32gui
-
 import time
+
+from rich import print
 from rich.console import Console
 
 console = Console()
