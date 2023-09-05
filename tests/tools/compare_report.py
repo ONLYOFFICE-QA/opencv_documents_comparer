@@ -20,7 +20,7 @@ class CompareReport:
         self.report_dir = reports_dir
         self.path = join(self.report_dir, f"{config.version}_compare_{self.time_pattern}.csv")
         self._set_pandas_options()
-        FileUtils.create_dir(self.report_dir, silence=True)
+        FileUtils.create_dir(self.report_dir, stdout=False)
         Report.write(self.path, 'w', ['File_name', 'Direction', 'Exit_code', 'Bug_info', 'Version'])
 
     def write(self, file_path: str, exit_code: int | str) -> None:

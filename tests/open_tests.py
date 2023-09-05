@@ -25,7 +25,7 @@ class OpenTests:
         self.document_word = Document(Word())
         self.document_excel = Document(Excel())
         self.report = OpenerReport(self._generate_report_path())
-        FileUtils.create_dir(self.tmp_dir, silence=True)
+        FileUtils.create_dir(self.tmp_dir, stdout=False)
         FileUtils.terminate_process(StaticData.terminate_process)
         self.total, self.count = 0, 1
 

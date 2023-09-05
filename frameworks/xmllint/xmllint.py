@@ -6,8 +6,7 @@ from rich.progress import track
 
 from frameworks.StaticData import StaticData
 from frameworks.decorators import highlighter
-from frameworks.host_control import HostInfo
-from frameworks.host_control.FileUtils import FileUtils
+from frameworks.host_control import HostInfo, FileUtils
 from .XmllintReport import XmllintReport
 from frameworks.telegram import Telegram
 
@@ -63,7 +62,7 @@ class XmlLint:
             test_folder = FileUtils.random_name(self.tmp_dir)
             FileUtils.unpacking_zip_file(file_path, test_folder)
             self.check_xml(test_folder, basename(file_path), report_path, conversion_direction)
-            FileUtils.delete(test_folder, silence=True)
+            FileUtils.delete(test_folder, stdout=False)
 
     def run_tests(self, dir_path, conversion_direction=None):
         if self.host.os != 'windows':

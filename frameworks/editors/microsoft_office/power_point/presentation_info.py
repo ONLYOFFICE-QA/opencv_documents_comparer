@@ -28,7 +28,7 @@ class PresentationInfo:
         self.presentation.Close() if self.presentation else ...
         self.app.Quit()
         FileUtils.run_command(f"taskkill /im {self.power_point}")
-        FileUtils.delete(self.tmp_file, silence=True)
+        FileUtils.delete(self.tmp_file, stdout=False)
 
     def slide_count(self) -> int:
         try:

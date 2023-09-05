@@ -5,7 +5,6 @@ from os.path import basename, splitext, join, exists
 from time import sleep
 import numpy as np
 
-from loguru import logger
 from rich import print
 from rich.progress import track
 
@@ -56,7 +55,7 @@ class CompareTest:
             page_amount = converted_document_type.page_amount(converted_file)
             print(f"[bold blue] |INFO| Number of pages: {page_amount}")
             if not self.make_screen(converted_document_type, converted_file, self.converted_screen_dir, page_amount):
-                FileUtils.delete(f'{self.converted_screen_dir}', all_from_folder=True, silence=True)
+                FileUtils.delete(f'{self.converted_screen_dir}', all_from_folder=True, stdout=False)
                 continue
             self.make_screen(self._document_type(source_file), source_file, self.source_screen_dir, page_amount)
             self.compare_screens(converted_file, source_file)
@@ -97,7 +96,7 @@ class CompareTest:
                 else:
                     print(f"{msg} [green] Passed[/]")
             else:
-                logger.error(f'Image {img_name} not found')
+                print(f'Image {img_name} not found')
         self._clean_tmp_dirs()
 
     def find_difference(self, source_file, converted_file, img_name):
@@ -124,9 +123,9 @@ class CompareTest:
         path = join(self.report_dir, 'img_diff', re.sub(r"[\s\n\r.,\-=]+", '', cnv_name)[:35])
         self._create_result_dirs(path)
         if not exists(join(path, cnv_name)):
-            FileUtils.copy(converted_file, join(path, cnv_name), silence=True)
+            FileUtils.copy(converted_file, join(path, cnv_name), stdout=False)
         if not exists(join(path, source_name)):
-            FileUtils.copy(source_file, join(path, source_name), silence=True)
+            FileUtils.copy(source_file, join(path, source_name), stdout=False)
         self.image.save(join(path, 'screen', f"{img_name}_collage.png"), np.hstack([source_img, converted_img]))
         source_img, converted_img = self.image.draw_differences(source_img, converted_img, difference)
         self.image.save_gif(
@@ -137,16 +136,16 @@ class CompareTest:
 
     @staticmethod
     def _create_result_dirs(dir_path: str) -> None:
-        FileUtils.create_dir((join(dir_path, 'gif'), join(dir_path, 'screen')), silence=True)
+        FileUtils.create_dir((join(dir_path, 'gif'), join(dir_path, 'screen')), stdout=False)
 
     def _create_tmp_dirs(self):
-        FileUtils.create_dir((self.source_screen_dir, self.converted_screen_dir), silence=True)
+        FileUtils.create_dir((self.source_screen_dir, self.converted_screen_dir), stdout=False)
 
     def _clean_tmp_dirs(self):
         FileUtils.delete(
             (self.source_screen_dir, self.converted_screen_dir, self.tmp_dir),
             all_from_folder=True,
-            silence=True
+            stdout=False
         )
 
     def _document_type(self, file_path):

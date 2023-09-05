@@ -31,7 +31,7 @@ class X2tTesterConversion:
         self.img_formats = ["png", "jpg", "bmp", "gif"]
         self.data = self._get_x2ttester_data()
         self.x2ttester = X2tTester(self.data)
-        FileUtils.delete(self.tmp_dir, all_from_folder=True, silence=True)
+        FileUtils.delete(self.tmp_dir, all_from_folder=True, stdout=False)
 
 
     def run(self, results_path: bool | str = False, list_xml: str = None) -> str:
@@ -81,11 +81,11 @@ class X2tTesterConversion:
                     name = basename(file_path)
                     if splitext(name)[1].lower().replace('.', '') in self.img_formats:
                         _path_to = join(_path_to, name if len(name) < 200 else f'{name[:100]}.{splitext(name)[1]}')
-                    FileUtils.create_dir(_path_to, silence=True) if not isdir(_path_to) else ...
+                    FileUtils.create_dir(_path_to, stdout=False) if not isdir(_path_to) else ...
                     FileUtils.copy(
                         file_path,
                         join(_path_to, name if len(name) < 200 else f'{name[:150]}.{splitext(name)[1]}'),
-                        silence=True
+                        stdout=False
                     )
 
     def _result_path(self, result_path: str, input_format: str = None) -> str:

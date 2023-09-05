@@ -4,7 +4,7 @@ from time import sleep
 
 from frameworks.StaticData import StaticData
 from frameworks.editors.microsoft_office.excel.handlers import ExcelEvents
-from frameworks.host_control import KeyActions
+from ....key_actions import KeyActions
 
 
 class ExcelMacroses:
