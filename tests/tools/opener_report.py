@@ -26,9 +26,8 @@ class OpenerReport:
         self._write_titles() if not isfile(self.path) else ...
         name, dir_name = basename(file_path), basename(dirname(file_path))
         direction = self._direction(dir_name)
-        self._writer(
-            'a', [name, direction, exit_code, self._bug_info(direction, name), self._version(dir_name), file_path]
-        )
+        bug_info = self._bug_info(direction, name)
+        self._writer('a', [name, direction, exit_code, bug_info, self._version(dir_name), file_path])
 
     def handler(self, tg_msg: bool | str = False) -> None:
         df = Report.read(self.path)
