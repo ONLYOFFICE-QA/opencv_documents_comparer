@@ -176,7 +176,7 @@ class FileUtils:
     @staticmethod
     def delete(path: "str | tuple", all_from_folder: bool = False, stdout: bool = True) -> None:
         for _path in path if isinstance(path, tuple) else [path]:
-            correct_path = _path.rstrip("*") if _path.endswith("*") else _path
+            correct_path = _path.rstrip("*") if isinstance(_path, str) and _path.endswith("*") else _path
             if not exists(correct_path):
                 print(f"[bold red]|DELETE WARNING| Path not exist: {_path}") if stdout else ...
                 continue
@@ -299,7 +299,7 @@ class FileUtils:
                         print(f'[bold red]|Warning| Exception when terminate process {terminate_process}: {e}')
 
     @staticmethod
-    def run_command(command: str) -> "(str, str)":
+    def run_command(command: str) -> "tuple[str, str]":
         popen = Popen(command, stdout=PIPE, stderr=PIPE, shell=True)
         stdout, stderr = popen.communicate()
         popen.wait()

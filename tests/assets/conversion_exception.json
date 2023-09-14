@@ -140,29 +140,6 @@
       "ZAHTJEV_NAVABANKA.doc"
     ]
   },
-  "63749": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=63749",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "XXX & Hadoop.mht"
-    ]
-  },
-  "63868": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=63868",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "Demo-Hayden-Management.doct",
-      "Algebra_Formuly.doct",
-      "XpertdocExcelDataSourceEn.doct",
-      "Tablica.doct",
-      "Microsoft (Demo-Hayden-Management-v1).doct",
-      "Adams S.E. - Molecular Similarity and Xenobiotic Metabolism.doct"
-    ]
-  },
   "63878": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=63878",
     "description": "",
@@ -194,19 +171,6 @@
     "files": [
       "rapcomnat12.docx",
       "Lippman_rus.docx"
-    ]
-  },
-  "64089": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64089",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "2010541138599.doc",
-      "Adams S.E. - Molecular Similarity and Xenobiotic Metabolism.docx",
-      "MSF_Lec3-4.docx",
-      "PaperRules.docx",
-      "Диплом (Саня).docx"
     ]
   }
 }
