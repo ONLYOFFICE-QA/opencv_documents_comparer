@@ -4,13 +4,13 @@ from rich import print
 
 import xml.etree.cElementTree as ET
 from frameworks.StaticData import StaticData
-from frameworks.host_control import FileUtils
+from host_control import File
 
 
 class X2tLibsXML:
     def __init__(self, x2t_dir: str = StaticData.core_dir()):
         self.x2t_dir = x2t_dir
-        self.x2t_lib_config = FileUtils.read_json(join(dirname(realpath(__file__)), 'assets', 'x2t_libs_paths.json'))
+        self.x2t_lib_config = File.read_json(join(dirname(realpath(__file__)), 'assets', 'x2t_libs_paths.json'))
 
     def generate_doc_renderer_config(self):
         root = ET.Element("Settings")

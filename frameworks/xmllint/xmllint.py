@@ -5,7 +5,7 @@ from rich.progress import track
 
 from frameworks.StaticData import StaticData
 from frameworks.decorators import highlighter
-from frameworks.host_control import HostInfo, FileUtils
+from host_control import HostInfo, File, Shell
 from frameworks.telegram import Telegram
 
 from .XmllintReport import XmllintReport
@@ -26,7 +26,7 @@ class XmlLint:
 
     def run_test(self, xml_path):
         try:
-            return FileUtils.output_cmd(f"xmllint --debug {xml_path} | grep 'parser error'")
+            return Shell.get_output(f"xmllint --debug {xml_path} | grep 'parser error'")
         except Exception as e:
             print(f"[bold red]Exception: {e}\nwhen checking via xmllint a file_name: {xml_path}")
             self.xmllint_exceptions.append(f'Exception: {e}, file_name: {xml_path}')
@@ -47,7 +47,7 @@ class XmlLint:
 
     def check_xml(self, dir_path, file_name, report_path, conversion_direction):
         self.full_errors, self.parser_error = [], []
-        for xml in FileUtils.get_paths(dir_path, '.xml'):
+        for xml in File.get_paths(dir_path, '.xml'):
             output = self.run_test(xml)
             self.xml_error_handler(output, dir_path) if output else ...
         if self.full_errors:
@@ -57,12 +57,12 @@ class XmlLint:
             )
 
     def check_ooxml_files(self, dir_path, report_path, conversion_direction):
-        for file_path in track(FileUtils.get_paths(dir_path, self.ooxml_formats), description="Xmllint checking..."):
+        for file_path in track(File.get_paths(dir_path, self.ooxml_formats), description="Xmllint checking..."):
             print(f"[green]File in test:[/] {basename(file_path)}")
-            test_folder = FileUtils.random_name(self.tmp_dir)
-            FileUtils.unpacking_zip_file(file_path, test_folder)
+            test_folder = File.unique_name(self.tmp_dir)
+            File.unpacking_zip(file_path, test_folder)
             self.check_xml(test_folder, basename(file_path), report_path, conversion_direction)
-            FileUtils.delete(test_folder, stdout=False)
+            File.delete(test_folder, stdout=False)
 
     def run_tests(self, dir_path, conversion_direction=None):
         if self.host.os != 'windows':

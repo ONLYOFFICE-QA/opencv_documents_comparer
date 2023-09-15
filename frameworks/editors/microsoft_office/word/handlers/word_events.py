@@ -5,7 +5,7 @@ from rich import print
 from time import sleep
 
 from frameworks.decorators import singleton
-from frameworks.host_control import Window, FileUtils
+from host_control import Window, File
 
 from ....events import Events
 
@@ -14,7 +14,7 @@ from ....events import Events
 class WordEvents(Events):
 
     def __init__(self):
-        self.warning_windows = FileUtils.read_json(join(dirname(realpath(__file__)), 'warning_window.json'))
+        self.warning_windows = File.read_json(join(dirname(realpath(__file__)), 'warning_window.json'))
 
     @property
     def window_class_names(self) -> list:

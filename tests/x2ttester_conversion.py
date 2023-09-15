@@ -9,7 +9,7 @@ from frameworks.StaticData import StaticData
 from frameworks.decorators import timer
 from frameworks.editors import X2tTester, X2tTesterData
 from frameworks.editors.onlyoffice import VersionHandler, X2t
-from frameworks.host_control import FileUtils
+from host_control import File, Dir
 from .tools import X2ttesterReport
 
 
@@ -22,7 +22,7 @@ class X2tTesterConversion:
         self.timestamp = config.timestamp
         self.timeout = config.timeout
         self.input_formats, self.output_formats = self._getting_formats(direction)
-        self.extensions = FileUtils.read_json(f"{dirname(abspath(__file__))}/assets/extension_array.json")
+        self.extensions = File.read_json(f"{dirname(abspath(__file__))}/assets/extension_array.json")
         self.tmp_dir = join(StaticData.tmp_dir, 'cnv')
         self.result_dir = StaticData.result_dir()
         self.x2t_dir = StaticData.core_dir()
@@ -31,7 +31,7 @@ class X2tTesterConversion:
         self.img_formats = ["png", "jpg", "bmp", "gif"]
         self.data = self._get_x2ttester_data()
         self.x2ttester = X2tTester(self.data)
-        FileUtils.delete(self.tmp_dir, all_from_folder=True, stdout=False)
+        Dir.delete(self.tmp_dir, create_dir=True, stdout=False, stderr=False)
 
 
     def run(self, results_path: bool | str = False, list_xml: str = None) -> str:
@@ -43,7 +43,7 @@ class X2tTesterConversion:
         """
         self.x2ttester.conversion(self.input_formats, self.output_formats, listxml_path=list_xml)
         self._handle_results(results_path) if results_path is not False else ...
-        return FileUtils.last_modified_file(dirname(self.data.report_path))
+        return File.last_modified(dirname(self.data.report_path))
 
     @timer
     def from_extension_json(self) -> str | None:
@@ -54,23 +54,23 @@ class X2tTesterConversion:
             print(f"[green]|INFO| Conversion direction:"
                   f" [cyan]{self.input_formats if self.input_formats else 'All'} [red]to [cyan]{self.output_formats}")
             reports.append(self.run(results_path=True))
-            FileUtils.delete(self.tmp_dir, all_from_folder=True)
+            Dir.delete(self.tmp_dir, create_dir=True)
         return self.report.merge_reports(reports, self.x2t_version)
 
     @timer
     def from_files_list(self, files: list) -> str:
         xml = self.x2ttester.xml.create(
             self.x2ttester.xml.files_list(files),
-            FileUtils.random_name(self.x2t_dir, 'xml')
+            File.unique_name(self.x2t_dir, 'xml')
         )
         report = self.run(list_xml=xml)
-        FileUtils.delete(xml)
+        File.delete(xml)
         return report
 
     def _get_paths(self, output_format: str) -> list:
         if output_format in self.img_formats:
-            return FileUtils.get_dir_paths(self.tmp_dir, end_dir=f".{output_format}")
-        return FileUtils.get_paths(self.tmp_dir, extension=output_format)
+            return Dir.get_paths(self.tmp_dir, end_dir=f".{output_format}")
+        return File.get_paths(self.tmp_dir, extension=output_format)
 
     def _handle_results(self, result_path: str = None) -> None:
         for output_formats in self.output_formats.strip().split(' ') if self.output_formats else range(1):
@@ -81,8 +81,8 @@ class X2tTesterConversion:
                     name = basename(file_path)
                     if splitext(name)[1].lower().replace('.', '') in self.img_formats:
                         _path_to = join(_path_to, name if len(name) < 200 else f'{name[:100]}.{splitext(name)[1]}')
-                    FileUtils.create_dir(_path_to, stdout=False) if not isdir(_path_to) else ...
-                    FileUtils.copy(
+                    Dir.create(_path_to, stdout=False)
+                    File.copy(
                         file_path,
                         join(_path_to, name if len(name) < 200 else f'{name[:150]}.{splitext(name)[1]}'),
                         stdout=False

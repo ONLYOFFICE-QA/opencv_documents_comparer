@@ -5,7 +5,7 @@ from rich import print
 
 from frameworks.decorators.decorators import highlighter
 from frameworks.StaticData import StaticData
-from frameworks.host_control import FileUtils, HostInfo
+from host_control import File, HostInfo, Dir
 
 from .x2t_libs_xml import X2tLibsXML
 from .UrlGenerator import UrlGenerator
@@ -25,21 +25,21 @@ class Core:
     @highlighter(color='green')
     def getting(self, force: bool = False) -> None:
         self._delete_core_dir() if force else ...
-        headers = FileUtils.get_headers(self.url)
+        headers = File.get_headers(self.url)
         if not headers or self._check_updated_core(core_data=headers['Last-Modified']):
             return
         self._delete_core_dir()
         self._download()
-        FileUtils.unpacking_7zip(join(self.tmp_dir, "core.7z"), self.core_dir, delete=True)
-        FileUtils.fix_double_folder(self.core_dir)
-        FileUtils.change_access(self.core_dir)
-        FileUtils.file_writer(self.data_file, headers['Last-Modified'], mode='w')
+        File.unpacking_7z(join(self.tmp_dir, "core.7z"), self.core_dir, delete_archive=True)
+        File.fix_double_dir(self.core_dir)
+        File.change_access(self.core_dir)
+        File.write(self.data_file, headers['Last-Modified'], mode='w')
         self.xml.create_doc_renderer_config()
 
     def _read_core_data(self) -> str | None:
         if not isfile(self.data_file):
             return None
-        return FileUtils.file_reader(self.data_file, mode='r')
+        return File.read(self.data_file, mode='r')
 
     def _check_updated_core(self, core_data: str = None) -> bool:
         existing_core_data = self._read_core_data()
@@ -50,8 +50,8 @@ class Core:
 
     def _download(self) -> None:
         print(f"[green]|INFO| Downloading core\nVersion: {self.version}\nOS: {self.os}\nURL: {self.url}")
-        FileUtils.download_file(self.url, self.tmp_dir, "core.7z")
+        File.download(self.url, self.tmp_dir, "core.7z")
 
     def _delete_core_dir(self) -> None:
         chdir(self.project_dir)
-        FileUtils.delete(self.core_dir, stdout=False)
+        File.delete(self.core_dir, stdout=False)

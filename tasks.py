@@ -6,7 +6,7 @@ from rich.prompt import Prompt
 import config
 from frameworks.StaticData import StaticData
 
-from frameworks.host_control import FileUtils, HostInfo
+from host_control import HostInfo, File
 from frameworks.editors.onlyoffice import Core, X2t
 from frameworks.telegram import Telegram
 from tests import X2tTesterConversion
@@ -55,7 +55,7 @@ def compare_test(c, direction: str = None, ls=False, telegram=False):
 
     print("[bold green]|INFO| Starting...")
     CompareTest().run(
-        FileUtils.get_paths(
+        File.get_paths(
             path=config.converted_docs,
             extension=converted_ext,
             dir_include=f"{config.version}_{source_ext}_",
@@ -79,10 +79,10 @@ def open_test(c, direction=None, ls=False, path='', telegram=False, new_test=Fal
     if new_test:
         warning = f"[red]{'-' * 90}\nThe results will be removed from the report:\n{opener.report.path}\n{'-' * 90}\n"
         if Prompt.ask(warning, choices=['yes', 'no'], default='no') == 'yes':
-            FileUtils.delete(opener.report.path)
+            File.delete(opener.report.path)
 
     opener.run(
-        FileUtils.get_paths(
+        File.get_paths(
             path=path if path else config.converted_docs,
             extension=converted_ext if converted_ext else None,
             dir_include=f"{config.version}_{source_ext}_" if source_ext else config.version if not path else None,

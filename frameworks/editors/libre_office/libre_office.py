@@ -3,7 +3,7 @@ import subprocess as sb
 from os.path import join, isfile
 from time import sleep
 import pyautogui as pg
-from frameworks.host_control import Window
+from host_control import Window
 
 import config
 from frameworks.StaticData import StaticData

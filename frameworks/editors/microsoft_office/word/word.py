@@ -7,7 +7,7 @@ from rich import print
 
 import config as config
 from frameworks.StaticData import StaticData
-from frameworks.host_control import Window
+from host_control import Window
 from frameworks.image_handler import Image
 
 from .document_info import DocumentInfo

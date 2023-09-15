@@ -10,7 +10,7 @@ from frameworks.StaticData import StaticData
 from frameworks.decorators import singleton, timer
 from frameworks.editors import Document, PowerPoint, LibreOffice, Word, Excel
 from frameworks.editors.onlyoffice import VersionHandler
-from frameworks.host_control import FileUtils, Window
+from host_control import File, Dir, Window, Process
 from config import version
 from .tools import OpenerReport
 
@@ -25,8 +25,8 @@ class OpenTests:
         self.document_word = Document(Word())
         self.document_excel = Document(Excel())
         self.report = OpenerReport(self._generate_report_path())
-        FileUtils.create_dir(self.tmp_dir, stdout=False)
-        FileUtils.terminate_process(StaticData.terminate_process)
+        Dir.create(self.tmp_dir, stdout=False)
+        Process.terminate(StaticData.terminate_process)
         self.total, self.count = 0, 1
 
     @timer
@@ -51,7 +51,7 @@ class OpenTests:
     def opening_test(self, document_type: Document, file_path: str) -> bool | None:
         print(f'[cyan]({self.count}/{self.total})[/] [green]In opening test:[/] '
               f'[cyan]{basename(dirname(file_path))}[/][red]/[/]{basename(file_path)}')
-        tmp_file = FileUtils.make_tmp_file(file_path, self.tmp_dir)
+        tmp_file = File.make_tmp(file_path, self.tmp_dir)
         hwnd = document_type.open(tmp_file)
         if not isinstance(hwnd, int):
             self.report.write(file_path, f"{hwnd}")

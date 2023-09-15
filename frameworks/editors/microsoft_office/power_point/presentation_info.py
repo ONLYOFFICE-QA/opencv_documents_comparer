@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
+from host_control.utils import Shell
 from rich import print
 
 from frameworks.StaticData import StaticData
 from frameworks.decorators import async_processing
-from frameworks.host_control import FileUtils, HostInfo
+from host_control import HostInfo, File
 
 from .handlers import PowerPointEvents
 
@@ -21,7 +22,7 @@ class PresentationInfo:
 
     def __init__(self, file_path):
         self.tmp_dir = StaticData.tmp_dir_in_test
-        self.tmp_file = FileUtils.make_tmp_file(file_path, self.tmp_dir)
+        self.tmp_file = File.make_tmp(file_path, self.tmp_dir)
         self.power_point = StaticData.powerpoint
         self.app = Dispatch("PowerPoint.application")
         self.presentation = self.__open(self.tmp_file)
@@ -29,8 +30,8 @@ class PresentationInfo:
     def __del__(self):
         self.presentation.Close() if self.presentation else ...
         self.app.Quit()
-        FileUtils.run_command(f"taskkill /im {self.power_point}")
-        FileUtils.delete(self.tmp_file, stdout=False)
+        Shell.call(f"taskkill /im {self.power_point}")
+        File.delete(self.tmp_file, stdout=False)
 
     def slide_count(self) -> int:
         try:
