@@ -4,7 +4,7 @@ from rich import print
 from re import sub, search
 import pandas as pd
 
-from host_control import File, Dir
+from host_control import FileUtils
 from frameworks.report import Report
 from frameworks.telegram import Telegram
 
@@ -14,10 +14,10 @@ class OpenerReport:
         pd.set_option('display.max_rows', None)
         pd.set_option('display.max_columns', None)
         pd.set_option("expand_frame_repr", False)
-        self.exceptions = File.read_json(f"{dirname(realpath(__file__))}/../assets/opener_exception.json")
+        self.exceptions = FileUtils.read_json(f"{dirname(realpath(__file__))}/../assets/opener_exception.json")
         self.path = reports_path
         self.errors_path = f"{splitext(self.path)[0]}(errors_only).csv"
-        Dir.create(dirname(self.path), stdout=False)
+        FileUtils.create_dir(dirname(self.path), stdout=False)
 
     def _write_titles(self):
         self._writer('w', ['File_name', 'Direction', 'Exit_code', 'Bug_info', 'Version', 'File_path'])

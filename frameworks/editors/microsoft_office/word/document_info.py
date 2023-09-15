@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from os.path import basename
+
 from frameworks.StaticData import StaticData
 from frameworks.decorators import async_processing
-from host_control import File, Window, HostInfo, Shell
+from host_control import FileUtils, Window, HostInfo
 
 from .handlers import WordEvents
 
@@ -21,7 +22,7 @@ class DocumentInfo:
     def __init__(self, file_path):
         self.tmp_dir = StaticData.tmp_dir_in_test
         self.word = StaticData.word
-        self.tmp_file = File.make_tmp(file_path, self.tmp_dir)
+        self.tmp_file = FileUtils.make_tmp_file(file_path, self.tmp_dir)
         self.document_name = basename(file_path)
         self.word_app = Dispatch('Word.Application')
         self.word_app.Visible = False
@@ -30,10 +31,10 @@ class DocumentInfo:
     def __del__(self):
         self.document.Close(False) if self.document else ...
         self.word_app.Quit()
-        Shell.call(f"taskkill /im {self.word}")
-        File.delete(self.tmp_file, stdout=False)
+        FileUtils.run_command(f"taskkill /im {self.word}")
+        FileUtils.delete(self.tmp_file, stdout=False)
 
-    def get(self):
+    def get(self, file_name: str = None):
         try:
             return {
                 'page_amount': f'{self.document.ComputeStatistics(2)}',

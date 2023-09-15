@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
-import config
-
 from os.path import basename, splitext
 from time import sleep
 from rich import print
+
+import config
 from frameworks.decorators import retry
 from frameworks.editors.editor import Editor
-from host_control import File, HostInfo, Process
-
+from host_control import FileUtils, HostInfo
 
 if HostInfo().os == "windows":
     from host_control import Window
@@ -51,7 +50,7 @@ class Document:
             if not self.close_all_window():
                 return True
             print(f"[green] |INFO| Try to close windows: {i + 1}"), sleep(0.2)
-        Process.terminate(self.editor.process_names)
+        FileUtils.terminate_process(self.editor.process_names)
         return False
 
     def make_screenshots(self, hwnd: int, screen_path: str, page_amount: int | dict) -> None:
@@ -67,10 +66,10 @@ class Document:
             return True
         except Exception as e:
             print(f"[bold red]|ERROR| Can't delete document. Exception: {e}")
-            Process.terminate(self.editor.process_names)
+            FileUtils.terminate_process(self.editor.process_names)
             return False
 
     @staticmethod
     @retry(max_attempts=10, interval=1, silence=True)
     def _deleter(file_path: str) -> None:
-        File.delete(file_path, stdout=False)
+        FileUtils.delete(file_path, stdout=False)

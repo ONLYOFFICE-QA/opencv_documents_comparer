@@ -6,7 +6,7 @@ from os.path import dirname, isfile
 from csv import reader
 from rich import print
 
-from host_control import File, Dir
+from host_control import FileUtils
 from frameworks.telegram import Telegram
 
 
@@ -25,7 +25,7 @@ class Report:
 
     @staticmethod
     def write(file_path: str, mode: str, message: list, delimiter='\t', encoding='utf-8') -> None:
-        Dir.create(dirname(file_path), stdout=False)
+        FileUtils.create_dir(dirname(file_path), stdout=False)
         with open(file_path, mode, newline='', encoding=encoding) as csv_file:
             writer = csv.writer(csv_file, delimiter=delimiter)
             writer.writerow(message)

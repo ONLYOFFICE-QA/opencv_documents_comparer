@@ -4,7 +4,7 @@ from os import chdir
 from os.path import join, exists
 
 from rich import print
-from host_control import File
+from host_control import FileUtils
 
 from .Data import Data
 from .host_config import HostConfig
@@ -24,7 +24,7 @@ class X2tTester:
         chdir(self.x2ttester_dir)
         tmp_parameters_xml = self.xml.create(
             self.xml.parameters(input_format, output_format, listxml_path),
-            File.unique_name(self.x2ttester_dir, '.xml')
+            FileUtils.random_name(self.x2ttester_dir, '.xml')
         )
         sb.call(f"{self.x2ttester_path} {tmp_parameters_xml}", shell=True)
-        File.delete(tmp_parameters_xml, stdout=False)
+        FileUtils.delete(tmp_parameters_xml, stdout=False)

@@ -1,26 +1,26 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
 from os.path import join, basename, dirname, realpath
-
-from host_control import Dir, File
 from rich import print
 from re import sub, search
 import pandas as pd
 
 import config
 from frameworks.decorators import singleton
+from host_control import FileUtils
 from frameworks.report import Report
+from frameworks.StaticData import StaticData
 
 
 @singleton
 class CompareReport:
     def __init__(self, reports_dir: str):
-        self.exceptions = File.read_json(f"{dirname(realpath(__file__))}/../assets/opener_exception.json")
+        self.exceptions = FileUtils.read_json(f"{dirname(realpath(__file__))}/../assets/opener_exception.json")
         self.time_pattern = f"{datetime.now().strftime('%H_%M_%S')}"
         self.report_dir = reports_dir
         self.path = join(self.report_dir, f"{config.version}_compare_{self.time_pattern}.csv")
         self._set_pandas_options()
-        Dir.create(self.report_dir, stdout=False)
+        FileUtils.create_dir(self.report_dir, stdout=False)
         Report.write(self.path, 'w', ['File_name', 'Direction', 'Exit_code', 'Bug_info', 'Version'])
 
     def write(self, file_path: str, exit_code: int | str) -> None:

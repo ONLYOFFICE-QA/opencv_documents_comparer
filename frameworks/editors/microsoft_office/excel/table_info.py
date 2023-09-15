@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
+
 from frameworks.StaticData import StaticData
 from frameworks.decorators import async_processing
-from host_control import File, HostInfo, Shell, Dir
+from host_control import FileUtils, HostInfo
 
 from .handlers import ExcelEvents
 
@@ -18,7 +19,7 @@ class TableInfo:
     def __init__(self, file_path):
         self.table_info = {}
         self.tmp_dir = StaticData.tmp_dir_in_test
-        self.tmp_file = File.make_tmp(file_path, self.tmp_dir)
+        self.tmp_file = FileUtils.make_tmp_file(file_path, self.tmp_dir)
         self.excel = StaticData.excel
         self.app = Dispatch("Excel.Application")
         self.app.Visible = False
@@ -27,8 +28,8 @@ class TableInfo:
     def __del__(self):
         self.workbook.Close(False)
         self.app.Quit()
-        Shell.call(f"taskkill /t /im {self.excel}")
-        Dir.delete(self.tmp_file, create_dir=True, stdout=False, stderr=False)
+        FileUtils.run_command(f"taskkill /t /im {self.excel}")
+        FileUtils.delete(self.tmp_file, stdout=False)
 
     def get(self):
         self.table_info = {'sheets_count': f"{self.workbook.Sheets.Count}"}
