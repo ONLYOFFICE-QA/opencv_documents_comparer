@@ -4,6 +4,7 @@ from os import listdir
 from os.path import basename, splitext, join, exists
 from time import sleep
 import numpy as np
+from host_control.utils import Process, Dir
 
 from rich import print
 from rich.progress import track
@@ -12,7 +13,7 @@ import config
 from frameworks.StaticData import StaticData
 from frameworks.editors import Document, PowerPoint, LibreOffice, Word, Excel
 from frameworks.editors.onlyoffice import VersionHandler
-from host_control import FileUtils
+from host_control import File
 from frameworks.image_handler import Image
 from config import version
 from frameworks.decorators import singleton, timer
@@ -38,7 +39,7 @@ class CompareTest:
         self.coefficient = 98
         self._clean_tmp_dirs()
         self._create_tmp_dirs()
-        FileUtils.terminate_process(StaticData.terminate_process)
+        Process.terminate(StaticData.terminate_process)
         self.total, self.count = 0, 1
 
     @timer
@@ -46,7 +47,7 @@ class CompareTest:
         self.total = len(converted_file_paths)
         print(f"[bold green]\n{'-' * 90}\n|INFO| Compare on version: {version} is running.\n{'-' * 90}\n")
         for converted_file in converted_file_paths:
-            source_file = FileUtils.get_paths(
+            source_file = File.get_paths(
                 self.source_dir, names=[basename(converted_file).replace(f".{converted_ext}", f".{source_ext}")]
             )[0]
             print(f"[cyan]\n{'-' * 90}\n({self.count}/{self.total})[/] [green]In comparison test:[/] "
@@ -55,14 +56,14 @@ class CompareTest:
             page_amount = converted_document_type.page_amount(converted_file)
             print(f"[bold blue] |INFO| Number of pages: {page_amount}")
             if not self.make_screen(converted_document_type, converted_file, self.converted_screen_dir, page_amount):
-                FileUtils.delete(f'{self.converted_screen_dir}', all_from_folder=True, stdout=False)
+                File.delete(f'{self.converted_screen_dir}', all_from_folder=True, stdout=False)
                 continue
             self.make_screen(self._document_type(source_file), source_file, self.source_screen_dir, page_amount)
             self.compare_screens(converted_file, source_file)
 
     def make_screen(self, document_type: Document, path: str, screen_path: str, page_num: int | dict) -> bool | None:
         print(f'[bold green] |INFO| Getting Screenshots from: [cyan]{basename(path)}')
-        tmp_file = FileUtils.make_tmp_file(path, self.tmp_dir)
+        tmp_file = File.make_tmp(path, self.tmp_dir)
         hwnd = document_type.open(tmp_file)
         if not isinstance(hwnd, int):
             self.opener_report.write(path, f"{hwnd}")
@@ -123,9 +124,9 @@ class CompareTest:
         path = join(self.report_dir, 'img_diff', re.sub(r"[\s\n\r.,\-=]+", '', cnv_name)[:35])
         self._create_result_dirs(path)
         if not exists(join(path, cnv_name)):
-            FileUtils.copy(converted_file, join(path, cnv_name), stdout=False)
+            File.copy(converted_file, join(path, cnv_name), stdout=False)
         if not exists(join(path, source_name)):
-            FileUtils.copy(source_file, join(path, source_name), stdout=False)
+            File.copy(source_file, join(path, source_name), stdout=False)
         self.image.save(join(path, 'screen', f"{img_name}_collage.png"), np.hstack([source_img, converted_img]))
         source_img, converted_img = self.image.draw_differences(source_img, converted_img, difference)
         self.image.save_gif(
@@ -136,15 +137,15 @@ class CompareTest:
 
     @staticmethod
     def _create_result_dirs(dir_path: str) -> None:
-        FileUtils.create_dir((join(dir_path, 'gif'), join(dir_path, 'screen')), stdout=False)
+        Dir.create((join(dir_path, 'gif'), join(dir_path, 'screen')), stdout=False)
 
     def _create_tmp_dirs(self):
-        FileUtils.create_dir((self.source_screen_dir, self.converted_screen_dir), stdout=False)
+        Dir.create((self.source_screen_dir, self.converted_screen_dir), stdout=False)
 
     def _clean_tmp_dirs(self):
-        FileUtils.delete(
+        Dir.delete(
             (self.source_screen_dir, self.converted_screen_dir, self.tmp_dir),
-            all_from_folder=True,
+            create_dir=True,
             stdout=False
         )
 
