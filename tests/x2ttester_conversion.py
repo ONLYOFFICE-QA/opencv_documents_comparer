@@ -16,11 +16,6 @@ from .tools import X2ttesterReport
 class X2tTesterConversion:
     def __init__(self, direction: str | None = None, version: str = None, trough_conversion: bool = False):
         self.trough_conversion = trough_conversion
-        self.cores = config.cores
-        self.errors_only = config.errors_only
-        self.delete = config.delete
-        self.timestamp = config.timestamp
-        self.timeout = config.timeout
         self.input_formats, self.output_formats = self._getting_formats(direction)
         self.extensions = File.read_json(f"{dirname(abspath(__file__))}/assets/extension_array.json")
         self.tmp_dir = join(StaticData.tmp_dir, 'cnv')
@@ -104,15 +99,15 @@ class X2tTesterConversion:
 
     def _get_x2ttester_data(self):
         return X2tTesterData(
-            cores=self.cores,
+            cores=config.cores,
             input_dir=StaticData.documents_dir(),
             output_dir=self.tmp_dir,
             x2ttester_dir=self.x2t_dir,
             fonts_dir=StaticData.fonts_dir(),
-            report_path=self.report.tmp_file(StaticData.tmp_dir),
-            timeout=self.timeout,
-            timestamp=self.timestamp,
-            delete=self.delete,
-            errors_only=self.errors_only,
+            report_path=self.report.tmp_file(),
+            timeout=config.timeout,
+            timestamp=config.timestamp,
+            delete=config.delete,
+            errors_only=config.errors_only,
             trough_conversion=self.trough_conversion
         )
