@@ -40,6 +40,11 @@ class X2ttesterReport(Report):
         Dir.create(dir_path, stdout=False)
         return join(dir_path, f"{x2t_version}_{datetime.now().strftime('%H_%M_%S')}.csv")
 
+    def tmp_file(self):
+        tmp_report = File.unique_name(File.unique_name(self.tmp_dir), 'csv')
+        Dir.create(dirname(tmp_report))
+        return tmp_report
+
     def merge_reports(self, x2ttester_report: list, x2t_version: str) -> str | None:
         return self.merge(list(filter(lambda x: x is not None, x2ttester_report)), self.path(x2t_version))
 

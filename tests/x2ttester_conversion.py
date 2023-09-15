@@ -104,7 +104,7 @@ class X2tTesterConversion:
             output_dir=self.tmp_dir,
             x2ttester_dir=self.x2t_dir,
             fonts_dir=StaticData.fonts_dir(),
-            report_path=self.report.path(self.x2t_version),
+            report_path=self.report.tmp_file(),
             timeout=config.timeout,
             timestamp=config.timestamp,
             delete=config.delete,
