@@ -7,7 +7,7 @@ from os.path import join, getsize, basename, isdir, isfile, expanduser
 from rich import print
 
 from frameworks.decorators import singleton
-from host_control import FileUtils
+from host_control import File, Dir
 
 
 @singleton
@@ -18,19 +18,18 @@ class Telegram:
             chat_id_path: str = None,
             tmp_dir: str = gettempdir()
     ):
-
         self._telegram_dir = join(expanduser('~'), '.telegram')
         self._telegram_token = self._get_token(token_path)
         self._chat_id = self._get_chat_id(chat_id_path)
         self.tmp_dir = tmp_dir
-        FileUtils.create_dir(self.tmp_dir, stdout=False)
+        Dir.create(self.tmp_dir, stdout=False)
 
     def send_message(self, message: str, out_msg=False) -> None:
         print(message) if out_msg else ...
         if len(message) > 4096:
             document = self._make_massage_doc(message=message)
             self.send_document(document, caption=self._prepare_caption(message))
-            return FileUtils.delete(document)
+            return File.delete(document)
         self._request(
             f"https://api.telegram.org/bot{self._telegram_token}/sendMessage",
             data={"chat_id": self._chat_id, "text": message, "parse_mode": "Markdown"},
@@ -84,7 +83,7 @@ class Telegram:
 
     def _prepare_documents(self, doc_path: str) -> str:
         if getsize(doc_path) >= 50_000_000 or isdir(doc_path):
-            FileUtils.compress_files(doc_path, join(self.tmp_dir, f'{basename(doc_path)}.zip'))
+            File.compress(doc_path, join(self.tmp_dir, f'{basename(doc_path)}.zip'))
             return join(self.tmp_dir, f'{basename(doc_path)}.zip')
         return doc_path
 
@@ -97,7 +96,7 @@ class Telegram:
     def _get_token(self, token_path: str) -> str | None:
         token_file = token_path if token_path else join(self._telegram_dir, 'token')
         if token_file and isfile(token_file):
-            return FileUtils.file_reader(token_file).strip()
+            return File.read(token_file).strip()
         elif os.environ.get('TELEGRAM_TOKEN', False):
             return os.environ.get('TELEGRAM_TOKEN')
         print(f"[cyan]|INFO| Telegram token not exists.")
@@ -105,7 +104,7 @@ class Telegram:
     def _get_chat_id(self, chat_id_path: str) -> str | None:
         chat_id_file = chat_id_path if chat_id_path else join(self._telegram_dir, 'chat')
         if isfile(chat_id_file):
-            return FileUtils.file_reader(chat_id_file).strip()
+            return File.read(chat_id_file).strip()
         elif os.environ.get('CHANNEL_ID', False):
             return os.environ.get('CHANNEL_ID')
         print(f"[cyan]|INFO| Telegram chat id not exists.")
