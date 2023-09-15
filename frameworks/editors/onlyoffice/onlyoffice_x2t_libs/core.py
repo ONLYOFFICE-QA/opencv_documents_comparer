@@ -31,7 +31,7 @@ class Core:
         self._delete_core_dir()
         self._download()
         File.unpacking_7z(join(self.tmp_dir, "core.7z"), self.core_dir, delete_archive=True)
-        Dir.fix_double_folder(self.core_dir)
+        File.fix_double_dir(self.core_dir)
         File.change_access(self.core_dir)
         File.write(self.data_file, headers['Last-Modified'], mode='w')
         self.xml.create_doc_renderer_config()
