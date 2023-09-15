@@ -6,10 +6,10 @@ from rich import print
 import config
 from frameworks.decorators import retry
 from frameworks.editors.editor import Editor
-from frameworks.host_control import FileUtils, HostInfo
+from host_control import FileUtils, HostInfo
 
 if HostInfo().os == "windows":
-    from frameworks.host_control import Window
+    from host_control import Window
 
 
 class Document:

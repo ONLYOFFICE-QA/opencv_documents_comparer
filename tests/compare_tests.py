@@ -12,7 +12,7 @@ import config
 from frameworks.StaticData import StaticData
 from frameworks.editors import Document, PowerPoint, LibreOffice, Word, Excel
 from frameworks.editors.onlyoffice import VersionHandler
-from frameworks.host_control import FileUtils
+from host_control import FileUtils
 from frameworks.image_handler import Image
 from config import version
 from frameworks.decorators import singleton, timer

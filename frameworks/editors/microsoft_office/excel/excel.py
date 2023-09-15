@@ -8,7 +8,7 @@ import pyautogui as pg
 
 import config as config
 from frameworks.StaticData import StaticData
-from frameworks.host_control import Window
+from host_control import Window
 from frameworks.image_handler import Image
 
 from .handlers import ExcelMacroses, ExcelEvents

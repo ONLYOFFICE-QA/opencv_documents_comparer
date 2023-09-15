@@ -3,7 +3,7 @@ from os.path import basename
 
 from frameworks.StaticData import StaticData
 from frameworks.decorators import async_processing
-from frameworks.host_control import FileUtils, Window, HostInfo
+from host_control import FileUtils, Window, HostInfo
 
 from .handlers import WordEvents
 

@@ -4,7 +4,7 @@ from rich import print
 from re import sub, search
 import pandas as pd
 
-from frameworks.host_control import FileUtils
+from host_control import FileUtils
 from frameworks.report import Report
 from frameworks.telegram import Telegram
 

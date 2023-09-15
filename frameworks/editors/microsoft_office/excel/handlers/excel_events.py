@@ -5,7 +5,7 @@ from time import sleep
 from rich import print
 
 from frameworks.decorators import singleton
-from frameworks.host_control import Window
+from host_control import Window
 from frameworks.telegram import Telegram
 from frameworks.StaticData import StaticData
 import subprocess as sb

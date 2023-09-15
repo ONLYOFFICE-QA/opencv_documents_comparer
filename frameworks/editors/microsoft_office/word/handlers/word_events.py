@@ -5,7 +5,7 @@ from rich import print
 from time import sleep
 
 from frameworks.decorators import singleton
-from frameworks.host_control import Window, FileUtils
+from host_control import Window, FileUtils
 
 from ....events import Events
 

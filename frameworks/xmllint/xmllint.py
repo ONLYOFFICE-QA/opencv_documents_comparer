@@ -5,7 +5,7 @@ from rich.progress import track
 
 from frameworks.StaticData import StaticData
 from frameworks.decorators import highlighter
-from frameworks.host_control import HostInfo, FileUtils
+from host_control import HostInfo, FileUtils
 from frameworks.telegram import Telegram
 
 from .XmllintReport import XmllintReport

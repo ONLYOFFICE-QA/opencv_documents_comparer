@@ -4,7 +4,7 @@ from rich import print
 
 import xml.etree.cElementTree as ET
 from frameworks.StaticData import StaticData
-from frameworks.host_control import FileUtils
+from host_control import FileUtils
 
 
 class X2tLibsXML:

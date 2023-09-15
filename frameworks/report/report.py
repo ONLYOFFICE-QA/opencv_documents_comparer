@@ -6,7 +6,7 @@ from os.path import dirname, isfile
 from csv import reader
 from rich import print
 
-from frameworks.host_control import FileUtils
+from host_control import FileUtils
 from frameworks.telegram import Telegram
 
 

@@ -5,7 +5,7 @@ from rich import print
 
 from frameworks.StaticData import StaticData
 from frameworks.decorators import singleton
-from frameworks.host_control import FileUtils, HostInfo
+from host_control import FileUtils, HostInfo
 from frameworks.editors.onlyoffice.handlers.VersionHandler import VersionHandler
 from frameworks.report import Report
 import config

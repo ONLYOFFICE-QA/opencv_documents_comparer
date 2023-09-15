@@ -6,7 +6,7 @@ from rich.prompt import Prompt
 import config
 from frameworks.StaticData import StaticData
 
-from frameworks.host_control import FileUtils, HostInfo
+from host_control import FileUtils, HostInfo
 from frameworks.editors.onlyoffice import Core, X2t
 from frameworks.telegram import Telegram
 from tests import X2tTesterConversion

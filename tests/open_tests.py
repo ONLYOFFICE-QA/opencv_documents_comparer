@@ -10,7 +10,7 @@ from frameworks.StaticData import StaticData
 from frameworks.decorators import singleton, timer
 from frameworks.editors import Document, PowerPoint, LibreOffice, Word, Excel
 from frameworks.editors.onlyoffice import VersionHandler
-from frameworks.host_control import FileUtils, Window
+from host_control import FileUtils, Window
 from config import version
 from .tools import OpenerReport
 

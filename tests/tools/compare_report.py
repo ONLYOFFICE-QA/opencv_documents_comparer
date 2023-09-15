@@ -7,7 +7,7 @@ import pandas as pd
 
 import config
 from frameworks.decorators import singleton
-from frameworks.host_control import FileUtils
+from host_control import FileUtils
 from frameworks.report import Report
 from frameworks.StaticData import StaticData
 

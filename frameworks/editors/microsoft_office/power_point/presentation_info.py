@@ -3,7 +3,7 @@ from rich import print
 
 from frameworks.StaticData import StaticData
 from frameworks.decorators import async_processing
-from frameworks.host_control import FileUtils, HostInfo
+from host_control import FileUtils, HostInfo
 
 from .handlers import PowerPointEvents
 
