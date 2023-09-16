@@ -241,5 +241,16 @@
       "freym.docx",
       "paragraph.docx"
     ]
+  },
+  "64197": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64197",
+    "description": "",
+    "directions": [
+      "fb2-docx"
+    ],
+    "files": [
+      "Питер Друкер - Практика Менеджмента.docx",
+      "Шейн Джонс - Остаемся зимовать.docx"
+    ]
   }
 }
