@@ -252,5 +252,35 @@
       "Питер Друкер - Практика Менеджмента.docx",
       "Шейн Джонс - Остаемся зимовать.docx"
     ]
+  },
+  "64201": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64201",
+    "description": "",
+    "directions": [
+      "epub-docx"
+    ],
+    "files": [
+      "pg18412-images.docx",
+      "pg28127.docx",
+      "pg28233-images.docx",
+      "pg28233.docx",
+      "pg28354.docx",
+      "pg28967.docx",
+      "pg31894-images.docx",
+      "pg31894.docx"
+    ]
+  },
+  "64200": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64200",
+    "description": "",
+    "directions": [
+      "xps-docx"
+    ],
+    "files": [
+      "WindowsMediaPhoto.docx",
+      "WPF_WMPhotoImage_CMYKText.docx",
+      "WPF_WMPhotoImage_RgbAlphaText.docx",
+      "WPF_WMPhotoImage_RGBText.docx"
+    ]
   }
 }
