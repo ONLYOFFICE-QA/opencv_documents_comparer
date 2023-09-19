@@ -1685,6 +1685,11 @@ files = [
     {file = "pyzstd-0.15.9-cp39-cp39-musllinux_1_1_x86_64.whl", hash = "sha256:3351ad2feb51dcbb936defd47cab00d6f114214f224636503ed08298f30164c9"},
     {file = "pyzstd-0.15.9-cp39-cp39-win32.whl", hash = "sha256:3bc0e7e2cccf78e562ab416daf68448b6552a5b6450a1ff3e15cabfc19254883"},
     {file = "pyzstd-0.15.9-cp39-cp39-win_amd64.whl", hash = "sha256:40bdb468281a5cd525e2e990b97344f0974e0589bd1b395501c25471fcd7edda"},
+    {file = "pyzstd-0.15.9-pp310-pypy310_pp73-macosx_10_9_x86_64.whl", hash = "sha256:c9589cb79d4e401630481755c92b072aa7ba5505ec81dec865ef43932ec037e4"},
+    {file = "pyzstd-0.15.9-pp310-pypy310_pp73-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:3a26df749589d898cd3253d2139eb85b867ddffc49286059c8bdb3cb9ce9b545"},
+    {file = "pyzstd-0.15.9-pp310-pypy310_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:e9934277abdddf9c733267e4dcc4886de8a3302d28f390237d447e215e8ce47d"},
+    {file = "pyzstd-0.15.9-pp310-pypy310_pp73-manylinux_2_5_i686.manylinux1_i686.manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:ca19213785f864781848e0216cba07e97f563f60a50bbc7885b54461d8c64873"},
+    {file = "pyzstd-0.15.9-pp310-pypy310_pp73-win_amd64.whl", hash = "sha256:84aa6eecba967bdac167451501dcaceec548d8b8c4ca7fa41ceda4dbfc279297"},
     {file = "pyzstd-0.15.9-pp37-pypy37_pp73-macosx_10_9_x86_64.whl", hash = "sha256:47c2a4c319300c381f194274203f47b12c433e1fd86b90ecdc7fb258c630f93b"},
     {file = "pyzstd-0.15.9-pp37-pypy37_pp73-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:86e0e65e205793b337d62d9764700dfd02b5f83b01e26ad345736e7ac0554ebd"},
     {file = "pyzstd-0.15.9-pp37-pypy37_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:64564f4c175c5bb8e744de5816d69ee0b940e472160a5e665f30adc412b694f3"},
@@ -1871,13 +1876,13 @@ files = [
 
 [[package]]
 name = "tifffile"
-version = "2023.8.30"
+version = "2023.9.18"
 description = "Read and write TIFF files"
 optional = false
 python-versions = ">=3.9"
 files = [
-    {file = "tifffile-2023.8.30-py3-none-any.whl", hash = "sha256:62364eef35a6fdcc7bc2ad6f97dd270f577efb01b31260ff800af76a66c1e145"},
-    {file = "tifffile-2023.8.30.tar.gz", hash = "sha256:6a8c53b012a286b75d09a1498ab32f202f24cc6270a105b5d5911dc4426f162a"},
+    {file = "tifffile-2023.9.18-py3-none-any.whl", hash = "sha256:03574dc63a333111227c7710b52033def22db0072f9b49fdb25c9eea8249b026"},
+    {file = "tifffile-2023.9.18.tar.gz", hash = "sha256:391d49e5e10a0f50f627b9083116f965e37d40bfe4e4713154e5edd57591590c"},
 ]
 
 [package.dependencies]
