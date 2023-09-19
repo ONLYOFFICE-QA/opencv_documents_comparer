@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "opencv-documents-comparer"
-version = "0.1.0"
+version = "2.0.0"
 description = ""
 authors = [""]
 readme = "README.md"
@@ -8,17 +8,16 @@ packages = [{include = "opencv_documents_comparer"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
-opencv-python = "*"
-numpy = "*"
-scikit-image = "*"
-pyautogui = "*"
-rich = "*"
-pywin32 = { version = "*", markers = "sys_platform == 'win32'" }
-invoke = "*"
-psutil = "*"
+opencv-python = "^4.8.0.76"
+numpy = "^1.25.2"
+scikit-image = "0.20.0"
 imageio = "2.20.0"
-pillow = "*"
-requests = "*"
+pyautogui = "^0.9.54"
+rich = "^13.5.3"
+pywin32 = { version = "^306", markers = "sys_platform == 'win32'" }
+invoke = "^2.2.0"
+pillow = "^10.0.1"
+requests = "^2.31.0"
 pandas = "^2"
 mss = "^9.0.1"
 pytest = "^7.3.1"
