@@ -246,5 +246,15 @@
     "files": [
       "DataPilotSampleLinked_GETPIVOTDATA.xlsx"
     ]
+  },
+  "64276": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64276",
+    "description": "",
+    "directions": [
+      "sxi-pptx"
+    ],
+    "files": [
+      "3_A-IMA.pptx"
+    ]
   }
 }
