@@ -229,5 +229,15 @@
       "WPF_WMPhotoImage_RgbAlphaText.docx",
       "WPF_WMPhotoImage_RGBText.docx"
     ]
+  },
+  "64267": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64267",
+    "description": "",
+    "directions": [
+      "fods-xlsx"
+    ],
+    "files": [
+      "DataPilotSampleLinked_GETPIVOTDATA.xlsx"
+    ]
   }
 }
