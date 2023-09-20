@@ -15,7 +15,8 @@
     "link": "",
     "description": "ms Word it is not possible to put a picture in the inscription",
     "directions": [
-      "odt-docx"
+      "odt-docx",
+      "fodt-docx"
     ],
     "files": [
       "0100GS3GettingStartedOOo3.docx",
@@ -23,7 +24,8 @@
       "0106GS3-GettingStartedWithImpress_ko.docx",
       "1438.docx",
       "Description_of_Lex_for_Copenhagen_2009.docx",
-      "formulier1vzw.docx"
+      "formulier1vzw.docx",
+      "0310CG3-LinkingCalcData.docx"
     ]
   },
   "52628_ods_xlsx": {
@@ -166,14 +168,19 @@
     "files": [
       "emPoknW9U0tH8hntm7I6jO_Ux0rYKtXKZQ2AmQNUCD8_.docx",
       "BMIGTtkkAGCPvYyGada3UJvwkeBm2wWq5y_0hsov09Q_.docx",
-      "ORACLE-BASE - Oracle Database 10g Release 2 (10_2_0_1) Installation On Red Hat E.docx",
+      "D1ZR8wdzwlZ7orqT9ILCFMzWg4iwePjnnn6QZrArExc_.docx",
+      "IYNrFhESWk3Cer4eoJH8XhV1GDLzMYTI6R1KxPI0jo0_.docx"
+    ]
+  },
+  "64272": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64272",
+    "description": "",
+    "directions": [
+      "mht-docx"
+    ],
+    "files": [
       "More than 200 CCNA questions  TechInterviews_com  « Interview questions for tech companies.docx",
-      "More than 200 CCNA questions  TechInterviews_com  ® Interview questions for tech companies.docx",
-      "ORACLE-BASE - Oracle Database 10g Release 2 (10_2_0_1) Installation On Red Hat E.docx",
-      "Peliculas Completas Gratis - Peliculas Completas Gratis.docx",
-      "Simple ntldr is missing fix with boot floppy, CD-R, or USB flash.docx",
-      "Small_Kids_Vocab_1_120.docx",
-      "{E}vermotion - 3D models, textures, tutorials, architecture, 3D graphic, vray, 3ds max.docx"
+      "More than 200 CCNA questions  TechInterviews_com  ® Interview questions for tech companies.docx"
     ]
   },
   "63769": {
