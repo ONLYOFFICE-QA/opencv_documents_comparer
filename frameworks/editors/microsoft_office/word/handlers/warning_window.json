@@ -6,6 +6,13 @@
     "button_title": "Button",
     "button_name": "&Нет"
   },
+  "really want to open it?": {
+    "window_title": "Static",
+    "window_text": "произошла серьезная ошибка. Вы действительно хотите открыть его?",
+    "message": "Do you really want to open it?. Clicked: 'Yes'",
+    "button_title": "Button",
+    "button_name": "Д&а"
+  },
   "Wraparound tool": {
     "window_title": "Static",
     "window_text": "Средство расстановки переносов для приложения Word",
