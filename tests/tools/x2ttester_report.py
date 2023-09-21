@@ -33,6 +33,7 @@ class X2ttesterReport(Report):
         self.tmp_dir = StaticData.tmp_dir
         self.errors_only: bool = config.errors_only
         self.x2t_dir = StaticData.core_dir()
+        self.os = HostInfo().os
 
 
     def path(self, x2t_version: str) -> str:
@@ -42,7 +43,7 @@ class X2ttesterReport(Report):
 
     def tmp_file(self):
         tmp_report = File.unique_name(File.unique_name(self.tmp_dir), 'csv')
-        Dir.create(dirname(tmp_report))
+        Dir.create(dirname(tmp_report), stdout=False)
         return tmp_report
 
     def merge_reports(self, x2ttester_report: list, x2t_version: str) -> str | None:
@@ -62,30 +63,36 @@ class X2ttesterReport(Report):
         df.rename(columns=self.__columns_names, inplace=True)
         df = df.drop(columns=['Log', 'Input_size', 'Output_file'], axis=1)
         df = df[~df['Input_file'].str.contains('Time: ')]
+
         df.insert(df.columns.get_loc('Direction') + 1, 'BugInfo', df.apply(self._bug_info, axis=1))
+
         errors_list = self._errors_list(df)
         passed_num = f"{len([file for file in df[df.Output_size != 0.0].Input_file.unique()])}"
+
         self._add_to_end(df, 'BugInfo', f"Errors: {errors_list}")
         self._add_to_end(df, 'BugInfo', f"Passed: {passed_num}")
+
         processed_report = self.save_csv(df, self.path(x2t_version))
-        self._send_to_telegram([processed_report, report_path], tg_msg) if tg_msg else ...
         self._print_results(df, errors_list, passed_num, report_path)
+        self._send_to_telegram([processed_report, report_path], tg_msg) if tg_msg else ...
 
     def _errors_list(self, df) -> list:
         errors = df[df.Output_size == 0.0] if not self.errors_only else df
         return [file for file in errors[df.BugInfo == 0].Input_file.unique()]
 
     def _bug_info(self, row) -> str | int:
-        for i in self.exceptions.items():
-            if row.Input_file in i[1]['files']:
-                if HostInfo().os in i[1]['os'] or not i[1]['os']:
-                    if row.Direction in i[1]['directions'] or not i[1]['directions']:
-                        return f"{i[1]['description']} {i[1]['link']}" if i[1]['link'] or i[1]['description'] else '1'
+        for _, value in self.exceptions.items():
+            if row.Input_file in value['files']:
+                if self.os in value['os'] or not value['os']:
+                    if row.Direction in value['directions'] or not value['directions']:
+                        if value['link'] or value['description']:
+                            return f"{value['description']} {value['link']}".strip()
+                        return '1'
         return 0
 
     @staticmethod
     def _add_to_end(df, column_name: str, value: str | int | float):
-        df.loc[df.index.max() + 1, column_name] = value
+        df.loc[len(df.index), column_name] = value
 
     @staticmethod
     def _send_to_telegram(reports: list, tg_msg: str) -> None:

@@ -145,7 +145,7 @@ class CompareTest:
     def _clean_tmp_dirs(self):
         Dir.delete(
             (self.source_screen_dir, self.converted_screen_dir, self.tmp_dir),
-            create_dir=True,
+            clear_dir=True,
             stdout=False
         )
 

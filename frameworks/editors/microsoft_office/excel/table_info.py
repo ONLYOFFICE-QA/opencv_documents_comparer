@@ -28,7 +28,7 @@ class TableInfo:
         self.workbook.Close(False)
         self.app.Quit()
         Shell.call(f"taskkill /t /im {self.excel}")
-        Dir.delete(self.tmp_file, create_dir=True, stdout=False, stderr=False)
+        Dir.delete(self.tmp_file, clear_dir=True, stdout=False, stderr=False)
 
     def get(self):
         self.table_info = {'sheets_count': f"{self.workbook.Sheets.Count}"}

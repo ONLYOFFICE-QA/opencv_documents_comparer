@@ -25,6 +25,7 @@ class OpenTests:
         self.document_word = Document(Word())
         self.document_excel = Document(Excel())
         self.report = OpenerReport(self._generate_report_path())
+        Dir.delete(self.tmp_dir, stdout=False, stderr=False)
         Dir.create(self.tmp_dir, stdout=False)
         Process.terminate(StaticData.terminate_process)
         self.total, self.count = 0, 1
@@ -49,24 +50,32 @@ class OpenTests:
         self.report.handler(tg_msg)
 
     def opening_test(self, document_type: Document, file_path: str) -> bool | None:
-        print(f'[cyan]({self.count}/{self.total})[/] [green]In opening test:[/] '
-              f'[cyan]{basename(dirname(file_path))}[/][red]/[/]{basename(file_path)}')
-        tmp_file = File.make_tmp(file_path, self.tmp_dir)
+        print(
+            f'[cyan]({self.count}/{self.total})[/] [green]In opening test:[/] '
+            f'[cyan]{basename(dirname(file_path))}[/][red]/[/]{basename(file_path)}'
+        )
+
+        tmp_file = File.make_tmp(file_path, File.unique_name(self.tmp_dir))
         hwnd = document_type.open(tmp_file)
+
         if not isinstance(hwnd, int):
             self.report.write(file_path, f"{hwnd}")
             document_type.close()
             return document_type.delete(tmp_file)
+
         Window.set_size(hwnd, 0, 0, 900, 800) if self.count == 1 else ...
         sleep(document_type.delay_after_open)
+
         errors_after_open = document_type.check_errors()
         if errors_after_open is True or errors_after_open is None:
             self.report.write(file_path, 'ERROR')
             document_type.close(hwnd)
             return document_type.delete(tmp_file)
+
         document_type.close(hwnd)
-        if document_type.delete(tmp_file) is False:
+        if document_type.delete(dirname(tmp_file)) is False:
             return self.report.write(file_path, 'CANT_DELETE')
+
         self.report.write(file_path, 0)
 
     def getting_formats(self, direction: str | None = None) -> tuple:
