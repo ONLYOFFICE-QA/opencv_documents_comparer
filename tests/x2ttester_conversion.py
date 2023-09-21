@@ -26,7 +26,7 @@ class X2tTesterConversion:
         self.img_formats = ["png", "jpg", "bmp", "gif"]
         self.data = self._get_x2ttester_data()
         self.x2ttester = X2tTester(self.data)
-        Dir.delete(self.tmp_dir, create_dir=True, stdout=False, stderr=False)
+        Dir.delete(self.tmp_dir, clear_dir=True, stdout=False, stderr=False)
 
 
     def run(self, results_path: bool | str = False, list_xml: str = None) -> str:
@@ -49,7 +49,7 @@ class X2tTesterConversion:
             print(f"[green]|INFO| Conversion direction:"
                   f" [cyan]{self.input_formats if self.input_formats else 'All'} [red]to [cyan]{self.output_formats}")
             reports.append(self.run(results_path=True))
-            Dir.delete(self.tmp_dir, create_dir=True)
+            Dir.delete(self.tmp_dir, clear_dir=True)
         return self.report.merge_reports(reports, self.x2t_version)
 
     @timer
