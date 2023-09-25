@@ -288,5 +288,15 @@
     "files": [
       "3_A-IMA.pptx"
     ]
+  },
+  "64340": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64340",
+    "description": "",
+    "directions": [
+      "ods-xlsx"
+    ],
+    "files": [
+      "excel file diagramtai.xlsx"
+    ]
   }
 }
