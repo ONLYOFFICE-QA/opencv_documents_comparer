@@ -81,6 +81,7 @@ def open_test(c, direction=None, ls=False, path='', telegram=False, new_test=Fal
         if Prompt.ask(warning, choices=['yes', 'no'], default='no') == 'yes':
             File.delete(opener.report.path)
 
+    print("[bold green]|INFO| Starting...")
     opener.run(
         File.get_paths(
             path=path if path else config.converted_docs,

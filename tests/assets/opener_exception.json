@@ -288,5 +288,26 @@
     "files": [
       "3_A-IMA.pptx"
     ]
+  },
+  "64340": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64340",
+    "description": "",
+    "directions": [
+      "ods-xlsx"
+    ],
+    "files": [
+      "excel file diagramtai.xlsx"
+    ]
+  },
+  "64341": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64341",
+    "description": "",
+    "directions": [
+      "odt-docx"
+    ],
+    "files": [
+      "vat_kar_prosesi.docx",
+      "10628.docx"
+    ]
   }
 }
