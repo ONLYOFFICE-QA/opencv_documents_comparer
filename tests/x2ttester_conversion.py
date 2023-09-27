@@ -14,7 +14,14 @@ from .tools import X2ttesterReport
 
 
 class X2tTesterConversion:
-    def __init__(self, direction: str | None = None, version: str = None, trough_conversion: bool = False):
+    def __init__(
+            self,
+            direction: str | None = None,
+            version: str = None,
+            trough_conversion: bool = False,
+            save_env: bool = False
+    ):
+        self.save_env = save_env
         self.trough_conversion = trough_conversion
         self.input_formats, self.output_formats = self._getting_formats(direction)
         self.extensions = File.read_json(f"{dirname(abspath(__file__))}/assets/extension_array.json")
@@ -109,5 +116,6 @@ class X2tTesterConversion:
             timestamp=config.timestamp,
             delete=config.delete,
             errors_only=config.errors_only,
-            trough_conversion=self.trough_conversion
+            trough_conversion=self.trough_conversion,
+            save_environment=self.save_env
         )
