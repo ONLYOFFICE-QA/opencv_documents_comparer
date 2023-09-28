@@ -172,17 +172,6 @@
       "IYNrFhESWk3Cer4eoJH8XhV1GDLzMYTI6R1KxPI0jo0_.docx"
     ]
   },
-  "64272": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64272",
-    "description": "",
-    "directions": [
-      "mht-docx"
-    ],
-    "files": [
-      "More than 200 CCNA questions  TechInterviews_com  « Interview questions for tech companies.docx",
-      "More than 200 CCNA questions  TechInterviews_com  ® Interview questions for tech companies.docx"
-    ]
-  },
   "63769": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=63769",
     "description": "",
@@ -277,37 +266,6 @@
     ],
     "files": [
       "DataPilotSampleLinked_GETPIVOTDATA.xlsx"
-    ]
-  },
-  "64276": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64276",
-    "description": "",
-    "directions": [
-      "sxi-pptx"
-    ],
-    "files": [
-      "3_A-IMA.pptx"
-    ]
-  },
-  "64340": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64340",
-    "description": "",
-    "directions": [
-      "ods-xlsx"
-    ],
-    "files": [
-      "excel file diagramtai.xlsx"
-    ]
-  },
-  "64341": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64341",
-    "description": "",
-    "directions": [
-      "odt-docx"
-    ],
-    "files": [
-      "vat_kar_prosesi.docx",
-      "10628.docx"
     ]
   }
 }
