@@ -267,17 +267,5 @@
     "files": [
       "DataPilotSampleLinked_GETPIVOTDATA.xlsx"
     ]
-  },
-  "64409": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64409",
-    "description": "",
-    "directions": [
-      "odt-docx",
-      "otp-pptx"
-    ],
-    "files": [
-      "a4.docx",
-      "Midnightblue.pptx"
-    ]
   }
 }

@@ -139,14 +139,5 @@
       "enredobar.doc",
       "ZAHTJEV_NAVABANKA.doc"
     ]
-  },
-  "64412": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64412",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "Rework _biznes_bez_predrassudkov[rtf 2010].doct"
-    ]
   }
 }
