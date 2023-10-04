@@ -14,4 +14,4 @@ class Data(BaseModel):
     delete: bool = False
     errors_only: bool = False
     trough_conversion: bool = False
-    save_environment: bool = False
+    environment_off: bool = False
