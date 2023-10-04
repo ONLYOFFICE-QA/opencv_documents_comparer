@@ -19,9 +19,9 @@ class X2tTesterConversion:
             direction: str | None = None,
             version: str = None,
             trough_conversion: bool = False,
-            save_env: bool = False
+            env_off: bool = False
     ):
-        self.save_env = save_env
+        self.env_off = env_off
         self.trough_conversion = trough_conversion
         self.input_formats, self.output_formats = self._getting_formats(direction)
         self.extensions = File.read_json(f"{dirname(abspath(__file__))}/assets/extension_array.json")
@@ -117,5 +117,5 @@ class X2tTesterConversion:
             delete=config.delete,
             errors_only=config.errors_only,
             trough_conversion=self.trough_conversion,
-            save_environment=self.save_env
+            environment_off=self.env_off
         )

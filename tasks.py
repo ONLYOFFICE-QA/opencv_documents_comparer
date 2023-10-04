@@ -22,10 +22,10 @@ def download_core(c, force=False, version=None):
 
 
 @task
-def conversion_test(c, direction=None, ls=False, telegram=False, version=None, t_format=False, env=False):
+def conversion_test(c, direction=None, ls=False, telegram=False, version=None, t_format=False, env_off=False):
     download_core(c, version=version)
     x2t_version = X2t.version(StaticData.core_dir())
-    conversion = X2tTesterConversion(direction, x2t_version, trough_conversion=t_format, save_env=env)
+    conversion = X2tTesterConversion(direction, x2t_version, trough_conversion=t_format, env_off=env_off)
     print(f"[bold green]|INFO| The conversion is running on x2t version: [red]{x2t_version}")
     report = conversion.from_files_list(config.files_array) if ls else conversion.run()
     tg_msg = f"Conversion completed on version: `{x2t_version}`\nPlatform: `{HostInfo().os}`" if telegram else None

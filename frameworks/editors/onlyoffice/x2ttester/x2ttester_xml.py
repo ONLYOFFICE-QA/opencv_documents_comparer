@@ -40,7 +40,7 @@ class X2tTesterXml:
         ET.SubElement(root, "errorsOnly").text = self._get_parameter(self.data.errors_only)
         ET.SubElement(root, "deleteOk").text = self._get_parameter(self.data.delete)
         ET.SubElement(root, "timestamp").text = self._get_parameter(self.data.timestamp)
-        ET.SubElement(root, "saveEnvironment").text = self._get_save_environment(self.data.save_environment)
+        ET.SubElement(root, "saveEnvironment").text = self._get_save_environment()
         if input_format:
             ET.SubElement(root, "input").text = input_format
         if output_format:
@@ -60,11 +60,8 @@ class X2tTesterXml:
         if isinstance(value, bool):
             return '1' if value else '0'
 
-    def _get_save_environment(self, value: bool) -> str:
-        if self.host.os == 'mac':
-            return '1'
-        if isinstance(value, bool):
-            return '1' if value else '0'
+    def _get_save_environment(self) -> str:
+        return '0' if self.data.environment_off else '1'
 
     @staticmethod
     def _delete_last_slash(path):
