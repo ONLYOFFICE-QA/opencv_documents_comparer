@@ -139,5 +139,30 @@
       "enredobar.doc",
       "ZAHTJEV_NAVABANKA.doc"
     ]
+  },
+  "64543": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64543",
+    "description": "",
+    "os": [],
+    "directions": [],
+    "files": [
+      "arcs.html",
+      "circles3.html",
+      "circles.html",
+      "clipPath4.html",
+      "Colorstacks.html",
+      "coords.html"
+    ]
+  },
+  "64544": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64544",
+    "description": "",
+    "os": [],
+    "directions": [],
+    "files": [
+      "Word2007RTFSpec9.docx",
+      "AllEquationsWordInText.docx",
+      "0100GS3GettingStartedOOo3.odt"
+    ]
   }
 }
