@@ -175,5 +175,18 @@
       "Forms_Анкета_лизингополучателя_Final_2_1.docxf",
       "Job Proposal Template.docxf"
     ]
+  },
+  "64594": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64594",
+    "description": "",
+    "os": [
+      "windows"
+    ],
+    "directions": [
+      "ods-csv"
+    ],
+    "files": [
+      "Spread Calculator.ods"
+    ]
   }
 }
