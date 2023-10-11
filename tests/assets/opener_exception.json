@@ -221,5 +221,16 @@
       "WPF_WMPhotoImage_RgbAlphaText.docx",
       "WPF_WMPhotoImage_RGBText.docx"
     ]
+  },
+  "64604": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64604",
+    "description": "",
+    "directions": [
+      "xlsb-xlsx"
+    ],
+    "files": [
+      "Concrete Ring Wall Foundation.xlsx",
+      "FAS.JKH.OPEN.INFO.PRICE.WARM_v1.0.2_AO-Voltayr_Prom-2019_2023.-_zapolneno-2020g_.xlsx"
+    ]
   }
 }
