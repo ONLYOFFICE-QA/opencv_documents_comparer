@@ -172,16 +172,6 @@
       "IYNrFhESWk3Cer4eoJH8XhV1GDLzMYTI6R1KxPI0jo0_.docx"
     ]
   },
-  "63769": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=63769",
-    "description": "",
-    "directions": [
-      "ett-xlsx"
-    ],
-    "files": [
-      "template wps officeExcel.xlsx"
-    ]
-  },
   "63772": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=63772",
     "description": "",
@@ -219,32 +209,6 @@
       "Controle horario de estudo.xlsx"
     ]
   },
-  "64277": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64277",
-    "description": "",
-    "directions": [
-      "xlsb-xlsx"
-    ],
-    "files": [
-      "Concrete Ring Wall Foundation.xlsx",
-      "e11cd920f77ba7ea5845a4b025607cbf.xlsx",
-      "FAS.JKH.OPEN.INFO.LIMIT.WARM_v1.0.1_-OOO-GPTE-MO-3-kv.-2021.xlsx",
-      "FAS.JKH.OPEN.INFO.PRICE.GVS(v1.0.2)повт.xlsx",
-      "FAS.JKH.OPEN.INFO.PRICE.HVS(v1.0.2).xlsx",
-      "FAS.JKH.OPEN.INFO.PRICE.HVS.xlsx",
-      "FAS.JKH.OPEN.INFO.PRICE.WARM_TE_ot_kotelnoy_ul.Velizhanskaya.xlsx",
-      "FAS.JKH.OPEN.INFO.PRICE.WARM_v1.0.2_.xlsx",
-      "FAS.JKH.OPEN.INFO.PRICE.WARM_v1.0.2_AO-Voltayr_Prom-2019_2023.-_zapolneno-2020g_.xlsx",
-      "FAS.JKH.OPEN.INFO.PRICE.WARM_v1.0.2_Gertsena_2_.xlsx",
-      "newfas.jkh.open.info.limit.warm_v1.0.1__spb_2kv2019.xlsx",
-      "TPljus_Saransk_3kv_2021_FAS.JKH.OPEN.INFO.LIMIT.WARM.xlsx",
-      "Индивидуальная плата за подключение объекта Ледовый дворец к сетям ВС (ГКУ НО «Нижегородстройзаказчик»).xlsx",
-      "Информация о тарифе на тепловую энергию 2021.xlsx",
-      "Информация об основных потребительских характеристиках регулируемых товаров и ус.xlsx",
-      "Планировщик_АПРЕЛЬ (1).xlsx",
-      "Форма 2.2 Информация о величинах тарифов на питьевую воду, техническую воду, тра.xlsx"
-    ]
-  },
   "64200": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64200",
     "description": "",
@@ -256,16 +220,6 @@
       "WPF_WMPhotoImage_CMYKText.docx",
       "WPF_WMPhotoImage_RgbAlphaText.docx",
       "WPF_WMPhotoImage_RGBText.docx"
-    ]
-  },
-  "64267": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64267",
-    "description": "",
-    "directions": [
-      "fods-xlsx"
-    ],
-    "files": [
-      "DataPilotSampleLinked_GETPIVOTDATA.xlsx"
     ]
   }
 }
