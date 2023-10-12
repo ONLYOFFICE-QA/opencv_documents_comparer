@@ -153,29 +153,5 @@
       "Colorstacks.html",
       "coords.html"
     ]
-  },
-  "64544": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64544",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "Word2007RTFSpec9.docx",
-      "AllEquationsWordInText.docx",
-      "0100GS3GettingStartedOOo3.odt"
-    ]
-  },
-  "64594": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64594",
-    "description": "",
-    "os": [
-      "windows"
-    ],
-    "directions": [
-      "ods-csv"
-    ],
-    "files": [
-      "Spread Calculator.ods"
-    ]
   }
 }

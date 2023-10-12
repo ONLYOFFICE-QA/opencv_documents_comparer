@@ -11,6 +11,16 @@
       "kso 1    2  1.xlsx"
     ]
   },
+  "63772": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=63772",
+    "description": "problems in ms Excel",
+    "directions": [
+      "xls-xlsx"
+    ],
+    "files": [
+      "testIssues631.xlsx"
+    ]
+  },
   "5": {
     "link": "",
     "description": "ms Word it is not possible to put a picture in the inscription",
@@ -171,44 +181,7 @@
       "D1ZR8wdzwlZ7orqT9ILCFMzWg4iwePjnnn6QZrArExc_.docx",
       "IYNrFhESWk3Cer4eoJH8XhV1GDLzMYTI6R1KxPI0jo0_.docx"
     ]
-  },
-  "63772": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=63772",
-    "description": "",
-    "directions": [
-      "xls-xlsx"
-    ],
-    "files": [
-      "testIssues631.xlsx"
-    ]
-  },
-  "63773": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=63773",
-    "description": "",
-    "directions": [
-      "xlsb-xlsx"
-    ],
-    "files": [
-      "Результат обработки перечня ЗПРОМ.xlsx",
-      "Sundars-Nifty.xlsx",
-      "Spreadsheets_Template.xlsx",
-      "secur_praice_12.10.2016.xlsx",
-      "rank_prf-09.xlsx",
-      "pivotsources.xlsx",
-      "informaciya_o_vivode_obektov_ts_iz_eksplyatacii_i_osnovaniyah_ogranicheniya_poda.xlsx",
-      "Hasil Treasure 2010 Season 2.xlsx",
-      "Demo-2010WinterOlympics.xlsx",
-      "Book 39.xlsx",
-      "BOA PARA ESTUDAR - JOGAR LOTOFACIL minha predileta 1.xlsx",
-      "2010 Excel College Football Helmet Schedule.xlsx",
-      "08102021_FAS.JKH.OPEN.INFO.LIMIT.WARM_v1.0.1__СПб_3кв2021.xlsx",
-      "20-ej_centr_u4.xlsx",
-      "2020_35_fas-jkh-open-info-limit-warm-v1-0-1-_3-kv-2020-pts (1).xlsx",
-      "2020_35_fas-jkh-open-info-limit-warm-v1-0-1-_3-kv-2020-pts.xlsx",
-      "CHR_FAS.JKH.OPEN.INFO.LIMIT.WARM_v1.0.1_.xlsx",
-      "Controle horario de estudo.xlsx"
-    ]
-  },
+  }
   "64200": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64200",
     "description": "",
