@@ -23,7 +23,10 @@
     "files": [
       "empty_slides_layouts.pptx",
       "empty(слайдов нет).ppt",
-      "empty(бЂ†©§ЃҐ ≠•в).ppt"
+      "empty(бЂ†©§ЃҐ ≠•в).ppt",
+      "empty_slides_layouts.pptt",
+      "empty(слайдов нет).pptt",
+      "empty(бЂ†©§ЃҐ ≠•в).pptt"
     ]
   },
   "56205": {
@@ -69,7 +72,17 @@
       "diplomatariumis05bkgoog.epub",
       "The_Plastic_Princess.epub",
       "mesopotamia.epub",
-      "diplomatariumis00orgoog.epub"
+      "diplomatariumis00orgoog.epub",
+      "25igravtemn.doct",
+      "calibre.doct",
+      "diplomatariumis01bkgoog.doct",
+      "diplomatariumis04bkgoog.doct",
+      "diplomatariumis03bkgoog.doct",
+      "diplomatariumis06bkgoog.doct",
+      "diplomatariumis05bkgoog.doct",
+      "The_Plastic_Princess.doct",
+      "mesopotamia.doct",
+      "diplomatariumis00orgoog.doct"
     ]
   },
   "58698": {
@@ -78,7 +91,8 @@
     "os": [],
     "directions": [],
     "files": [
-      "Office Open XML Part 4 - Markup Language Reference.docx"
+      "Office Open XML Part 4 - Markup Language Reference.docx",
+      "Office Open XML Part 4 - Markup Language Reference.doct"
     ]
   },
   "57465": {
@@ -87,7 +101,8 @@
     "os": [],
     "directions": [],
     "files": [
-      "employee-entries.docx"
+      "employee-entries.docx",
+      "employee-entries.doct"
     ]
   },
   "57360": {
@@ -98,7 +113,7 @@
     "files": [
       "Smaller50MB.xlsb",
       "Smaller50MB.xlsx",
-      "Smaller50MB.xlsb.xlsx"
+      "Smaller50MB.xlst"
     ]
   },
   "59241": {
@@ -115,7 +130,8 @@
     ],
     "files": [
       "rank_prf-09.xlsx",
-      "rank_prf-09.xlsb"
+      "rank_prf-09.xlsb",
+      "rank_prf-09.xlst"
     ]
   },
   "59424": {
@@ -125,7 +141,9 @@
     "directions": [],
     "files": [
       "Планировщик_АПРЕЛЬ (1).xlsb",
-      "ПЂ†≠®аЃҐй®™_АПРЕЛЬ (1).xlsb"
+      "ПЂ†≠®аЃҐй®™_АПРЕЛЬ (1).xlsb",
+      "Планировщик_АПРЕЛЬ (1).xlst",
+      "ПЂ†≠®аЃҐй®™_АПРЕЛЬ (1).xlst"
     ]
   },
   "60796": {
@@ -137,7 +155,9 @@
     "directions": [],
     "files": [
       "enredobar.doc",
-      "ZAHTJEV_NAVABANKA.doc"
+      "ZAHTJEV_NAVABANKA.doc",
+      "enredobar.doct",
+      "ZAHTJEV_NAVABANKA.doct"
     ]
   },
   "64543": {
