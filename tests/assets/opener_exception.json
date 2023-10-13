@@ -205,5 +205,45 @@
       "Concrete Ring Wall Foundation.xlsx",
       "FAS.JKH.OPEN.INFO.PRICE.WARM_v1.0.2_AO-Voltayr_Prom-2019_2023.-_zapolneno-2020g_.xlsx"
     ]
+  },
+  "64637": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64637",
+    "description": "problems in ms Excel",
+    "directions": [
+      "xlsb-xlsx"
+    ],
+    "files": [
+      "rank_prf-09.xlsx"
+    ]
+  },
+  "64636": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64636",
+    "description": "problems in ms Excel",
+    "directions": [
+      "xlsb-xlsx"
+    ],
+    "files": [
+      "secur_praice_12.10.2016.xlsx"
+    ]
+  },
+  "64635": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64635",
+    "description": "problems in ms Excel",
+    "directions": [
+      "xlsb-xlsx"
+    ],
+    "files": [
+      "Sundars-Nifty.xlsx"
+    ]
+  },
+  "64634": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64634",
+    "description": "problems in ms Excel",
+    "directions": [
+      "xlsb-xlsx"
+    ],
+    "files": [
+      "Demo-2010WinterOlympics.xlsx"
+    ]
   }
 }
