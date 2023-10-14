@@ -18,7 +18,9 @@
       "ppt-jpg",
       "pptx-png",
       "ppt-png",
-      "pptx-jpg"
+      "pptx-jpg",
+      "pptt-jpg",
+      "pptt-png"
     ],
     "files": [
       "empty_slides_layouts.pptx",
