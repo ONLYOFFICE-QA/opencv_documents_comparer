@@ -33,12 +33,18 @@ class OpenerReport:
         df = Report.read(self.path)
         df_errors = df[(df.Exit_code != '0') | (df.Bug_info != '0')]
         error_files = [file for file in df[(df.Exit_code != '0') & (df.Bug_info == '0')].File_name]
+
         print(f"[bold red]{df_errors.drop(columns=['File_path'], axis=1)}\n\nErrors files: {error_files}\n")
         self._add_to_end(df_errors, 'File_path', f"Errors files: {error_files}")
+
         errors_report = Report.save_csv(df_errors, self.errors_path)
-        Telegram().send_media_group([errors_report, self.path], caption=tg_msg) if tg_msg else ...
-        print(f"\n\n[bold cyan]{'-' * 90}\nPath to opener report: {self.path}\n"
-              f"Errors_report: {errors_report}\n{'-' * 90}")
+        print(f"\n[bold cyan]{'-' * 90}\nPath to report: {self.path}\nErrors_report: {errors_report}\n{'-' * 90}")
+
+        if tg_msg:
+            Telegram().send_media_group(
+                [errors_report, self.path],
+                caption=f"{tg_msg}\n\nStatus: `{'Some files have errors' if error_files else 'All tests passed'}`"
+            )
 
     @staticmethod
     def _add_to_end(df, column_name: str, value: str | int | float):
