@@ -74,7 +74,12 @@ class X2ttesterReport(Report):
 
         processed_report = self.save_csv(df, self.path(x2t_version))
         self._print_results(df, errors_list, passed_num, report_path)
-        self._send_to_telegram([processed_report, report_path], tg_msg) if tg_msg else ...
+
+        if tg_msg:
+            self._send_to_telegram(
+                [processed_report, report_path],
+                f"{tg_msg}\n\nStatus: `{'Some files have errors' if errors_list else 'All tests passed'}`"
+            )
 
     def _errors_list(self, df) -> list:
         errors = df[df.Output_size == 0.0] if not self.errors_only else df
