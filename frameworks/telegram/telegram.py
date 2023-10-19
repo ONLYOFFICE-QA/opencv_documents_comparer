@@ -52,7 +52,7 @@ class Telegram:
         """
         if not document_paths:
             return self.send_message(caption if caption else 'No files to send.', out_msg=True)
-        if caption and len(caption) > 200:
+        if caption and len(caption) > 500:
             document_paths.append(self._make_massage_doc(caption, 'caption.txt'))
         files, media = {}, []
         for doc_path in document_paths:

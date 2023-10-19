@@ -47,7 +47,12 @@ def make_files(c, telegram=False, direction=None, version=None, t_format=False, 
     conversion = X2tTesterConversion(direction, x2t_version, trough_conversion=t_format, env_off=env_off)
     report = conversion.run(results_path=True) if direction else conversion.from_extension_json()
 
-    tg_msg = f"Files are converted to versions: `{x2t_version}`\nPlatform: `{HostInfo().os}`" if telegram else None
+    tg_msg = (
+        f"Files for open test converted on versions:\n"
+        f"`{x2t_version}`\n"
+        f"Platform: `{HostInfo().os}`\n"
+        f"Mode: `{'t-format' if t_format else 'Default'}`"
+    ) if telegram else None
 
     conversion.report.handler(report, x2t_version, tg_msg=tg_msg) if report else print("[red] Report not exists")
     print(f"[bold red]\n{'-' * 90}\n|INFO| x2t version: {x2t_version}\n{'-' * 90}")
