@@ -208,7 +208,7 @@
   },
   "64637": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64637",
-    "description": "problems in ms Excel",
+    "description": "",
     "directions": [
       "xlsb-xlsx"
     ],
@@ -218,7 +218,7 @@
   },
   "64636": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64636",
-    "description": "problems in ms Excel",
+    "description": "",
     "directions": [
       "xlsb-xlsx"
     ],
@@ -228,7 +228,7 @@
   },
   "64635": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64635",
-    "description": "problems in ms Excel",
+    "description": "",
     "directions": [
       "xlsb-xlsx"
     ],
@@ -238,12 +238,22 @@
   },
   "64634": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64634",
-    "description": "problems in ms Excel",
+    "description": "",
     "directions": [
       "xlsb-xlsx"
     ],
     "files": [
       "Demo-2010WinterOlympics.xlsx"
+    ]
+  },
+  "64673": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64673",
+    "description": "",
+    "directions": [
+      "xlsb-xlsx"
+    ],
+    "files": [
+      "pivotsources.xlsx"
     ]
   }
 }
