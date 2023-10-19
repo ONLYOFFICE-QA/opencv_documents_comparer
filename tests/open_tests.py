@@ -24,10 +24,8 @@ class OpenTests:
         self.document_word = Document(Word())
         self.document_excel = Document(Excel())
         self.report = OpenerReport(self._generate_report_path())
-        Dir.delete(self.tmp_dir, stdout=False, stderr=False)
-        Dir.create(self.tmp_dir, stdout=False)
-        Process.terminate(StaticData.terminate_process)
         self.total, self.count = 0, 1
+        self._prepare_test()
 
     @timer
     def run(self, file_paths: list, tg_msg: bool | str = False) -> None:
@@ -116,3 +114,8 @@ class OpenTests:
             tested_files = self.report.tested_files()
             return [path for path in file_paths if join(basename(dirname(path)), basename(path)) not in tested_files]
         return file_paths
+
+    def _prepare_test(self):
+        Dir.delete(self.tmp_dir, clear_dir=True, stdout=False, stderr=False)
+        Dir.create(self.tmp_dir, stdout=False)
+        Process.terminate(StaticData.terminate_process)

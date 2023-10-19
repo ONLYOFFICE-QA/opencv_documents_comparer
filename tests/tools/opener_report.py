@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 from os.path import join, basename, dirname, realpath, exists, splitext, isfile
+
+from host_control.utils import Str
 from rich import print
-from re import sub, search
+from re import sub
 import pandas as pd
 
 from host_control import File, Dir
@@ -10,7 +12,10 @@ from frameworks.telegram import Telegram
 
 
 class OpenerReport:
-    titles = ['File_name', 'Direction', 'Exit_code', 'Bug_info', 'Version', 'Os', 'Mode', 'File_path']
+    titles: list = ['File_name', 'Direction', 'Exit_code', 'Bug_info', 'Version', 'Os', 'Mode', 'File_path']
+    os_pattern: str = r'\[os_(.*?)\]'
+    mod_pattern: str = r'\[mode_(.*?)\]'
+    version_pattern: str = r"(\d+).(\d+).(\d+).(\d+)"
 
     def __init__(self, reports_path: str):
         self._set_pandas_options()
@@ -23,18 +28,18 @@ class OpenerReport:
         self._write_titles() if not isfile(self.path) else ...
 
         name, dir_name = basename(file_path), basename(dirname(file_path))
-        direction = self._direction(dir_name)
+        direction = self._search_direction(dir_name)
 
         self._writer(
             'a',
             [
                 name,
-                self._direction(dir_name),
+                self._search_direction(dir_name),
                 exit_code,
                 self._bug_info(direction, name),
-                self._version(dir_name),
-                self._get_os(dir_name),
-                self._get_mode(dir_name),
+                Str.search(dir_name, self.version_pattern, group_num=0),
+                Str.search(dir_name, self.os_pattern, group_num=1),
+                Str.search(dir_name, self.mod_pattern, group_num=1),
                 file_path
             ]
         )
@@ -78,25 +83,8 @@ class OpenerReport:
         self._writer('w', self.titles)
 
     @staticmethod
-    def _direction(dir_name: str) -> str:
+    def _search_direction(dir_name: str) -> str:
         return sub(r'(\d+)_(\w+)_(\w+)', r'\2-\3', dir_name.split('.')[-1])
-
-    @staticmethod
-    def _get_mode(dir_name: str) -> str:
-        _pattern = r'\[mode_(.*?)\]'
-        mode_match = search(_pattern, dir_name)
-        return mode_match.group(1) if mode_match else None
-
-    @staticmethod
-    def _get_os(dir_name: str) -> str:
-        os_pattern = r'\[os_(.*?)\]'
-        os_match = search(os_pattern, dir_name)
-        return os_match.group(1) if os_match else None
-
-    @staticmethod
-    def _version(dir_name: str) -> str:
-        find_version = search(r"\d+\.\d+\.\d+\.\d+", dir_name)
-        return find_version.group() if find_version else 0
 
     @staticmethod
     def _set_pandas_options():
