@@ -13,16 +13,11 @@ class OpenerReport:
     titles = ['File_name', 'Direction', 'Exit_code', 'Bug_info', 'Version', 'Os', 'Mode', 'File_path']
 
     def __init__(self, reports_path: str):
-        pd.set_option('display.max_rows', None)
-        pd.set_option('display.max_columns', None)
-        pd.set_option("expand_frame_repr", False)
+        self._set_pandas_options()
         self.exceptions = File.read_json(f"{dirname(realpath(__file__))}/../assets/opener_exception.json")
         self.path = reports_path
         self.errors_path = f"{splitext(self.path)[0]}(errors_only).csv"
         Dir.create(dirname(self.path), stdout=False)
-
-    def _write_titles(self):
-        self._writer('w', self.titles)
 
     def write(self, file_path: str, exit_code: int | str) -> None:
         self._write_titles() if not isfile(self.path) else ...
@@ -61,6 +56,11 @@ class OpenerReport:
                 caption=f"{tg_msg}\n\nStatus: `{'Some files have errors' if error_files else 'All tests passed'}`"
             )
 
+    def tested_files(self) -> list:
+        if exists(self.path):
+            return [join(basename(dirname(path)), basename(path)) for path in Report.read(self.path).File_path]
+        return []
+
     @staticmethod
     def _add_to_end(df, column_name: str, value: str | int | float):
         df.loc[df.index.max() + 1, column_name] = value
@@ -71,13 +71,11 @@ class OpenerReport:
                 return info['link'] if info['link'] else info['description'] if info['description'] else '1'
         return 0
 
-    def tested_files(self) -> list:
-        if exists(self.path):
-            return [join(basename(dirname(path)), basename(path)) for path in Report.read(self.path).File_path]
-        return []
-
     def _writer(self, mode: str, info: list) -> None:
         Report.write(self.path, mode, info)
+
+    def _write_titles(self):
+        self._writer('w', self.titles)
 
     @staticmethod
     def _direction(dir_name: str) -> str:
@@ -99,3 +97,9 @@ class OpenerReport:
     def _version(dir_name: str) -> str:
         find_version = search(r"\d+\.\d+\.\d+\.\d+", dir_name)
         return find_version.group() if find_version else 0
+
+    @staticmethod
+    def _set_pandas_options():
+        pd.set_option('display.max_rows', None)
+        pd.set_option('display.max_columns', None)
+        pd.set_option("expand_frame_repr", False)
