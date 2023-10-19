@@ -16,7 +16,7 @@ pyautogui = "^0.9.54"
 rich = "^13.6.0"
 pywin32 = { version = "^306", markers = "sys_platform == 'win32'" }
 invoke = "^2.2.0"
-pillow = "^10.0.1"
+pillow = "^10.1.0"
 requests = "^2.31.0"
 pandas = "^2"
 mss = "^9.0.1"
