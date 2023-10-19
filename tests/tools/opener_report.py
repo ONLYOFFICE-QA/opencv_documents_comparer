@@ -10,6 +10,8 @@ from frameworks.telegram import Telegram
 
 
 class OpenerReport:
+    titles = ['File_name', 'Direction', 'Exit_code', 'Bug_info', 'Version', 'Os', 'Mode', 'File_path']
+
     def __init__(self, reports_path: str):
         pd.set_option('display.max_rows', None)
         pd.set_option('display.max_columns', None)
@@ -20,14 +22,27 @@ class OpenerReport:
         Dir.create(dirname(self.path), stdout=False)
 
     def _write_titles(self):
-        self._writer('w', ['File_name', 'Direction', 'Exit_code', 'Bug_info', 'Version', 'File_path'])
+        self._writer('w', self.titles)
 
     def write(self, file_path: str, exit_code: int | str) -> None:
         self._write_titles() if not isfile(self.path) else ...
+
         name, dir_name = basename(file_path), basename(dirname(file_path))
         direction = self._direction(dir_name)
-        bug_info = self._bug_info(direction, name)
-        self._writer('a', [name, direction, exit_code, bug_info, self._version(dir_name), file_path])
+
+        self._writer(
+            'a',
+            [
+                name,
+                self._direction(dir_name),
+                exit_code,
+                self._bug_info(direction, name),
+                self._version(dir_name),
+                self._get_os(dir_name),
+                self._get_mode(dir_name),
+                file_path
+            ]
+        )
 
     def handler(self, tg_msg: bool | str = False) -> None:
         df = Report.read(self.path)
@@ -51,9 +66,9 @@ class OpenerReport:
         df.loc[df.index.max() + 1, column_name] = value
 
     def _bug_info(self, direction: str, file_name: str) -> int | str:
-        for i in self.exceptions.items():
-            if direction in i[1]['directions'] and file_name in i[1]['files']:
-                return i[1]['link'] if i[1]['link'] else i[1]['description'] if i[1]['description'] else '1'
+        for _, info in self.exceptions.items():
+            if direction in info['directions'] and file_name in info['files']:
+                return info['link'] if info['link'] else info['description'] if info['description'] else '1'
         return 0
 
     def tested_files(self) -> list:
@@ -67,6 +82,18 @@ class OpenerReport:
     @staticmethod
     def _direction(dir_name: str) -> str:
         return sub(r'(\d+)_(\w+)_(\w+)', r'\2-\3', dir_name.split('.')[-1])
+
+    @staticmethod
+    def _get_mode(dir_name: str) -> str:
+        _pattern = r'\[mode_(.*?)\]'
+        mode_match = search(_pattern, dir_name)
+        return mode_match.group(1) if mode_match else None
+
+    @staticmethod
+    def _get_os(dir_name: str) -> str:
+        os_pattern = r'\[os_(.*?)\]'
+        os_match = search(os_pattern, dir_name)
+        return os_match.group(1) if os_match else None
 
     @staticmethod
     def _version(dir_name: str) -> str:
