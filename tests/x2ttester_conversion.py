@@ -86,7 +86,7 @@ class X2tTesterConversion:
             paths = self._get_paths(output_formats if self.output_formats else None)
             if paths:
                 for file_path in track(paths, f"[cyan]|INFO| Copying {len(paths)} {output_formats} files"):
-                    _path_to = self._get_result_path(result_path, splitext(dirname(file_path))[1])
+                    _path_to = self._get_result_path(result_path, basename(dirname(dirname(file_path))))
 
                     Dir.create(_path_to, stdout=False) if not exists(_path_to) else ...
                     name = basename(file_path)
