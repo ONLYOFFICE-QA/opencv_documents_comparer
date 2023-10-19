@@ -38,13 +38,13 @@ def conversion_test(c, direction=None, ls=False, telegram=False, version=None, t
 
 
 @task
-def make_files(c, telegram=False, direction=None, version=None):
+def make_files(c, telegram=False, direction=None, version=None, t_format=False, env_off=False):
     download_core(c, version=version)
 
     x2t_version = X2t.version(StaticData.core_dir())
     print(f"[bold green]|INFO| The files will be converted to x2t versions: [red]{x2t_version}")
 
-    conversion = X2tTesterConversion(direction, x2t_version)
+    conversion = X2tTesterConversion(direction, x2t_version, trough_conversion=t_format, env_off=env_off)
     report = conversion.run(results_path=True) if direction else conversion.from_extension_json()
 
     tg_msg = f"Files are converted to versions: `{x2t_version}`\nPlatform: `{HostInfo().os}`" if telegram else None
