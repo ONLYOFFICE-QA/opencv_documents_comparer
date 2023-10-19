@@ -52,7 +52,7 @@ class Telegram:
         """
         if not document_paths:
             return self.send_message(caption if caption else 'No files to send.', out_msg=True)
-        if caption and len(caption) > 500:
+        if caption and len(caption) > 1000:
             document_paths.append(self._make_massage_doc(caption, 'caption.txt'))
         files, media = {}, []
         for doc_path in document_paths:
@@ -68,7 +68,7 @@ class Telegram:
 
     @staticmethod
     def _prepare_caption(caption: str) -> str:
-        return caption[:200]
+        return caption[:1000]
 
     def _request(self, url: str, data: dict, files: dict = None, tg_log: bool = True) -> None:
         if self._telegram_token and self._chat_id:
