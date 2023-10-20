@@ -3,6 +3,7 @@ from datetime import datetime
 from os.path import basename, dirname, join
 from time import sleep
 
+from host_control.utils import Str
 from rich import print
 
 from frameworks.StaticData import StaticData
@@ -47,10 +48,7 @@ class OpenTests:
         self.report.handler(tg_msg)
 
     def opening_test(self, document_type: Document, file_path: str) -> bool | None:
-        print(
-            f'[cyan]({self.count}/{self.total})[/] [green]In opening test:[/] '
-            f'[cyan]{basename(dirname(file_path))}[/][red]/[/]{basename(file_path)}'
-        )
+        print(self._generate_test_title(file_path))
 
         tmp_file = File.make_tmp(file_path, File.unique_name(self.tmp_dir))
         hwnd = document_type.open(tmp_file)
@@ -98,6 +96,16 @@ class OpenTests:
             else:
                 return None, direction
         return None, None
+
+    def _generate_test_title(self, file_path: str) -> str:
+        return (
+            f'[cyan]({self.count}/{self.total})[/] [green]In opening test:[/] '
+            f'[cyan]{self.version.version}[/][red]/[/]'
+            f'[cyan]{Str.search(file_path, self.report.direction_pattern, group_num=1)}[/][red]/[/]'
+            f'[cyan]{Str.search(file_path, self.report.os_pattern, group_num=1)}[/][red]/[/]'
+            f'[cyan]{Str.search(file_path, self.report.mod_pattern, group_num=1)}[/][red]/[/]'
+            f'[red]/[/]{basename(file_path)}'
+        )
 
     def _generate_report_path(self):
         report_dir = join(StaticData.reports_dir(), self.version.without_build, 'opener')
