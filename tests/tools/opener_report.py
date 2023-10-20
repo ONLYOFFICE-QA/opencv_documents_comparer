@@ -13,10 +13,10 @@ from frameworks.telegram import Telegram
 
 class OpenerReport:
     titles: list = ['File_name', 'Direction', 'Exit_code', 'Bug_info', 'Version', 'Os', 'Mode', 'File_path']
-    os_pattern: str = r'\[os_(.*?)\]'
-    mod_pattern: str = r'\[mode_(.*?)\]'
+    os_pattern: str = r'\(os_(.*?)\)'
+    mod_pattern: str = r'\(mode_(.*?)\)'
     version_pattern: str = r"(\d+).(\d+).(\d+).(\d+)"
-    direction_pattern: str = r"\[dir_(\w+)_(\w+)\]"
+    direction_pattern: str = r"\(dir_(\w+-\w+)\)"
 
     def __init__(self, reports_path: str):
         self._set_pandas_options()
@@ -29,7 +29,7 @@ class OpenerReport:
         self._write_titles() if not isfile(self.path) else ...
 
         name = basename(file_path)
-        direction = sub(self.direction_pattern, r'\1-\2', Str.search(file_path, self.direction_pattern))
+        direction = Str.search(file_path, self.direction_pattern, group_num=1)
 
         self._writer(
             'a',
@@ -61,6 +61,10 @@ class OpenerReport:
                 [errors_report, self.path],
                 caption=f"{tg_msg}\n\nStatus: `{'Some files have errors' if error_files else 'All tests passed'}`"
             )
+
+    def _get_direction(self, file_path: str) -> str:
+        direction = Str.search(file_path, self.direction_pattern)
+        return sub(self.direction_pattern, r'\1-\2', Str.search(file_path, self.direction_pattern))
 
     def tested_files(self) -> list:
         if exists(self.path):

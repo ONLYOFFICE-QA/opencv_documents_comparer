@@ -107,9 +107,9 @@ class X2tTesterConversion:
         return join(
             self.result_dir,
             f"{self.x2t_version}_"
-            f"[dir_{input_format.lower().replace('.', '')}_{self.output_formats}]_"
-            f"[os_{self.os}]_"
-            f"[mode_{'t-format' if self.trough_conversion else 'Default'}]"
+            f"(dir_{input_format.lower().replace('.', '')}-{self.output_formats})_"
+            f"(os_{self.os})_"
+            f"(mode_{'t-format' if self.trough_conversion else 'Default'})"
         )
 
     @staticmethod
