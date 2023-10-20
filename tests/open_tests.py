@@ -102,7 +102,7 @@ class OpenTests:
     def _generate_report_path(self):
         report_dir = join(StaticData.reports_dir(), self.version.without_build, 'opener')
         if self.continue_test is True:
-            return join(report_dir, f"{self.version.version}")
+            return join(report_dir, f"{self.version.version}_opener_full_report.csv")
         return join(
             report_dir,
             "tmp_reports",

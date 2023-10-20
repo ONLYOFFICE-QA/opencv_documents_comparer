@@ -16,6 +16,7 @@ class OpenerReport:
     os_pattern: str = r'\[os_(.*?)\]'
     mod_pattern: str = r'\[mode_(.*?)\]'
     version_pattern: str = r"(\d+).(\d+).(\d+).(\d+)"
+    direction_pattern: str = r"\[dir_(\w+)_(\w+)\]"
 
     def __init__(self, reports_path: str):
         self._set_pandas_options()
@@ -27,19 +28,19 @@ class OpenerReport:
     def write(self, file_path: str, exit_code: int | str) -> None:
         self._write_titles() if not isfile(self.path) else ...
 
-        name, dir_name = basename(file_path), basename(dirname(file_path))
-        direction = self._search_direction(dir_name)
+        name = basename(file_path)
+        direction = sub(self.direction_pattern, r'\1-\2', Str.search(file_path, self.direction_pattern))
 
         self._writer(
             'a',
             [
                 name,
-                self._search_direction(dir_name),
+                direction,
                 exit_code,
                 self._bug_info(direction, name),
-                Str.search(dir_name, self.version_pattern, group_num=0),
-                Str.search(dir_name, self.os_pattern, group_num=1),
-                Str.search(dir_name, self.mod_pattern, group_num=1),
+                Str.search(file_path, self.version_pattern, group_num=0),
+                Str.search(file_path, self.os_pattern, group_num=1),
+                Str.search(file_path, self.mod_pattern, group_num=1),
                 file_path
             ]
         )
@@ -81,10 +82,6 @@ class OpenerReport:
 
     def _write_titles(self):
         self._writer('w', self.titles)
-
-    @staticmethod
-    def _search_direction(dir_name: str) -> str:
-        return sub(r'(\d+)_(\w+)_(\w+)', r'\2-\3', dir_name.split('.')[-1])
 
     @staticmethod
     def _set_pandas_options():
