@@ -79,7 +79,7 @@ class OpenerReport:
         for _, info in self.exceptions.items():
             if direction in info['directions'] and file_name in info['files']:
                 return info['link'] if info['link'] else info['description'] if info['description'] else '1'
-        return 0
+        return '0'
 
     def _writer(self, mode: str, info: list) -> None:
         Report.write(self.path, mode, info)
