@@ -20,7 +20,7 @@ pillow = "^10.1.0"
 requests = "^2.31.0"
 pandas = "^2"
 mss = "^9.0.1"
-pytest = "^7.3.1"
+pytest = "^7.4.3"
 pydantic = "^2"
 host-control = { git = "https://github.com/l8556/host_control.git", branch = "master" }
 
