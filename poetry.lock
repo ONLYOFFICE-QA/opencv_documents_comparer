@@ -12,23 +12,6 @@ files = [
 ]
 
 [[package]]
-name = "asttokens"
-version = "2.4.0"
-description = "Annotate AST trees with source code positions"
-optional = false
-python-versions = "*"
-files = [
-    { file = "asttokens-2.4.0-py2.py3-none-any.whl", hash = "sha256:cf8fc9e61a86461aa9fb161a14a0841a03c405fa829ac6b202670b3495d2ce69" },
-    { file = "asttokens-2.4.0.tar.gz", hash = "sha256:2e0171b991b2c959acc6c49318049236844a5da1d65ba2672c4880c1c894834e" },
-]
-
-[package.dependencies]
-six = ">=1.12.0"
-
-[package.extras]
-test = ["astroid", "pytest"]
-
-[[package]]
 name = "brotli"
 version = "1.1.0"
 description = "Python bindings for the Brotli compression library"
@@ -378,20 +361,6 @@ files = [
 ]
 
 [[package]]
-name = "executing"
-version = "2.0.0"
-description = "Get the currently executing AST node of a frame, and other information"
-optional = false
-python-versions = "*"
-files = [
-    { file = "executing-2.0.0-py2.py3-none-any.whl", hash = "sha256:06df6183df67389625f4e763921c6cf978944721abf3e714000200aab95b0657" },
-    { file = "executing-2.0.0.tar.gz", hash = "sha256:0ff053696fdeef426cda5bd18eacd94f82c91f49823a2e9090124212ceea9b08" },
-]
-
-[package.extras]
-tests = ["asttokens (>=2.1.0)", "coverage", "coverage-enable-subprocess", "ipython", "littleutils", "pytest", "rich"]
-
-[[package]]
 name = "host-control"
 version = "1.03"
 description = ""
@@ -413,23 +382,6 @@ type = "git"
 url = "https://github.com/l8556/host_control.git"
 reference = "master"
 resolved_reference = "af1d42b9ca968c136910a2c7673e10fcfe2b69bf"
-
-[[package]]
-name = "icecream"
-version = "2.1.3"
-description = "Never use print() to debug again; inspect variables, expressions, and program execution with a single, simple function call."
-optional = false
-python-versions = "*"
-files = [
-    { file = "icecream-2.1.3-py2.py3-none-any.whl", hash = "sha256:757aec31ad4488b949bc4f499d18e6e5973c40cc4d4fc607229e78cfaec94c34" },
-    { file = "icecream-2.1.3.tar.gz", hash = "sha256:0aa4a7c3374ec36153a1d08f81e3080e83d8ac1eefd97d2f4fe9544e8f9b49de" },
-]
-
-[package.dependencies]
-asttokens = ">=2.0.1"
-colorama = ">=0.3.9"
-executing = ">=0.3.1"
-pygments = ">=2.2.0"
 
 [[package]]
 name = "idna"
