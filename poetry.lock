@@ -412,7 +412,7 @@ rich = "*"
 type = "git"
 url = "https://github.com/l8556/host_control.git"
 reference = "master"
-resolved_reference = "7bd6035ac26c0f88f91d22e25140bb49207a8a82"
+resolved_reference = "af1d42b9ca968c136910a2c7673e10fcfe2b69bf"
 
 [[package]]
 name = "icecream"
