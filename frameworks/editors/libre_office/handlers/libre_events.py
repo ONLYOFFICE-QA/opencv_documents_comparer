@@ -22,12 +22,7 @@ class LibreEvents(Events):
                 print(f"[bold red]\n{'-' * 90}\n|ERROR| an error has occurred while opening the file\n{'-' * 90}")
                 return True
 
-            case [
-                'SALFRAME',
-                "Восстановление документа LibreOffice 7.3"
-                | "Восстановление документа LibreOffice 7.5"
-                | "Восстановление документа LibreOffice 7.6"
-            ]:
+            case ['SALFRAME', text] if "Восстановление документа LibreOffice" in text:
                 print(f"[red]\n{'-' * 90}\n|WARNING WINDOW| Recovery document\n{'-' * 90}")
                 LibreMacroses.close_recovery_window()
 
