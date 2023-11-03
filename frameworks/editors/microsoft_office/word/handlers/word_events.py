@@ -21,11 +21,10 @@ class WordEvents(Events):
         return ['OpusApp', "#32770", 'bosa_sdm_msword', 'ThunderDFrame', 'NUIDialog', "MsoSplash"]
 
     def _warning_window(self, hwnd: int) -> bool:
-        for warning_window in self.warning_windows.items():
-            data = warning_window[1]
-            if Window.get_window_info(hwnd, data['window_title'], data['window_text']):
-                print(f"[red]\n{'-' * 90}\n|WARNING WINDOW| {data['message']}\n{'-' * 90}")
-                _button_info = Window.get_window_info(hwnd, data['button_title'], data['button_name'])[0]
+        for _, info in self.warning_windows.items():
+            if Window.get_window_info(hwnd, info['window_title'], info['window_text']):
+                print(f"[red]\n{'-' * 90}\n|WARNING WINDOW| {info['message']}\n{'-' * 90}")
+                _button_info = Window.get_window_info(hwnd, info['button_title'], info['button_name'])[0]
                 Window.click_on_button(_button_info)
                 return True
         return False

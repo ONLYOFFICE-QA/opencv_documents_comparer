@@ -24,23 +24,40 @@ def download_core(c, force=False, version=None):
 @task
 def conversion_test(c, direction=None, ls=False, telegram=False, version=None, t_format=False, env_off=False):
     download_core(c, version=version)
+
     x2t_version = X2t.version(StaticData.core_dir())
-    conversion = X2tTesterConversion(direction, x2t_version, trough_conversion=t_format, env_off=env_off)
     print(f"[bold green]|INFO| The conversion is running on x2t version: [red]{x2t_version}")
+
+    conversion = X2tTesterConversion(direction, x2t_version, trough_conversion=t_format, env_off=env_off)
     report = conversion.from_files_list(config.files_array) if ls else conversion.run()
-    tg_msg = f"Conversion completed on version: `{x2t_version}`\nPlatform: `{HostInfo().os}`" if telegram else None
+
+    tg_msg = (
+        f"Conversion completed\n"
+        f"Version: `{x2t_version}`\n"
+        f"Platform: `{HostInfo().os}`"
+    ) if telegram else None
+
     conversion.report.handler(report, x2t_version, tg_msg=tg_msg) if report else print("[red] Report not exists")
     print(f"[bold red]\n{'-' * 90}\n|INFO| x2t version: {x2t_version}\n{'-' * 90}")
 
 
 @task
-def make_files(c, telegram=False, direction=None, version=None):
+def make_files(c, telegram=False, direction=None, version=None, t_format=False, env_off=False):
     download_core(c, version=version)
+
     x2t_version = X2t.version(StaticData.core_dir())
     print(f"[bold green]|INFO| The files will be converted to x2t versions: [red]{x2t_version}")
-    conversion = X2tTesterConversion(direction, x2t_version)
+
+    conversion = X2tTesterConversion(direction, x2t_version, trough_conversion=t_format, env_off=env_off)
     report = conversion.run(results_path=True) if direction else conversion.from_extension_json()
-    tg_msg = f"Files are converted to versions: `{x2t_version}`\nPlatform: `{HostInfo().os}`" if telegram else None
+
+    tg_msg = (
+        f"Files for open test converted\n"
+        f"Version: {x2t_version}`\n"
+        f"Platform: `{HostInfo().os}`\n"
+        f"Mode: `{'t-format' if t_format else 'Default'}`"
+    ) if telegram else None
+
     conversion.report.handler(report, x2t_version, tg_msg=tg_msg) if report else print("[red] Report not exists")
     print(f"[bold red]\n{'-' * 90}\n|INFO| x2t version: {x2t_version}\n{'-' * 90}")
 
@@ -68,12 +85,13 @@ def compare_test(c, direction: str = None, ls=False, telegram=False):
     )
 
     if telegram:
-        Telegram().send_message(f"Comparison on version {config.version} completed")
+        Telegram().send_message(f"Comparison completed\nVersion: {config.version}")
 
 
 @task
-def open_test(c, direction=None, ls=False, path='', telegram=False, new_test=False, fast_test=False):
-    opener = OpenTests(continue_test=False if fast_test or path or new_test or ls else True)
+def open_test(c, version=None, direction=None, ls=False, path='', telegram=False, new_test=False, fast_test=False):
+    _version = version if version else config.version
+    opener = OpenTests(_version, continue_test=False if fast_test or path or new_test or ls else True)
     source_ext, converted_ext = opener.getting_formats(direction)
 
     if new_test:
@@ -91,5 +109,5 @@ def open_test(c, direction=None, ls=False, path='', telegram=False, new_test=Fal
             exceptions_files=StaticData.ignore_files,
             exceptions_dirs=StaticData.ignore_dirs
         ),
-        tg_msg=f"Opening test completed on version: {config.version}" if telegram else False
+        tg_msg=f"Opening test completed\nVersion: {config.version}" if telegram else False
     )

@@ -5,6 +5,7 @@ from rich import print
 
 class VersionHandler:
     def __init__(self, version: str):
+        self._version_pattern = r'(\d+).(\d+).(\d+).(\d+)'
         self.version = version
 
     @property
@@ -19,15 +20,15 @@ class VersionHandler:
 
     @property
     def major_version(self) -> str:
-        return sub(r'(\d+).(\d+).(\d+).(\d+)', r'\1.\2', self.version)
+        return sub(self._version_pattern, r'\1.\2', self.version)
 
     @property
     def minor_version(self) -> str:
-        return sub(r'(\d+).(\d+).(\d+).(\d+)', r'\3', self.version)
+        return sub(self._version_pattern, r'\3', self.version)
 
     @property
     def build(self) -> int:
-        return int(sub(r'(\d+).(\d+).(\d+).(\d+)', r'\4', self.version))
+        return int(sub(self._version_pattern, r'\4', self.version))
 
     @property
     def without_build(self) -> str:

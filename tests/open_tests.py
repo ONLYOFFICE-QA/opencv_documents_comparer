@@ -3,21 +3,21 @@ from datetime import datetime
 from os.path import basename, dirname, join
 from time import sleep
 
+from host_control.utils import Str
 from rich import print
 
-import config
 from frameworks.StaticData import StaticData
 from frameworks.decorators import singleton, timer
 from frameworks.editors import Document, PowerPoint, LibreOffice, Word, Excel
 from frameworks.editors.onlyoffice import VersionHandler
 from host_control import File, Dir, Window, Process
-from config import version
 from .tools import OpenerReport
 
 
 @singleton
 class OpenTests:
-    def __init__(self, continue_test: bool = True):
+    def __init__(self, version: str, continue_test: bool = True):
+        self.version = VersionHandler(version)
         self.continue_test: bool = continue_test
         self.tmp_dir = StaticData.tmp_dir_in_test
         self.document_power_point = Document(PowerPoint())
@@ -25,16 +25,14 @@ class OpenTests:
         self.document_word = Document(Word())
         self.document_excel = Document(Excel())
         self.report = OpenerReport(self._generate_report_path())
-        Dir.delete(self.tmp_dir, stdout=False, stderr=False)
-        Dir.create(self.tmp_dir, stdout=False)
-        Process.terminate(StaticData.terminate_process)
         self.total, self.count = 0, 1
+        self._prepare_test()
 
     @timer
     def run(self, file_paths: list, tg_msg: bool | str = False) -> None:
         testing_paths = self._generate_testing_paths(file_paths)
         self.total = len(testing_paths)
-        print(f'[bold green]\n{"-" * 90}\n|INFO| Opener on version: {version} is running.\n{"-" * 90}\n')
+        print(f'[bold green]\n{"-" * 90}\n|INFO| Opener on version: {self.version.version} is running.\n{"-" * 90}\n')
         for file_path in testing_paths:
             if file_path.lower().endswith(self.document_excel.formats):
                 self.opening_test(self.document_excel, file_path)
@@ -50,10 +48,7 @@ class OpenTests:
         self.report.handler(tg_msg)
 
     def opening_test(self, document_type: Document, file_path: str) -> bool | None:
-        print(
-            f'[cyan]({self.count}/{self.total})[/] [green]In opening test:[/] '
-            f'[cyan]{basename(dirname(file_path))}[/][red]/[/]{basename(file_path)}'
-        )
+        print(self._generate_test_title(file_path))
 
         tmp_file = File.make_tmp(file_path, File.unique_name(self.tmp_dir))
         hwnd = document_type.open(tmp_file)
@@ -102,14 +97,33 @@ class OpenTests:
                 return None, direction
         return None, None
 
+    def _generate_test_title(self, file_path: str) -> str:
+        return (
+            f'[cyan]({self.count}/{self.total})[/] [green]In opening test:[/] '
+            f'[cyan]{self.version.version}[/][red]/[/]'
+            f'[cyan]{Str.search(file_path, self.report.direction_pattern, group_num=1)}[/][red]/[/]'
+            f'[cyan]{Str.search(file_path, self.report.os_pattern, group_num=1)}[/][red]/[/]'
+            f'[cyan]{Str.search(file_path, self.report.mod_pattern, group_num=1)}[/][red]/[/]'
+            f'[red]/[/]{basename(file_path)}'
+        )
+
     def _generate_report_path(self):
-        report_dir = join(StaticData.reports_dir(), VersionHandler(version).without_build, 'opener')
+        report_dir = join(StaticData.reports_dir(), self.version.without_build, 'opener')
         if self.continue_test is True:
-            return join(report_dir, f"{config.version}_opener_full_report.csv")
-        return join(report_dir, "tmp_reports", f"{config.version}_opener_{datetime.now().strftime('%H_%M_%S')}.csv")
+            return join(report_dir, f"{self.version.version}_opener_full_report.csv")
+        return join(
+            report_dir,
+            "tmp_reports",
+            f"{self.version.version}_opener_{datetime.now().strftime('%H_%M_%S')}.csv"
+        )
 
     def _generate_testing_paths(self, file_paths: list) -> list:
         if self.continue_test is True:
             tested_files = self.report.tested_files()
             return [path for path in file_paths if join(basename(dirname(path)), basename(path)) not in tested_files]
         return file_paths
+
+    def _prepare_test(self):
+        Dir.delete(self.tmp_dir, clear_dir=True, stdout=False, stderr=False)
+        Dir.create(self.tmp_dir, stdout=False)
+        Process.terminate(StaticData.terminate_process)

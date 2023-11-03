@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from os.path import join, basename, dirname, splitext, abspath, isdir
+from os.path import join, basename, dirname, splitext, abspath, exists, isdir
 
 from rich.progress import track
 from rich import print
@@ -9,7 +9,7 @@ from frameworks.StaticData import StaticData
 from frameworks.decorators import timer
 from frameworks.editors import X2tTester, X2tTesterData
 from frameworks.editors.onlyoffice import VersionHandler, X2t
-from host_control import File, Dir
+from host_control import File, Dir, HostInfo
 from .tools import X2ttesterReport
 
 
@@ -21,6 +21,7 @@ class X2tTesterConversion:
             trough_conversion: bool = False,
             env_off: bool = False
     ):
+        self.os = HostInfo().os
         self.env_off = env_off
         self.trough_conversion = trough_conversion
         self.input_formats, self.output_formats = self._getting_formats(direction)
@@ -50,13 +51,19 @@ class X2tTesterConversion:
     @timer
     def from_extension_json(self) -> str | None:
         reports = []
-        for extensions in self.extensions.items():
-            self.output_formats = extensions[0]
-            self.input_formats = " ".join(extensions[1]) if extensions[1] else None
-            print(f"[green]|INFO| Conversion direction:"
-                  f" [cyan]{self.input_formats if self.input_formats else 'All'} [red]to [cyan]{self.output_formats}")
+        for output_format, inout_formats in self.extensions.items():
+            self.output_formats = output_format
+            self.input_formats = " ".join(inout_formats) if inout_formats else None
+
+            print(
+                f"[green]|INFO| Conversion direction: "
+                f"[cyan]{self.input_formats if self.input_formats else 'All'} "
+                f"[red]to [cyan]{self.output_formats}"
+            )
+
             reports.append(self.run(results_path=True))
             Dir.delete(self.tmp_dir, clear_dir=True)
+
         return self.report.merge_reports(reports, self.x2t_version)
 
     @timer
@@ -79,22 +86,31 @@ class X2tTesterConversion:
             paths = self._get_paths(output_formats if self.output_formats else None)
             if paths:
                 for file_path in track(paths, f"[cyan]|INFO| Copying {len(paths)} {output_formats} files"):
-                    _path_to = self._result_path(result_path, splitext(dirname(file_path))[1])
+                    _path_to = self._get_result_path(result_path, self._get_input_format(file_path))
+
+                    Dir.create(_path_to, stdout=False) if not isdir(_path_to) else ...
                     name = basename(file_path)
-                    if splitext(name)[1].lower().replace('.', '') in self.img_formats:
-                        _path_to = join(_path_to, name if len(name) < 200 else f'{name[:100]}.{splitext(name)[1]}')
-                    Dir.create(_path_to, stdout=False)
                     File.copy(
                         file_path,
                         join(_path_to, name if len(name) < 200 else f'{name[:150]}.{splitext(name)[1]}'),
                         stdout=False
                     )
 
-    def _result_path(self, result_path: str, input_format: str = None) -> str:
+    def _get_input_format(self, file_path: str) -> str:
+        if self.trough_conversion:
+            return basename(dirname(dirname(file_path)))
+        return dirname(file_path).split('.')[-1]
+
+    def _get_result_path(self, result_path: str = None, input_format: str = None) -> str:
         if isinstance(result_path, str):
             return result_path
-        return join(self.result_dir,
-                    f"{self.x2t_version}_{input_format.lower().replace('.', '')}_{self.output_formats}")
+        return join(
+            self.result_dir,
+            f"{self.x2t_version}_"
+            f"(dir_{input_format.lower().replace('.', '')}-{self.output_formats})_"
+            f"(os_{self.os})_"
+            f"(mode_{'t-format' if self.trough_conversion else 'Default'})"
+        )
 
     @staticmethod
     def _getting_formats(direction: str | None = None) -> tuple[None | str, None | str]:

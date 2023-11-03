@@ -77,9 +77,18 @@ class X2ttesterReport(Report):
 
         if tg_msg:
             self._send_to_telegram(
-                [processed_report, report_path],
+                [
+                    self._rename_report_for_tg(processed_report, f'{x2t_version}_errors_only.csv'),
+                    self._rename_report_for_tg(report_path, f'{x2t_version}_full.csv'),
+                ],
                 f"{tg_msg}\n\nStatus: `{'Some files have errors' if errors_list else 'All tests passed'}`"
             )
+
+    def _rename_report_for_tg(self, report_path: str, new_name: str) -> str:
+        new_path = join(self.tmp_dir, new_name)
+        File.delete(new_path, stdout=False)
+        File.copy(report_path, new_path)
+        return new_path
 
     def _errors_list(self, df) -> list:
         errors = df[df.Output_size == 0.0] if not self.errors_only else df
