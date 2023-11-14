@@ -339,28 +339,6 @@ files = [
 ]
 
 [[package]]
-name = "easyprocess"
-version = "1.1"
-description = "Easy to use Python subprocess interface."
-optional = false
-python-versions = "*"
-files = [
-    {file = "EasyProcess-1.1-py3-none-any.whl", hash = "sha256:82eed523a0a5eb12a81fa4eacd9f342caeb3f900eb4b798740e6696ad07e63f9"},
-    {file = "EasyProcess-1.1.tar.gz", hash = "sha256:885898302a57aab948973e8b5d32a4229392b9fb2d986ab1d4ffd590e5ba90ec"},
-]
-
-[[package]]
-name = "entrypoint2"
-version = "1.1"
-description = "easy to use command-line interface for python modules"
-optional = false
-python-versions = "*"
-files = [
-    {file = "entrypoint2-1.1-py2.py3-none-any.whl", hash = "sha256:eeb8c327bdb65cdd1668c023a6b110b7e3d1a046fb05e043861ebd9264b3a257"},
-    {file = "entrypoint2-1.1.tar.gz", hash = "sha256:fc0b7fe7b21acdab47a585ab9407ca7e5c4f96cb6888575db6b0ceb91f0e105a"},
-]
-
-[[package]]
 name = "host-control"
 version = "1.03"
 description = ""
@@ -514,21 +492,6 @@ files = [
     {file = "invoke-2.2.0-py3-none-any.whl", hash = "sha256:6ea924cc53d4f78e3d98bc436b08069a03077e6f85ad1ddaa8a116d7dad15820"},
     {file = "invoke-2.2.0.tar.gz", hash = "sha256:ee6cbb101af1a859c7fe84f2a264c059020b0cb7fe3535f9424300ab568f6bd5"},
 ]
-
-[[package]]
-name = "jeepney"
-version = "0.8.0"
-description = "Low-level, pure Python DBus protocol wrapper."
-optional = false
-python-versions = ">=3.7"
-files = [
-    {file = "jeepney-0.8.0-py3-none-any.whl", hash = "sha256:c0a454ad016ca575060802ee4d590dd912e35c122fa04e70306de3d076cce755"},
-    {file = "jeepney-0.8.0.tar.gz", hash = "sha256:5efe48d255973902f6badc3ce55e2aa6c5c3b3bc642059ef3a91247bcfcc5806"},
-]
-
-[package.extras]
-test = ["async-timeout", "pytest", "pytest-asyncio (>=0.17)", "pytest-trio", "testpath", "trio"]
-trio = ["async_generator", "trio"]
 
 [[package]]
 name = "lazy-loader"
@@ -1359,35 +1322,17 @@ files = [
 ]
 
 [[package]]
-name = "pyscreenshot"
-version = "3.1"
-description = "python screenshot"
-optional = false
-python-versions = ">=3.4"
-files = [
-    {file = "pyscreenshot-3.1-py3-none-any.whl", hash = "sha256:73d406d41a0977125bdfd2f6488f0caf1394e84d1d4c1065d5e8b1400b307096"},
-    {file = "pyscreenshot-3.1.tar.gz", hash = "sha256:8c0e93f0aef66a6bfe55a86abfced6bd396ae4b4f6cc1e36f04a28ad2625594d"},
-]
-
-[package.dependencies]
-EasyProcess = "*"
-entrypoint2 = "*"
-jeepney = {version = "*", markers = "python_version > \"3.4\" and platform_system == \"Linux\""}
-mss = {version = "*", markers = "python_version > \"3.4\""}
-
-[[package]]
 name = "pyscreeze"
-version = "0.1.29"
+version = "0.1.30"
 description = "A simple, cross-platform screenshot module for Python 2 and 3."
 optional = false
 python-versions = "*"
 files = [
-    {file = "PyScreeze-0.1.29.tar.gz", hash = "sha256:d074547795e128da176599a6d4470500e425d49b05cf22e9808a7984c3612836"},
+    {file = "PyScreeze-0.1.30.tar.gz", hash = "sha256:74098ad048e76a6231dcfa6243343af94459b8c829f9ccb7a44a5d3b147a67d1"},
 ]
 
 [package.dependencies]
 Pillow = {version = ">=9.3.0", markers = "python_version == \"3.11\""}
-pyscreenshot = "*"
 
 [[package]]
 name = "pytest"
