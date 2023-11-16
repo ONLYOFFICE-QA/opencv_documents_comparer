@@ -196,5 +196,22 @@
     "files": [
       "conv_d55e6e86_57c8_4034_988d_56ca21d3dcc2_pdf.docx"
     ]
+  },
+  "65137": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65137",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xls-pdf",
+      "xls-png",
+      "xls-jpg",
+      "xlsb-pdf",
+      "xlsb-png",
+      "xlsb-jpg"
+    ],
+    "files": [
+      "conv___Kk8yhiX4oev7cZUS5fF29P1mxzwgM9uaT8J_UcmZA__xlsx.xls",
+      "conv_be799cf3_b2c8_4fa3_bc1e_c287d6c44817_ods.xlsb"
+    ]
   }
 }
