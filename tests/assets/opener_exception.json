@@ -235,5 +235,16 @@
     "files": [
       "pivotsources.xlsx"
     ]
+  },
+    "65162": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65162",
+    "description": "",
+    "directions": [
+      "odp-pptx"
+    ],
+    "files": [
+      "aghayev.pptx",
+      "123.pptx"
+    ]
   }
 }
