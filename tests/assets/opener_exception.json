@@ -278,5 +278,16 @@
     "files": [
       "7.SINIF I.DÖNEM III.YAZILI SINAV.ods"
     ]
+  },
+  "65171": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65171",
+    "description": "",
+    "directions": [
+      "ppt-odp"
+    ],
+    "files": [
+      "psicologia_della_relazione.odp",
+      "Тікбұрышты үшбұрыштарды.odp"
+    ]
   }
 }
