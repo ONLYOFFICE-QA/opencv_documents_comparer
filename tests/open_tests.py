@@ -100,7 +100,7 @@ class OpenTests:
     def _generate_test_title(self, file_path: str) -> str:
         return (
             f'[cyan]({self.count}/{self.total})[/] [green]In opening test:[/] '
-            f'[cyan]{self.version.version}[/][red]/[/]'
+            f'[cyan]{Str.search(file_path, self.report.version_pattern, group_num=0)}[/][red]/[/]'
             f'[cyan]{Str.search(file_path, self.report.direction_pattern, group_num=1)}[/][red]/[/]'
             f'[cyan]{Str.search(file_path, self.report.os_pattern, group_num=1)}[/][red]/[/]'
             f'[cyan]{Str.search(file_path, self.report.mod_pattern, group_num=1)}[/][red]/[/]'
