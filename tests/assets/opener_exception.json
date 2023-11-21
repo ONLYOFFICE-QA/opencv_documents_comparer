@@ -267,5 +267,16 @@
       "aghayev.pptx",
       "123.pptx"
     ]
+  },
+  "65190": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65190",
+    "description": "",
+    "mode": ["t-format"],
+    "directions": [
+      "xls-ods"
+    ],
+    "files": [
+      "7.SINIF I.DÖNEM III.YAZILI SINAV.ods"
+    ]
   }
 }

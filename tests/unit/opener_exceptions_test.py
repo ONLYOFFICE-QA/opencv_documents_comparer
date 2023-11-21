@@ -13,12 +13,19 @@ def json_data():
 def test_info_empty(json_data):
     for bug_name, info in json_data.items():
         assert info is not None
+
         assert 'link' in info, f"{bug_name} has no 'link' parameter"
+        assert isinstance(info['link'], str)
+
         assert 'description' in info, f"{bug_name} has no 'description' parameter"
+        assert isinstance(info['description'], str)
+
         assert 'mode' in info, f"{bug_name} has no 'mode' parameter"
         assert isinstance(info['mode'], list)
+
         assert 'directions' in info, f"{bug_name} has no 'directions' parameter"
         assert isinstance(info['directions'], list)
+
         assert 'files' in info, f"{bug_name} has no 'files' parameter"
         assert isinstance(info['files'], list)
 
