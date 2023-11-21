@@ -11,18 +11,19 @@ def json_data():
         return json.load(file)
 
 def test_info_empty(json_data):
-    for _, info in json_data.items():
+    for bug_name, info in json_data.items():
         assert info is not None
-        assert 'link' in info
-        assert 'description' in info
-        assert 'mode' in info
+        assert 'link' in info, f"{bug_name} has no 'link' parameter"
+        assert 'description' in info, f"{bug_name} has no 'description' parameter"
+        assert 'mode' in info, f"{bug_name} has no 'mode' parameter"
         assert isinstance(info['mode'], list)
-        assert 'directions' in info
+        assert 'directions' in info, f"{bug_name} has no 'directions' parameter"
         assert isinstance(info['directions'], list)
-        assert 'files' in info
+        assert 'files' in info, f"{bug_name} has no 'files' parameter"
         assert isinstance(info['files'], list)
 
 def test_info_mode(json_data):
-    for _, info in json_data.items():
+    for bug_name, info in json_data.items():
+        assert set(info['mode']), f"Bug {bug_name} has an empty 'mode'"
         valid_modes = {"Default", "t-format"}
-        assert set(info['mode']) <= valid_modes
+        assert set(info['mode']) <= valid_modes, f"{bug_name} does not have a valid 'mode'. Valid value: {valid_modes}"
