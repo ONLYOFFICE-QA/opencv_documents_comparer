@@ -16,6 +16,7 @@ def test_info_empty(json_data):
         assert 'link' in info
         assert 'description' in info
         assert 'mode' in info
+        assert isinstance(info['mode'], list)
         assert 'directions' in info
         assert isinstance(info['directions'], list)
         assert 'files' in info
@@ -23,6 +24,5 @@ def test_info_empty(json_data):
 
 def test_info_mode(json_data):
     for _, info in json_data.items():
-        assert isinstance(info['mode'], list)
         valid_modes = {"Default", "t-format"}
         assert set(info['mode']) <= valid_modes
