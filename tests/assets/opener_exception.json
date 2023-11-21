@@ -2,6 +2,7 @@
   "52628": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=52628",
     "description": "Named range, problems in ms Excel",
+    "mode": "Default",
     "directions": [
       "xls-xlsx"
     ],
@@ -14,6 +15,7 @@
   "63772": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=63772",
     "description": "problems in ms Excel",
+    "mode": "Default",
     "directions": [
       "xls-xlsx"
     ],
@@ -24,6 +26,7 @@
   "5": {
     "link": "",
     "description": "ms Word it is not possible to put a picture in the inscription",
+    "mode": "Default",
     "directions": [
       "odt-docx",
       "fodt-docx"
@@ -41,6 +44,7 @@
   "52628_ods_xlsx": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=52628",
     "description": "Named range, problems in ms Excel",
+    "mode": "Default",
     "directions": [
       "ods-xlsx"
     ],
@@ -57,6 +61,7 @@
   "58959": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=58959",
     "description": "not supported RANK(5,{1;2;3;4;5;6;7},1), RANK(5,{1;2;3;4;5;6;7}",
+    "mode": "Default",
     "directions": [
       "xls-xlsx",
       "ods-xlsx"
@@ -72,6 +77,7 @@
   "2": {
     "link": "Opening in LibreOffice over a minute",
     "description": "Opening in LibreOffice over a minute, file opens successfully, same behavior when opening the source file in LibreOffice",
+    "mode": "Default",
     "directions": [
       "xls-ods"
     ],
@@ -82,6 +88,7 @@
   "3": {
     "link": "",
     "description": "The problem is on the ms Office 2021 side, in ms Office 2019 the files open without errors",
+    "mode": "Default",
     "directions": [
       "doc-docx"
     ],
@@ -94,6 +101,7 @@
   "4": {
     "link": "",
     "description": "macroses",
+    "mode": "Default",
     "directions": [
       "xls-xlsx"
     ],
@@ -105,6 +113,7 @@
   "60313": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=60313",
     "description": "ms Excel problem, does not work with long sheet names",
+    "mode": "Default",
     "directions": [
       "ods-xlsx"
     ],
@@ -117,6 +126,7 @@
   },
   "60279": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=60279",
+    "mode": "Default",
     "description": "",
     "directions": [
       "odp-pptx"
@@ -130,6 +140,7 @@
   },
   "52374": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=52374",
+    "mode": "Default",
     "description": "",
     "directions": [
       "ppt-pptx"
@@ -140,6 +151,7 @@
   },
   "60847": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=60847",
+    "mode": "Default",
     "description": "problems in LibreOffice",
     "directions": [
       "docx-odt"
@@ -151,6 +163,7 @@
   "62331": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=62331",
     "description": "LibreOffice Bug",
+    "mode": "Default",
     "directions": [
       "docxf-odt"
     ],
@@ -161,6 +174,7 @@
   "62789": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=62789",
     "description": "",
+    "mode": "Default",
     "directions": [
       "rtf-docx"
     ],
@@ -172,6 +186,7 @@
   "63701": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=63701",
     "description": "",
+    "mode": "Default",
     "directions": [
       "mht-docx"
     ],
@@ -185,6 +200,7 @@
   "64200": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64200",
     "description": "",
+    "mode": "Default",
     "directions": [
       "xps-docx"
     ],
@@ -198,6 +214,7 @@
   "64604": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64604",
     "description": "",
+    "mode": "Default",
     "directions": [
       "xlsb-xlsx"
     ],
@@ -209,6 +226,7 @@
   "64635": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64635",
     "description": "",
+    "mode": "Default",
     "directions": [
       "xlsb-xlsx"
     ],
@@ -219,6 +237,7 @@
   "64863": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64863",
     "description": "",
+    "mode": "Default",
     "directions": [
       "xlsb-xlsx"
     ],
@@ -229,6 +248,7 @@
   "64673": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64673",
     "description": "",
+    "mode": "Default",
     "directions": [
       "xlsb-xlsx"
     ],
@@ -239,6 +259,7 @@
     "65162": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65162",
     "description": "",
+    "mode": "Default",
     "directions": [
       "odp-pptx"
     ],
