@@ -30,20 +30,12 @@ class OpenerReport:
 
         name = basename(file_path)
         direction = Str.search(file_path, self.direction_pattern, group_num=1)
+        version = Str.search(file_path, self.version_pattern, group_num=0)
+        os = Str.search(file_path, self.os_pattern, group_num=1)
+        mode = Str.search(file_path, self.mod_pattern, group_num=1)
+        bug_info = self._bug_info(direction, name, mode)
 
-        self._writer(
-            'a',
-            [
-                name,
-                direction,
-                exit_code,
-                self._bug_info(direction, name),
-                Str.search(file_path, self.version_pattern, group_num=0),
-                Str.search(file_path, self.os_pattern, group_num=1),
-                Str.search(file_path, self.mod_pattern, group_num=1),
-                file_path
-            ]
-        )
+        self._writer('a', [name, direction, exit_code, bug_info, version, os, mode, file_path])
 
     def handler(self, tg_msg: bool | str = False) -> None:
         df = Report.read(self.path)
@@ -75,9 +67,14 @@ class OpenerReport:
     def _add_to_end(df, column_name: str, value: str | int | float):
         df.loc[df.index.max() + 1, column_name] = value
 
-    def _bug_info(self, direction: str, file_name: str) -> int | str:
+    def _bug_info(self, direction: str, file_name: str, mode: str) -> int | str:
+        mode = mode if mode else 'Default'
         for _, info in self.exceptions.items():
-            if direction in info['directions'] and file_name in info['files']:
+            if (
+                    direction in info['directions']
+                    and file_name in info['files']
+                    and mode in info['mode']
+            ):
                 return info['link'] if info['link'] else info['description'] if info['description'] else '1'
         return '0'
 
