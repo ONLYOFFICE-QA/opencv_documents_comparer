@@ -282,6 +282,7 @@
   "65171": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65171",
     "description": "",
+    "mode": ["Default", "t-format"],
     "directions": [
       "ppt-odp"
     ],
@@ -290,9 +291,10 @@
       "Тікбұрышты үшбұрыштарды.odp"
     ]
   },
-    "65172": {
+  "65172": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65172",
     "description": "",
+    "mode": ["Default", "t-format"],
     "directions": [
       "xlsb-xlsx"
     ],
