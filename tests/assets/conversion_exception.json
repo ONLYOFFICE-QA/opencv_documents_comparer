@@ -238,7 +238,7 @@
       "Editor2.xlsx"
     ]
   },
-    "65263": {
+  "65263": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65263",
     "description": "",
     "os": [],
@@ -248,6 +248,19 @@
     ],
     "files": [
       "87kpRebVWGRl0BLV9sg3fkttelLWUSCa3vzD1tAzaW0_.mht"
+    ]
+  },
+  "65264": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65264",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xlsm-pdf",
+      "xlsm-png",
+      "xlsm-jpg"
+    ],
+    "files": [
+      "conv_6f3224c5_a69b_433e_8487_1bf6c0e5b31b_png.xlsm"
     ]
   }
 }
