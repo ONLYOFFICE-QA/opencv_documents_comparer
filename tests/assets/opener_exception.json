@@ -256,18 +256,6 @@
       "pivotsources.xlsx"
     ]
   },
-  "65162": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65162",
-    "description": "",
-    "mode": ["Default", "t-format"],
-    "directions": [
-      "odp-pptx"
-    ],
-    "files": [
-      "aghayev.pptx",
-      "123.pptx"
-    ]
-  },
   "65190": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65190",
     "description": "",
@@ -277,18 +265,6 @@
     ],
     "files": [
       "7.SINIF I.DÖNEM III.YAZILI SINAV.ods"
-    ]
-  },
-  "65171": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65171",
-    "description": "",
-    "mode": ["Default", "t-format"],
-    "directions": [
-      "ppt-odp"
-    ],
-    "files": [
-      "psicologia_della_relazione.odp",
-      "Тікбұрышты үшбұрыштарды.odp"
     ]
   },
   "65172": {
