@@ -226,18 +226,6 @@
       "Pizdariki.docx"
     ]
   },
-  "65260": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65260",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xlsx-ods",
-      "xlsx-ots"
-    ],
-    "files": [
-      "Editor2.xlsx"
-    ]
-  },
   "65263": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65263",
     "description": "",
