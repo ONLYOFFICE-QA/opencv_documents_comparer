@@ -242,10 +242,7 @@
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65263",
     "description": "",
     "os": [],
-    "directions": [
-      "xlsx-ods",
-      "xlsx-ots"
-    ],
+    "directions": [],
     "files": [
       "87kpRebVWGRl0BLV9sg3fkttelLWUSCa3vzD1tAzaW0_.mht"
     ]
