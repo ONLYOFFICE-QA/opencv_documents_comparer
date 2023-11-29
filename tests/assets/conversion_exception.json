@@ -256,5 +256,30 @@
     "files": [
       "AJv_fDFWZJGVX5qJojVLoOsCkQUUQ691vBpGy27x41s_.docx"
     ]
+  },
+  "65301": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65301",
+    "description": "",
+    "os": [],
+    "directions": [
+      "pptm-pptx",
+      "pptm-potx"
+    ],
+    "files": [
+      "RSA.pptm"
+    ]
+  },
+  "65306": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65306",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xlsx-pdf",
+      "xlsx-png",
+      "xlsx-jpg"
+    ],
+    "files": [
+      "8D_1.xlsx"
+    ]
   }
 }
