@@ -197,23 +197,6 @@
       "conv_d55e6e86_57c8_4034_988d_56ca21d3dcc2_pdf.docx"
     ]
   },
-  "65137": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65137",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xls-pdf",
-      "xls-png",
-      "xls-jpg",
-      "xlsb-pdf",
-      "xlsb-png",
-      "xlsb-jpg"
-    ],
-    "files": [
-      "conv___Kk8yhiX4oev7cZUS5fF29P1mxzwgM9uaT8J_UcmZA__xlsx.xls",
-      "conv_be799cf3_b2c8_4fa3_bc1e_c287d6c44817_ods.xlsb"
-    ]
-  },
   "65159": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65159",
     "description": "",
@@ -235,19 +218,6 @@
       "87kpRebVWGRl0BLV9sg3fkttelLWUSCa3vzD1tAzaW0_.mht"
     ]
   },
-  "65264": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65264",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xlsm-pdf",
-      "xlsm-png",
-      "xlsm-jpg"
-    ],
-    "files": [
-      "conv_6f3224c5_a69b_433e_8487_1bf6c0e5b31b_png.xlsm"
-    ]
-  },
   "65265": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65265",
     "description": "",
@@ -255,18 +225,6 @@
     "directions": [],
     "files": [
       "AJv_fDFWZJGVX5qJojVLoOsCkQUUQ691vBpGy27x41s_.docx"
-    ]
-  },
-  "65301": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65301",
-    "description": "",
-    "os": [],
-    "directions": [
-      "pptm-pptx",
-      "pptm-potx"
-    ],
-    "files": [
-      "RSA.pptm"
     ]
   },
   "65306": {
