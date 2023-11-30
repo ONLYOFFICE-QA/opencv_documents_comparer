@@ -281,5 +281,18 @@
     "files": [
       "8D_1.xlsx"
     ]
+  },
+  "65316": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65316",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xls-pdf",
+      "xls-png",
+      "xls-jpg"
+    ],
+    "files": [
+      "9200844_1.xls"
+    ]
   }
 }
