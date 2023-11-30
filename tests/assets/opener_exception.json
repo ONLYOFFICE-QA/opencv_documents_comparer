@@ -256,17 +256,6 @@
       "pivotsources.xlsx"
     ]
   },
-  "65190": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65190",
-    "description": "",
-    "mode": ["t-format"],
-    "directions": [
-      "xls-ods"
-    ],
-    "files": [
-      "7.SINIF I.DÖNEM III.YAZILI SINAV.ods"
-    ]
-  },
   "65172": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65172",
     "description": "",
