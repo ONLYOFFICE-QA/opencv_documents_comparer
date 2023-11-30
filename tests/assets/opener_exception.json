@@ -211,40 +211,6 @@
       "WPF_WMPhotoImage_RGBText.docx"
     ]
   },
-  "64604": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64604",
-    "description": "",
-    "mode": ["Default", "t-format"],
-    "directions": [
-      "xlsb-xlsx"
-    ],
-    "files": [
-      "Concrete Ring Wall Foundation.xlsx",
-      "FAS.JKH.OPEN.INFO.PRICE.WARM_v1.0.2_AO-Voltayr_Prom-2019_2023.-_zapolneno-2020g_.xlsx"
-    ]
-  },
-  "64635": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64635",
-    "description": "",
-    "mode": ["Default", "t-format"],
-    "directions": [
-      "xlsb-xlsx"
-    ],
-    "files": [
-      "Sundars-Nifty.xlsx"
-    ]
-  },
-  "64863": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64863",
-    "description": "",
-    "mode": ["Default", "t-format"],
-    "directions": [
-      "xlsb-xlsx"
-    ],
-    "files": [
-      "Demo-2010WinterOlympics.xlsx"
-    ]
-  },
   "64673": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64673",
     "description": "",
