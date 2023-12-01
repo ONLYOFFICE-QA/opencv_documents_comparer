@@ -252,5 +252,14 @@
     "files": [
       "9200844_1.xls"
     ]
+  },
+  "65340": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65340",
+    "description": "",
+    "os": [],
+    "directions": [],
+    "files": [
+      "22.ppt"
+    ]
   }
 }
