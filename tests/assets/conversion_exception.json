@@ -247,10 +247,22 @@
   "65340": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65340",
     "description": "",
-    "os": [],
+    "os": ["windows"],
     "directions": [],
     "files": [
       "22.ppt"
+    ]
+  },
+  "65352": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65352",
+    "description": "",
+    "os": [],
+    "directions": [
+      "pptx-odp",
+      "pptx-otp"
+    ],
+    "files": [
+      "SOL_2003_WMI_mbakirov.pptx"
     ]
   }
 }
