@@ -4,7 +4,7 @@ from os.path import join
 
 from frameworks.StaticData import StaticData
 from frameworks.decorators import singleton
-from host_control import HostInfo, Dir
+from host_tools import HostInfo, Dir
 from frameworks.editors.onlyoffice import VersionHandler, X2t
 from frameworks.report import Report
 

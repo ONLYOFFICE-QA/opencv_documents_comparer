@@ -3,7 +3,7 @@ import pyautogui as pg
 from rich import print
 
 from frameworks.decorators import singleton
-from host_control import Window
+from host_tools import Window
 from frameworks.telegram import Telegram
 
 from ....events import Events

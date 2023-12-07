@@ -6,11 +6,11 @@ from time import sleep
 from rich import print
 from frameworks.decorators import retry
 from frameworks.editors.editor import Editor
-from host_control import File, HostInfo, Process
+from host_tools import File, HostInfo, Process
 
 
 if HostInfo().os == "windows":
-    from host_control import Window
+    from host_tools import Window
 
 
 class Document:

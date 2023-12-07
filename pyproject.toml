@@ -22,7 +22,7 @@ pandas = "^2"
 mss = "^9.0.1"
 pytest = "^7.4.3"
 pydantic = "^2"
-host-control = { git = "https://github.com/l8556/host_control.git", branch = "master" }
+host-tools = { git = "https://github.com/l8556/host_tools.git", branch = "feature/refactoring" }
 
 
 [build-system]

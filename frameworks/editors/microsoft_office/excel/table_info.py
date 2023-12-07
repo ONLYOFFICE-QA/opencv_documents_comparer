@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from frameworks.StaticData import StaticData
 from frameworks.decorators import async_processing
-from host_control import File, HostInfo, Shell, Dir
+from host_tools import File, HostInfo, Shell, Dir
 
 from .handlers import ExcelEvents
 

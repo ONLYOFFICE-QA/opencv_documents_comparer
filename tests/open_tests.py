@@ -3,14 +3,14 @@ from datetime import datetime
 from os.path import basename, dirname, join
 from time import sleep
 
-from host_control.utils import Str
+from host_tools.utils import Str
 from rich import print
 
 from frameworks.StaticData import StaticData
 from frameworks.decorators import singleton, timer
 from frameworks.editors import Document, PowerPoint, LibreOffice, Word, Excel
 from frameworks.editors.onlyoffice import VersionHandler
-from host_control import File, Dir, Window, Process
+from host_tools import File, Dir, Window, Process
 from .tools import OpenerReport
 
 

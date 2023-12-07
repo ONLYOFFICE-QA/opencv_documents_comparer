@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 from os.path import join, basename, dirname, realpath, exists, splitext, isfile
 
-from host_control.utils import Str
+from host_tools.utils import Str
 from rich import print
 from re import sub
 import pandas as pd
 
-from host_control import File, Dir
+from host_tools import File, Dir
 from frameworks.report import Report
 from frameworks.telegram import Telegram
 

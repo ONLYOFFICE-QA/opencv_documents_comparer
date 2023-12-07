@@ -7,7 +7,7 @@ from os.path import join, getsize, basename, isdir, isfile, expanduser
 from rich import print
 
 from frameworks.decorators import singleton
-from host_control import File, Dir
+from host_tools import File, Dir
 
 
 @singleton

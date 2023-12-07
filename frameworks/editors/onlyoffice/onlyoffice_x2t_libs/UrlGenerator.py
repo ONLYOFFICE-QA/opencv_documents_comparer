@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from host_control import HostInfo
+from host_tools import HostInfo
 from ..handlers.VersionHandler import VersionHandler
 
 
