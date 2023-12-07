@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 import pyautogui as pg
+from os.path import join, dirname, realpath
 from multiprocessing import Process
 from time import sleep
 from rich import print
 
 from frameworks.decorators import singleton
-from host_tools import Window
+from host_tools import Window, File
 from frameworks.telegram import Telegram
 from frameworks.StaticData import StaticData
 import subprocess as sb
@@ -23,31 +24,30 @@ class ExcelEvents(Events):
 
     def __init__(self):
         self.project_dir = StaticData.project_dir
+        self.warning_windows = File.read_json(join(dirname(realpath(__file__)), 'pp_warning_window.json'))
 
     @property
     def window_class_names(self) -> list:
         return ['XLMAIN', "#32770", 'NUIDialog', 'ThunderDFrame', 'MsoSplash']
 
+    def _warning_window(self, hwnd: int) -> bool:
+        for _, info in self.warning_windows.items():
+            if Window.get_window_info(hwnd, info['window_title'], info['window_text']):
+                print(f"[red]\n{'-' * 90}\n|WARNING WINDOW| {info['message']}\n{'-' * 90}")
+                _button_info = Window.get_window_info(hwnd, info['button_title'], info['button_name'])[0]
+                Window.click_on_button(_button_info)
+                return True
+        return False
+
     def when_opening(self, class_name: str, windows_text: str, hwnd: int = None) -> bool:
         match [class_name, windows_text]:
 
             case ["#32770", "Microsoft Excel"]:
-                hwnd = Window.get_hwnd('#32770', 'Microsoft Excel') if not hwnd else hwnd
-                if Window.get_window_info(hwnd, 'Static', 'Некоторые формулы содержат циклические ссылки'):
-                    print(
-                        f"[red]\n{'-' * 90}\n|WARNING WINDOW| Some formulas contain cyclic references. Clicked: 'ОК'\n{'-' * 90}")
-                    Window.click_on_button(Window.get_window_info(hwnd, 'Button', 'ОК')[0])
-                    raise
-                elif Window.get_window_info(hwnd, 'Static', 'только для чтения, если вносить изменения не требуется.'):
-                    print(
-                        f"[red]\n{'-' * 90}\n|WARNING WINDOW| The author advises opening  file for reading only. Clicked: 'ОК'\n{'-' * 90}")
-                    Window.click_on_button(Window.get_window_info(hwnd, 'Button', 'Д&а')[0])
-                    raise
-                elif Window.get_window_info(hwnd, 'Static', 'Недопустимая ссылка. Ссылка для названий, значений'):
-                    print(f"[red]\n{'-' * 90}\n|WARNING WINDOW| Invalid reference. Clicked: 'ОК'\n{'-' * 90}")
-                    Window.click_on_button(Window.get_window_info(hwnd, 'Button', 'ОК')[0])
+                _hwnd = Window.get_hwnd('#32770', 'Microsoft Excel') if not hwnd else hwnd
+                if self._warning_window(_hwnd):
                     raise
                 print(f"[bold red]\n{'-' * 90}\n|ERROR| an error has occurred while opening the file\n{'-' * 90}")
+                Window.close(_hwnd)
                 return True
 
         return False

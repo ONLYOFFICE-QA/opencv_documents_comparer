@@ -1,0 +1,16 @@
+{
+  "Safe mode": {
+    "window_title": "Static",
+    "window_text": "Выполнить запуск в безопасном режиме?",
+    "message": "Start PP in safe mode. Clicked: 'No'",
+    "button_title": "Button",
+    "button_name": "&Нет"
+  },
+  "unused slide samples.": {
+    "window_title": "Static",
+    "window_text": "Приложение PowerPoint обнаружило большое количество неиспользуемых образцов слайдов.",
+    "message": "Clear unused slides. Clicked: 'Cancel'",
+    "button_title": "Button",
+    "button_name": "Отмена"
+  }
+}

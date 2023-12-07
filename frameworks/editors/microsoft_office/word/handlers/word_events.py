@@ -14,7 +14,7 @@ from ....events import Events
 class WordEvents(Events):
 
     def __init__(self):
-        self.warning_windows = File.read_json(join(dirname(realpath(__file__)), 'warning_window.json'))
+        self.warning_windows = File.read_json(join(dirname(realpath(__file__)), 'word_warning_window.json'))
 
     @property
     def window_class_names(self) -> list:
@@ -33,11 +33,11 @@ class WordEvents(Events):
         match [class_name, windows_text]:
 
             case ['#32770', 'Microsoft Word']:
-                hwnd = Window.get_hwnd('#32770', 'Microsoft Word') if not hwnd else hwnd
-                if self._warning_window(hwnd):
+                _hwnd = Window.get_hwnd('#32770', 'Microsoft Word') if not hwnd else hwnd
+                if self._warning_window(_hwnd):
                     raise
                 print(f"[bold red]\n{'-' * 90}\n|ERROR| an error has occurred while opening the file\n{'-' * 90}")
-                Window.close(hwnd)
+                Window.close(_hwnd)
                 return True
 
             case ['bosa_sdm_msword', 'Преобразование файла']:
