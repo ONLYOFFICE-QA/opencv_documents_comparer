@@ -1,0 +1,32 @@
+{
+  "ERROR": {
+    "class_name": "SALSUBFRAME",
+    "window_text": "Ошибка",
+    "status": "ERROR",
+    "message": "an error has occurred while opening the file"
+  },
+  "Word File conversion": {
+    "class_name": "bosa_sdm_msword",
+    "window_text": "Преобразование файла",
+    "status": "WARNING",
+    "message": "Word File conversion"
+  },
+  "Recovery document": {
+    "class_name": "SALFRAME",
+    "window_text": "Восстановление документа LibreOffice",
+    "status": "WARNING",
+    "message": "Recovery document"
+  },
+  "Failure report": {
+    "class_name": "",
+    "window_text": "Отчёт о сбое",
+    "status": "WARNING",
+    "message": "Failure report"
+  },
+  "Warning": {
+    "class_name": "SALSUBFRAME",
+    "window_text": "Предупреждение",
+    "status": "WARNING",
+    "message": "Warning"
+  }
+}

@@ -24,7 +24,7 @@ class ExcelEvents(Events):
 
     def __init__(self):
         self.project_dir = StaticData.project_dir
-        self.warning_windows = File.read_json(join(dirname(realpath(__file__)), 'pp_warning_window.json'))
+        self.warning_windows = File.read_json(join(dirname(realpath(__file__)), 'excel_warning_window.json'))
 
     @property
     def window_class_names(self) -> list:
