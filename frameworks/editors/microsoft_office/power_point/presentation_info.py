@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-from host_control.utils import Shell
+from host_tools.utils import Shell
 from rich import print
 
 from frameworks.StaticData import StaticData
 from frameworks.decorators import async_processing
-from host_control import HostInfo, File
+from host_tools import HostInfo, File
 
 from .handlers import PowerPointEvents
 

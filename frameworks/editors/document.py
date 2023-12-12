@@ -6,11 +6,11 @@ from time import sleep
 from rich import print
 from frameworks.decorators import retry
 from frameworks.editors.editor import Editor
-from host_control import File, HostInfo, Process
+from host_tools import File, HostInfo, Process
 
 
 if HostInfo().os == "windows":
-    from host_control import Window
+    from host_tools import Window
 
 
 class Document:
@@ -32,7 +32,7 @@ class Document:
     def _wait_until_open(self, file_path) -> int | str:
         return self.window.wait_until_open(
             titles=self.editor_class_names,
-            window_title_text=basename(file_path).replace(splitext(file_path)[1], ''),
+            window_title_text=f"{basename(file_path).replace(splitext(file_path)[1], '')}",
             max_waiting_time=self.max_waiting_time,
             event_handler=self.events.when_opening,
             max_time_run_windows=10

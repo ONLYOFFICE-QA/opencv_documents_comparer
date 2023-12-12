@@ -357,7 +357,7 @@ rich = "*"
 
 [package.source]
 type = "git"
-url = "https://github.com/l8556/host_control.git"
+url = "https://github.com/l8556/host_tools.git"
 reference = "master"
 resolved_reference = "af1d42b9ca968c136910a2c7673e10fcfe2b69bf"
 

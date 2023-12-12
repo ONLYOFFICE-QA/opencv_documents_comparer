@@ -2,12 +2,12 @@
 from datetime import datetime
 from os.path import join, dirname, realpath
 
-from host_control.utils import Dir
+from host_tools.utils import Dir
 from rich import print
 
 from frameworks.StaticData import StaticData
 from frameworks.decorators import singleton
-from host_control import File, HostInfo
+from host_tools import File, HostInfo
 from frameworks.editors.onlyoffice.handlers.VersionHandler import VersionHandler
 from frameworks.report import Report
 import config

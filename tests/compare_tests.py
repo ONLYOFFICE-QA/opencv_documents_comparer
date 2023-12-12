@@ -4,7 +4,7 @@ from os import listdir
 from os.path import basename, splitext, join, exists
 from time import sleep
 import numpy as np
-from host_control.utils import Process, Dir
+from host_tools.utils import Process, Dir
 
 from rich import print
 from rich.progress import track
@@ -13,7 +13,7 @@ import config
 from frameworks.StaticData import StaticData
 from frameworks.editors import Document, PowerPoint, LibreOffice, Word, Excel
 from frameworks.editors.onlyoffice import VersionHandler
-from host_control import File
+from host_tools import File
 from frameworks.image_handler import Image
 from config import version
 from frameworks.decorators import singleton, timer

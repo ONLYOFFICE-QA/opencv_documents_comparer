@@ -3,7 +3,7 @@ from os import environ
 
 from frameworks.StaticData import StaticData
 from frameworks.decorators import singleton
-from host_control import HostInfo
+from host_tools import HostInfo
 
 
 @singleton
