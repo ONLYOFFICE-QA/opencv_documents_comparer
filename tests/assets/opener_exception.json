@@ -258,5 +258,16 @@
       "Byudzhet-dlya-grazhdan-2021-2.pptx",
       "ep2018se_55_carletti_how_to_be_anonymous_online.pptx"
     ]
+  },
+  "65523": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65523",
+    "description": "",
+    "mode": ["Default", "t-format"],
+    "directions": [
+      "ppt-pptx"
+    ],
+    "files": [
+      "camping.pptx"
+    ]
   }
 }
