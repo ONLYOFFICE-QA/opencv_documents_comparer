@@ -233,5 +233,30 @@
     "files": [
       "conv_be799cf3_b2c8_4fa3_bc1e_c287d6c44817_ods.xlsx"
     ]
+  },
+    "65503": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65503",
+    "description": "",
+    "mode": ["Default", "t-format"],
+    "directions": [
+      "odp-pptx"
+    ],
+    "files": [
+      "Linux_as_a_cult.pptx",
+      "physics140-f07-lecture17.pptx",
+      "prezentace_brno_17.3_emerald3_0.pptx"
+    ]
+  },
+  "65501": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65501",
+    "description": "",
+    "mode": ["Default", "t-format"],
+    "directions": [
+      "odp-pptx"
+    ],
+    "files": [
+      "Byudzhet-dlya-grazhdan-2021-2.pptx",
+      "ep2018se_55_carletti_how_to_be_anonymous_online.pptx"
+    ]
   }
 }
