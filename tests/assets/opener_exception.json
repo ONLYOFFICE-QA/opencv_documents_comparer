@@ -233,46 +233,5 @@
     "files": [
       "conv_be799cf3_b2c8_4fa3_bc1e_c287d6c44817_ods.xlsx"
     ]
-  },
-  "65399": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65399",
-    "description": "",
-    "mode": ["Default", "t-format"],
-    "directions": [
-      "odp-pptx",
-      "fodp-pptx",
-      "ppt-pptx",
-      "sxi-pptx"
-    ],
-    "files":  [
-      "Banki.pptx",
-      "BouwData_PB_presentatie.pptx",
-      "01_ODFWS2009_Jomar.pptx",
-      "03_ODFWS2009_Parana.pptx",
-      "05_ODFWS2009_Paraguay.pptx",
-      "09_ODFWS2009_cuba.pptx",
-      "10 - Raznoe.pptx",
-      "arab-israeli_war.pptx",
-      "Are_you_ready_for_2021.pptx",
-      "Byudzhet-dlya-grazhdan-2021-2.pptx",
-      "Dask4wind.pptx",
-      "ep2018se_55_carletti_how_to_be_anonymous_online.pptx",
-      "GPAllen Discover_2020_Power_Point.pptx",
-      "GSoC2008-presentation-Japanese.pptx",
-      "GSoC2008-presentation.pptx",
-      "GSoC2009-Presentation.pptx",
-      "GSoC2010-Presentation-SimplifiedChinese.pptx",
-      "GSoC2010-Presentation.pptx",
-      "GSoC_presentation_SimplifiedChinese.pptx",
-      "Knowledge-and-Understanding-Organisers-Unit-3.pptx",
-      "Linux_as_a_cult.pptx",
-      "lstms_anodet_2.pptx",
-      "physics140-f07-lecture17.pptx",
-      "prezentace_brno_17.3_emerald3_0.pptx",
-      "SEUK-Wildhearts-webinar-Adapting-your-business-model.pptx",
-      "sphinx_present.pptx",
-      "camping.pptx",
-      "open office 1.0 MSF_Lec1.pptx"
-    ]
   }
 }
