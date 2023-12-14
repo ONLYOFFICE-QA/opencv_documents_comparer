@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from os.path import join, basename, dirname, splitext, abspath, exists, isdir
+from os.path import join, basename, dirname, splitext, abspath, exists, isdir, realpath
 
 from rich.progress import track
 from rich import print
@@ -25,6 +25,7 @@ class X2tTesterConversion:
         self.env_off = env_off
         self.trough_conversion = trough_conversion
         self.input_formats, self.output_formats = self._getting_formats(direction)
+        self.quick_check_files = File.read_json(join(dirname(realpath(__file__)), 'assets', 'quick_check_files.json'))
         self.extensions = File.read_json(f"{dirname(abspath(__file__))}/assets/extension_array.json")
         self.tmp_dir = join(StaticData.tmp_dir, 'cnv')
         self.result_dir = StaticData.result_dir()
@@ -65,6 +66,9 @@ class X2tTesterConversion:
             Dir.delete(self.tmp_dir, clear_dir=True)
 
         return self.report.merge_reports(reports, self.x2t_version)
+
+    def get_quick_check_files(self) -> list:
+        return sum([array for _, array in self.quick_check_files.items()], [])
 
     @timer
     def from_files_list(self, files: list) -> str:
