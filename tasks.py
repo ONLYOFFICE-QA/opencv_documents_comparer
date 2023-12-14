@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import time
+
 from invoke import task
 from rich import print
 from rich.prompt import Prompt
@@ -43,17 +45,21 @@ def conversion_test(
 
     conversion = X2tTesterConversion(direction, x2t_version, trough_conversion=t_format, env_off=env_off)
     files_list = conversion.get_quick_check_files() if quick_check else config.files_array if ls else None
+    start_time = time.perf_counter()
     report = conversion.from_files_list(files_list) if files_list else conversion.run()
 
-    tg_msg = (
+    results_msg = (
         f"Conversion completed\n"
         f"Mode: `{'Quick Check' if quick_check else 'Full test'}`"
         f"Version: `{x2t_version}`\n"
-        f"Platform: `{HostInfo().os}`"
-    ) if telegram else None
+        f"Platform: `{HostInfo().os}`\n"
+        f"Execution time: `{((time.perf_counter() - start_time) / 60):.02f} min`"
+    )
 
-    conversion.report.handler(report, x2t_version, tg_msg=tg_msg) if report else print("[red] Report not exists")
-    print(f"[bold red]\n{'-' * 90}\n|INFO| x2t version: {x2t_version}\n{'-' * 90}")
+    if report:
+        conversion.report.handler(report, x2t_version, tg_msg=results_msg if telegram else None)
+
+    print(f"[green]{'-' * 90}\n|INFO|{results_msg}\n{'-' * 90}")
 
 
 @task
