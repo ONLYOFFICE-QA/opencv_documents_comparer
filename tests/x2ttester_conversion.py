@@ -14,6 +14,8 @@ from .tools import X2ttesterReport
 
 
 class X2tTesterConversion:
+    QUICK_CHECK_FILES_PATH  = join(dirname(realpath(__file__)), 'assets', 'quick_check_files.json')
+
     def __init__(
             self,
             direction: str | None = None,
@@ -25,7 +27,6 @@ class X2tTesterConversion:
         self.env_off = env_off
         self.trough_conversion = trough_conversion
         self.input_formats, self.output_formats = self._getting_formats(direction)
-        self.quick_check_files = File.read_json(join(dirname(realpath(__file__)), 'assets', 'quick_check_files.json'))
         self.extensions = File.read_json(f"{dirname(abspath(__file__))}/assets/extension_array.json")
         self.tmp_dir = join(StaticData.tmp_dir, 'cnv')
         self.result_dir = StaticData.result_dir()
@@ -68,7 +69,7 @@ class X2tTesterConversion:
         return self.report.merge_reports(reports, self.x2t_version)
 
     def get_quick_check_files(self) -> list:
-        return sum([array for _, array in self.quick_check_files.items()], [])
+        return sum([array for _, array in File.read_json(self.QUICK_CHECK_FILES_PATH).items()], [])
 
     @timer
     def from_files_list(self, files: list) -> str:
