@@ -269,5 +269,16 @@
     "files": [
       "camping.pptx"
     ]
+  },
+  "65567": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65567",
+    "description": "",
+    "mode": ["Default", "t-format"],
+    "directions": [
+      "doc-docx"
+    ],
+    "files": [
+      "Actes_du_26_mai.docx"
+    ]
   }
 }
