@@ -244,5 +244,16 @@
     "files": [
       "Medwoche.pptx"
     ]
+  },
+  "65621": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65621",
+    "description": "",
+    "mode": ["Default", "t-format"],
+    "directions": [
+      "xlsb-xlsx"
+    ],
+    "files": [
+      "Планировщик_АПРЕЛЬ (1).xlsx"
+    ]
   }
 }
