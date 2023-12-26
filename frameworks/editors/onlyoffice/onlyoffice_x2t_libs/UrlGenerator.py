@@ -18,9 +18,11 @@ class UrlGenerator(VersionHandler):
         return f"{self.host}/{self.os}/core/{self.branch}/{self.url_version}/{self.url_build}/{self.arch}/core.7z"
 
     def branch(self):
-        if self.minor_version != '0':
+        if "99.99.99" in self.version:
+            return 'develop'
+        elif self.minor_version != '0':
             return "hotfix"
-        return 'develop' if "99.99.99" in self.version else "release"
+        return "release"
 
     def url_build(self):
         if self.os == 'windows':
