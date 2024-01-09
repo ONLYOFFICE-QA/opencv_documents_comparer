@@ -255,18 +255,5 @@
     "files": [
       "Планировщик_АПРЕЛЬ (1).xlsx"
     ]
-  },
-  "65691": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65691",
-    "description": "",
-    "mode": ["t-format"],
-    "directions": [
-      "odp-pptx"
-    ],
-    "files": [
-      "10 - Raznoe.pptx",
-      "sphinx_present.pptx",
-      "UCSC09.pptx"
-    ]
   }
 }
