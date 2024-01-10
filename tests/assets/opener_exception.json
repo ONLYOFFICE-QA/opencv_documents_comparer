@@ -2,7 +2,10 @@
   "52628": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=52628",
     "description": "Named range, problems in ms Excel",
-    "mode": ["Default", "t-format"],
+    "mode": [
+      "Default",
+      "t-format"
+    ],
     "directions": [
       "xls-xlsx"
     ],
@@ -15,7 +18,10 @@
   "63772": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=63772",
     "description": "problems in ms Excel",
-    "mode": ["Default", "t-format"],
+    "mode": [
+      "Default",
+      "t-format"
+    ],
     "directions": [
       "xls-xlsx"
     ],
@@ -26,7 +32,10 @@
   "5": {
     "link": "",
     "description": "ms Word it is not possible to put a picture in the inscription",
-    "mode": ["Default", "t-format"],
+    "mode": [
+      "Default",
+      "t-format"
+    ],
     "directions": [
       "odt-docx",
       "fodt-docx"
@@ -44,7 +53,10 @@
   "52628_ods_xlsx": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=52628",
     "description": "Named range, problems in ms Excel",
-    "mode": ["Default", "t-format"],
+    "mode": [
+      "Default",
+      "t-format"
+    ],
     "directions": [
       "ods-xlsx"
     ],
@@ -61,7 +73,10 @@
   "58959": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=58959",
     "description": "not supported RANK(5,{1;2;3;4;5;6;7},1), RANK(5,{1;2;3;4;5;6;7}",
-    "mode": ["Default", "t-format"],
+    "mode": [
+      "Default",
+      "t-format"
+    ],
     "directions": [
       "xls-xlsx",
       "ods-xlsx"
@@ -77,7 +92,10 @@
   "2": {
     "link": "Opening in LibreOffice over a minute",
     "description": "Opening in LibreOffice over a minute, file opens successfully, same behavior when opening the source file in LibreOffice",
-    "mode": ["Default", "t-format"],
+    "mode": [
+      "Default",
+      "t-format"
+    ],
     "directions": [
       "xls-ods"
     ],
@@ -88,7 +106,10 @@
   "3": {
     "link": "",
     "description": "The problem is on the ms Office 2021 side, in ms Office 2019 the files open without errors",
-    "mode": ["Default", "t-format"],
+    "mode": [
+      "Default",
+      "t-format"
+    ],
     "directions": [
       "doc-docx"
     ],
@@ -101,7 +122,10 @@
   "4": {
     "link": "",
     "description": "macroses",
-    "mode": ["Default", "t-format"],
+    "mode": [
+      "Default",
+      "t-format"
+    ],
     "directions": [
       "xls-xlsx"
     ],
@@ -114,7 +138,10 @@
   "60313": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=60313",
     "description": "ms Excel problem, does not work with long sheet names",
-    "mode": ["Default", "t-format"],
+    "mode": [
+      "Default",
+      "t-format"
+    ],
     "directions": [
       "ods-xlsx"
     ],
@@ -127,7 +154,10 @@
   },
   "60279": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=60279",
-    "mode": ["Default", "t-format"],
+    "mode": [
+      "Default",
+      "t-format"
+    ],
     "description": "",
     "directions": [
       "odp-pptx"
@@ -141,7 +171,10 @@
   },
   "52374": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=52374",
-    "mode": ["Default", "t-format"],
+    "mode": [
+      "Default",
+      "t-format"
+    ],
     "description": "",
     "directions": [
       "ppt-pptx"
@@ -152,7 +185,10 @@
   },
   "60847": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=60847",
-    "mode": ["Default", "t-format"],
+    "mode": [
+      "Default",
+      "t-format"
+    ],
     "description": "problems in LibreOffice",
     "directions": [
       "docx-odt"
@@ -164,7 +200,10 @@
   "62331": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=62331",
     "description": "LibreOffice Bug",
-    "mode": ["Default", "t-format"],
+    "mode": [
+      "Default",
+      "t-format"
+    ],
     "directions": [
       "docxf-odt"
     ],
@@ -175,7 +214,10 @@
   "62789": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=62789",
     "description": "",
-    "mode": ["Default", "t-format"],
+    "mode": [
+      "Default",
+      "t-format"
+    ],
     "directions": [
       "rtf-docx"
     ],
@@ -187,7 +229,10 @@
   "63701": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=63701",
     "description": "",
-    "mode": ["Default", "t-format"],
+    "mode": [
+      "Default",
+      "t-format"
+    ],
     "directions": [
       "mht-docx"
     ],
@@ -201,7 +246,10 @@
   "64200": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64200",
     "description": "",
-    "mode": ["Default", "t-format"],
+    "mode": [
+      "Default",
+      "t-format"
+    ],
     "directions": [
       "xps-docx"
     ],
@@ -215,7 +263,10 @@
   "64673": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64673",
     "description": "",
-    "mode": ["Default", "t-format"],
+    "mode": [
+      "Default",
+      "t-format"
+    ],
     "directions": [
       "xlsb-xlsx"
     ],
@@ -226,7 +277,10 @@
   "65172": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65172",
     "description": "",
-    "mode": ["Default", "t-format"],
+    "mode": [
+      "Default",
+      "t-format"
+    ],
     "directions": [
       "xlsb-xlsx"
     ],
@@ -237,7 +291,9 @@
   "65595": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65595",
     "description": "",
-    "mode": ["Default", "t-format"],
+    "mode": [
+      "Default"
+    ],
     "directions": [
       "ppt-pptx"
     ],
@@ -248,7 +304,10 @@
   "65621": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65621",
     "description": "",
-    "mode": ["Default", "t-format"],
+    "mode": [
+      "Default",
+      "t-format"
+    ],
     "directions": [
       "xlsb-xlsx"
     ],
@@ -259,13 +318,114 @@
   "65779": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65779",
     "description": "",
-    "mode": ["t-format"],
+    "mode": [
+      "t-format"
+    ],
     "directions": [
       "odp-pptx"
     ],
     "files": [
       "sphinx_present.pptx",
       "UCSC09.pptx"
+    ]
+  },
+  "65785": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65785",
+    "description": "",
+    "mode": [
+      "t-format"
+    ],
+    "directions": [
+      "ppt-pptx"
+    ],
+    "files": [
+      "referat.pptx",
+      "tamburelli_e_ritornelli_powerpoint.pptx",
+      "ccc.pptx"
+    ]
+  },
+  "65786": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65786",
+    "description": "",
+    "mode": [
+      "t-format"
+    ],
+    "directions": [
+      "odt-docx"
+    ],
+    "files": [
+      "10628.docx",
+      "test-wordArt.docx"
+    ]
+  },
+  "65788": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65788",
+    "description": "",
+    "mode": [
+      "t-format"
+    ],
+    "directions": [
+      "xlsb-xlsx"
+    ],
+    "files": [
+      "Demo-2010WinterOlympics.xlsx",
+      "e11cd920f77ba7ea5845a4b025607cbf.xlsx",
+      "FAS.JKH.OPEN.INFO.LIMIT.WARM_v1.0.1_-OOO-GPTE-MO-3-kv.-2021.xlsx",
+      "FAS.JKH.OPEN.INFO.PRICE.GVS(v1.0.2)повт.xlsx",
+      "FAS.JKH.OPEN.INFO.PRICE.HVS(v1.0.2).xlsx",
+      "FAS.JKH.OPEN.INFO.PRICE.HVS.xlsx",
+      "FAS.JKH.OPEN.INFO.PRICE.WARM_TE_ot_kotelnoy_ul.Velizhanskaya.xlsx",
+      "FAS.JKH.OPEN.INFO.PRICE.WARM_v1.0.2_.xlsx",
+      "FAS.JKH.OPEN.INFO.PRICE.WARM_v1.0.2_AO-Voltayr_Prom-2019_2023.-_zapolneno-2020g_.xlsx",
+      "FAS.JKH.OPEN.INFO.PRICE.WARM_v1.0.2_Gertsena_2_.xlsx",
+      "Hasil Treasure 2010 Season 2.xlsx",
+      "informaciya_o_vivode_obektov_ts_iz_eksplyatacii_i_osnovaniyah_ogranicheniya_poda.xlsx",
+      "NETWORKDAYS_emb.xlsx",
+      "newfas.jkh.open.info.limit.warm_v1.0.1__spb_2kv2019.xlsx",
+      "Paxful Transactions (2).xlsx",
+      "08102021_FAS.JKH.OPEN.INFO.LIMIT.WARM_v1.0.1__СПб_3кв2021.xlsx",
+      "20-ej_centr_u4.xlsx",
+      "2010 Excel College Football Helmet Schedule.xlsx",
+      "2020_35_fas-jkh-open-info-limit-warm-v1-0-1-_3-kv-2020-pts (1).xlsx",
+      "2020_35_fas-jkh-open-info-limit-warm-v1-0-1-_3-kv-2020-pts.xlsx",
+      "3-- (2).xlsx",
+      "Application model.xlsx",
+      "BOA PARA ESTUDAR - JOGAR LOTOFACIL minha predileta 1.xlsx",
+      "Book 39.xlsx",
+      "Buyer Licensing Quote.xlsx",
+      "CHR_FAS.JKH.OPEN.INFO.LIMIT.WARM_v1.0.1_.xlsx",
+      "Concrete Ring Wall Foundation.xlsx",
+      "Controle horario de estudo.xlsx",
+      "conv_72a2bc9a_385c_42bc_b327_23623d5e9628_png.xlsx",
+      "PLANILHA COM CHAVES PARA MEGA E QUINA.xlsx",
+      "Portfolio_4 (1).xlsx",
+      "secur_praice_12.10.2016.xlsx",
+      "Smaller50MB.xlsx",
+      "Spreadsheets_Template.xlsx",
+      "Sundars-Nifty.xlsx",
+      "TPljus_Saransk_3kv_2021_FAS.JKH.OPEN.INFO.LIMIT.WARM.xlsx",
+      "VH_150405.xlsx",
+      "_-12-_16-_2013.xlsx",
+      "_2-1_1.xlsx",
+      "Индивидуальная плата за подключение объекта Ледовый дворец к сетям ВС (ГКУ НО «Нижегородстройзаказчик»).xlsx",
+      "Информация о тарифе на тепловую энергию 2021.xlsx",
+      "Информация об основных потребительских характеристиках регулируемых товаров и ус.xlsx",
+      "Результат обработки перечня ЗПРОМ.xlsx",
+      "табл 20 2020год.xlsx",
+      "Форма 2.2 Информация о величинах тарифов на питьевую воду, техническую воду, тра.xlsx"
+    ]
+  },
+  "65790": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65790",
+    "description": "",
+    "mode": [
+      "t-format"
+    ],
+    "directions": [
+      "xlsx-ods"
+    ],
+    "files": [
+      "1-11-23.ods"
     ]
   }
 }
