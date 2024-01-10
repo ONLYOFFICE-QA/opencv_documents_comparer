@@ -237,7 +237,7 @@
   "65595": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65595",
     "description": "",
-    "mode": ["Default", "t-format"],
+    "mode": ["Default"],
     "directions": [
       "ppt-pptx"
     ],
@@ -266,6 +266,18 @@
     "files": [
       "sphinx_present.pptx",
       "UCSC09.pptx"
+    ]
+  },
+  "65785": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65785",
+    "description": "",
+    "mode": ["t-format"],
+    "directions": [
+      "ppt-pptx"
+    ],
+    "files": [
+      "referat.pptx",
+      "tamburelli_e_ritornelli_powerpoint.pptx"
     ]
   }
 }
