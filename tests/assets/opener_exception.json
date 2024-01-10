@@ -414,5 +414,18 @@
       "табл 20 2020год.xlsx",
       "Форма 2.2 Информация о величинах тарифов на питьевую воду, техническую воду, тра.xlsx"
     ]
+  },
+  "65790": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65790",
+    "description": "",
+    "mode": [
+      "t-format"
+    ],
+    "directions": [
+      "xlsx-ods"
+    ],
+    "files": [
+      "1-11-23.ods"
+    ]
   }
 }
