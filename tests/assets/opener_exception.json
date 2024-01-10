@@ -280,5 +280,17 @@
       "tamburelli_e_ritornelli_powerpoint.pptx",
       "ccc.pptx"
     ]
+  },
+  "65786": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65786",
+    "description": "",
+    "mode": ["t-format"],
+    "directions": [
+      "odt-docx"
+    ],
+    "files": [
+      "10628.docx",
+      "test-wordArt.docx"
+    ]
   }
 }
