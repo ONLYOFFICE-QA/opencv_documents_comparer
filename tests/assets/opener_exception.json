@@ -427,5 +427,27 @@
     "files": [
       "1-11-23.ods"
     ]
+  },
+  "65831": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65831",
+    "description": "",
+    "mode": [
+      "t-format"
+    ],
+    "directions": [
+      "xls-xlsx"
+    ],
+    "files": [
+      "Copy of mo1.xlsx",
+      "CreditTrans.xlsx",
+      "planilha_de_controle_financeiro.xlsx",
+      "ProductsListChart.xlsx",
+      "WalkTrack.xlsx",
+      "Биоритм.xlsx",
+      "ВАХ 1.xlsx",
+      "Группа№18.xlsx",
+      "Мать их ети!.xlsx",
+      "Сравнение ВАХ.xlsx"
+    ]
   }
 }
