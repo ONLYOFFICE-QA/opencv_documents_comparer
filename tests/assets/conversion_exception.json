@@ -289,5 +289,17 @@
     "files": [
       "K4Ex0FLAxA_dSFa_39ONyMe1MikVTT2ffHmy8ogSzZ0_.pptx"
     ]
+  },
+  "65829": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65829",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xlsb-ods",
+      "xlsb-ots"
+    ],
+    "files": [
+      "conv_a4b39a91_e664_47de_7a7f59227b75_bfa8_png.xlsb"
+    ]
   }
 }
