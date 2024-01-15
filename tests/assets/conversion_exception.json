@@ -260,15 +260,6 @@
       "conv_275f0507_1f28_4dde_af9d_8d162cfa1e3d_pdf.docx"
     ]
   },
-  "65485": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65485",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "synergieInspiratie.ppt"
-    ]
-  },
   "65687": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65687",
     "description": "",
@@ -300,20 +291,6 @@
     ],
     "files": [
       "conv_a4b39a91_e664_47de_7a7f59227b75_bfa8_png.xlsb"
-    ]
-  },
-  "65830": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65830",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xlsx-jpg",
-      "xlsx-png",
-      "xlsx-pdf"
-    ],
-    "files": [
-      "conv_07NgEVXiE2IjAVG0_OmxqEJTMXXaL28bmC0sZ3iOIko__jpg.xlsx",
-      "conv_yOP0FfLOVjafjexUHwamAG4F6nfTavi46DbNq2u5tTE__jpg.xlsx"
     ]
   }
 }
