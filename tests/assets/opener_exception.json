@@ -449,5 +449,18 @@
       "Мать их ети!.xlsx",
       "Сравнение ВАХ.xlsx"
     ]
+  },
+  "65888": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65888",
+    "description": "",
+    "mode": [
+      "Default"
+    ],
+    "directions": [
+      "ppt-pptx"
+    ],
+    "files": [
+      "synergieInspiratie.pptx"
+    ]
   }
 }
