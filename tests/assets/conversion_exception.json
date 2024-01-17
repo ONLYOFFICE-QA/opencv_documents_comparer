@@ -292,5 +292,16 @@
     "files": [
       "conv_a4b39a91_e664_47de_7a7f59227b75_bfa8_png.xlsb"
     ]
+  },
+  "65925": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65925",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xps-docx"
+    ],
+    "files": [
+      "M1.1b.xps"
+    ]
   }
 }
