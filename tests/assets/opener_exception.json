@@ -490,8 +490,8 @@
       "ods-xlsx"
     ],
     "files": [
-    "CertidaoDeBatismo.xlsx",
-    "ControleDeReceitasDespesasComIndice.xlsx"
-]
+      "CertidaoDeBatismo.xlsx",
+      "ControleDeReceitasDespesasComIndice.xlsx"
+    ]
   }
 }
