@@ -466,5 +466,18 @@
       "Net Points and lines.xlsx",
       "Net Points only.xlsx"
     ]
+  },
+  "65974": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65974",
+    "description": "",
+    "mode": [
+      "t-format"
+    ],
+    "directions": [
+      "doc-docx"
+    ],
+    "files": [
+      "kef.docx"
+    ]
   }
 }
