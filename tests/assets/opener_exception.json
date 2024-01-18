@@ -440,5 +440,71 @@
     "files": [
       "conv_a4b39a91_e664_47de_7a7f59227b75_bfa8_png.xlsx"
     ]
+  },
+  "65973": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65973",
+    "description": "",
+    "mode": [
+      "t-format"
+    ],
+    "directions": [
+      "ods-xlsx"
+    ],
+    "files": [
+      "Area Normal.xlsx",
+      "Area Percent Stacked 3D.xlsx",
+      "Line 3D Lines.xlsx",
+      "Line Lines only.xlsx",
+      "Scatter Lines 3D.xlsx",
+      "Scatter Lines only.xlsx",
+      "Scatter Points and lines.xlsx",
+      "Scatter Points only.xlsx",
+      "Line Points.xlsx",
+      "Line Points and lines.xlsx",
+      "Area Stacked.xlsx",
+      "Net Lines only.xlsx",
+      "Net Points and lines.xlsx",
+      "Net Points only.xlsx"
+    ]
+  },
+  "65974": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65974",
+    "description": "",
+    "mode": [
+      "t-format"
+    ],
+    "directions": [
+      "doc-docx"
+    ],
+    "files": [
+      "kef.docx"
+    ]
+  },
+  "65975": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65975",
+    "description": "",
+    "mode": [
+      "t-format"
+    ],
+    "directions": [
+      "ods-xlsx"
+    ],
+    "files": [
+      "CertidaoDeBatismo.xlsx",
+      "ControleDeReceitasDespesasComIndice.xlsx"
+    ]
+  },
+  "65976": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65976",
+    "description": "",
+    "mode": [
+      "t-format"
+    ],
+    "directions": [
+      "ppt-pptx"
+    ],
+    "files": [
+      "Communication_Colloque.pptx"
+    ]
   }
 }
