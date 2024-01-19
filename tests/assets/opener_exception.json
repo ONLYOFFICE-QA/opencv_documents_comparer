@@ -506,5 +506,19 @@
     "files": [
       "Communication_Colloque.pptx"
     ]
+  },
+  "65977": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65977",
+    "description": "",
+    "mode": [
+      "t-format"
+    ],
+    "directions": [
+      "rtf-docx"
+    ],
+    "files": [
+      "designairportz.docx",
+      "YALIYOMO.docx"
+    ]
   }
 }
