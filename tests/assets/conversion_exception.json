@@ -311,5 +311,18 @@
       "conv_72a2bc9a_385c_42bc_b327_23623d5e9628_png.xlsb",
       "conv_a4b39a91_e664_47de_7a7f59227b75_bfa8_png.xlsb"
     ]
+  },
+  "66026": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=66026",
+    "description": "",
+    "os": [
+      "windows"
+    ],
+    "directions": [
+      "rtf-pdf"
+    ],
+    "files": [
+      "pr_124-10-13.rtf"
+    ]
   }
 }
