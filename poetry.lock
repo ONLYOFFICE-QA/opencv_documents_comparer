@@ -666,8 +666,8 @@ files = [
 
 [package.dependencies]
 numpy = [
-    {version = ">=1.26.0", markers = "python_version >= \"3.12\""},
     {version = ">=1.23.5", markers = "python_version >= \"3.11\" and python_version < \"3.12\""},
+    {version = ">=1.26.0", markers = "python_version >= \"3.12\""},
 ]
 
 [[package]]
@@ -721,8 +721,8 @@ files = [
 
 [package.dependencies]
 numpy = [
-    {version = ">=1.26.0,<2", markers = "python_version >= \"3.12\""},
     {version = ">=1.23.2,<2", markers = "python_version == \"3.11\""},
+    {version = ">=1.26.0,<2", markers = "python_version >= \"3.12\""},
 ]
 python-dateutil = ">=2.8.2"
 pytz = ">=2020.1"
@@ -1831,7 +1831,7 @@ rich = "*"
 type = "git"
 url = "https://github.com/l8556/TelegramApi.git"
 reference = "feature/improved-request-to-telegram.org"
-resolved_reference = "7c097c0a90c47e92751778cdff48eaa137841570"
+resolved_reference = "5e5417725b4f969be3677910d50b2555a1188c40"
 
 [[package]]
 name = "texttable"
