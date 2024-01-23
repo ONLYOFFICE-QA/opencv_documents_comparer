@@ -244,22 +244,6 @@
       "9200844_1.xls"
     ]
   },
-  "65422": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65422",
-    "description": "",
-    "os": [],
-    "directions": [
-      "docx-png",
-      "docx-jpg",
-      "docx-epub",
-      "docx-fb2",
-      "docx-html",
-      "docx-pdf"
-    ],
-    "files": [
-      "conv_275f0507_1f28_4dde_af9d_8d162cfa1e3d_pdf.docx"
-    ]
-  },
   "65687": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65687",
     "description": "",
