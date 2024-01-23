@@ -340,7 +340,7 @@ files = [
 
 [[package]]
 name = "host-tools"
-version = "2.00"
+version = "2.02"
 description = ""
 optional = false
 python-versions = ">=3.7.0,<4.0"
@@ -359,7 +359,7 @@ rich = "*"
 type = "git"
 url = "https://github.com/l8556/host_tools.git"
 reference = "master"
-resolved_reference = "f2365baa56fcc7d623237a3c089fa968cd19d70f"
+resolved_reference = "949d8d9c777d2e8c29a7597577004ace42384bb4"
 
 [[package]]
 name = "idna"
@@ -666,8 +666,8 @@ files = [
 
 [package.dependencies]
 numpy = [
-    {version = ">=1.23.5", markers = "python_version >= \"3.11\" and python_version < \"3.12\""},
     {version = ">=1.26.0", markers = "python_version >= \"3.12\""},
+    {version = ">=1.23.5", markers = "python_version >= \"3.11\" and python_version < \"3.12\""},
 ]
 
 [[package]]
@@ -721,8 +721,8 @@ files = [
 
 [package.dependencies]
 numpy = [
-    {version = ">=1.23.2,<2", markers = "python_version == \"3.11\""},
     {version = ">=1.26.0,<2", markers = "python_version >= \"3.12\""},
+    {version = ">=1.23.2,<2", markers = "python_version == \"3.11\""},
 ]
 python-dateutil = ">=2.8.2"
 pytz = ">=2020.1"
@@ -1814,6 +1814,26 @@ files = [
 ]
 
 [[package]]
+name = "telegram"
+version = "1.0"
+description = ""
+optional = false
+python-versions = "^3.7"
+files = []
+develop = false
+
+[package.dependencies]
+host-tools = {git = "https://github.com/l8556/host_tools.git", branch = "master"}
+requests = "*"
+rich = "*"
+
+[package.source]
+type = "git"
+url = "https://github.com/l8556/TelegramApi.git"
+reference = "feature/improved-request-to-telegram.org"
+resolved_reference = "7c097c0a90c47e92751778cdff48eaa137841570"
+
+[[package]]
 name = "texttable"
 version = "1.7.0"
 description = "module to create simple ASCII tables"
@@ -1882,4 +1902,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "f7b87f4a32e4a8e02641b91f1d625bce6c9cce10e0dd4abd879ff8383c32c116"
+content-hash = "14408d1407ae8864bc9026add9a6c6248fdd2962b815952bf65133b26d2ca124"
