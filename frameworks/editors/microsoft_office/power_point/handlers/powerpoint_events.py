@@ -6,7 +6,7 @@ from rich import print
 
 from frameworks.decorators import singleton
 from host_tools import Window, File
-from frameworks.telegram import Telegram
+from telegram import Telegram
 
 from ....events import Events
 

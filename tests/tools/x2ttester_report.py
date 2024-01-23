@@ -11,7 +11,7 @@ from host_tools import File, HostInfo
 from frameworks.editors.onlyoffice.handlers.VersionHandler import VersionHandler
 from frameworks.report import Report
 import config
-from frameworks.telegram import Telegram
+from telegram import Telegram
 
 
 @singleton

@@ -7,7 +7,7 @@ from csv import reader
 from rich import print
 
 from host_tools import File, Dir
-from frameworks.telegram import Telegram
+from telegram import Telegram
 
 
 class Report:

@@ -8,7 +8,7 @@ import pandas as pd
 
 from host_tools import File, Dir
 from frameworks.report import Report
-from frameworks.telegram import Telegram
+from telegram import Telegram
 
 
 class OpenerReport:
