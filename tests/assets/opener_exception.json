@@ -288,19 +288,6 @@
       "conv_be799cf3_b2c8_4fa3_bc1e_c287d6c44817_ods.xlsx"
     ]
   },
-  "65595": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65595",
-    "description": "",
-    "mode": [
-      "Default"
-    ],
-    "directions": [
-      "ppt-pptx"
-    ],
-    "files": [
-      "Medwoche.pptx"
-    ]
-  },
   "65621": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65621",
     "description": "",
@@ -313,21 +300,6 @@
     ],
     "files": [
       "Планировщик_АПРЕЛЬ (1).xlsx"
-    ]
-  },
-  "65785": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65785",
-    "description": "",
-    "mode": [
-      "t-format"
-    ],
-    "directions": [
-      "ppt-pptx"
-    ],
-    "files": [
-      "referat.pptx",
-      "tamburelli_e_ritornelli_powerpoint.pptx",
-      "ccc.pptx"
     ]
   },
   "65786": {
@@ -414,19 +386,6 @@
       "1-11-23.ods"
     ]
   },
-  "65888": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65888",
-    "description": "",
-    "mode": [
-      "Default"
-    ],
-    "directions": [
-      "ppt-pptx"
-    ],
-    "files": [
-      "synergieInspiratie.pptx"
-    ]
-  },
   "65948": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65948",
     "description": "",
@@ -492,33 +451,6 @@
     "files": [
       "CertidaoDeBatismo.xlsx",
       "ControleDeReceitasDespesasComIndice.xlsx"
-    ]
-  },
-  "65976": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65976",
-    "description": "",
-    "mode": [
-      "t-format"
-    ],
-    "directions": [
-      "ppt-pptx"
-    ],
-    "files": [
-      "Communication_Colloque.pptx"
-    ]
-  },
-  "65977": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65977",
-    "description": "",
-    "mode": [
-      "t-format"
-    ],
-    "directions": [
-      "rtf-docx"
-    ],
-    "files": [
-      "designairportz.docx",
-      "YALIYOMO.docx"
     ]
   },
   "66009": {
