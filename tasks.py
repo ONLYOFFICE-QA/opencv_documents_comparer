@@ -10,7 +10,7 @@ from frameworks.StaticData import StaticData
 
 from host_tools import HostInfo, File
 from frameworks.editors.onlyoffice import Core, X2t
-from frameworks.telegram import Telegram
+from telegram import Telegram
 from tests import X2tTesterConversion
 
 if HostInfo().os == 'windows':
