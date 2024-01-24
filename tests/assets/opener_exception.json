@@ -479,5 +479,18 @@
     "files": [
       "YALIYOMO.docx"
     ]
+  },
+  "66123": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=66123",
+    "description": "",
+    "mode": [
+      "t-format"
+    ],
+    "directions": [
+      "xls-xlsx"
+    ],
+    "files": [
+      "Служебная_записка_на_командировку.xlsx"
+    ]
   }
 }
