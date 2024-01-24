@@ -466,5 +466,31 @@
     "files": [
       "conv_72a2bc9a_385c_42bc_b327_23623d5e9628_png.xlsx"
     ]
+  },
+  "66122": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=66122",
+    "description": "",
+    "mode": [
+      "t-format"
+    ],
+    "directions": [
+      "rtf-docx"
+    ],
+    "files": [
+      "YALIYOMO.docx"
+    ]
+  },
+  "66123": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=66123",
+    "description": "",
+    "mode": [
+      "t-format"
+    ],
+    "directions": [
+      "xls-xlsx"
+    ],
+    "files": [
+      "Служебная_записка_на_командировку.xlsx"
+    ]
   }
 }
