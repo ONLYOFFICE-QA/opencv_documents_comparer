@@ -309,5 +309,35 @@
       "pr_124-10-13.rtf",
       "pr_99-07-13.rtf"
     ]
+  },
+  "66127": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=66127",
+    "description": "",
+    "os": [],
+    "directions": [
+      "ods-pdf",
+      "ods-png",
+      "ods-jpg",
+      "xls-pdf",
+      "xls-png",
+      "xls-jpg",
+      "xlsx-pdf",
+      "xlsx-png",
+      "xlsx-jpg"
+    ],
+    "files": [
+      "Spread Calculator.ods",
+      "tabelle us-trade-balance1960-2008.ods",
+      "PivotPageSpinner.xls",
+      "бланк Т-2.xls",
+      "ErrorBars.xls",
+      "DataValComboClickDepend.xls",
+      "AlexJ_PivotFilter.xls",
+      "PLANILHA-DESPESAS-PESSOAIS.xlsx",
+      "conv_40hqO0VhNVz3rDN2fthxje398a6KNfBs8HRoMTBIuKY__jpg.xlsx",
+      "conv_yOP0FfLOVjafjexUHwamAG4F6nfTavi46DbNq2u5tTE__jpg.xlsx",
+      "54.11.xlsx",
+      "10.xlsx"
+    ]
   }
 }
