@@ -339,5 +339,20 @@
       "54.11.xlsx",
       "10.xlsx"
     ]
+  },
+  "66147": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=66147",
+    "description": "",
+    "os": [],
+    "directions": [
+      "rtf-png",
+      "rtf-jpg",
+      "rtf-html",
+      "rtf-fb2",
+      "rtf-epub"
+    ],
+    "files": [
+      "ellipt_eq.rtf"
+    ]
   }
 }
