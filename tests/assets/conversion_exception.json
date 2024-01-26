@@ -176,18 +176,6 @@
       "coords.html"
     ]
   },
-  "64987": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64987",
-    "description": "",
-    "os": [],
-    "directions": [
-      "docx-odt",
-      "docx-ott"
-    ],
-    "files": [
-      "a88241924315c931f182ce0f3ae65f9a.docx"
-    ]
-  },
   "65109": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65109",
     "description": "",
