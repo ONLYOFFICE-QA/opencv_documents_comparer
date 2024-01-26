@@ -197,19 +197,6 @@
       "87kpRebVWGRl0BLV9sg3fkttelLWUSCa3vzD1tAzaW0_.mht"
     ]
   },
-  "65306": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65306",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xlsx-pdf",
-      "xlsx-png",
-      "xlsx-jpg"
-    ],
-    "files": [
-      "8D_1.xlsx"
-    ]
-  },
   "65316": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65316",
     "description": "",
