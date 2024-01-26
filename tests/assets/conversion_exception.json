@@ -279,23 +279,6 @@
       "M1.1b.xps"
     ]
   },
-  "65959": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65959",
-    "description": "",
-    "os": [
-      "linux",
-      "mac"
-    ],
-    "directions": [
-      "xlsb-pdf",
-      "xlsb-png",
-      "xlsb-jpg"
-    ],
-    "files": [
-      "conv_72a2bc9a_385c_42bc_b327_23623d5e9628_png.xlsb",
-      "conv_a4b39a91_e664_47de_7a7f59227b75_bfa8_png.xlsb"
-    ]
-  },
   "66147": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=66147",
     "description": "",
