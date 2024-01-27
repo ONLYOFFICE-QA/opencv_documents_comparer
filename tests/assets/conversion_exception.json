@@ -87,6 +87,24 @@
       "diplomatariumis00orgoog.doct"
     ]
   },
+  "59241": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=59241",
+    "description": "X2T_MEMORY_LIMIT=\"5GiB\"",
+    "os": [
+      "linux"
+    ],
+    "directions": [
+      "xlsx-ods",
+      "xlsx-ots",
+      "xlsb-ods",
+      "xlsb-ots"
+    ],
+    "files": [
+      "rank_prf-09.xlsx",
+      "rank_prf-09.xlsb",
+      "rank_prf-09.xlst"
+    ]
+  },
   "58698": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=58698",
     "description": "",
@@ -116,24 +134,6 @@
       "Smaller50MB.xlsb",
       "Smaller50MB.xlsx",
       "Smaller50MB.xlst"
-    ]
-  },
-  "59241": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=59241",
-    "description": "X2T_MEMORY_LIMIT=\"5GiB\"",
-    "os": [
-      "linux"
-    ],
-    "directions": [
-      "xlsx-ods",
-      "xlsx-ots",
-      "xlsb-ods",
-      "xlsb-ots"
-    ],
-    "files": [
-      "rank_prf-09.xlsx",
-      "rank_prf-09.xlsb",
-      "rank_prf-09.xlst"
     ]
   },
   "59424": {
@@ -197,19 +197,46 @@
       "87kpRebVWGRl0BLV9sg3fkttelLWUSCa3vzD1tAzaW0_.mht"
     ]
   },
-  "66147": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=66147",
+  "66203": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=66203",
     "description": "",
     "os": [],
     "directions": [
-      "rtf-png",
-      "rtf-jpg",
       "rtf-html",
       "rtf-fb2",
       "rtf-epub"
     ],
     "files": [
       "ellipt_eq.rtf"
+    ]
+  },
+  "66204": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=66204",
+    "description": "",
+    "os": [
+      "windows"
+    ],
+    "directions": [
+      "rtf-html",
+      "rtf-fb2",
+      "rtf-epub"
+    ],
+    "files": [
+      "designairportz.rtf"
+    ]
+  },
+  "66205": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=66205",
+    "description": "",
+    "os": [
+      "windows"
+    ],
+    "directions": [
+      "docx-png",
+      "docx-jpg"
+    ],
+    "files": [
+      "ПАКД.docx"
     ]
   }
 }
