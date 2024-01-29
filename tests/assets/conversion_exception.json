@@ -196,5 +196,18 @@
     "files": [
       "87kpRebVWGRl0BLV9sg3fkttelLWUSCa3vzD1tAzaW0_.mht"
     ]
+  },
+  "66226": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=66226",
+    "description": "",
+    "os": [
+      "windows"
+    ],
+    "directions": [
+      "rtf-pdf"
+    ],
+    "files": [
+      "pr_124-10-13.rtf"
+    ]
   }
 }
