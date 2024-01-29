@@ -196,47 +196,5 @@
     "files": [
       "87kpRebVWGRl0BLV9sg3fkttelLWUSCa3vzD1tAzaW0_.mht"
     ]
-  },
-  "66203": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=66203",
-    "description": "",
-    "os": [],
-    "directions": [
-      "rtf-html",
-      "rtf-fb2",
-      "rtf-epub"
-    ],
-    "files": [
-      "ellipt_eq.rtf"
-    ]
-  },
-  "66204": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=66204",
-    "description": "",
-    "os": [
-      "windows"
-    ],
-    "directions": [
-      "rtf-html",
-      "rtf-fb2",
-      "rtf-epub"
-    ],
-    "files": [
-      "designairportz.rtf"
-    ]
-  },
-  "66205": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=66205",
-    "description": "",
-    "os": [
-      "windows"
-    ],
-    "directions": [
-      "docx-png",
-      "docx-jpg"
-    ],
-    "files": [
-      "ПАКД.docx"
-    ]
   }
 }
