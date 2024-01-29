@@ -203,7 +203,9 @@
     "os": [
       "windows"
     ],
-    "directions": [],
+    "directions": [
+      "rtf-pdf"
+    ],
     "files": [
       "pr_124-10-13.rtf"
     ]
