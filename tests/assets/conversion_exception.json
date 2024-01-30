@@ -105,6 +105,18 @@
       "rank_prf-09.xlst"
     ]
   },
+  "66216": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=66216",
+    "description": "X2T_MEMORY_LIMIT=\"5GiB\"",
+    "os": [],
+    "directions": [
+      "doct-odt",
+      "doct-ott"
+    ],
+    "files": [
+      "9TyqfsInFo26qt0I4Xj1amWJnGoPk42r_mxDMNBxNkY_.doct"
+    ]
+  },
   "58698": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=58698",
     "description": "",
