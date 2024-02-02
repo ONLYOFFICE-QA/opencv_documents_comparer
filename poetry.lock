@@ -1789,7 +1789,7 @@ files = [
 
 [[package]]
 name = "telegram"
-version = "1.0"
+version = "2.0"
 description = ""
 optional = false
 python-versions = "^3.7"
@@ -1804,8 +1804,8 @@ rich = "*"
 [package.source]
 type = "git"
 url = "https://github.com/l8556/TelegramApi.git"
-reference = "feature/improved-request-to-telegram.org"
-resolved_reference = "5e5417725b4f969be3677910d50b2555a1188c40"
+reference = "master"
+resolved_reference = "5b0485a32ed6760e192e87aaee3c3e1af27b9845"
 
 [[package]]
 name = "texttable"
@@ -1877,4 +1877,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "651310402802edd747bc6102d0d9cacc0a44f57fd798f52bc45b41f88b8a92b5"
+content-hash = "e626dd5ddd0de77340ad7dd329be50f08d4b9a61a834c1985fca2ec0be2c046e"

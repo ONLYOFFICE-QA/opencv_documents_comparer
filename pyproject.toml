@@ -23,7 +23,7 @@ mss = "^9.0.1"
 pytest = "^8.0.0"
 pydantic = "^2"
 host-tools = { git = "https://github.com/l8556/host_tools.git", branch = "master" }
-telegram = { git = "https://github.com/l8556/TelegramApi.git", branch = "feature/improved-request-to-telegram.org" }
+telegram = { git = "https://github.com/l8556/TelegramApi.git", branch = "master" }
 
 
 [build-system]
