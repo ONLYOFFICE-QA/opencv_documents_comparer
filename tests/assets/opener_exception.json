@@ -479,5 +479,18 @@
     "files": [
       "Служебная_записка_на_командировку.xlsx"
     ]
+  },
+  "66333": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=66333",
+    "description": "",
+    "mode": [
+      "t-format"
+    ],
+    "directions": [
+      "doc-docx"
+    ],
+    "files": [
+      "arco3.doc"
+    ]
   }
 }
