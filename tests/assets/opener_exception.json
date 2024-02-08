@@ -15,6 +15,19 @@
       "kso 1    2  1.xlsx"
     ]
   },
+  "66333": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=66333",
+    "description": "only via t-format",
+    "mode": [
+      "t-format"
+    ],
+    "directions": [
+      "doc-docx"
+    ],
+    "files": [
+      "arco3.docx"
+    ]
+  },
   "63772": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=63772",
     "description": "problems in ms Excel",
@@ -302,20 +315,6 @@
       "Планировщик_АПРЕЛЬ (1).xlsx"
     ]
   },
-  "65786": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65786",
-    "description": "",
-    "mode": [
-      "t-format"
-    ],
-    "directions": [
-      "odt-docx"
-    ],
-    "files": [
-      "10628.docx",
-      "test-wordArt.docx"
-    ]
-  },
   "65788": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65788",
     "description": "",
@@ -465,32 +464,6 @@
     ],
     "files": [
       "conv_72a2bc9a_385c_42bc_b327_23623d5e9628_png.xlsx"
-    ]
-  },
-  "66123": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=66123",
-    "description": "",
-    "mode": [
-      "t-format"
-    ],
-    "directions": [
-      "xls-xlsx"
-    ],
-    "files": [
-      "Служебная_записка_на_командировку.xlsx"
-    ]
-  },
-  "66333": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=66333",
-    "description": "",
-    "mode": [
-      "t-format"
-    ],
-    "directions": [
-      "doc-docx"
-    ],
-    "files": [
-      "arco3.docx"
     ]
   }
 }
