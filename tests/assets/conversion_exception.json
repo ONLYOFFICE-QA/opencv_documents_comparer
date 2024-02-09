@@ -224,5 +224,25 @@
       "pr_124-10-13.rtf",
       "pr_99-07-13.rtf"
     ]
+  },
+  "66440": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=66440",
+    "description": "",
+    "os": [
+      "windows",
+      "mac"
+    ],
+    "directions": [
+      "xls-csv"
+    ],
+    "files": [
+      "PivotMultiPagesChange.xls",
+      "PivotMultiChange.xls",
+      "PivotDateRange.xls",
+      "PivotMultiPagesChangeAll.xls",
+      "PivotMultiChangeMarked.xls",
+      "PivotMultiPagesCellChange.xls",
+      "PivotItemCalc.xls"
+    ]
   }
 }
