@@ -438,20 +438,6 @@
       "kef.docx"
     ]
   },
-  "65975": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65975",
-    "description": "",
-    "mode": [
-      "t-format"
-    ],
-    "directions": [
-      "ods-xlsx"
-    ],
-    "files": [
-      "CertidaoDeBatismo.xlsx",
-      "ControleDeReceitasDespesasComIndice.xlsx"
-    ]
-  },
   "66009": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=66009",
     "description": "",
