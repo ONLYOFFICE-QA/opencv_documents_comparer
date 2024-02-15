@@ -44,5 +44,6 @@ def test_directions(json_data):
 
 def test_files_duplicates(json_data):
     for bug_id, bug_data in json_data.items():
+        assert set(bug_data['files']), f"The 'files' in bug {bug_id} cannot be empty"
         duplicates = [item for item, count in Counter(bug_data['files']).items() if count > 1]
         assert not duplicates, f"Duplicate files have been detected: {duplicates} in bug: {bug_id}"
