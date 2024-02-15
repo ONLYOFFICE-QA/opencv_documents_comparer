@@ -2,6 +2,7 @@
 import json
 from os import getcwd
 from os.path import join
+from collections import Counter
 
 import pytest
 
@@ -34,3 +35,16 @@ def test_mode_parameter(json_data):
         assert set(info['mode']), f"Bug {bug_name} has an empty 'mode'"
         valid_modes = {"Default", "t-format"}
         assert set(info['mode']) <= valid_modes, f"{bug_name} does not have a valid 'mode'. Valid value: {valid_modes}"
+
+def test_files_duplicates(json_data):
+    for bug_id, bug_data in json_data.items():
+        assert set(bug_data['files']), f"The 'files' in bug {bug_id} cannot be empty"
+        duplicates = [item for item, count in Counter(bug_data['files']).items() if count > 1]
+        assert not duplicates, f"Duplicate files have been detected: {duplicates} in bug: {bug_id}"
+
+def test_directions_parameter(json_data):
+    for bug_id, bug_data in json_data.items():
+        for direction in bug_data['directions']:
+            assert direction.islower(), f"Direction '{direction}' in bug {bug_id} is not lowercase"
+            assert '-' in direction, f"Direction '{direction}' in bug {bug_id} does not contain '-'"
+            assert '.' not in direction, f"Direction '{direction}' in bug {bug_id} contains '.'"
