@@ -10,7 +10,7 @@ def json_data():
     with open(join(getcwd(), 'tests', 'assets', 'opener_exception.json'), 'r') as file:
         return json.load(file)
 
-def test_info_empty(json_data):
+def test_json_structure(json_data):
     for bug_name, info in json_data.items():
         assert info is not None
 
@@ -29,7 +29,7 @@ def test_info_empty(json_data):
         assert 'files' in info, f"{bug_name} has no 'files' parameter"
         assert isinstance(info['files'], list)
 
-def test_info_mode(json_data):
+def test_mode_parameter(json_data):
     for bug_name, info in json_data.items():
         assert set(info['mode']), f"Bug {bug_name} has an empty 'mode'"
         valid_modes = {"Default", "t-format"}

@@ -11,7 +11,7 @@ from collections import Counter
 def json_data():
     return File.read_json(join(getcwd(), 'tests', 'assets', 'conversion_exception.json'))
 
-def test_info_empty(json_data):
+def test_json_structure(json_data):
     for bug_name, info in json_data.items():
         assert info is not None
 
@@ -30,12 +30,12 @@ def test_info_empty(json_data):
         assert 'files' in info, f"{bug_name} has no 'files' parameter"
         assert isinstance(info['files'], list)
 
-def test_info_mode(json_data):
+def test_os_parameter(json_data):
     for bug_name, info in json_data.items():
         valid_modes = {"linux", "windows", "mac"}
         assert set(info['os']) <= valid_modes, f"{bug_name} does not have a valid 'os'. Valid os: {valid_modes}"
 
-def test_directions(json_data):
+def test_directions_parameter(json_data):
     for bug_id, bug_data in json_data.items():
         for direction in bug_data['directions']:
             assert direction.islower(), f"Direction '{direction}' in bug {bug_id} is not lowercase"
