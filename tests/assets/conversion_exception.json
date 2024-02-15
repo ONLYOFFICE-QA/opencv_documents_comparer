@@ -1,15 +1,4 @@
 {
-  "bug_num": {
-    "link": "",
-    "description": "",
-    "os": [
-      "linux",
-      "windows",
-      "mac"
-    ],
-    "directions": [],
-    "files": []
-  },
   "2": {
     "link": "",
     "description": "Files without patterns. In will be added by editors. Not converted and its true",
