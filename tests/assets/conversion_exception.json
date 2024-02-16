@@ -204,7 +204,9 @@
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=66532",
     "description": "",
     "os": [],
-    "directions": [],
+    "directions": [
+      "pdf-docx"
+    ],
     "files": [
       "conv_58552841_6f0f_4025_9f14_6b285e94c6a5_docx.pdf"
     ]
