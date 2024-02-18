@@ -451,5 +451,19 @@
     "files": [
       "conv_72a2bc9a_385c_42bc_b327_23623d5e9628_png.xlsx"
     ]
+  },
+  "66562": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=66562",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "xlsb-xlsx"
+    ],
+    "files": [
+      "Sundars-Nifty.xlsx"
+    ]
   }
 }
