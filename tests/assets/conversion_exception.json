@@ -295,5 +295,21 @@
       "conv_72a2bc9a_385c_42bc_b327_23623d5e9628_png.xlsb",
       "00_finansovaja_model_Retail_Top-Down_PL_SF_CF_BS_OutS_0.xlsx"
     ]
+  },
+  "66648": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=66648",
+    "description": "",
+    "os": [],
+    "directions": [
+      "docx-epub",
+      "docx-fb2",
+      "docx-html",
+      "docx-jpg",
+      "docx-png",
+      "docx-pdf"
+    ],
+    "files": [
+      "Согласие на обработку Исходный.docx"
+    ]
   }
 }
