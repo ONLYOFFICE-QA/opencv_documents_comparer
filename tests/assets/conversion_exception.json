@@ -311,5 +311,22 @@
     "files": [
       "Согласие на обработку Исходный.docx"
     ]
+  },
+  "66849": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=66849",
+    "description": "",
+    "os": [],
+    "directions": [
+      "pptx-pptt",
+      "pptx-jpg",
+      "pptx-png",
+      "pptx-pdf"
+    ],
+    "files": [
+      "test 01.pptx",
+      "2023-09-15_ACAAI_efficacy and safety_oral.pptx",
+      "test 06.pptx",
+      "seed_slide_deck_16x9__v1_corn_flower.pptx"
+    ]
   }
 }
