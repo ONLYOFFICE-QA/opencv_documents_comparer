@@ -451,5 +451,79 @@
     "files": [
       "conv_72a2bc9a_385c_42bc_b327_23623d5e9628_png.xlsx"
     ]
+  },
+  "66857": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=66857",
+    "description": "",
+    "mode": [
+      "t-format"
+    ],
+    "directions": [
+      "ods-xlsx",
+      "xls-xlsx"
+    ],
+    "files": [
+      "acdc.xlsx",
+      "Concrete Ring Wall Foundation.xlsx",
+      "focus3.xlsx",
+      "Hoja_Excel_Calculo_Mecanico_de_Conductores_Aereos.xlsx",
+      "Monopoly.xlsx",
+      "Planilha_formulas__Matematica_financeira.xlsx",
+      "Program for Combined Foundation Design With Piles.xlsx",
+      "the emperor.xlsx",
+      "DATCAIXAFGTS.xlsx",
+      "GerenciadorDeProjetosGantt.xlsx",
+      "Nathalia R3 e R4.xlsx",
+      "Pelda III ures.xlsx",
+      "RelatorioFinanceiroInstituicoesEclesiasticas.xlsx",
+      "RemanejamentoOrcamentario.xlsx"
+    ]
+  },
+  "66859": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=66859",
+    "description": "",
+    "mode": [
+      "t-format"
+    ],
+    "directions": [
+      "ods-xlsx"
+    ],
+    "files": [
+      "Exercícios de Aprendizagem.xlsx"
+    ]
+  },
+  "66864": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=66864",
+    "description": "",
+    "mode": [
+      "t-format"
+    ],
+    "directions": [
+      "ppt-pptx"
+    ],
+    "files": [
+      "804.pptx",
+      "comas.pptx",
+      "evr1.pptx",
+      "Iuliano.pptx",
+      "KIOSK_GR_09.pptx",
+      "libsteps.pptx",
+      "tweb.pptx",
+      "zeal.pptx",
+      "Презентация курса (msf).pptx"
+    ]
+  },
+  "66868": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=66868",
+    "description": "",
+    "mode": [
+      "t-format"
+    ],
+    "directions": [
+      "xlsm-xlsx"
+    ],
+    "files": [
+      "conv_6f3224c5_a69b_433e_8487_1bf6c0e5b31b_png.xlsx"
+    ]
   }
 }
