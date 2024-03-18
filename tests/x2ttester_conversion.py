@@ -8,7 +8,7 @@ from frameworks.StaticData import StaticData
 from frameworks.decorators import timer
 from frameworks.editors import X2tTester, X2tTesterData
 from frameworks.editors.onlyoffice import VersionHandler, X2t
-from host_tools import File, Dir, HostInfo
+from host_tools import File, Dir
 from .tools import X2ttesterReport
 from .tools.results_handler import ResultsHandler
 
