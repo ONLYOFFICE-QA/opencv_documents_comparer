@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from os.path import join, dirname, realpath
-
 from rich import print
 
 import config
