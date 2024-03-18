@@ -2,6 +2,7 @@
 name = "opencv-documents-comparer"
 version = "2.0.0"
 description = ""
+authors = ["l02 <l8556@outlook.com>"]
 readme = "README.md"
 packages = [{include = "opencv_documents_comparer"}]
 
