@@ -452,46 +452,6 @@
       "conv_72a2bc9a_385c_42bc_b327_23623d5e9628_png.xlsx"
     ]
   },
-  "66857": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=66857",
-    "description": "",
-    "mode": [
-      "t-format"
-    ],
-    "directions": [
-      "ods-xlsx",
-      "xls-xlsx"
-    ],
-    "files": [
-      "acdc.xlsx",
-      "Concrete Ring Wall Foundation.xlsx",
-      "focus3.xlsx",
-      "Hoja_Excel_Calculo_Mecanico_de_Conductores_Aereos.xlsx",
-      "Monopoly.xlsx",
-      "Planilha_formulas__Matematica_financeira.xlsx",
-      "Program for Combined Foundation Design With Piles.xlsx",
-      "the emperor.xlsx",
-      "DATCAIXAFGTS.xlsx",
-      "GerenciadorDeProjetosGantt.xlsx",
-      "Nathalia R3 e R4.xlsx",
-      "Pelda III ures.xlsx",
-      "RelatorioFinanceiroInstituicoesEclesiasticas.xlsx",
-      "RemanejamentoOrcamentario.xlsx"
-    ]
-  },
-  "66859": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=66859",
-    "description": "",
-    "mode": [
-      "t-format"
-    ],
-    "directions": [
-      "ods-xlsx"
-    ],
-    "files": [
-      "Exercícios de Aprendizagem.xlsx"
-    ]
-  },
   "66864": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=66864",
     "description": "",
