@@ -30,9 +30,9 @@ class X2tTesterConversion:
         self.x2t_dir = StaticData.core_dir()
         self.report = X2ttesterReport()
         self.x2t_version = VersionHandler(version if version else X2t.version(StaticData.core_dir())).version
-        self.data = self._get_x2ttester_data()
-        self.x2ttester = X2tTester(self.data)
+        self.report_path = self.report.tmp_file()
         self.result_dir = StaticData.result_dir()
+        self.x2ttester = X2tTester(self._get_x2ttester_data())
         self.results_handler = self._get_results_handler()
         Dir.delete(StaticData.tmp_dir, clear_dir=True, stdout=False, stderr=False)
 
@@ -45,7 +45,7 @@ class X2tTesterConversion:
         """
         self.x2ttester.conversion(self.input_formats, self.output_formats, listxml_path=list_xml)
         self.results_handler.run(results_path) if results_path is not False else ...
-        return File.last_modified(dirname(self.data.report_path))
+        return File.last_modified(dirname(self.report_path))
 
     @timer
     def from_extension_json(self) -> str | None:
@@ -93,7 +93,7 @@ class X2tTesterConversion:
             output_dir=self.tmp_dir,
             x2ttester_dir=self.x2t_dir,
             fonts_dir=StaticData.fonts_dir(),
-            report_path=self.report.tmp_file(),
+            report_path=self.report_path,
             timeout=config.timeout,
             timestamp=config.timestamp,
             delete=config.delete,
