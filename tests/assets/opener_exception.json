@@ -451,39 +451,5 @@
     "files": [
       "conv_72a2bc9a_385c_42bc_b327_23623d5e9628_png.xlsx"
     ]
-  },
-  "66864": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=66864",
-    "description": "",
-    "mode": [
-      "t-format"
-    ],
-    "directions": [
-      "ppt-pptx"
-    ],
-    "files": [
-      "804.pptx",
-      "comas.pptx",
-      "evr1.pptx",
-      "Iuliano.pptx",
-      "KIOSK_GR_09.pptx",
-      "libsteps.pptx",
-      "tweb.pptx",
-      "zeal.pptx",
-      "Презентация курса (msf).pptx"
-    ]
-  },
-  "66868": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=66868",
-    "description": "",
-    "mode": [
-      "t-format"
-    ],
-    "directions": [
-      "xlsm-xlsx"
-    ],
-    "files": [
-      "conv_6f3224c5_a69b_433e_8487_1bf6c0e5b31b_png.xlsx"
-    ]
   }
 }
