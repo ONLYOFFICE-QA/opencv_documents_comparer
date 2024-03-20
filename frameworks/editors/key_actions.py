@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from rich import print
 
 class KeyActions:
     @staticmethod
@@ -7,5 +8,6 @@ class KeyActions:
         try:
             pg.click(image_path)
             return True
-        except TypeError:
+        except (pg.ImageNotFoundException, TypeError):
+            print(f"[red]|ERROR| Can't click on image: {image_path}")
             return False

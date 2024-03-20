@@ -96,7 +96,7 @@ def compare_test(c, direction: str = None, ls=False, telegram=False):
         File.get_paths(
             path=config.converted_docs,
             extension=converted_ext,
-            dir_include=f"{config.version}_{source_ext}_",
+            dir_include=f"{config.version}_(dir_{source_ext}",
             names=config.files_array if ls else None,
             exceptions_files=StaticData.ignore_files,
             exceptions_dirs=StaticData.ignore_dirs
@@ -125,7 +125,7 @@ def open_test(c, version=None, direction=None, ls=False, path='', telegram=False
         File.get_paths(
             path=path if path else config.converted_docs,
             extension=converted_ext if converted_ext else None,
-            dir_include=f"{config.version}_{source_ext}_" if source_ext else config.version if not path else None,
+            dir_include=f"{config.version}_(dir_{source_ext}" if source_ext else config.version if not path else None,
             names=config.files_array if ls else None,
             exceptions_files=StaticData.ignore_files,
             exceptions_dirs=StaticData.ignore_dirs
