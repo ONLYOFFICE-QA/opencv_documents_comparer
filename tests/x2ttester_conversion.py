@@ -23,6 +23,7 @@ class X2tTesterConversion:
             trough_conversion: bool = False,
             env_off: bool = False
     ):
+        Dir.delete(StaticData.tmp_dir, clear_dir=True, stdout=False, stderr=False)
         self.env_off = env_off
         self.trough_conversion = trough_conversion
         self.input_formats, self.output_formats = self._getting_formats(direction)
@@ -34,7 +35,6 @@ class X2tTesterConversion:
         self.result_dir = StaticData.result_dir()
         self.x2ttester = X2tTester(self._get_x2ttester_data())
         self.results_handler = self._get_results_handler()
-        Dir.delete(StaticData.tmp_dir, clear_dir=True, stdout=False, stderr=False)
 
     def run(self, results_path: bool | str = False, list_xml: str = None) -> str:
         """
