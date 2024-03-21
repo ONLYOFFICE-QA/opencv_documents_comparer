@@ -11,14 +11,12 @@ class ResultsHandler:
 
     def __init__(
             self,
-            output_formats,
             tmp_dir: str,
             result_dir: str,
             x2t_version: str,
             trough_conversion: bool = False
     ):
         self.tmp_dir = tmp_dir
-        self.output_formats = output_formats
         self.trough_conversion = trough_conversion
         self.result_dir = result_dir
         self.x2t_version = x2t_version
@@ -29,12 +27,12 @@ class ResultsHandler:
             return Dir.get_paths(self.tmp_dir, end_dir=f".{output_format}")
         return File.get_paths(self.tmp_dir, extension=output_format)
 
-    def run(self, result_path: bool | str = None) -> None:
-        for output_formats in self.output_formats.strip().split(' ') if self.output_formats else range(1):
-            paths = self._get_paths(output_formats if self.output_formats else None)
+    def run(self, result_path: bool | str = None, output_format: str = None) -> None:
+        for output_format in output_format.strip().split(' ') if output_format else range(1):
+            paths = self._get_paths(output_format if output_format else None)
             if paths:
-                for file_path in track(paths, f"[cyan]|INFO| Copying {len(paths)} {output_formats} files"):
-                    _path_to = self._get_result_path(result_path, self._get_input_format(file_path))
+                for file_path in track(paths, f"[cyan]|INFO| Copying {len(paths)} {output_format} files"):
+                    _path_to = self._get_result_path(result_path, self._get_input_format(file_path), output_format)
 
                     Dir.create(_path_to, stdout=False) if not isdir(_path_to) else ...
                     name = basename(file_path)
@@ -49,13 +47,13 @@ class ResultsHandler:
             return basename(dirname(dirname(file_path)))
         return dirname(file_path).split('.')[-1]
 
-    def _get_result_path(self, result_path: str = None, input_format: str = None) -> str:
+    def _get_result_path(self, result_path: str = None, input_format: str = None, output_format: str = None) -> str:
         if isinstance(result_path, str):
             return result_path
         return join(
             self.result_dir,
             f"{self.x2t_version}_"
-            f"(dir_{input_format.lower().replace('.', '')}-{self.output_formats})_"
+            f"(dir_{input_format.lower().replace('.', '')}-{output_format})_"
             f"(os_{self.os})_"
             f"(mode_{'t-format' if self.trough_conversion else 'Default'})"
         )

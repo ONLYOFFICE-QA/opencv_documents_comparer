@@ -44,7 +44,7 @@ class X2tTesterConversion:
         :param list_xml: str — the path to the xml file with the names of the files for the test
         """
         self.x2ttester.conversion(self.input_formats, self.output_formats, listxml_path=list_xml)
-        self.results_handler.run(results_path) if results_path is not False else ...
+        self.results_handler.run(results_path, self.output_formats) if results_path is not False else ...
         return File.last_modified(dirname(self.report_path))
 
     @timer
@@ -104,9 +104,8 @@ class X2tTesterConversion:
 
     def _get_results_handler(self) -> ResultsHandler:
         return ResultsHandler(
-            self.output_formats,
-            self.tmp_dir,
-            self.result_dir,
-            self.x2t_version,
-            self.trough_conversion
+            tmp_dir=self.tmp_dir,
+            result_dir=self.result_dir,
+            x2t_version=self.x2t_version,
+            trough_conversion=self.trough_conversion
         )
