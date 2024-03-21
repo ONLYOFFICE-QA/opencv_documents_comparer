@@ -74,7 +74,7 @@ def make_files(c, telegram=False, direction=None, version=None, t_format=False, 
 
     tg_msg = (
         f"Files for open test converted\n"
-        f"Version: {x2t_version}`\n"
+        f"Version: `{x2t_version}`\n"
         f"Platform: `{HostInfo().os}`\n"
         f"Mode: `{'t-format' if t_format else 'Default'}`"
     ) if telegram else None
