@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
+from typing import Optional
 from pydantic import BaseModel
 
-
-class Data(BaseModel):
+class X2tTesterConfig(BaseModel):
     input_dir: str
     output_dir: str
     x2ttester_dir: str
     report_path: str
-    fonts_dir: str = None
+    fonts_dir: Optional[str] = None
     cores: int = 1
-    timeout: int = None
+    timeout: Optional[int] = None
     timestamp: bool = True
     delete: bool = False
     errors_only: bool = False

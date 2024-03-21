@@ -5,7 +5,7 @@ from rich import print
 import config
 from frameworks.StaticData import StaticData
 from frameworks.decorators import timer
-from frameworks.editors import X2tTester, X2tTesterData
+from frameworks.editors import X2tTester, X2tTesterConfig
 from frameworks.editors.onlyoffice import VersionHandler, X2t
 from host_tools import File, Dir
 from .tools import X2ttesterReport
@@ -87,7 +87,7 @@ class X2tTesterConversion:
         return None, None
 
     def _get_x2ttester_data(self):
-        return X2tTesterData(
+        return X2tTesterConfig(
             cores=config.cores,
             input_dir=StaticData.documents_dir(),
             output_dir=self.tmp_dir,
