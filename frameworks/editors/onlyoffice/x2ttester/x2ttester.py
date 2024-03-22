@@ -18,13 +18,9 @@ class X2tTester:
     def conversion(self, input_format: str, output_format: str, listxml_path: str = None) -> None:
         """
         Method for performing file conversion.
-
         :param input_format: Input file format.
-        :type input_format: str
         :param output_format: Output file format.
-        :type output_format: str
         :param listxml_path: Path to the list.xml file, defaults to None.
-        :type listxml_path: str, optional
         """
         self.check_x2ttester_exists()
         chdir(self.x2ttester_dir)
