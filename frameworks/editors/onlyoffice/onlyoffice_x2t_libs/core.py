@@ -12,7 +12,12 @@ from .UrlGenerator import UrlGenerator
 
 
 class Core:
+
     def __init__(self, version: str = None):
+        """
+        Initializes the Core object.
+        :param version: Version of the core.
+        """
         self.os = HostInfo().os
         self.url = UrlGenerator(version).url
         self.version = version
@@ -24,6 +29,9 @@ class Core:
 
     @highlighter(color='green')
     def getting(self, force: bool = False) -> None:
+        """
+        :param force: Whether to force update the core files. Defaults to False.
+        """
         self._delete_core_dir() if force else ...
         headers = File.get_headers(self.url)
         if not headers or self._check_updated_core(core_data=headers['Last-Modified']):
@@ -37,11 +45,20 @@ class Core:
         self.xml.create_doc_renderer_config()
 
     def _read_core_data(self) -> str | None:
+        """
+        Reads core data from the data file.
+        :return: Core data string if file exists, None otherwise.
+        """
         if not isfile(self.data_file):
             return None
         return File.read(self.data_file, mode='r')
 
     def _check_updated_core(self, core_data: str = None) -> bool:
+        """
+        Checks if the core is already updated.
+        :param core_data: Last modified date of the core.
+        :return: True if core is up-to-date, False otherwise.
+        """
         existing_core_data = self._read_core_data()
         if core_data and existing_core_data and core_data == existing_core_data:
             print('[red]|INFO| Core Already up-to-date[/]')
@@ -49,9 +66,15 @@ class Core:
         return False
 
     def _download(self) -> None:
+        """
+        Downloads the core files.
+        """
         print(f"[green]|INFO| Downloading core\nVersion: {self.version}\nOS: {self.os}\nURL: {self.url}")
         File.download(self.url, self.tmp_dir, "core.7z")
 
     def _delete_core_dir(self) -> None:
+        """
+        Deletes the core directory.
+        """
         chdir(self.project_dir)
         File.delete(self.core_dir, stdout=False, stderr=False)
