@@ -5,7 +5,7 @@ from rich import print
 
 from frameworks.decorators.decorators import highlighter
 from frameworks.StaticData import StaticData
-from host_tools import File, HostInfo, Dir
+from host_tools import File, HostInfo
 
 from .x2t_libs_xml import X2tLibsXML
 from .UrlGenerator import UrlGenerator
