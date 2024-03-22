@@ -7,6 +7,11 @@ from rich import print
 
 
 def singleton(class_):
+    """
+    Decorator to ensure a class has only one instance.
+    :param class_: Class to decorate.
+    :return: Instance of the class.
+    """
     __instances = {}
 
     @wraps(class_)
@@ -19,6 +24,14 @@ def singleton(class_):
 
 
 def retry(max_attempts: int = 3, interval: int | float = 0, silence: bool = False, exception: bool = True):
+    """
+    Decorator to retry a function multiple times.
+    :param max_attempts: Maximum number of attempts.
+    :param interval: Interval between attempts.
+    :param silence: If True, suppresses error messages.
+    :param exception: If True, raises exception after all attempts fail.
+    :return: Result of the decorated function.
+    """
     def wrapper(func):
         @wraps(func)
         def inner(*args, **kwargs):
@@ -41,6 +54,11 @@ def retry(max_attempts: int = 3, interval: int | float = 0, silence: bool = Fals
 
 
 def highlighter(color: str = 'green'):
+    """
+    Decorator to print highlighting before and after the function execution.
+    :param color: Color for highlighting.
+    :return: Result of the decorated function.
+    """
     def wrapper(func):
         @wraps(func)
         def inner(*args, **kwargs):
@@ -55,6 +73,11 @@ def highlighter(color: str = 'green'):
 
 
 def async_processing(target):
+    """
+    Decorator to run a function asynchronously using multiprocessing.
+    :param target: Target function to run asynchronously.
+    :return: Result of the decorated function.
+    """
     def wrapper(func):
         @wraps(func)
         def inner(*args, **kwargs):
@@ -70,6 +93,11 @@ def async_processing(target):
 
 
 def timer(func):
+    """
+    Decorator to measure the execution time of a function.
+    :param func: Function to measure execution time.
+    :return: Result of the decorated function.
+    """
     @wraps(func)
     def wrapper(*args, **kwargs):
         start_time = perf_counter()
@@ -81,6 +109,11 @@ def timer(func):
 
 
 def memoize(func):
+    """
+    Decorator to cache the result of a function.
+    :param func: Function to memoize.
+    :return: Result of the decorated function.
+    """
     __cache = {}
 
     @wraps(func)
