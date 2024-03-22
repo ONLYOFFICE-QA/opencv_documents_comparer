@@ -8,10 +8,11 @@ from host_tools import HostInfo
 
 @singleton
 class HostConfig:
-    def __init__(self, dyld_library_path: str = StaticData.core_dir()):
-        self.dyld_library_path = dyld_library_path
-        self.arch = HostInfo().arch
-        self.os = HostInfo().os
+    def __init__(self, dyld_library_path: str = None):
+        self.host_info = HostInfo()
+        self.dyld_library_path = dyld_library_path or StaticData.core_dir()
+        self.arch = self.host_info.arch
+        self.os = self.host_info.os
         self.x2t = self.executable_name('x2t')
         self.x2ttester = self.executable_name('x2ttester')
         self.standardtester = self.executable_name('standardtester')
@@ -23,6 +24,5 @@ class HostConfig:
         return f"{name}.exe"
 
     def specific_configuration_host(self):
-        match self.os:
-            case 'mac':
-                environ["DYLD_LIBRARY_PATH"] = self.dyld_library_path
+        if self.os == 'mac':
+            environ["DYLD_LIBRARY_PATH"] = self.dyld_library_path
