@@ -75,6 +75,7 @@ class X2tTesterXml:
     def _generate_timeout(value: int | None) -> int:
         if isinstance(value, int) and value > 0:
             return value
-        raise Exception(
+        print(
             f"[bold red]|WARNING| The `timeout` parameter to end conversion when time has elapsed will be disabled."
         )
+        return 0
