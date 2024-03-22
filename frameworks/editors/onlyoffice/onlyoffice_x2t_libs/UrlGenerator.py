@@ -17,34 +17,31 @@ class UrlGenerator(VersionHandler):
             return f"{self.host}/{self.os}/core/{self.branch}/{self.url_build}/{self.arch}/core.7z"
         return f"{self.host}/{self.os}/core/{self.branch}/{self.url_version}/{self.url_build}/{self.arch}/core.7z"
 
-    def branch(self):
+    def branch(self) -> str:
         if "99.99.99" in self.version:
             return 'develop'
         elif self.minor_version != '0':
             return "hotfix"
         return "release"
 
-    def url_build(self):
+    def url_build(self) -> str:
         if self.os == 'windows':
             return self.version
         return f"{self.major_version}.{self.minor_version}-{self.build}"
 
     @property
-    def arch(self):
-        match HostInfo().os:
-            case 'linux':
-                return HostInfo().arch.replace("x86_", "x")
-            case 'mac':
-                return HostInfo().arch.replace("64", '')
-            case 'windows':
-                return HostInfo().arch.replace("amd", "x")
+    def arch(self) -> str:
+        arch = HostInfo().arch
+        if self.os == 'linux':
+            return arch.replace("x86_", "x")
+        elif self.os == 'mac':
+            return arch.replace("64", '')
+        elif self.os == 'windows':
+            return arch.replace("amd", "x")
 
     @property
-    def os(self):
-        match HostInfo().os:
-            case 'linux':
-                return 'linux'
-            case 'mac':
-                return 'mac'
-            case 'windows':
-                return 'windows'
+    def os(self) -> str:
+        os_info = HostInfo().os
+        if os_info.lower() in ['linux', 'mac', 'windows']:
+            return os_info.lower()
+        raise ValueError("Unsupported operating system.")
