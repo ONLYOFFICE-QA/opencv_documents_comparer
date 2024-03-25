@@ -23,7 +23,7 @@ pytest = "^8.1.1"
 pydantic = "^2"
 host-tools = { git = "https://github.com/l8556/host_tools.git", branch = "master" }
 telegram = { git = "https://github.com/l8556/TelegramApi.git", branch = "master" }
-S3Wrapper = { git = "https://github.com/l8556/S3Wrapper.git", branch = "master" }
+s3wrapper = { git = "https://github.com/l8556/S3Wrapper.git", branch = "master" }
 
 
 [build-system]

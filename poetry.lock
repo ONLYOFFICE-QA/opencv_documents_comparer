@@ -1756,19 +1756,19 @@ name = "s3wrapper"
 version = "0.1.0"
 description = ""
 optional = false
-python-versions = "^3.8"
+python-versions = "^3.9"
 files = []
 develop = false
 
 [package.dependencies]
-boto3 = "*"
+boto3 = "^1.34"
 rich = "*"
 
 [package.source]
 type = "git"
 url = "https://github.com/l8556/S3Wrapper.git"
 reference = "master"
-resolved_reference = "985ef82f57b1374752d9f8dc9aa9548ef6464f3d"
+resolved_reference = "6f2c2fdcbd6507c153bbe63cf0fd7a29767ddb11"
 
 [[package]]
 name = "scikit-image"
@@ -1891,7 +1891,7 @@ rich = "*"
 type = "git"
 url = "https://github.com/l8556/TelegramApi.git"
 reference = "master"
-resolved_reference = "8ca45a6dfd2bb56f059982ae289bb0d605d3af47"
+resolved_reference = "e04683c8cb74555b4383150528644210287c77db"
 
 [[package]]
 name = "texttable"
@@ -1963,4 +1963,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "b0da87141725239c97f88e0ba6a497fcfcf92ed2b9fa281988b07378b3b80881"
+content-hash = "cc8d1d5632ab2836e8eafbbd4aecacd14fcb502e431aa73a8cb9839c61f6b97c"

@@ -5,7 +5,7 @@ from host_tools import File
 from host_tools.utils import Dir
 from rich.console import Console
 
-from S3Wrapper import S3Wrapper
+from s3wrapper import S3Wrapper
 import concurrent.futures
 
 class S3Downloader:
