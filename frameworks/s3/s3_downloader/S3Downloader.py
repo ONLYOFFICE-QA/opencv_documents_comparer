@@ -9,6 +9,20 @@ from s3wrapper import S3Wrapper
 import concurrent.futures
 
 class S3Downloader:
+    """
+    A class for downloading objects from Amazon S3.
+    This class allows downloading objects from an Amazon S3 bucket with support for parallel downloading.
+
+    Attributes:
+        download_dir (str): The directory where files will be downloaded.
+        cores (int): The number of CPU cores to use for parallel downloading.
+        bucket_name (str): The name of the S3 bucket.
+        region (str): The AWS region of the S3 bucket.
+        access_key (str): The AWS access key.
+        secret_access_key (str): The AWS secret access key.
+        check_sha256 (bool): Whether to check SHA256 hash of downloaded files.
+        check_size (bool): Whether to check file size of downloaded files.
+    """
     def __init__(
             self,
             download_dir: str,
@@ -20,6 +34,17 @@ class S3Downloader:
             check_sha256: bool = False,
             check_size: bool = True
     ):
+        """
+        Initializes an S3Downloader object.
+        :param download_dir: The directory where files will be downloaded.
+        :param cores: The number of CPU cores to use for parallel downloading. (default: None)
+        :param bucket_name: The name of the S3 bucket. (default: 'conversion-testing-files')
+        :param region: The AWS region of the S3 bucket. (default: 'us-east-1')
+        :param access_key: The AWS access key. (default: None)
+        :param secret_access_key: The AWS secret access key. (default: None)
+        :param check_sha256: Whether to check SHA256 hash of downloaded files. (default: False)
+        :param check_size: Whether to check file size of downloaded files. (default: True)
+        """
         self.check_size = check_size
         self.check_sha256 = check_sha256
         self.download_dir = download_dir
@@ -46,6 +71,10 @@ class S3Downloader:
             self.__cores = None
 
     def download_obj(self, obj_key: str):
+        """
+        Downloads a single object from S3.
+        :param obj_key: The key of the object in the S3 bucket.
+        """
         download_path = join(self.download_dir, obj_key)
 
         if self._exists_object(download_path, obj_key, self.check_sha256):
@@ -61,8 +90,12 @@ class S3Downloader:
             self.console.print(f"[red]|ERROR| Object [cyan]{obj_key} [red]not downloaded")
 
     def download_all(self, objects: list = None):
+        """
+        Downloads multiple objects from S3.
+        :param objects: List of object keys to download. (default: None)
+        """
         File.delete(self.errors_log_file, stdout=False, stderr=False)
-        object_keys = objects if isinstance(objects, list) else self._get_all_objects()
+        object_keys = objects if isinstance(objects, list) else self._get_all_files()
 
         with self.console.status('') as status:
             with concurrent.futures.ThreadPoolExecutor(max_workers=self.cores) as executor:
@@ -80,23 +113,42 @@ class S3Downloader:
 
     @staticmethod
     def _get_thread_result(future):
+        """
+        Gets the result of a thread execution.
+        :param future: The future object representing the result of a thread.
+        :return: The result of the thread execution.
+        """
         try:
             return future.result()
         except (PermissionError, FileExistsError, NotADirectoryError, IsADirectoryError) as e:
             return f"[red]|ERROR| Exception when getting result {e}"
 
     def _check_download_errors(self):
+        """
+        Checks for any download errors and prints the result.
+        """
         errors = File.read(self.errors_log_file) if isfile(self.errors_log_file) else None
         self.console.print(
             f"[red]|ERROR| Download errors: {errors}" if errors
             else f"[green]|INFO| All objects have been successfully downloaded."
         )
 
-    def _get_all_objects(self):
+    def _get_all_files(self):
+        """
+        Retrieves a list of all objects from the S3 bucket.
+        :return: List of object keys in the S3 bucket.
+        """
         self.console.print(f"[green]|INFO| Getting a list of objects from the bucket: [cyan]{self.s3.bucket}")
         return self.s3.get_files()
 
     def _exists_object(self, download_path: str, obj_key: str, check_sha256: bool) -> bool:
+        """
+        Checks if the downloaded object exists and optionally verifies its integrity.
+        :param download_path: The path where the object is downloaded.
+        :param obj_key: The key of the object in the S3 bucket.
+        :param check_sha256: Whether to check the SHA256 hash of the downloaded object.
+        :return: True if the object exists and passes integrity checks, False otherwise.
+        """
         if not isfile(download_path):
             return False
         if self.check_size and getsize(download_path) != self.s3.get_size(obj_key):
