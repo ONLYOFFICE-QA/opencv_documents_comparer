@@ -138,7 +138,7 @@ class S3Downloader:
         Retrieves a list of all objects from the S3 bucket.
         :return: List of object keys in the S3 bucket.
         """
-        self.console.print(f"[green]|INFO| Getting a list of objects from the bucket: [cyan]{self.s3.bucket}")
+        self.console.print(f"[green]|INFO| Getting a list of files from the bucket: [cyan]{self.s3.bucket}")
         return self.s3.get_files()
 
     def _exists_object(self, download_path: str, obj_key: str, check_sha256: bool) -> bool:
