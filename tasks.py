@@ -11,6 +11,8 @@ from frameworks.StaticData import StaticData
 from host_tools import HostInfo, File
 from frameworks.editors.onlyoffice import Core, X2t
 from telegram import Telegram
+
+from frameworks.s3 import S3Downloader
 from tests import X2tTesterConversion
 
 if HostInfo().os == 'windows':
@@ -21,6 +23,11 @@ if HostInfo().os == 'windows':
 def download_core(c, force=False, version=None):
     version = version if version else config.version if config.version else Prompt.ask("Please enter version")
     Core(version).getting(force=force)
+
+
+@task
+def download_files(c, cores: int = None, sha256: bool = False):
+    S3Downloader(download_dir=config.source_docs, cores=cores, check_sha256=sha256).download_all()
 
 
 @task
