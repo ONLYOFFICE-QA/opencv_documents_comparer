@@ -2,7 +2,8 @@
 
 ## Description
 
-A project for testing conversion opening files after conversion and comparing documents.
+This project aims to test the conversion,
+opening files after conversion, and comparing documents.
 
 ## Requirements
 
@@ -12,30 +13,9 @@ A project for testing conversion opening files after conversion and comparing do
 
 ## Installing Python Libraries
 
-### First you need to install the package manager poetry
+### Install Poetry Package Manager
 
-* Unix system
-  * Run command:
-  `curl -sSL <https://install.python-poetry.org> | python3 -`
-  * Add Poetry to your PATH
-  `$HOME/.local/bin`
-* Windows
-  * Run command in powershell:
-  `(Invoke-WebRequest -Uri https://install.python-poetry.org
-   -UseBasicParsing).Content | py -`
-  * Add Poetry to your PATH
-  `%APPDATA%\Python\Scripts`
-
-To install the dependencies via poetry, run the command
-`poetry install`
-
-To activate the virtual environment, run the command
-`poetry shell`
-
-### If installing dependencies is only possible via pip
-
-* To install the dependencies via pip:
-`python3 install_requirements.py`
+Instruction: [Python Poetry Installation Guide](https://python-poetry.org/docs/#installation)
 
 ## Getting Started
 
@@ -47,7 +27,7 @@ To activate the virtual environment, run the command
 
 * Change config.py file.
   * Set environment variables
-    * version - the document server version (Example: "6.4.1.44")
+    * version - the document server version (Example: "8.1.0.50")
     * source_doc_folder - path to folders with documents before conversion,
     the folder names must match the file
       extension
@@ -55,15 +35,30 @@ To activate the virtual environment, run the command
       then the folder name must be "doc")
     * converted_doc_folder - path to folders with documents after conversion.
       The names of folders should have the
-      form "```<version>_<extension before conversion>_<extension after conversion>```"
-      (Example: "6.4.1.44_doc_docx").
+      form "`<version>_(dir_<extension before conversion>
+_<extension after conversion>)_(os_<operation system>)_(mode_<Default or t-format>)`"
+      Example: `8.1.0.50_(dir_xps-docx)_(os_linux)_(mode_Default)`.
     * list_of_file_names - array for selective comparison by filename
 
-* Sending messages to Telegram
-* To send termination reports of the script to Telegram,
-  you need to add 2 environment variables
-  * TELEGRAM_TOKEN - with a token from your bot on telegram
-  * CHANNEL_ID - with the channel id on telegram
+### Sending messages to Telegram
+
+* To send termination reports of the script to Telegram, you need:
+* to add 2 environment variables
+  * `TELEGRAM_TOKEN` - with a token from your bot on telegram
+  * `CHANNEL_ID` - with the channel id on telegram
+* or 2 files in the path `~/.telegram`:
+  * `token` - with a token from your bot on telegram
+  * `chat` - with the channel id on telegram
+* to send messages via proxy, add a file at the path `~/.telegram/proxy.json` containing:
+
+```json
+{
+  "login": "",
+  "password": "",
+  "ip": "",
+  "port": ""
+}
+```
 
 ### Command for starting a document comparison
 
@@ -135,3 +130,12 @@ conversion to all formats will be performed.
 #### Download x2t libs flags
 
 `--version` or `-v` - Specifies the version x2t libs.
+
+### Download files
+
+`invoke download-files`
+
+#### Download files flags
+
+`--cores` or `-c` - The amount CPU cores
+to use for parallel downloading. (default: None)
