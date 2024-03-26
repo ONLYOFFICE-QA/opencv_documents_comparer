@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import time
+from os import environ
 
 from invoke import task
 from rich import print
@@ -39,19 +40,28 @@ def conversion_test(
         version=None,
         t_format=False,
         env_off=False,
-        quick_check=False
+        quick_check=False,
+        x2t_limits=None
 ):
+    if x2t_limits and not env_off:
+        environ['X2T_MEMORY_LIMIT'] = f"{x2t_limits}GiB"
+
     download_core(c, version=version)
 
     x2t_version = X2t.version(StaticData.core_dir())
     print(
-        f"[bold green]|INFO| The conversion is running on x2t version: [red]{x2t_version}\n"
-        f"[bold green]Mode: "
-        f"{'[cyan]Quick Check' if quick_check else '[red]Full test' if not ls else '[magenta]From array'}"
+        f"[bold green]|INFO| The conversion is running on x2t version: [red]{x2t_version}[/]\n"
+        f"|INFO| Mode: "
+        f"{'[cyan]Quick Check' if quick_check else '[red]Full test' if not ls else '[magenta]From array'}[/]\n"
+        f"|INFO| X2t memory limit: [cyan]{environ.get('X2T_MEMORY_LIMIT', 'Default 4GIB')}[/]\n"
+        f"|INFO| Environment: [cyan]{'True' if not env_off else 'False'}[/]"
     )
 
     conversion = X2tTesterConversion(direction, x2t_version, trough_conversion=t_format, env_off=env_off)
     files_list = conversion.get_quick_check_files() if quick_check else config.files_array if ls else None
+    object_keys = [f"{name.split('.')[-1].lower()}/{name}" for name in files_list] if files_list else None
+    S3Downloader(download_dir=config.source_docs).download_all(objects=object_keys)
+
     start_time = time.perf_counter()
     report = conversion.from_files_list(files_list) if files_list else conversion.run()
 
