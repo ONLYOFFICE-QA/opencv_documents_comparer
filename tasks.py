@@ -34,14 +34,14 @@ def download_files(c, cores: int = None, sha256: bool = False):
 @task
 def conversion_test(
         c,
-        direction=None,
-        ls=False,
-        telegram=False,
-        version=None,
-        t_format=False,
-        env_off=False,
-        quick_check=False,
-        x2t_limits=None
+        direction: str = None,
+        ls: bool = False,
+        telegram: bool = False,
+        version: str = None,
+        t_format: bool = False,
+        env_off: bool = False,
+        quick_check: bool = False,
+        x2t_limits: int = None
 ):
     if x2t_limits and not env_off:
         environ['X2T_MEMORY_LIMIT'] = f"{x2t_limits}GiB"

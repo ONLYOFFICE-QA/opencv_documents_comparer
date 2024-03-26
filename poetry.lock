@@ -1768,7 +1768,7 @@ rich = "*"
 type = "git"
 url = "https://github.com/l8556/S3Wrapper.git"
 reference = "master"
-resolved_reference = "6f2c2fdcbd6507c153bbe63cf0fd7a29767ddb11"
+resolved_reference = "b3ae1f75aa5c98dd9c7b4852f1446b51e626d676"
 
 [[package]]
 name = "scikit-image"
