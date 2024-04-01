@@ -311,5 +311,18 @@
     "files": [
       "Согласие на обработку Исходный.docx"
     ]
+  },
+  "67188": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67188",
+    "description": "",
+    "os": [],
+    "directions": [
+      "docx-jpg",
+      "docx-png",
+      "docx-pdf"
+    ],
+    "files": [
+      "AllEquationsWord.docx"
+    ]
   }
 }
