@@ -324,5 +324,24 @@
     "files": [
       "AllEquationsWord.docx"
     ]
+  },
+  "67231": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67231",
+    "description": "",
+    "os": ["linux", "mac"],
+    "directions": [],
+    "files": [
+      "UCSC09.odp"
+    ]
+  },
+  "67230": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67230",
+    "description": "",
+    "os": ["linux", "mac"],
+    "directions": [],
+    "files": [
+      "Report.odt",
+      "0100GS3GettingStartedOOo3.odt"
+    ]
   }
 }
