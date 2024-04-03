@@ -1489,40 +1489,48 @@ files = [
 
 [[package]]
 name = "pywavelets"
-version = "1.5.0"
+version = "1.6.0"
 description = "PyWavelets, wavelet transform module"
 optional = false
 python-versions = ">=3.9"
 files = [
-    {file = "pywavelets-1.5.0-cp310-cp310-macosx_10_13_x86_64.whl", hash = "sha256:05723b35191ceb7d0c0bc2898a9ff391c0f20e8ed9b75d30211464872efcac95"},
-    {file = "pywavelets-1.5.0-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:e045ee612de58e3175ae863c34072b6bf5b45b61264c1adbd75506ce31cedbb2"},
-    {file = "pywavelets-1.5.0-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:c857081c037552f174732d864b55d8db4845f5e2fdf0e7bfc2df675a417906f4"},
-    {file = "pywavelets-1.5.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:7a8b58eaf946fbee002cce460d32a0e932c6d9e158aad10eea984e7f26cda15e"},
-    {file = "pywavelets-1.5.0-cp310-cp310-win32.whl", hash = "sha256:51c8e9e081af40f61d194960db0f3dc0434bbd979dafcbbd6463134b3f482f37"},
-    {file = "pywavelets-1.5.0-cp310-cp310-win_amd64.whl", hash = "sha256:67b65da9ef6380a48b8b53de6d8a4f83747b84b217a37944a4dcf3a53cdf308d"},
-    {file = "pywavelets-1.5.0-cp311-cp311-macosx_10_13_x86_64.whl", hash = "sha256:2cae4a0151e443e915905c120435e69ad410b484ce8af4839220e43a494c7c53"},
-    {file = "pywavelets-1.5.0-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:4aca65696341aa64b98bf852d6768dbb345516710a2912419d68e9d484ddd6cd"},
-    {file = "pywavelets-1.5.0-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:aa54e6c6f2d6953f5f962eb1d1de7f9fbc5bdf06141f58c05d0d87072a05b8be"},
-    {file = "pywavelets-1.5.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:9c3b10f1e1b08df4d918fa238ef5e5c51c111c4f6abdfecb19c26c540cbd8187"},
-    {file = "pywavelets-1.5.0-cp311-cp311-win32.whl", hash = "sha256:ca2e1faaea7f7ff42c771e180635e2fb165cf23c9805c4fe05f9458bcb97d093"},
-    {file = "pywavelets-1.5.0-cp311-cp311-win_amd64.whl", hash = "sha256:526e874ba79ee3779245737a3b8540defc7e92f6cec8f13258719cc1669f8b42"},
-    {file = "pywavelets-1.5.0-cp312-cp312-macosx_10_13_x86_64.whl", hash = "sha256:f3eba7f581a723132beb213ce4b291a51306e3d2f79241a71063294a71cfa25d"},
-    {file = "pywavelets-1.5.0-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:7da6c2acd7253e5d45f371bcd6c0f34d70b2f82694420afb0631130bc89e3288"},
-    {file = "pywavelets-1.5.0-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:d7dc392c3d3d5415b25b5c6ab3b77bb2ac2b7ff6c4d2fb81bd4633b9ac4b66f3"},
-    {file = "pywavelets-1.5.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:322995ea0a57c96086782f0391934f9f00123087a62ad7bef0e778491f121931"},
-    {file = "pywavelets-1.5.0-cp312-cp312-win32.whl", hash = "sha256:eb123f01315c0fa54e25780f3b0ce0b096bab35f6c11cacbcd4ac9915f26508a"},
-    {file = "pywavelets-1.5.0-cp312-cp312-win_amd64.whl", hash = "sha256:7115439f0dff291b8f81b69caff1a240695566f17c483752a49de9576c7332a4"},
-    {file = "pywavelets-1.5.0-cp39-cp39-macosx_10_13_x86_64.whl", hash = "sha256:34d189aed544687500a2fba5b8970951a76f62f1d140cc5f9440d9b32b14b8f5"},
-    {file = "pywavelets-1.5.0-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:00d5c37775a2baa4e5e6e9df3f93e6fc700a76bd50acd3b234bb13467cc54b6b"},
-    {file = "pywavelets-1.5.0-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:4d9763987b4a79917f007c1d5df0adc81adabbad3c7c0a368f4a7f12034816f3"},
-    {file = "pywavelets-1.5.0-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:49aa6abf9ac941f47f7ea26a3c7dd5c8bfcf0e903dc5ec68ed105b52bfccd4e2"},
-    {file = "pywavelets-1.5.0-cp39-cp39-win32.whl", hash = "sha256:f457d9faee286bd542c8f1921e38b8f5f54bc1949c0e349c8f1e9f8eb6d251a6"},
-    {file = "pywavelets-1.5.0-cp39-cp39-win_amd64.whl", hash = "sha256:91847ac1b658cf985a7f91ff638ba1d4a9a0544c5480ecbf8db427baf455725a"},
-    {file = "pywavelets-1.5.0.tar.gz", hash = "sha256:d9e25c7cabef7ccd53f5fead26ab22152fe4cb937bad7411b5d506e2b5de38f6"},
+    {file = "pywavelets-1.6.0-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:ddc1ff5ad706313d930f857f9656f565dfb81b85bbe58a9db16ad8fa7d1537c5"},
+    {file = "pywavelets-1.6.0-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:78feab4e0c25fa32034b6b64cb854c6ce15663b4f0ffb25d8f0ee58915300f9b"},
+    {file = "pywavelets-1.6.0-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:be36f08efe9bc3abf40cf40cd2ee0aa0db26e4894e13ce5ac178442864161e8c"},
+    {file = "pywavelets-1.6.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:0595c51472c9c5724fe087cb73e2797053fd25c788d6553fdad6ff61abc60e91"},
+    {file = "pywavelets-1.6.0-cp310-cp310-musllinux_1_1_aarch64.whl", hash = "sha256:058a750477dde633ac53b8806f835af3559d52db6532fb2b93c1f4b5441365b8"},
+    {file = "pywavelets-1.6.0-cp310-cp310-musllinux_1_1_x86_64.whl", hash = "sha256:538795d9c4181152b414285b5a7f72ac52581ecdcdce74b6cca3fa0b8a5ab0aa"},
+    {file = "pywavelets-1.6.0-cp310-cp310-win32.whl", hash = "sha256:47de024ba4f9df97e98b5f540340e1a9edd82d2c477450bef8c9b5381487128e"},
+    {file = "pywavelets-1.6.0-cp310-cp310-win_amd64.whl", hash = "sha256:e2c44760c0906ddf2176920a2613287f6eea947f166ce7eee9546081b06a6835"},
+    {file = "pywavelets-1.6.0-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:d91aaaf6de53b758bcdc96c81cdb5a8607758602be49f691188c0e108cf1e738"},
+    {file = "pywavelets-1.6.0-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:3b5302edb6d1d1ff6636d37c9ff29c4892f2a3648d736cc1df01f3f36e25c8cf"},
+    {file = "pywavelets-1.6.0-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:c5e655446e37a3c87213d5c6386b86f65c4d61736b4432d720171e7dd6523d6a"},
+    {file = "pywavelets-1.6.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:9ec7d69b746a0eaa327b829a3252a63619f2345e263177be5dd9bf30d7933c8d"},
+    {file = "pywavelets-1.6.0-cp311-cp311-musllinux_1_1_aarch64.whl", hash = "sha256:97ea9613bd6b7108ebb44b709060adc7e2d5fac73be7152342bdd5513d75f84e"},
+    {file = "pywavelets-1.6.0-cp311-cp311-musllinux_1_1_x86_64.whl", hash = "sha256:48b3813c6d1a7a8194f37dbb5dbbdf2fe1112152c91445ea2e54f64ff6350c36"},
+    {file = "pywavelets-1.6.0-cp311-cp311-win32.whl", hash = "sha256:4ffb484d096a5eb10af7121e0203546a03e1369328df321a33ef91f67bac40cf"},
+    {file = "pywavelets-1.6.0-cp311-cp311-win_amd64.whl", hash = "sha256:274bc47b289585383aa65519b3fcae5b4dee5e31db3d4198d4fad701a70e59f7"},
+    {file = "pywavelets-1.6.0-cp312-cp312-macosx_10_9_x86_64.whl", hash = "sha256:d6ec113386a432e04103f95e351d2657b42145bd1e1ed26513423391bcb5f011"},
+    {file = "pywavelets-1.6.0-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:ab652112d3932d21f020e281e06926a751354c2b5629fb716f5eb9d0104b84e5"},
+    {file = "pywavelets-1.6.0-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:47b0314a22616c5f3f08760f0e00b4a15b7c7dadca5e39bb701cf7869a4207c5"},
+    {file = "pywavelets-1.6.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:138471513bc0a4cd2ddc4e50c7ec04e3468c268e101a0d02f698f6aedd1d5e79"},
+    {file = "pywavelets-1.6.0-cp312-cp312-musllinux_1_1_aarch64.whl", hash = "sha256:67936491ae3e5f957c428e34fdaed21f131535b8d60c7c729a1b539ce8864837"},
+    {file = "pywavelets-1.6.0-cp312-cp312-musllinux_1_1_x86_64.whl", hash = "sha256:dd798cee3d28fb3d32a26a00d9831a20bf316c36d685e4ced01b4e4a8f36f5ce"},
+    {file = "pywavelets-1.6.0-cp312-cp312-win32.whl", hash = "sha256:e772f7f0c16bfc3be8ac3cd10d29a9920bb7a39781358856223c491b899e6e79"},
+    {file = "pywavelets-1.6.0-cp312-cp312-win_amd64.whl", hash = "sha256:4ef15a63a72afa67ae9f4f3b06c95c5382730fb3075e668d49a880e65f2f089c"},
+    {file = "pywavelets-1.6.0-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:627df378e63e9c789b6f2e7060cb4264ebae6f6b0efc1da287a2c060de454a1f"},
+    {file = "pywavelets-1.6.0-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:a413b51dc19e05243fe0b0864a8e8a16b5ca9bf2e4713da00a95b1b5747a5367"},
+    {file = "pywavelets-1.6.0-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:be615c6c1873e189c265d4a76d1751ec49b17e29725e6dd2e9c74f1868f590b7"},
+    {file = "pywavelets-1.6.0-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:4021ef69ec9f3862f66580fc4417be728bd78722914394594b48212fd1fcaf21"},
+    {file = "pywavelets-1.6.0-cp39-cp39-musllinux_1_1_aarch64.whl", hash = "sha256:8fbf7b61b28b5457693c034e58a01622756d1fd60a80ae13ac5888b1d3e57e80"},
+    {file = "pywavelets-1.6.0-cp39-cp39-musllinux_1_1_x86_64.whl", hash = "sha256:f58ddbb0a6cd243928876edfc463b990763a24fb94498607d6fea690e32cca4c"},
+    {file = "pywavelets-1.6.0-cp39-cp39-win32.whl", hash = "sha256:42a22e68e345b6de7d387ef752111ab4530c98048d2b4bdac8ceefb078b4ead6"},
+    {file = "pywavelets-1.6.0-cp39-cp39-win_amd64.whl", hash = "sha256:32198de321892743c1a3d1957fe1cd8a8ecc078bfbba6b8f3982518e897271d7"},
+    {file = "pywavelets-1.6.0.tar.gz", hash = "sha256:ea027c70977122c5fc27b2510f0a0d9528f9c3df6ea3e4c577ca55fd00325a5b"},
 ]
 
 [package.dependencies]
-numpy = ">=1.22.4,<2.0"
+numpy = ">=1.22.4,<3"
 
 [[package]]
 name = "pywin32"
