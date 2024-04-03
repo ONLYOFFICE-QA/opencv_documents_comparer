@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from re import sub
-from rich import print
 
 
 class VersionHandler:
@@ -45,7 +44,7 @@ class VersionHandler:
         self.__version = value
 
     @property
-    def major_version(self) -> str:
+    def major(self) -> str:
         """
         Extracts the major version component from the version number.
         :return: Major version string.
@@ -53,7 +52,7 @@ class VersionHandler:
         return sub(self._version_pattern, r'\1.\2', self.version)
 
     @property
-    def minor_version(self) -> str:
+    def minor(self) -> str:
         """
         Extracts the minor version component from the version number.
         :return: Minor version string.
@@ -74,4 +73,4 @@ class VersionHandler:
         Extracts the version number without the build component.
         :return: Version number string without the build component.
         """
-        return f"{self.major_version}.{self.minor_version}"
+        return f"{self.major}.{self.minor}"
