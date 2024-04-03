@@ -3,12 +3,9 @@ from host_tools import HostInfo
 from ..handlers.VersionHandler import VersionHandler
 
 
-class UrlGenerator(VersionHandler):
+class UrlGenerator:
     """
     Class for generating download URLs based on the version, operating system, and architecture.
-
-    Inherits from VersionHandler to handle version-specific logic.
-
     Attributes:
         host (str): Base URL host.
         url_version (str): Version part of the URL.
@@ -19,9 +16,9 @@ class UrlGenerator(VersionHandler):
         Initializes the UrlGenerator object.
         :param version: Version of the core.
         """
-        super().__init__(version)
+        self.version = VersionHandler(version)
         self.host = 'https://s3.eu-west-1.amazonaws.com/repo-doc-onlyoffice-com'
-        self.url_version = f"v{self.major_version}.{self.minor_version}"
+        self.url_version = f"v{self.version.major}.{self.version.minor}"
         self.url_build = self.url_build()
         self.branch = self.branch()
 
@@ -40,9 +37,9 @@ class UrlGenerator(VersionHandler):
         Determines the branch based on the version.
         :return: Branch name.
         """
-        if "99.99.99" in self.version:
+        if "99.99.99" in self.version.version:
             return 'develop'
-        elif self.minor_version != '0':
+        elif self.version.minor != '0':
             return "hotfix"
         return "release"
 
@@ -52,8 +49,8 @@ class UrlGenerator(VersionHandler):
         :return: URL build string.
         """
         if self.os == 'windows':
-            return self.version
-        return f"{self.major_version}.{self.minor_version}-{self.build}"
+            return self.version.version
+        return f"{self.version.major}.{self.version.minor}-{self.version.build}"
 
     @property
     def arch(self) -> str:
