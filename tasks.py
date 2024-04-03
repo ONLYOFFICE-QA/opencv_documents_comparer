@@ -21,7 +21,7 @@ if HostInfo().os == 'windows':
 
 
 @task
-def download_core(c, force=False, version=None):
+def download_core(c, force: bool = False, version: str = None):
     version = version if version else config.version if config.version else Prompt.ask("Please enter version")
     Core(version).getting(force=force)
 
@@ -80,11 +80,28 @@ def conversion_test(
 
 
 @task
-def make_files(c, telegram=False, direction=None, version=None, t_format=False, env_off=False):
+def make_files(
+        c,
+        cores: int = None,
+        telegram: bool = False,
+        direction: str = None,
+        version: str = None,
+        t_format: bool = False,
+        env_off: bool = False,
+        full: bool = False
+):
+    config.cores = cores or config.cores
+    config.delete = False
+
     download_core(c, version=version)
 
     x2t_version = X2t.version(StaticData.core_dir())
     print(f"[bold green]|INFO| The files will be converted to x2t versions: [red]{x2t_version}")
+    S3Downloader(download_dir=config.source_docs).download_all()
+
+    if full and not t_format:
+        conversion = X2tTesterConversion(direction, x2t_version, trough_conversion=True, env_off=env_off)
+        conversion.run(results_path=True) if direction else conversion.from_extension_json()
 
     conversion = X2tTesterConversion(direction, x2t_version, trough_conversion=t_format, env_off=env_off)
     report = conversion.run(results_path=True) if direction else conversion.from_extension_json()
@@ -101,7 +118,7 @@ def make_files(c, telegram=False, direction=None, version=None, t_format=False, 
 
 
 @task
-def compare_test(c, direction: str = None, ls=False, telegram=False):
+def compare_test(c, direction: str = None, ls: bool = False, telegram: bool = False):
     direction = direction if direction else Prompt.ask('Input formats with -', default=None, show_default=False)
     source_ext, converted_ext = CompareTest().getting_formats(direction)
 
@@ -127,7 +144,16 @@ def compare_test(c, direction: str = None, ls=False, telegram=False):
 
 
 @task
-def open_test(c, version=None, direction=None, ls=False, path='', telegram=False, new_test=False, fast_test=False):
+def open_test(
+        c,
+        version: str = None,
+        direction: str = None,
+        ls: bool = False,
+        path: str = None,
+        telegram: bool = False,
+        new_test:  bool = False,
+        fast_test: bool = False
+):
     _version = version if version else config.version
     opener = OpenTests(_version, continue_test=False if fast_test or path or new_test or ls else True)
     source_ext, converted_ext = opener.getting_formats(direction)
