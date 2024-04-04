@@ -1730,18 +1730,18 @@ jupyter = ["ipywidgets (>=7.5.1,<9)"]
 
 [[package]]
 name = "rubicon-objc"
-version = "0.4.7"
+version = "0.4.8"
 description = "A bridge between an Objective C runtime environment and Python."
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "rubicon-objc-0.4.7.tar.gz", hash = "sha256:be937d864bd1229f860defabb89b40c53634eedc36448d89ad3c14eb3286e509"},
-    {file = "rubicon_objc-0.4.7-py3-none-any.whl", hash = "sha256:f37108e35d5da1a78ab3eed2d03b095934f5f618329a939e4bd2ada9894eff6e"},
+    {file = "rubicon-objc-0.4.8.tar.gz", hash = "sha256:f7bede0f0e73dde07083785984c75b3acf76116298743758ea5c51b3ebb81978"},
+    {file = "rubicon_objc-0.4.8-py3-none-any.whl", hash = "sha256:59633f622e3c6e740bd9b3c4b60d0258fc2d30632b05d46cba12fae69539cfd3"},
 ]
 
 [package.extras]
-dev = ["pre-commit (==3.5.0)", "pytest (==7.4.2)", "pytest-tldr (==0.2.5)", "setuptools-scm[toml] (==8.0.4)", "tox (==4.11.3)"]
-docs = ["furo (==2023.9.10)", "pyenchant (==3.2.2)", "sphinx (==7.1.2)", "sphinx (==7.2.6)", "sphinx-autobuild (==2021.3.14)", "sphinx-copybutton (==0.5.2)", "sphinx-tabs (==3.4.1)", "sphinxcontrib-spelling (==8.0.0)"]
+dev = ["pre-commit (==3.5.0)", "pre-commit (==3.7.0)", "pytest (==8.1.1)", "pytest-tldr (==0.2.5)", "setuptools-scm (==8.0.4)", "tox (==4.14.2)"]
+docs = ["furo (==2024.1.29)", "pyenchant (==3.2.2)", "sphinx (==7.1.2)", "sphinx (==7.2.6)", "sphinx-autobuild (==2021.3.14)", "sphinx-autobuild (==2024.2.4)", "sphinx-copybutton (==0.5.2)", "sphinx-tabs (==3.4.5)", "sphinxcontrib-spelling (==8.0.0)"]
 
 [[package]]
 name = "s3transfer"
