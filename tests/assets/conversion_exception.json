@@ -308,5 +308,33 @@
       "conv_be799cf3_b2c8_4fa3_bc1e_c287d6c44817_ods.xlsb",
       "00_finansovaja_model_Retail_Top-Down_PL_SF_CF_BS_OutS_0.xlsx"
     ]
+  },
+  "67327": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67327",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xlsx-png",
+      "xlsx-jpg",
+      "xlsx-pdf",
+      "xlsx-csv"
+
+    ],
+    "files": [
+      "conv_yOP0FfLOVjafjexUHwamAG4F6nfTavi46DbNq2u5tTE__jpg.xlsx"
+    ]
+  },
+  "67335": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67335",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xlsm-png",
+      "xlsm-jpg",
+      "xlsm-pdf"
+    ],
+    "files": [
+      "conv_6f3224c5_a69b_433e_8487_1bf6c0e5b31b_png.xlsm"
+    ]
   }
 }
