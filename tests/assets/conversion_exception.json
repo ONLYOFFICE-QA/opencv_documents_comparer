@@ -319,5 +319,19 @@
       "Példa I ures.ods",
       "Példa I.ods"
     ]
+  },
+  "67398": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67398",
+    "description": "",
+    "os": [],
+    "directions": [
+      "ppt-pptt",
+      "ppt-jpg",
+      "ppt-png",
+      "ppt-pdf"
+    ],
+    "files": [
+      "ad_naver.ppt"
+    ]
   }
 }
