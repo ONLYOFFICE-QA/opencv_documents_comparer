@@ -466,5 +466,24 @@
       "zeal.pptx",
       "Презентация курса (msf).pptx"
     ]
+  },
+  "67381": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67381",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "odp-pptx"
+    ],
+    "files": [
+      "ESP_Patient_Leaflet_Discharge_HOME.pptx",
+      "file_1_ (1).pptx",
+      "Item-6-Shadow-Board-Presentation-for-Trust-Board-on-28.02.2019.pptx",
+      "Knowledge-and-Understanding-Organisers-Unit-3.pptx",
+      "noicekhs8bl.pptx",
+      "Poster.pptx"
+    ]
   }
 }
