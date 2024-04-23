@@ -191,15 +191,6 @@
       "Pizdariki.docx"
     ]
   },
-  "65263": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65263",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "87kpRebVWGRl0BLV9sg3fkttelLWUSCa3vzD1tAzaW0_.mht"
-    ]
-  },
   "66532": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=66532",
     "description": "",
@@ -247,19 +238,6 @@
     ],
     "files": [
       "Согласие на обработку Исходный.docx"
-    ]
-  },
-  "67188": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67188",
-    "description": "",
-    "os": [],
-    "directions": [
-      "docx-jpg",
-      "docx-png",
-      "docx-pdf"
-    ],
-    "files": [
-      "AllEquationsWord.docx"
     ]
   },
   "67231": {
@@ -318,20 +296,6 @@
       "Demo-Hayden.ods",
       "Példa I ures.ods",
       "Példa I.ods"
-    ]
-  },
-  "67398": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67398",
-    "description": "",
-    "os": [],
-    "directions": [
-      "ppt-pptt",
-      "ppt-jpg",
-      "ppt-png",
-      "ppt-pdf"
-    ],
-    "files": [
-      "ad_naver.ppt"
     ]
   }
 }
