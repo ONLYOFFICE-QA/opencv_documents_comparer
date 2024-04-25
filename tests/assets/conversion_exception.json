@@ -249,7 +249,9 @@
     ],
     "directions": [],
     "files": [
-      "UCSC09.odp"
+      "UCSC09.odp",
+      "07 - Objects and Animation.odp"
+
     ]
   },
   "67230": {
@@ -262,7 +264,13 @@
     "directions": [],
     "files": [
       "Report.odt",
-      "0100GS3GettingStartedOOo3.odt"
+      "0100GS3GettingStartedOOo3.odt",
+      "HTM-Heli-Report.odt",
+      "ins_pcie.odt", 
+      "Maxwell Equations.odt", 
+      "signal06.odt", 
+      "suugaku_kiso_ques.odt", 
+      "쉬운 J 프로그래밍.odt"
     ]
   },
   "67322": {
@@ -296,15 +304,6 @@
       "Demo-Hayden.ods",
       "Példa I ures.ods",
       "Példa I.ods"
-    ]
-  },
-  "67716": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67716",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "Hacking Mobile Use OPDA .mht"
     ]
   }
 }
