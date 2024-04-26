@@ -273,28 +273,6 @@
       "쉬운 J 프로그래밍.odt"
     ]
   },
-  "67322": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67322",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xlsx-png",
-      "xlsx-jpg",
-      "xlsx-pdf",
-      "xls-png",
-      "xls-jpg",
-      "xls-pdf",
-      "xlsb-png",
-      "xlsb-jpg",
-      "xlsb-pdf"
-    ],
-    "files": [
-      "the emperor.xls",
-      "Ежедневный отчет.xlsx",
-      "conv_be799cf3_b2c8_4fa3_bc1e_c287d6c44817_ods.xlsb",
-      "00_finansovaja_model_Retail_Top-Down_PL_SF_CF_BS_OutS_0.xlsx"
-    ]
-  },
   "67372": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67372",
     "description": "",
