@@ -283,5 +283,18 @@
       "Példa I ures.ods",
       "Példa I.ods"
     ]
+  },
+  "67743": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67743",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xls-png",
+      "xls-jpg",
+      "xls-pdf"
+    ],
+    "files": [
+      "_.xls"
+    ]
   }
 }
