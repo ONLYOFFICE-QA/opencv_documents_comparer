@@ -296,5 +296,14 @@
     "files": [
       "_.xls"
     ]
+  },
+  "67716": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67716",
+    "description": "",
+    "os": [],
+    "directions": [],
+    "files": [
+      "Hacking Mobile Use OPDA .mht"
+    ]
   }
 }
