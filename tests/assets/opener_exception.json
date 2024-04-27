@@ -743,5 +743,24 @@
       "style_text.docx",
       "Мир ЦОД.docx"
     ]
+  },
+  "67770_2": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67770",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "mht-docx"
+    ],
+    "files": [
+      "Citrix Systems.docx",
+      "D1ZR8wdzwlZ7orqT9ILCFMzWg4iwePjnnn6QZrArExc_.docx",
+      "emPoknW9U0tH8hntm7I6jO_Ux0rYKtXKZQ2AmQNUCD8_.docx",
+      "IYNrFhESWk3Cer4eoJH8XhV1GDLzMYTI6R1KxPI0jo0_.docx",
+      "Printer Repair And Service Tools_ Resetter Printer Pixma iP1980.docx",
+      "Поддержка XML.docx"
+    ]
   }
 }
