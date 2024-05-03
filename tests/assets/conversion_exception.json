@@ -298,5 +298,20 @@
     "files": [
       "Descargar Libros Digitales Gratuitos Download de Libros Gratis Ebooks.mht"
     ]
+  },
+  "67836": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67836",
+    "description": "",
+    "os": [],
+    "directions": [
+      "epub-png",
+      "epub-jpg"
+    ],
+    "files": [
+      "ДУиттакер - Как тестируют в Google.epub",
+      "05 КоАП РФ.epub",
+      "04 Налоговый кодекс.epub",
+      "03 Гражданский кодекс.epub"
+    ]
   }
 }
