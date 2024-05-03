@@ -708,5 +708,19 @@
       "Printer Repair And Service Tools_ Resetter Printer Pixma iP1980.docx",
       "Поддержка XML.docx"
     ]
+  },
+  "67822": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67822",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "odp-pptx"
+    ],
+    "files": [
+      "GSoC2009-Presentation-BlueLogo_pt-br.pptx"
+    ]
   }
 }
