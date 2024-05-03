@@ -191,23 +191,6 @@
       "Fiche projet Histoire croisée.xlsx"
     ]
   },
-  "60279": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=60279",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "description": "",
-    "directions": [
-      "odp-pptx"
-    ],
-    "files": [
-      "Apache CloudStack Template 062813.pptx",
-      "Методический-кейс-методиста-ДЮСШ-Курушина-Л.В..pptx",
-      "Body-Image.pptx",
-      "GSoC2009-Presentation-BlueLogo_pt-br.pptx"
-    ]
-  },
   "52374": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=52374",
     "mode": [
@@ -263,23 +246,6 @@
     "files": [
       "goldwingSetting.docx",
       "21.haikufinal.docx"
-    ]
-  },
-  "63701": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=63701",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "mht-docx"
-    ],
-    "files": [
-      "emPoknW9U0tH8hntm7I6jO_Ux0rYKtXKZQ2AmQNUCD8_.docx",
-      "BMIGTtkkAGCPvYyGada3UJvwkeBm2wWq5y_0hsov09Q_.docx",
-      "D1ZR8wdzwlZ7orqT9ILCFMzWg4iwePjnnn6QZrArExc_.docx",
-      "IYNrFhESWk3Cer4eoJH8XhV1GDLzMYTI6R1KxPI0jo0_.docx"
     ]
   },
   "64200": {
@@ -463,27 +429,7 @@
     ],
     "files": [
       "KIOSK_GR_09.pptx",
-      "zeal.pptx",
       "Презентация курса (msf).pptx"
-    ]
-  },
-  "67381": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67381",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "odp-pptx"
-    ],
-    "files": [
-      "ESP_Patient_Leaflet_Discharge_HOME.pptx",
-      "file_1_ (1).pptx",
-      "Item-6-Shadow-Board-Presentation-for-Trust-Board-on-28.02.2019.pptx",
-      "Knowledge-and-Understanding-Organisers-Unit-3.pptx",
-      "noicekhs8bl.pptx",
-      "Poster.pptx"
     ]
   },
   "67767": {
