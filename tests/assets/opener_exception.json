@@ -191,23 +191,6 @@
       "Fiche projet Histoire croisée.xlsx"
     ]
   },
-  "60279": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=60279",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "description": "",
-    "directions": [
-      "odp-pptx"
-    ],
-    "files": [
-      "Apache CloudStack Template 062813.pptx",
-      "Методический-кейс-методиста-ДЮСШ-Курушина-Л.В..pptx",
-      "Body-Image.pptx",
-      "GSoC2009-Presentation-BlueLogo_pt-br.pptx"
-    ]
-  },
   "52374": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=52374",
     "mode": [
