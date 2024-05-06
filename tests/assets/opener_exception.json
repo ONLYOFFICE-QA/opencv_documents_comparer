@@ -708,5 +708,19 @@
     "files": [
       "GSoC2009-Presentation-BlueLogo_pt-br.pptx"
     ]
+  },
+  "67875": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67875",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "odt-docx"
+    ],
+    "files": [
+      "Report.docx"
+    ]
   }
 }
