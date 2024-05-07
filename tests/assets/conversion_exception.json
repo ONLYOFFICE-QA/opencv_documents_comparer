@@ -326,5 +326,21 @@
     "files": [
       "_excel_01.xls"
     ]
+  },
+  "67907": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67907",
+    "description": "",
+    "os": [],
+    "directions": [
+      "mht-png",
+      "mht-jpg",
+      "mht-pdf",
+      "mht-epub",
+      "mht-html",
+      "mht-fb2"
+    ],
+    "files": [
+      "5000_most_frequent_words.mht"
+    ]
   }
 }
