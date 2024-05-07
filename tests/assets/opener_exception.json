@@ -722,5 +722,33 @@
     "files": [
       "Report.docx"
     ]
+  },
+  "67889": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67889",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "xlsb-xlsx"
+    ],
+    "files": [
+      "rank_prf-09.xlsx"
+    ]
+  },
+  "67891": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67891",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "xlsb-xlsx"
+    ],
+    "files": [
+      "secur_praice_12.10.2016.xlsx"
+    ]
   }
 }
