@@ -750,5 +750,18 @@
     "files": [
       "secur_praice_12.10.2016.xlsx"
     ]
+  },
+  "67926": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67926",
+    "description": "",
+    "mode": [
+      "t-format"
+    ],
+    "directions": [
+      "odp-pptx"
+    ],
+    "files": [
+      "MPBD_Diap-1-Presentación Alineamiento estratégico SCS.pptx"
+    ]
   }
 }
