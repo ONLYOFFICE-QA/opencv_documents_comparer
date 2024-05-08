@@ -293,7 +293,7 @@
   "67829": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67829",
     "description": "",
-    "os": ["linux"],
+    "os": ["linux", "mac"],
     "directions": [],
     "files": [
       "Descargar Libros Digitales Gratuitos Download de Libros Gratis Ebooks.mht"
