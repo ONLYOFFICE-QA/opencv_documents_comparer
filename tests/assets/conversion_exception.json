@@ -342,5 +342,43 @@
     "files": [
       "5000_most_frequent_words.mht"
     ]
+  },
+  "67940": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67940",
+    "description": "",
+    "os": [],
+    "directions": [
+      "docx-odt",
+      "docx-ott"
+    ],
+    "files": [
+      "conv_uCiNCx5hOcA4SeJE1_jTnUX8elcl5FAF0ejNILJwZ8Y__odt.docx"
+    ]
+  },
+  "67941": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67941",
+    "description": "",
+    "os": [],
+    "directions": [],
+    "files": [
+      "conv_472541661_jpeg.doc",
+      "conv_2208793973_jpeg.doc"
+    ]
+  },
+  "67942": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67942",
+    "description": "",
+    "os": [],
+    "directions": [
+      "docx-epub",
+      "docx-fb2",
+      "docx-html",
+      "docx-jpg",
+      "docx-png",
+      "docx-pdf"
+    ],
+    "files": [
+      "conv_04390dad_324b_43b7_ae90_aff47f2acbb7_pdf.docx"
+    ]
   }
 }
