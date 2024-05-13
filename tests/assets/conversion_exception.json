@@ -400,5 +400,20 @@
     "files": [
       "EpubGuide-hxa7241.epub"
     ]
+  },
+  "67967": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67967",
+    "description": "",
+    "os": [
+      "windows"
+    ],
+    "directions": [
+      "pptx-png",
+      "pptx-jpg",
+      "pptx-pdf"
+    ],
+    "files": [
+      "conv_194e757c_c7e6_472c_9df4_bcf54c74009a_pdf.pptx"
+    ]
   }
 }
