@@ -400,5 +400,45 @@
     "files": [
       "EpubGuide-hxa7241.epub"
     ]
+  },
+  "67967": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67967",
+    "description": "",
+    "os": [],
+    "directions": [
+      "pptx-png",
+      "pptx-jpg",
+      "pptx-pdf"
+    ],
+    "files": [
+      "conv_194e757c_c7e6_472c_9df4_bcf54c74009a_pdf.pptx"
+    ]
+  },
+  "67968": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67968",
+    "description": "",
+    "os": [],
+    "directions": [],
+    "files": [
+      "conv_G9_GqiqBbBJvS7ZsJLzmck4bRUCy_ovV3WHFN6QVUJI__ooxml.ppt"
+    ]
+  },
+  "67972": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67972",
+    "description": "",
+    "os": [],
+    "directions": [],
+    "files": [
+      "conv_6a2e2531_1970_435a_bfc7_f6e56bbfb573_xlsx.xls"
+    ]
+  },
+  "67973": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67973",
+    "description": "",
+    "os": [],
+    "directions": [],
+    "files": [
+      "conv_KJFyBwQuqXZ3rBJE6bvB5dE0_WXDXj6mQKR_H93mSiE__xlsx.xls"
+    ]
   }
 }
