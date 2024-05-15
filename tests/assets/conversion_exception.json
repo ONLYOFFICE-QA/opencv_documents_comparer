@@ -317,19 +317,6 @@
       "03 Гражданский кодекс.epub"
     ]
   },
-  "67837": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67837",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xls-png",
-      "xls-jpg",
-      "xls-pdf"
-    ],
-    "files": [
-      "_excel_01.xls"
-    ]
-  },
   "67907": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67907",
     "description": "",
