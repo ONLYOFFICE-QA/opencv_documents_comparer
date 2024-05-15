@@ -384,23 +384,6 @@
       "conv_04390dad_324b_43b7_ae90_aff47f2acbb7_pdf.docx"
     ]
   },
-  "67943": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67943",
-    "description": "",
-    "os": [
-      "windows"
-    ],
-    "directions": [
-      "epub-png",
-      "epub-jpg",
-      "epub-pdf",
-      "epub-fb2",
-      "epub-html"
-    ],
-    "files": [
-      "EpubGuide-hxa7241.epub"
-    ]
-  },
   "67967": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67967",
     "description": "",
