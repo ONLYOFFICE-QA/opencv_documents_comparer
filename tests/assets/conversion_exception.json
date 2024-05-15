@@ -290,46 +290,6 @@
       "1-2010.pdf"
     ]
   },
-  "67829": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67829",
-    "description": "",
-    "os": [
-      "linux",
-      "mac"
-    ],
-    "directions": [],
-    "files": [
-      "Descargar Libros Digitales Gratuitos Download de Libros Gratis Ebooks.mht"
-    ]
-  },
-  "67836": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67836",
-    "description": "",
-    "os": [],
-    "directions": [
-      "epub-png",
-      "epub-jpg"
-    ],
-    "files": [
-      "ДУиттакер - Как тестируют в Google.epub",
-      "05 КоАП РФ.epub",
-      "04 Налоговый кодекс.epub",
-      "03 Гражданский кодекс.epub"
-    ]
-  },
-  "67837": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67837",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xls-png",
-      "xls-jpg",
-      "xls-pdf"
-    ],
-    "files": [
-      "_excel_01.xls"
-    ]
-  },
   "67907": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67907",
     "description": "",
@@ -346,28 +306,6 @@
       "5000_most_frequent_words.mht"
     ]
   },
-  "67940": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67940",
-    "description": "",
-    "os": [],
-    "directions": [
-      "docx-odt",
-      "docx-ott"
-    ],
-    "files": [
-      "conv_uCiNCx5hOcA4SeJE1_jTnUX8elcl5FAF0ejNILJwZ8Y__odt.docx"
-    ]
-  },
-  "67941": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67941",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "conv_472541661_jpeg.doc",
-      "conv_2208793973_jpeg.doc"
-    ]
-  },
   "67942": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67942",
     "description": "",
@@ -382,23 +320,6 @@
     ],
     "files": [
       "conv_04390dad_324b_43b7_ae90_aff47f2acbb7_pdf.docx"
-    ]
-  },
-  "67943": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67943",
-    "description": "",
-    "os": [
-      "windows"
-    ],
-    "directions": [
-      "epub-png",
-      "epub-jpg",
-      "epub-pdf",
-      "epub-fb2",
-      "epub-html"
-    ],
-    "files": [
-      "EpubGuide-hxa7241.epub"
     ]
   },
   "67967": {
