@@ -544,5 +544,36 @@
     "files": [
       "MPBD_Diap-1-Presentación Alineamiento estratégico SCS.pptx"
     ]
+  },
+  "68034": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68034",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "html-docx"
+    ],
+    "files": [
+      "AUTM11BWR_FNL.docx",
+      "b.docx",
+      "ch8kr.docx"
+    ]
+  },
+  "68034_2": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68034",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "mht-docx"
+    ],
+    "files": [
+      "Citrix Systems.docx",
+      "Поддержка XML.docx"
+    ]
   }
 }
