@@ -240,36 +240,6 @@
       "Согласие на обработку Исходный.docx"
     ]
   },
-  "67230": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67230",
-    "description": "",
-    "os": [
-      "linux",
-      "mac"
-    ],
-    "directions": [],
-    "files": [
-      "Report.odt",
-      "0100GS3GettingStartedOOo3.odt",
-      "HTM-Heli-Report.odt",
-      "ins_pcie.odt",
-      "Maxwell Equations.odt",
-      "signal06.odt",
-      "suugaku_kiso_ques.odt",
-      "쉬운 J 프로그래밍.odt"
-    ]
-  },
-  "67372": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67372",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "Demo-Hayden.ods",
-      "Példa I ures.ods",
-      "Példa I.ods"
-    ]
-  },
   "67747": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67747",
     "description": "",
@@ -333,33 +303,6 @@
     ],
     "files": [
       "conv_194e757c_c7e6_472c_9df4_bcf54c74009a_pdf.pptx"
-    ]
-  },
-  "67968": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67968",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "conv_G9_GqiqBbBJvS7ZsJLzmck4bRUCy_ovV3WHFN6QVUJI__ooxml.ppt"
-    ]
-  },
-  "67972": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67972",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "conv_6a2e2531_1970_435a_bfc7_f6e56bbfb573_xlsx.xls"
-    ]
-  },
-  "67973": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67973",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "conv_KJFyBwQuqXZ3rBJE6bvB5dE0_WXDXj6mQKR_H93mSiE__xlsx.xls"
     ]
   },
   "67992": {

@@ -418,64 +418,6 @@
       "conv_72a2bc9a_385c_42bc_b327_23623d5e9628_png.xlsx"
     ]
   },
-  "67767": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67767",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "epub-docx"
-    ],
-    "files": [
-      "01 Уголовный кодекс.docx",
-      "02 Трудовой кодекс.docx",
-      "03 Гражданский кодекс.docx",
-      "04 Налоговый кодекс.docx",
-      "05 КоАП РФ.docx",
-      "37898EB.docx",
-      "abs-guide.docx",
-      "novolunie.docx",
-      "pg10825.docx",
-      "pg11301.docx",
-      "pg11529.docx",
-      "pg12627.docx",
-      "pg13041.docx",
-      "pg14236.docx",
-      "pg16109.docx",
-      "pg17092.docx",
-      "pg17524.docx",
-      "pg17643.docx",
-      "pg17661.docx",
-      "pg17674.docx",
-      "pg17788.docx",
-      "pg20061.docx",
-      "pg20344.docx",
-      "pg21425.docx",
-      "pg22630-images.docx",
-      "pg22630.docx",
-      "pg22642.docx",
-      "pg24279.docx",
-      "pg24486.docx",
-      "pg25260.docx",
-      "pg25679.docx",
-      "pg26263.docx",
-      "pg26343.docx",
-      "pg26748.docx",
-      "pg27974.docx",
-      "pg28120.docx",
-      "pg28258.docx",
-      "pg28714.docx",
-      "pg30164.docx",
-      "pg33205-images.docx",
-      "pg33205.docx",
-      "pg8224.docx",
-      "pg8738.docx",
-      "pg9302.docx",
-      "zatmenie.docx"
-    ]
-  },
   "67822": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67822",
     "description": "",
@@ -502,34 +444,6 @@
     ],
     "files": [
       "Report.docx"
-    ]
-  },
-  "67889": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67889",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "xlsb-xlsx"
-    ],
-    "files": [
-      "rank_prf-09.xlsx"
-    ]
-  },
-  "67891": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67891",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "xlsb-xlsx"
-    ],
-    "files": [
-      "secur_praice_12.10.2016.xlsx"
     ]
   },
   "67926": {
