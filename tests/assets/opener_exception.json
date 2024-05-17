@@ -518,5 +518,22 @@
       "style_table2.docx",
       "style_text.docx"
     ]
+  },
+  "68073": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68073",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "epub-docx"
+    ],
+    "files": [
+      "novolunie.docx",
+      "pg22630-images.docx",
+      "pg22630.docx",
+      "zatmenie.docx"
+    ]
   }
 }
