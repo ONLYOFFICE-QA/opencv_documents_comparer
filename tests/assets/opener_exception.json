@@ -404,20 +404,6 @@
       "conv_72a2bc9a_385c_42bc_b327_23623d5e9628_png.xlsx"
     ]
   },
-  "67822": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67822",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "odp-pptx"
-    ],
-    "files": [
-      "GSoC2009-Presentation-BlueLogo_pt-br.pptx"
-    ]
-  },
   "67875": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67875",
     "description": "",
@@ -430,19 +416,6 @@
     ],
     "files": [
       "Report.docx"
-    ]
-  },
-  "67926": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67926",
-    "description": "",
-    "mode": [
-      "t-format"
-    ],
-    "directions": [
-      "odp-pptx"
-    ],
-    "files": [
-      "MPBD_Diap-1-Presentación Alineamiento estratégico SCS.pptx"
     ]
   },
   "68034": {
