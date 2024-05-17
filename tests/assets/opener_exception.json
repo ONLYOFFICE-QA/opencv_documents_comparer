@@ -265,20 +265,6 @@
       "WPF_WMPhotoImage_RGBText.docx"
     ]
   },
-  "64673": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64673",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "xlsb-xlsx"
-    ],
-    "files": [
-      "pivotsources.xlsx"
-    ]
-  },
   "65172": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65172",
     "description": "",
