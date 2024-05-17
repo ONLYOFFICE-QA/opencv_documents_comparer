@@ -240,25 +240,6 @@
       "Согласие на обработку Исходный.docx"
     ]
   },
-  "67230": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67230",
-    "description": "",
-    "os": [
-      "linux",
-      "mac"
-    ],
-    "directions": [],
-    "files": [
-      "Report.odt",
-      "0100GS3GettingStartedOOo3.odt",
-      "HTM-Heli-Report.odt",
-      "ins_pcie.odt",
-      "Maxwell Equations.odt",
-      "signal06.odt",
-      "suugaku_kiso_ques.odt",
-      "쉬운 J 프로그래밍.odt"
-    ]
-  },
   "67747": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67747",
     "description": "",
