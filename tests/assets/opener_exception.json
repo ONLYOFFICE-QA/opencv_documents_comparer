@@ -504,20 +504,6 @@
       "Report.docx"
     ]
   },
-  "67889": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67889",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "xlsb-xlsx"
-    ],
-    "files": [
-      "rank_prf-09.xlsx"
-    ]
-  },
   "67926": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67926",
     "description": "",
