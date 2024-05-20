@@ -36,7 +36,8 @@
     "wps",
     "wpt",
     "xps",
-    "xml"
+    "xml",
+    "pdf"
   ],
   "pptx": [
     "ppt",

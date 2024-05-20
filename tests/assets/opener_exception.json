@@ -494,5 +494,55 @@
       "pg22630.docx",
       "zatmenie.docx"
     ]
+  },
+  "68091": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68091",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "pdf-docx"
+    ],
+    "files": [
+      "001-105 Doblo_rus.docx",
+      "161226_PB_Online_Services.docx",
+      "161226_PB_ProjVisio.docx",
+      "2001-02budgetforcurrentoperations.docx",
+      "2007HSYRRS_CountyReport_SanMiguel.docx",
+      "2007_final.docx",
+      "2DArtist_Issue_043_July09.docx",
+      "410100_April_2008.docx",
+      "americanmemories.docx",
+      "Apostila - 3000 Questoes (testes) resolvidos Banco do Brasil (BB).docx",
+      "Base_Inf_Secur.docx",
+      "BKanninen0801JP.docx",
+      "bt000061.docx",
+      "conv_24c95882_3db9_4d20_b010_e4de1a1d050a_docx.docx",
+      "conv_305074c3_a66d_47d9_978e_e3f21f79bc2f_docx.docx",
+      "conv_58552841_6f0f_4025_9f14_6b285e94c6a5_docx.docx",
+      "conv_70fc0d37_b86b_4451_9585_da76a1fa9e2b_docx.docx",
+      "conv_a018b9d4_9feb_4630_982a_c5f0c8b754f7_docx.docx",
+      "conv_e8b2168c_dec1_447c_96b1_55282a877be2_docx.docx",
+      "conv_f81b94ed_3012_4387_8c24_9845ce2b7e9d_docx.docx",
+      "digitaldistrict.docx",
+      "Dutch.docx",
+      "EC07-2002.docx",
+      "gepo_sanko_0404.docx",
+      "Glastonbury_final_report.docx",
+      "j6_05_b5_nettiin.docx",
+      "JMX_1_4_specification.docx",
+      "jozve_c_and_cplusplus.docx",
+      "Metod2.docx",
+      "news_356177.docx",
+      "romania.docx",
+      "sm_mar202012.docx",
+      "thaistd.docx",
+      "thaistd_tr.docx",
+      "TO_БРУ v03.03.docx",
+      "U0530.docx",
+      "VirtualUSAFactSheet_31Aug09.docx"
+    ]
   }
 }
