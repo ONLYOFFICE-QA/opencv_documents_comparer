@@ -544,5 +544,31 @@
       "U0530.docx",
       "VirtualUSAFactSheet_31Aug09.docx"
     ]
+  },
+  "68122": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68122",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "ppt-pptx"
+    ],
+    "files": [
+      "1111.pptx",
+      "22.pptx",
+      "alphabet.pptx",
+      "Antarctida.pptx",
+      "CenCuSer.pptx",
+      "circuitEco.pptx",
+      "Communication_Colloque.pptx",
+      "FAURE.pptx",
+      "Gunter Kaufmann - 09-12-30 Aquarelle - Portraits2.pptx",
+      "nonni.pptx",
+      "Pictures_Of_Earth.pptx",
+      "presentatie(2).pptx",
+      "tweb.pptx"
+    ]
   }
 }
