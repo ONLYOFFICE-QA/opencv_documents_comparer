@@ -586,5 +586,20 @@
       "presentatie(2).pptx",
       "tweb.pptx"
     ]
+  },
+  "68143": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68143",
+    "description": "",
+    "mode": [
+      "t-format"
+    ],
+    "directions": [
+      "xls-xlsx"
+    ],
+    "files": [
+      "the emperor.xlsx",
+      "Planilha_formulas__Matematica_financeira.xlsx",
+      "Program for Combined Foundation Design With Piles.xlsx"
+    ]
   }
 }
