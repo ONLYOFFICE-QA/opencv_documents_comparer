@@ -10,7 +10,7 @@ from frameworks.editors.key_actions import KeyActions
 class LibreMacroses:
     @staticmethod
     def prepare_for_test():
-        press_interval = 0.1
+        press_interval = 0.2
         pg.press('alt', interval=press_interval)
         pg.press('right', presses=2, interval=press_interval)
         pg.press('down', interval=press_interval)
