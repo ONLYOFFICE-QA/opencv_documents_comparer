@@ -157,15 +157,16 @@ class Image:
         cv2.imwrite(path, img)
 
     @staticmethod
-    def save_gif(save_path: str, img_paths: list, duration: int | float = 1):
+    def save_gif(save_path: str, img_paths: list, duration: int = 1000, loop: int = 0):
         """
         Saves a list of images as a GIF.
         :param save_path: Path to save the GIF.
         :param img_paths: List of image paths.
-        :param duration: Duration of each frame in seconds.
+        :param duration: Duration of each frame in milliseconds.
+        :param loop: number of repetitions, 0 - repeat indefinitely
         :return: None
         """
-        imageio.mimsave(save_path, img_paths, duration=duration)
+        imageio.mimsave(save_path, img_paths, duration=duration, loop=loop)
 
     @staticmethod
     def put_text(cv2_opened_image, text: str) -> None:
