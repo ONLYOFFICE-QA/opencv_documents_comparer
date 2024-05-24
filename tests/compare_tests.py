@@ -56,7 +56,7 @@ class CompareTest:
             page_amount = converted_document_type.page_amount(converted_file)
             print(f"[bold blue] |INFO| Number of pages: {page_amount}")
             if not self.make_screen(converted_document_type, converted_file, self.converted_screen_dir, page_amount):
-                File.delete(f'{self.converted_screen_dir}', all_from_folder=True, stdout=False)
+                Dir.delete(f'{self.converted_screen_dir}', clear_dir=True, stdout=False)
                 continue
             self.make_screen(self._document_type(source_file), source_file, self.source_screen_dir, page_amount)
             self.compare_screens(converted_file, source_file)
