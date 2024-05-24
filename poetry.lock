@@ -397,7 +397,7 @@ rich = "*"
 type = "git"
 url = "https://github.com/l8556/host_tools.git"
 reference = "master"
-resolved_reference = "73814697b3dbc6cce307bb2e553d2a7fd185a787"
+resolved_reference = "a16e793b990d76204df871b1a690dd0d128a4c28"
 
 [[package]]
 name = "idna"
@@ -412,13 +412,13 @@ files = [
 
 [[package]]
 name = "imageio"
-version = "2.20.0"
+version = "2.34.1"
 description = "Library for reading and writing a wide range of image, video, scientific, and volumetric data formats."
 optional = false
-python-versions = ">=3.7"
+python-versions = ">=3.8"
 files = [
-    {file = "imageio-2.20.0-py3-none-any.whl", hash = "sha256:069c59c24e6730ec99322490ac06cbed741d52b8699df52c3b4da4841423e15f"},
-    {file = "imageio-2.20.0.tar.gz", hash = "sha256:27746c891cb62d6aeda20d362a8aba75994493cd4d7043ba8c96892fbaecdba0"},
+    {file = "imageio-2.34.1-py3-none-any.whl", hash = "sha256:408c1d4d62f72c9e8347e7d1ca9bc11d8673328af3913868db3b828e28b40a4c"},
+    {file = "imageio-2.34.1.tar.gz", hash = "sha256:f13eb76e4922f936ac4a7fec77ce8a783e63b93543d4ea3e40793a6cabd9ac7d"},
 ]
 
 [package.dependencies]
@@ -426,20 +426,20 @@ numpy = "*"
 pillow = ">=8.3.2"
 
 [package.extras]
-all-plugins = ["astropy", "av", "imageio-ffmpeg", "opencv-python", "psutil", "tifffile"]
-all-plugins-pypy = ["av", "imageio-ffmpeg", "psutil", "tifffile"]
+all-plugins = ["astropy", "av", "imageio-ffmpeg", "pillow-heif", "psutil", "tifffile"]
+all-plugins-pypy = ["av", "imageio-ffmpeg", "pillow-heif", "psutil", "tifffile"]
 build = ["wheel"]
-dev = ["black", "flake8", "fsspec[github]", "invoke", "pytest", "pytest-cov"]
-docs = ["numpydoc", "pydata-sphinx-theme", "sphinx"]
+dev = ["black", "flake8", "fsspec[github]", "pytest", "pytest-cov"]
+docs = ["numpydoc", "pydata-sphinx-theme", "sphinx (<6)"]
 ffmpeg = ["imageio-ffmpeg", "psutil"]
 fits = ["astropy"]
-full = ["astropy", "av", "black", "flake8", "fsspec[github]", "gdal", "imageio-ffmpeg", "invoke", "itk", "numpydoc", "opencv-python", "psutil", "pydata-sphinx-theme", "pytest", "pytest-cov", "sphinx", "tifffile", "wheel"]
+full = ["astropy", "av", "black", "flake8", "fsspec[github]", "gdal", "imageio-ffmpeg", "itk", "numpydoc", "pillow-heif", "psutil", "pydata-sphinx-theme", "pytest", "pytest-cov", "sphinx (<6)", "tifffile", "wheel"]
 gdal = ["gdal"]
 itk = ["itk"]
 linting = ["black", "flake8"]
-opencv = ["opencv-python"]
+pillow-heif = ["pillow-heif"]
 pyav = ["av"]
-test = ["fsspec[github]", "invoke", "pytest", "pytest-cov"]
+test = ["fsspec[github]", "pytest", "pytest-cov"]
 tifffile = ["tifffile"]
 
 [[package]]
@@ -1940,4 +1940,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "fa82ccc1055848271ae3f28e4045a3fbbdd3e6588787a6bdd03dd29463c5edd9"
+content-hash = "742adaa096cb79f1d51295a69dbbfff9b2161b6a8daeb9a28f5d14997df3ecbc"

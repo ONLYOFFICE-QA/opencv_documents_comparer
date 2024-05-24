@@ -15,6 +15,3 @@ updates:
     allow:
       - dependency-type: direct
       - dependency-type: indirect
-    ignore:
-      - dependency-name: "imageio"
-        versions: [">2.20.0"]
