@@ -88,15 +88,45 @@ class Image:
                 return rgb[y:y + h, x:x + w]
 
     @staticmethod
-    def find_difference(img_1: np.ndarray, img_2: np.ndarray) -> float:
+    def find_difference(img_1: np.ndarray, img_2: np.ndarray) -> tuple:
         """
         Finds the structural similarity difference between two images.
         :param img_1: First image.
         :param img_2: Second image.
         :return: Structural similarity difference.
         """
-        before, after = cv2.cvtColor(img_1, cv2.COLOR_BGR2GRAY), cv2.cvtColor(img_2, cv2.COLOR_BGR2GRAY)
-        return structural_similarity(before, after, full=True)
+        before = cv2.cvtColor(img_1, cv2.COLOR_BGR2GRAY)
+        after = cv2.cvtColor(img_2, cv2.COLOR_BGR2GRAY)
+
+        if before.shape != after.shape:
+            before, after = Image.align_sizes(before, after)
+
+        similarity, difference = structural_similarity(before, after, full=True)
+        return similarity, difference
+
+    @staticmethod
+    def align_sizes(img1, img2):
+
+        height_diff = img1.shape[0] - img2.shape[0]
+        width_diff = img1.shape[1] - img2.shape[1]
+
+        if height_diff > 0:
+            img2 = cv2.copyMakeBorder(img2, 0, height_diff, 0, 0, cv2.BORDER_CONSTANT, value=(0, 0, 0))
+        elif height_diff < 0:
+            img1 = cv2.copyMakeBorder(img1, 0, -height_diff, 0, 0, cv2.BORDER_CONSTANT, value=(0, 0, 0))
+
+        if width_diff > 0:
+            img2 = cv2.copyMakeBorder(img2, 0, 0, 0, width_diff, cv2.BORDER_CONSTANT, value=(0, 0, 0))
+        elif width_diff < 0:
+            img1 = cv2.copyMakeBorder(img1, 0, 0, 0, -width_diff, cv2.BORDER_CONSTANT, value=(0, 0, 0))
+
+        return img1, img2
+
+    @staticmethod
+    def show(image) -> None:
+        cv2.imshow('image', image)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
 
     @staticmethod
     def draw_differences(img_1: np.ndarray, img_2: np.ndarray, diff: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
