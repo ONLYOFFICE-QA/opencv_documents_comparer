@@ -56,7 +56,7 @@ class CompareTest:
             page_amount = converted_document_type.page_amount(converted_file)
             print(f"[bold blue] |INFO| Number of pages: {page_amount}")
             if not self.make_screen(converted_document_type, converted_file, self.converted_screen_dir, page_amount):
-                File.delete(f'{self.converted_screen_dir}', all_from_folder=True, stdout=False)
+                Dir.delete(f'{self.converted_screen_dir}', clear_dir=True, stdout=False)
                 continue
             self.make_screen(self._document_type(source_file), source_file, self.source_screen_dir, page_amount)
             self.compare_screens(converted_file, source_file)
@@ -109,6 +109,10 @@ class CompareTest:
             source_img = self.image.read(join(self.source_screen_dir, img_name))
             conv_img = self.image.read(join(self.converted_screen_dir, img_name))
             similarity, difference = self.image.find_difference(source_img, conv_img)
+
+        if source_img.shape != conv_img.shape:
+            source_img, conv_img = self.image.align_sizes(source_img, conv_img)
+
         return similarity, difference, source_img, conv_img
 
     def _find_sheet(self, img: np.ndarray, file_name) -> np.ndarray:
@@ -122,22 +126,24 @@ class CompareTest:
     def save_result(self, source_file, converted_file, source_img, converted_img, img_name, difference):
         cnv_name, source_name = basename(converted_file), basename(source_file)
         path = join(self.report_dir, 'img_diff', re.sub(r"[\s\n\r.,\-=]+", '', cnv_name)[:35])
-        self._create_result_dirs(path)
-        if not exists(join(path, cnv_name)):
-            File.copy(converted_file, join(path, cnv_name), stdout=False)
-        if not exists(join(path, source_name)):
-            File.copy(source_file, join(path, source_name), stdout=False)
-        self.image.save(join(path, 'screen', f"{img_name}_collage.png"), np.hstack([source_img, converted_img]))
-        source_img, converted_img = self.image.draw_differences(source_img, converted_img, difference)
+        Dir.create((join(path, 'gif'), join(path, 'screen')), stdout=False)
+        File.copy(converted_file, join(path, cnv_name), stdout=False) if not exists(join(path, cnv_name)) else None
+        File.copy(source_file, join(path, source_name), stdout=False) if not exists(join(path, source_name)) else None
+        self.save_gif(path, img_name, source_img, converted_img, difference=difference)
+        self.save_collage(path, img_name, source_img, converted_img)
+
+    def save_gif(self, path, img_name, source_img, converted_img, difference=None):
+        if not difference is None:
+            source_img, converted_img = self.image.draw_differences(source_img, converted_img, difference)
+
         self.image.save_gif(
             join(path, 'gif', f"{splitext(img_name)[0]}_similarity.gif"),
             [source_img, converted_img],
-            duration=1.0
+            duration=1000
         )
 
-    @staticmethod
-    def _create_result_dirs(dir_path: str) -> None:
-        Dir.create((join(dir_path, 'gif'), join(dir_path, 'screen')), stdout=False)
+    def save_collage(self, path, img_name, source_img, converted_img):
+        self.image.save(join(path, 'screen', f"{img_name}_collage.png"), np.hstack([source_img, converted_img]))
 
     def _create_tmp_dirs(self):
         Dir.create((self.source_screen_dir, self.converted_screen_dir), stdout=False)
@@ -152,7 +158,7 @@ class CompareTest:
     def _document_type(self, file_path):
         if file_path.lower().endswith(self.document_excel.formats):
             return self.document_excel
-        elif file_path.lower().endswith(self.document_word.formats):
+        elif file_path.lower().endswith(self.document_word.formats + ('.odt',)):
             return self.document_word
         elif file_path.lower().endswith(self.document_libre.formats):
             return self.document_libre

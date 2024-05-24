@@ -119,8 +119,8 @@ def make_files(
 
 @task
 def compare_test(c, direction: str = None, ls: bool = False, telegram: bool = False):
-    direction = direction if direction else Prompt.ask('Input formats with -', default=None, show_default=False)
-    source_ext, converted_ext = CompareTest().getting_formats(direction)
+    direction = direction or Prompt.ask('Input formats with -', default=None, show_default=False)
+    source_ext, converted_ext = CompareTest.getting_formats(direction)
 
     if not source_ext or not converted_ext:
         raise print('[bold red]|ERROR| The direction is not correct')
