@@ -101,14 +101,9 @@ class CompareTest:
         self._clean_tmp_dirs()
 
     def find_difference(self, source_file, converted_file, img_name):
-        try:
-            source_img = self._find_sheet(self.image.read(join(self.source_screen_dir, img_name)), source_file)
-            conv_img = self._find_sheet(self.image.read(join(self.converted_screen_dir, img_name)), converted_file)
-            similarity, difference = self.image.find_difference(source_img, conv_img)
-        except ValueError:
-            source_img = self.image.read(join(self.source_screen_dir, img_name))
-            conv_img = self.image.read(join(self.converted_screen_dir, img_name))
-            similarity, difference = self.image.find_difference(source_img, conv_img)
+        source_img = self._find_sheet(self.image.read(join(self.source_screen_dir, img_name)), source_file)
+        conv_img = self._find_sheet(self.image.read(join(self.converted_screen_dir, img_name)), converted_file)
+        similarity, difference = self.image.find_difference(source_img, conv_img)
 
         if source_img.shape != conv_img.shape:
             source_img, conv_img = self.image.align_sizes(source_img, conv_img)
@@ -118,8 +113,13 @@ class CompareTest:
     def _find_sheet(self, img: np.ndarray, file_name) -> np.ndarray:
         if file_name.lower().endswith(self.document_excel.formats):
             return img
+
         try:
-            return self.image.find_contours(img)
+            processed_img = self.image.find_contours(img)
+            if processed_img:
+                return processed_img
+            return img
+
         except Exception as ex:
             return img
 
