@@ -406,20 +406,6 @@
       "conv_72a2bc9a_385c_42bc_b327_23623d5e9628_png.xlsx"
     ]
   },
-  "67875": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67875",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "odt-docx"
-    ],
-    "files": [
-      "Report.docx"
-    ]
-  },
   "68235": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68235",
     "description": "",
