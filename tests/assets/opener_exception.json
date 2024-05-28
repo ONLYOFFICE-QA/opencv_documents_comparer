@@ -365,11 +365,10 @@
       "1-11-23.ods"
     ]
   },
-  "65948": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65948",
+  "68238": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68238",
     "description": "",
     "mode": [
-      "Default",
       "t-format"
     ],
     "directions": [
@@ -406,38 +405,8 @@
       "conv_72a2bc9a_385c_42bc_b327_23623d5e9628_png.xlsx"
     ]
   },
-  "67875": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67875",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "odt-docx"
-    ],
-    "files": [
-      "Report.docx"
-    ]
-  },
-  "68034": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68034",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "html-docx"
-    ],
-    "files": [
-      "AUTM11BWR_FNL.docx",
-      "b.docx",
-      "ch8kr.docx"
-    ]
-  },
-  "68034_2": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68034",
+  "68235": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68235",
     "description": "",
     "mode": [
       "Default",
@@ -447,68 +416,13 @@
       "mht-docx"
     ],
     "files": [
-      "Citrix Systems.docx",
-      "Поддержка XML.docx",
-      "9yOzrhCnh_V7g3rRYkmSkElah4COVLjY8lK6xcqtfkE_.docx",
-      "adjectives_feelings_page_5.docx",
-      "ARhvUaniymtb6XZDVcKxZIY9kkieSxtwWotuwZnXFx4_.docx",
-      "CableModem.docx",
       "hack facebook password free - Hack Facebook_com Password for FREE - Cyber-trace_com.docx",
       "Hacking Mobile Use OPDA .docx",
       "How to install games-software's in samsung star S5233 or S5230 - Yahoo! Answers.docx",
-      "Leveled Vocabulary Readers (Kindergarten).docx",
       "My Tech Side__ ;) How To Install Java Games-Applications on Samsung Star 3G.docx",
-      "ORACLE-BASE - Oracle Database 10g Release 2 (10_2_0_1) Installation On Red Hat E.docx",
-      "Peliculas Completas Gratis - Peliculas Completas Gratis.docx",
-      "TECNOLOGIA DEL CONCRETO II.docx",
       "YouTube - Reychesta y Nesio-Policia Cumchesumare.docx",
-      "[SONG] DotA Pudge Song - DotA Allstars Discussion.docx"
-    ]
-  },
-  "68036": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68036",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "html-docx"
-    ],
-    "files": [
-      "10920503_425.docx",
-      "car.docx",
-      "cars.docx",
-      "color_text.docx",
-      "font1.docx",
-      "font_podcherk.docx",
-      "fon_table.docx",
-      "frame.docx",
-      "list3.docx",
-      "paragraph2.docx",
-      "registration.docx",
-      "scroll.docx",
-      "smile.docx",
-      "style_table.docx",
-      "style_table2.docx",
-      "style_text.docx"
-    ]
-  },
-  "68073": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68073",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "epub-docx"
-    ],
-    "files": [
-      "novolunie.docx",
-      "pg22630-images.docx",
-      "pg22630.docx",
-      "zatmenie.docx"
+      "[SONG] DotA Pudge Song - DotA Allstars Discussion.docx",
+      "Поддержка XML.docx"
     ]
   },
   "68091": {
@@ -559,47 +473,6 @@
       "TO_БРУ v03.03.docx",
       "U0530.docx",
       "VirtualUSAFactSheet_31Aug09.docx"
-    ]
-  },
-  "68122": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68122",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "ppt-pptx"
-    ],
-    "files": [
-      "1111.pptx",
-      "22.pptx",
-      "alphabet.pptx",
-      "Antarctida.pptx",
-      "CenCuSer.pptx",
-      "circuitEco.pptx",
-      "Communication_Colloque.pptx",
-      "FAURE.pptx",
-      "Gunter Kaufmann - 09-12-30 Aquarelle - Portraits2.pptx",
-      "nonni.pptx",
-      "Pictures_Of_Earth.pptx",
-      "presentatie(2).pptx",
-      "tweb.pptx"
-    ]
-  },
-  "68143": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68143",
-    "description": "",
-    "mode": [
-      "t-format"
-    ],
-    "directions": [
-      "xls-xlsx"
-    ],
-    "files": [
-      "the emperor.xlsx",
-      "Planilha_formulas__Matematica_financeira.xlsx",
-      "Program for Combined Foundation Design With Piles.xlsx"
     ]
   }
 }
