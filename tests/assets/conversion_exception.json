@@ -299,7 +299,9 @@
   "68013": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68013",
     "description": "",
-    "os": ["mac"],
+    "os": [
+      "mac"
+    ],
     "directions": [
       "xlsx-png",
       "xlsx-jpg",
@@ -309,10 +311,13 @@
       "ZAPOLNYaT_ETO_PTR_Polina_1-8_1.xlsx"
     ]
   },
-    "68249": {
+  "68249": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68249",
     "description": "",
-    "os": ["mac"],
+    "os": [
+      "mac",
+      "linux"
+    ],
     "directions": [
       "xlsb-png",
       "xlsb-jpg",
