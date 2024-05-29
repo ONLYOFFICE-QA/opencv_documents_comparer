@@ -53,7 +53,7 @@ class CompareTest:
             print(f"[cyan]\n{'-' * 90}\n({self.count}/{self.total})[/] [green]In comparison test:[/] "
                   f"{basename(source_file)} [green]and[/] {basename(converted_file)}")
             converted_document_type = self._document_type(converted_file)
-            page_amount = converted_document_type.page_amount(converted_file)
+            page_amount = converted_document_type.page_amount(source_file if splitext(converted_file)[1] in self.document_libre.formats else converted_file)
             print(f"[bold blue] |INFO| Number of pages: {page_amount}")
             if not self.make_screen(converted_document_type, converted_file, self.converted_screen_dir, page_amount):
                 Dir.delete(f'{self.converted_screen_dir}', clear_dir=True, stdout=False)
