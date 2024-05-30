@@ -36,6 +36,32 @@
       "M6.8a.xps"
     ]
   },
+  "hackerone_files": {
+    "link": "",
+    "description": "hackerone_files",
+    "os": [],
+    "directions": [
+      "xls-jpg",
+      "xls-png",
+      "xls-pdf",
+      "xlsb-jpg",
+      "xlsb-png",
+      "xlsb-pdf"
+    ],
+    "files": [
+      "hackerone_emf-emrtext.odp",
+      "hackerone_xls-asm-ptgarea3d.xls",
+      "hackerone_xls-asm-ptgname.xls",
+      "hackerone_xls-asm-ptgnamex.xls",
+      "hackerone_xls-asm-ptgparen.xls",
+      "hackerone_xls-asm-ptgref3d.xls",
+      "hackerone_xls-asm-ptgreferr3d.xls",
+      "hackerone_xls-lbl-itab.xls",
+      "hackerone_xlsb-asm-ptglist.xlsb",
+      "hackerone_xlsb-xti-itab.xlsb",
+      "hackerone_xlsb-xti-supbook.xlsb"
+    ]
+  },
   "39545": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=39545",
     "description": "Broken file",
@@ -325,6 +351,22 @@
     ],
     "files": [
       "rank_prf-09.xlsb"
+    ]
+  },
+  "68276": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68276",
+    "description": "",
+    "os": [
+      "mac",
+      "linux"
+    ],
+    "directions": [
+      "xls-png",
+      "xls-jpg",
+      "xls-pdf"
+    ],
+    "files": [
+      "测试文档1716543323872.xls"
     ]
   }
 }
