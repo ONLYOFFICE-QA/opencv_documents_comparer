@@ -643,5 +643,20 @@
       "class_hfsound.odt",
       "class_hftext.odt"
     ]
+  },
+  "68304_2": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68304",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "mht-odt"
+    ],
+    "files": [
+      "IYNrFhESWk3Cer4eoJH8XhV1GDLzMYTI6R1KxPI0jo0_.odt",
+      "Поддержка XML.odt"
+    ]
   }
 }
