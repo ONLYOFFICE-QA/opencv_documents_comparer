@@ -19,7 +19,7 @@ invoke = "^2.2.0"
 pillow = "^10.3.0"
 pandas = "^2"
 mss = "^9.0.1"
-pytest = "^8.2.1"
+pytest = "^8.2.2"
 pydantic = "^2"
 host-tools = { git = "https://github.com/l8556/host_tools.git", branch = "master" }
 telegram = { git = "https://github.com/l8556/TelegramApi.git", branch = "master" }
