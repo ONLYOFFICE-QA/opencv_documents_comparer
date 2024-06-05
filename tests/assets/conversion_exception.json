@@ -388,5 +388,18 @@
       "_3513641.xlsx",
       "_6_.xlsx"
     ]
+  },
+  "68402": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68402",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xlsx-xlsb"
+    ],
+    "files": [
+      "file_1_ (7).xlsx",
+      "MODELO_planilhaControleFinanceiro.xlsx",
+      "PrDcB4bn10uVUpMsC88_.xlsx"
+    ]
   }
 }
