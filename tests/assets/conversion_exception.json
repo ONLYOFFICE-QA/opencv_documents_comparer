@@ -357,7 +357,9 @@
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68400",
     "description": "",
     "os": [],
-    "directions": [],
+    "directions": [
+      "xlsx-xlsb"
+    ],
     "files": [
       "-02.02-06.02_2.xlsx",
       "0001.xlsx",
