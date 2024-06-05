@@ -401,5 +401,16 @@
       "MODELO_planilhaControleFinanceiro.xlsx",
       "PrDcB4bn10uVUpMsC88_.xlsx"
     ]
+  },
+  "68404": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68404",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xlsx-xlsb"
+    ],
+    "files": [
+      "y0eJlNfdYUXHC2aVgzzWGjDh_XMJEFqKr1Wm1W128oU_.xlsx"
+    ]
   }
 }
