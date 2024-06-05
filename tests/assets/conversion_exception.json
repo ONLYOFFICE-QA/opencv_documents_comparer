@@ -352,21 +352,5 @@
     "files": [
       "rank_prf-09.xlsb"
     ]
-  },
-  "68276": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68276",
-    "description": "",
-    "os": [
-      "mac",
-      "linux"
-    ],
-    "directions": [
-      "xls-png",
-      "xls-jpg",
-      "xls-pdf"
-    ],
-    "files": [
-      "测试文档1716543323872.xls"
-    ]
   }
 }
