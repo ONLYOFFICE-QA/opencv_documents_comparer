@@ -657,19 +657,5 @@
     "files": [
       "Поддержка XML.odt"
     ]
-  },
-  "68307": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68307",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "ppt-pptx"
-    ],
-    "files": [
-      "DWW5.pptx"
-    ]
   }
 }
