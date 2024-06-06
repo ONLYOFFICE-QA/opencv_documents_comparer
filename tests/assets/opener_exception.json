@@ -54,6 +54,19 @@
       "Net Points only.xlsx"
     ]
   },
+  "65973_2": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65973",
+    "description": "conversion via editor",
+    "mode": [
+      "t-format"
+    ],
+    "directions": [
+      "xlsb-xlsx"
+    ],
+    "files": [
+      "pivotsources.xlsx"
+    ]
+  },
   "63772": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=63772",
     "description": "problems in ms Excel",
