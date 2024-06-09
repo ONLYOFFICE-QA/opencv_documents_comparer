@@ -278,19 +278,6 @@
       "conv_04390dad_324b_43b7_ae90_aff47f2acbb7_pdf.docx"
     ]
   },
-  "67967": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67967",
-    "description": "",
-    "os": [],
-    "directions": [
-      "pptx-png",
-      "pptx-jpg",
-      "pptx-pdf"
-    ],
-    "files": [
-      "conv_194e757c_c7e6_472c_9df4_bcf54c74009a_pdf.pptx"
-    ]
-  },
   "68013": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68013",
     "description": "",
@@ -322,59 +309,13 @@
       "rank_prf-09.xlsb"
     ]
   },
-  "68400": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68400",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xlsx-xlsb"
-    ],
-    "files": [
-      "-02.02-06.02_2.xlsx",
-      "0001.xlsx",
-      "01-2-.xlsx",
-      "1-1-2-7.xlsx",
-      "20.03.2016-20.04.2016_detalizaciya_9063493071.XLSX",
-      "27.xlsx",
-      "Book 25.xlsx",
-      "Book 45.xlsx",
-      "Book 46.xlsx",
-      "Book 6.xlsx",
-      "Book 60.xlsx",
-      "Book 7.xlsx",
-      "CALACATA GREECE.xlsx",
-      "CKFj_jE0c0teig_CFS8_.xls-my.xlsx",
-      "ColumnsMissed.xlsx",
-      "conv_4RXcgUgM_dcZGoe1Vmk__.xlsx",
-      "cwods.xlsx",
-      "file (13).xls-my.xlsx",
-      "general_formulas2.xlsx",
-      "k3sR7OaD3KFzTeoQIGEsgaMfPRWf72Jqju7uIpUoQm0_.xlsx",
-      "Mo drinks.xlsx",
-      "reestr_platezhei_po_zaiavleniiam_klientov_2016_13_81.xlsx",
-      "test.xlsx",
-      "_-__03_03_2014_.xlsx",
-      "_3513641.xlsx",
-      "_6_.xlsx"
-    ]
-  },
-  "68402": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68402",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xlsx-xlsb"
-    ],
-    "files": [
-      "file_1_ (7).xlsx",
-      "MODELO_planilhaControleFinanceiro.xlsx",
-      "PrDcB4bn10uVUpMsC88_.xlsx"
-    ]
-  },
   "68404": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68404",
     "description": "",
-    "os": [],
+    "os": [
+      "linux",
+      "mac"
+    ],
     "directions": [
       "xlsx-xlsb"
     ],

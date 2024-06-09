@@ -280,20 +280,6 @@
       "WPF_WMPhotoImage_RGBText.docx"
     ]
   },
-  "65172": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65172",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "xlsb-xlsx"
-    ],
-    "files": [
-      "conv_be799cf3_b2c8_4fa3_bc1e_c287d6c44817_ods.xlsx"
-    ]
-  },
   "65621": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65621",
     "description": "",
@@ -414,8 +400,7 @@
       "xlsb-xlsx"
     ],
     "files": [
-      "conv_72a2bc9a_385c_42bc_b327_23623d5e9628_png.xlsx",
-      "pivotsources.xlsb"
+      "conv_72a2bc9a_385c_42bc_b327_23623d5e9628_png.xlsx"
     ]
   },
   "68091": {
@@ -466,20 +451,6 @@
       "TO_БРУ v03.03.docx",
       "U0530.docx",
       "VirtualUSAFactSheet_31Aug09.docx"
-    ]
-  },
-  "68426": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68426",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "mht-docx"
-    ],
-    "files": [
-      "TECNOLOGIA DEL CONCRETO II.docx"
     ]
   }
 }
