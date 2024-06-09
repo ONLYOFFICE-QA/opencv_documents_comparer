@@ -467,19 +467,5 @@
       "U0530.docx",
       "VirtualUSAFactSheet_31Aug09.docx"
     ]
-  },
-  "68426": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68426",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "mht-docx"
-    ],
-    "files": [
-      "TECNOLOGIA DEL CONCRETO II.docx"
-    ]
   }
 }
