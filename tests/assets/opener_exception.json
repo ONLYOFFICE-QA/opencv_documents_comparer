@@ -280,16 +280,6 @@
       "WPF_WMPhotoImage_RGBText.docx"
     ]
   },
-  "65172": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65172",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "xlsb-xlsx"
-    ],
     "files": [
       "conv_be799cf3_b2c8_4fa3_bc1e_c287d6c44817_ods.xlsx"
     ]
