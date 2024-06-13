@@ -1277,24 +1277,24 @@ pyobjc-core = ">=10.3.1"
 
 [[package]]
 name = "pyobjc-framework-quartz"
-version = "10.3"
+version = "10.3.1"
 description = "Wrappers for the Quartz frameworks on macOS"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "pyobjc_framework_Quartz-10.3-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:ab809262f8a1a2880a0e9d9e65035992cba684883f422c375bd320848f4e9a43"},
-    {file = "pyobjc_framework_Quartz-10.3-cp311-cp311-macosx_10_9_universal2.whl", hash = "sha256:2187dd8a8d15fb731c9e3ae24b7311b9e21681a53377650ee6f9b519e1f78432"},
-    {file = "pyobjc_framework_Quartz-10.3-cp312-cp312-macosx_10_9_universal2.whl", hash = "sha256:caf489c498b2137bf2909ad19f6461ddfb66106f678694805184daaa0dec7919"},
-    {file = "pyobjc_framework_Quartz-10.3-cp313-cp313-macosx_10_9_universal2.whl", hash = "sha256:cca8f2233d93b3b84bca2745ad74b603c23a77c38c1c5847ac590eab0c335fd5"},
-    {file = "pyobjc_framework_Quartz-10.3-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:71d9f590d5842191c68a5a8aee812d5516d61240e5dea8f604d8a9f769bbda4f"},
-    {file = "pyobjc_framework_Quartz-10.3-cp38-cp38-macosx_11_0_universal2.whl", hash = "sha256:75094e160492e4724347a7fdde5a6f4c9f186c31d528c247f359e2c1606d9fb2"},
-    {file = "pyobjc_framework_Quartz-10.3-cp39-cp39-macosx_10_9_universal2.whl", hash = "sha256:465ae4c1ecceca59831e7698c5fbe62d8e1e987c7fbbb000737954f2085762b9"},
-    {file = "pyobjc_framework_quartz-10.3.tar.gz", hash = "sha256:4c4441e5a338ebe2e1d44a3bdf78e6bfb849ac167732814646dc438c3a08f595"},
+    {file = "pyobjc_framework_Quartz-10.3.1-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:5ef4fd315ed2bc42ef77fdeb2bae28a88ec986bd7b8079a87ba3b3475348f96e"},
+    {file = "pyobjc_framework_Quartz-10.3.1-cp311-cp311-macosx_10_9_universal2.whl", hash = "sha256:96578d4a3e70164efe44ad7dc320ecd4e211758ffcde5dcd694de1bbdfe090a4"},
+    {file = "pyobjc_framework_Quartz-10.3.1-cp312-cp312-macosx_10_9_universal2.whl", hash = "sha256:ca35f92486869a41847a1703bb176aab8a53dbfd8e678d1f4d68d8e6e1581c71"},
+    {file = "pyobjc_framework_Quartz-10.3.1-cp313-cp313-macosx_10_13_universal2.whl", hash = "sha256:00a0933267e3a46ea4afcc35d117b2efb920f06de797fa66279c52e7057e3590"},
+    {file = "pyobjc_framework_Quartz-10.3.1-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:a161bedb4c5257a02ad56a910cd7eefb28bdb0ea78607df0d70ed4efe4ea54c1"},
+    {file = "pyobjc_framework_Quartz-10.3.1-cp38-cp38-macosx_11_0_universal2.whl", hash = "sha256:d7a8028e117a94923a511944bfa9daf9744e212f06cf89010c60934a479863a5"},
+    {file = "pyobjc_framework_Quartz-10.3.1-cp39-cp39-macosx_10_9_universal2.whl", hash = "sha256:de00c983b3267eb26fa42c6ed9f15e2bf006bde8afa7fe2b390646aa21a5d6fc"},
+    {file = "pyobjc_framework_quartz-10.3.1.tar.gz", hash = "sha256:b6d7e346d735c9a7f147cd78e6da79eeae416a0b7d3874644c83a23786c6f886"},
 ]
 
 [package.dependencies]
-pyobjc-core = ">=10.3"
-pyobjc-framework-Cocoa = ">=10.3"
+pyobjc-core = ">=10.3.1"
+pyobjc-framework-Cocoa = ">=10.3.1"
 
 [[package]]
 name = "pyperclip"
