@@ -333,5 +333,18 @@
     "files": [
       "y0eJlNfdYUXHC2aVgzzWGjDh_XMJEFqKr1Wm1W128oU_.xlsx"
     ]
+  },
+  "68589": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68589",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xlsx-png",
+      "xlsx-jpg",
+      "xlsx-pdf"
+    ],
+    "files": [
+      "Aanvalsplanner_v.2.2.xlsx"
+    ]
   }
 }
