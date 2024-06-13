@@ -382,5 +382,21 @@
     "files": [
       "Demo-2010WinterOlympics.xlsx"
     ]
+  },
+  "68609": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68609",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "mht-docx"
+    ],
+    "files": [
+      "9yOzrhCnh_V7g3rRYkmSkElah4COVLjY8lK6xcqtfkE_.docx",
+      "adjectives_feelings_page_5.docx",
+      "ARhvUaniymtb6XZDVcKxZIY9kkieSxtwWotuwZnXFx4_.docx"
+    ]
   }
 }
