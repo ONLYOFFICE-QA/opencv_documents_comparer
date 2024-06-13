@@ -465,19 +465,5 @@
       "U0530.docx",
       "VirtualUSAFactSheet_31Aug09.docx"
     ]
-  },
-  "68503": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68503",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "xlsb-xlsx"
-    ],
-    "files": [
-      "Sundars-Nifty.xlsx"
-    ]
   }
 }
