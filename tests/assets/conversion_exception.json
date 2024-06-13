@@ -320,20 +320,6 @@
       "rank_prf-09.xlsb"
     ]
   },
-  "68404": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68404",
-    "description": "",
-    "os": [
-      "linux",
-      "mac"
-    ],
-    "directions": [
-      "xlsx-xlsb"
-    ],
-    "files": [
-      "y0eJlNfdYUXHC2aVgzzWGjDh_XMJEFqKr1Wm1W128oU_.xlsx"
-    ]
-  },
   "68589": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68589",
     "description": "",
