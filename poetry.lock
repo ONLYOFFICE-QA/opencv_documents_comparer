@@ -1826,7 +1826,6 @@ files = []
 develop = false
 
 [package.dependencies]
-host-tools = {git = "https://github.com/l8556/host_tools.git", branch = "master"}
 requests = "*"
 rich = "*"
 
@@ -1834,7 +1833,7 @@ rich = "*"
 type = "git"
 url = "https://github.com/l8556/TelegramApi.git"
 reference = "master"
-resolved_reference = "e04683c8cb74555b4383150528644210287c77db"
+resolved_reference = "8f1fdcd6738f134a4c2ac407f21d39536880682b"
 
 [[package]]
 name = "texttable"
