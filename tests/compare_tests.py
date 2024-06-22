@@ -53,7 +53,7 @@ class CompareTest:
             print(f"[cyan]\n{'-' * 90}\n({self.count}/{self.total})[/] [green]In comparison test:[/] "
                   f"{basename(source_file)} [green]and[/] {basename(converted_file)}")
             converted_document_type = self._document_type(converted_file)
-            page_amount = converted_document_type.page_amount(converted_file)
+            page_amount = converted_document_type.page_amount(source_file if splitext(converted_file)[1] in self.document_libre.formats else converted_file)
             print(f"[bold blue] |INFO| Number of pages: {page_amount}")
             if not self.make_screen(converted_document_type, converted_file, self.converted_screen_dir, page_amount):
                 Dir.delete(f'{self.converted_screen_dir}', clear_dir=True, stdout=False)
@@ -101,14 +101,9 @@ class CompareTest:
         self._clean_tmp_dirs()
 
     def find_difference(self, source_file, converted_file, img_name):
-        try:
-            source_img = self._find_sheet(self.image.read(join(self.source_screen_dir, img_name)), source_file)
-            conv_img = self._find_sheet(self.image.read(join(self.converted_screen_dir, img_name)), converted_file)
-            similarity, difference = self.image.find_difference(source_img, conv_img)
-        except ValueError:
-            source_img = self.image.read(join(self.source_screen_dir, img_name))
-            conv_img = self.image.read(join(self.converted_screen_dir, img_name))
-            similarity, difference = self.image.find_difference(source_img, conv_img)
+        source_img = self._find_sheet(self.image.read(join(self.source_screen_dir, img_name)), source_file)
+        conv_img = self._find_sheet(self.image.read(join(self.converted_screen_dir, img_name)), converted_file)
+        similarity, difference = self.image.find_difference(source_img, conv_img)
 
         if source_img.shape != conv_img.shape:
             source_img, conv_img = self.image.align_sizes(source_img, conv_img)
@@ -118,8 +113,13 @@ class CompareTest:
     def _find_sheet(self, img: np.ndarray, file_name) -> np.ndarray:
         if file_name.lower().endswith(self.document_excel.formats):
             return img
+
         try:
-            return self.image.find_contours(img)
+            processed_img = self.image.find_contours(img)
+            if processed_img:
+                return processed_img
+            return img
+
         except Exception as ex:
             return img
 
