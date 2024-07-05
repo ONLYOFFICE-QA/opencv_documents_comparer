@@ -341,5 +341,18 @@
     "files": [
       "conv_2d9a0344_485d_4c3f_898b_472a9b6da4be_513.docx"
     ]
+  },
+  "69028": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69028",
+    "description": "",
+    "os": [],
+    "directions": [
+      "docx-html",
+      "docx-epub",
+      "docx-fb2"
+    ],
+    "files": [
+      "conv_0da767ad_c9f9_4ab3_8ede_b88452e3c23e_pdf.docx"
+    ]
   }
 }
