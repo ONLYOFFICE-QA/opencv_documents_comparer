@@ -354,5 +354,16 @@
     "files": [
       "conv_0da767ad_c9f9_4ab3_8ede_b88452e3c23e_pdf.docx"
     ]
+  },
+  "69073": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69073",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xlsm-xlsb"
+    ],
+    "files": [
+      "conv_36ZwDkH8Q0kFChhJ8DEZHvkAkEuO2Jj3FnQSfCxz9M8__jpg.xlsm"
+    ]
   }
 }
