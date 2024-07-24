@@ -384,9 +384,9 @@
     "description": "",
     "os": [],
     "directions": [
-      "xlsx-png",
-      "xlsx-jpg",
-      "xlsx-pdf"
+      "xls-png",
+      "xls-jpg",
+      "xls-pdf"
     ],
     "files": [
       "the emperor.xls"
@@ -397,9 +397,9 @@
     "description": "",
     "os": [],
     "directions": [
-      "xlsx-png",
-      "xlsx-jpg",
-      "xlsx-pdf"
+      "xls-png",
+      "xls-jpg",
+      "xls-pdf"
     ],
     "files": [
       "conv___Kk8yhiX4oev7cZUS5fF29P1mxzwgM9uaT8J_UcmZA__xlsx.xls"
