@@ -365,5 +365,44 @@
     "files": [
       "conv_36ZwDkH8Q0kFChhJ8DEZHvkAkEuO2Jj3FnQSfCxz9M8__jpg.xlsm"
     ]
+  },
+  "69380": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69380",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xlsx-png",
+      "xlsx-jpg",
+      "xlsx-pdf"
+    ],
+    "files": [
+      "Test.xlsx"
+    ]
+  },
+  "69381": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69381",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xls-png",
+      "xls-jpg",
+      "xls-pdf"
+    ],
+    "files": [
+      "the emperor.xls"
+    ]
+  },
+  "69382": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69382",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xls-png",
+      "xls-jpg",
+      "xls-pdf"
+    ],
+    "files": [
+      "conv___Kk8yhiX4oev7cZUS5fF29P1mxzwgM9uaT8J_UcmZA__xlsx.xls"
+    ]
   }
 }
