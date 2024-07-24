@@ -391,5 +391,18 @@
     "files": [
       "the emperor.xls"
     ]
+  },
+  "69382": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69382",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xlsx-png",
+      "xlsx-jpg",
+      "xlsx-pdf"
+    ],
+    "files": [
+      "conv___Kk8yhiX4oev7cZUS5fF29P1mxzwgM9uaT8J_UcmZA__xlsx.xls"
+    ]
   }
 }
