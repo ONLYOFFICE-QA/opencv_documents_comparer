@@ -416,5 +416,83 @@
       "TJN_nodarbibu_grafiks_2010.odt",
       "xform_test.odt"
     ]
+  },
+  "69473": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69473",
+    "description": "",
+    "os": [],
+    "directions": [
+      "docx-epub",
+      "docx-fb2",
+      "docx-html",
+      "docx-jpg",
+      "docx-png",
+      "docx-pdf"
+    ],
+    "files": [
+      "Diagramma Standart.docx",
+      "9 sınıf 1 don 2 yazılı soru.docx"
+    ]
+  },
+  "69474": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69474",
+    "description": "",
+    "os": [],
+    "directions": [
+      "docx-doct",
+      "docx-epub",
+      "docx-fb2",
+      "docx-html",
+      "docx-jpg",
+      "docx-png",
+      "docx-pdf"
+    ],
+    "files": [
+      "9TyqfsInFo26qt0I4Xj1amWJnGoPk42r_mxDMNBxNkY_.docx"
+    ]
+  },
+  "69475": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69475",
+    "description": "",
+    "os": [],
+    "directions": [
+      "docx-epub",
+      "docx-fb2",
+      "docx-html",
+      "docx-jpg",
+      "docx-png",
+      "docx-pdf"
+    ],
+    "files": [
+      "Диплом (Денис1) (послередактора).docx"
+    ]
+  },
+  "69494": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69494",
+    "description": "",
+    "os": [],
+    "directions": [
+      "pptx-jpg",
+      "pptx-png",
+      "pptx-pdf"
+    ],
+    "files": [
+      "Bangkok_24okt2010_anMynda.pptx"
+    ]
+  },
+  "69496": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69496",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xlsx-png",
+      "xlsx-jpg",
+      "xlsx-pdf"
+    ],
+    "files": [
+      "test-workbook-3d.xlsx",
+      "_6_1.xlsx",
+      "0t (2).xlsx"
+    ]
   }
 }
