@@ -25,7 +25,7 @@ class DocumentInfo:
         self.document_name = basename(file_path)
         self.word_app = Dispatch('Word.Application')
         self.word_app.Visible = False
-        self.document = self.__open(file_path)
+        self.document = self.__open(self.tmp_file)
 
     def __del__(self):
         self.document.Close(False) if self.document else ...

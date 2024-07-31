@@ -69,10 +69,10 @@ class Word(Editor):
     def set_size(self, hwnd: int) -> None:
         Window.set_size(hwnd, 0, 0, 1920, 1440)
 
-    def make_screenshots(self, hwnd, screen_path, page_amount) -> None:
+    def make_screenshots(self, hwnd: int, screen_path: str, page_amount: int) -> None:
         WordMacroses.prepare_document_for_test()
         coordinate = self.screen_coordinate(Window.get_coordinate(hwnd))
-        for page in range(int(page_amount)):
+        for page in range(int(page_amount) if page_amount else 1):
             Image.make_screenshot(join(screen_path, f"page_{page + 1}.png"), coordinate)
             pg.press('pgdn')
             sleep(0.5)
