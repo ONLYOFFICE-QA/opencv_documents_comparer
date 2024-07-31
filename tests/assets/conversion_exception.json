@@ -466,5 +466,18 @@
     "files": [
       "Диплом (Денис1) (послередактора).docx"
     ]
+  },
+  "69494": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69494",
+    "description": "",
+    "os": [],
+    "directions": [
+      "pptx-jpg",
+      "pptx-png",
+      "pptx-pdf"
+    ],
+    "files": [
+      "Bangkok_24okt2010_anMynda.pptx"
+    ]
   }
 }
