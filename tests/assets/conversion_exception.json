@@ -433,5 +433,22 @@
       "Diagramma Standart.docx",
       "9 sınıf 1 don 2 yazılı soru.docx"
     ]
+  },
+  "69474": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69474",
+    "description": "",
+    "os": [],
+    "directions": [
+      "docx-doct",
+      "docx-epub",
+      "docx-fb2",
+      "docx-html",
+      "docx-jpg",
+      "docx-png",
+      "docx-pdf"
+    ],
+    "files": [
+      "9TyqfsInFo26qt0I4Xj1amWJnGoPk42r_mxDMNBxNkY_.docx"
+    ]
   }
 }
