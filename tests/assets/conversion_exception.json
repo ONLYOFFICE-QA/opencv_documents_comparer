@@ -479,5 +479,19 @@
     "files": [
       "Bangkok_24okt2010_anMynda.pptx"
     ]
+  },
+  "69496": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69496",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xlsx-png",
+      "xlsx-jpg",
+      "xlsx-pdf"
+    ],
+    "files": [
+      "test-workbook-3d.xlsx",
+      "_6_1.xlsx"
+    ]
   }
 }
