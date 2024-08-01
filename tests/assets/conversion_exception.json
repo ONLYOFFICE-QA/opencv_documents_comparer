@@ -547,5 +547,16 @@
       "Acer_WindowsServer2012_CS.docx",
       "2010_BILO_Application.docx"
     ]
+  },
+  "69522": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69522",
+    "description": "",
+    "os": [],
+    "directions": [],
+    "files": [
+      "M10.23a.oxps",
+      "mb01.oxps",
+      "ag42z-x56qk.oxps"
+    ]
   }
 }
