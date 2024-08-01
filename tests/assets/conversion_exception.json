@@ -494,5 +494,18 @@
       "_6_1.xlsx",
       "0t (2).xlsx"
     ]
+  },
+  "69515": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69515",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xlsx-png",
+      "xlsx-jpg",
+      "xlsx-pdf"
+    ],
+    "files": [
+      "30 Chart Templates - Excel 2007.xlsx"
+    ]
   }
 }
