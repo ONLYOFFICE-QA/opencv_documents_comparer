@@ -507,5 +507,19 @@
     "files": [
       "30 Chart Templates - Excel 2007.xlsx"
     ]
+  },
+  "69516": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69516",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xlsx-png",
+      "xlsx-jpg",
+      "xlsx-pdf"
+    ],
+    "files": [
+      "Book 16.xlsx",
+      "Book 43.xlsx"
+    ]
   }
 }
