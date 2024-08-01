@@ -534,5 +534,18 @@
     "files": [
       "Live Open Interest Visuals for Nifty Strikes.xlsx"
     ]
+  },
+  "69518": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69518",
+    "description": "",
+    "os": [],
+    "directions": [
+      "docx-odt",
+      "docx-ott"
+    ],
+    "files": [
+      "Acer_WindowsServer2012_CS.docx",
+      "2010_BILO_Application.docx"
+    ]
   }
 }
