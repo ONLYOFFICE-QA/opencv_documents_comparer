@@ -541,11 +541,14 @@
     "os": [],
     "directions": [
       "docx-odt",
-      "docx-ott"
+      "docx-ott",
+      "doc-odt",
+      "doc-ott"
     ],
     "files": [
       "Acer_WindowsServer2012_CS.docx",
-      "2010_BILO_Application.docx"
+      "2010_BILO_Application.docx",
+      "07653022_Navod_pro_obnovu_katastralniho_operatu_a_prevod.doc"
     ]
   },
   "69522": {
