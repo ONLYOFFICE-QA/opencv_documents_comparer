@@ -515,5 +515,17 @@
       "conv_yOP0FfLOVjafjexUHwamAG4F6nfTavi46DbNq2u5tTE__jpg.xlsx",
       "00_finansovaja_model_Retail_Top-Down_PL_SF_CF_BS_OutS_0.xlsx"
     ]
+  },
+  "69617": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69617",
+    "description": "",
+    "os": [],
+    "directions": [
+      "docx-odt",
+      "docx-ott"
+    ],
+    "files": [
+      "200016x(2010).docx"
+    ]
   }
 }
