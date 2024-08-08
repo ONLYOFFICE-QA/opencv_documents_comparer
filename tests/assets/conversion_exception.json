@@ -522,19 +522,6 @@
       "Book 43.xlsx"
     ]
   },
-  "69517": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69517",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xlsx-png",
-      "xlsx-jpg",
-      "xlsx-pdf"
-    ],
-    "files": [
-      "Live Open Interest Visuals for Nifty Strikes.xlsx"
-    ]
-  },
   "69522": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69522",
     "description": "",
