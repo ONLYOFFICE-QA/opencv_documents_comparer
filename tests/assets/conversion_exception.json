@@ -495,62 +495,6 @@
       "0t (2).xlsx"
     ]
   },
-  "69515": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69515",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xlsx-png",
-      "xlsx-jpg",
-      "xlsx-pdf"
-    ],
-    "files": [
-      "30 Chart Templates - Excel 2007.xlsx"
-    ]
-  },
-  "69516": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69516",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xlsx-png",
-      "xlsx-jpg",
-      "xlsx-pdf"
-    ],
-    "files": [
-      "Book 16.xlsx",
-      "Book 43.xlsx"
-    ]
-  },
-  "69517": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69517",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xlsx-png",
-      "xlsx-jpg",
-      "xlsx-pdf"
-    ],
-    "files": [
-      "Live Open Interest Visuals for Nifty Strikes.xlsx"
-    ]
-  },
-  "69518": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69518",
-    "description": "",
-    "os": [],
-    "directions": [
-      "docx-odt",
-      "docx-ott",
-      "doc-odt",
-      "doc-ott"
-    ],
-    "files": [
-      "Acer_WindowsServer2012_CS.docx",
-      "2010_BILO_Application.docx",
-      "07653022_Navod_pro_obnovu_katastralniho_operatu_a_prevod.doc"
-    ]
-  },
   "69522": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69522",
     "description": "",
