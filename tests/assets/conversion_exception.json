@@ -527,5 +527,17 @@
     "files": [
       "200016x(2010).docx"
     ]
+  },
+  "69618": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69618",
+    "description": "",
+    "os": [],
+    "directions": [
+      "pptx-odp",
+      "pptx-otp"
+    ],
+    "files": [
+      "MSF_Lec1.pptx"
+    ]
   }
 }
