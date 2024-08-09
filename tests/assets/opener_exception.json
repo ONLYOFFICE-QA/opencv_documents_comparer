@@ -15,6 +15,28 @@
       "kso 1    2  1.xlsx"
     ]
   },
+  "hackerone": {
+    "link": "",
+    "description": "hackerone files",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "xls-xlsx"
+    ],
+    "files": [
+      "hackerone_axcext.xlsx",
+      "hackerone_axisseriesnone.xlsx",
+      "hackerone_chartcrt.xlsx",
+      "hackerone_fdbser.xlsx",
+      "hackerone_ivaxisser.xlsx",
+      "hackerone_pcdser.xlsx",
+      "hackerone_seriesaxiscatser.xlsx",
+      "hackerone_sfaiser.xlsx",
+      "hackerone_ss-serdef-ind.xlsx"
+    ]
+  },
   "66333": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=66333",
     "description": "only via t-format",
