@@ -261,14 +261,7 @@
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67907",
     "description": "",
     "os": [],
-    "directions": [
-      "mht-png",
-      "mht-jpg",
-      "mht-pdf",
-      "mht-epub",
-      "mht-html",
-      "mht-fb2"
-    ],
+    "directions": [],
     "files": [
       "5000_most_frequent_words.mht"
     ]
