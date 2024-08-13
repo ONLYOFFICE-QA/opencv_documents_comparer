@@ -37,7 +37,7 @@ class X2ttesterReport(Report):
 
 
     def path(self, x2t_version: str) -> str:
-        dir_path = join(self.reports_dir, VersionHandler(x2t_version).without_build, "conversion", HostInfo().os)
+        dir_path = join(self.reports_dir, VersionHandler(x2t_version).without_build, "conversion", self.os)
         Dir.create(dir_path, stdout=False)
         return join(dir_path, f"{x2t_version}_{datetime.now().strftime('%H_%M_%S')}.csv")
 
