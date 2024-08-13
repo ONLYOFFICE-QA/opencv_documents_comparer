@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from host_tools import HostInfo
-from ..handlers.VersionHandler import VersionHandler
+from ...handlers.VersionHandler import VersionHandler
 
 
-class UrlGenerator:
+class Url700:
     """
     Class for generating download URLs based on the version, operating system, and architecture.
     Attributes:
@@ -11,15 +11,15 @@ class UrlGenerator:
         url_version (str): Version part of the URL.
         branch (str): Branch of the repository.
     """
-    def __init__(self, version: str):
+    def __init__(self,version: VersionHandler, host: str):
         """
         Initializes the UrlGenerator object.
         :param version: Version of the core.
         """
-        self.version = VersionHandler(version)
-        self.host = 'https://s3.eu-west-1.amazonaws.com/repo-doc-onlyoffice-com'
+        self.version = version
+        self.host = host
         self.url_version = f"v{self.version.major}.{self.version.minor}"
-        self.url_build = self.url_build()
+        self.url_build = self._url_build()
         self.branch = self.branch()
 
     @property
@@ -42,15 +42,6 @@ class UrlGenerator:
         elif self.version.minor != '0':
             return "hotfix"
         return "release"
-
-    def url_build(self) -> str:
-        """
-        Generates the URL build string.
-        :return: URL build string.
-        """
-        if self.os == 'windows':
-            return self.version.version
-        return f"{self.version.major}.{self.version.minor}-{self.version.build}"
 
     @property
     def arch(self) -> str:
@@ -76,3 +67,12 @@ class UrlGenerator:
         if os_info.lower() in ['linux', 'mac', 'windows']:
             return os_info.lower()
         raise ValueError("Unsupported operating system.")
+
+    def _url_build(self) -> str:
+        """
+        Generates the URL build string.
+        :return: URL build string.
+        """
+        if self.os == 'windows':
+            return self.version.version
+        return f"{self.version.major}.{self.version.minor}-{self.version.build}"
