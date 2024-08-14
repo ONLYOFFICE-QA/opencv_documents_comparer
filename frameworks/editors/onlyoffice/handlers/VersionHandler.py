@@ -37,7 +37,7 @@ class VersionHandler:
         :param value: Version number string.
         :raises: ValueError if the version number is not in the correct format.
         """
-        if len([i for i in value.split('.') if i]) != 4:
+        if len([int(i) for i in value.split('.') if i]) != 4:
             raise ValueError(
                 "[red]|WARNING| Version is entered incorrectly. The version must be in the format 'x.x.x.x'"
             )
