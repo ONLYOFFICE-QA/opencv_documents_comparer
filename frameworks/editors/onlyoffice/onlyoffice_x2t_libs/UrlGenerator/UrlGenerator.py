@@ -2,7 +2,7 @@
 from os.path import join, dirname, realpath
 from host_tools import  File
 
-from frameworks.editors.onlyoffice.handlers.VersionHandler import VersionHandler
+from ...handlers.VersionHandler import VersionHandler
 from .url_8_2_0_32 import Url82032
 from .url_7_0_0 import Url700
 
