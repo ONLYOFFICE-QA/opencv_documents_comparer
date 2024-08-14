@@ -1,15 +1,24 @@
 # -*- coding: utf-8 -*-
 from os.path import join, dirname, realpath
 from host_tools import  File
+from packaging import version
 
-from frameworks.editors.onlyoffice.handlers.VersionHandler import VersionHandler
+from ...handlers.VersionHandler import VersionHandler
 from .url_8_2_0_32 import Url82032
 from .url_7_0_0 import Url700
 
 
 class UrlGenerator:
+    """
+    A class to generate URLs for accessing specific build archives based on the provided version.
+    The class determines which URL generation strategy to use based on the version number.
+    """
+    v_8_2_0_32 = version.parse("8.2.0.32")
 
     def __init__(self, version: str):
+        """
+        :param version: The version string to generate the URL for.
+        """
         self.config = File.read_json(join(dirname(realpath(__file__)), 'url_config.json'))
         self.host = self.config['host']
         self.version = VersionHandler(version)
@@ -20,16 +29,16 @@ class UrlGenerator:
         self.url = self.generator.url
 
     def get_generator(self):
-        if self.compare_versions(
-                version=self.version.version,
-                min_version="99.99.99.3950" if "99.99.99" in self.version.version else '8.2.0.32'
-        ):
+        """
+        Determines the appropriate URL generator class to use based on the version.
+
+        If the version is 8.2.0.32 or higher, it uses the Url82032 class.
+        Otherwise, it falls back to the Url700 class.
+
+        :return: An instance of either Url82032 or Url700 based on the version.
+        """
+        current_version = version.parse(self.version.version)
+
+        if current_version >= self.v_8_2_0_32:
             return Url82032(version=self.version, host=self.host)
         return Url700(version=self.version, host=self.host)
-
-    @staticmethod
-    def compare_versions(version: str, min_version: str) -> bool:
-        def version_to_tuple(v):
-            return tuple(map(int, v.split('.')))
-
-        return version_to_tuple(version) >= version_to_tuple(min_version)
