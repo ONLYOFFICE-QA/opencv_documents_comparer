@@ -517,33 +517,6 @@
       "conv_6f3224c5_a69b_433e_8487_1bf6c0e5b31b_png.xlsm"
     ]
   },
-  "69617": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69617",
-    "description": "",
-    "os": [],
-    "directions": [
-      "docx-odt",
-      "docx-ott",
-      "xlsx-ods",
-      "xlsx-ots"
-    ],
-    "files": [
-      "200016x(2010).docx",
-      "(2) Coupe_du_Monde_de_Football 2010.xlsx"
-    ]
-  },
-  "69618": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69618",
-    "description": "",
-    "os": [],
-    "directions": [
-      "pptx-odp",
-      "pptx-otp"
-    ],
-    "files": [
-      "MSF_Lec1.pptx"
-    ]
-  },
   "69692": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69692",
     "description": "",
