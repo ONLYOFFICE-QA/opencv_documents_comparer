@@ -567,5 +567,18 @@
     "files": [
       "general_formulas.xls"
     ]
+  },
+  "69725": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69725",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xls-pdf",
+      "xls-png",
+      "xls-jpg"
+    ],
+    "files": [
+      "DataValDailyList.xls"
+    ]
   }
 }
