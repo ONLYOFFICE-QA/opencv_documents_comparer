@@ -106,6 +106,7 @@ class X2ttesterReport(Report):
 
     @staticmethod
     def _add_to_end(df, column_name: str, value: str | int | float):
+        df[column_name] = df[column_name].astype(str)
         df.loc[len(df.index), column_name] = value
 
     @staticmethod
