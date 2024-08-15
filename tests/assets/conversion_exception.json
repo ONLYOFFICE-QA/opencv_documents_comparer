@@ -543,5 +543,16 @@
     "files": [
       "Book 50.xlsx"
     ]
+  },
+  "69723": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69723",
+    "description": "",
+    "os": [],
+    "directions": [
+      "doc-pdf"
+    ],
+    "files": [
+      "Skladistenje ratarskih proizvoda -prirucnik za vjezbe.doc"
+    ]
   }
 }
