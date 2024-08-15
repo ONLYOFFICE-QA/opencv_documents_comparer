@@ -372,19 +372,6 @@
       "Test.xlsx"
     ]
   },
-  "69381": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69381",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xls-png",
-      "xls-jpg",
-      "xls-pdf"
-    ],
-    "files": [
-      "the emperor.xls"
-    ]
-  },
   "69473": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69473",
     "description": "",
