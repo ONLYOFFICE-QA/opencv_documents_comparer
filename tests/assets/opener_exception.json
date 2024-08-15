@@ -430,19 +430,5 @@
       "REZERVASYON 2008.xlsx",
       "TP Trans Physique.xlsx"
     ]
-  },
-  "69658": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69658",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "xls-xlsx"
-    ],
-    "files": [
-      "conv_11Abgaz_WEdNf7o9z_hVMiNi0JZwwPYgwIP4iNw8aVM__xlsx.xlsx"
-    ]
   }
 }
