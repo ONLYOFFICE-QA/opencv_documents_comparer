@@ -473,21 +473,6 @@
       "Bangkok_24okt2010_anMynda.pptx"
     ]
   },
-  "69496": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69496",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xlsx-png",
-      "xlsx-jpg",
-      "xlsx-pdf"
-    ],
-    "files": [
-      "test-workbook-3d.xlsx",
-      "_6_1.xlsx",
-      "0t (2).xlsx"
-    ]
-  },
   "69522": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69522",
     "description": "",
@@ -547,7 +532,8 @@
       "xls-jpg"
     ],
     "files": [
-      "general_formulas.xls"
+      "general_formulas.xls",
+      "0t (2).xlsx"
     ]
   },
   "69725": {
