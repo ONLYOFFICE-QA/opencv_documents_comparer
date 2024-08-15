@@ -499,24 +499,6 @@
       "ag42z-x56qk.oxps"
     ]
   },
-  "69559": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69559",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xlsx-png",
-      "xlsx-jpg",
-      "xlsx-pdf",
-      "xlsm-png",
-      "xlsm-jpg",
-      "xlsm-pdf"
-    ],
-    "files": [
-      "conv_yOP0FfLOVjafjexUHwamAG4F6nfTavi46DbNq2u5tTE__jpg.xlsx",
-      "00_finansovaja_model_Retail_Top-Down_PL_SF_CF_BS_OutS_0.xlsx",
-      "conv_6f3224c5_a69b_433e_8487_1bf6c0e5b31b_png.xlsm"
-    ]
-  },
   "69692": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69692",
     "description": "",

@@ -404,31 +404,5 @@
     "files": [
       "Demo-2010WinterOlympics.xlsx"
     ]
-  },
-  "69647": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69647",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "ods-xlsx"
-    ],
-    "files": [
-      "amicro.xlsx",
-      "amicro_tableau.xlsx",
-      "BP_Profit_calc2.xlsx",
-      "compta pauline.xlsx",
-      "Cумма_прописью_Пасха_и_другие_функции.xlsx",
-      "F5 AMath Project Yr2010- Nur Syahirah.xlsx",
-      "Fiche projet Chantier.xlsx",
-      "IntelSDKreport.xlsx",
-      "Levantamento Hidraulico.xlsx",
-      "Nathalia R3 e R4.xlsx",
-      "powloki cw.9 A.Mroske.xlsx",
-      "REZERVASYON 2008.xlsx",
-      "TP Trans Physique.xlsx"
-    ]
   }
 }
