@@ -15,6 +15,19 @@
       "kso 1    2  1.xlsx"
     ]
   },
+  "68601": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68601",
+    "description": "peculiarity of working in a binary with summary tables",
+    "mode": [
+      "t-format"
+    ],
+    "directions": [
+      "xlsb-xlsx"
+    ],
+    "files": [
+      "Demo-2010WinterOlympics.xlsx"
+    ]
+  },
   "hackerone": {
     "link": "",
     "description": "hackerone files",
@@ -390,59 +403,6 @@
       "TO_БРУ v03.03.docx",
       "U0530.docx",
       "VirtualUSAFactSheet_31Aug09.docx"
-    ]
-  },
-  "68601": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68601",
-    "description": "",
-    "mode": [
-      "t-format"
-    ],
-    "directions": [
-      "xlsb-xlsx"
-    ],
-    "files": [
-      "Demo-2010WinterOlympics.xlsx"
-    ]
-  },
-  "69647": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69647",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "ods-xlsx"
-    ],
-    "files": [
-      "amicro.xlsx",
-      "amicro_tableau.xlsx",
-      "BP_Profit_calc2.xlsx",
-      "compta pauline.xlsx",
-      "Cумма_прописью_Пасха_и_другие_функции.xlsx",
-      "F5 AMath Project Yr2010- Nur Syahirah.xlsx",
-      "Fiche projet Chantier.xlsx",
-      "IntelSDKreport.xlsx",
-      "Levantamento Hidraulico.xlsx",
-      "Nathalia R3 e R4.xlsx",
-      "powloki cw.9 A.Mroske.xlsx",
-      "REZERVASYON 2008.xlsx",
-      "TP Trans Physique.xlsx"
-    ]
-  },
-  "69658": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69658",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "xls-xlsx"
-    ],
-    "files": [
-      "conv_11Abgaz_WEdNf7o9z_hVMiNi0JZwwPYgwIP4iNw8aVM__xlsx.xlsx"
     ]
   }
 }

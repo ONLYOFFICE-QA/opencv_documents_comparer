@@ -359,57 +359,6 @@
       "conv_36ZwDkH8Q0kFChhJ8DEZHvkAkEuO2Jj3FnQSfCxz9M8__jpg.xlsm"
     ]
   },
-  "69380": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69380",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xlsx-png",
-      "xlsx-jpg",
-      "xlsx-pdf"
-    ],
-    "files": [
-      "Test.xlsx"
-    ]
-  },
-  "69381": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69381",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xls-png",
-      "xls-jpg",
-      "xls-pdf"
-    ],
-    "files": [
-      "the emperor.xls"
-    ]
-  },
-  "69382": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69382",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xls-png",
-      "xls-jpg",
-      "xls-pdf"
-    ],
-    "files": [
-      "conv___Kk8yhiX4oev7cZUS5fF29P1mxzwgM9uaT8J_UcmZA__xlsx.xls"
-    ]
-  },
-  "69392": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69392",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "formulier1vzw.odt",
-      "lahtoformi.odt",
-      "TJN_nodarbibu_grafiks_2010.odt",
-      "xform_test.odt"
-    ]
-  },
   "69473": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69473",
     "description": "",
@@ -425,23 +374,6 @@
     "files": [
       "Diagramma Standart.docx",
       "9 sınıf 1 don 2 yazılı soru.docx"
-    ]
-  },
-  "69474": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69474",
-    "description": "",
-    "os": [],
-    "directions": [
-      "docx-doct",
-      "docx-epub",
-      "docx-fb2",
-      "docx-html",
-      "docx-jpg",
-      "docx-png",
-      "docx-pdf"
-    ],
-    "files": [
-      "9TyqfsInFo26qt0I4Xj1amWJnGoPk42r_mxDMNBxNkY_.docx"
     ]
   },
   "69475": {
@@ -460,34 +392,6 @@
       "Диплом (Денис1) (послередактора).docx"
     ]
   },
-  "69494": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69494",
-    "description": "",
-    "os": [],
-    "directions": [
-      "pptx-jpg",
-      "pptx-png",
-      "pptx-pdf"
-    ],
-    "files": [
-      "Bangkok_24okt2010_anMynda.pptx"
-    ]
-  },
-  "69496": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69496",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xlsx-png",
-      "xlsx-jpg",
-      "xlsx-pdf"
-    ],
-    "files": [
-      "test-workbook-3d.xlsx",
-      "_6_1.xlsx",
-      "0t (2).xlsx"
-    ]
-  },
   "69522": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69522",
     "description": "",
@@ -497,24 +401,6 @@
       "M10.23a.oxps",
       "mb01.oxps",
       "ag42z-x56qk.oxps"
-    ]
-  },
-  "69559": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69559",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xlsx-png",
-      "xlsx-jpg",
-      "xlsx-pdf",
-      "xlsm-png",
-      "xlsm-jpg",
-      "xlsm-pdf"
-    ],
-    "files": [
-      "conv_yOP0FfLOVjafjexUHwamAG4F6nfTavi46DbNq2u5tTE__jpg.xlsx",
-      "00_finansovaja_model_Retail_Top-Down_PL_SF_CF_BS_OutS_0.xlsx",
-      "conv_6f3224c5_a69b_433e_8487_1bf6c0e5b31b_png.xlsm"
     ]
   },
   "69692": {
@@ -565,7 +451,8 @@
       "xls-jpg"
     ],
     "files": [
-      "general_formulas.xls"
+      "general_formulas.xls",
+      "0t (2).xlsx"
     ]
   },
   "69725": {
