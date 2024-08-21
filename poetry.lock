@@ -1461,12 +1461,12 @@ files = [
 
 [[package]]
 name = "pyscreeze"
-version = "0.1.30"
+version = "1.0.1"
 description = "A simple, cross-platform screenshot module for Python 2 and 3."
 optional = false
 python-versions = "*"
 files = [
-    {file = "PyScreeze-0.1.30.tar.gz", hash = "sha256:74098ad048e76a6231dcfa6243343af94459b8c829f9ccb7a44a5d3b147a67d1"},
+    {file = "pyscreeze-1.0.1.tar.gz", hash = "sha256:cf1662710f1b46aa5ff229ee23f367da9e20af4a78e6e365bee973cad0ead4be"},
 ]
 
 [package.dependencies]
