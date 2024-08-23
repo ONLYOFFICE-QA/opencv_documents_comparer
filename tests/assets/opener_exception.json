@@ -404,5 +404,20 @@
       "U0530.docx",
       "VirtualUSAFactSheet_31Aug09.docx"
     ]
+  },
+  "69851": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69851",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "xlsx-xlsb"
+    ],
+    "files": [
+      "LCA BI - Financial Report Usage2013.xlsb",
+      "LCA BI - Financial Report Usage2010.xlsb"
+    ]
   }
 }
