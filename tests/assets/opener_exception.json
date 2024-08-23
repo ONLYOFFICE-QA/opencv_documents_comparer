@@ -404,44 +404,5 @@
       "U0530.docx",
       "VirtualUSAFactSheet_31Aug09.docx"
     ]
-  },
-  "69767": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69767",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "html-docx"
-    ],
-    "files": [
-      "class_hfbitmap-include.docx",
-      "class_hfframe-include.docx",
-      "class_fswfstream-include.docx",
-      "class_fctplaceobject-include.docx",
-      "class_hfrectangle-include.docx",
-      "class_hfpolygon-include.docx",
-      "class_fdtdefinebits-include.docx",
-      "class_ffragment-include.docx",
-      "class_hfmovie-include.docx",
-      "class_fdtdefinefontinfo-include.docx",
-      "class_hfobject-include.docx",
-      "class_fdtdefinetext2-include.docx",
-      "class_hfshape-include.docx",
-      "class_fglyphentry-include.docx",
-      "class_fdtdefinesoundwav-include.docx",
-      "class_hfsound-include.docx",
-      "class_fdtsprite-include.docx",
-      "class_fabuttonrecord-include.docx",
-      "class_frgb-include.docx",
-      "class_fcxformwalpha-include.docx",
-      "class_hfactiongeturl-include.docx",
-      "class_hftext-include.docx",
-      "class_factionequals-include.docx",
-      "class_hffont-include.docx",
-      "class_hfoval-include.docx",
-      "class_hfbutton-include.docx"
-    ]
   }
 }
