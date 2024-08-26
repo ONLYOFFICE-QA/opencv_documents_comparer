@@ -417,19 +417,6 @@
       "emPoknW9U0tH8hntm7I6jO_Ux0rYKtXKZQ2AmQNUCD8_.mht"
     ]
   },
-  "69712": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69712",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xlsx-png",
-      "xlsx-jpg",
-      "xlsx-pdf"
-    ],
-    "files": [
-      "Book 50.xlsx"
-    ]
-  },
   "69723": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69723",
     "description": "",
