@@ -359,39 +359,6 @@
       "conv_36ZwDkH8Q0kFChhJ8DEZHvkAkEuO2Jj3FnQSfCxz9M8__jpg.xlsm"
     ]
   },
-  "69473": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69473",
-    "description": "",
-    "os": [],
-    "directions": [
-      "docx-epub",
-      "docx-fb2",
-      "docx-html",
-      "docx-jpg",
-      "docx-png",
-      "docx-pdf"
-    ],
-    "files": [
-      "Diagramma Standart.docx",
-      "9 sınıf 1 don 2 yazılı soru.docx"
-    ]
-  },
-  "69475": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69475",
-    "description": "",
-    "os": [],
-    "directions": [
-      "docx-epub",
-      "docx-fb2",
-      "docx-html",
-      "docx-jpg",
-      "docx-png",
-      "docx-pdf"
-    ],
-    "files": [
-      "Диплом (Денис1) (послередактора).docx"
-    ]
-  },
   "69522": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69522",
     "description": "",
@@ -417,19 +384,6 @@
       "emPoknW9U0tH8hntm7I6jO_Ux0rYKtXKZQ2AmQNUCD8_.mht"
     ]
   },
-  "69712": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69712",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xlsx-png",
-      "xlsx-jpg",
-      "xlsx-pdf"
-    ],
-    "files": [
-      "Book 50.xlsx"
-    ]
-  },
   "69723": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69723",
     "description": "",
@@ -439,20 +393,6 @@
     ],
     "files": [
       "Skladistenje ratarskih proizvoda -prirucnik za vjezbe.doc"
-    ]
-  },
-  "69724": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69724",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xls-pdf",
-      "xls-png",
-      "xls-jpg"
-    ],
-    "files": [
-      "general_formulas.xls",
-      "0t (2).xlsx"
     ]
   },
   "69725": {
