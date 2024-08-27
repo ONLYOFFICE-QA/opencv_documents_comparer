@@ -407,5 +407,18 @@
     "files": [
       "DataValDailyList.xls"
     ]
+  },
+  "69889": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69889",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xlsx-xlsb",
+      "xlsm-xlsb"
+    ],
+    "files": [
+      "conv_6f3224c5_a69b_433e_8487_1bf6c0e5b31b_png.xlsm",
+      "conv_yOP0FfLOVjafjexUHwamAG4F6nfTavi46DbNq2u5tTE__jpg.xlsx"
+    ]
   }
 }
