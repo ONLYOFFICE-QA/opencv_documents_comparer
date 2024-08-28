@@ -72,7 +72,7 @@ class Url82032:
         if os == 'linux':
             return arch.replace("x86_", "")
         elif os == 'mac':
-            return arch.replace("64", '')
+            return arch
         elif os == 'windows':
             return arch.replace("amd", "")
 
