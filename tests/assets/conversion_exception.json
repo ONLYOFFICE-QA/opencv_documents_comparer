@@ -460,5 +460,18 @@
       "conv_uei092alMhGa4T5gsuM7KE_J14aYec6BJr14_4AFklw__1025.xlsx",
       "conv_wdHnfJgTLjD5ghQTmnX2WAc_AWOkU0MgguWbCjQYMpk__1025.xlsx"
     ]
+  },
+  "69937": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69937",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xlsb-png",
+      "xlsb-pdf",
+      "xlsb-jpg"
+    ],
+    "files": [
+      "conv_72a2bc9a_385c_42bc_b327_23623d5e9628_png.xlsb"
+    ]
   }
 }
