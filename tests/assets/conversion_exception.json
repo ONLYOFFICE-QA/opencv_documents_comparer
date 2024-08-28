@@ -464,7 +464,9 @@
   "69937": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69937",
     "description": "",
-    "os": [],
+    "os": [
+      "mac"
+    ],
     "directions": [
       "xlsb-png",
       "xlsb-pdf",
