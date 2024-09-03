@@ -491,5 +491,18 @@
     "files": [
       "Диплом (Денис1) (послередактора).docx"
     ]
+  },
+  "70020": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=70020",
+    "description": "",
+    "os": [
+      "linux"
+    ],
+    "directions": [
+      "xlsx-xlsb"
+    ],
+    "files": [
+      "_2304972_2.xlsx"
+    ]
   }
 }
