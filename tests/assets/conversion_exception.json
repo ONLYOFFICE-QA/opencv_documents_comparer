@@ -476,22 +476,6 @@
       "conv_72a2bc9a_385c_42bc_b327_23623d5e9628_png.xlsb"
     ]
   },
-  "69940": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69940",
-    "description": "",
-    "os": [],
-    "directions": [
-      "docx-png",
-      "docx-pdf",
-      "docx-jpg",
-      "docx-epub",
-      "docx-html",
-      "docx-fb2"
-    ],
-    "files": [
-      "Диплом (Денис1) (послередактора).docx"
-    ]
-  },
   "70020": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=70020",
     "description": "",
