@@ -108,14 +108,7 @@
     "os": [
       "linux"
     ],
-    "directions": [
-      "xlsx-ods",
-      "xlsx-ots",
-      "xlsb-ods",
-      "xlsb-ots",
-      "xlst-ods",
-      "xlst-ots"
-    ],
+    "directions": [],
     "files": [
       "rank_prf-09.xlsx",
       "rank_prf-09.xlsb",
