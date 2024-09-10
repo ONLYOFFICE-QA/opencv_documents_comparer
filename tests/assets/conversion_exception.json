@@ -481,5 +481,18 @@
     "files": [
       "_2304972_2.xlsx"
     ]
+  },
+  "70110": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=70110",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xls-png",
+      "xls-jpg",
+      "xls-pdf"
+    ],
+    "files": [
+      "general_formulas.xls"
+    ]
   }
 }
