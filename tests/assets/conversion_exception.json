@@ -469,19 +469,6 @@
       "conv_72a2bc9a_385c_42bc_b327_23623d5e9628_png.xlsb"
     ]
   },
-  "70020": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=70020",
-    "description": "",
-    "os": [
-      "linux"
-    ],
-    "directions": [
-      "xlsx-xlsb"
-    ],
-    "files": [
-      "_2304972_2.xlsx"
-    ]
-  },
   "70110": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=70110",
     "description": "",
