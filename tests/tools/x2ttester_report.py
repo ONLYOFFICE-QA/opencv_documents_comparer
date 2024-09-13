@@ -92,7 +92,8 @@ class X2ttesterReport(Report):
 
     def _errors_list(self, df) -> list:
         errors = df[df.Output_size == 0.0] if not self.errors_only else df
-        return [file for file in errors[df.BugInfo == 0].Input_file.unique()]
+        mask = (errors.BugInfo == 0)
+        return errors.loc[mask, 'Input_file'].unique().tolist()
 
     def _bug_info(self, row) -> str | int:
         for _, value in self.exceptions.items():
