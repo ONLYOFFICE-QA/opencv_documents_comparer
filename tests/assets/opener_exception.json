@@ -428,7 +428,8 @@
       "t-format"
     ],
     "directions": [
-      "xlsx-xlsb"
+      "odp-pptx",
+      "fodp-pptx"
     ],
     "files": [
       "îÑΓ«ñ¿τÑß¬¿⌐-¬Ñ⌐ß-¼ÑΓ«ñ¿ßΓá-ä₧æÿ-èπαπΦ¿¡á-ï.é..pptx",
@@ -503,6 +504,21 @@
       "ELC_2020_Template_OpenDocument (1).pptx",
       "presentation_ihe_wetlands_day_2019.pptx",
       "hackerone_emf-emrtext.pptx"
+    ]
+  },
+  "70320": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=70320",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "html-docx"
+    ],
+    "files": [
+      "car.docx",
+      "cars.docx"
     ]
   }
 }
