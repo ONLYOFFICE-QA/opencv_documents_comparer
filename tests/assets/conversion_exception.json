@@ -535,7 +535,10 @@
       "odt-pdf",
       "odt-html",
       "odt-fb2",
-      "odt-epub"
+      "odt-epub",
+      "odp-png",
+      "odp-jpg",
+      "odp-pdf"
     ],
     "files": [
       "Формулы.docx",
@@ -544,7 +547,8 @@
       "AllEquationsWordInline.docx",
       "AllEquationsWordInText.docx",
       "Word2007RTFSpec9.docx",
-      "Report.odt"
+      "Report.odt",
+      "Графические формулы.odp"
     ]
   }
 }
