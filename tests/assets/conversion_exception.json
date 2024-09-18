@@ -521,5 +521,30 @@
     "files": [
       "Moog_Labyrinth_–_полумодульный_аналоговый_синтезатор.xlsx"
     ]
+  },
+  "70301": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=70301",
+    "description": "",
+    "os": [],
+    "directions": [
+      "docx-png",
+      "docx-jpg",
+      "docx-pdf",
+      "odt-png",
+      "odt-jpg",
+      "odt-pdf",
+      "odt-html",
+      "odt-fb2",
+      "odt-epub"
+    ],
+    "files": [
+      "Формулы.docx",
+      "Диплом (Денис1) (послередактора).docx",
+      "conv_275f0507_1f28_4dde_af9d_8d162cfa1e3d_pdf.docx",
+      "AllEquationsWordInline.docx",
+      "AllEquationsWordInText.docx",
+      "Word2007RTFSpec9.docx",
+      "Report.odt"
+    ]
   }
 }
