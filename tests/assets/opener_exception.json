@@ -514,11 +514,13 @@
       "t-format"
     ],
     "directions": [
-      "html-docx"
+      "html-docx",
+      "mht-docx"
     ],
     "files": [
       "car.docx",
-      "cars.docx"
+      "cars.docx",
+      "9yOzrhCnh_V7g3rRYkmSkElah4COVLjY8lK6xcqtfkE_.docx"
     ]
   }
 }
