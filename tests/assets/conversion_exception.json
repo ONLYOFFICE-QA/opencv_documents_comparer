@@ -550,5 +550,16 @@
       "Report.odt",
       "Графические формулы.odp"
     ]
+  },
+  "70339": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=70339",
+    "description": "",
+    "os": [
+      "windows"
+    ],
+    "directions": [],
+    "files": [
+      "IYNrFhESWk3Cer4eoJH8XhV1GDLzMYTI6R1KxPI0jo0_.mht"
+    ]
   }
 }
