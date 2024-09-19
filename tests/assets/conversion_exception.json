@@ -526,20 +526,7 @@
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=70301",
     "description": "",
     "os": [],
-    "directions": [
-      "docx-png",
-      "docx-jpg",
-      "docx-pdf",
-      "odt-png",
-      "odt-jpg",
-      "odt-pdf",
-      "odt-html",
-      "odt-fb2",
-      "odt-epub",
-      "odp-png",
-      "odp-jpg",
-      "odp-pdf"
-    ],
+    "directions": [],
     "files": [
       "Формулы.docx",
       "Диплом (Денис1) (послередактора).docx",
