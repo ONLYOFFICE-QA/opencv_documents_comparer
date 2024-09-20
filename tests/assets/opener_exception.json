@@ -505,22 +505,5 @@
       "presentation_ihe_wetlands_day_2019.pptx",
       "hackerone_emf-emrtext.pptx"
     ]
-  },
-  "70320": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=70320",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "html-docx",
-      "mht-docx"
-    ],
-    "files": [
-      "car.docx",
-      "cars.docx",
-      "9yOzrhCnh_V7g3rRYkmSkElah4COVLjY8lK6xcqtfkE_.docx"
-    ]
   }
 }
