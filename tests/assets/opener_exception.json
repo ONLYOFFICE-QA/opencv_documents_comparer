@@ -366,7 +366,6 @@
       "pdf-docx"
     ],
     "files": [
-      "001-105 Doblo_rus.docx",
       "161226_PB_Online_Services.docx",
       "161226_PB_ProjVisio.docx",
       "2001-02budgetforcurrentoperations.docx",
@@ -447,6 +446,20 @@
     "files": [
       "Диплом (Денис1).docx",
       "НАЧАЛАМГ 21-05-02.docx"
+    ]
+  },
+  "70566": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=70566",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "pdf-docx"
+    ],
+    "files": [
+      "001-105 Doblo_rus.docx"
     ]
   }
 }
