@@ -473,22 +473,7 @@
       "_2304972_2.xlsx"
     ]
   },
-  "70226": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=70226",
-    "description": "",
-    "os": [],
-    "directions": [
-      "docx-png",
-      "docx-jpg",
-      "docx-pdf",
-      "docx-epub",
-      "docx-fb2",
-      "docx-html"
-    ],
-    "files": [
-      "Moog_Labyrinth_–_полумодульный_аналоговый_синтезатор.docx"
-    ]
-  },
+
   "70301": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=70301",
     "description": "",
