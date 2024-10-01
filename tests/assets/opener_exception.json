@@ -476,5 +476,22 @@
       "car.odt",
       "cars.odt"
     ]
+  },
+  "70617": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=70617",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "odt-docx"
+    ],
+    "files": [
+      "0103GS-FileManagement_el.docx",
+      "choveret-maaseh.docx",
+      "doc_1.docx",
+      "Kurzanalyse_Open_Source_Software.docx"
+    ]
   }
 }
