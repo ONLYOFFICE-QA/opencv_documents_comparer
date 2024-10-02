@@ -480,7 +480,23 @@
       "Book 45.xlsx",
       "Book 46.xlsx",
       "Book 6.xlsx",
-      "Book 7.xlsx"
+      "Book 7.xlsx",
+      "TEST_SUMIFS_KO.xlsx"
+    ]
+  },
+  "70652": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=70652",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "ods-xlsx"
+    ],
+    "files": [
+      "Book 78.xlsx",
+      "Book 47.xlsx"
     ]
   }
 }
