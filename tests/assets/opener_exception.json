@@ -464,5 +464,23 @@
       "doc_1.docx",
       "Kurzanalyse_Open_Source_Software.docx"
     ]
+  },
+  "70650": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=70650",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "ods-xlsx"
+    ],
+    "files": [
+      "Controlador de Consumo.xlsx",
+      "Book 45.xlsx",
+      "Book 46.xlsx",
+      "Book 6.xlsx",
+      "Book 7.xlsx"
+    ]
   }
 }
