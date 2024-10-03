@@ -15,6 +15,21 @@
       "kso 1    2  1.xlsx"
     ]
   },
+  "70612": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=70612",
+    "description": "Problems in Libre",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "html-odt"
+    ],
+    "files": [
+      "car.odt",
+      "cars.odt"
+    ]
+  },
   "68601": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68601",
     "description": "peculiarity of working in a binary with summary tables",
@@ -431,21 +446,6 @@
     ],
     "files": [
       "Monetizing_Innovation.pptx"
-    ]
-  },
-  "70612": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=70612",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "html-odt"
-    ],
-    "files": [
-      "car.odt",
-      "cars.odt"
     ]
   },
   "70617": {
