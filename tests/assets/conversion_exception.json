@@ -275,21 +275,6 @@
       "conv_04390dad_324b_43b7_ae90_aff47f2acbb7_pdf.docx"
     ]
   },
-  "68013": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68013",
-    "description": "",
-    "os": [
-      "mac"
-    ],
-    "directions": [
-      "xlsx-png",
-      "xlsx-jpg",
-      "xlsx-pdf"
-    ],
-    "files": [
-      "ZAPOLNYaT_ETO_PTR_Polina_1-8_1.xlsx"
-    ]
-  },
   "68249": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68249",
     "description": "",
