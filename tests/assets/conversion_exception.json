@@ -410,15 +410,6 @@
       "conv_2sSRJhhstDZUCs6wUDEAs_gWmobqWwgoItttxlPc_dA__2055.doc"
     ]
   },
-  "69900": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69900",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "conv_209fe381_c247_4e85_b861_f48d73ddb649_513.pptx"
-    ]
-  },
   "69919": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69919",
     "description": "",
@@ -446,19 +437,6 @@
       "conv_72a2bc9a_385c_42bc_b327_23623d5e9628_png.xlsb"
     ]
   },
-  "70020": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=70020",
-    "description": "",
-    "os": [
-      "linux"
-    ],
-    "directions": [
-      "xlsx-xlsb"
-    ],
-    "files": [
-      "_2304972_2.xlsx"
-    ]
-  },
   "70301": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=70301",
     "description": "",
@@ -473,17 +451,6 @@
       "Word2007RTFSpec9.docx",
       "Report.odt",
       "Графические формулы.odp"
-    ]
-  },
-  "70339": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=70339",
-    "description": "",
-    "os": [
-      "windows"
-    ],
-    "directions": [],
-    "files": [
-      "IYNrFhESWk3Cer4eoJH8XhV1GDLzMYTI6R1KxPI0jo0_.mht"
     ]
   },
   "70362": {
