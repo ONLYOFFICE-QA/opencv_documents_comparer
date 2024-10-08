@@ -259,22 +259,6 @@
       "5000_most_frequent_words.mht"
     ]
   },
-  "67942": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67942",
-    "description": "",
-    "os": [],
-    "directions": [
-      "docx-epub",
-      "docx-fb2",
-      "docx-html",
-      "docx-jpg",
-      "docx-png",
-      "docx-pdf"
-    ],
-    "files": [
-      "conv_04390dad_324b_43b7_ae90_aff47f2acbb7_pdf.docx"
-    ]
-  },
   "68249": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68249",
     "description": "",
