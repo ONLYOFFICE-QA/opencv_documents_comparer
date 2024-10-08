@@ -234,22 +234,6 @@
       "conv_jfImLQOEcPu3wM8M_NkxgYWahOVFSt0JPpvBcuZXdo0__jpg.xlsx"
     ]
   },
-  "66648": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=66648",
-    "description": "",
-    "os": [],
-    "directions": [
-      "docx-epub",
-      "docx-fb2",
-      "docx-html",
-      "docx-jpg",
-      "docx-png",
-      "docx-pdf"
-    ],
-    "files": [
-      "Согласие на обработку Исходный.docx"
-    ]
-  },
   "67907": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67907",
     "description": "",
