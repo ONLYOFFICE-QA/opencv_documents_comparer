@@ -221,35 +221,6 @@
       "Pizdariki.docx"
     ]
   },
-  "66550": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=66550",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xlsx-png",
-      "xlsx-jpg",
-      "xlsx-pdf"
-    ],
-    "files": [
-      "conv_jfImLQOEcPu3wM8M_NkxgYWahOVFSt0JPpvBcuZXdo0__jpg.xlsx"
-    ]
-  },
-  "66648": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=66648",
-    "description": "",
-    "os": [],
-    "directions": [
-      "docx-epub",
-      "docx-fb2",
-      "docx-html",
-      "docx-jpg",
-      "docx-png",
-      "docx-pdf"
-    ],
-    "files": [
-      "Согласие на обработку Исходный.docx"
-    ]
-  },
   "67907": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67907",
     "description": "",
@@ -257,37 +228,6 @@
     "directions": [],
     "files": [
       "5000_most_frequent_words.mht"
-    ]
-  },
-  "67942": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67942",
-    "description": "",
-    "os": [],
-    "directions": [
-      "docx-epub",
-      "docx-fb2",
-      "docx-html",
-      "docx-jpg",
-      "docx-png",
-      "docx-pdf"
-    ],
-    "files": [
-      "conv_04390dad_324b_43b7_ae90_aff47f2acbb7_pdf.docx"
-    ]
-  },
-  "68013": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68013",
-    "description": "",
-    "os": [
-      "mac"
-    ],
-    "directions": [
-      "xlsx-png",
-      "xlsx-jpg",
-      "xlsx-pdf"
-    ],
-    "files": [
-      "ZAPOLNYaT_ETO_PTR_Polina_1-8_1.xlsx"
     ]
   },
   "68249": {
@@ -319,15 +259,6 @@
       "Aanvalsplanner_v.2.2.xlsx"
     ]
   },
-  "69023": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69023",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "conv_2d9a0344_485d_4c3f_898b_472a9b6da4be_513.docx"
-    ]
-  },
   "69028": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69028",
     "description": "",
@@ -341,28 +272,6 @@
       "conv_0da767ad_c9f9_4ab3_8ede_b88452e3c23e_pdf.docx"
     ]
   },
-  "69073": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69073",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xlsm-xlsb"
-    ],
-    "files": [
-      "conv_36ZwDkH8Q0kFChhJ8DEZHvkAkEuO2Jj3FnQSfCxz9M8__jpg.xlsm"
-    ]
-  },
-  "69522": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69522",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "M10.23a.oxps",
-      "mb01.oxps",
-      "ag42z-x56qk.oxps"
-    ]
-  },
   "69723": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69723",
     "description": "",
@@ -372,63 +281,6 @@
     ],
     "files": [
       "Skladistenje ratarskih proizvoda -prirucnik za vjezbe.doc"
-    ]
-  },
-  "69725": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69725",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xls-pdf",
-      "xls-png",
-      "xls-jpg"
-    ],
-    "files": [
-      "DataValDailyList.xls"
-    ]
-  },
-  "69889": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69889",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xlsx-xlsb",
-      "xlsm-xlsb"
-    ],
-    "files": [
-      "conv_6f3224c5_a69b_433e_8487_1bf6c0e5b31b_png.xlsm",
-      "conv_yOP0FfLOVjafjexUHwamAG4F6nfTavi46DbNq2u5tTE__jpg.xlsx"
-    ]
-  },
-  "69892": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69892",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "conv_19821a14_cdd0_4c23_9fd4_f3dea13077ab_65.doc",
-      "conv_2sSRJhhstDZUCs6wUDEAs_gWmobqWwgoItttxlPc_dA__2055.doc"
-    ]
-  },
-  "69900": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69900",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "conv_209fe381_c247_4e85_b861_f48d73ddb649_513.pptx"
-    ]
-  },
-  "69919": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69919",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "conv_CoThNqO1y2LBJiC6hRcJIrBcQXg5SLTD9_FLI6ZXhIQ__1025.xlsx",
-      "conv_hQHBL3cexepvPqNeuDBuq5YOby2F_8GQhskDnnvqjnM__1025.xlsx",
-      "conv_uei092alMhGa4T5gsuM7KE_J14aYec6BJr14_4AFklw__1025.xlsx",
-      "conv_wdHnfJgTLjD5ghQTmnX2WAc_AWOkU0MgguWbCjQYMpk__1025.xlsx"
     ]
   },
   "69937": {
@@ -446,19 +298,6 @@
       "conv_72a2bc9a_385c_42bc_b327_23623d5e9628_png.xlsb"
     ]
   },
-  "70020": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=70020",
-    "description": "",
-    "os": [
-      "linux"
-    ],
-    "directions": [
-      "xlsx-xlsb"
-    ],
-    "files": [
-      "_2304972_2.xlsx"
-    ]
-  },
   "70301": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=70301",
     "description": "",
@@ -473,17 +312,6 @@
       "Word2007RTFSpec9.docx",
       "Report.odt",
       "Графические формулы.odp"
-    ]
-  },
-  "70339": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=70339",
-    "description": "",
-    "os": [
-      "windows"
-    ],
-    "directions": [],
-    "files": [
-      "IYNrFhESWk3Cer4eoJH8XhV1GDLzMYTI6R1KxPI0jo0_.mht"
     ]
   },
   "70362": {
