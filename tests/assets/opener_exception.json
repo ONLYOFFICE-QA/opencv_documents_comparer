@@ -30,6 +30,26 @@
       "cars.odt"
     ]
   },
+  "70650": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=70650",
+    "description": "Bad formulas in the source file",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "ods-xlsx"
+    ],
+    "files": [
+      "Controlador de Consumo.xlsx",
+      "Book 45.xlsx",
+      "Book 46.xlsx",
+      "Book 6.xlsx",
+      "Book 7.xlsx",
+      "TEST_SUMIFS_KO.xlsx",
+      "load_bugs.xlsx"
+    ]
+  },
   "68601": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68601",
     "description": "peculiarity of working in a binary with summary tables",
@@ -463,6 +483,21 @@
       "choveret-maaseh.docx",
       "doc_1.docx",
       "Kurzanalyse_Open_Source_Software.docx"
+    ]
+  },
+  "70652": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=70652",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "ods-xlsx"
+    ],
+    "files": [
+      "Book 78.xlsx",
+      "Book 47.xlsx"
     ]
   }
 }
