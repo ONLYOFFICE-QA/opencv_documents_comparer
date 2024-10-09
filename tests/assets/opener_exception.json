@@ -472,5 +472,20 @@
       "Book 78.xlsx",
       "Book 47.xlsx"
     ]
+  },
+  "70795": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=70795",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "pdf-docx"
+    ],
+    "files": [
+      "j6_05_b5_nettiin.docx",
+      "2001-02budgetforcurrentoperations.docx"
+    ]
   }
 }
