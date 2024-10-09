@@ -181,20 +181,6 @@
       "ПЂ†≠®аЃҐй®™_АПРЕЛЬ (1).xlst"
     ]
   },
-  "60796": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=60796",
-    "description": "",
-    "os": [
-      "windows"
-    ],
-    "directions": [],
-    "files": [
-      "enredobar.doc",
-      "ZAHTJEV_NAVABANKA.doc",
-      "enredobar.doct",
-      "ZAHTJEV_NAVABANKA.doct"
-    ]
-  },
   "64543": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64543",
     "description": "the incorrect file extension. its svg",
