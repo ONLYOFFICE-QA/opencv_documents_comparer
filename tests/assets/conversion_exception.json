@@ -349,10 +349,12 @@
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=70825",
     "description": "",
     "os": [],
-    "directions": [],
+    "directions": [
+      "docx-pdf"
+    ],
     "files": [
-      "choveret-maaseh.odt",
-      "0103GS-FileManagement_el.odt"
+      "bug.docx",
+      "bug2.docx"
     ]
   }
 }
