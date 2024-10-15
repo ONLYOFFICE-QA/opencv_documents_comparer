@@ -423,5 +423,19 @@
       "mb02.docx",
       "mb05.docx"
     ]
+  },
+  "70987": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=70987",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "pdf-docx"
+    ],
+    "files": [
+      "chipraannualreport.docx"
+    ]
   }
 }
