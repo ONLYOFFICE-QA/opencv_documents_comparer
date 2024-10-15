@@ -258,21 +258,6 @@
       "conv_0da767ad_c9f9_4ab3_8ede_b88452e3c23e_pdf.docx"
     ]
   },
-  "69937": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69937",
-    "description": "",
-    "os": [
-      "mac"
-    ],
-    "directions": [
-      "xlsb-png",
-      "xlsb-pdf",
-      "xlsb-jpg"
-    ],
-    "files": [
-      "conv_72a2bc9a_385c_42bc_b327_23623d5e9628_png.xlsb"
-    ]
-  },
   "70362": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=70362",
     "description": "",
