@@ -335,5 +335,20 @@
       "bug.docx",
       "bug2.docx"
     ]
+  },
+  "68743": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68743",
+    "description": "",
+    "os": [
+      "mac"
+    ],
+    "directions": [
+      "xlsx-pdf",
+      "xlsx-png",
+      "xlsx-jpg"
+    ],
+    "files": [
+      "ZAPOLNYaT_ETO_PTR_Polina_1-8_1.xlsx"
+    ]
   }
 }
