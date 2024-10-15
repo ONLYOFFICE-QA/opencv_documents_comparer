@@ -181,20 +181,6 @@
       "ПЂ†≠®аЃҐй®™_АПРЕЛЬ (1).xlst"
     ]
   },
-  "60796": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=60796",
-    "description": "",
-    "os": [
-      "windows"
-    ],
-    "directions": [],
-    "files": [
-      "enredobar.doc",
-      "ZAHTJEV_NAVABANKA.doc",
-      "enredobar.doct",
-      "ZAHTJEV_NAVABANKA.doct"
-    ]
-  },
   "64543": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64543",
     "description": "the incorrect file extension. its svg",
@@ -272,21 +258,6 @@
       "conv_0da767ad_c9f9_4ab3_8ede_b88452e3c23e_pdf.docx"
     ]
   },
-  "69937": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69937",
-    "description": "",
-    "os": [
-      "mac"
-    ],
-    "directions": [
-      "xlsb-png",
-      "xlsb-pdf",
-      "xlsb-jpg"
-    ],
-    "files": [
-      "conv_72a2bc9a_385c_42bc_b327_23623d5e9628_png.xlsb"
-    ]
-  },
   "70362": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=70362",
     "description": "",
@@ -294,18 +265,6 @@
     "directions": [],
     "files": [
       "conv_de_QydhFxXSv8ENyczGadvvEnQalNF7lJLPD4uctT_g__xlsx.xls"
-    ]
-  },
-  "70484": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=70484",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "Презентация курса (msf).pptx",
-      "MSF_Lec1.pptx",
-      "K4Ex0FLAxA_dSFa_39ONyMe1MikVTT2ffHmy8ogSzZ0_.pptx",
-      "317717848.pptx"
     ]
   },
   "68743": {
