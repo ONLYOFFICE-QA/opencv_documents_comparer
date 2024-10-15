@@ -213,7 +213,8 @@
     "os": [],
     "directions": [],
     "files": [
-      "5000_most_frequent_words.mht"
+      "5000_most_frequent_words.mht",
+      "5000_most_frequent_words.doct"
     ]
   },
   "68249": {
@@ -242,7 +243,8 @@
       "xlsx-pdf"
     ],
     "files": [
-      "Aanvalsplanner_v.2.2.xlsx"
+      "Aanvalsplanner_v.2.2.xlsx",
+      "Aanvalsplanner_v.2.2.xlst"
     ]
   },
   "69028": {
