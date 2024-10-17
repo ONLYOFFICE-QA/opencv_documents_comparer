@@ -423,5 +423,19 @@
       "mb02.docx",
       "mb05.docx"
     ]
+  },
+  "70653": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=70653",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "ods-xlsx"
+    ],
+    "files": [
+      "Book 72.xlsx"
+    ]
   }
 }
