@@ -24,10 +24,8 @@ class LibreMacroses:
         pg.press('up', interval=press_interval)
         pg.press('enter', interval=press_interval)
 
-        KeyActions.click(join(dirname(realpath(__file__)),  'image_templates', 'custom.png'))
-        pg.hotkey('ctrl', 'a', interval=press_interval)
-        sleep(0.1)
-        pg.write('100', interval=press_interval)
+        KeyActions.click(join(dirname(realpath(__file__)),  'image_templates', '100.png'))
+        sleep(0.2)
         pg.press('enter', interval=press_interval)
         sleep(0.5)
 

@@ -60,6 +60,7 @@ class CompareTest:
                 continue
             self.make_screen(self._document_type(source_file), source_file, self.source_screen_dir, page_amount)
             self.compare_screens(converted_file, source_file)
+            self.count += 1
 
     def make_screen(self, document_type: Document, path: str, screen_path: str, page_num: int | dict) -> bool | None:
         print(f'[bold green] |INFO| Getting Screenshots from: [cyan]{basename(path)}')
@@ -156,7 +157,7 @@ class CompareTest:
         )
 
     def _document_type(self, file_path):
-        if file_path.lower().endswith(self.document_excel.formats):
+        if file_path.lower().endswith(self.document_excel.formats + ('.ods',)):
             return self.document_excel
         elif file_path.lower().endswith(self.document_word.formats + ('.odt',)):
             return self.document_word
