@@ -294,5 +294,21 @@
     "files": [
       "Apache CloudStack Template 062813.odp"
     ]
+  },
+  "71148": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=71148",
+    "description": "",
+    "os": [],
+    "directions": [
+      "docx-png",
+      "docx-jpg",
+      "docx-pdf",
+      "docx-html",
+      "docx-epub",
+      "docx-fb2"
+    ],
+    "files": [
+      "AllEquationsWordInText.docx"
+    ]
   }
 }
