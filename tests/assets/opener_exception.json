@@ -409,21 +409,6 @@
       "2DArtist_Issue_043_July09.docx"
     ]
   },
-  "70986": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=70986",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "xps-docx"
-    ],
-    "files": [
-      "mb02.docx",
-      "mb05.docx"
-    ]
-  },
   "70653": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=70653",
     "description": "",
@@ -446,10 +431,16 @@
       "t-format"
     ],
     "directions": [
-      "fodp-pptx"
+      "fodp-pptx",
+      "odp-pptx"
     ],
     "files": [
-      "Banki.pptx"
+      "Banki.pptx",
+      "Byudzhet-dlya-grazhdan-2021-2.pptx",
+      "file_1_ (1).pptx",
+      "PKAVS-presentation.pptx",
+      "PowerPoint+Presentation+Leadership+and+Management+September+2020.pptx",
+      "test_macros.pptx"
     ]
   }
 }

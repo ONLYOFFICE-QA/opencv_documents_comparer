@@ -283,41 +283,5 @@
     "files": [
       "ZAPOLNYaT_ETO_PTR_Polina_1-8_1.xlsx"
     ]
-  },
-  "71076": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=71076",
-    "description": "",
-    "os": [],
-    "directions": [
-      "odp-otp"
-    ],
-    "files": [
-      "Apache CloudStack Template 062813.odp"
-    ]
-  },
-  "71148": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=71148",
-    "description": "",
-    "os": [],
-    "directions": [
-      "docx-png",
-      "docx-jpg",
-      "docx-pdf",
-      "docx-html",
-      "docx-epub",
-      "docx-fb2"
-    ],
-    "files": [
-      "AllEquationsWordInText.docx"
-    ]
-  },
-  "71238": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=71238",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "conv_ePkBkn1hChK9IZvqRoHN7lrtStRA3hR_lmoIEV6nvhU__2055.xls"
-    ]
   }
 }
