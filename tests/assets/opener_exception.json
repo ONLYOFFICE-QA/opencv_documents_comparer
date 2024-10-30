@@ -409,21 +409,6 @@
       "2DArtist_Issue_043_July09.docx"
     ]
   },
-  "70986": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=70986",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "xps-docx"
-    ],
-    "files": [
-      "mb02.docx",
-      "mb05.docx"
-    ]
-  },
   "70653": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=70653",
     "description": "",
