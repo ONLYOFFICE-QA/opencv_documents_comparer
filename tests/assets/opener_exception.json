@@ -437,5 +437,19 @@
     "files": [
       "Book 72.xlsx"
     ]
+  },
+  "71334": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=71334",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "fodp-pptx"
+    ],
+    "files": [
+      "Banki.pptx"
+    ]
   }
 }
