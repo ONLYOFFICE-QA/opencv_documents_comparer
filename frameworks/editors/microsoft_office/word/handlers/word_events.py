@@ -44,6 +44,10 @@ class WordEvents(Events):
                 print(f"[red]\n{'-' * 90}\n|WARNING WINDOW| Word File conversion\n{'-' * 90}")
                 Window.close(hwnd)
 
+            case ['NUIDialog', 'Извещение системы безопасности Microsoft Word']:
+                print(f"[red]\n{'-' * 90}\n|WARNING WINDOW| Microsoft Word Security Notification\n{'-' * 90}")
+                pg.press('enter')
+
             case [_, 'Пароль']:
                 print(f"[red]\n{'-' * 90}\n|WARNING WINDOW| Enter password\n{'-' * 90}")
                 pg.press('tab')
