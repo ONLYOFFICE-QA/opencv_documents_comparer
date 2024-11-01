@@ -21,14 +21,15 @@ class X2tTesterConversion:
             direction: str | None = None,
             version: str = None,
             trough_conversion: bool = False,
-            env_off: bool = False
+            env_off: bool = False,
+            core_dir: str = None
     ):
         Dir.delete(StaticData.tmp_dir, clear_dir=True, stdout=False, stderr=False)
         self.env_off = env_off
         self.trough_conversion = trough_conversion
         self.input_formats, self.output_formats = self._getting_formats(direction)
         self.tmp_dir = join(StaticData.tmp_dir, 'cnv')
-        self.x2t_dir = StaticData.core_dir()
+        self.x2t_dir = core_dir or StaticData.core_dir()
         self.report = X2ttesterReport()
         self.x2t_version = VersionHandler(version if version else X2t.version(StaticData.core_dir())).version
         self.report_path = self.report.tmp_file()
