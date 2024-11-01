@@ -442,5 +442,19 @@
       "PowerPoint+Presentation+Leadership+and+Management+September+2020.pptx",
       "test_macros.pptx"
     ]
+  },
+  "71413": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=71413",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "xps-docx"
+    ],
+    "files": [
+      "FullRun.docx"
+    ]
   }
 }
