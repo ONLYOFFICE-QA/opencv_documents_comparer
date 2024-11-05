@@ -437,8 +437,8 @@
       "FullRun.docx"
     ]
   },
-  "71415": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=71415",
+  "71477": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=71477",
     "description": "",
     "mode": [
       "Default",
@@ -448,17 +448,35 @@
       "odp-pptx"
     ],
     "files": [
-      "Byudzhet-dlya-grazhdan-2021-2.pptx",
-      "file_1_ (1).pptx",
-      "PKAVS-presentation.pptx",
-      "PowerPoint+Presentation+Leadership+and+Management+September+2020.pptx",
-      "test_macros.pptx",
-      "Body-Image.pptx",
-      "Food-Chains-Powerpoint.pptx",
-      "prezentace_brno_17.3_emerald3_0.pptx",
-      "revs-and-bens-tech-and-benefits-case.pptx",
-      "îÑΓ«ñ¿τÑß¬¿⌐-¬Ñ⌐ß-¼ÑΓ«ñ¿ßΓá-ä₧æÿ-èπαπΦ¿¡á-ï.é..pptx",
-      "Методический-кейс-методиста-ДЮСШ-Курушина-Л.В..pptx"
+      "Apache CloudStack Template 062813.pptx"
+    ]
+  },
+  "71478": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=71478",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "odt-docx"
+    ],
+    "files": [
+      "a4.docx"
+    ]
+  },
+  "71479": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=71479",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "otp-pptx"
+    ],
+    "files": [
+      "Midnightblue.pptx"
     ]
   }
 }
