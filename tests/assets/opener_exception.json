@@ -436,5 +436,19 @@
     "files": [
       "FullRun.docx"
     ]
+  },
+  "71477": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=71477",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "odp-pptx"
+    ],
+    "files": [
+      "Apache CloudStack Template 062813.pptx"
+    ]
   }
 }
