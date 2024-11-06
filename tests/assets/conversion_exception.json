@@ -294,5 +294,18 @@
     "files": [
       "capgeminiinvent_vehicledatamonetization_pov_sep2020.pdf"
     ]
+  },
+  "71506": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=71506",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xls-pdf",
+      "xls-png",
+      "xls-jpg"
+    ],
+    "files": [
+      "bug-2.xls"
+    ]
   }
 }
