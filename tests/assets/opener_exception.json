@@ -450,33 +450,5 @@
     "files": [
       "Apache CloudStack Template 062813.pptx"
     ]
-  },
-  "71478": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=71478",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "odt-docx"
-    ],
-    "files": [
-      "a4.docx"
-    ]
-  },
-  "71479": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=71479",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "otp-pptx"
-    ],
-    "files": [
-      "Midnightblue.pptx"
-    ]
   }
 }
