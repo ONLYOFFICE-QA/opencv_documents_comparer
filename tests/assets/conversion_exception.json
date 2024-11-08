@@ -278,10 +278,21 @@
     "directions": [
       "xlsx-pdf",
       "xlsx-png",
-      "xlsx-jpg"
+      "xlsx-jpg",
+      "xlsb-pdf",
+      "xlsb-png",
+      "xlsb-jpg",
+      "xls-pdf",
+      "xls-png",
+      "xls-jpg"
     ],
     "files": [
-      "ZAPOLNYaT_ETO_PTR_Polina_1-8_1.xlsx"
+      "ZAPOLNYaT_ETO_PTR_Polina_1-8_1.xlsx",
+      "draw_00_ms2013.xlsx",
+      "rank_prf-09.xlsx",
+      "Результат обработки перечня ЗПРОМ.xlsb",
+      "VH_150405.xlsb",
+      "Web_proxy_list.xls"
     ]
   },
   "71363": {
