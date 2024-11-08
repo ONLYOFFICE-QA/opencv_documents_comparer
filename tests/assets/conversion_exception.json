@@ -318,5 +318,19 @@
     "files": [
       "bug-2.xls"
     ]
+  },
+  "71554": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=71554",
+    "description": "",
+    "os": [
+      "linux"
+    ],
+    "directions": [
+      "pptx-png",
+      "pptx-jpg"
+    ],
+    "files": [
+      "Reducing_Costs_and_Maximizing_Revenue_with_Office_Business_Applications_(OBA).pptx"
+    ]
   }
 }
