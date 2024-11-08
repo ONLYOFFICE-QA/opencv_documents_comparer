@@ -423,20 +423,6 @@
       "Book 72.xlsx"
     ]
   },
-  "71413": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=71413",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "xps-docx"
-    ],
-    "files": [
-      "FullRun.docx"
-    ]
-  },
   "71477": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=71477",
     "description": "",
