@@ -306,19 +306,6 @@
       "capgeminiinvent_vehicledatamonetization_pov_sep2020.pdf"
     ]
   },
-  "71506": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=71506",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xls-pdf",
-      "xls-png",
-      "xls-jpg"
-    ],
-    "files": [
-      "bug-2.xls"
-    ]
-  },
   "71554": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=71554",
     "description": "",
@@ -331,22 +318,6 @@
     ],
     "files": [
       "Reducing_Costs_and_Maximizing_Revenue_with_Office_Business_Applications_(OBA).pptx"
-    ]
-  },
-  "71833": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=71833",
-    "description": "",
-    "os": [],
-    "directions": [
-      "docx-epub",
-      "docx-fb2",
-      "docx-html",
-      "docx-jpg",
-      "docx-png",
-      "docx-pdf"
-    ],
-    "files": [
-      "test_protect.docx"
     ]
   }
 }
