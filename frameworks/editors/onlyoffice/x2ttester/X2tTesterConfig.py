@@ -5,7 +5,7 @@ from pydantic import BaseModel
 class X2tTesterConfig(BaseModel):
     input_dir: str
     output_dir: str
-    x2ttester_dir: str
+    core_dir: str
     report_path: str
     fonts_dir: Optional[str] = None
     cores: int = 1

@@ -2,6 +2,7 @@
 import time
 from os import environ
 
+from Demos.OpenEncryptedFileRaw import tmp_dir
 from invoke import task
 from rich import print
 from rich.prompt import Prompt
@@ -46,7 +47,7 @@ def conversion_test(
     if x2t_limits and not env_off:
         environ['X2T_MEMORY_LIMIT'] = f"{x2t_limits}GiB"
 
-    download_core(c, version=version)
+    core_dir = download_core(c, version=version)
 
     x2t_version = X2t.version(StaticData.core_dir())
     print(
@@ -57,7 +58,13 @@ def conversion_test(
         f"|INFO| Environment: [cyan]{'True' if not env_off else 'False'}[/]"
     )
 
-    conversion = X2tTesterConversion(direction, x2t_version, trough_conversion=t_format, env_off=env_off)
+    conversion = X2tTesterConversion(
+        direction, x2t_version,
+        trough_conversion=t_format,
+        env_off=env_off,
+        core_dir=core_dir
+    )
+
     files_list = conversion.get_quick_check_files() if quick_check else config.files_array if ls else None
     object_keys = [f"{name.split('.')[-1].lower()}/{name}" for name in files_list] if files_list else None
     S3Downloader(download_dir=config.source_docs).download_all(objects=object_keys)

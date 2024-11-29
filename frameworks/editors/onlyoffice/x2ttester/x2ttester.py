@@ -15,7 +15,7 @@ class X2tTester:
         Initializes the X2tTester object.
         :param config: Configuration object for X2tTester.
         """
-        self.x2ttester_dir = config.x2ttester_dir
+        self.x2ttester_dir = config.core_dir
         self.x2ttester_path = join(self.x2ttester_dir, HostConfig().x2ttester)
         self.xml = X2tTesterXml(config)
 
