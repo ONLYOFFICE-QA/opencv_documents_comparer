@@ -119,7 +119,7 @@ class X2tTesterXml:
         Generates the path to the x2t executable.
         :return: Path to the x2t executable.
         """
-        x2t_path = join(self.config.x2ttester_dir, self.host.x2t)
+        x2t_path = join(self.config.core_dir, self.host.x2t)
         if not isfile(x2t_path):
             raise X2tTesterXmlException(f'[bold red]|ERROR| Check the existence of x2t, path: {x2t_path}')
         return x2t_path

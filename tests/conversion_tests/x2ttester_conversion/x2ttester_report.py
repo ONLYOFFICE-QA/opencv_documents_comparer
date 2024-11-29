@@ -5,17 +5,20 @@ from os.path import join, dirname, realpath
 from host_tools.utils import Dir
 from rich import print
 
-from frameworks.StaticData import StaticData
 from frameworks.decorators import singleton
 from host_tools import File, HostInfo
 from frameworks.editors.onlyoffice.handlers.VersionHandler import VersionHandler
 from frameworks.report import Report
-import config
+
 from telegram import Telegram
+
+
+from .test_config import TestConfig
 
 
 @singleton
 class X2ttesterReport(Report):
+    # exceptions = File.read_json(f"{dirname(realpath(__file__))}/../assets/conversion_exception.json")
     __columns_names = {
         'Input file': 'Input_file',
         'Output file': 'Output_file',
@@ -26,25 +29,17 @@ class X2ttesterReport(Report):
         'Time': 'Time'
     }
 
-    def __init__(self):
+    def __init__(self, test_config: TestConfig):
         super().__init__()
-        self.exceptions = File.read_json(f"{dirname(realpath(__file__))}/../assets/conversion_exception.json")
-        self.reports_dir = StaticData.reports_dir()
-        self.tmp_dir = StaticData.tmp_dir
-        self.errors_only: bool = config.errors_only
-        self.x2t_dir = StaticData.core_dir()
+        self.reports_dir = test_config.reports_dir
+        self.tmp_dir = test_config.tmp_dir
+        self.errors_only: bool = test_config.errors_only
         self.os = HostInfo().os
-
 
     def path(self, x2t_version: str) -> str:
         dir_path = join(self.reports_dir, VersionHandler(x2t_version).without_build, "conversion", self.os)
         Dir.create(dir_path, stdout=False)
         return join(dir_path, f"{x2t_version}_{datetime.now().strftime('%H_%M_%S')}.csv")
-
-    def tmp_file(self):
-        tmp_report = File.unique_name(File.unique_name(self.tmp_dir), 'csv')
-        Dir.create(dirname(tmp_report), stdout=False)
-        return tmp_report
 
     def merge_reports(self, x2ttester_report: list, x2t_version: str) -> str | None:
         return self.merge(list(filter(lambda x: x is not None, x2ttester_report)), self.path(x2t_version))

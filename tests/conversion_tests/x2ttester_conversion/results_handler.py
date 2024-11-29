@@ -5,21 +5,17 @@ from host_tools import File, HostInfo
 from host_tools.utils import Dir
 from rich.progress import track
 
+from .test_config import TestConfig
+
 
 class ResultsHandler:
     img_formats = ["png", "jpg", "bmp", "gif"]
 
-    def __init__(
-            self,
-            tmp_dir: str,
-            result_dir: str,
-            x2t_version: str,
-            trough_conversion: bool = False
-    ):
-        self.tmp_dir = tmp_dir
-        self.trough_conversion = trough_conversion
-        self.result_dir = result_dir
-        self.x2t_version = x2t_version
+    def __init__(self,test_config: TestConfig):
+        self.tmp_dir = test_config.tmp_dir
+        self.trough_conversion = test_config.trough_conversion
+        self.result_dir = test_config.result_dir
+        self.x2t_version = test_config.x2t_version
         self.os = HostInfo().os
 
     def _get_paths(self, output_format: str) -> list:
