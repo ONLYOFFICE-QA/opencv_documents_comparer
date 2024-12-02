@@ -23,7 +23,7 @@ class X2tTesterConversion:
         self.config = test_config
         self.input_formats, self.output_formats = self._getting_formats(self.config.direction)
         self.report = X2ttesterReport(self.config)
-        self.x2ttester = X2tTester(X2tTesterConfig(**self.config.model_dump()))
+        self.x2ttester = X2tTester(config=X2tTesterConfig(**self.config.model_dump()))
         self.results_handler = ResultsHandler(self.config)
 
     def run(self, results_path: bool | str = False, list_xml: str = None) -> str:

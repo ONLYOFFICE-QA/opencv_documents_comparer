@@ -15,3 +15,4 @@ class X2tTesterConfig(BaseModel):
     errors_only: bool = False
     trough_conversion: bool = False
     environment_off: bool = False
+    out_x2ttester_param: bool = False

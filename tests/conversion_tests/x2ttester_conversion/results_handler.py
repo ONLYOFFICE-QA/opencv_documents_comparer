@@ -28,7 +28,8 @@ class ResultsHandler:
             paths = self._get_paths(output_format if output_format else None)
             if paths:
                 for file_path in track(paths, f"[cyan]|INFO| Copying {len(paths)} {output_format} files"):
-                    _path_to = self._get_result_path(result_path, self._get_input_format(file_path), output_format)
+
+                    _path_to = self._get_result_path(file_path, result_path, output_format)
 
                     Dir.create(_path_to, stdout=False) if not isdir(_path_to) else ...
                     name = basename(file_path)
@@ -43,9 +44,12 @@ class ResultsHandler:
             return basename(dirname(dirname(file_path)))
         return dirname(file_path).split('.')[-1]
 
-    def _get_result_path(self, result_path: str = None, input_format: str = None, output_format: str = None) -> str:
+    def _get_result_path(self, file_path: str, result_path: str = None, output_format: str = None) -> str:
+
         if isinstance(result_path, str):
             return result_path
+
+        input_format = self._get_input_format(file_path)
         return join(
             self.result_dir,
             f"{self.x2t_version}_"

@@ -23,19 +23,19 @@ class X2ttesterTestConfig(BaseModel):
     timeout: Optional[int] = None
     delete: Optional[bool] = None
     direction: Optional[str] = Field(default=None, description="Conversion direction, e.g., 'docx-pdf'")
-    version: Optional[str] = None
     trough_conversion: bool = False
     environment_off: bool = False
     tmp_dir: Optional[str] = None
     report_path: Optional[str] = Field(init=False, default=None)
     timestamp: bool = Field(init=False, default=False)
     fonts_dir: Optional[str] = Field(init=False, default=None)
-    errors_only: bool = Field(init=False)
+    errors_only: bool = Field(init=False, default=True)
     x2t_version: Optional[str] = Field(init=False, default=None)
 
     @model_validator(mode="after")
     def set_computed_fields(self):
-        self.x2t_version = VersionHandler(self.version or X2t.version(self.core_dir)).version
+        self.core_dir = self.core_dir or StaticData.core_dir()
+        self.x2t_version = VersionHandler(X2t.version(self.core_dir)).version
         self.tmp_dir = File.unique_name(self.tmp_dir or gettempdir())
         self.report_path = self._get_tmp_report_path(self.tmp_dir)
         self.cores = self.cores or config.cores
