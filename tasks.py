@@ -22,7 +22,7 @@ if HostInfo().os == 'windows':
 
 @task
 def download_core(c, force: bool = False, version: str = None):
-    version = version if version else config.version if config.version else Prompt.ask("Please enter version")
+    version = version or config.version if config.version else Prompt.ask("Please enter version")
     Core(version).getting(force=force)
 
 
@@ -45,6 +45,7 @@ def conversion_test(
         x2t_limits: int = None,
         out_x2ttester_param: bool = False
 ):
+    version = version or config.version if config.version else Prompt.ask("Please enter version")
     download_core(c, version=version)
 
     if x2t_limits and not env_off:
@@ -78,13 +79,14 @@ def conversion_test(
     results_msg = (
         f"Conversion completed\n"
         f"Mode: `{'Quick Check' if quick_check else 'Full test'}`"
-        f"Version: `{X2t.version(cnfg.core_dir)}`\n"
+        f"Version: `{version}`\n"
+        f"X2t version: `{cnfg.x2t_version}`\n"
         f"Platform: `{HostInfo().os}`\n"
         f"Execution time: `{((time.perf_counter() - start_time) / 60):.02f} min`"
     )
 
     if report:
-        conversion.report.handler(report, cnfg.x2t_version, tg_msg=results_msg if telegram else None)
+        conversion.report.handler(report_path=report, tg_msg=results_msg if telegram else None)
 
     print(f"[green]{'-' * 90}\n|INFO|{results_msg}\n{'-' * 90}")
 
@@ -101,6 +103,7 @@ def make_files(
         full: bool = False,
         out_x2ttester_param: bool = False
 ):
+    version = version or config.version if config.version else Prompt.ask("Please enter version")
     download_core(c, version=version)
 
     cnfg = X2ttesterTestConfig(
@@ -125,13 +128,14 @@ def make_files(
 
     tg_msg = (
         f"Files for open test converted\n"
-        f"Version: `{X2t.version(cnfg.core_dir)}`\n"
+        f"Version: `{version}`\n"
+        f"X2t version: `{cnfg.x2t_version}`\n"
         f"Platform: `{HostInfo().os}`\n"
         f"Mode: `{'t-format' if t_format else 'Default'}`"
     ) if telegram else None
 
-    conversion.report.handler(report, cnfg.x2t_version, tg_msg=tg_msg) if report else print("[red] Report not exists")
-    print(f"[bold red]\n{'-' * 90}\n|INFO| x2t version: {cnfg.x2t_version}\n{'-' * 90}")
+    conversion.report.handler(report, tg_msg=tg_msg) if report else print("[red] Report not exists")
+    print(f"[bold red]\n{'-' * 90}\n|INFO| x2t version: {X2t.version(cnfg.core_dir)}\n{'-' * 90}")
 
 
 @task

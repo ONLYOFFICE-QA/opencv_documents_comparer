@@ -53,7 +53,7 @@ class X2tTesterConversion:
             reports.append(self.run(results_path=True))
             Dir.delete(self.config.tmp_dir, clear_dir=True)
 
-        return self.report.merge_reports(reports, self.config.x2t_version)
+        return self.report.merge_reports(reports)
 
     def get_quick_check_files(self) -> list:
         return sum([array for _, array in File.read_json(self.QUICK_CHECK_FILES_PATH).items()], [])

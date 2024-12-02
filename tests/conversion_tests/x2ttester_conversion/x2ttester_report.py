@@ -32,18 +32,19 @@ class X2ttesterReport(Report):
 
     def __init__(self, test_config: X2ttesterTestConfig):
         super().__init__()
+        self.config = test_config
         self.reports_dir = test_config.reports_dir
         self.tmp_dir = test_config.tmp_dir
         self.errors_only: bool = test_config.errors_only
         self.os = HostInfo().os
 
-    def path(self, x2t_version: str) -> str:
-        dir_path = join(self.reports_dir, VersionHandler(x2t_version).without_build, "conversion", self.os)
+    def path(self) -> str:
+        dir_path = join(self.reports_dir, VersionHandler(self.config.x2t_version).without_build, "conversion", self.os)
         Dir.create(dir_path, stdout=False)
-        return join(dir_path, f"{x2t_version}_{datetime.now().strftime('%H_%M_%S')}.csv")
+        return join(dir_path, f"{self.config.x2t_version}_{datetime.now().strftime('%H_%M_%S')}.csv")
 
-    def merge_reports(self, x2ttester_report: list, x2t_version: str) -> str | None:
-        return self.merge(list(filter(lambda x: x is not None, x2ttester_report)), self.path(x2t_version))
+    def merge_reports(self, x2ttester_report: list) -> str | None:
+        return self.merge(list(filter(lambda x: x is not None, x2ttester_report)), self.path())
 
     @staticmethod
     def _print_results(df, errors: list, passed_num: int | str, report_path: str) -> None:
@@ -54,7 +55,7 @@ class X2ttesterReport(Report):
             f"[cyan]\n{'-' * 90}\nReport path: {report_path}\n{'-' * 90}\n"
         )
 
-    def handler(self, report_path: str, x2t_version: str, tg_msg: str = None) -> None:
+    def handler(self, report_path: str, tg_msg: str = None) -> None:
         df = self.read(report_path)
         df.rename(columns=self.__columns_names, inplace=True)
         df = df.drop(columns=['Log', 'Input_size', 'Output_file'], axis=1)
@@ -68,14 +69,14 @@ class X2ttesterReport(Report):
         self._add_to_end(df, 'BugInfo', f"Errors: {errors_list}")
         self._add_to_end(df, 'BugInfo', f"Passed: {passed_num}")
 
-        processed_report = self.save_csv(df, self.path(x2t_version))
+        processed_report = self.save_csv(df, self.path())
         self._print_results(df, errors_list, passed_num, report_path)
 
         if tg_msg:
             self._send_to_telegram(
                 [
-                    self._rename_report_for_tg(processed_report, f'{x2t_version}_errors_only.csv'),
-                    self._rename_report_for_tg(report_path, f'{x2t_version}_full.csv'),
+                    self._rename_report_for_tg(processed_report, f'{self.config.x2t_version}_errors_only.csv'),
+                    self._rename_report_for_tg(report_path, f'{self.config.x2t_version}_full.csv'),
                 ],
                 f"{tg_msg}\n\nStatus: `{'Some files have errors' if errors_list else 'All tests passed'}`"
             )
