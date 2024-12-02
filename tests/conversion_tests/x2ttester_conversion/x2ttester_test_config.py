@@ -31,6 +31,7 @@ class X2ttesterTestConfig(BaseModel):
     fonts_dir: Optional[str] = Field(init=False, default=None)
     errors_only: bool = Field(init=False, default=True)
     x2t_version: Optional[str] = Field(init=False, default=None)
+    out_x2ttester_param: bool = False
 
     @model_validator(mode="after")
     def set_computed_fields(self):

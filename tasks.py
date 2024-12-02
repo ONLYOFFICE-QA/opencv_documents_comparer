@@ -42,7 +42,8 @@ def conversion_test(
         t_format: bool = False,
         env_off: bool = False,
         quick_check: bool = False,
-        x2t_limits: int = None
+        x2t_limits: int = None,
+        out_x2ttester_param: bool = False
 ):
     download_core(c, version=version)
 
@@ -51,10 +52,11 @@ def conversion_test(
 
     cnfg = X2ttesterTestConfig(
         cores=cores,
-        delete=False,
+        delete=True,
         direction=direction,
         environment_off=env_off,
-        trough_conversion=t_format
+        trough_conversion=t_format,
+        out_x2ttester_param=out_x2ttester_param
     )
 
     print(
@@ -96,7 +98,8 @@ def make_files(
         version: str = None,
         t_format: bool = False,
         env_off: bool = False,
-        full: bool = False
+        full: bool = False,
+        out_x2ttester_param: bool = False
 ):
     download_core(c, version=version)
 
@@ -105,7 +108,8 @@ def make_files(
         delete=False,
         direction=direction,
         environment_off=env_off,
-        trough_conversion=t_format
+        trough_conversion=t_format,
+        out_x2ttester_param=out_x2ttester_param
     )
 
     print(f"[bold green]|INFO| The files will be converted to x2t versions: [red]{cnfg.x2t_version}")
