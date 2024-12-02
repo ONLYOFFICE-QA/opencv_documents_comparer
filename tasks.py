@@ -70,7 +70,7 @@ def conversion_test(
     conversion = X2tTesterConversion(test_config=cnfg)
     files_list = conversion.get_quick_check_files() if quick_check else config.files_array if ls else None
     object_keys = [f"{name.split('.')[-1].lower()}/{name}" for name in files_list] if files_list else None
-    S3Downloader(download_dir=config.source_docs).download_all(objects=object_keys)
+    S3Downloader(download_dir=cnfg.input_dir).download_all(objects=object_keys)
 
     start_time = time.perf_counter()
     report = conversion.from_files_list(files_list) if files_list else conversion.run()
