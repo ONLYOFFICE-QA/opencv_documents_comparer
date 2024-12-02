@@ -5,13 +5,13 @@ from host_tools import File, HostInfo
 from host_tools.utils import Dir
 from rich.progress import track
 
-from .test_config import TestConfig
+from .x2ttester_test_config import X2ttesterTestConfig
 
 
 class ResultsHandler:
     img_formats = ["png", "jpg", "bmp", "gif"]
 
-    def __init__(self,test_config: TestConfig):
+    def __init__(self,test_config: X2ttesterTestConfig):
         self.tmp_dir = test_config.tmp_dir
         self.trough_conversion = test_config.trough_conversion
         self.result_dir = test_config.result_dir

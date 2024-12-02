@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
+import os
 from datetime import datetime
-from os.path import join, dirname, realpath
+from os.path import join
 
 from host_tools.utils import Dir
 from rich import print
@@ -12,13 +13,13 @@ from frameworks.report import Report
 
 from telegram import Telegram
 
+from .x2ttester_test_config import X2ttesterTestConfig
 
-from .test_config import TestConfig
 
 
 @singleton
 class X2ttesterReport(Report):
-    # exceptions = File.read_json(f"{dirname(realpath(__file__))}/../assets/conversion_exception.json")
+    exceptions = File.read_json(join(os.getcwd(), 'tests', 'assets', 'conversion_exception.json'))
     __columns_names = {
         'Input file': 'Input_file',
         'Output file': 'Output_file',
@@ -29,7 +30,7 @@ class X2ttesterReport(Report):
         'Time': 'Time'
     }
 
-    def __init__(self, test_config: TestConfig):
+    def __init__(self, test_config: X2ttesterTestConfig):
         super().__init__()
         self.reports_dir = test_config.reports_dir
         self.tmp_dir = test_config.tmp_dir

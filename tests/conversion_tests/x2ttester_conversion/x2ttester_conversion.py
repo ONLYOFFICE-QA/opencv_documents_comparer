@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-
-from os.path import join, dirname, realpath
+import os
+from os.path import join, dirname
 from rich import print
 
 
@@ -10,15 +10,16 @@ from host_tools import File, Dir
 
 from .x2ttester_report import X2ttesterReport
 from .results_handler import ResultsHandler
-from .test_config import TestConfig
+from .x2ttester_test_config import X2ttesterTestConfig
 
 
 
 class X2tTesterConversion:
-    QUICK_CHECK_FILES_PATH = join(dirname(realpath(__file__)), 'assets', 'quick_check_files.json')
-    EXTENSIONS_FILE_PATH = join(dirname(realpath(__file__)), 'assets', 'extension_array.json')
+    TEST_ASSETS_DIR = join(os.getcwd(), 'tests', 'assets')
+    QUICK_CHECK_FILES_PATH = join(TEST_ASSETS_DIR, 'quick_check_files.json')
+    EXTENSIONS_FILE_PATH = join(TEST_ASSETS_DIR, 'extension_array.json')
 
-    def __init__(self, test_config: TestConfig):
+    def __init__(self, test_config: X2ttesterTestConfig):
         self.config = test_config
         self.input_formats, self.output_formats = self._getting_formats(self.config.direction)
         self.report = X2ttesterReport(self.config)
