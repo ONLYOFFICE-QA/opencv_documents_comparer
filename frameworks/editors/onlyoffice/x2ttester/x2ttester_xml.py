@@ -55,7 +55,7 @@ class X2tTesterXml:
             ET.SubElement(root, "file_name").text = file
         return root
 
-    def parameters(self, input_format: str = None, output_format: str = None, files: list = None) -> ET.Element:
+    def parameters(self, input_format: str = None, output_format: str = None, files: str = None) -> ET.Element:
         """
         Creates XML settings for X2tTester based on the provided configuration.
         :param input_format: Input file format.
