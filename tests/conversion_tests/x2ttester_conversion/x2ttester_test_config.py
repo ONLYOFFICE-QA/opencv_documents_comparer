@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from os.path import dirname
+from os.path import dirname, join
 from tempfile import gettempdir
 
 from host_tools import File
@@ -45,7 +45,7 @@ class X2ttesterTestConfig(BaseModel):
         self.timestamp = config.timestamp
         self.delete = config.delete if self.delete is None else self.delete
         self.errors_only = config.errors_only
-        self.output_dir = self.tmp_dir
+        self.output_dir = join(self.tmp_dir, 'cnv')
         self.result_dir = self.result_dir or StaticData.result_dir()
         self.input_dir = self.input_dir or StaticData.documents_dir()
         self.fonts_dir = StaticData.fonts_dir()
