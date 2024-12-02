@@ -36,6 +36,7 @@ class X2ttesterTestConfig(BaseModel):
     @model_validator(mode="after")
     def set_computed_fields(self):
         self.core_dir = self.core_dir or StaticData.core_dir()
+        self.reports_dir = self.reports_dir or StaticData.reports_dir()
         self.x2t_version = VersionHandler(X2t.version(self.core_dir)).version
         self.tmp_dir = File.unique_name(self.tmp_dir or gettempdir())
         self.report_path = self._get_tmp_report_path(self.tmp_dir)
