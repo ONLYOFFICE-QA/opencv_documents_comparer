@@ -319,5 +319,19 @@
     "files": [
       "Reducing_Costs_and_Maximizing_Revenue_with_Office_Business_Applications_(OBA).pptx"
     ]
+  },
+    "71927": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=71927",
+    "description": "",
+    "os": [],
+    "directions": [
+      "ppt-pptt",
+      "ppt-jpg",
+      "ppt-png",
+      "ppt-pdf"
+    ],
+    "files": [
+      "user_file123.ppt"
+    ]
   }
 }
