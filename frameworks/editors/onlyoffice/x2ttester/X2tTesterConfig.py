@@ -11,9 +11,9 @@ class X2tTesterConfig(BaseModel):
     output_dir: str
     core_dir: str
     report_path: str
-    fonts_dir: Optional[str] = None
+    timeout: int
     cores: int = 1
-    timeout: Optional[int] = None
+    fonts_dir: Optional[str] = None
     timestamp: bool = True
     delete: bool = False
     errors_only: bool = False

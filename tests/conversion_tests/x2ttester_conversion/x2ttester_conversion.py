@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-import os
-from os.path import join, dirname
+from os.path import dirname
+from pathlib import Path
+
 from rich import print
 
 
@@ -15,14 +16,14 @@ from .x2ttester_test_config import X2ttesterTestConfig
 
 
 class X2tTesterConversion:
-    TEST_ASSETS_DIR = join(os.getcwd(), 'tests', 'assets')
-    QUICK_CHECK_FILES_PATH = join(TEST_ASSETS_DIR, 'quick_check_files.json')
-    EXTENSIONS_FILE_PATH = join(TEST_ASSETS_DIR, 'extension_array.json')
+    TEST_ASSETS_DIR = Path(__file__).resolve().parents[2] / 'assets'
+    QUICK_CHECK_FILES_PATH = str(TEST_ASSETS_DIR / 'quick_check_files.json')
+    EXTENSIONS_FILE_PATH = str(TEST_ASSETS_DIR / 'extension_array.json')
+    EXCEPTIONS_JSON = str(TEST_ASSETS_DIR / 'conversion_exception.json')
 
     def __init__(self, test_config: X2ttesterTestConfig):
         self.config = test_config
-        self.input_formats, self.output_formats = self._getting_formats(self.config.direction)
-        self.report = X2ttesterReport(self.config)
+        self.report = X2ttesterReport(self.config, exceptions_json=File.read_json(self.EXCEPTIONS_JSON))
         self.x2ttester = X2tTester(config=X2tTesterConfig(**self.config.model_dump()))
         self.results_handler = ResultsHandler(self.config)
 
@@ -33,21 +34,21 @@ class X2tTesterConversion:
         if True the path will be generated automatically, based on x2t version and configurable options
         :param list_xml: str — the path to the xml file with the names of the files for the test
         """
-        self.x2ttester.conversion(self.input_formats, self.output_formats, listxml_path=list_xml)
-        self.results_handler.run(results_path, self.output_formats) if results_path is not False else ...
+        self.x2ttester.conversion(self.config.input_formats, self.config.output_formats, listxml_path=list_xml)
+        self.results_handler.run(results_path, self.config.output_formats) if results_path is not False else ...
         return File.last_modified(dirname(self.config.report_path))
 
     @timer
     def from_extension_json(self) -> str | None:
         reports = []
         for output_format, inout_formats in File.read_json(self.EXTENSIONS_FILE_PATH).items():
-            self.output_formats = output_format
-            self.input_formats = " ".join(inout_formats) if inout_formats else None
+            self.config.output_formats = output_format
+            self.config.input_formats = " ".join(inout_formats) if inout_formats else None
 
             print(
                 f"[green]|INFO| Conversion direction: "
-                f"[cyan]{self.input_formats if self.input_formats else 'All'} "
-                f"[red]to [cyan]{self.output_formats}"
+                f"[cyan]{self.config.input_formats if self.config.input_formats else 'All'} "
+                f"[red]to [cyan]{self.config.output_formats}"
             )
 
             reports.append(self.run(results_path=True))
@@ -67,11 +68,3 @@ class X2tTesterConversion:
         report = self.run(list_xml=xml)
         File.delete(xml)
         return report
-
-    @staticmethod
-    def _getting_formats(direction: str | None = None) -> tuple[None | str, None | str]:
-        if direction:
-            if '-' in direction:
-                return direction.split('-')[0], direction.split('-')[1]
-            return None, direction
-        return None, None

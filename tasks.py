@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import time
-from os import environ
 
 from invoke import task
 from rich import print
@@ -14,7 +13,7 @@ from frameworks.editors.onlyoffice import Core, X2t
 from telegram import Telegram
 
 from frameworks.s3 import S3Downloader
-from tests import X2tTesterConversion, X2ttesterTestConfig
+from tests import X2tTesterConversion, X2ttesterTestConfig, ConversionTestInfo
 
 if HostInfo().os == 'windows':
     from tests import CompareTest, OpenTests
@@ -45,11 +44,8 @@ def conversion_test(
         x2t_limits: int = None,
         out_x2ttester_param: bool = False
 ):
-    version = version or config.version if config.version else Prompt.ask("Please enter version")
+    version = version or config.version or Prompt.ask("Please enter version")
     download_core(c, version=version)
-
-    if x2t_limits and not env_off:
-        environ['X2T_MEMORY_LIMIT'] = f"{x2t_limits}GiB"
 
     cnfg = X2ttesterTestConfig(
         cores=cores,
@@ -57,16 +53,12 @@ def conversion_test(
         direction=direction,
         environment_off=env_off,
         trough_conversion=t_format,
-        out_x2ttester_param=out_x2ttester_param
+        out_x2ttester_param=out_x2ttester_param,
+        x2t_memory_limits=x2t_limits
     )
 
-    print(
-        f"[bold green]|INFO| The conversion is running on x2t version: [red]{cnfg.x2t_version}[/]\n"
-        f"|INFO| Mode: "
-        f"{'[cyan]Quick Check' if quick_check else '[red]Full test' if not ls else '[magenta]From array'}[/]\n"
-        f"|INFO| X2t memory limit: [cyan]{environ.get('X2T_MEMORY_LIMIT', 'Default 4GIB')}[/]\n"
-        f"|INFO| Environment: [cyan]{'True' if not env_off else 'False'}[/]"
-    )
+    info = ConversionTestInfo(x2t_version=cnfg.x2t_version, quick_check=quick_check, env_off=env_off, ls=ls)
+    info.out_conversion_test_info(mode='Quick Check' if quick_check else 'Full test' if not ls else 'From array')
 
     conversion = X2tTesterConversion(test_config=cnfg)
     files_list = conversion.get_quick_check_files() if quick_check else config.files_array if ls else None
@@ -75,20 +67,12 @@ def conversion_test(
 
     start_time = time.perf_counter()
     report = conversion.from_files_list(files_list) if files_list else conversion.run()
+    execution_time = f"{((time.perf_counter() - start_time) / 60):.02f)}"
 
-    results_msg = (
-        f"Conversion completed\n"
-        f"Mode: `{'Quick Check' if quick_check else 'Full test'}`"
-        f"Version: `{version}`\n"
-        f"X2t version: `{cnfg.x2t_version}`\n"
-        f"Platform: `{HostInfo().os}`\n"
-        f"Execution time: `{((time.perf_counter() - start_time) / 60):.02f} min`"
-    )
+    results_msg = info.get_conversion_results_msg(version, execution_time)
 
     if report:
         conversion.report.handler(report_path=report, tg_msg=results_msg if telegram else None)
-
-    print(f"[green]{'-' * 90}\n|INFO|{results_msg}\n{'-' * 90}")
 
 
 @task
@@ -103,7 +87,7 @@ def make_files(
         full: bool = False,
         out_x2ttester_param: bool = False
 ):
-    version = version or config.version if config.version else Prompt.ask("Please enter version")
+    version = version or config.version or Prompt.ask("Please enter version")
     download_core(c, version=version)
 
     cnfg = X2ttesterTestConfig(
@@ -114,8 +98,9 @@ def make_files(
         trough_conversion=t_format,
         out_x2ttester_param=out_x2ttester_param
     )
+    info = ConversionTestInfo(x2t_version=cnfg.x2t_version, env_off=env_off)
+    info.out_conversion_test_info(mode='Make files for openers')
 
-    print(f"[bold green]|INFO| The files will be converted to x2t versions: [red]{cnfg.x2t_version}")
     S3Downloader(download_dir=cnfg.input_dir).download_all()
 
     conversion = X2tTesterConversion(cnfg)
@@ -126,14 +111,7 @@ def make_files(
         conversion = X2tTesterConversion(cnfg)
         report = conversion.run(results_path=True) if direction else conversion.from_extension_json()
 
-    tg_msg = (
-        f"Files for open test converted\n"
-        f"Version: `{version}`\n"
-        f"X2t version: `{cnfg.x2t_version}`\n"
-        f"Platform: `{HostInfo().os}`\n"
-        f"Mode: `{'t-format' if t_format else 'Default'}`"
-    ) if telegram else None
-
+    tg_msg = info.get_make_files_result_msg(version=version, t_format=t_format) if telegram else None
     conversion.report.handler(report, tg_msg=tg_msg) if report else print("[red] Report not exists")
     print(f"[bold red]\n{'-' * 90}\n|INFO| x2t version: {X2t.version(cnfg.core_dir)}\n{'-' * 90}")
 
@@ -175,8 +153,9 @@ def open_test(
         new_test:  bool = False,
         fast_test: bool = False
 ):
-    _version = version or config.version
-    opener = OpenTests(_version, continue_test=False if fast_test or path or new_test or ls else True)
+    version = version or config.version or Prompt.ask("Please enter version")
+
+    opener = OpenTests(version, continue_test=False if fast_test or path or new_test or ls else True)
     source_ext, converted_ext = opener.getting_formats(direction)
 
     if new_test:
@@ -189,10 +168,10 @@ def open_test(
         File.get_paths(
             path=path if path else config.converted_docs,
             extension=converted_ext if converted_ext else None,
-            dir_include=f"{config.version}_(dir_{source_ext}" if source_ext else config.version if not path else None,
+            dir_include=f"{version}_(dir_{source_ext}" if source_ext else version if not path else None,
             names=config.files_array if ls else None,
             exceptions_files=StaticData.ignore_files,
             exceptions_dirs=StaticData.ignore_dirs
         ),
-        tg_msg=f"Opening test completed\nVersion: {config.version}" if telegram else False
+        tg_msg=f"Opening test completed\nVersion: {version}" if telegram else False
     )

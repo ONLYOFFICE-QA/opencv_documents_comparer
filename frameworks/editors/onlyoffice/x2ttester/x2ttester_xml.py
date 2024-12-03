@@ -84,7 +84,9 @@ class X2tTesterXml:
         if self.config.fonts_dir:
             if isdir(self.config.fonts_dir) and any(scandir(self.config.fonts_dir)):
                 print(f"[bold green]|INFO| Custom fonts will be generated.")
-                ET.SubElement(ET.SubElement(root, "fonts", system="0"), "directory").text = self.config.fonts_dir
+                ET.SubElement(
+                    ET.SubElement(root, "fonts", system="0"), "directory"
+                ).text = self.config.fonts_dir
             else:
                 print(f"[bold bright_cyan]|INFO| System fonts will be generated.")
         return root

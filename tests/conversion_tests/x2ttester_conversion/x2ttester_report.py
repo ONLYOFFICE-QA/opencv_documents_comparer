@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import json
 import os
 from datetime import datetime
 from os.path import join
@@ -19,7 +20,6 @@ from .x2ttester_test_config import X2ttesterTestConfig
 
 @singleton
 class X2ttesterReport(Report):
-    exceptions = File.read_json(join(os.getcwd(), 'tests', 'assets', 'conversion_exception.json'))
     __columns_names = {
         'Input file': 'Input_file',
         'Output file': 'Output_file',
@@ -30,12 +30,11 @@ class X2ttesterReport(Report):
         'Time': 'Time'
     }
 
-    def __init__(self, test_config: X2ttesterTestConfig):
+    def __init__(self, test_config: X2ttesterTestConfig, exceptions_json: json):
         super().__init__()
         self.config = test_config
-        self.reports_dir = test_config.reports_dir
-        self.tmp_dir = test_config.tmp_dir
-        self.errors_only: bool = test_config.errors_only
+        self.reports_dir = self.config.reports_dir
+        self.exceptions = exceptions_json
         self.os = HostInfo().os
 
     def path(self) -> str:
@@ -88,7 +87,7 @@ class X2ttesterReport(Report):
         return new_path
 
     def _errors_list(self, df) -> list:
-        errors = df[df.Output_size == 0.0] if not self.errors_only else df
+        errors = df[df.Output_size == 0.0] if not self.config.errors_only else df
         mask = (errors.BugInfo == 0)
         return errors.loc[mask, 'Input_file'].unique().tolist()
 

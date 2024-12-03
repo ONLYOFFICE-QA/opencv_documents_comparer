@@ -19,7 +19,7 @@ class X2tTester:
         self.x2ttester_path = join(self.config.core_dir, HostConfig().x2ttester)
         self.xml = X2tTesterXml(self.config)
 
-    def conversion(self, input_format: str, output_format: str, listxml_path: str = None) -> None:
+    def conversion(self, input_format: str = None, output_format: str = None, listxml_path: str = None) -> None:
         """
         Performs file conversion using X2tTester.
         :param input_format: Input file format.
@@ -40,7 +40,7 @@ class X2tTester:
         if not exists(self.x2ttester_path):
             raise FileNotFoundError(f"[bold red]|ERROR| X2tTester does not exist on the path: {self.x2ttester_path}")
 
-    def create_param_xml(self, input_format: str, output_format: str, listxml_path: str = None) -> str:
+    def create_param_xml(self, input_format: str = None, output_format: str = None, listxml_path: str = None) -> str:
         """
         Creates parameter XML file for conversion.
         :param input_format: Input file format.

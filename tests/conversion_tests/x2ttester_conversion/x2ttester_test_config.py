@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from os import environ
 from os.path import dirname, join
 from tempfile import gettempdir
 
@@ -31,7 +32,10 @@ class X2ttesterTestConfig(BaseModel):
     fonts_dir: Optional[str] = Field(init=False, default=None)
     errors_only: bool = Field(init=False, default=True)
     x2t_version: Optional[str] = Field(init=False, default=None)
+    output_formats: Optional[str] = Field(init=False, default=None)
+    input_formats: Optional[str] = Field(init=False, default=None)
     out_x2ttester_param: bool = False
+    x2t_memory_limits: Optional[int] = None
 
     @model_validator(mode="after")
     def set_computed_fields(self):
@@ -49,6 +53,8 @@ class X2ttesterTestConfig(BaseModel):
         self.result_dir = self.result_dir or StaticData.result_dir()
         self.input_dir = self.input_dir or StaticData.documents_dir()
         self.fonts_dir = StaticData.fonts_dir()
+        self.input_formats, self.output_formats = self._getting_formats(self.direction)
+        self._set_x2t_memory_limits()
         return self
 
     @staticmethod
@@ -56,3 +62,15 @@ class X2ttesterTestConfig(BaseModel):
         tmp_report = File.unique_name(File.unique_name(tmp_dir), 'csv')
         Dir.create(dirname(tmp_report), stdout=False)
         return tmp_report
+
+    @staticmethod
+    def _getting_formats(direction: str | None = None) -> tuple[None | str, None | str]:
+        if direction:
+            if '-' in direction:
+                return direction.split('-')[0], direction.split('-')[1]
+            return None, direction
+        return None, None
+
+    def _set_x2t_memory_limits(self):
+        if self.x2t_memory_limits and not self.environment_off:
+            environ['X2T_MEMORY_LIMIT'] = f"{self.x2t_memory_limits}GiB"
