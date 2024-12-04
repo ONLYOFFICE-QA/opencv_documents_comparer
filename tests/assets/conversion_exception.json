@@ -345,5 +345,21 @@
     "files": [
       "Диплом (Денис1) (послередактора).docx"
     ]
+  },
+  "71944": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=71944",
+    "description": "",
+    "os": [],
+    "directions": [
+      "pptx-odp",
+      "pptx-otp",
+      "xlsx-ods",
+      "xlsx-ots"
+    ],
+    "files": [
+      "Contoso-Presentation.pptx",
+      "Contoso_GoogleCompete_PPT_IW_Final.pptx",
+      "Editor2.xlsx"
+    ]
   }
 }
