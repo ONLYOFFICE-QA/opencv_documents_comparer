@@ -370,5 +370,21 @@
     "files": [
       "conv___Kk8yhiX4oev7cZUS5fF29P1mxzwgM9uaT8J_UcmZA__xlsx.xls"
     ]
+  },
+  "71947": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=71947",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xlsx-png",
+      "xlsx-jpg",
+      "xlsx-pdf",
+      "xlsm-png",
+      "xlsm-jpg",
+      "xlsm-pdf"
+    ],
+    "files": [
+      "conv_36ZwDkH8Q0kFChhJ8DEZHvkAkEuO2Jj3FnQSfCxz9M8__jpg.xlsm"
+    ]
   }
 }
