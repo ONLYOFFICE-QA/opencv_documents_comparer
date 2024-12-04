@@ -361,5 +361,14 @@
       "Contoso_GoogleCompete_PPT_IW_Final.pptx",
       "Editor2.xlsx"
     ]
+  },
+  "71946": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=71946",
+    "description": "",
+    "os": [],
+    "directions": [],
+    "files": [
+      "conv___Kk8yhiX4oev7cZUS5fF29P1mxzwgM9uaT8J_UcmZA__xlsx.xls"
+    ]
   }
 }
