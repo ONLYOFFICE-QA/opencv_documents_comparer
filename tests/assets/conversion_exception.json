@@ -333,5 +333,17 @@
     "files": [
       "user_file123.ppt"
     ]
+  },
+  "71943": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=71943",
+    "description": "",
+    "os": [],
+    "directions": [
+      "docx-odt",
+      "docx-ott"
+    ],
+    "files": [
+      "Диплом (Денис1) (послередактора).docx"
+    ]
   }
 }
