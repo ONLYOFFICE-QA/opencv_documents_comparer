@@ -354,11 +354,14 @@
       "pptx-odp",
       "pptx-otp",
       "xlsx-ods",
-      "xlsx-ots"
+      "xlsx-ots",
+      "odp-otp"
     ],
     "files": [
       "Contoso-Presentation.pptx",
       "Contoso_GoogleCompete_PPT_IW_Final.pptx",
+      "Графические формулы.odp",
+      "UCSC09.odp",
       "Editor2.xlsx"
     ]
   },
@@ -384,7 +387,8 @@
       "xlsm-pdf"
     ],
     "files": [
-      "conv_36ZwDkH8Q0kFChhJ8DEZHvkAkEuO2Jj3FnQSfCxz9M8__jpg.xlsm"
+      "conv_36ZwDkH8Q0kFChhJ8DEZHvkAkEuO2Jj3FnQSfCxz9M8__jpg.xlsm",
+      "Book 16.xlsx"
     ]
   }
 }
