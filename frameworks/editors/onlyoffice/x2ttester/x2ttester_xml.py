@@ -55,7 +55,7 @@ class X2tTesterXml:
             ET.SubElement(root, "file_name").text = file
         return root
 
-    def parameters(self, input_format: str = None, output_format: str = None, files: list = None) -> ET.Element:
+    def parameters(self, input_format: str = None, output_format: str = None, files: str = None) -> ET.Element:
         """
         Creates XML settings for X2tTester based on the provided configuration.
         :param input_format: Input file format.
@@ -119,7 +119,7 @@ class X2tTesterXml:
         Generates the path to the x2t executable.
         :return: Path to the x2t executable.
         """
-        x2t_path = join(self.config.x2ttester_dir, self.host.x2t)
+        x2t_path = join(self.config.core_dir, self.host.x2t)
         if not isfile(x2t_path):
             raise X2tTesterXmlException(f'[bold red]|ERROR| Check the existence of x2t, path: {x2t_path}')
         return x2t_path

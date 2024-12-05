@@ -15,9 +15,9 @@ class X2tTester:
         Initializes the X2tTester object.
         :param config: Configuration object for X2tTester.
         """
-        self.x2ttester_dir = config.x2ttester_dir
-        self.x2ttester_path = join(self.x2ttester_dir, HostConfig().x2ttester)
-        self.xml = X2tTesterXml(config)
+        self.config = config
+        self.x2ttester_path = join(self.config.core_dir, HostConfig().x2ttester)
+        self.xml = X2tTesterXml(self.config)
 
     def conversion(self, input_format: str, output_format: str, listxml_path: str = None) -> None:
         """
@@ -27,7 +27,7 @@ class X2tTester:
         :param listxml_path: Path to the list.xml file. Defaults to None.
         """
         self.check_x2ttester_exists()
-        chdir(self.x2ttester_dir)
+        chdir(self.config.core_dir)
         param_xml = self.create_param_xml(input_format, output_format, listxml_path)
         sb.call(f"{self.x2ttester_path} {param_xml}", shell=True)
         File.delete(param_xml, stdout=False)
@@ -49,6 +49,6 @@ class X2tTester:
         :returns: Path to the created XML file.
         """
         return self.xml.create(
-            self.xml.parameters(input_format, output_format, listxml_path),
-            File.unique_name(self.x2ttester_dir, '.xml')
+            self.xml.parameters(input_format=input_format, output_format=output_format, files=listxml_path),
+            File.unique_name(self.config.core_dir, '.xml')
         )
