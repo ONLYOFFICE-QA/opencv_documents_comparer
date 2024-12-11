@@ -331,5 +331,14 @@
     "files": [
       "Pembahasan Kemampuan Dasar.docx"
     ]
+  },
+  "72046": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72046",
+    "description": "",
+    "os": [],
+    "directions": [],
+    "files": [
+      "100M.txt"
+    ]
   }
 }
