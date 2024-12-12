@@ -449,5 +449,23 @@
       "amicro.xlsx",
       "amicro_tableau.xlsx"
     ]
+  },
+  "72065": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72065",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "ppt-pptx"
+    ],
+    "files": [
+      "2007_07_WT_07_CH_R.pptx",
+      "Chiro_info.pptx",
+      "Local_set.pptx",
+      "programacion_2010.pptx",
+      "Verso_Painel_11e.pptx"
+    ]
   }
 }
