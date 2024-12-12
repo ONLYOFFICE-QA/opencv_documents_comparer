@@ -467,5 +467,19 @@
       "programacion_2010.pptx",
       "Verso_Painel_11e.pptx"
     ]
+  },
+  "72067": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72067",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "xlsb-xlsx"
+    ],
+    "files": [
+      "pivotsources.xlsx"
+    ]
   }
 }
