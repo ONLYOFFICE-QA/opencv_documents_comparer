@@ -420,5 +420,19 @@
     "files": [
       "Apache CloudStack Template 062813.pptx"
     ]
+  },
+  "72062": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72062",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "csv-xlsx"
+    ],
+    "files": [
+      "all[cpUTF-8][del%2c].xlsx"
+    ]
   }
 }
