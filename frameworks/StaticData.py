@@ -2,6 +2,7 @@
 from dataclasses import dataclass
 from os import getcwd
 from os.path import join
+from rich import print
 
 import config
 
@@ -9,7 +10,6 @@ import config
 @dataclass(frozen=True)
 class StaticData:
     project_dir: str = getcwd()
-    results: str = join(project_dir, 'results')
     logs_dir: str = join(project_dir, 'logs')
 
     # tmp
@@ -30,7 +30,9 @@ class StaticData:
 
     @classmethod
     def documents_dir(cls):
-        return config.source_docs if config.source_docs else join(cls.project_dir, 'documents')
+        if not config.source_docs:
+            raise print(f"[red]|ERROR| Specify the 'source_docs folder' with the documents to be converted")
+        return config.source_docs
 
     @classmethod
     def core_dir(cls):
@@ -46,4 +48,4 @@ class StaticData:
 
     @classmethod
     def result_dir(cls):
-        return config.converted_docs if config.converted_docs else join(cls.project_dir, 'result')
+        return config.converted_docs or join(cls.project_dir, 'result')
