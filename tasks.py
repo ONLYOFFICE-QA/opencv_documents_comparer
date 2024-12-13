@@ -67,7 +67,7 @@ def conversion_test(
 
     start_time = time.perf_counter()
     report = conversion.from_files_list(files_list) if files_list else conversion.run()
-    execution_time = f"{((time.perf_counter() - start_time) / 60):.02f)}"
+    execution_time = f"{((time.perf_counter() - start_time) / 60):.02f}"
 
     results_msg = info.get_conversion_results_msg(version, execution_time)
 
