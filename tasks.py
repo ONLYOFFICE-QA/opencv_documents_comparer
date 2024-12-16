@@ -13,7 +13,7 @@ from frameworks.editors.onlyoffice import Core, X2t
 from telegram import Telegram
 
 from frameworks.s3 import S3Downloader
-from tests import X2tTesterConversion, X2ttesterTestConfig, ConversionTestInfo
+from tests import X2tTesterConversion, X2ttesterTestConfig
 
 if HostInfo().os == 'windows':
     from tests import CompareTest, OpenTests
