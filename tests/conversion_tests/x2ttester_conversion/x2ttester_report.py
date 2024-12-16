@@ -81,7 +81,7 @@ class X2ttesterReport(Report):
             )
 
     def _rename_report_for_tg(self, report_path: str, new_name: str) -> str:
-        new_path = join(self.tmp_dir, new_name)
+        new_path = join(self.config.tmp_dir, new_name)
         File.delete(new_path, stdout=False, stderr=False)
         File.copy(report_path, new_path, stdout=False)
         return new_path
