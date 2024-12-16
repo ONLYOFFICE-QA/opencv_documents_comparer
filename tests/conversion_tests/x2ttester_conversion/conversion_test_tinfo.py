@@ -4,7 +4,7 @@ from os import environ
 from host_tools import HostInfo
 from rich import print
 
-from tests import X2ttesterTestConfig
+from .x2ttester_test_config import X2ttesterTestConfig
 
 
 class ConversionTestInfo:
