@@ -21,8 +21,7 @@ if HostInfo().os == 'windows':
 
 @task
 def download_core(c, force: bool = False, version: str = None):
-    version = version or config.version if config.version else Prompt.ask("Please enter version")
-    Core(version).getting(force=force)
+    Core(version=version or config.version or Prompt.ask("Please enter version")).getting(force=force)
 
 
 @task
@@ -44,7 +43,6 @@ def conversion_test(
         x2t_limits: int = None,
         out_x2ttester_param: bool = False
 ):
-    version = version or config.version or Prompt.ask("Please enter version")
     download_core(c, version=version)
     conversion = X2tTesterConversion(
         test_config=X2ttesterTestConfig(
@@ -86,7 +84,6 @@ def make_files(
         full: bool = False,
         out_x2ttester_param: bool = False
 ):
-    version = version or config.version or Prompt.ask("Please enter version")
     download_core(c, version=version)
     conversion = X2tTesterConversion(
         test_config=X2ttesterTestConfig(
