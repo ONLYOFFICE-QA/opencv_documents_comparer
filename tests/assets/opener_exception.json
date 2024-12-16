@@ -407,20 +407,6 @@
       "Book 72.xlsx"
     ]
   },
-  "71477": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=71477",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "odp-pptx"
-    ],
-    "files": [
-      "Apache CloudStack Template 062813.pptx"
-    ]
-  },
   "72062": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72062",
     "description": "",
@@ -433,53 +419,6 @@
     ],
     "files": [
       "all[cpUTF-8][del%2c].xlsx"
-    ]
-  },
-  "72063": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72063",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "ods-xlsx"
-    ],
-    "files": [
-      "amicro.xlsx",
-      "amicro_tableau.xlsx"
-    ]
-  },
-  "72065": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72065",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "ppt-pptx"
-    ],
-    "files": [
-      "2007_07_WT_07_CH_R.pptx",
-      "Chiro_info.pptx",
-      "Local_set.pptx",
-      "programacion_2010.pptx",
-      "Verso_Painel_11e.pptx"
-    ]
-  },
-  "72067": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72067",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "xlsb-xlsx"
-    ],
-    "files": [
-      "pivotsources.xlsx"
     ]
   }
 }
