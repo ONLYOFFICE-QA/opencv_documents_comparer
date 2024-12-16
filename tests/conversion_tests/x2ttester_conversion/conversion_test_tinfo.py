@@ -4,23 +4,18 @@ from os import environ
 from host_tools import HostInfo
 from rich import print
 
+from tests import X2ttesterTestConfig
+
 
 class ConversionTestInfo:
 
-    def __init__(
-            self,
-            x2t_version: str = None,
-            quick_check: bool = None,
-            env_off: bool = None,
-            ls: bool = None
-    ):
-        self.x2t_version = x2t_version
-        self.quick_check = quick_check
-        self.env_off = env_off
-        self.ls = ls
+    def __init__(self, test_config: X2ttesterTestConfig):
+        self.config = test_config
+        self.x2t_version = self.config.x2t_version
+        self.quick_check = self.config.quick_check
+        self.env_off = self.config.environment_off
 
-
-    def out_conversion_test_info(self, mode: str):
+    def out_test_info(self, mode: str):
         print(
             f"[bold green]|INFO| The conversion is running on x2t version: [red]{self.x2t_version}[/]\n"
             f"|INFO| Mode: [cyan]{mode}[/]\n"

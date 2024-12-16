@@ -46,30 +46,29 @@ def conversion_test(
 ):
     version = version or config.version or Prompt.ask("Please enter version")
     download_core(c, version=version)
-
-    cnfg = X2ttesterTestConfig(
-        cores=cores,
-        delete=True,
-        direction=direction,
-        environment_off=env_off,
-        trough_conversion=t_format,
-        out_x2ttester_param=out_x2ttester_param,
-        x2t_memory_limits=x2t_limits
+    conversion = X2tTesterConversion(
+        test_config=X2ttesterTestConfig(
+            cores=cores,
+            delete=True,
+            direction=direction,
+            environment_off=env_off,
+            trough_conversion=t_format,
+            out_x2ttester_param=out_x2ttester_param,
+            x2t_memory_limits=x2t_limits
+        )
     )
 
-    info = ConversionTestInfo(x2t_version=cnfg.x2t_version, quick_check=quick_check, env_off=env_off, ls=ls)
-    info.out_conversion_test_info(mode='Quick Check' if quick_check else 'Full test' if not ls else 'From array')
+    conversion.info.out_test_info(mode='Quick Check' if quick_check else 'From array' if  ls else 'Full test')
 
-    conversion = X2tTesterConversion(test_config=cnfg)
     files_list = conversion.get_quick_check_files() if quick_check else config.files_array if ls else None
     object_keys = [f"{name.split('.')[-1].lower()}/{name}" for name in files_list] if files_list else None
-    S3Downloader(download_dir=cnfg.input_dir).download_all(objects=object_keys)
+    S3Downloader(download_dir=conversion.config.input_dir).download_all(objects=object_keys)
 
     start_time = time.perf_counter()
     report = conversion.from_files_list(files_list) if files_list else conversion.run()
     execution_time = f"{((time.perf_counter() - start_time) / 60):.02f}"
 
-    results_msg = info.get_conversion_results_msg(version, execution_time)
+    results_msg = conversion.info.get_conversion_results_msg(version, execution_time)
 
     if report:
         conversion.report.handler(report_path=report, tg_msg=results_msg if telegram else None)
@@ -89,31 +88,31 @@ def make_files(
 ):
     version = version or config.version or Prompt.ask("Please enter version")
     download_core(c, version=version)
-
-    cnfg = X2ttesterTestConfig(
-        cores=cores,
-        delete=False,
-        direction=direction,
-        environment_off=env_off,
-        trough_conversion=t_format,
-        out_x2ttester_param=out_x2ttester_param
+    conversion = X2tTesterConversion(
+        test_config=X2ttesterTestConfig(
+            cores=cores,
+            delete=False,
+            direction=direction,
+            environment_off=env_off,
+            trough_conversion=t_format,
+            out_x2ttester_param=out_x2ttester_param
+        )
     )
-    info = ConversionTestInfo(x2t_version=cnfg.x2t_version, env_off=env_off)
-    info.out_conversion_test_info(mode='Make files for openers')
 
-    S3Downloader(download_dir=cnfg.input_dir).download_all()
+    conversion.info.out_test_info(mode='Make files for openers')
 
-    conversion = X2tTesterConversion(cnfg)
+    S3Downloader(download_dir=conversion.config.input_dir).download_all()
+
     report = conversion.run(results_path=True) if direction else conversion.from_extension_json()
 
     if full and not t_format:
-        cnfg.trough_conversion = True
-        conversion = X2tTesterConversion(cnfg)
+        conversion.config.trough_conversion = True
+        conversion = X2tTesterConversion(conversion.config)
         report = conversion.run(results_path=True) if direction else conversion.from_extension_json()
 
-    tg_msg = info.get_make_files_result_msg(version=version, t_format=t_format) if telegram else None
+    tg_msg = conversion.info.get_make_files_result_msg(version=version, t_format=t_format) if telegram else None
     conversion.report.handler(report, tg_msg=tg_msg) if report else print("[red] Report not exists")
-    print(f"[bold red]\n{'-' * 90}\n|INFO| x2t version: {X2t.version(cnfg.core_dir)}\n{'-' * 90}")
+    print(f"[bold red]\n{'-' * 90}\n|INFO| x2t version: {X2t.version(conversion.config.core_dir)}\n{'-' * 90}")
 
 
 @task

@@ -36,6 +36,7 @@ class X2ttesterTestConfig(BaseModel):
     input_formats: Optional[str] = Field(init=False, default=None)
     out_x2ttester_param: bool = False
     x2t_memory_limits: Optional[int] = None
+    quick_check: bool = False
 
     @model_validator(mode="after")
     def set_computed_fields(self):

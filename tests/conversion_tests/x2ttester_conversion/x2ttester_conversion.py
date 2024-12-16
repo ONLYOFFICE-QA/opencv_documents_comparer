@@ -12,7 +12,7 @@ from host_tools import File, Dir
 from .x2ttester_report import X2ttesterReport
 from .results_handler import ResultsHandler
 from .x2ttester_test_config import X2ttesterTestConfig
-
+from .conversion_test_tinfo import ConversionTestInfo
 
 
 class X2tTesterConversion:
@@ -26,6 +26,7 @@ class X2tTesterConversion:
         self.report = X2ttesterReport(self.config, exceptions_json=File.read_json(self.EXCEPTIONS_JSON))
         self.x2ttester = X2tTester(config=X2tTesterConfig(**self.config.model_dump()))
         self.results_handler = ResultsHandler(self.config)
+        self.info = ConversionTestInfo(test_config=self.config)
 
     def run(self, results_path: bool | str = False, list_xml: str = None) -> str:
         """
