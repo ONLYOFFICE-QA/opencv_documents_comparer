@@ -340,5 +340,21 @@
     "files": [
       "100M.txt"
     ]
+  },
+  "72133": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72133",
+    "description": "",
+    "os": [],
+    "directions": [
+      "docx-png",
+      "docx-jpg",
+      "docx-pdf",
+      "docx-epub",
+      "docx-fb2",
+      "docx-html"
+    ],
+    "files": [
+      "_arhs_smartinson_documents_7_habits_study_packets_46_pages.docx"
+    ]
   }
 }
