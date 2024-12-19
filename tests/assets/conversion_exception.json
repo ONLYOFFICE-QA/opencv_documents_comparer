@@ -384,5 +384,19 @@
       "SetShapeTextPositionAtTop_Out.vsdx",
       "SetVisioProperties_Out.vsdx"
     ]
+  },
+  "72183": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72183",
+    "description": "",
+    "os": [],
+    "directions": [],
+    "files": [
+      "AddHyperlinkToShape_Out.vsdx",
+      "AddLayer_Out.vsdx",
+      "ConfigureShapeLayers_Out.vsdx",
+      "ManipulateObjects_out_.vsdx",
+      "RefreshMilestone_Out.vsdx",
+      "SetLineData_Out.vsdx"
+    ]
   }
 }
