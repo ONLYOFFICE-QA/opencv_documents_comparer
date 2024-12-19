@@ -434,5 +434,19 @@
     "files": [
       "Planilha Bastter Blue 7.0 Free.xlsx"
     ]
+  },
+  "72196": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72196",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "xls-xlsx"
+    ],
+    "files": [
+      "Risk Analysis Report.xlsx"
+    ]
   }
 }
