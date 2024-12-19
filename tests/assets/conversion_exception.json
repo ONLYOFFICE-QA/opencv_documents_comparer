@@ -398,5 +398,14 @@
       "RefreshMilestone_Out.vsdx",
       "SetLineData_Out.vsdx"
     ]
+  },
+  "72184": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72184",
+    "description": "",
+    "os": [],
+    "directions": [],
+    "files": [
+      "github260.vsdx"
+    ]
   }
 }
