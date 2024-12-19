@@ -407,5 +407,14 @@
     "files": [
       "github260.vsdx"
     ]
+  },
+  "72185": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72185",
+    "description": "",
+    "os": [],
+    "directions": [],
+    "files": [
+      "ApplyFontOnText_Out.vsdx"
+    ]
   }
 }
