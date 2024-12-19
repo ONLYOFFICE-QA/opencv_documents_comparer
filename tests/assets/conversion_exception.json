@@ -356,5 +356,33 @@
     "files": [
       "_arhs_smartinson_documents_7_habits_study_packets_46_pages.docx"
     ]
+  },
+  "72181": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72181",
+    "description": "",
+    "os": [],
+    "directions": [],
+    "files": [
+      "AddConnectShapes_Out.vsdx",
+      "AddSolutionXMLElement_Out.vsdx",
+      "AddSupportOfVisualAids_Out.vsdx",
+      "AddWindowElementInVisio_Out.vsdx",
+      "CopyVisioPage_Out.vsdx",
+      "CreateDiagram_Out.vsdx",
+      "CreateNewVisio_Out.vsdx",
+      "CreateUserDefinedCellInShapeSheet_Out.vsdx",
+      "DisplayGridsRulersGuidesAndPageBreaks_Out.vsdx",
+      "EditConnectorGeometry_Out.vsdx",
+      "FindAndReplaceShapeText_Out.vsdx",
+      "FormatShapeTextBlockSection_Out.vsdx",
+      "InsertBlankPage_Out.vsdx",
+      "ManageHeadersandFooters_Out.vsdx",
+      "SetPageOrientation_Out.vsdx",
+      "SetShapeTextPositionAtBottom_Out.vsdx",
+      "SetShapeTextPositionAtLeft_Out.vsdx",
+      "SetShapeTextPositionAtRight_Out.vsdx",
+      "SetShapeTextPositionAtTop_Out.vsdx",
+      "SetVisioProperties_Out.vsdx"
+    ]
   }
 }
