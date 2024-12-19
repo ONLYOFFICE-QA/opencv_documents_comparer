@@ -52,7 +52,8 @@ def conversion_test(
             environment_off=env_off,
             trough_conversion=t_format,
             out_x2ttester_param=out_x2ttester_param,
-            x2t_memory_limits=x2t_limits
+            x2t_memory_limits=x2t_limits,
+            quick_check=quick_check
         )
     )
 

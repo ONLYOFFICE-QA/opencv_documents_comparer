@@ -27,7 +27,7 @@ class ConversionTestInfo:
     def get_conversion_results_msg(self, version: str, execution_time: str, out: bool = True):
         msg =  (
         f"Conversion completed\n"
-        f"Mode: `{'Quick Check' if self.quick_check else 'Full test'}`"
+        f"Mode: `{'Quick Check' if self.quick_check else 'Full test'}`\n"
         f"Version: `{version}`\n"
         f"X2t version: `{self.x2t_version}`\n"
         f"Platform: `{HostInfo().os}`\n"
