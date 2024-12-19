@@ -44,7 +44,7 @@ class X2ttesterTestConfig(BaseModel):
         self.reports_dir = self.reports_dir or StaticData.reports_dir()
         self.x2t_version = VersionHandler(X2t.version(self.core_dir)).version
         self.tmp_dir = File.unique_name(self.tmp_dir or gettempdir())
-        self.report_path = self._get_tmp_report_path(self.tmp_dir)
+        self.report_path = self.get_tmp_report_path()
         self.cores = self.cores or config.cores
         self.timeout = self.timeout or config.timeout
         self.timestamp = config.timestamp
@@ -58,9 +58,8 @@ class X2ttesterTestConfig(BaseModel):
         self._set_x2t_memory_limits()
         return self
 
-    @staticmethod
-    def _get_tmp_report_path(tmp_dir: str) -> str:
-        tmp_report = File.unique_name(File.unique_name(tmp_dir), 'csv')
+    def get_tmp_report_path(self) -> str:
+        tmp_report = File.unique_name(File.unique_name(self.tmp_dir), 'csv')
         Dir.create(dirname(tmp_report), stdout=False)
         return tmp_report
 

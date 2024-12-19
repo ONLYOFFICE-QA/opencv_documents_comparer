@@ -53,7 +53,8 @@ class X2tTesterConversion:
             )
 
             reports.append(self.run(results_path=True))
-            Dir.delete(self.config.tmp_dir, clear_dir=True)
+            self.x2ttester.xml.config.report_path = self.config.get_tmp_report_path()
+            Dir.delete(self.config.output_dir, clear_dir=True)
 
         return self.report.merge_reports(reports)
 
