@@ -416,5 +416,17 @@
     "files": [
       "ApplyFontOnText_Out.vsdx"
     ]
+  },
+  "72186": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72186",
+    "description": "",
+    "os": [],
+    "directions": [],
+    "files": [
+      "Microsoft_365_Enterprise.vsdx",
+      "11 Complex diagramm Two Pages.vsdx",
+      "68.vsdx",
+      "Microsoft 365 Enterprise.vsdx"
+    ]
   }
 }
