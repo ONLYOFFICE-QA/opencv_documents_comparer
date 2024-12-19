@@ -420,5 +420,19 @@
     "files": [
       "conv_58552841_6f0f_4025_9f14_6b285e94c6a5_docx.docx"
     ]
+  },
+  "72195": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72195",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "xls-xlsx"
+    ],
+    "files": [
+      "Planilha Bastter Blue 7.0 Free.xlsx"
+    ]
   }
 }
