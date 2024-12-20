@@ -436,10 +436,14 @@
     "directions": [
       "xlsx-png",
       "xlsx-jpg",
-      "xlsx-pdf"
+      "xlsx-pdf",
+      "xlsb-png",
+      "xlsb-jpg",
+      "xlsb-pdf"
     ],
     "files": [
-      "Editor2.xlsx"
+      "Editor2.xlsx",
+      "conv_72a2bc9a_385c_42bc_b327_23623d5e9628_png.xlsb"
     ]
   }
 }
