@@ -428,5 +428,18 @@
       "68.vsdx",
       "Microsoft 365 Enterprise.vsdx"
     ]
+  },
+  "72208": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72208",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xlsx-png",
+      "xlsx-jpg",
+      "xlsx-pdf"
+    ],
+    "files": [
+      "Editor2.xlsx"
+    ]
   }
 }
