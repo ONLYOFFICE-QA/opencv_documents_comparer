@@ -341,82 +341,6 @@
       "100M.txt"
     ]
   },
-  "72133": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72133",
-    "description": "",
-    "os": [],
-    "directions": [
-      "docx-png",
-      "docx-jpg",
-      "docx-pdf",
-      "docx-epub",
-      "docx-fb2",
-      "docx-html"
-    ],
-    "files": [
-      "_arhs_smartinson_documents_7_habits_study_packets_46_pages.docx"
-    ]
-  },
-  "72181": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72181",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "AddConnectShapes_Out.vsdx",
-      "AddSolutionXMLElement_Out.vsdx",
-      "AddSupportOfVisualAids_Out.vsdx",
-      "AddWindowElementInVisio_Out.vsdx",
-      "CopyVisioPage_Out.vsdx",
-      "CreateDiagram_Out.vsdx",
-      "CreateNewVisio_Out.vsdx",
-      "CreateUserDefinedCellInShapeSheet_Out.vsdx",
-      "DisplayGridsRulersGuidesAndPageBreaks_Out.vsdx",
-      "EditConnectorGeometry_Out.vsdx",
-      "FindAndReplaceShapeText_Out.vsdx",
-      "FormatShapeTextBlockSection_Out.vsdx",
-      "InsertBlankPage_Out.vsdx",
-      "ManageHeadersandFooters_Out.vsdx",
-      "SetPageOrientation_Out.vsdx",
-      "SetShapeTextPositionAtBottom_Out.vsdx",
-      "SetShapeTextPositionAtLeft_Out.vsdx",
-      "SetShapeTextPositionAtRight_Out.vsdx",
-      "SetShapeTextPositionAtTop_Out.vsdx",
-      "SetVisioProperties_Out.vsdx"
-    ]
-  },
-  "72183": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72183",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "AddHyperlinkToShape_Out.vsdx",
-      "AddLayer_Out.vsdx",
-      "ConfigureShapeLayers_Out.vsdx",
-      "ManipulateObjects_out_.vsdx",
-      "RefreshMilestone_Out.vsdx",
-      "SetLineData_Out.vsdx"
-    ]
-  },
-  "72184": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72184",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "github260.vsdx"
-    ]
-  },
-  "72185": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72185",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "ApplyFontOnText_Out.vsdx"
-    ]
-  },
   "72186": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72186",
     "description": "",
@@ -427,23 +351,6 @@
       "11 Complex diagramm Two Pages.vsdx",
       "68.vsdx",
       "Microsoft 365 Enterprise.vsdx"
-    ]
-  },
-  "72208": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72208",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xlsx-png",
-      "xlsx-jpg",
-      "xlsx-pdf",
-      "xlsb-png",
-      "xlsb-jpg",
-      "xlsb-pdf"
-    ],
-    "files": [
-      "Editor2.xlsx",
-      "conv_72a2bc9a_385c_42bc_b327_23623d5e9628_png.xlsb"
     ]
   }
 }
