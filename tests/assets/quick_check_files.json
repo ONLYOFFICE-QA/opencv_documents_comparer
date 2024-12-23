@@ -359,5 +359,13 @@
     "Book 50.xlsx",
     "____1.xlsx",
     "Moog_Labyrinth_–_полумодульный_аналоговый_синтезатор.xlsx"
+  ],
+  "vsdx": [
+    "RefreshMilestone_Out.vsdx",
+    "ApplyFontOnText_Out.vsdx",
+    "github260.vsdx",
+    "AddHyperlinkToShape_Out.vsdx",
+    "AddConnectShapes_Out.vsdx",
+    "Microsoft_365_Enterprise.vsdx"
   ]
 }
