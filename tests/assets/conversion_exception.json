@@ -352,5 +352,14 @@
       "68.vsdx",
       "Microsoft 365 Enterprise.vsdx"
     ]
+  },
+  "72272": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72272",
+    "description": "",
+    "os": [],
+    "directions": [],
+    "files": [
+      "RefreshMilestone_Out.vsdx"
+    ]
   }
 }
