@@ -405,5 +405,19 @@
     "files": [
       "conv_58552841_6f0f_4025_9f14_6b285e94c6a5_docx.docx"
     ]
+  },
+  "72285": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72285",
+    "description": "",
+    "mode": [
+      "t-format"
+    ],
+    "directions": [
+      "xlsx-xlsb"
+    ],
+    "files": [
+      "LCA BI - Financial Report Usage2010.xlsb",
+      "LCA BI - Financial Report Usage2013.xlsb"
+    ]
   }
 }
