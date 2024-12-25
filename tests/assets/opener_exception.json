@@ -378,20 +378,6 @@
       "Book 47.xlsx"
     ]
   },
-  "70653": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=70653",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "ods-xlsx"
-    ],
-    "files": [
-      "Book 72.xlsx"
-    ]
-  },
   "72193": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72193",
     "description": "",
