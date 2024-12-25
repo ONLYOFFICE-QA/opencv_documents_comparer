@@ -320,18 +320,6 @@
       "Reducing_Costs_and_Maximizing_Revenue_with_Office_Business_Applications_(OBA).pptx"
     ]
   },
-  "72048": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72048",
-    "description": "",
-    "os": [],
-    "directions": [
-      "docx-odt",
-      "docx-ott"
-    ],
-    "files": [
-      "Pembahasan Kemampuan Dasar.docx"
-    ]
-  },
   "72046": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72046",
     "description": "",
@@ -351,15 +339,6 @@
       "11 Complex diagramm Two Pages.vsdx",
       "68.vsdx",
       "Microsoft 365 Enterprise.vsdx"
-    ]
-  },
-  "72272": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72272",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "RefreshMilestone_Out.vsdx"
     ]
   }
 }
