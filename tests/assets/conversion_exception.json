@@ -341,5 +341,18 @@
       "Microsoft 365 Enterprise.vsdx",
       "6 Embed image.vsdx"
     ]
+  },
+  "72385": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72385",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xlsx-png",
+      "xlsx-jpg",
+      "xlsx-pdf"
+    ],
+    "files": [
+      "conv_yOP0FfLOVjafjexUHwamAG4F6nfTavi46DbNq2u5tTE__jpg.xlsx"
+    ]
   }
 }
