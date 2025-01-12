@@ -368,7 +368,11 @@
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72428",
     "description": "",
     "os": [],
-    "directions": [],
+    "directions": [
+      "pptx-png",
+      "pptx-jng",
+      "pptx-pdf"
+    ],
     "files": [
       "2023_presentation (2).pptx"
     ]
