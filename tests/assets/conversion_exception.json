@@ -389,5 +389,23 @@
     "files": [
       "Live Open Interest Visuals for Nifty Strikes.xlsx"
     ]
+  },
+  "72458": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72458",
+    "description": "",
+    "os": [],
+    "directions": [
+      "docx-png",
+      "docx-jpg",
+      "docx-pdf",
+      "docx-epub",
+      "docx-html",
+      "docx-fb2"
+    ],
+    "files": [
+      "All fonts my.docx",
+      "ALL FONTS NEW.docx",
+      "CUPE Connection (12p).docx"
+    ]
   }
 }
