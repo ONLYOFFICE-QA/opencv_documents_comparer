@@ -376,5 +376,18 @@
     "files": [
       "2023_presentation (2).pptx"
     ]
+  },
+  "72441": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72441",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xlsx-png",
+      "xlsx-jpg",
+      "xlsx-pdf"
+    ],
+    "files": [
+      "Live Open Interest Visuals for Nifty Strikes.xlsx"
+    ]
   }
 }
