@@ -407,5 +407,21 @@
       "ALL FONTS NEW.docx",
       "CUPE Connection (12p).docx"
     ]
+  },
+  "72488": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72488",
+    "description": "",
+    "os": [],
+    "directions": [
+      "docx-png",
+      "docx-jpg",
+      "docx-pdf",
+      "docx-epub",
+      "docx-html",
+      "docx-fb2"
+    ],
+    "files": [
+      "conv_3747813178_1025.docx"
+    ]
   }
 }
