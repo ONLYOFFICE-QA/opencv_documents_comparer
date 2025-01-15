@@ -342,28 +342,6 @@
       "6 Embed image.vsdx"
     ]
   },
-  "72385": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72385",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xlsx-png",
-      "xlsx-jpg",
-      "xlsx-pdf"
-    ],
-    "files": [
-      "conv_yOP0FfLOVjafjexUHwamAG4F6nfTavi46DbNq2u5tTE__jpg.xlsx"
-    ]
-  },
-  "72386": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72386",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "Descargar Libros Digitales Gratuitos Download de Libros Gratis Ebooks.mht"
-    ]
-  },
   "72428": {
     "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72428",
     "description": "",
@@ -375,19 +353,6 @@
     ],
     "files": [
       "2023_presentation (2).pptx"
-    ]
-  },
-  "72441": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72441",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xlsx-png",
-      "xlsx-jpg",
-      "xlsx-pdf"
-    ],
-    "files": [
-      "Live Open Interest Visuals for Nifty Strikes.xlsx"
     ]
   },
   "72458": {
