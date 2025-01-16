@@ -12,8 +12,7 @@ from host_tools import HostInfo, File
 from frameworks.editors.onlyoffice import Core, X2t
 from telegram import Telegram
 
-from frameworks.s3 import S3Downloader
-from frameworks.s3.s3_uploader import S3Uploader
+from frameworks.s3 import S3Downloader, S3Uploader
 from tests import X2tTesterConversion, X2ttesterTestConfig
 
 if HostInfo().os == 'windows':
