@@ -7,7 +7,7 @@ opening files after conversion, and comparing documents.
 
 ## Requirements
 
-* Python 3.11
+* Python 3.12
 * MS Office 2019
 * LibreOffice Community Version: 7.3.0.3
 
@@ -136,6 +136,18 @@ conversion to all formats will be performed.
 `invoke download-files`
 
 #### Download files flags
+
+`--cores` or `-c` - The amount CPU cores
+to use for parallel downloading. (default: None)
+
+### Upload files
+
+`invoke s3-upload`
+
+#### Upload files flags
+
+`--dir-path` or `-d` - The local directory path
+containing files to be uploaded.
 
 `--cores` or `-c` - The amount CPU cores
 to use for parallel downloading. (default: None)
