@@ -8,7 +8,6 @@ from csv import reader
 from rich import print
 
 from host_tools import Dir
-from telegram import Telegram
 
 
 class Report:
