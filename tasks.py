@@ -12,7 +12,7 @@ from host_tools import HostInfo, File
 from frameworks.editors.onlyoffice import Core, X2t
 from telegram import Telegram
 
-from frameworks.s3 import S3Downloader
+from frameworks.s3 import S3Downloader, S3Uploader
 from tests import X2tTesterConversion, X2ttesterTestConfig
 
 if HostInfo().os == 'windows':
@@ -172,3 +172,13 @@ def open_test(
         ),
         tg_msg=f"Opening test completed\nVersion: {version}" if telegram else False
     )
+
+@task
+def s3_upload(c, dir_path: str, cores: int = None):
+    uploader = S3Uploader(
+        bucket_name='conversion-testing-files',
+        region='us-east-1',
+        check_duplicates=True,
+        cores=cores
+    )
+    uploader.upload_from_dir(dir_path=dir_path)
