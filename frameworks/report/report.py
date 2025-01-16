@@ -63,20 +63,14 @@ class Report:
         :param delimiter: Delimiter used in the CSV file (default is '\t').
         :return: DataFrame containing the data from the CSV file.
         """
-        try:
-            data = pd.read_csv(csv_file, delimiter=delimiter)
-            last_row = data.iloc[-1]
+        data = pd.read_csv(csv_file, delimiter=delimiter)
+        last_row = data.iloc[-1]
 
-            if last_row.isnull().all() or (last_row.astype(str).str.contains(r"[^\x00-\x7F]", regex=True).any()):
-                data = data.iloc[:-1]
-                data.to_csv(csv_file)
+        if last_row.isnull().all() or (last_row.astype(str).str.contains(r"[^\x00-\x7F]", regex=True).any()):
+            data = data.iloc[:-1]
+            data.to_csv(csv_file)
 
-            return data
-
-        except Exception as e:
-            Telegram().send_message(
-                f'Exception when opening report.csv: {csv_file}\nException: {e}\nTry skip bad lines')
-            return pd.read_csv(csv_file, delimiter=delimiter, on_bad_lines='skip')
+        return data
 
     @staticmethod
     def read_via_csv(csv_file: str, delimiter: str = "\t") -> list:
