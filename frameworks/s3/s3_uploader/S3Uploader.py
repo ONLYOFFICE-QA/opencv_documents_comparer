@@ -38,8 +38,8 @@ class S3Uploader:
                 )
             else:
                 print(
-                    f'[bold red] File conflict in {self.s3.bucket}/{object_key}\n'
-                    f'SHA256 mismatch:\nLocal: {file_sha256}\nS3: {s3_object_sha256}'
+                    f'[bold red] File conflict in [magenta]{self.s3.bucket}/{object_key}[/]\n'
+                    f'SHA256 mismatch:\nLocal: [cyan]{file_sha256}[/]\nS3: [magenta]{s3_object_sha256}[/]'
                 )
             return False
 
