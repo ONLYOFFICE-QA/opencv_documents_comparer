@@ -175,6 +175,11 @@ def open_test(
     )
 
 @task
-def s3_upload(c, dir_path: str):
-    uploader = S3Uploader(bucket_name='conversion-testing-files', region='us-east-1', check_duplicates=True)
+def s3_upload(c, dir_path: str, cores: int = None):
+    uploader = S3Uploader(
+        bucket_name='conversion-testing-files',
+        region='us-east-1',
+        check_duplicates=True,
+        cores=cores
+    )
     uploader.upload_from_dir(dir_path=dir_path)
