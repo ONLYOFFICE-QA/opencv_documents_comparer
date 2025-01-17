@@ -406,5 +406,22 @@
     "files": [
       "conv_2817370291_1025.htm"
     ]
+  },
+  "72570": {
+    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72570",
+    "description": "",
+    "os": [],
+    "directions": [
+      "ods-png",
+      "ods-jpg",
+      "ods-pdf"
+    ],
+    "files": [
+      "amicro.ods",
+      "Chek liste TR projeto básico Sistema de Esgoto  - Bodoco-PE.ods",
+      "Controlador de Consumo.ods",
+      "file_1_ (2).ods",
+      "Megoldasok.ods"
+    ]
   }
 }
