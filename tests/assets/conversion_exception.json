@@ -21,7 +21,7 @@
     ]
   },
   "56205": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=56205",
+    "link": "56205",
     "description": "Broken files",
     "os": [],
     "directions": [
@@ -63,7 +63,7 @@
     ]
   },
   "39545": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=39545",
+    "link": "39545",
     "description": "Broken file",
     "os": [],
     "directions": [
@@ -75,7 +75,7 @@
     ]
   },
   "60795": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=60795",
+    "link": "60795",
     "description": "Broken file",
     "os": [],
     "directions": [],
@@ -103,7 +103,7 @@
     ]
   },
   "59241": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=59241",
+    "link": "59241",
     "description": "X2T_MEMORY_LIMIT=\"5GiB\"",
     "os": [
       "linux"
@@ -116,7 +116,7 @@
     ]
   },
   "66216": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=66216",
+    "link": "66216",
     "description": "X2T_MEMORY_LIMIT=\"5GiB\"",
     "os": [],
     "directions": [
@@ -128,7 +128,7 @@
     ]
   },
   "66216_2": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=66216",
+    "link": "66216",
     "description": "X2T_MEMORY_LIMIT=\"5GiB\"",
     "os": [],
     "directions": [
@@ -139,7 +139,7 @@
     ]
   },
   "58698": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=58698",
+    "link": "58698",
     "description": "",
     "os": [],
     "directions": [],
@@ -149,7 +149,7 @@
     ]
   },
   "57465": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=57465",
+    "link": "57465",
     "description": "",
     "os": [],
     "directions": [],
@@ -159,7 +159,7 @@
     ]
   },
   "57360": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=57360",
+    "link": "57360",
     "description": "",
     "os": [],
     "directions": [],
@@ -170,7 +170,7 @@
     ]
   },
   "59424": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=59424",
+    "link": "59424",
     "description": "",
     "os": [],
     "directions": [],
@@ -182,7 +182,7 @@
     ]
   },
   "64543": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64543",
+    "link": "64543",
     "description": "the incorrect file extension. its svg",
     "os": [],
     "directions": [],
@@ -196,7 +196,7 @@
     ]
   },
   "65159": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65159",
+    "link": "65159",
     "description": "",
     "os": [],
     "directions": [
@@ -208,7 +208,7 @@
     ]
   },
   "67907": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=67907",
+    "link": "67907",
     "description": "",
     "os": [],
     "directions": [],
@@ -218,7 +218,7 @@
     ]
   },
   "68249": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68249",
+    "link": "68249",
     "description": "",
     "os": [
       "mac",
@@ -234,7 +234,7 @@
     ]
   },
   "68589": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68589",
+    "link": "68589",
     "description": "",
     "os": [],
     "directions": [
@@ -248,7 +248,7 @@
     ]
   },
   "69028": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=69028",
+    "link": "69028",
     "description": "",
     "os": [],
     "directions": [
@@ -261,7 +261,7 @@
     ]
   },
   "70362": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=70362",
+    "link": "70362",
     "description": "",
     "os": [],
     "directions": [],
@@ -270,7 +270,7 @@
     ]
   },
   "68743": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68743",
+    "link": "68743",
     "description": "",
     "os": [
       "mac"
@@ -296,7 +296,7 @@
     ]
   },
   "71363": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=71363",
+    "link": "71363",
     "description": "",
     "os": [],
     "directions": [
@@ -307,7 +307,7 @@
     ]
   },
   "71554": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=71554",
+    "link": "71554",
     "description": "",
     "os": [
       "linux"
@@ -321,7 +321,7 @@
     ]
   },
   "72046": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72046",
+    "link": "72046",
     "description": "",
     "os": [],
     "directions": [],
@@ -330,7 +330,7 @@
     ]
   },
   "72186": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72186",
+    "link": "72186",
     "description": "",
     "os": [],
     "directions": [],
@@ -343,7 +343,7 @@
     ]
   },
   "72428": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72428",
+    "link": "72428",
     "description": "",
     "os": [],
     "directions": [
@@ -356,7 +356,7 @@
     ]
   },
   "72458": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72458",
+    "link": "72458",
     "description": "",
     "os": [],
     "directions": [
@@ -374,7 +374,7 @@
     ]
   },
   "72488": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72488",
+    "link": "72488",
     "description": "",
     "os": [],
     "directions": [
@@ -390,7 +390,7 @@
     ]
   },
   "72516": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72516",
+    "link": "72516",
     "description": "",
     "os": [],
     "directions": [],
@@ -399,12 +399,33 @@
     ]
   },
   "72519": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72519",
+    "link": "72519",
     "description": "",
     "os": [],
     "directions": [],
     "files": [
       "conv_2817370291_1025.htm"
+    ]
+  },
+  "72570": {
+    "link": "72570",
+    "description": "",
+    "os": [],
+    "directions": [
+      "ods-png",
+      "ods-jpg",
+      "ods-pdf",
+      "xls-png",
+      "xls-jpg",
+      "xls-pdf"
+    ],
+    "files": [
+      "amicro.ods",
+      "Chek liste TR projeto básico Sistema de Esgoto  - Bodoco-PE.ods",
+      "Controlador de Consumo.ods",
+      "file_1_ (2).ods",
+      "Megoldasok.ods",
+      "Risk Analysis Report.xls"
     ]
   }
 }
