@@ -1,6 +1,6 @@
 {
   "52628": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=52628",
+    "link": "52628",
     "description": "Named range, problems in ms Excel",
     "mode": [
       "Default",
@@ -16,7 +16,7 @@
     ]
   },
   "70612": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=70612",
+    "link": "70612",
     "description": "Problems in Libre",
     "mode": [
       "Default",
@@ -31,7 +31,7 @@
     ]
   },
   "70650": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=70650",
+    "link": "70650",
     "description": "Bad formulas in the source file",
     "mode": [
       "Default",
@@ -51,7 +51,7 @@
     ]
   },
   "68601": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=68601",
+    "link": "68601",
     "description": "peculiarity of working in a binary with summary tables",
     "mode": [
       "t-format"
@@ -86,7 +86,7 @@
     ]
   },
   "66333": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=66333",
+    "link": "66333",
     "description": "only via t-format",
     "mode": [
       "t-format"
@@ -99,7 +99,7 @@
     ]
   },
   "65973": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65973",
+    "link": "65973",
     "description": "summary tables conversion via editor",
     "mode": [
       "t-format"
@@ -125,7 +125,7 @@
     ]
   },
   "63772": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=63772",
+    "link": "63772",
     "description": "problems in ms Excel",
     "mode": [
       "Default",
@@ -160,7 +160,7 @@
     ]
   },
   "52628_ods_xlsx": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=52628",
+    "link": "52628",
     "description": "Named range, problems in ms Excel",
     "mode": [
       "Default",
@@ -180,7 +180,7 @@
     ]
   },
   "58959": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=58959",
+    "link": "58959",
     "description": "not supported RANK(5,{1;2;3;4;5;6;7},1), RANK(5,{1;2;3;4;5;6;7}",
     "mode": [
       "Default",
@@ -247,7 +247,7 @@
     ]
   },
   "60313": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=60313",
+    "link": "60313",
     "description": "ms Excel problem, does not work with long sheet names",
     "mode": [
       "Default",
@@ -264,7 +264,7 @@
     ]
   },
   "52374": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=52374",
+    "link": "52374",
     "mode": [
       "Default",
       "t-format"
@@ -278,7 +278,7 @@
     ]
   },
   "60847": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=60847",
+    "link": "60847",
     "mode": [
       "Default",
       "t-format"
@@ -292,7 +292,7 @@
     ]
   },
   "62331": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=62331",
+    "link": "62331",
     "description": "LibreOffice Bug",
     "mode": [
       "Default",
@@ -306,7 +306,7 @@
     ]
   },
   "62789": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=62789",
+    "link": "62789",
     "description": "",
     "mode": [
       "Default",
@@ -321,7 +321,7 @@
     ]
   },
   "64200": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=64200",
+    "link": "64200",
     "description": "",
     "mode": [
       "Default",
@@ -338,7 +338,7 @@
     ]
   },
   "65790": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65790",
+    "link": "65790",
     "description": "",
     "mode": [
       "t-format"
@@ -351,7 +351,7 @@
     ]
   },
   "65974": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=65974",
+    "link": "65974",
     "description": "",
     "mode": [
       "t-format"
@@ -364,7 +364,7 @@
     ]
   },
   "70652": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=70652",
+    "link": "70652",
     "description": "",
     "mode": [
       "Default",
@@ -379,7 +379,7 @@
     ]
   },
   "72193": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72193",
+    "link": "72193",
     "description": "",
     "mode": [
       "Default",
@@ -393,7 +393,7 @@
     ]
   },
   "72285": {
-    "link": "https://bugzilla.onlyoffice.com/show_bug.cgi?id=72285",
+    "link": "72285",
     "description": "",
     "mode": [
       "t-format"
