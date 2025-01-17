@@ -97,7 +97,7 @@ class S3Uploader:
         if s3_dir in self._checked_dirs:
             return self._checked_dirs[s3_dir]
 
-        print(f"[green]|INFO| Fetching SHA256 hashes from S3 directory: {s3_dir}")
+        print(f"[green]|INFO| Fetching SHA256 hashes from S3 directory: [magenta]{s3_dir}[/]")
         sha256_data = self._get_objects_sha256([file for file in self.all_s3_files if file.startswith(s3_dir)])
         self._checked_dirs[s3_dir] = sha256_data
         return sha256_data
