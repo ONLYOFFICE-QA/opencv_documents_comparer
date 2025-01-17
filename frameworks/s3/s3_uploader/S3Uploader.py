@@ -26,7 +26,7 @@ class S3Uploader:
         :param check_duplicates: A flag to determine whether to check for duplicate files.
         :param cores: The number of cores to use for concurrent uploads.
         """
-        self.cores = int(cores)
+        self.cores = int(cores) if cores else None
         self.check_duplicates = check_duplicates
         self.s3 = S3Wrapper(bucket_name=bucket_name, region=region)
         self.all_s3_files = self._fetch_all_files()
