@@ -405,5 +405,35 @@
       "LCA BI - Financial Report Usage2010.xlsb",
       "LCA BI - Financial Report Usage2013.xlsb"
     ]
+  },
+  "72578": {
+    "link": "72578",
+    "description": "",
+    "mode": [
+      "t-format"
+    ],
+    "directions": [
+      "odp-pptx",
+      "otp-pptx"
+    ],
+    "files": [
+      "04_ODFWS2009_South_Africa.pptx",
+      "07 - Objects and Animation.pptx",
+      "Byudzhet-dlya-grazhdan-2021-2.pptx",
+      "ep2018se_55_carletti_how_to_be_anonymous_online.pptx",
+      "file_1_ (1).pptx",
+      "GSoC-Presentation2009-FlowerTheme.pptx",
+      "GSoC2009-Presentation-BlueLogo-Chinese-Traditional.pptx",
+      "GSoC2009-Presentation-BlueLogo.pptx",
+      "GSoC2009-Presentation-BlueLogo_pt-br.pptx",
+      "GSoC2009-Presentation-final.pptx",
+      "GSoC2009-Presentation-FlowerTheme-final.pptx",
+      "GSoC2009-Presentation.pptx",
+      "Monetizing_Innovation.pptx",
+      "MPBD_Diap-1-Presentación Alineamiento estratégico SCS.pptx",
+      "physics140-f07-lecture17.pptx",
+      "zfslk2012.pptx",
+      "Classy_Red.pptx"
+    ]
   }
 }
