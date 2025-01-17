@@ -414,14 +414,18 @@
     "directions": [
       "ods-png",
       "ods-jpg",
-      "ods-pdf"
+      "ods-pdf",
+      "xls-png",
+      "xls-jpg",
+      "xls-pdf"
     ],
     "files": [
       "amicro.ods",
       "Chek liste TR projeto básico Sistema de Esgoto  - Bodoco-PE.ods",
       "Controlador de Consumo.ods",
       "file_1_ (2).ods",
-      "Megoldasok.ods"
+      "Megoldasok.ods",
+      "Risk Analysis Report.xls"
     ]
   }
 }
