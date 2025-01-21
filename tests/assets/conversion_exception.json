@@ -127,6 +127,22 @@
       "9TyqfsInFo26qt0I4Xj1amWJnGoPk42r_mxDMNBxNkY_.doct"
     ]
   },
+  "72519": {
+    "link": "",
+    "description": "\"X2T_MEMORY_LIMIT=\"5GiB\"\"",
+    "os": [
+      "linux",
+      "mac"
+    ],
+    "directions": [
+      "htm-epub",
+      "htm-fb2",
+      "htm-html"
+    ],
+    "files": [
+      "conv_2817370291_1025.htm"
+    ]
+  },
   "66216_2": {
     "link": "66216",
     "description": "X2T_MEMORY_LIMIT=\"5GiB\"",
@@ -371,15 +387,6 @@
       "conv_3747813178_1025.docx"
     ]
   },
-  "72519": {
-    "link": "72519",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "conv_2817370291_1025.htm"
-    ]
-  },
   "72570": {
     "link": "72570",
     "description": "",
@@ -399,24 +406,6 @@
       "file_1_ (2).ods",
       "Megoldasok.ods",
       "Risk Analysis Report.xls"
-    ]
-  },
-  "72586": {
-    "link": "72586",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "conv_3b47fc10_25ef_49d8_8e6b_05cd80fdd389_69.epub"
-    ]
-  },
-    "72589": {
-    "link": "72589",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "emPoknW9U0tH8hntm7I6jO_Ux0rYKtXKZQ2AmQNUCD8_.mht"
     ]
   }
 }
