@@ -372,8 +372,8 @@
     ]
   },
   "72519": {
-    "link": "72519",
-    "description": "",
+    "link": "",
+    "description": "\"X2T_MEMORY_LIMIT=\\\"5GiB\\\"\"",
     "os": [],
     "directions": [],
     "files": [
@@ -399,24 +399,6 @@
       "file_1_ (2).ods",
       "Megoldasok.ods",
       "Risk Analysis Report.xls"
-    ]
-  },
-  "72586": {
-    "link": "72586",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "conv_3b47fc10_25ef_49d8_8e6b_05cd80fdd389_69.epub"
-    ]
-  },
-    "72589": {
-    "link": "72589",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "emPoknW9U0tH8hntm7I6jO_Ux0rYKtXKZQ2AmQNUCD8_.mht"
     ]
   }
 }
