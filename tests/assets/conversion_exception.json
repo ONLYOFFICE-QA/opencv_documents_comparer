@@ -127,6 +127,22 @@
       "9TyqfsInFo26qt0I4Xj1amWJnGoPk42r_mxDMNBxNkY_.doct"
     ]
   },
+  "72519": {
+    "link": "",
+    "description": "\"X2T_MEMORY_LIMIT=\"5GiB\"\"",
+    "os": [
+      "linux",
+      "mac"
+    ],
+    "directions": [
+      "htm-epub",
+      "htm-fb2",
+      "htm-html"
+    ],
+    "files": [
+      "conv_2817370291_1025.htm"
+    ]
+  },
   "66216_2": {
     "link": "66216",
     "description": "X2T_MEMORY_LIMIT=\"5GiB\"",
@@ -369,15 +385,6 @@
     ],
     "files": [
       "conv_3747813178_1025.docx"
-    ]
-  },
-  "72519": {
-    "link": "",
-    "description": "\"X2T_MEMORY_LIMIT=\\\"5GiB\\\"\"",
-    "os": [],
-    "directions": [],
-    "files": [
-      "conv_2817370291_1025.htm"
     ]
   },
   "72570": {
