@@ -425,5 +425,40 @@
     "files": [
       "Byudzhet-dlya-grazhdan-2021-2.odp"
     ]
+  },
+  "72772": {
+    "link": "72772",
+    "description": "",
+    "os": [],
+    "directions": [],
+    "files": [
+      "HeaderFooter.hwpx",
+      "ChangeTrack.hwpx",
+      "SimpleButtons.hwpx",
+      "SimpleCompose.hwpx",
+      "sample1.hwpx",
+      "PageSize_Margin.hwpx",
+      "SimpleArc.hwpx",
+      "SimpleComboBox.hwpx",
+      "MultiColumn.hwpx",
+      "PageFunctions.hwpx",
+      "SimpleContainer.hwpx",
+      "SimpleEllipse.hwpx",
+      "SimpleConnectLine.hwpx",
+      "SimpleDutmal.hwpx",
+      "SimpleCurve.hwpx",
+      "SimpleEdit.hwpx",
+      "SimpleLine.hwpx",
+      "SimpleOLE.hwpx",
+      "SimplePolygon.hwpx",
+      "SimplePicture.hwpx",
+      "SimpleEquation.hwpx",
+      "SimpleRectangle.hwpx",
+      "SimpleTable (1).hwpx",
+      "SimpleTable (1)_1.hwpx",
+      "SimpleVideo.hwpx",
+      "SimpleTextArt.hwpx",
+      "SimpleTable.hwpx"
+    ]
   }
 }
