@@ -484,5 +484,24 @@
       "BMR-STD (Kopie).vsdx",
       "good-bad.vsdx"
     ]
+  },
+  "72796": {
+    "link": "72796",
+    "description": "",
+    "os": [],
+    "directions": [
+      "vsdx-png",
+      "vsdx-jpg",
+      "vsdx-pdf"
+    ],
+    "files": [
+      "12800b_xlst.xls",
+      "14336b_xlst.xls",
+      "14848b_xlst.xls",
+      "18432b_xlst.xls",
+      "4435573.xls",
+      "tables_without_borders.xls",
+      "СчетНаОплату.XLS"
+    ]
   }
 }
