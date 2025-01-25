@@ -460,5 +460,64 @@
       "SimpleTextArt.hwpx",
       "SimpleTable.hwpx"
     ]
+  },
+  "72794": {
+    "link": "72794",
+    "description": "",
+    "os": [],
+    "directions": [],
+    "files": [
+      "conv_uCiNCx5hOcA4SeJE1_jTnUX8elcl5FAF0ejNILJwZ8Y__odt.docx"
+    ]
+  },
+  "72795": {
+    "link": "72795",
+    "description": "",
+    "os": [],
+    "directions": [
+      "vsdx-png",
+      "vsdx-jpg",
+      "vsdx-pdf"
+    ],
+    "files": [
+      "14 Casino Floor.vsdx",
+      "BMR-STD (Kopie).vsdx",
+      "good-bad.vsdx"
+    ]
+  },
+  "72796": {
+    "link": "72796",
+    "description": "",
+    "os": [],
+    "directions": [
+      "vsdx-png",
+      "vsdx-jpg",
+      "vsdx-pdf"
+    ],
+    "files": [
+      "12800b_xlst.xls",
+      "14336b_xlst.xls",
+      "14848b_xlst.xls",
+      "18432b_xlst.xls",
+      "4435573.xls",
+      "tables_without_borders.xls",
+      "СчетНаОплату.XLS"
+    ]
+  },
+  "72797": {
+    "link": "72797",
+    "description": "",
+    "os": [],
+    "directions": [
+      "odp-png",
+      "odp-jpg",
+      "odp-pdf"
+    ],
+    "files": [
+      "Byudzhet-dlya-grazhdan-2021-2.odp",
+      "Food-Chains-Powerpoint.odp",
+      "presentation_ihe_wetlands_day_2019.odp",
+      "prezentace_brno_17.3_emerald3_0.odp"
+    ]
   }
 }
