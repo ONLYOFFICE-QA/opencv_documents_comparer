@@ -503,5 +503,21 @@
       "tables_without_borders.xls",
       "СчетНаОплату.XLS"
     ]
+  },
+  "72797": {
+    "link": "72797",
+    "description": "",
+    "os": [],
+    "directions": [
+      "odp-png",
+      "odp-jpg",
+      "odp-pdf"
+    ],
+    "files": [
+      "Byudzhet-dlya-grazhdan-2021-2.odp",
+      "Food-Chains-Powerpoint.odp",
+      "presentation_ihe_wetlands_day_2019.odp",
+      "prezentace_brno_17.3_emerald3_0.odp"
+    ]
   }
 }
