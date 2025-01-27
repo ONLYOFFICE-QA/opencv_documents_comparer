@@ -93,8 +93,6 @@ class OpenerReport:
 
     @staticmethod
     def _get_source_file_name(file_name: str, direction: str) -> str:
-        _extension_list = direction.split('-')
-        if _extension_list and len(_extension_list) >= 2:
-            source_extension = f".{_extension_list[0].replace('.', '')}"
-            return file_name.replace(splitext(file_name)[1], source_extension)
-        return file_name
+        source_extension = f".{direction.split('-')[0].lstrip('.')}"
+        converted_extension = splitext(file_name)[1]
+        return file_name.replace(converted_extension, source_extension) if converted_extension else file_name
