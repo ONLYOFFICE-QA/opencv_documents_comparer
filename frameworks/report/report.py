@@ -36,6 +36,7 @@ class Report:
             df = pd.concat([self.read(csv_, delimiter) for csv_ in reports if isfile(csv_)], ignore_index=True)
             df.to_csv(result_csv_path, index=False, sep=delimiter)
             return result_csv_path
+
         print('[green]|INFO| No files to merge')
 
     @staticmethod
