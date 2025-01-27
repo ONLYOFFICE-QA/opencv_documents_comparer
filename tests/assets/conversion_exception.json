@@ -358,19 +358,6 @@
       "6 Embed image.vsdx"
     ]
   },
-  "72428": {
-    "link": "72428",
-    "description": "",
-    "os": [],
-    "directions": [
-      "pptx-png",
-      "pptx-jpg",
-      "pptx-pdf"
-    ],
-    "files": [
-      "2023_presentation (2).pptx"
-    ]
-  },
   "72488": {
     "link": "72488",
     "description": "",
@@ -417,50 +404,6 @@
       "2023_presentation (2).pptx"
     ]
   },
-  "72768": {
-    "link": "72768",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "Byudzhet-dlya-grazhdan-2021-2.odp"
-    ]
-  },
-  "72772": {
-    "link": "72772",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "HeaderFooter.hwpx",
-      "ChangeTrack.hwpx",
-      "SimpleButtons.hwpx",
-      "SimpleCompose.hwpx",
-      "sample1.hwpx",
-      "PageSize_Margin.hwpx",
-      "SimpleArc.hwpx",
-      "SimpleComboBox.hwpx",
-      "MultiColumn.hwpx",
-      "PageFunctions.hwpx",
-      "SimpleContainer.hwpx",
-      "SimpleEllipse.hwpx",
-      "SimpleConnectLine.hwpx",
-      "SimpleDutmal.hwpx",
-      "SimpleCurve.hwpx",
-      "SimpleEdit.hwpx",
-      "SimpleLine.hwpx",
-      "SimpleOLE.hwpx",
-      "SimplePolygon.hwpx",
-      "SimplePicture.hwpx",
-      "SimpleEquation.hwpx",
-      "SimpleRectangle.hwpx",
-      "SimpleTable (1).hwpx",
-      "SimpleTable (1)_1.hwpx",
-      "SimpleVideo.hwpx",
-      "SimpleTextArt.hwpx",
-      "SimpleTable.hwpx"
-    ]
-  },
   "72794": {
     "link": "72794",
     "description": "",
@@ -468,40 +411,6 @@
     "directions": [],
     "files": [
       "conv_uCiNCx5hOcA4SeJE1_jTnUX8elcl5FAF0ejNILJwZ8Y__odt.docx"
-    ]
-  },
-  "72795": {
-    "link": "72795",
-    "description": "",
-    "os": [],
-    "directions": [
-      "vsdx-png",
-      "vsdx-jpg",
-      "vsdx-pdf"
-    ],
-    "files": [
-      "14 Casino Floor.vsdx",
-      "BMR-STD (Kopie).vsdx",
-      "good-bad.vsdx"
-    ]
-  },
-  "72796": {
-    "link": "72796",
-    "description": "",
-    "os": [],
-    "directions": [
-      "vsdx-png",
-      "vsdx-jpg",
-      "vsdx-pdf"
-    ],
-    "files": [
-      "12800b_xlst.xls",
-      "14336b_xlst.xls",
-      "14848b_xlst.xls",
-      "18432b_xlst.xls",
-      "4435573.xls",
-      "tables_without_borders.xls",
-      "СчетНаОплату.XLS"
     ]
   },
   "72797": {
