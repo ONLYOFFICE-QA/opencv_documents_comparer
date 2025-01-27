@@ -10,9 +10,9 @@
       "xls-xlsx"
     ],
     "files": [
-      "A3  2(test).xlsx",
-      "A3  2.xlsx",
-      "kso 1    2  1.xlsx"
+      "A3  2(test).xls",
+      "A3  2.xls",
+      "kso 1    2  1.xls"
     ]
   },
   "70612": {
@@ -26,8 +26,8 @@
       "html-odt"
     ],
     "files": [
-      "car.odt",
-      "cars.odt"
+      "car.html",
+      "cars.html"
     ]
   },
   "70650": {
@@ -41,13 +41,13 @@
       "ods-xlsx"
     ],
     "files": [
-      "Controlador de Consumo.xlsx",
-      "Book 45.xlsx",
-      "Book 46.xlsx",
-      "Book 6.xlsx",
-      "Book 7.xlsx",
-      "TEST_SUMIFS_KO.xlsx",
-      "load_bugs.xlsx"
+      "Controlador de Consumo.ods",
+      "Book 45.ods",
+      "Book 46.ods",
+      "Book 6.ods",
+      "Book 7.ods",
+      "TEST_SUMIFS_KO.ods",
+      "load_bugs.ods"
     ]
   },
   "68601": {
@@ -60,7 +60,7 @@
       "xlsb-xlsx"
     ],
     "files": [
-      "Demo-2010WinterOlympics.xlsx"
+      "Demo-2010WinterOlympics.xlsb"
     ]
   },
   "hackerone": {
@@ -74,15 +74,15 @@
       "xls-xlsx"
     ],
     "files": [
-      "hackerone_axcext.xlsx",
-      "hackerone_axisseriesnone.xlsx",
-      "hackerone_chartcrt.xlsx",
-      "hackerone_fdbser.xlsx",
-      "hackerone_ivaxisser.xlsx",
-      "hackerone_pcdser.xlsx",
-      "hackerone_seriesaxiscatser.xlsx",
-      "hackerone_sfaiser.xlsx",
-      "hackerone_ss-serdef-ind.xlsx"
+      "hackerone_axcext.xls",
+      "hackerone_axisseriesnone.xls",
+      "hackerone_chartcrt.xls",
+      "hackerone_fdbser.xls",
+      "hackerone_ivaxisser.xls",
+      "hackerone_pcdser.xls",
+      "hackerone_seriesaxiscatser.xls",
+      "hackerone_sfaiser.xls",
+      "hackerone_ss-serdef-ind.xls"
     ]
   },
   "66333": {
@@ -95,7 +95,7 @@
       "doc-docx"
     ],
     "files": [
-      "arco3.docx"
+      "arco3.doc"
     ]
   },
   "65973": {
@@ -108,20 +108,20 @@
       "ods-xlsx"
     ],
     "files": [
-      "Area Normal.xlsx",
-      "Area Percent Stacked 3D.xlsx",
-      "Line 3D Lines.xlsx",
-      "Line Lines only.xlsx",
-      "Scatter Lines 3D.xlsx",
-      "Scatter Lines only.xlsx",
-      "Scatter Points and lines.xlsx",
-      "Scatter Points only.xlsx",
-      "Line Points.xlsx",
-      "Line Points and lines.xlsx",
-      "Area Stacked.xlsx",
-      "Net Lines only.xlsx",
-      "Net Points and lines.xlsx",
-      "Net Points only.xlsx"
+      "Area Normal.ods",
+      "Area Percent Stacked 3D.ods",
+      "Line 3D Lines.ods",
+      "Line Lines only.ods",
+      "Scatter Lines 3D.ods",
+      "Scatter Lines only.ods",
+      "Scatter Points and lines.ods",
+      "Scatter Points only.ods",
+      "Line Points.ods",
+      "Line Points and lines.ods",
+      "Area Stacked.ods",
+      "Net Lines only.ods",
+      "Net Points and lines.ods",
+      "Net Points only.ods"
     ]
   },
   "63772": {
@@ -135,7 +135,7 @@
       "xls-xlsx"
     ],
     "files": [
-      "testIssues631.xlsx"
+      "testIssues631.xls"
     ]
   },
   "5": {
@@ -150,13 +150,14 @@
       "fodt-docx"
     ],
     "files": [
-      "0100GS3GettingStartedOOo3.docx",
-      "0106GS-GettingStartedWithWriter_el.docx",
-      "0106GS3-GettingStartedWithImpress_ko.docx",
-      "1438.docx",
-      "Description_of_Lex_for_Copenhagen_2009.docx",
-      "formulier1vzw.docx",
-      "0310CG3-LinkingCalcData.docx"
+      "0100GS3GettingStartedOOo3.odt",
+      "0106GS-GettingStartedWithWriter_el.odt",
+      "0106GS3-GettingStartedWithImpress_ko.odt",
+      "1438.odt",
+      "Description_of_Lex_for_Copenhagen_2009.odt",
+      "formulier1vzw.odt",
+      "0310CG3-LinkingCalcData.odt",
+      "0310CG3-LinkingCalcData.fodt"
     ]
   },
   "52628_ods_xlsx": {
@@ -170,13 +171,13 @@
       "ods-xlsx"
     ],
     "files": [
-      "Calendario_Uscite_fumetti_FEBBRAIO 2010.xlsx",
-      "file_1_ (2).xlsx",
-      "EV Requirements v2.2.3.xlsx",
-      "Megoldasok.xlsx",
-      "tel_sprav_18.10.2013.xlsx",
-      "ValorPorExtenso.xlsx",
-      "ValorPorExtensoTeste.xlsx"
+      "Calendario_Uscite_fumetti_FEBBRAIO 2010.ods",
+      "file_1_ (2).ods",
+      "EV Requirements v2.2.3.ods",
+      "Megoldasok.ods",
+      "tel_sprav_18.10.2013.ods",
+      "ValorPorExtenso.ods",
+      "ValorPorExtensoTeste.ods"
     ]
   },
   "58959": {
@@ -191,11 +192,12 @@
       "ods-xlsx"
     ],
     "files": [
-      "general_formulas.xlsx",
-      "controle de saidas estoque.xlsx",
-      "EV Requirements v2.2.3.xlsx",
-      "file_1_ (2).xlsx",
-      "Расходный_кассовый_ордер_по_форме_N_КО-2.xlsx"
+      "general_formulas.xls",
+      "general_formulas.ods",
+      "controle de saidas estoque.ods",
+      "EV Requirements v2.2.3.ods",
+      "file_1_ (2).ods",
+      "Расходный_кассовый_ордер_по_форме_N_КО-2.xls"
     ]
   },
   "2": {
@@ -210,8 +212,8 @@
       "pptx-odp"
     ],
     "files": [
-      "budget proposal.ods",
-      "LSkE4YkIsFM2kI554ou_NeuMcDu8XOQGOTb7xXFvmD4_.odp"
+      "budget proposal.xls",
+      "LSkE4YkIsFM2kI554ou_NeuMcDu8XOQGOTb7xXFvmD4_.pptx"
     ]
   },
   "3": {
@@ -225,9 +227,9 @@
       "doc-docx"
     ],
     "files": [
-      "CES-99-40_SW.docx",
-      "CES-99-52_SW.docx",
-      "CES-99-54_SW.docx"
+      "CES-99-40_SW.doc",
+      "CES-99-52_SW.doc",
+      "CES-99-54_SW.doc"
     ]
   },
   "4": {
@@ -241,9 +243,9 @@
       "xls-xlsx"
     ],
     "files": [
-      "25989735_1.xlsx",
-      "0t-1-1.xlsx",
-      "test_macros.xlsx"
+      "25989735_1.xls",
+      "0t-1-1.xls",
+      "test_macros.xls"
     ]
   },
   "60313": {
@@ -257,10 +259,10 @@
       "ods-xlsx"
     ],
     "files": [
-      "madhus yesterday update.xlsx",
-      "Példa I.xlsx",
-      "Példa I ures.xlsx",
-      "Fiche projet Histoire croisée.xlsx"
+      "madhus yesterday update.ods",
+      "Példa I.ods",
+      "Példa I ures.ods",
+      "Fiche projet Histoire croisée.ods"
     ]
   },
   "52374": {
@@ -274,7 +276,7 @@
       "ppt-pptx"
     ],
     "files": [
-      "Тікбұрышты үшбұрыштарды.pptx"
+      "Тікбұрышты үшбұрыштарды.ppt"
     ]
   },
   "60847": {
@@ -288,7 +290,7 @@
       "docx-odt"
     ],
     "files": [
-      "Educational_Plan_Board__final_(2).odt"
+      "Educational_Plan_Board__final_(2).docx"
     ]
   },
   "62331": {
@@ -302,7 +304,7 @@
       "docxf-odt"
     ],
     "files": [
-      "modello_a1.odt"
+      "modello_a1.docxf"
     ]
   },
   "62789": {
@@ -316,8 +318,8 @@
       "rtf-docx"
     ],
     "files": [
-      "goldwingSetting.docx",
-      "21.haikufinal.docx"
+      "goldwingSetting.rtf",
+      "21.haikufinal.rtf"
     ]
   },
   "64200": {
@@ -331,10 +333,10 @@
       "xps-docx"
     ],
     "files": [
-      "WindowsMediaPhoto.docx",
-      "WPF_WMPhotoImage_CMYKText.docx",
-      "WPF_WMPhotoImage_RgbAlphaText.docx",
-      "WPF_WMPhotoImage_RGBText.docx"
+      "WindowsMediaPhoto.xps",
+      "WPF_WMPhotoImage_CMYKText.xps",
+      "WPF_WMPhotoImage_RgbAlphaText.xps",
+      "WPF_WMPhotoImage_RGBText.xps"
     ]
   },
   "65790": {
@@ -347,7 +349,7 @@
       "xlsx-ods"
     ],
     "files": [
-      "1-11-23.ods"
+      "1-11-23.xlsx"
     ]
   },
   "65974": {
@@ -360,7 +362,7 @@
       "doc-docx"
     ],
     "files": [
-      "kef.docx"
+      "kef.doc"
     ]
   },
   "70652": {
@@ -374,8 +376,8 @@
       "ods-xlsx"
     ],
     "files": [
-      "Book 78.xlsx",
-      "Book 47.xlsx"
+      "Book 78.ods",
+      "Book 47.ods"
     ]
   },
   "72193": {
@@ -389,7 +391,7 @@
       "pdf-docx"
     ],
     "files": [
-      "conv_58552841_6f0f_4025_9f14_6b285e94c6a5_docx.docx"
+      "conv_58552841_6f0f_4025_9f14_6b285e94c6a5_docx.pdf"
     ]
   },
   "72285": {
@@ -402,8 +404,8 @@
       "xlsx-xlsb"
     ],
     "files": [
-      "LCA BI - Financial Report Usage2010.xlsb",
-      "LCA BI - Financial Report Usage2013.xlsb"
+      "LCA BI - Financial Report Usage2010.xlsx",
+      "LCA BI - Financial Report Usage2013.xlsx"
     ]
   },
   "72745": {
@@ -417,8 +419,8 @@
       "odp-pptx"
     ],
     "files": [
-      "GSoC2009-Presentation-BlueLogo_pt-br.pptx",
-      "Monetizing_Innovation.pptx"
+      "GSoC2009-Presentation-BlueLogo_pt-br.odp",
+      "Monetizing_Innovation.odp"
     ]
   }
 }

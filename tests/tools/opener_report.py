@@ -28,14 +28,15 @@ class OpenerReport:
     def write(self, file_path: str, exit_code: int | str) -> None:
         self._write_titles() if not isfile(self.path) else ...
 
-        name = basename(file_path)
         direction = Str.search(file_path, self.direction_pattern, group_num=1)
         version = Str.search(file_path, self.version_pattern, group_num=0)
         os = Str.search(file_path, self.os_pattern, group_num=1)
         mode = Str.search(file_path, self.mod_pattern, group_num=1)
-        bug_info = self._bug_info(direction, name, mode)
+        source_name = self._get_source_file_name(file_name=basename(file_path), direction=direction)
+        bug_info = self._bug_info(direction, source_name, mode)
 
-        self._writer('a', [name, direction, exit_code, bug_info, version, os, mode, file_path])
+        self._writer('a', [source_name, direction, exit_code, bug_info, version, os, mode, file_path])
+
 
     def handler(self, tg_msg: bool | str = False) -> None:
         df = Report.read(self.path)
@@ -67,12 +68,12 @@ class OpenerReport:
     def _add_to_end(df, column_name: str, value: str | int | float):
         df.loc[df.index.max() + 1, column_name] = value
 
-    def _bug_info(self, direction: str, file_name: str, mode: str) -> int | str:
-        mode = mode if mode else 'Default'
+    def _bug_info(self, direction: str, source_file_name: str, mode: str) -> int | str:
+        mode = mode or 'Default'
         for _, info in self.exceptions.items():
             if (
                     direction in info['directions']
-                    and file_name in info['files']
+                    and source_file_name in info['files']
                     and mode in info['mode']
             ):
                 return info['link'] if info['link'] else info['description'] if info['description'] else '1'
@@ -89,3 +90,9 @@ class OpenerReport:
         pd.set_option('display.max_rows', None)
         pd.set_option('display.max_columns', None)
         pd.set_option("expand_frame_repr", False)
+
+    @staticmethod
+    def _get_source_file_name(file_name: str, direction: str) -> str:
+        source_extension = f".{direction.split('-')[0].lstrip('.')}"
+        converted_extension = splitext(file_name)[1]
+        return file_name.replace(converted_extension, source_extension) if converted_extension else file_name
