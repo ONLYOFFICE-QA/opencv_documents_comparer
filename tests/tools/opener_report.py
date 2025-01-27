@@ -28,12 +28,11 @@ class OpenerReport:
     def write(self, file_path: str, exit_code: int | str) -> None:
         self._write_titles() if not isfile(self.path) else ...
 
-        name = basename(file_path)
         direction = Str.search(file_path, self.direction_pattern, group_num=1)
         version = Str.search(file_path, self.version_pattern, group_num=0)
         os = Str.search(file_path, self.os_pattern, group_num=1)
         mode = Str.search(file_path, self.mod_pattern, group_num=1)
-        source_name = self._get_source_file_name(file_name=name, direction=direction)
+        source_name = self._get_source_file_name(file_name=basename(file_path), direction=direction)
         bug_info = self._bug_info(direction, source_name, mode)
 
         self._writer('a', [source_name, direction, exit_code, bug_info, version, os, mode, file_path])
@@ -95,5 +94,6 @@ class OpenerReport:
     @staticmethod
     def _get_source_file_name(file_name: str, direction: str) -> str:
         _extension_list = direction.split('-')
-        if _extension_list and len(_extension_list)>=2:
+        if _extension_list and len(_extension_list) >= 2:
             return file_name.replace(splitext(file_name)[1], _extension_list[0])
+        return file_name
