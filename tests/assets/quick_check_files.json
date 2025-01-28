@@ -364,7 +364,8 @@
     "conv_0b240e45_2052_40ee_a21b_176003d5c59f_pdf.xlsx",
     "Book 50.xlsx",
     "____1.xlsx",
-    "Moog_Labyrinth_–_полумодульный_аналоговый_синтезатор.xlsx"
+    "Moog_Labyrinth_–_полумодульный_аналоговый_синтезатор.xlsx",
+    "_5_xlsx.xlsx"
   ],
   "vsdx": [
     "RefreshMilestone_Out.vsdx",
@@ -374,5 +375,9 @@
     "AddConnectShapes_Out.vsdx",
     "Microsoft_365_Enterprise.vsdx",
     "14 Casino Floor.vsdx"
+  ],
+
+  "hwp": [
+    "test_text_style.hwp"
   ]
 }
