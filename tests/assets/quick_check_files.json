@@ -374,5 +374,9 @@
     "AddConnectShapes_Out.vsdx",
     "Microsoft_365_Enterprise.vsdx",
     "14 Casino Floor.vsdx"
+  ],
+
+  "hwp": [
+    "test_text_style.hwp"
   ]
 }
