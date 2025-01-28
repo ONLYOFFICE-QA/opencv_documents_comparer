@@ -393,5 +393,19 @@
       "LCA BI - Financial Report Usage2010.xlsx",
       "LCA BI - Financial Report Usage2013.xlsx"
     ]
+  },
+  "72857": {
+    "link": "72857",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "odp-pptx"
+    ],
+    "files": [
+      "Monetizing_Innovation.odp"
+    ]
   }
 }
