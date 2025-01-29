@@ -536,5 +536,20 @@
       "setting-celltext-by-field.hwp",
       "test.hwp"
     ]
+  },
+  "72934": {
+    "link": "72934",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "hwpx-docx"
+    ],
+    "files": [
+      "New Hwp(2)_2222222 (1).hwpx",
+      "SimpleTable (1).hwpx"
+    ]
   }
 }
