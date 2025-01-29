@@ -567,5 +567,19 @@
       "87kpRebVWGRl0BLV9sg3fkttelLWUSCa3vzD1tAzaW0_.mht",
       "ORACLE-BASE - Oracle Database 10g Release 2 (10_2_0_1) Installation On Red Hat E.mht"
     ]
+  },
+  "72936": {
+    "link": "72936",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "pdf-docx"
+    ],
+    "files": [
+      "Kpl3-Combat-total.pdf"
+    ]
   }
 }
