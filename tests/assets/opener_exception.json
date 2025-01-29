@@ -551,5 +551,20 @@
       "New Hwp(2)_2222222 (1).hwpx",
       "SimpleTable (1).hwpx"
     ]
+  },
+  "72935": {
+    "link": "72935",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "mht-docx"
+    ],
+    "files": [
+      "87kpRebVWGRl0BLV9sg3fkttelLWUSCa3vzD1tAzaW0_.mht",
+      "ORACLE-BASE - Oracle Database 10g Release 2 (10_2_0_1) Installation On Red Hat E.mht"
+    ]
   }
 }
