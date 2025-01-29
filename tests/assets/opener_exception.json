@@ -520,5 +520,21 @@
       "page3.html",
       "paragraph.html"
     ]
+  },
+  "72933": {
+    "link": "72933",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "hwp-docx"
+    ],
+    "files": [
+      "Objects.hwp",
+      "setting-celltext-by-field.hwp",
+      "test.hwp"
+    ]
   }
 }
