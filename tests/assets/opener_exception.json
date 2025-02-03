@@ -581,5 +581,51 @@
     "files": [
       "Kpl3-Combat-total.pdf"
     ]
+  },
+  "73042": {
+    "link": "73042",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "hwpx-docx"
+    ],
+    "files": [
+      "SimpleRectangle.hwpx"
+    ]
+  },
+  "73050": {
+    "link": "73050",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "xls-xlsx"
+    ],
+    "files": [
+      "0765267.xls",
+      "DataValLookupList.xls",
+      "A Outra Dimensão do Excel.xls to Formulas Matriciais - A Outra Dimensão do Excel.xls"
+    ]
+  },
+  "73052": {
+    "link": "73052",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "xls-xlsx"
+    ],
+    "files": [
+      "NumsToWords_No_VBA.xls",
+      "Proforma Invoice 19_20.xls",
+      "Recibo.xls"
+    ]
   }
 }
