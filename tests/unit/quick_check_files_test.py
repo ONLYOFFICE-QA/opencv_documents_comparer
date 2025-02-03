@@ -21,3 +21,7 @@ def test_extensions_match_keys(file_structure):
     for ext, files in file_structure.items():
         for file in files:
             assert file.lower().endswith("." + ext), f"The file extension {file} does not match the key {ext}"
+
+def test_no_spaces_in_keys(file_structure):
+    for ext in file_structure.keys():
+        assert ' ' not in ext, f"File extension '{ext}' contains spaces"

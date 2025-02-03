@@ -48,3 +48,9 @@ def test_directions_parameter(json_data):
             assert direction.islower(), f"Direction '{direction}' in bug {bug_id} is not lowercase"
             assert '-' in direction, f"Direction '{direction}' in bug {bug_id} does not contain '-'"
             assert '.' not in direction, f"Direction '{direction}' in bug {bug_id} contains '.'"
+
+def test_no_spaces_in_keys(json_data):
+    for bug_id, bug_data in json_data.items():
+        assert ' ' not in bug_id, f"Bug ID '{bug_id}' contains spaces"
+        for key in bug_data.keys():
+            assert ' ' not in key, f"Key '{key}' in bug {bug_id} contains spaces"
