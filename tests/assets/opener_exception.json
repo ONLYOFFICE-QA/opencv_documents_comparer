@@ -581,5 +581,19 @@
     "files": [
       "Kpl3-Combat-total.pdf"
     ]
+  },
+  "73042": {
+    "link": "73042",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "hwpx-docx"
+    ],
+    "files": [
+      "SimpleRectangle.hwpx"
+    ]
   }
 }
