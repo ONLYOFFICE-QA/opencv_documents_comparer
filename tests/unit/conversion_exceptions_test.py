@@ -47,3 +47,9 @@ def test_files_duplicates(json_data):
         assert set(bug_data['files']), f"The 'files' in bug {bug_id} cannot be empty"
         duplicates = [item for item, count in Counter(bug_data['files']).items() if count > 1]
         assert not duplicates, f"Duplicate files have been detected: {duplicates} in bug: {bug_id}"
+
+def test_no_spaces_in_keys(json_data):
+    for bug_id, bug_data in json_data.items():
+        assert ' ' not in bug_id, f"Bug ID '{bug_id}' contains spaces"
+        for key in bug_data.keys():
+            assert ' ' not in key, f"Key '{key}' in bug {bug_id} contains spaces"
