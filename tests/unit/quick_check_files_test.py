@@ -22,8 +22,8 @@ def test_extensions_match_keys(file_structure):
         for file in files:
             assert file.lower().endswith("." + ext), f"The file extension {file} does not match the key {ext}"
 
-def test_no_spaces_in_keys(json_data):
-    for bug_id, bug_data in json_data.items():
+def test_no_spaces_in_keys(file_structure):
+    for bug_id, bug_data in file_structure.items():
         assert ' ' not in bug_id, f"Bug ID '{bug_id}' contains spaces"
         for key in bug_data.keys():
             assert ' ' not in key, f"Key '{key}' in bug {bug_id} contains spaces"
