@@ -595,5 +595,21 @@
     "files": [
       "SimpleRectangle.hwpx"
     ]
+  },
+  "73050": {
+    "link": "73050",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "xls-xlsx"
+    ],
+    "files": [
+      "0765267.xls",
+      "DataValLookupList.xls",
+      "A Outra Dimensão do Excel.xls to Formulas Matriciais - A Outra Dimensão do Excel.xls"
+    ]
   }
 }
