@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from os import environ, getenv
+import os
+from os import environ, getenv, getcwd
 from os.path import dirname, join, splitdrive
 from tempfile import gettempdir
 
@@ -77,4 +78,4 @@ class X2ttesterTestConfig(BaseModel):
 
     @staticmethod
     def _get_tmp_dir() -> str:
-        return join(f"{splitdrive(getenv('SystemRoot'))[0]}/", "tmp") if HostInfo().os == 'windows' else gettempdir()
+        return join(f"{os.getenv('SystemDrive', getcwd())}/", "tmp") if HostInfo().os == 'windows' else gettempdir()
