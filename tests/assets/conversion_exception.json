@@ -391,29 +391,5 @@
       "github260.vsdx",
       "RefreshMilestone_Out.vsdx"
     ]
-  },
-  "73036": {
-    "link": "73036",
-    "description": "",
-    "os": [
-      "linux",
-      "mac"
-    ],
-    "directions": [],
-    "files": [
-      "distribution.hwp",
-      "한글문서파일형식3.0_HWPML_revision1.2.hwp"
-    ]
-  },
-  "73040": {
-    "link": "73040",
-    "description": "",
-    "os": [
-      "windows"
-    ],
-    "directions": [],
-    "files": [
-      "한글문서파일형식3.0_HWPML_revision1.2.hwp"
-    ]
   }
 }
