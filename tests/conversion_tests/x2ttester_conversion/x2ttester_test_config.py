@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-from os import environ
+import os
+from os import environ, getcwd
 from os.path import dirname, join
 from tempfile import gettempdir
 
-from host_tools import File
+from host_tools import File, HostInfo
 from host_tools.utils import Dir
 from pydantic import BaseModel, Field, model_validator
 from typing import Optional
@@ -43,7 +44,7 @@ class X2ttesterTestConfig(BaseModel):
         self.core_dir = self.core_dir or StaticData.core_dir()
         self.reports_dir = self.reports_dir or StaticData.reports_dir()
         self.x2t_version = VersionHandler(X2t.version(self.core_dir)).version
-        self.tmp_dir = File.unique_name(self.tmp_dir or gettempdir())
+        self.tmp_dir = File.unique_name(self.tmp_dir or self._get_tmp_dir())
         self.report_path = self.get_tmp_report_path()
         self.cores = self.cores or config.cores
         self.timeout = self.timeout or config.timeout
@@ -74,3 +75,7 @@ class X2ttesterTestConfig(BaseModel):
     def _set_x2t_memory_limits(self):
         if self.x2t_memory_limits and not self.environment_off:
             environ['X2T_MEMORY_LIMIT'] = f"{self.x2t_memory_limits}GiB"
+
+    @staticmethod
+    def _get_tmp_dir() -> str:
+        return join(f"{os.getenv('SystemDrive', getcwd())}/", "tmp") if HostInfo().os == 'windows' else gettempdir()
