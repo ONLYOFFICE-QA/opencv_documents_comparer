@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
-from os import environ, getenv, getcwd
-from os.path import dirname, join, splitdrive
+from os import environ, getcwd
+from os.path import dirname, join
 from tempfile import gettempdir
 
 from host_tools import File, HostInfo
