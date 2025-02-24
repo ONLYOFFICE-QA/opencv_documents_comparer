@@ -121,18 +121,20 @@ class X2ttesterReport(Report):
     
     def _os_math(self, exception_os: list) -> bool:
         return (not exception_os) or (self.os in exception_os)
-    
-    @staticmethod
-    def _direction_match(input_directions: str, exception_directions: list):
-        return (
-                (not exception_directions) or
-                (input_directions in exception_directions) or
-                (
-                    exception_directions.startswith('*-') and
-                    sub(r'^.*(-png)$', r'*\1', input_directions) in exception_directions
-                )
-        )
 
+    @staticmethod
+    def _direction_match(input_direction: str, exception_directions: list) -> bool:
+        if not exception_directions:
+            return True
+
+        if input_direction in exception_directions:
+            return True
+
+        for exc in exception_directions:
+            if exc.startswith("*-"):
+                return sub(r'^.*(-png)$', r'*\1', input_direction) == exc
+
+        return False
     @staticmethod
     def _add_to_end(df, column_name: str, value: str | int | float):
         df[column_name] = df[column_name].astype(str)
