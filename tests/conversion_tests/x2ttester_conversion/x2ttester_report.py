@@ -119,7 +119,10 @@ class X2ttesterReport(Report):
         return False
     
     def _os_math(self, exception_os: list) -> bool:
-        return (not exception_os) or (self.os in exception_os)
+        if not exception_os:
+            return True
+
+        return self.os in exception_os
 
     @staticmethod
     def _direction_match(input_direction: str, exception_directions: list) -> bool:
