@@ -135,6 +135,7 @@ class X2ttesterReport(Report):
                 return sub(r'^.*(-png)$', r'*\1', input_direction) == exc
 
         return False
+
     @staticmethod
     def _add_to_end(df, column_name: str, value: str | int | float):
         df[column_name] = df[column_name].astype(str)
