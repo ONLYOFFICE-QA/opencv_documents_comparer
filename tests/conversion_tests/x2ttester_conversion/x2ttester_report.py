@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
 import os
-import logging
 from datetime import datetime
 from os.path import join, splitext
 from re import sub
@@ -98,12 +97,10 @@ class X2ttesterReport(Report):
         df = df.drop(columns=['Log', 'Input_size', 'Output_file'], axis=1)
         df = df[~df['Input_file'].str.contains('Time: ')]
 
-        logging.basicConfig(level=logging.DEBUG)
-        logging.debug(f"DataFrame before applying _bug_info: {df.head()}")
-        
-        df.insert(df.columns.get_loc('Direction') + 1, 'BugInfo', df.apply(self._bug_info, axis=1))
-        
-        logging.debug(f"DataFrame after applying _bug_info: {df.head()}")
+        if not df.empty:
+            df.insert(df.columns.get_loc('Direction') + 1, 'BugInfo', df.apply(self._bug_info, axis=1))
+        else:
+            print("[red] DataFrame is empty. Skipping BugInfo insertion.")
 
         errors_list = self._errors_list(df)
         passed_num = f"{len([file for file in df[df.Output_size != 0.0].Input_file.unique()])}"
