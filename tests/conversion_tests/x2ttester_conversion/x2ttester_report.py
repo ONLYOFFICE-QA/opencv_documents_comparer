@@ -110,14 +110,13 @@ class X2ttesterReport(Report):
 
     @staticmethod
     def _file_math(input_file: str, exception_files: list) -> bool:
-        return(
-                input_file in exception_files or
-                (
-                        exception_files and
-                        exception_files[0].startswith('*.') and
-                        splitext(exception_files[0])[1] == splitext(input_file)[1]
-                )
-        )
+        if input_file in exception_files:
+            return True
+
+        if exception_files and exception_files[0].startswith('*.'):
+            return splitext(input_file)[1] == splitext(exception_files[0])[1]
+
+        return False
     
     def _os_math(self, exception_os: list) -> bool:
         return (not exception_os) or (self.os in exception_os)
