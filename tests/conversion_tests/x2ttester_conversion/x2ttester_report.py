@@ -2,7 +2,7 @@
 import json
 import os
 from datetime import datetime
-from os.path import join
+from os.path import join, splitext
 
 from host_tools.utils import Dir
 from rich import print
@@ -92,14 +92,38 @@ class X2ttesterReport(Report):
         return errors.loc[mask, 'Input_file'].unique().tolist()
 
     def _bug_info(self, row) -> str | int:
-        for _, value in self.exceptions.items():
-            if row.Input_file in value['files']:
-                if self.os in value['os'] or not value['os']:
-                    if row.Direction in value['directions'] or not value['directions']:
-                        if value['link'] or value['description']:
-                            return f"{value['description']} {value['link']}".strip()
-                        return '1'
+        for exception in self.exceptions.values():
+            if not self._file_math(row.Input_file, exception['files']):
+                continue
+
+            if self._os_math(exception.get('os')) and self._direction_match(row.Direction, exception['directions']):
+                description = exception.get('description', '')
+                link = exception.get('link', '')
+
+                if description or link:
+                    return f"{description} {link}".strip()
+
+                return '1'
+
         return 0
+
+    @staticmethod
+    def _file_math(input_file: str, exception_files: list) -> bool:
+        return(
+                input_file in exception_files or
+                (
+                        exception_files and
+                        exception_files[0].startswith('*.') and
+                        splitext(exception_files[0])[1] == splitext(input_file)[1]
+                )
+        )
+    
+    def _os_math(self, exception_os: list) -> bool:
+        return (not exception_os) or (self.os in exception_os)
+    
+    @staticmethod
+    def _direction_match(input_directions: str, exception_directions: list):
+        return (not exception_directions) or (input_directions in exception_directions)
 
     @staticmethod
     def _add_to_end(df, column_name: str, value: str | int | float):
