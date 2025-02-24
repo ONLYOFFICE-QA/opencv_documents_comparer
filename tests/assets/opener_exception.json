@@ -394,37 +394,5 @@
       "LCA BI - Financial Report Usage2010.xlsx",
       "LCA BI - Financial Report Usage2013.xlsx"
     ]
-  },
-  "73050": {
-    "link": "73050",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "xls-xlsx"
-    ],
-    "files": [
-      "0765267.xls",
-      "DataValLookupList.xls",
-      "A Outra Dimensão do Excel.xls to Formulas Matriciais - A Outra Dimensão do Excel.xls"
-    ]
-  },
-  "73052": {
-    "link": "73052",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "xls-xlsx"
-    ],
-    "files": [
-      "NumsToWords_No_VBA.xls",
-      "Proforma Invoice 19_20.xls",
-      "Recibo.xls"
-    ]
   }
 }
