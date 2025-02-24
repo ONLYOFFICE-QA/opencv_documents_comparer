@@ -95,19 +95,14 @@ class X2ttesterReport(Report):
         df = self.read(report_path)
         df.rename(columns=self.__columns_names, inplace=True)
         df = df.drop(columns=['Log', 'Input_size', 'Output_file'], axis=1)
+        df.insert(df.columns.get_loc('Direction') + 1, 'BugInfo', df.apply(self._bug_info, axis=1))
         df = df[~df['Input_file'].str.contains('Time: ')]
-
-        if not df.empty:
-            df.insert(df.columns.get_loc('Direction') + 1, 'BugInfo', df.apply(self._bug_info, axis=1))
-        else:
-            print("[red] DataFrame is empty. Skipping BugInfo insertion.")
 
         errors_list = self._errors_list(df)
         passed_num = f"{len([file for file in df[df.Output_size != 0.0].Input_file.unique()])}"
 
-        if not df.empty:
-            self._add_to_end(df, 'BugInfo', f"Errors: {errors_list}")
-            self._add_to_end(df, 'BugInfo', f"Passed: {passed_num}")
+        self._add_to_end(df, 'BugInfo', f"Errors: {errors_list}")
+        self._add_to_end(df, 'BugInfo', f"Passed: {passed_num}")
 
         processed_report = self.save_csv(df, self.path())
         self._print_results(df, errors_list, passed_num, report_path)
