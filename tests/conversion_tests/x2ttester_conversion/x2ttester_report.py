@@ -105,8 +105,9 @@ class X2ttesterReport(Report):
         errors_list = self._errors_list(df)
         passed_num = f"{len([file for file in df[df.Output_size != 0.0].Input_file.unique()])}"
 
-        self._add_to_end(df, 'BugInfo', f"Errors: {errors_list}")
-        self._add_to_end(df, 'BugInfo', f"Passed: {passed_num}")
+        if not df.empty:
+            self._add_to_end(df, 'BugInfo', f"Errors: {errors_list}")
+            self._add_to_end(df, 'BugInfo', f"Passed: {passed_num}")
 
         processed_report = self.save_csv(df, self.path())
         self._print_results(df, errors_list, passed_num, report_path)
@@ -140,6 +141,9 @@ class X2ttesterReport(Report):
         :param df: DataFrame containing the test results.
         :return: List of errors encountered during the tests.
         """
+        if df.empty:
+            return []
+
         errors = df[df.Output_size == 0.0] if not self.config.errors_only else df
         mask = (errors.BugInfo == 0)
         return errors.loc[mask, 'Input_file'].unique().tolist()
