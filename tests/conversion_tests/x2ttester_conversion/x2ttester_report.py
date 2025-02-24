@@ -3,6 +3,7 @@ import json
 import os
 from datetime import datetime
 from os.path import join, splitext
+from re import sub
 
 from host_tools.utils import Dir
 from rich import print
@@ -123,7 +124,14 @@ class X2ttesterReport(Report):
     
     @staticmethod
     def _direction_match(input_directions: str, exception_directions: list):
-        return (not exception_directions) or (input_directions in exception_directions)
+        return (
+                (not exception_directions) or
+                (input_directions in exception_directions) or
+                (
+                    exception_directions.startswith('*-') and
+                    sub(r'^.*(-png)$', r'*\1', input_directions) in exception_directions
+                )
+        )
 
     @staticmethod
     def _add_to_end(df, column_name: str, value: str | int | float):
