@@ -378,18 +378,9 @@
     "link": "73015",
     "description": "",
     "os": [],
-    "directions": [
-      "vsdx-png",
-      "vsdx-jpg",
-      "vsdx-pdf"
-    ],
+    "directions": [],
     "files": [
-      "14 Casino Floor.vsdx",
-      "AddConnectShapes_Out.vsdx",
-      "AddHyperlinkToShape_Out.vsdx",
-      "ApplyFontOnText_Out.vsdx",
-      "github260.vsdx",
-      "RefreshMilestone_Out.vsdx"
+      "*.vsdx"
     ]
   },
   "72931": {
