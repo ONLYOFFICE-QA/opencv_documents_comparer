@@ -154,7 +154,7 @@ class X2ttesterReport(Report):
             if not self._file_math(row.Input_file, exception['files']):
                 continue
 
-            if self._os_math(exception.get('os')) and self._direction_match(row.Direction, exception['directions']):
+            if self._os_math(exception['os']) and self._direction_match(row.Direction, exception['directions']):
                 description = exception.get('description', '')
                 link = exception.get('link', '')
 
