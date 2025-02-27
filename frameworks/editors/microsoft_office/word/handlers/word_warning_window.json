@@ -1,37 +1,37 @@
 {
   "Safe mode": {
     "window_title": "Static",
-    "window_text": "Выполнить запуск в безопасном режиме?",
+    "window_text": "Run in safe mode?",
     "message": "Start Word in safe mode. Clicked: 'No'",
     "button_title": "Button",
-    "button_name": "&Нет"
+    "button_name": "&No"
   },
   "really want to open it?": {
     "window_title": "Static",
-    "window_text": "произошла серьезная ошибка. Вы действительно хотите открыть его?",
+    "window_text": "there's been a serious error. Do you really want to open it?",
     "message": "Do you really want to open it?. Clicked: 'Yes'",
     "button_title": "Button",
-    "button_name": "Д&а"
+    "button_name": "Yes"
   },
   "Wraparound tool": {
     "window_title": "Static",
-    "window_text": "Средство расстановки переносов для приложения Word",
+    "window_text": "A hyphenation tool for Word application",
     "message": "Wraparound tool for Word application",
     "button_title": "Button",
     "button_name": "ОК"
   },
   "links to other files": {
     "window_title": "Static",
-    "window_text": "Документ содержит связи с другими файлами. Обновить в документе данные",
+    "window_text": "The document contains links to other files. Update data in the document",
     "message": "The document contains links to other files. Clicked: 'No'",
     "button_title": "Button",
-    "button_name": "Н&ет"
+    "button_name": "No"
   },
   "links to other files2": {
     "window_title": "Static",
-    "window_text": "Этот документ содержит ссылки, которые могут указывать на другие файлы",
+    "window_text": "This document contains links that may point to other files",
     "message": "The document contains links to other files. Clicked: 'No'",
     "button_title": "Button",
-    "button_name": "Н&ет"
+    "button_name": "No"
   }
 }
