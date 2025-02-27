@@ -1,21 +1,21 @@
 {
   "Some formulas contain cyclic references": {
     "window_title": "Static",
-    "window_text": "Некоторые формулы содержат циклические ссылки",
+    "window_text": "Some formulas contain cyclic references",
     "message": "Some formulas contain cyclic references. Clicked: 'ОК'",
     "button_title": "Button",
     "button_name": "ОК"
   },
   "The author advises opening  file for reading only": {
     "window_title": "Static",
-    "window_text": "только для чтения, если вносить изменения не требуется.",
+    "window_text": "read-only if no changes are required.",
     "message": "The author advises opening  file for reading only. Clicked: 'ОК'",
     "button_title": "Button",
-    "button_name": "Д&а"
+    "button_name": "Yes"
   },
   "Invalid reference": {
     "window_title": "Static",
-    "window_text": "Недопустимая ссылка. Ссылка для названий, значений",
+    "window_text": "Invalid reference. Reference for names, values",
     "message": "Invalid reference. Clicked: 'ОК'",
     "button_title": "Button",
     "button_name": "ОК"
