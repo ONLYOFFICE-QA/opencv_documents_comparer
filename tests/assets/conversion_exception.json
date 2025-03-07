@@ -416,5 +416,21 @@
     "files": [
       "conv_4212173694_1025.docx"
     ]
+  },
+  "73462": {
+    "link": "73462",
+    "description": "",
+    "os": [],
+    "directions": [
+      "*-pdf",
+      "*-png",
+      "*-jpg",
+      "*-epub",
+      "*-html",
+      "*-fb2"
+    ],
+    "files": [
+      "conv_dc9fe01a_d416_4380_8824_6319afacf0ea_513.docx"
+    ]
   }
 }
