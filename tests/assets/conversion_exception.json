@@ -400,5 +400,21 @@
     "files": [
       "tm2024_en_free (перевод).pdf"
     ]
+  },
+  "73461": {
+    "link": "73461",
+    "description": "",
+    "os": [],
+    "directions": [
+      "*-pdf",
+      "*-png",
+      "*-jpg",
+      "*-epub",
+      "*-html",
+      "*-fb2"
+    ],
+    "files": [
+      "conv_4212173694_1025.docx"
+    ]
   }
 }
