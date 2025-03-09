@@ -406,12 +406,12 @@
     "description": "",
     "os": [],
     "directions": [
-      "*-pdf",
-      "*-png",
-      "*-jpg",
-      "*-epub",
-      "*-html",
-      "*-fb2"
+      "docx-pdf",
+      "docx-png",
+      "docx-jpg",
+      "docx-epub",
+      "docx-html",
+      "docx-fb2"
     ],
     "files": [
       "conv_4212173694_1025.docx"
@@ -422,15 +422,44 @@
     "description": "",
     "os": [],
     "directions": [
-      "*-pdf",
-      "*-png",
-      "*-jpg",
-      "*-epub",
-      "*-html",
-      "*-fb2"
+      "docx-pdf",
+      "docx-png",
+      "docx-jpg",
+      "docx-epub",
+      "docx-html",
+      "docx-fb2"
     ],
     "files": [
       "conv_dc9fe01a_d416_4380_8824_6319afacf0ea_513.docx"
+    ]
+  },
+  "73466": {
+    "link": "73466",
+    "description": "",
+    "os": [],
+    "directions": [
+      "ods-xlsb",
+      "xlsx-xlsb"
+    ],
+    "files": [
+      "bug-GH27.ods",
+      "conv_4RXcgUgM_dcZGoe1Vmk__.xlsx",
+      "general_formulas2.xlsx",
+      "20.03.2016-20.04.2016_detalizaciya_9063493071.XLSX"
+    ]
+  },
+  "73467": {
+    "link": "73467 ",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xls-xlsb",
+      "xlsx-xlsb"
+    ],
+    "files": [
+      "testIssues631.xls",
+      "NIFTY_Mechanical_Trading_using_PIVOT_calculations.xls",
+      "conv_40hqO0VhNVz3rDN2fthxje398a6KNfBs8HRoMTBIuKY__jpg.xlsx"
     ]
   }
 }
