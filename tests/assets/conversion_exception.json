@@ -443,5 +443,17 @@
     "files": [
       "bug-GH27.ods"
     ]
+  },
+  "73467": {
+    "link": "73467 ",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xls-xlsb"
+    ],
+    "files": [
+      "testIssues631.xls",
+      "NIFTY_Mechanical_Trading_using_PIVOT_calculations.xls"
+    ]
   }
 }
