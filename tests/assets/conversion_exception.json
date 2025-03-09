@@ -438,10 +438,14 @@
     "description": "",
     "os": [],
     "directions": [
-      "ods-xlsb"
+      "ods-xlsb",
+      "xlsx-xlsb"
     ],
     "files": [
-      "bug-GH27.ods"
+      "bug-GH27.ods",
+      "conv_4RXcgUgM_dcZGoe1Vmk__.xlsx",
+      "general_formulas2.xlsx",
+      "20.03.2016-20.04.2016_detalizaciya_9063493071.XLSX"
     ]
   },
   "73467": {
@@ -449,11 +453,13 @@
     "description": "",
     "os": [],
     "directions": [
-      "xls-xlsb"
+      "xls-xlsb",
+      "xlsx-xlsb"
     ],
     "files": [
       "testIssues631.xls",
-      "NIFTY_Mechanical_Trading_using_PIVOT_calculations.xls"
+      "NIFTY_Mechanical_Trading_using_PIVOT_calculations.xls",
+      "conv_40hqO0VhNVz3rDN2fthxje398a6KNfBs8HRoMTBIuKY__jpg.xlsx"
     ]
   }
 }
