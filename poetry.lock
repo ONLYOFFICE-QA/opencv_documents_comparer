@@ -2023,14 +2023,14 @@ files = [
 
 [[package]]
 name = "tifffile"
-version = "2025.2.18"
+version = "2025.3.30"
 description = "Read and write TIFF files"
 optional = false
 python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "tifffile-2025.2.18-py3-none-any.whl", hash = "sha256:54b36c4d5e5b8d8920134413edfe5a7cfb1c7617bb50cddf7e2772edb7149043"},
-    {file = "tifffile-2025.2.18.tar.gz", hash = "sha256:8d731789e691b468746c1615d989bc550ac93cf753e9210865222e90a5a95d11"},
+    {file = "tifffile-2025.3.30-py3-none-any.whl", hash = "sha256:0ed6eee7b66771db2d1bfc42262a51b01887505d35539daef118f4ff8c0f629c"},
+    {file = "tifffile-2025.3.30.tar.gz", hash = "sha256:3cdee47fe06cd75367c16bc3ff34523713156dae6cd498e3a392e5b39a51b789"},
 ]
 
 [package.dependencies]
