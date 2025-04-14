@@ -380,19 +380,5 @@
       "Book 78.ods",
       "Book 47.ods"
     ]
-  },
-  "72285": {
-    "link": "72285",
-    "description": "",
-    "mode": [
-      "t-format"
-    ],
-    "directions": [
-      "xlsx-xlsb"
-    ],
-    "files": [
-      "LCA BI - Financial Report Usage2010.xlsx",
-      "LCA BI - Financial Report Usage2013.xlsx"
-    ]
   }
 }
