@@ -500,5 +500,17 @@
     "files": [
       "Диплом (Денис1) (послередактора).docx"
     ]
+  },
+  "74095": {
+    "link": "74095 ",
+    "description": "",
+    "os": [],
+    "directions": [
+      "docx-odt",
+      "docx-ott"
+    ],
+    "files": [
+      "Word2007RTFSpec9.docx"
+    ]
   }
 }
