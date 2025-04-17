@@ -479,5 +479,38 @@
       "Justice Gap for Sexual Assault 05-25-10.docx",
       "Office 365 Value Added Reseller Guide.docx"
     ]
+  },
+  "73819": {
+    "link": "73819 ",
+    "description": "",
+    "os": [],
+    "directions": [],
+    "files": [
+      "00_finansovaja_model_Retail_Top-Down_PL_SF_CF_BS_OutS_0.xlsx"
+    ]
+  },
+  "74091": {
+    "link": "74091 ",
+    "description": "",
+    "os": [],
+    "directions": [
+      "docx-odt",
+      "docx-ott"
+    ],
+    "files": [
+      "Диплом (Денис1) (послередактора).docx"
+    ]
+  },
+  "74095": {
+    "link": "74095 ",
+    "description": "",
+    "os": [],
+    "directions": [
+      "docx-odt",
+      "docx-ott"
+    ],
+    "files": [
+      "Word2007RTFSpec9.docx"
+    ]
   }
 }
