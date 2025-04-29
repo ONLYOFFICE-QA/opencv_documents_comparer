@@ -526,5 +526,41 @@
     "files": [
       "SOL_2003_WMI_mbakirov.pptx"
     ]
+  },
+  "74281": {
+    "link": "74281",
+    "description": "",
+    "os": [],
+    "directions": [],
+    "files": [
+      "990C-Graphics2012-03-19.odg",
+      "astabile.bak.odg",
+      "BoxDiagram.odg",
+      "Bug Scrollbar.odg",
+      "Bug Status Bar (1).odg",
+      "bug-draw.odg",
+      "dessin.odg",
+      "EMFrendering.odg",
+      "export_bug01.odg",
+      "export_bug02.odg",
+      "fichier.odg",
+      "File1.odg",
+      "labelled_connectors_libreoffice_draw.odg",
+      "LineEndMarker.odg",
+      "LittleBigFig.odg",
+      "LO-Draw_FormatLinks_B_to_A.odg",
+      "mysamples.odg",
+      "PatternFillingExample.odg",
+      "RE350-120 wiring.odg",
+      "ResultAndScreenshot.odg",
+      "sample (24).odg",
+      "sample10.odg",
+      "sample3.odg",
+      "SampleFrom343.odg",
+      "ScreenshotsFromUbuntu.odg",
+      "Spellchecker (1).odg",
+      "svg-path-bug.odg",
+      "tux-distribution.odg"
+    ]
   }
 }
