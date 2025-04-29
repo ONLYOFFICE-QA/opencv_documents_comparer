@@ -401,22 +401,6 @@
       "tm2024_en_free (перевод).pdf"
     ]
   },
-  "73462": {
-    "link": "73462",
-    "description": "",
-    "os": [],
-    "directions": [
-      "docx-pdf",
-      "docx-png",
-      "docx-jpg",
-      "docx-epub",
-      "docx-html",
-      "docx-fb2"
-    ],
-    "files": [
-      "conv_dc9fe01a_d416_4380_8824_6319afacf0ea_513.docx"
-    ]
-  },
   "73488": {
     "link": "73488",
     "description": "",
@@ -449,7 +433,9 @@
   "74031": {
     "link": "74031 ",
     "description": "",
-    "os": ["mac"],
+    "os": [
+      "mac"
+    ],
     "directions": [
       "docx-rtf"
     ],
@@ -489,18 +475,6 @@
       "00_finansovaja_model_Retail_Top-Down_PL_SF_CF_BS_OutS_0.xlsx"
     ]
   },
-  "74091": {
-    "link": "74091 ",
-    "description": "",
-    "os": [],
-    "directions": [
-      "docx-odt",
-      "docx-ott"
-    ],
-    "files": [
-      "Диплом (Денис1) (послередактора).docx"
-    ]
-  },
   "74095": {
     "link": "74095 ",
     "description": "",
@@ -511,19 +485,6 @@
     ],
     "files": [
       "Word2007RTFSpec9.docx"
-    ]
-  },
-  "74254": {
-    "link": "74254 ",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xlsx-png",
-      "xlsx-jpg",
-      "xlsx-pdg"
-    ],
-    "files": [
-      "AlexJ_MasterReportFilter_v01.xlsx"
     ]
   },
   "74273": {
