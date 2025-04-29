@@ -525,5 +525,45 @@
     "files": [
       "AlexJ_MasterReportFilter_v01.xlsx"
     ]
+  },
+  "74273": {
+    "link": "74273",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xls-png",
+      "xls-jpg",
+      "xls-pdg"
+    ],
+    "files": [
+      "hackerone_axcext.xls",
+      "hackerone_seriesaxiscatser.xls"
+    ]
+  },
+  "74274": {
+    "link": "74274",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xls-png",
+      "xls-jpg",
+      "xls-pdg"
+    ],
+    "files": [
+      "hackerone_ss-serdef-ind.xls"
+    ]
+  },
+  "74276": {
+    "link": "74276",
+    "description": "",
+    "os": [],
+    "directions": [
+      "pptx-png",
+      "pptx-jpg",
+      "pptx-pdg"
+    ],
+    "files": [
+      "SOL_2003_WMI_mbakirov.pptx"
+    ]
   }
 }
