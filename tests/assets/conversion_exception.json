@@ -531,9 +531,9 @@
     "description": "",
     "os": [],
     "directions": [
-      "xlsx-png",
-      "xlsx-jpg",
-      "xlsx-pdg"
+      "xls-png",
+      "xls-jpg",
+      "xls-pdg"
     ],
     "files": [
       "hackerone_axcext.xls",
@@ -545,12 +545,25 @@
     "description": "",
     "os": [],
     "directions": [
-      "xlsx-png",
-      "xlsx-jpg",
-      "xlsx-pdg"
+      "xls-png",
+      "xls-jpg",
+      "xls-pdg"
     ],
     "files": [
       "hackerone_ss-serdef-ind.xls"
+    ]
+  },
+  "74276": {
+    "link": "74276",
+    "description": "",
+    "os": [],
+    "directions": [
+      "pptx-png",
+      "pptx-jpg",
+      "pptx-pdg"
+    ],
+    "files": [
+      "SOL_2003_WMI_mbakirov.pptx"
     ]
   }
 }
