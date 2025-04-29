@@ -525,5 +525,19 @@
     "files": [
       "AlexJ_MasterReportFilter_v01.xlsx"
     ]
+  },
+  "74273": {
+    "link": "74273",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xlsx-png",
+      "xlsx-jpg",
+      "xlsx-pdg"
+    ],
+    "files": [
+      "hackerone_axcext.xls",
+      "hackerone_seriesaxiscatser.xls"
+    ]
   }
 }
