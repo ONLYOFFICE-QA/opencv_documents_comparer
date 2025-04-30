@@ -562,5 +562,17 @@
       "svg-path-bug.odg",
       "tux-distribution.odg"
     ]
+  },
+  "74310": {
+    "link": "74310",
+    "description": "",
+    "os": [],
+    "directions": [
+      "odg-odp",
+      "odg-otp"
+    ],
+    "files": [
+      "Object with fixed rectangle.odg"
+    ]
   }
 }
