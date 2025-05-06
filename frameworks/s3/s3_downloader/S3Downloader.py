@@ -108,7 +108,7 @@ class S3Downloader:
                 for future in concurrent.futures.as_completed(futures):
                     future.add_done_callback(lambda *_: status.update(self._get_thread_result(future)))
 
-            concurrent.futures.wait(futures)
+                concurrent.futures.wait(futures)
         self._check_download_errors()
 
     @staticmethod
