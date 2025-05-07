@@ -527,7 +527,11 @@
     "link": "74389",
     "description": "",
     "os": [],
-    "directions": [],
+    "directions": [
+      "xlsx-png",
+      "xlsx-jpg",
+      "xlsx-pdf"
+    ],
     "files": [
       "Family budget (monthly)1.xlsx"
     ]
