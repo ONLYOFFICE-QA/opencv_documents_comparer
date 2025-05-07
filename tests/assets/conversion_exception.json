@@ -511,5 +511,42 @@
     "files": [
       "Object with fixed rectangle.odg"
     ]
+  },
+  "74388": {
+    "link": "74388",
+    "description": "",
+    "os": [],
+    "directions": [],
+    "files": [
+      "Cuaderno del maestro.docx",
+      "Формальный бюллетень.docx",
+      "BG-FSC1.docx"
+    ]
+  },
+  "74389": {
+    "link": "74389",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xlsx-png",
+      "xlsx-jpg",
+      "xlsx-pdf"
+    ],
+    "files": [
+      "Family budget (monthly)1.xlsx"
+    ]
+  },
+  "74390": {
+    "link": "74390",
+    "description": "",
+    "os": [],
+    "directions": [
+      "ods-png",
+      "ods-jpg",
+      "ods-pdf"
+    ],
+    "files": [
+      "Stock Chart 4.ods"
+    ]
   }
 }
