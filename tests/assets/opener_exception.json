@@ -419,5 +419,19 @@
       "ColorWheel_14APR2014.ods",
       "Pricing 2012 J4.ods"
     ]
+  },
+  "74484": {
+    "link": "74484",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "ods-xlsx"
+    ],
+    "files": [
+      "Problem with graph formatting (1).ods"
+    ]
   }
 }
