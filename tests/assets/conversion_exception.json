@@ -563,5 +563,19 @@
     "files": [
       "ConfigureShapeLayers_Out.vsdx"
     ]
+  },
+  "74478": {
+    "link": "74478",
+    "description": "",
+    "os": [],
+    "directions": [
+      "vsdx-png",
+      "vsdx-jpg",
+      "vsdx-pdf"
+    ],
+    "files": [
+      "14 Casino Floor.vsdx",
+      "10 Complex Microsoft Diagramm.vsdx"
+    ]
   }
 }
