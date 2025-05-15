@@ -498,5 +498,20 @@
       "Document with drawing resized.odt",
       "paste.odt"
     ]
+  },
+  "74489": {
+    "link": "74489",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "odt-docx"
+    ],
+    "files": [
+      "Writer bug.odt",
+      "Writer bug #2.odt"
+    ]
   }
 }
