@@ -577,5 +577,20 @@
       "14 Casino Floor.vsdx",
       "10 Complex Microsoft Diagramm.vsdx"
     ]
+  },
+  "74480": {
+    "link": "74480",
+    "description": "",
+    "os": [],
+    "directions": [
+      "md-png",
+      "md-jpg",
+      "md-pdf",
+      "md-epub",
+      "md-fb2"
+    ],
+    "files": [
+      "hasanRafi2002_hasanRafi2002_a.md"
+    ]
   }
 }
