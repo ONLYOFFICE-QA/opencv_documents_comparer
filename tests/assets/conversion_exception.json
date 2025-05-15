@@ -550,5 +550,18 @@
     "files": [
       "organogram.docx"
     ]
+  },
+  "74476": {
+    "link": "74476",
+    "description": "",
+    "os": [],
+    "directions": [
+      "vsdx-png",
+      "vsdx-jpg",
+      "vsdx-pdf"
+    ],
+    "files": [
+      "ConfigureShapeLayers_Out.vsdx"
+    ]
   }
 }
