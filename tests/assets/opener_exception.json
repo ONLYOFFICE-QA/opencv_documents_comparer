@@ -7,12 +7,14 @@
       "t-format"
     ],
     "directions": [
-      "xls-xlsx"
+      "xls-xlsx",
+      "ods-xlsx"
     ],
     "files": [
       "A3  2(test).xls",
       "A3  2.xls",
-      "kso 1    2  1.xls"
+      "kso 1    2  1.xls",
+      "ccf1_projets-pierre.ods"
     ]
   },
   "74359": {
