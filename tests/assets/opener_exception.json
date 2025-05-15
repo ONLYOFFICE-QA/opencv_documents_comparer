@@ -465,5 +465,20 @@
       "bus-modern_l.ott",
       "bus-office_l.ott"
     ]
+  },
+  "74487": {
+    "link": "74487",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "odt-docx"
+    ],
+    "files": [
+      "test_fig_jpg+eqs_jpg.odt",
+      "test_fig_png+eqs_png.odt"
+    ]
   }
 }
