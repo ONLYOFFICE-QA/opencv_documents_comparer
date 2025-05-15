@@ -404,5 +404,20 @@
       "Book 78.ods",
       "Book 47.ods"
     ]
+  },
+  "74483": {
+    "link": "74483",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "ods-xlsx"
+    ],
+    "files": [
+      "ColorWheel_14APR2014.ods",
+      "Pricing 2012 J4.ods"
+    ]
   }
 }
