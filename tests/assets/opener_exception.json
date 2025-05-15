@@ -433,5 +433,19 @@
     "files": [
       "Problem with graph formatting (1).ods"
     ]
+  },
+  "74485": {
+    "link": "74485",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "ods-xlsx"
+    ],
+    "files": [
+      "Conditional_Formating.ods"
+    ]
   }
 }
