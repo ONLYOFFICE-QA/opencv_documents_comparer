@@ -449,5 +449,21 @@
     "files": [
       "Conditional_Formating.ods"
     ]
+  },
+  "74486": {
+    "link": "74486",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "ott-docx"
+    ],
+    "files": [
+      "bus-elegant_l.ott",
+      "bus-modern_l.ott",
+      "bus-office_l.ott"
+    ]
   }
 }
