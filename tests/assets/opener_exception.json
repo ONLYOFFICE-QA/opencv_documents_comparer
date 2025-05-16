@@ -513,5 +513,19 @@
       "Writer bug.odt",
       "Writer bug #2.odt"
     ]
+  },
+  "74491": {
+    "link": "74491",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "odt-docx"
+    ],
+    "files": [
+      "ApproxCircleInfo (3).odt"
+    ]
   }
 }
