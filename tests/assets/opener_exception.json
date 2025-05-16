@@ -7,12 +7,14 @@
       "t-format"
     ],
     "directions": [
-      "xls-xlsx"
+      "xls-xlsx",
+      "ods-xlsx"
     ],
     "files": [
       "A3  2(test).xls",
       "A3  2.xls",
-      "kso 1    2  1.xls"
+      "kso 1    2  1.xls",
+      "ccf1_projets-pierre.ods"
     ]
   },
   "74359": {
@@ -403,6 +405,127 @@
     "files": [
       "Book 78.ods",
       "Book 47.ods"
+    ]
+  },
+  "74483": {
+    "link": "74483",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "ods-xlsx"
+    ],
+    "files": [
+      "ColorWheel_14APR2014.ods",
+      "Pricing 2012 J4.ods"
+    ]
+  },
+  "74484": {
+    "link": "74484",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "ods-xlsx"
+    ],
+    "files": [
+      "Problem with graph formatting (1).ods"
+    ]
+  },
+  "74485": {
+    "link": "74485",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "ods-xlsx"
+    ],
+    "files": [
+      "Conditional_Formating.ods"
+    ]
+  },
+  "74486": {
+    "link": "74486",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "ott-docx"
+    ],
+    "files": [
+      "bus-elegant_l.ott",
+      "bus-modern_l.ott",
+      "bus-office_l.ott"
+    ]
+  },
+  "74487": {
+    "link": "74487",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "odt-docx"
+    ],
+    "files": [
+      "test_fig_jpg+eqs_jpg.odt",
+      "test_fig_png+eqs_png.odt"
+    ]
+  },
+  "74488": {
+    "link": "74488",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "odt-docx"
+    ],
+    "files": [
+      "bug2_etal.odt",
+      "bug3_sun_orig.odt",
+      "bug_for_LO_orig.odt",
+      "Document with drawing resized.odt",
+      "paste.odt"
+    ]
+  },
+  "74489": {
+    "link": "74489",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "odt-docx"
+    ],
+    "files": [
+      "Writer bug.odt",
+      "Writer bug #2.odt"
+    ]
+  },
+  "74491": {
+    "link": "74491",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "odt-docx"
+    ],
+    "files": [
+      "ApproxCircleInfo (3).odt"
     ]
   }
 }

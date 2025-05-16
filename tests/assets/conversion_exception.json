@@ -550,5 +550,47 @@
     "files": [
       "organogram.docx"
     ]
+  },
+  "74476": {
+    "link": "74476",
+    "description": "",
+    "os": [],
+    "directions": [
+      "vsdx-png",
+      "vsdx-jpg",
+      "vsdx-pdf"
+    ],
+    "files": [
+      "ConfigureShapeLayers_Out.vsdx"
+    ]
+  },
+  "74478": {
+    "link": "74478",
+    "description": "",
+    "os": [],
+    "directions": [
+      "vsdx-png",
+      "vsdx-jpg",
+      "vsdx-pdf"
+    ],
+    "files": [
+      "14 Casino Floor.vsdx",
+      "10 Complex Microsoft Diagramm.vsdx"
+    ]
+  },
+  "74480": {
+    "link": "74480",
+    "description": "",
+    "os": [],
+    "directions": [
+      "md-png",
+      "md-jpg",
+      "md-pdf",
+      "md-epub",
+      "md-fb2"
+    ],
+    "files": [
+      "hasanRafi2002_hasanRafi2002_a.md"
+    ]
   }
 }
