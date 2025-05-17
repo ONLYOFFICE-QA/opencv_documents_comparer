@@ -517,10 +517,15 @@
     "directions": [
       "xls-png",
       "xls-jpg",
-      "xls-pdf"
+      "xls-pdf",
+      "ods-png",
+      "ods-jpg",
+      "ods-pdf"
     ],
     "files": [
-      "BASKETBALL STATISTICS WORKBOOK V3.xls"
+      "BASKETBALL STATISTICS WORKBOOK V3.xls",
+      "file_1_ (2).ods",
+      "ControledeExtintoresA.ods"
     ]
   }
 }
