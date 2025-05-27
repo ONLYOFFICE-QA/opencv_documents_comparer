@@ -60,7 +60,7 @@ class X2ttesterTestConfig(BaseModel):
         return self
 
     def get_tmp_report_path(self) -> str:
-        tmp_report = File.unique_name(File.unique_name(self.tmp_dir), 'csv')
+        tmp_report = File.unique_name(join(self.reports_dir, 'tmp_reports'), 'csv')
         Dir.create(dirname(tmp_report), stdout=False)
         return tmp_report
 
