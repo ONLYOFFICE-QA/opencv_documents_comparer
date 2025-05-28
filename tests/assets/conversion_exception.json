@@ -345,19 +345,6 @@
       "100M.txt"
     ]
   },
-  "72186": {
-    "link": "72186",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "Microsoft_365_Enterprise.vsdx",
-      "11 Complex diagramm Two Pages.vsdx",
-      "68.vsdx",
-      "Microsoft 365 Enterprise.vsdx",
-      "6 Embed image.vsdx"
-    ]
-  },
   "72488": {
     "link": "72488",
     "description": "",
@@ -508,37 +495,6 @@
     ],
     "files": [
       "hasanRafi2002_hasanRafi2002_a.md"
-    ]
-  },
-  "74512": {
-    "link": "74512",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xls-png",
-      "xls-jpg",
-      "xls-pdf",
-      "ods-png",
-      "ods-jpg",
-      "ods-pdf"
-    ],
-    "files": [
-      "BASKETBALL STATISTICS WORKBOOK V3.xls",
-      "file_1_ (2).ods",
-      "ControledeExtintoresA.ods"
-    ]
-  },
-  "74620": {
-    "link": "74620",
-    "description": "",
-    "os": [],
-    "directions": [
-      "vsdx-png",
-      "vsdx-jpg",
-      "vsdx-pdf"
-    ],
-    "files": [
-      "Containers, Lists and Callouts_start.vsdx"
     ]
   }
 }
