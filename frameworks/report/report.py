@@ -56,14 +56,14 @@ class Report:
             writer.writerow(message)
 
     @staticmethod
-    def read(csv_file: str, delimiter="\t") -> pd.DataFrame:
+    def read(csv_file: str, delimiter="\t", **kwargs) -> pd.DataFrame:
         """
         Reads a CSV file into a pandas DataFrame.
         :param csv_file: Path to the CSV file.
         :param delimiter: Delimiter used in the CSV file (default is '\t').
         :return: DataFrame containing the data from the CSV file.
         """
-        data = pd.read_csv(csv_file, delimiter=delimiter)
+        data = pd.read_csv(csv_file, delimiter=delimiter, **kwargs)
         last_row = data.iloc[-1]
 
         if last_row.isnull().all() or (last_row.astype(str).str.contains(r"[^\x00-\x7F]", regex=True).any()):
