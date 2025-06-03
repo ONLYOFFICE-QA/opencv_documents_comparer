@@ -1,31 +1,29 @@
-[tool.poetry]
+[project]
 name = "opencv-documents-comparer"
 version = "2.0.0"
 description = ""
-authors = ["l02 <l8556@outlook.com>"]
+authors = [{ name = "l02", email = "l8556@outlook.com" }]
 readme = "README.md"
-packages = [{include = "opencv_documents_comparer"}]
-package-mode = false
+requires-python = ">=3.11"
+dependencies = [
+    "opencv-python>=4.11.0.86",
+    "numpy>=2.2.6",
+    "scikit-image==0.25.2",
+    "imageio>=2",
+    "pyautogui>=0.9.54",
+    "rich>=14.0.0",
+    "invoke>=2.2.0",
+    "pillow>=11.2.1",
+    "pandas>=2",
+    "mss>=10.0.0",
+    "pytest>=8.4.0",
+    "pydantic>=2",
+    "host-tools",
+    "telegram",
+    "s3wrapper"
+]
 
-[tool.poetry.dependencies]
-python = "^3.11"
-opencv-python = "^4.11.0.86"
-numpy = "^2.2.6"
-scikit-image = "0.25.2"
-imageio = "^2"
-pyautogui = "^0.9.54"
-rich = "^14.0.0"
-invoke = "^2.2.0"
-pillow = "^11.2.1"
-pandas = "^2"
-mss = "^10.0.0"
-pytest = "^8.4.0"
-pydantic = "^2"
+[tool.uv.sources]
 host-tools = { git = "https://github.com/l8556/host_tools.git", branch = "master" }
 telegram = { git = "https://github.com/l8556/TelegramApi.git", branch = "master" }
 s3wrapper = { git = "https://github.com/l8556/S3Wrapper.git", branch = "master" }
-
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"

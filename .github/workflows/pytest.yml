@@ -18,14 +18,10 @@ jobs:
         with:
           python-version: 3.11
 
-      - name: Install Poetry
+      - name: Install UV
         run: |
-          curl -sSL https://install.python-poetry.org | python3 -
-
-      - name: Install dependencies
-        run: |
-          poetry install --no-root
+          curl -LsSf https://astral.sh/uv/install.sh | sh
 
       - name: Run tests
         run: |
-          pytest ./tests/unit
+          uv run pytest ./tests/unit
