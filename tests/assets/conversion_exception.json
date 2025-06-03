@@ -444,18 +444,6 @@
       "Office 365 Value Added Reseller Guide.docx"
     ]
   },
-  "74095": {
-    "link": "74095 ",
-    "description": "",
-    "os": [],
-    "directions": [
-      "docx-odt",
-      "docx-ott"
-    ],
-    "files": [
-      "Word2007RTFSpec9.docx"
-    ]
-  },
   "74310": {
     "link": "74310",
     "description": "",
@@ -466,20 +454,6 @@
     ],
     "files": [
       "Object with fixed rectangle.odg"
-    ]
-  },
-  "74478": {
-    "link": "74478",
-    "description": "",
-    "os": [],
-    "directions": [
-      "vsdx-png",
-      "vsdx-jpg",
-      "vsdx-pdf"
-    ],
-    "files": [
-      "14 Casino Floor.vsdx",
-      "10 Complex Microsoft Diagramm.vsdx"
     ]
   },
   "74480": {
@@ -495,15 +469,6 @@
     ],
     "files": [
       "hasanRafi2002_hasanRafi2002_a.md"
-    ]
-  },
-  "74782": {
-    "link": "74782",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "conv_2817370291_1025.htm"
     ]
   }
 }

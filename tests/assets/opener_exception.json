@@ -450,55 +450,6 @@
       "Conditional_Formating.ods"
     ]
   },
-  "74486": {
-    "link": "74486",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "ott-docx"
-    ],
-    "files": [
-      "bus-elegant_l.ott",
-      "bus-modern_l.ott",
-      "bus-office_l.ott"
-    ]
-  },
-  "74487": {
-    "link": "74487",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "odt-docx"
-    ],
-    "files": [
-      "test_fig_jpg+eqs_jpg.odt",
-      "test_fig_png+eqs_png.odt"
-    ]
-  },
-  "74488": {
-    "link": "74488",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "odt-docx"
-    ],
-    "files": [
-      "bug2_etal.odt",
-      "bug3_sun_orig.odt",
-      "bug_for_LO_orig.odt",
-      "Document with drawing resized.odt",
-      "paste.odt"
-    ]
-  },
   "74489": {
     "link": "74489",
     "description": "",
