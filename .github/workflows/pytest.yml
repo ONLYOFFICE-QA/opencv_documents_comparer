@@ -22,10 +22,6 @@ jobs:
         run: |
           curl -sSL https://install.python-poetry.org | python3 -
 
-      - name: Install dependencies
-        run: |
-          poetry install --no-root
-
       - name: Run tests
         run: |
-          pytest ./tests/unit
+          uv run pytest ./tests/unit
