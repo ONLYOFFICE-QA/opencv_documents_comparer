@@ -10,12 +10,15 @@ opening files after conversion, and comparing documents.
 * Python 3.12
 * MS Office 2019
 * LibreOffice Community Version: 7.3.0.3
+* [Python package manager: uv](https://docs.astral.sh/uv/)
 
 ## Installing Python Libraries
 
-### Install Poetry Package Manager
+### Install UV Package Manager
 
-Instruction: [Python Poetry Installation Guide](https://python-poetry.org/docs/#installation)
+ ```bash
+ pip install uv
+ ```
 
 ## Getting Started
 
@@ -62,7 +65,7 @@ _<extension after conversion>)_(os_<operation system>)_(mode_<Default or t-forma
 
 ### Command for starting a document comparison
 
-`invoke compare-test` - To compare images by file names
+`uv run invoke compare-test` - To compare images by file names
 from "converted_doc_folder"
 
 #### Compare test flags
@@ -76,7 +79,7 @@ Example: `-d doc-docx` to compare doc-docx files.
 
 ### Command for make files for openers test via x2ttester
 
-`invoke make-files`
+`uv run invoke make-files`
 
 #### Make files flags
 
@@ -109,7 +112,7 @@ into account the tested files
 
 ### Command for starting conversion tests
 
-`invoke conversion-test`
+`uv run invoke conversion-test`
 
 #### Conversion test flags
 
@@ -125,7 +128,7 @@ conversion to all formats will be performed.
 
 ### Command for download x2t libs
 
-`invoke download-core`
+`uv run invoke download-core`
 
 #### Download x2t libs flags
 
@@ -133,7 +136,7 @@ conversion to all formats will be performed.
 
 ### Download files
 
-`invoke download-files`
+`uv run invoke download-files`
 
 #### Download files flags
 
@@ -142,7 +145,7 @@ to use for parallel downloading. (default: None)
 
 ### Upload files
 
-`invoke s3-upload`
+`uv run invoke s3-upload`
 
 #### Upload files flags
 
