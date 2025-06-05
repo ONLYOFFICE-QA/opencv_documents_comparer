@@ -130,10 +130,7 @@
   "72519": {
     "link": "",
     "description": "\"X2T_MEMORY_LIMIT=\"5GiB\"\"",
-    "os": [
-      "linux",
-      "mac"
-    ],
+    "os": [],
     "directions": [
       "htm-epub",
       "htm-fb2",
