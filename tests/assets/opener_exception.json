@@ -478,19 +478,5 @@
     "files": [
       "ApproxCircleInfo (3).odt"
     ]
-  },
-  "74880": {
-    "link": "74880",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "odt-docx"
-    ],
-    "files": [
-      "paste.odt"
-    ]
   }
 }

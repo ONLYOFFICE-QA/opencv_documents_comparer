@@ -385,17 +385,6 @@
       "conv_565c76f6_29e5_49c8_819c_efdc2e4e1de4_65.hwp"
     ]
   },
-  "73486": {
-    "link": "73486 ",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "conv_1023523882_1025.htm",
-      "conv_2762513829_1025.htm",
-      "conv_512611733_1025.htm"
-    ]
-  },
   "73907": {
     "link": "73907 ",
     "description": "",
@@ -441,18 +430,6 @@
       "Office 365 Value Added Reseller Guide.docx"
     ]
   },
-  "74310": {
-    "link": "74310",
-    "description": "",
-    "os": [],
-    "directions": [
-      "odg-odp",
-      "odg-otp"
-    ],
-    "files": [
-      "Object with fixed rectangle.odg"
-    ]
-  },
   "74480": {
     "link": "74480",
     "description": "",
@@ -466,26 +443,6 @@
     ],
     "files": [
       "hasanRafi2002_hasanRafi2002_a.md"
-    ]
-  },
-  "74879": {
-    "link": "74879",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "10 Complex Microsoft Diagramm.vsdx",
-      "14 Casino Floor.vsdx",
-      "github260.vsdx"
-    ]
-  },
-  "74888": {
-    "link": "74888",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "test_text_style.hwp"
     ]
   }
 }
