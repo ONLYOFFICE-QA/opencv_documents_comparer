@@ -319,20 +319,6 @@
       "capgeminiinvent_vehicledatamonetization_pov_sep2020.pdf"
     ]
   },
-  "71554": {
-    "link": "71554",
-    "description": "",
-    "os": [
-      "linux"
-    ],
-    "directions": [
-      "pptx-png",
-      "pptx-jpg"
-    ],
-    "files": [
-      "Reducing_Costs_and_Maximizing_Revenue_with_Office_Business_Applications_(OBA).pptx"
-    ]
-  },
   "72046": {
     "link": "72046",
     "description": "",
@@ -340,22 +326,6 @@
     "directions": [],
     "files": [
       "100M.txt"
-    ]
-  },
-  "72488": {
-    "link": "72488",
-    "description": "",
-    "os": [],
-    "directions": [
-      "docx-png",
-      "docx-jpg",
-      "docx-pdf",
-      "docx-epub",
-      "docx-html",
-      "docx-fb2"
-    ],
-    "files": [
-      "conv_3747813178_1025.docx"
     ]
   },
   "72931": {
@@ -428,21 +398,6 @@
       "Many_references.docx",
       "Justice Gap for Sexual Assault 05-25-10.docx",
       "Office 365 Value Added Reseller Guide.docx"
-    ]
-  },
-  "74480": {
-    "link": "74480",
-    "description": "",
-    "os": [],
-    "directions": [
-      "md-png",
-      "md-jpg",
-      "md-pdf",
-      "md-epub",
-      "md-fb2"
-    ],
-    "files": [
-      "hasanRafi2002_hasanRafi2002_a.md"
     ]
   }
 }
