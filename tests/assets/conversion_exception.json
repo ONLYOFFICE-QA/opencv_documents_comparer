@@ -375,5 +375,33 @@
     "files": [
       "conv_2817370291_1025.htm"
     ]
+  },
+  "75442": {
+    "link": "75442",
+    "description": "",
+    "os": [],
+    "directions": [
+      "pptx-png",
+      "pptx-jpg",
+      "pptx-pdf"
+    ],
+    "files": [
+      "seed_slide_deck_16x9__v1_corn_flower.pptx"
+    ]
+  },
+  "75443": {
+    "link": "75443",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xls-csv",
+      "xlsb-csv"
+    ],
+    "files": [
+      "AlexJ_PivotFilter.xls",
+      "DataValComboClickDepend.xls",
+      "PivotPageSpinner.xls",
+      "conv_a4b39a91_e664_47de_7a7f59227b75_bfa8_png.xlsb"
+    ]
   }
 }
