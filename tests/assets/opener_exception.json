@@ -510,5 +510,26 @@
       "Hexagon.odg",
       "MadeByLibreOffice_ResavedKarbon.odg"
     ]
+  },
+  "75722": {
+    "link": "75722",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "xls-xlsx"
+    ],
+    "files": [
+      "6169602.xls",
+      "Advanced_Excel_Formulas.xls",
+      "conv_ePkBkn1hChK9IZvqRoHN7lrtStRA3hR_lmoIEV6nvhU__2055.xls",
+      "conv_ePkBkn1hChK9IZvqRoHN7lrtStRA3hR_lmoIEV6nvhU__2055_2.xls",
+      "Desglose Precios Unitarios Excel.xls",
+      "Exel Inventory List - Outlet Inventory - PB, PBK Oct 5.xls",
+      "MEGA SALE 28-30,2008.xls",
+      "XLFDIC04.xls"
+    ]
   }
 }
