@@ -478,5 +478,19 @@
     "files": [
       "ApproxCircleInfo (3).odt"
     ]
+  },
+  "75718": {
+    "link": "75718",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "hwp-docx"
+    ],
+    "files": [
+      "한글문서파일형식3.0_HWPML_revision1.2.hwp"
+    ]
   }
 }
