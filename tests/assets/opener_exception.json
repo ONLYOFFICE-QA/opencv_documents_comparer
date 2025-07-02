@@ -492,5 +492,23 @@
     "files": [
       "한글문서파일형식3.0_HWPML_revision1.2.hwp"
     ]
+  },
+  "75720": {
+    "link": "75720",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "odg-pptx"
+    ],
+    "files": [
+      "CircleDefinedOutsideViewbox.odg",
+      "Extrusion fill and 3D color.odg",
+      "Flag.odg",
+      "Hexagon.odg",
+      "MadeByLibreOffice_ResavedKarbon.odg"
+    ]
   }
 }
