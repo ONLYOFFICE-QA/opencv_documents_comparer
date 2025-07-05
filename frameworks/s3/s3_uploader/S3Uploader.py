@@ -41,18 +41,20 @@ class S3Uploader:
         s3_dir = file_path.split('.')[-1].lower()
         object_key = f"{s3_dir}/{basename(file_path)}"
         file_sha256 = File.get_sha256(file_path)
+        all_s3_files = [file_name.lower() for file_name in self.all_s3_files]
 
-        if object_key in self.all_s3_files:
-            s3_object_sha256 = self.s3.get_sha256(object_key)
+        if object_key.lower() in all_s3_files:
+            file_in_s3 = self.get_s3_file_path(object_key)
+            s3_object_sha256 = self.s3.get_sha256(file_in_s3)
 
             if file_sha256 == s3_object_sha256:
                 print(
                     f'[cyan] File [magenta]{basename(file_path)}[/] already exists in: '
-                    f'[magenta]{self.s3.bucket}/{object_key}[/]'
+                    f'[magenta]{self.s3.bucket}/{file_in_s3}[/]'
                 )
             else:
                 print(
-                    f'[bold red] File conflict in [magenta]{self.s3.bucket}/{object_key}[/]\n'
+                    f'[bold red] File conflict in [magenta]{self.s3.bucket}/{file_in_s3}[/]\n'
                     f'SHA256 mismatch:\nLocal: [cyan]{file_sha256}[/]\nS3: [magenta]{s3_object_sha256}[/]'
                 )
             return False
@@ -68,6 +70,18 @@ class S3Uploader:
 
         self.s3.upload(file_path, object_key)
         return True
+
+    def get_s3_file_path(self, object_key: str) -> str:
+        """
+        Get the path of a file in the S3 bucket with the same case as the local file.
+
+        :param object_key: The object key of the file to get the path for.
+        :return: The path of the file in the S3 bucket with the same case as the local file.
+        """
+        for s3_file in self.all_s3_files:
+            if s3_file.lower() == object_key.lower():
+                return s3_file
+        return None
 
     def upload_from_dir(self, dir_path: str) -> None:
         """
