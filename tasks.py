@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import time
+from typing import Optional
 
 from invoke import task
 from rich import print
@@ -20,27 +21,27 @@ if HostInfo().os == 'windows':
 
 
 @task
-def download_core(c, force: bool = False, version: str = None):
-    Core(version=version or config.version or Prompt.ask("Please enter version")).getting(force=force)
+def download_core(c, force: bool = False, version: Optional[str] = None):
+    Core(version=version or Prompt.ask("Please enter version")).getting(force=force)
 
 
 @task
-def download_files(c, cores: int = None, sha256: bool = False):
+def download_files(c, cores: Optional[int] = None, sha256: bool = False):
     S3Downloader(download_dir=config.source_docs, cores=cores, check_sha256=sha256).download_all()
 
 
 @task
 def conversion_test(
         c,
-        cores: int = None,
-        direction: str = None,
+        cores: Optional[int] = None,
+        direction: Optional[str] = None,
         ls: bool = False,
         telegram: bool = False,
-        version: str = None,
+        version: Optional[str] = None,
         t_format: bool = False,
         env_off: bool = False,
         quick_check: bool = False,
-        x2t_limits: int = None,
+        x2t_limits: Optional[int] = None,
         out_x2ttester_param: bool = False
 ):
     download_core(c, version=version)
@@ -67,7 +68,7 @@ def conversion_test(
     report = conversion.from_files_list(files_list) if files_list else conversion.run()
     execution_time = f"{((time.perf_counter() - start_time) / 60):.02f}"
 
-    results_msg = conversion.info.get_conversion_results_msg(version, execution_time)
+    results_msg = conversion.info.get_conversion_results_msg(str(version), execution_time)
 
     if report:
         conversion.report.handler(report_path=report, tg_msg=results_msg if telegram else None)

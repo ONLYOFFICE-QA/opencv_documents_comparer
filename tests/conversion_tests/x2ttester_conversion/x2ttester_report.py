@@ -181,7 +181,7 @@ class X2ttesterReport(Report):
             return splitext(input_file)[1] == splitext(exception_files[0])[1]
 
         return False
-    
+
     def _os_math(self, exception_os: list) -> bool:
         """
         Checks if the current OS matches the exception OS.
