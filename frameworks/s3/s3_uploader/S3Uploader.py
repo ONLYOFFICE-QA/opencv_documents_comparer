@@ -104,6 +104,7 @@ class S3Uploader:
 
         # Check for duplicate hashes in S3
         if self.check_duplicates:
+            print(f"[green]|INFO| Checking for duplicate hashes in S3 directory: [magenta]{s3_dir}[/]")
             s3_sha256_files = self._fetch_s3_files_sha256(s3_dir)
             if file_sha256 in s3_sha256_files:
                 self._print_duplicate_hash(file_name, s3_sha256_files[file_sha256])
