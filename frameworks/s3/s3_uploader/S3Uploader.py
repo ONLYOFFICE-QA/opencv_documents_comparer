@@ -30,8 +30,18 @@ class S3Uploader:
         self.check_duplicates = check_duplicates
         self.s3 = S3Wrapper(bucket_name=bucket_name, region=region)
         self.all_s3_files = self._fetch_all_files()
+        self.__all_s3_files_lower = None
 
-    def generate_unique_object_key(self, file_name: str, s3_dir: str, all_s3_files_lower: list) -> str:
+    @property
+    def all_s3_files_lower(self) -> list:
+        """
+        Get the list of all files in the S3 bucket in lowercase.
+        """
+        if self.__all_s3_files_lower is None:
+            self.__all_s3_files_lower = [file_name.lower() for file_name in self.all_s3_files]
+        return self.__all_s3_files_lower
+
+    def _generate_unique_object_key(self, file_name: str, s3_dir: str) -> str:
         """
         Generate a unique object key for a file to be uploaded to S3.
 
@@ -43,7 +53,7 @@ class S3Uploader:
         base, ext = splitext(file_name)
         new_object_key = f"{s3_dir}/{base}{ext}"
         counter = 1
-        while new_object_key.lower() in all_s3_files_lower:
+        while new_object_key.lower() in self.all_s3_files_lower:
             new_object_key = f"{s3_dir}/{base}_{counter}{ext}"
             counter += 1
         return new_object_key
@@ -60,10 +70,9 @@ class S3Uploader:
         s3_dir = splitext(file_name)[1][1:].lower()
         object_key = f"{s3_dir}/{file_name}"
         file_sha256 = File.get_sha256(file_path)
-        all_s3_files_lower = [file_name.lower() for file_name in self.all_s3_files]
 
         # Check if file already exists in S3
-        if object_key.lower() in all_s3_files_lower:
+        if object_key.lower() in self.all_s3_files_lower:
             file_in_s3 = self.get_s3_file_path(object_key)
             s3_object_sha256 = self.s3.get_sha256(file_in_s3)
 
@@ -72,7 +81,7 @@ class S3Uploader:
                 return False
 
             self._print_file_conflict(file_name, file_in_s3, file_sha256, s3_object_sha256)
-            object_key = self.generate_unique_object_key(file_name, s3_dir, all_s3_files_lower)
+            object_key = self._generate_unique_object_key(file_name, s3_dir)
             print(f'[yellow]File {file_name} uploaded as: [magenta]{object_key}[/]')
 
 
