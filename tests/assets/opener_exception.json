@@ -422,20 +422,6 @@
       "Pricing 2012 J4.ods"
     ]
   },
-  "74484": {
-    "link": "74484",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "ods-xlsx"
-    ],
-    "files": [
-      "Problem with graph formatting (1).ods"
-    ]
-  },
   "74485": {
     "link": "74485",
     "description": "",
@@ -479,20 +465,6 @@
       "ApproxCircleInfo (3).odt"
     ]
   },
-  "75718": {
-    "link": "75718",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "hwp-docx"
-    ],
-    "files": [
-      "한글문서파일형식3.0_HWPML_revision1.2.hwp"
-    ]
-  },
   "75720": {
     "link": "75720",
     "description": "",
@@ -509,27 +481,6 @@
       "Flag.odg",
       "Hexagon.odg",
       "MadeByLibreOffice_ResavedKarbon.odg"
-    ]
-  },
-  "75722": {
-    "link": "75722",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "xls-xlsx"
-    ],
-    "files": [
-      "6169602.xls",
-      "Advanced_Excel_Formulas.xls",
-      "conv_ePkBkn1hChK9IZvqRoHN7lrtStRA3hR_lmoIEV6nvhU__2055.xls",
-      "conv_ePkBkn1hChK9IZvqRoHN7lrtStRA3hR_lmoIEV6nvhU__2055_2.xls",
-      "Desglose Precios Unitarios Excel.xls",
-      "Exel Inventory List - Outlet Inventory - PB, PBK Oct 5.xls",
-      "MEGA SALE 28-30,2008.xls",
-      "XLFDIC04.xls"
     ]
   }
 }
