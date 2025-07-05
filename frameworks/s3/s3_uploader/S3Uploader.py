@@ -41,23 +41,6 @@ class S3Uploader:
             self.__all_s3_files_lower = [file_name.lower() for file_name in self.all_s3_files]
         return self.__all_s3_files_lower
 
-    def _generate_unique_object_key(self, file_name: str, s3_dir: str) -> str:
-        """
-        Generate a unique object key for a file to be uploaded to S3.
-
-        :param file_path: The local file path to upload.
-        :param s3_dir: The S3 directory where the file will be uploaded.
-        :param all_s3_files: List of all files currently in S3.
-        :return: A unique object key for the file.
-        """
-        base, ext = splitext(file_name)
-        new_object_key = f"{s3_dir}/{base}{ext}"
-        counter = 1
-        while new_object_key.lower() in self.all_s3_files_lower:
-            new_object_key = f"{s3_dir}/{base}_{counter}{ext}"
-            counter += 1
-        return new_object_key
-
     def upload_file(self, file_path: str) -> bool:
         """
         Upload a single file to the S3 bucket.
@@ -84,7 +67,6 @@ class S3Uploader:
             object_key = self._generate_unique_object_key(file_name, s3_dir)
             print(f'[yellow]File {file_name} uploaded as: [magenta]{object_key}[/]')
 
-
         # Check for duplicate hashes in S3
         if self.check_duplicates:
             s3_sha256_files = self._fetch_s3_files_sha256(s3_dir)
@@ -95,6 +77,22 @@ class S3Uploader:
         # Upload the file
         self.s3.upload(file_path, object_key)
         return True
+
+    def _generate_unique_object_key(self, file_name: str, s3_dir: str) -> str:
+        """
+        Generate a unique object key for a file to be uploaded to S3.
+
+        :param file_name: The name of the file.
+        :param s3_dir: The S3 directory where the file will be uploaded.
+        :return: A unique object key for the file.
+        """
+        base, ext = splitext(file_name)
+        new_object_key = f"{s3_dir}/{base}{ext}"
+        counter = 1
+        while new_object_key.lower() in self.all_s3_files_lower:
+            new_object_key = f"{s3_dir}/{base}_{counter}{ext}"
+            counter += 1
+        return new_object_key
 
     def _print_file_exists(self, file_name: str, file_in_s3: str) -> None:
         """
