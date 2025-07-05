@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from os.path import join, dirname, isfile, getsize
+from typing import Optional
 
 from host_tools import File
 from host_tools.utils import Dir
@@ -26,11 +27,11 @@ class S3Downloader:
     def __init__(
             self,
             download_dir: str,
-            cores: int = None,
+            cores: Optional[int] = None,
             bucket_name: str = 'conversion-testing-files',
             region: str = 'us-east-1',
-            access_key: str = None,
-            secret_access_key: str = None,
+            access_key: Optional[str] = None,
+            secret_access_key: Optional[str] = None,
             check_sha256: bool = False,
             check_size: bool = True
     ):
@@ -89,7 +90,7 @@ class S3Downloader:
             File.write(self.errors_log_file, f"{obj_key}\n", mode='a')
             self.console.print(f"[red]|ERROR| Object [cyan]{obj_key} [red]not downloaded")
 
-    def download_all(self, objects: list = None):
+    def download_all(self, objects: Optional[list] = None):
         """
         Downloads multiple objects from S3.
         :param objects: List of object keys to download. (default: None)
