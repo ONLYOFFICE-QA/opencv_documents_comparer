@@ -29,8 +29,47 @@ class S3Uploader:
         self.cores = int(cores) if cores else None
         self.check_duplicates = check_duplicates
         self.s3 = S3Wrapper(bucket_name=bucket_name, region=region)
-        self.all_s3_files = self._fetch_all_files()
+        self.__all_s3_files = None
         self.__all_s3_files_lower = None
+
+    @property
+    def all_s3_files(self) -> list:
+        """
+        Get the list of all files in the S3 bucket.
+        """
+        if self.__all_s3_files is None:
+            self.update_all_s3_files()
+        return self.__all_s3_files
+
+    def update_all_s3_files(self) -> None:
+        """
+        Update the list of all files in the S3 bucket.
+        """
+        self.__all_s3_files = self._fetch_all_files()
+
+    def update_all_s3_files_lower(self) -> None:
+        """
+        Update the list of all files in the S3 bucket in lowercase.
+        """
+        self.__all_s3_files_lower = [file_name.lower() for file_name in self.all_s3_files]
+
+    def extend_all_s3_files(self, files: list) -> None:
+        """
+        Extend the list of all files in the S3 bucket.
+        """
+        if self.__all_s3_files is None:
+            self.update_all_s3_files()
+        else:
+            self.__all_s3_files.extend(files)
+
+    def extend_all_s3_files_lower(self, files: list) -> None:
+        """
+        Extend the list of all files in the S3 bucket in lowercase.
+        """
+        if self.__all_s3_files_lower is None:
+            self.update_all_s3_files_lower()
+        else:
+            self.__all_s3_files_lower.extend([file_name.lower() for file_name in files])
 
     @property
     def all_s3_files_lower(self) -> list:
@@ -38,7 +77,7 @@ class S3Uploader:
         Get the list of all files in the S3 bucket in lowercase.
         """
         if self.__all_s3_files_lower is None:
-            self.__all_s3_files_lower = [file_name.lower() for file_name in self.all_s3_files]
+            self.update_all_s3_files_lower()
         return self.__all_s3_files_lower
 
     def upload_file(self, file_path: str) -> bool:
@@ -69,6 +108,7 @@ class S3Uploader:
 
         # Check for duplicate hashes in S3
         if self.check_duplicates:
+            print(f"[green]|INFO| Checking for duplicate hashes in S3 directory: [magenta]{s3_dir}[/]")
             s3_sha256_files = self._fetch_s3_files_sha256(s3_dir)
             if file_sha256 in s3_sha256_files:
                 self._print_duplicate_hash(file_name, s3_sha256_files[file_sha256])
@@ -76,6 +116,8 @@ class S3Uploader:
 
         # Upload the file
         self.s3.upload(file_path, object_key)
+        self.extend_all_s3_files([object_key])
+        self.extend_all_s3_files_lower([object_key])
         return True
 
     def _generate_unique_object_key(self, file_name: str, s3_dir: str) -> str:
