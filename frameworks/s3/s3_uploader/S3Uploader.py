@@ -38,7 +38,7 @@ class S3Uploader:
         Get the list of all files in the S3 bucket.
         """
         if self.__all_s3_files is None:
-            self.__all_s3_files = self._fetch_all_files()
+            self.update_all_s3_files()
         return self.__all_s3_files
 
     def update_all_s3_files(self) -> None:
@@ -46,7 +46,6 @@ class S3Uploader:
         Update the list of all files in the S3 bucket.
         """
         self.__all_s3_files = self._fetch_all_files()
-        self.update_all_s3_files_lower()
 
     def update_all_s3_files_lower(self) -> None:
         """
@@ -58,14 +57,19 @@ class S3Uploader:
         """
         Extend the list of all files in the S3 bucket.
         """
-        self.__all_s3_files.extend(files)
-        self.extend_all_s3_files_lower(files)
+        if self.__all_s3_files is None:
+            self.update_all_s3_files()
+        else:
+            self.__all_s3_files.extend(files)
 
     def extend_all_s3_files_lower(self, files: list) -> None:
         """
         Extend the list of all files in the S3 bucket in lowercase.
         """
-        self.__all_s3_files_lower.extend([file_name.lower() for file_name in files])
+        if self.__all_s3_files_lower is None:
+            self.update_all_s3_files_lower()
+        else:
+            self.__all_s3_files_lower.extend([file_name.lower() for file_name in files])
 
     @property
     def all_s3_files_lower(self) -> list:
@@ -73,7 +77,7 @@ class S3Uploader:
         Get the list of all files in the S3 bucket in lowercase.
         """
         if self.__all_s3_files_lower is None:
-            self.__all_s3_files_lower = [file_name.lower() for file_name in self.all_s3_files]
+            self.update_all_s3_files_lower()
         return self.__all_s3_files_lower
 
     def upload_file(self, file_path: str) -> bool:
@@ -113,6 +117,7 @@ class S3Uploader:
         # Upload the file
         self.s3.upload(file_path, object_key)
         self.extend_all_s3_files([object_key])
+        self.extend_all_s3_files_lower([object_key])
         return True
 
     def _generate_unique_object_key(self, file_name: str, s3_dir: str) -> str:
