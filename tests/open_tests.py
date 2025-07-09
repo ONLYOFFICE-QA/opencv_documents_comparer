@@ -69,9 +69,11 @@ class OpenTests:
 
         document_type.close(hwnd)
         if document_type.delete(dirname(tmp_file)) is False:
-            return self.report.write(file_path, 'CANT_DELETE')
+            self.report.write(file_path, 'CANT_DELETE')
+            return None
 
         self.report.write(file_path, 0)
+        return None
 
     def getting_formats(self, direction: str | None = None) -> tuple:
         if direction:
@@ -90,11 +92,16 @@ class OpenTests:
                 print(f"[bold green]|INFO| Filter by [red]Excel[/][bold green] formats")
                 return None, self.document_excel.formats
             elif 'msoffice' in direction:
-                formats = self.document_power_point.formats + self.document_word.formats + self.document_excel.formats
+                # Concatenate all format tuples for MS Office
+                formats = (
+                    tuple(self.document_power_point.formats)
+                    + tuple(self.document_word.formats)
+                    + tuple(self.document_excel.formats)
+                )
                 print(f"[bold green]|INFO| Filter by [red]MS Office[/][bold green] formats")
                 return None, formats
             else:
-                return None, direction
+                return None, (direction,)
         return None, None
 
     def _generate_test_title(self, file_path: str) -> str:
