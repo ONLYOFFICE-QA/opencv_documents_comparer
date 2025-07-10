@@ -428,5 +428,18 @@
     "files": [
       "conv_2674515797_1025 (2).pptx"
     ]
+  },
+  "75933": {
+    "link": "75933",
+    "description": "",
+    "os": ["linux"],
+    "directions": [
+      "docx-png",
+      "docx-jpg",
+      "docx-pdf"
+    ],
+    "files": [
+      "Unlikely Heroes.docx"
+    ]
   }
 }
