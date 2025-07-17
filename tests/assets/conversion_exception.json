@@ -379,47 +379,6 @@
       "conv_2817370291_1025.htm"
     ]
   },
-  "75687": {
-    "link": "75687",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "conv_3801c3a3_b23b_4289_86d5_f46c0d578620_129.key"
-    ]
-  },
-  "75882": {
-    "link": "75882",
-    "description": "",
-    "os": [],
-    "directions": [
-      "ods-jpg",
-      "ods-png",
-      "ods-pdf"
-    ],
-    "files": [
-      "conv_1788414415_1025.ods"
-    ]
-  },
-  "75880": {
-    "link": "75880",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "conv_15477cf4_7f31_4e8b_92ef_570b5c1f50e9_257.ods"
-    ]
-  },
-  "75885": {
-    "link": "75885",
-      "description": "",
-      "os": [],
-      "directions": [],
-      "files": [
-        "6j9lRqfseNsWRrVuMf6P8EKmqd6S0CnDuJ_NDqt0NII_ (2).odt",
-        "conv_3410099658_1025.odt"
-      ]
-    },
   "75889": {
     "link": "75889",
     "description": "",
@@ -427,19 +386,6 @@
     "directions": [],
     "files": [
       "conv_2674515797_1025 (2).pptx"
-    ]
-  },
-  "75933": {
-    "link": "75933",
-    "description": "",
-    "os": ["linux"],
-    "directions": [
-      "docx-png",
-      "docx-jpg",
-      "docx-pdf"
-    ],
-    "files": [
-      "Unlikely Heroes.docx"
     ]
   }
 }
