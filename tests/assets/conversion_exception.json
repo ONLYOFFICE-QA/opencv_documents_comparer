@@ -105,11 +105,10 @@
   "59241": {
     "link": "59241",
     "description": "X2T_MEMORY_LIMIT=\"5GiB\"",
-    "os": [
-      "linux"
-    ],
+    "os": [],
     "directions": [],
     "files": [
+      "00_finansovaja_model_Retail_Top-Down_PL_SF_CF_BS_OutS_0.xlsx",
       "rank_prf-09.xlsx",
       "rank_prf-09.xlsb",
       "rank_prf-09.xlst"
