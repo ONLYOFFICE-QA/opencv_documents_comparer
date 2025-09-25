@@ -370,7 +370,7 @@
   },
   "75172": {
     "link": "75172",
-    "description": "",
+    "description": "X2T_MEMORY_LIMIT=\"5GiB\"",
     "os": [],
     "directions": [
       "htm-odt",
@@ -382,7 +382,7 @@
   },
   "76314": {
     "link": "76314",
-    "description": "",
+    "description": "X2T_MEMORY_LIMIT=\"24GiB\"",
     "os": [],
     "directions": [],
     "files": [
