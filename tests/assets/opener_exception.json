@@ -1,4 +1,22 @@
 {
+  "75720": {
+    "link": "75720",
+    "description": "custom shapes not supported in MS",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "odg-pptx"
+    ],
+    "files": [
+      "CircleDefinedOutsideViewbox.odg",
+      "Extrusion fill and 3D color.odg",
+      "Flag.odg",
+      "Hexagon.odg",
+      "MadeByLibreOffice_ResavedKarbon.odg"
+    ]
+  },
   "52628": {
     "link": "52628",
     "description": "Named range, problems in ms Excel",
@@ -448,24 +466,6 @@
     ],
     "files": [
       "ApproxCircleInfo (3).odt"
-    ]
-  },
-  "75720": {
-    "link": "75720",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "odg-pptx"
-    ],
-    "files": [
-      "CircleDefinedOutsideViewbox.odg",
-      "Extrusion fill and 3D color.odg",
-      "Flag.odg",
-      "Hexagon.odg",
-      "MadeByLibreOffice_ResavedKarbon.odg"
     ]
   }
 }
