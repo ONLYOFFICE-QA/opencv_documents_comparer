@@ -20,7 +20,6 @@ class Url700:
         self.host = host
         self.url_version = f"v{self.version.major}.{self.version.minor}"
         self.url_build = self._url_build()
-        self.branch = self.branch()
 
     @property
     def url(self) -> str:
@@ -32,16 +31,13 @@ class Url700:
             return f"{self.host}/{self.os}/core/{self.branch}/{self.url_build}/{self.arch}/core.7z"
         return f"{self.host}/{self.os}/core/{self.branch}/{self.url_version}/{self.url_build}/{self.arch}/core.7z"
 
+    @property
     def branch(self) -> str:
         """
         Determines the branch based on the version.
         :return: Branch name.
         """
-        if "99.99.99" in self.version.version:
-            return 'develop'
-        elif self.version.minor != '0':
-            return "hotfix"
-        return "release"
+        return self.version.get_branch()
 
     @property
     def arch(self) -> str:

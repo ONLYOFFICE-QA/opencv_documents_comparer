@@ -43,11 +43,7 @@ class Url82032:
 
         :return: The branch name ('develop', 'hotfix', or 'release') as a string.
         """
-        if "99.99.99" in self.version.version:
-            return 'develop'
-        elif self.version.minor != '0':
-            return "hotfix"
-        return "release"
+        return self.version.get_branch()
 
     def _url_build(self) -> str:
         """
