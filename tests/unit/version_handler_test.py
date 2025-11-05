@@ -27,7 +27,7 @@ def test_major():
 
 def test_minor():
     handler = VersionHandler("12.34.56.78")
-    assert handler.minor == "56"
+    assert handler.minor == 56
 
 def test_build():
     handler = VersionHandler("12.34.56.78")
