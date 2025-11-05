@@ -3,9 +3,8 @@ from re import sub
 
 
 class VersionHandler:
-    exception_versions: dict[str, str] = {
-        "9.2.0": "hotfix"
-    }
+    # format: {version: branch}
+    exception_versions: dict[str, str] = {}
     """
     Class for handling version numbers like “00.00.00.00”.
 
