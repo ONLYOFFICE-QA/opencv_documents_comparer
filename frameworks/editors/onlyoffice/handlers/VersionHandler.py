@@ -71,12 +71,12 @@ class VersionHandler:
         return "hotfix"
 
     @property
-    def minor(self) -> str:
+    def minor(self) -> int:
         """
         Extracts the minor version component from the version number.
         :return: Minor version string.
         """
-        return sub(self._version_pattern, r'\3', self.version)
+        return int(sub(self._version_pattern, r'\3', self.version))
 
     @property
     def build(self) -> int:
