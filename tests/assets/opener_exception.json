@@ -498,5 +498,20 @@
       "Formulas Matriciais - A Outra Dimensão do Excel.xls",
       "Recibo.xls"
     ]
+  },
+  "78715": {
+    "link": "78715",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "xls-xlsx"
+    ],
+    "files": [
+      "NumsToWords_No_VBA.xls",
+      "Proforma Invoice 19_20.xls"
+    ]
   }
 }
