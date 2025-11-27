@@ -468,37 +468,6 @@
       "ApproxCircleInfo (3).odt"
     ]
   },
-  "78713": {
-    "link": "78713",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "ods-xlsx"
-    ],
-    "files": [
-      "Требование.ods",
-      "combobox.ods"
-    ]
-  },
-  "78714": {
-    "link": "78714",
-    "description": "",
-    "mode": [
-      "Default",
-      "t-format"
-    ],
-    "directions": [
-      "xls-xlsx"
-    ],
-    "files": [
-      "DataValLookupList.xls",
-      "Formulas Matriciais - A Outra Dimensão do Excel.xls",
-      "Recibo.xls"
-    ]
-  },
   "78715": {
     "link": "78715",
     "description": "",
