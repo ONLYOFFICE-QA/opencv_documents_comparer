@@ -389,5 +389,21 @@
     "files": [
       "9TyqfsInFo26qt0I4Xj1amWJnGoPk42r_mxDMNBxNkY_.docx"
     ]
+  },
+  "79154": {
+    "link": "79154",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xlsx-jpg",
+      "xlsx-png",
+      "xlsx-pdf"
+    ],
+    "files": [
+      "LCA BI - Financial Report Usage2010.xlsx",
+      "LCA BI - Financial Report Usage2013.xlsx",
+      "PowerPivot Healthcare Audit2010.xlsx",
+      "PowerPivot Healthcare Audit2013.xlsx"
+    ]
   }
 }
