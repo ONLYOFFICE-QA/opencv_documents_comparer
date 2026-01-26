@@ -55,9 +55,10 @@ class X2ttesterReport(Report):
 
         :return: The path where the report will be saved.
         """
-        dir_path = join(self.reports_dir, VersionHandler(self.config.x2t_version).without_build, "conversion", self.os)
+        version = VersionHandler(self.config.x2t_version).without_build if self.config.x2t_version else 'unknown'
+        dir_path = join(self.reports_dir, version, "conversion", self.os)
         Dir.create(dir_path, stdout=False)
-        return join(dir_path, f"{self.config.x2t_version}_{datetime.now().strftime('%H_%M_%S')}.csv")
+        return join(dir_path, f"{version}_{datetime.now().strftime('%H_%M_%S')}.csv")
 
     def merge_reports(self, x2ttester_report: list) -> str | None:
         """
