@@ -43,7 +43,7 @@ class X2ttesterTestConfig(BaseModel):
     def set_computed_fields(self):
         self.core_dir = self.core_dir or StaticData.core_dir()
         self.reports_dir = self.reports_dir or StaticData.reports_dir()
-        self.x2t_version = VersionHandler(X2t.version(self.core_dir)).version
+        self.x2t_version = self._get_version_from_x2t()
         self.tmp_dir = File.unique_name(self.tmp_dir or self._get_tmp_dir())
         self.report_path = self.get_tmp_report_path()
         self.cores = self.cores or config.cores
@@ -63,6 +63,12 @@ class X2ttesterTestConfig(BaseModel):
         tmp_report = File.unique_name(join(self.reports_dir, 'tmp_reports'), 'csv')
         Dir.create(dirname(tmp_report), stdout=False)
         return tmp_report
+
+    def _get_version_from_x2t(self) -> Optional[str]:
+        version = X2t.version(self.core_dir)
+        if version is not None:
+            return VersionHandler(version).version
+        return None
 
     @staticmethod
     def _getting_formats(direction: str | None = None) -> tuple[None | str, None | str]:
