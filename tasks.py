@@ -49,7 +49,7 @@ def conversion_test(
     download_core(c, version=version)
     conversion = X2tTesterConversion(
         test_config=X2ttesterTestConfig(
-            cores=cores,
+            cores=int(cores) if cores else None,
             delete=True,
             direction=direction,
             environment_off=env_off,
