@@ -309,15 +309,6 @@
       "capgeminiinvent_vehicledatamonetization_pov_sep2020.pdf"
     ]
   },
-  "72046": {
-    "link": "72046",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "100M.txt"
-    ]
-  },
   "72931": {
     "link": "72931",
     "description": "",
@@ -378,22 +369,6 @@
       "9TyqfsInFo26qt0I4Xj1amWJnGoPk42r_mxDMNBxNkY_.docx"
     ]
   },
-  "79154": {
-    "link": "79154",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xlsx-jpg",
-      "xlsx-png",
-      "xlsx-pdf"
-    ],
-    "files": [
-      "LCA BI - Financial Report Usage2010.xlsx",
-      "LCA BI - Financial Report Usage2013.xlsx",
-      "PowerPivot Healthcare Audit2010.xlsx",
-      "PowerPivot Healthcare Audit2013.xlsx"
-    ]
-  },
   "79437": {
     "link": "79437",
     "description": "",
@@ -401,29 +376,6 @@
     "directions": [],
     "files": [
       "Consulting (7).pptx"
-    ]
-  },
-  "79522": {
-    "link": "79522",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "2006 06.ppt",
-      "22.ppt",
-      "conv_KBZ9dcmVLouyTBY0y6gKVYzH_vr2x9GSUDqpMJt_eOk__pptx.ppt",
-      "France.ppt",
-      "ios7_in_microsoft_word.docx"
-    ]
-  },
-  "79526": {
-    "link": "79526",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "46-Корреляция в Excel.xlsx",
-      "6.xlsx"
     ]
   }
 }
