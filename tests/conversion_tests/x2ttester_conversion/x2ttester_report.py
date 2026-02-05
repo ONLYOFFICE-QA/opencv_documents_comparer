@@ -95,7 +95,7 @@ class X2ttesterReport(Report):
         """
         df = self.read(report_path)
         df.rename(columns=self.__columns_names, inplace=True)
-        df = df.drop(columns=['Log', 'Input_size', 'Output_file'], axis=1)
+        df = df.drop(columns=['Log', 'Input_size', 'Output_file'])
         df.insert(df.columns.get_loc('Direction') + 1, 'BugInfo', df.apply(self._bug_info, axis=1))
         df = df[~df['Input_file'].str.contains('Time: ')]
 
