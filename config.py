@@ -1,13 +1,21 @@
 # -*- coding: utf-8 -*-
 from host_tools import HostInfo
 from os import cpu_count
+from os.path import join, expanduser
 
 version = ''
 
 # Path to source documents
-source_docs = r'C:\db\files' if HostInfo().is_windows else '/home/l02/db/files/'
+source_docs = r'C:\db\files' if HostInfo().is_windows \
+    else join(expanduser('~'), 'db', 'files') if HostInfo().is_mac \
+    else join(expanduser('~'), 'db', 'files') if HostInfo().is_linux \
+    else None
+
 # Path to converted documents
-converted_docs = r'C:\db\results' if HostInfo().is_windows else '/home/l02/db/results/'
+converted_docs = r'C:\db\results' if HostInfo().is_windows \
+    else join(expanduser('~'), 'db', 'results') if HostInfo().is_mac \
+    else join(expanduser('~'), 'db', 'results') if HostInfo().is_linux \
+    else None
 
 # Delay time after opening a document in the editors in seconds
 delay_word = 1
