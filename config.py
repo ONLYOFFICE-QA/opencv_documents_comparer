@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
+from host_tools import HostInfo
+from os import cpu_count
 
 version = ''
 
 # Path to source documents
-source_docs = r''
+source_docs = r'C:\db\files' if HostInfo().is_windows else '/home/l02/db/files/'
 # Path to converted documents
-converted_docs = r''
+converted_docs = r'C:\db\results' if HostInfo().is_windows else '/home/l02/db/results/'
 
 # Delay time after opening a document in the editors in seconds
 delay_word = 1
@@ -17,11 +19,11 @@ delay_libre = 1
 max_waiting_time = 60
 
 # x2ttester settings
-cores = 4
+cores = cpu_count() or 4
 errors_only = True
-delete = False
+delete = True
 timestamp = True
-timeout = 1200
+timeout = 900
 # Path to MS Office
 ms_office = r'C:/Program Files/Microsoft Office/root/Office16'
 # Path to LibreOffice
