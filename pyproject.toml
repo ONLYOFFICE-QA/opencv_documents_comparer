@@ -4,7 +4,7 @@ version = "2.0.0"
 description = ""
 authors = [{ name = "l02", email = "l8556@outlook.com" }]
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.12"
 dependencies = [
     "opencv-python>=4.11.0.86",
     "numpy>=2.2.6",
