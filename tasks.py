@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import time
+from os.path import exists
 from typing import Optional
 
 from invoke import task
@@ -14,7 +15,7 @@ from frameworks.editors.onlyoffice import Core, X2t
 from telegram import Telegram
 
 from frameworks.s3 import S3Downloader, S3Uploader
-from tests import X2tTesterConversion, X2ttesterTestConfig
+from tests import X2tTesterConversion, X2ttesterTestConfig, ErrorHandler
 
 if HostInfo().os == 'windows':
     from tests import CompareTest, OpenTests
@@ -42,7 +43,8 @@ def conversion_test(
         env_off: bool = False,
         quick_check: bool = False,
         x2t_limits: Optional[int] = None,
-        out_x2ttester_param: bool = False
+        out_x2ttester_param: bool = False,
+        check_error: bool = False
 ):
     download_core(c, version=version)
     conversion = X2tTesterConversion(
@@ -64,14 +66,28 @@ def conversion_test(
     object_keys = [f"{name.split('.')[-1].lower()}/{name}" for name in files_list] if files_list else None
     S3Downloader(download_dir=conversion.config.input_dir).download_all(objects=object_keys)
 
+    if quick_check:
+        if len(files_list) == len(File.get_paths(conversion.config.input_dir, names=files_list)):
+            print("[cyan]|INFO| FILES READY")
+        else:
+            raise print("[red]|ERROR| Some files not exists")
+
     start_time = time.perf_counter()
     report = conversion.from_files_list(files_list) if files_list else conversion.run()
+
+    if check_error and HostInfo().is_windows:
+        _error_handler = ErrorHandler(conversion, report)
+        _error_handler.handle_errors()
+
     execution_time = f"{((time.perf_counter() - start_time) / 60):.02f}"
 
     results_msg = conversion.info.get_conversion_results_msg(str(version), execution_time)
 
-    if report:
+    if report is not None and exists(report):
         conversion.report.handler(report_path=report, tg_msg=results_msg if telegram else None)
+    else:
+        print(f"[red]|WARNING| Report not exists, report value = {report}")
+        return Telegram().send_message(f"Report not exists, report value = {report}")
 
 
 @task
