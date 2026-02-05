@@ -13,7 +13,7 @@ source_docs = r'C:\db\files' if HostInfo().is_windows \
 
 # Path to converted documents
 converted_docs = r'C:\db\results' if HostInfo().is_windows \
-    else join(expanduser('~'), 'scripts', 'opencv_documents_comparer', 'result') if HostInfo().is_mac \
+    else join(expanduser('~'), 'db', 'results') if HostInfo().is_mac \
     else join(expanduser('~'), 'db', 'results') if HostInfo().is_linux \
     else None
 
