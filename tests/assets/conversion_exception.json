@@ -461,7 +461,9 @@
     "link": "80119",
     "description": "",
     "os": [],
-    "directions": [],
+    "directions": [
+      "pages-md"
+    ],
     "files": [
       "868f9098995345a4a47bdf0f0431341d.pages",
       "conv_45c73cef_d0d7_456d_a003_06139d5ec984_65.pages",
