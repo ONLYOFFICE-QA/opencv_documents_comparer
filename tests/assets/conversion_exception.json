@@ -439,13 +439,16 @@
     "link": "80112",
     "description": "",
     "os": [],
-    "directions": [],
+    "directions": [
+      "html-md"
+    ],
     "files": [
       "a.html",
       "b.html",
       "c.html",
       "ch2kr.html",
-      "ch7kr.html"
+      "ch7kr.html",
+      "forms.html"
     ]
   },
   "80116": {
