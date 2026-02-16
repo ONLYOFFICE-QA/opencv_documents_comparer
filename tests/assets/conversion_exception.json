@@ -434,5 +434,18 @@
     "files": [
       "SmartArt Standart.docx"
     ]
+  },
+  "80112": {
+    "link": "80112",
+    "description": "",
+    "os": [],
+    "directions": [],
+    "files": [
+      "a.html",
+      "b.html",
+      "c.html",
+      "ch2kr.html",
+      "ch7kr.html"
+    ]
   }
 }
