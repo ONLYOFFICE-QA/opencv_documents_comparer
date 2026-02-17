@@ -513,5 +513,37 @@
       "Hacking Mobile Use OPDA .mht",
       "HPCUyAkLJJ8RLCkWuY3hfEzQSfzrg7TWft8Xcbf1IcE_.html"
     ]
+  },
+  "80172": {
+    "link": "80172",
+    "description": "",
+    "os": [
+      "linux"
+    ],
+    "directions": [],
+    "files": [
+      "3Dfont.odg",
+      "51121-LibO_original-sample4.odg",
+      "51121-rezipped-sample4.odg",
+      "Bugreport front cover gradient.odg",
+      "Demo (5).odg",
+      "example (10).odg",
+      "Extrusion of shape with commands F and S.odg",
+      "ExtrusionFillObjektspecific.odg",
+      "ExtrusionProblems.odg",
+      "FlatPhongGourand.odg",
+      "Gouraud is not specular for Extrusion.odg",
+      "Projection Circular.odg",
+      "sample00.odg",
+      "Sample3 (1).odg",
+      "SampleDocument_015_Skiatest.odg",
+      "skew_test.odg",
+      "specular on front and back face.odg",
+      "torus.odg",
+      "Transform3D.odg",
+      "True3DScene.odg",
+      "Untitled 3 (1).odg",
+      "UpdateButton.odg"
+    ]
   }
 }
