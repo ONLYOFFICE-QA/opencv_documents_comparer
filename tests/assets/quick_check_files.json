@@ -381,8 +381,11 @@
     "6 Embed image.vsdx",
     "Containers, Lists and Callouts_start.vsdx"
   ],
-
   "hwp": [
     "test_text_style.hwp"
+  ],
+  "hwpx": [
+    "2022.hwpx",
+    "blank.hwpx"
   ]
 }
