@@ -68,7 +68,7 @@ class Report:
 
         if last_row.isnull().all() or (last_row.astype(str).str.contains(r"[^\x00-\x7F]", regex=True).any()):
             data = data.iloc[:-1]
-            data.to_csv(csv_file)
+            data.to_csv(csv_file, sep=delimiter, index=False)
 
         return data
 

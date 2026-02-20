@@ -43,7 +43,7 @@ class OpenerReport:
         df_errors = df[(df.Exit_code != '0') | (df.Bug_info != '0')]
         error_files = [file for file in df[(df.Exit_code != '0') & (df.Bug_info == '0')].File_name]
 
-        print(f"[bold red]{df_errors.drop(columns=['File_path'], axis=1)}\n\nErrors files: {error_files}\n")
+        print(f"[bold red]{df_errors.drop(columns=['File_path'])}\n\nErrors files: {error_files}\n")
         self._add_to_end(df_errors, 'File_path', f"Errors files: {error_files}")
 
         errors_report = Report.save_csv(df_errors, self.errors_path)
