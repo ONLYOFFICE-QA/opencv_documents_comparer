@@ -266,7 +266,8 @@
     "directions": [
       "docx-html",
       "docx-epub",
-      "docx-fb2"
+      "docx-fb2",
+      "docx-md"
     ],
     "files": [
       "conv_0da767ad_c9f9_4ab3_8ede_b88452e3c23e_pdf.docx"
