@@ -26,6 +26,8 @@ class Url82032:
         Constructs and returns the full URL for accessing the build archive.
         :return: The complete URL as a string.
         """
+        if self.branch == 'develop':
+            return f"{self.host}/archive/{self.branch}/{self.version.build}/{self.core_name}"
         return f"{self.host}/archive/{self.branch}/{self.url_version}/{self.version.build}/{self.core_name}"
 
     @property
