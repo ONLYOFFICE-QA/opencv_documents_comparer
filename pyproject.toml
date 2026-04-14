@@ -17,7 +17,7 @@ dependencies = [
     "pandas>=2",
     "mss>=10.0.0",
     "pytest>=8.4.0",
-    "pydantic>=2",
+    "pydantic>=2.13.0",
     "host-tools",
     "telegram",
     "s3wrapper"
