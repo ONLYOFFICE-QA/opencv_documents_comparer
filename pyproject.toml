@@ -15,7 +15,7 @@ dependencies = [
     "invoke>=2.2.0",
     "pillow>=11.2.1",
     "pandas>=2",
-    "mss>=10.0.0",
+    "mss>=10.2.0",
     "pytest>=8.4.0",
     "pydantic>=2.13.0",
     "host-tools",
