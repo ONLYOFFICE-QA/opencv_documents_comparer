@@ -50,8 +50,7 @@ class TableInfo:
                 sheet_number += 1
         except Exception as e:
             print(f"Exception when get table info: {e}")
-        finally:
-            return self.table_info
+        return self.table_info
 
     @workbook_exists
     def close_workbook(self):
