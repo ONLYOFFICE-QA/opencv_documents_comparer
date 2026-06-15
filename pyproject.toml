@@ -16,7 +16,7 @@ dependencies = [
     "pillow>=11.2.1",
     "pandas>=3.0.3",
     "mss>=10.2.0",
-    "pytest>=8.4.0",
+    "pytest>=9.1.0",
     "pydantic>=2.13.4",
     "host-tools",
     "telegram",
