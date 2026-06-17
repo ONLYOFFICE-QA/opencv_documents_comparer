@@ -424,5 +424,23 @@
     "files": [
       "Report.odt"
     ]
+  },
+  "82007": {
+    "link": "82007",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xlsx-xls",
+      "xlsb-xls"
+    ],
+    "files": [
+      "testSt2.xlsx",
+      "conv_be799cf3_b2c8_4fa3_bc1e_c287d6c44817_ods.xlsb",
+      "conv_72a2bc9a_385c_42bc_b327_23623d5e9628_png.xlsb",
+      "52-Планки погрешностей в Excel - нестандартное использование.xlsx",
+      "46-Корреляция в Excel.xlsx",
+      "64-Использование функции ВЕБСЛУЖБА.xlsx",
+      "8D_1.xlsx"
+    ]
   }
 }
