@@ -442,5 +442,16 @@
       "64-Использование функции ВЕБСЛУЖБА.xlsx",
       "8D_1.xlsx"
     ]
+  },
+  "82013": {
+    "link": "82013",
+    "description": "",
+    "os": [
+      "linux"
+    ],
+    "directions": [],
+    "files": [
+      "tabelle us-trade-balance1960-2008.ods"
+    ]
   }
 }
