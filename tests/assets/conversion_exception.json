@@ -450,35 +450,6 @@
       "2222010_53102Reader final.docx"
     ]
   },
-  "82007": {
-    "link": "82007",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xlsx-xls",
-      "xlsb-xls"
-    ],
-    "files": [
-      "testSt2.xlsx",
-      "conv_be799cf3_b2c8_4fa3_bc1e_c287d6c44817_ods.xlsb",
-      "conv_72a2bc9a_385c_42bc_b327_23623d5e9628_png.xlsb",
-      "52-Планки погрешностей в Excel - нестандартное использование.xlsx",
-      "46-Корреляция в Excel.xlsx",
-      "64-Использование функции ВЕБСЛУЖБА.xlsx",
-      "8D_1.xlsx"
-    ]
-  },
-  "82013": {
-    "link": "82013",
-    "description": "",
-    "os": [
-      "linux"
-    ],
-    "directions": [],
-    "files": [
-      "tabelle us-trade-balance1960-2008.ods"
-    ]
-  },
   "82027": {
     "link": "82027",
     "description": "",
@@ -580,16 +551,6 @@
       "360477_1_-805699042.key",
       "123.key",
       "conv_3801c3a3_b23b_4289_86d5_f46c0d578620_129.key"
-    ]
-  },
-  "82029": {
-    "link": "82029",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "_arhs_smartinson_documents_7_habits_study_packets_46_pages.pages",
-      "_site__pdfs_education_2011_DiscoveryinthePark_68_pages.pages"
     ]
   },
   "82030": {
