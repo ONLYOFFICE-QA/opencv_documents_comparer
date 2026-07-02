@@ -573,5 +573,22 @@
     "files": [
       "Word2007RTFSpec9.docx"
     ]
+  },
+  "82234": {
+    "link": "82234",
+    "description": "",
+    "os": [],
+    "directions": [],
+    "files": [
+      "14 Casino Floor.vsdx",
+      "6 Embed image.vsdx",
+      "AddConnectShapes_Out.vsdx",
+      "AddHyperlinkToShape_Out.vsdx",
+      "ApplyFontOnText_Out.vsdx",
+      "Containers, Lists and Callouts_start.vsdx",
+      "github260.vsdx",
+      "Microsoft_365_Enterprise.vsdx",
+      "RefreshMilestone_Out.vsdx"
+    ]
   }
 }
