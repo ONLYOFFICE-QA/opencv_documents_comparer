@@ -590,5 +590,18 @@
       "Microsoft_365_Enterprise.vsdx",
       "RefreshMilestone_Out.vsdx"
     ]
+  },
+  "82408": {
+    "link": "82408",
+    "description": "",
+    "os": [],
+    "directions": [
+      "pptx-png",
+      "pptx-jpg",
+      "pptx-pdf"
+    ],
+    "files": [
+      "Bangkok_24okt2010_anMynda.pptx"
+    ]
   }
 }
