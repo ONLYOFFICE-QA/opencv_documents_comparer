@@ -567,5 +567,16 @@
       "Book 72.ods",
       "Book 78.ods"
     ]
+  },
+  "82639": {
+    "link": "82639",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xlsx-xls"
+    ],
+    "files": [
+      "__.xlsx"
+    ]
   }
 }
