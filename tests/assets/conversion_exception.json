@@ -625,5 +625,21 @@
     "files": [
       "conv_be799cf3_b2c8_4fa3_bc1e_c287d6c44817_ods.xlsb"
     ]
+  },
+  "82619": {
+    "link": "82619",
+    "description": "",
+    "os": [],
+    "directions": [
+      "docx-png",
+      "docx-jpg",
+      "docx-pdf"
+    ],
+    "files": [
+      "isk_ul.docx",
+      "kitab-elmi eserler.docx",
+      "MSFT_FY12Q2_10Q.docx",
+      "Office Open XML Part 2 - Open Packaging Conventions.docx"
+    ]
   }
 }
