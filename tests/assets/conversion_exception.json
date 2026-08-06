@@ -399,18 +399,6 @@
       "conv_cf4b9eae_edd0_4454_8291_33d678413833_67.docx"
     ]
   },
-  "82030": {
-    "link": "82030",
-    "description": "",
-    "os": [],
-    "directions": [
-      "pdf-png",
-      "pdf-jpg"
-    ],
-    "files": [
-      "Syndrome_metabolique_diabete_et_maladies_cardiovasculaires__un_lien_avere.pdf"
-    ]
-  },
   "82151": {
     "link": "82151",
     "description": "",
@@ -418,58 +406,6 @@
     "directions": [],
     "files": [
       "Word2007RTFSpec9.docx"
-    ]
-  },
-  "82234": {
-    "link": "82234",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "14 Casino Floor.vsdx",
-      "6 Embed image.vsdx",
-      "AddConnectShapes_Out.vsdx",
-      "AddHyperlinkToShape_Out.vsdx",
-      "ApplyFontOnText_Out.vsdx",
-      "Containers, Lists and Callouts_start.vsdx",
-      "github260.vsdx",
-      "Microsoft_365_Enterprise.vsdx",
-      "RefreshMilestone_Out.vsdx"
-    ]
-  },
-  "82408": {
-    "link": "82408",
-    "description": "",
-    "os": [],
-    "directions": [
-      "pptx-png",
-      "pptx-jpg",
-      "pptx-pdf"
-    ],
-    "files": [
-      "Bangkok_24okt2010_anMynda.pptx"
-    ]
-  },
-  "82458": {
-    "link": "82458",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xlsx-xls"
-    ],
-    "files": [
-      "8D_1.xlsx"
-    ]
-  },
-  "82611": {
-    "link": "82611",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xlsb-xls"
-    ],
-    "files": [
-      "conv_be799cf3_b2c8_4fa3_bc1e_c287d6c44817_ods.xlsb"
     ]
   },
   "82619": {
@@ -553,30 +489,6 @@
     "files": [
       "Peliculas Completas Gratis - Peliculas Completas Gratis.mht",
       "L2phx tutorial for n00bs!.mht"
-    ]
-  },
-  "82632": {
-    "link": "82632",
-    "description": "",
-    "os": [],
-    "directions": [
-      "ods-xls"
-    ],
-    "files": [
-      "Book 47.ods",
-      "Book 72.ods",
-      "Book 78.ods"
-    ]
-  },
-  "82639": {
-    "link": "82639",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xlsx-xls"
-    ],
-    "files": [
-      "__.xlsx"
     ]
   }
 }
