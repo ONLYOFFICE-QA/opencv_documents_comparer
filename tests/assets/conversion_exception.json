@@ -490,5 +490,45 @@
       "Peliculas Completas Gratis - Peliculas Completas Gratis.mht",
       "L2phx tutorial for n00bs!.mht"
     ]
+  },
+  "82907": {
+    "link": "82907",
+    "description": "",
+    "os": [],
+    "directions": [
+      "docx-md"
+    ],
+    "files": [
+      "Office Open XML Part 2 - Open Packaging Conventions.docx",
+      "Croft AMA.docx",
+      "2222010_53102Reader final.docx"
+    ]
+  },
+  "82909": {
+    "link": "82909",
+    "description": "",
+    "os": [
+      "linux"
+    ],
+    "directions": [
+      "odg-odp",
+      "odg-otp"
+    ],
+    "files": [
+      "1 (1).odg",
+      "25.odg",
+      "Broadband map print problem.odg",
+      "Buggy.odg",
+      "BugTraductionRelations.odg",
+      "Ice-maker schematic (bug to fix).odg",
+      "linecap_round.odg",
+      "new (1).odg",
+      "new (2).odg",
+      "sample00.odg",
+      "test-pdf.odg",
+      "testfile.odg",
+      "ytong-porenbeton-silka-kalksandstein-enev-broschuere-LOO526.odg",
+      "ytong-porenbeton-silka-kalksandstein-enev-broschuere-LOO531.odg"
+    ]
   }
 }
