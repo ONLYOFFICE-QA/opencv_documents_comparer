@@ -1261,7 +1261,7 @@ wheels = [
 [[package]]
 name = "s3wrapper"
 version = "0.1.0"
-source = { git = "https://github.com/l8556/S3Wrapper.git?branch=master#d393f00542e262aff9e85b834affc35c44c604cc" }
+source = { git = "https://github.com/l8556/S3Wrapper.git?branch=master#48ffc52ea61c8b5d9e34cd8c0d3058194ab43fa4" }
 dependencies = [
     { name = "boto3" },
     { name = "rich" },
@@ -1398,7 +1398,7 @@ wheels = [
 [[package]]
 name = "telegram"
 version = "2.0"
-source = { git = "https://github.com/l8556/TelegramApi.git?branch=master#c4b29b9ee8ce7c4c1f0a718c2c9354119265b6ba" }
+source = { git = "https://github.com/l8556/TelegramApi.git?branch=master#80ca3c04e988ee1fb5881ea04000a5fb3b0ced34" }
 dependencies = [
     { name = "requests" },
     { name = "rich" },
