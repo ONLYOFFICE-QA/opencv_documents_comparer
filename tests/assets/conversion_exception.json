@@ -415,13 +415,47 @@
     "directions": [
       "docx-png",
       "docx-jpg",
-      "docx-pdf"
+      "docx-pdf",
+      "doc-png",
+      "doc-jpg",
+      "doc-pdf",
+      "rtf-png",
+      "rtf-jpg",
+      "rtf-pdf"
     ],
     "files": [
       "isk_ul.docx",
       "kitab-elmi eserler.docx",
       "MSFT_FY12Q2_10Q.docx",
-      "Office Open XML Part 2 - Open Packaging Conventions.docx"
+      "Office Open XML Part 2 - Open Packaging Conventions.docx",
+      "EaseOfUsingWSBS2003.rtf",
+      "257_3_2.rtf",
+      "techreglament.doc",
+      "doc9.doc",
+      "Cours13CG_Manuel_Elve.doc",
+      "adb.doc",
+      "28v115.doc"
+    ]
+  },
+  "83278": {
+    "link": "83278",
+    "description": "",
+    "os": [],
+    "directions": [],
+    "files": [
+      "conv_1032815138_1025.docx",
+      "Indonesian_Shadow_Puppets_Unit.docx",
+      "GreekSynopsis.odt",
+      "1001.odt"
+    ]
+  },
+  "83482": {
+    "link": "83482",
+    "description": "",
+    "os": [],
+    "directions": [],
+    "files": [
+      "everyday-cc_ai_2022-02-25-what-the-nines-acquisition-means-for-sirona-and-the-future-of-ai.md"
     ]
   }
 }
