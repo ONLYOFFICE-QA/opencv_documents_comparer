@@ -492,5 +492,24 @@
       "pr_124-10-13.rtf",
       "ellipt_eq.rtf"
     ]
+  },
+  "83776": {
+    "link": "83776",
+    "description": "",
+    "os": [
+      "windows"
+    ],
+    "directions": [
+      "doc-html",
+      "doc-epub",
+      "doc-fb2"
+    ],
+    "files": [
+      "2007PM(b).doc",
+      "2010541138599.doc",
+      "20106120487.doc",
+      "2010_pri_IMC_7.doc",
+      "2009.doc"
+    ]
   }
 }
