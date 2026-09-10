@@ -402,7 +402,7 @@ wheels = [
 [[package]]
 name = "host-tools"
 version = "2.5"
-source = { git = "https://github.com/l8556/host_tools.git?branch=master#caebeaa5959ab7602f3f4ee97716467846ab89e3" }
+source = { git = "https://github.com/l8556/host_tools.git?branch=master#2bcdb2a8733dfae24285aacd376d3829223e410d" }
 dependencies = [
     { name = "distro" },
     { name = "py7zr" },
