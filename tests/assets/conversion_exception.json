@@ -467,5 +467,22 @@
       "2010_pri_IMC_7.doc",
       "2009.doc"
     ]
+  },
+  "83885": {
+    "link": "83885",
+    "description": "",
+    "os": [
+      "windows"
+    ],
+    "directions": [
+      "rtf-md",
+      "rtf-epub",
+      "rtf-fb2",
+      "rtf-html"
+    ],
+    "files": [
+      "pr_124-10-13.rtf",
+      "ellipt_eq.rtf"
+    ]
   }
 }
