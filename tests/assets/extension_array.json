@@ -15,6 +15,22 @@
     "xltx",
     "xml"
   ],
+  "xls": [
+    "xlsx",
+    "ods",
+    "csv",
+    "et",
+    "ett",
+    "fods",
+    "ots",
+    "sxc",
+    "xlsb",
+    "xlsm",
+    "xlt",
+    "xltm",
+    "xltx",
+    "xml"
+  ],
   "docx": [
     "doc",
     "rtf",
