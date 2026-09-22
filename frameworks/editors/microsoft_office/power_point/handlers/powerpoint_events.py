@@ -33,8 +33,9 @@ class PowerPointEvents(Events):
     def when_opening(self, class_name, windows_text, hwnd: int = None) -> bool:
         match [class_name, windows_text]:
 
-            case ['#32770', 'Microsoft PowerPoint']:
-                _hwnd = Window.get_hwnd('#32770', 'Microsoft PowerPoint') if not hwnd else hwnd
+            # 'NUIDialog' is the NetUI based error window used by Office 2016+ (e.g. content recovery prompt)
+            case ['#32770' | 'NUIDialog', 'Microsoft PowerPoint']:
+                _hwnd = Window.get_hwnd(class_name, 'Microsoft PowerPoint') if not hwnd else hwnd
                 if self._warning_window(_hwnd):
                     raise
                 print(f"[bold red]\n{'-' * 90}\n|ERROR| an error has occurred while opening the file\n{'-' * 90}")
