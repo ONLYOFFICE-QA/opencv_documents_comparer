@@ -467,5 +467,20 @@
     "files": [
       "ApproxCircleInfo (3).odt"
     ]
+  },
+  "84061": {
+    "link": "84061",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "doc-docx"
+    ],
+    "files": [
+      "Lista_Precios_Mayoristas_MBI_MAY07.doc",
+      "Pacto_contra_la_pobreza.doc"
+    ]
   }
 }
