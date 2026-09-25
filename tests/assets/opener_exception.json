@@ -483,5 +483,19 @@
       "Pacto_contra_la_pobreza.doc",
       "2H_EPIKAIROPOIHSH_THALIS_EGGRAFO2.doc"
     ]
+  },
+  "84066": {
+    "link": "84066",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "doc-docx"
+    ],
+    "files": [
+      "20106120487.doc"
+    ]
   }
 }
