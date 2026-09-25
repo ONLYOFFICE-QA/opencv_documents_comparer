@@ -497,5 +497,19 @@
     "files": [
       "20106120487.doc"
     ]
+  },
+  "6": {
+    "link": "",
+    "description": "The source file is corrupted",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "doc-docx"
+    ],
+    "files": [
+      "3632795142.doc"
+    ]
   }
 }
