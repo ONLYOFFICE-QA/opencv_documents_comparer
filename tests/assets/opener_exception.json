@@ -1389,5 +1389,25 @@
     "files": [
       "_2016_2_.xlsx"
     ]
+  },
+  "84099": {
+    "link": "84099",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "xlsx-xls"
+    ],
+    "files": [
+      "1-56-.xlsx",
+      "2_3.xlsx",
+      "40-Создание пулевой диаграммы (bullet graph).xlsx",
+      "_1.xlsx",
+      "Book 50.xlsx",
+      "Book 76.xlsx",
+      "testSt2.xlsx"
+    ]
   }
 }
