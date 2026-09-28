@@ -1361,5 +1361,33 @@
       "Ежедневный отчет.xlsx",
       "Смета свадьба ИСПР.xlsx"
     ]
+  },
+  "84095": {
+    "link": "84095",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "xlsx-xls"
+    ],
+    "files": [
+      "Project issue tracker1.xlsx"
+    ]
+  },
+  "84096": {
+    "link": "84096",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "xlsx-xls"
+    ],
+    "files": [
+      "_2016_2_.xlsx"
+    ]
   }
 }
