@@ -1484,5 +1484,39 @@
       "Мать их ети!.xls",
       "Отчет по количеству ошибок.xls"
     ]
+  },
+  "84109": {
+    "link": "84109",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "ppt-pptx"
+    ],
+    "files": [
+      "french_hongbo_powerpoint.ppt",
+      "nutrition.ppt",
+      "presentation.ppt",
+      "referat.ppt",
+      "tamtam.ppt",
+      "theatry.ppt",
+      "xronikopolitexneiou.ppt"
+    ]
+  },
+  "84110": {
+    "link": "84110",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "ppt-pptx"
+    ],
+    "files": [
+      "13_05_2_1_.ppt"
+    ]
   }
 }
