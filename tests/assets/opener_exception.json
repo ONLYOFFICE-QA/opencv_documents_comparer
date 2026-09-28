@@ -1409,5 +1409,23 @@
       "Book 76.xlsx",
       "testSt2.xlsx"
     ]
+  },
+  "84100": {
+    "link": "84100",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "xlsx-xls"
+    ],
+    "files": [
+      "06.04.2015_1.xlsx",
+      "LCA BI - Financial Report Usage2010.xlsx",
+      "LCA BI - Financial Report Usage2013.xlsx",
+      "PowerPivot Healthcare Audit2010.xlsx",
+      "PowerPivot Healthcare Audit2013.xlsx"
+    ]
   }
 }
