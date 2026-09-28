@@ -1886,5 +1886,20 @@
     "files": [
       "13_05_2_1_.ppt"
     ]
+  },
+  "84112": {
+    "link": "84112",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "html-docx"
+    ],
+    "files": [
+      "327067a0.html",
+      "376046a0.html"
+    ]
   }
 }
