@@ -1116,5 +1116,59 @@
       "zevaco_nostradamus.epub",
       "conv_ac6a1701_4236_45d6_8ef1_74f5485c546d_69.epub"
     ]
+  },
+  "84084": {
+    "link": "84084",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "xlsx-xls"
+    ],
+    "files": [
+      "-02.02-06.02_2.xlsx",
+      "-1- (2).xlsx",
+      "-22.xlsx",
+      "02-04--.xlsx",
+      "111_v1_1.xlsx",
+      "18-99.xlsx",
+      "2-19016-1.xlsx",
+      "222.xlsx",
+      "3738375.xlsx",
+      "_13_1.xlsx",
+      "_13___.xlsx",
+      "_8443888.xlsx",
+      "Book 26.xlsx",
+      "Book 31.xlsx",
+      "Book 33 light.xlsx",
+      "Book 33.xlsx",
+      "Book 75.xlsx",
+      "ColumnsMissed.xlsx",
+      "conv_40hqO0VhNVz3rDN2fthxje398a6KNfBs8HRoMTBIuKY__jpg.xlsx",
+      "conv_4RXcgUgM_dcZGoe1Vmk__.xlsx",
+      "EDATE_emb.xlsx",
+      "EOMONTH_emb.xlsx",
+      "FACTDOUBLE_emb.xlsx",
+      "GCD_emb.xlsx",
+      "ISEVEN_emb.xlsx",
+      "ISODD_emb.xlsx",
+      "LCM_emb.xlsx",
+      "MODELO_planilhaControleFinanceiro.xlsx",
+      "MROUND_emb.xlsx",
+      "MULTINOMIAL_emb.xlsx",
+      "NETWORKDAYS_emb.xlsx",
+      "QUOTIENT_emb.xlsx",
+      "RANDBETWEEN_emb.xlsx",
+      "Raport_7A.xlsx",
+      "SERIESSUM_emb.xlsx",
+      "SQRTPI_emb.xlsx",
+      "test-workbook4.xlsx",
+      "VLOOKUP_emb.xlsx",
+      "WEEKNUM_emb.xlsx",
+      "WORKDAY_emb.xlsx",
+      "YEARFRAC_emb.xlsx"
+    ]
   }
 }
