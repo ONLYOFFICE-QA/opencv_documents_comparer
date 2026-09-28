@@ -1170,5 +1170,50 @@
       "WORKDAY_emb.xlsx",
       "YEARFRAC_emb.xlsx"
     ]
+  },
+  "84085": {
+    "link": "84085",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "xlsx-xls"
+    ],
+    "files": [
+      "-15-.xlsx",
+      "00_finansovaja_model_Retail_Top-Down_PL_SF_CF_BS_OutS_0.xlsx",
+      "2-5020-1.xlsx",
+      "22.xlsx",
+      "234_2.xlsx",
+      "274y seno.xlsx",
+      "50000strings.xlsx",
+      "70000strings.xlsx",
+      "_2304972_2.xlsx",
+      "Aanvalsplanner_v.2.2.xlsx",
+      "Baig_Yousef_Payment.xlsx",
+      "Book 27.xlsx",
+      "Book 78.xlsx",
+      "complex excel.xlsx",
+      "conv_hQHBL3cexepvPqNeuDBuq5YOby2F_8GQhskDnnvqjnM__1025.xlsx",
+      "conv_nXwV_rfumy7y33R5q5o__xlsx.xlsx",
+      "conv_uei092alMhGa4T5gsuM7KE_J14aYec6BJr14_4AFklw__1025.xlsx",
+      "conv_VW6vo8JD_lWOzcYJuybr6ecJrNBy0K4fBJhAS85DGwU__jpg.xlsx",
+      "conv_wdHnfJgTLjD5ghQTmnX2WAc_AWOkU0MgguWbCjQYMpk__1025.xlsx",
+      "conv_ZCy1EKC_XaEilXQ_AcA__xlsx.xlsx",
+      "Ejemplo simple de tabla dinamica.xlsx",
+      "file_1_ (1).xlsx",
+      "Heparins collaborative study - SST and results.xlsx",
+      "Many_examples.xlsx",
+      "rank_prf-09.xlsx",
+      "RC_07_101006A.xlsx",
+      "secur_praice_12.10.2016.xlsx",
+      "Test2.xlsx",
+      "Test23451234235.xlsx",
+      "VH_150405.xlsx",
+      "välittäjävertailu.xlsx",
+      "сравнение формул.xlsx"
+    ]
   }
 }
