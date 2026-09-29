@@ -1901,5 +1901,77 @@
       "327067a0.html",
       "376046a0.html"
     ]
+  },
+  "84139": {
+    "link": "84139",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "ods-xls"
+    ],
+    "files": [
+      "Area Normal.ods",
+      "Area Percent Stacked 3D.ods",
+      "Area Stacked.ods",
+      "Bar Normal.ods",
+      "Bar Percent Stacked.ods",
+      "Bar Stacked 3D.ods",
+      "Bubble.ods",
+      "Column and lines Stacked.ods",
+      "Column and lines.ods",
+      "Column Normal 3D.ods",
+      "Column Normal.ods",
+      "Column Percent Stacked.ods",
+      "Column Stacked.ods",
+      "Line 3D Lines.ods",
+      "Line Lines only.ods",
+      "Line Points and lines.ods",
+      "Line Points.ods",
+      "Net Filled.ods",
+      "Net Lines only.ods",
+      "Net Points and lines.ods",
+      "Net Points only.ods",
+      "Pie Donut.ods",
+      "Pie Exploded Donat.ods",
+      "Pie Exploded.ods",
+      "Pie Normal.ods",
+      "Scatter Lines 3D.ods",
+      "Scatter Lines only.ods",
+      "Scatter Points and lines.ods",
+      "Scatter Points only.ods",
+      "Stock Chart 3.ods",
+      "Stock Chart 4.ods"
+    ]
+  },
+  "84140": {
+    "link": "84140",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "ods-xlsx"
+    ],
+    "files": [
+      "BLOOD PRESSURE LOG.ods"
+    ]
+  },
+  "84141": {
+    "link": "84141",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "ods-xlsx"
+    ],
+    "files": [
+      "Problem with graph formatting (1).ods"
+    ]
   }
 }
