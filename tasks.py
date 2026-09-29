@@ -44,11 +44,17 @@ def conversion_test(
         quick_check: bool = False,
         x2t_limits: Optional[int] = None,
         out_x2ttester_param: bool = False,
-        check_error: bool = False
+        check_error: bool = False,
+        errors_only: bool = config.errors_only
 ):
+    """
+    :param errors_only: x2ttester reports only failed conversions (default from config.errors_only).
+    --no-errors-only reports every conversion: the full report (all rows with time) is sent zipped.
+    """
     download_core(c, version=version)
     conversion = X2tTesterConversion(
         test_config=X2ttesterTestConfig(
+            errors_only=errors_only,
             cores=int(cores) if cores else None,
             delete=True,
             direction=direction,

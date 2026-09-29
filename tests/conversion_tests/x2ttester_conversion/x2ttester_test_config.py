@@ -31,7 +31,7 @@ class X2ttesterTestConfig(BaseModel):
     report_path: Optional[str] = Field(init=False, default=None)
     timestamp: bool = Field(init=False, default=False)
     fonts_dir: Optional[str] = Field(init=False, default=None)
-    errors_only: bool = Field(init=False, default=True)
+    errors_only: Optional[bool] = Field(default=None, description="Report only failed conversions; None - config.errors_only")
     x2t_version: Optional[str] = Field(init=False, default=None)
     output_formats: Optional[str] = Field(init=False, default=None)
     input_formats: Optional[str] = Field(init=False, default=None)
@@ -50,7 +50,7 @@ class X2ttesterTestConfig(BaseModel):
         self.timeout = self.timeout or config.timeout
         self.timestamp = config.timestamp
         self.delete = config.delete if self.delete is None else self.delete
-        self.errors_only = config.errors_only
+        self.errors_only = config.errors_only if self.errors_only is None else self.errors_only
         self.output_dir = join(self.tmp_dir, 'cnv')
         self.result_dir = self.result_dir or StaticData.result_dir()
         self.input_dir = self.input_dir or StaticData.documents_dir()
