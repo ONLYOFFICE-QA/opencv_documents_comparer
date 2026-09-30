@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
-from os import chdir
-from os.path import join, isfile
+from os import chdir, sep
+from os.path import join, isfile, exists, abspath, normcase
+from time import sleep
+
+import psutil
 from rich import print
 
 from frameworks.decorators.decorators import highlighter
@@ -77,4 +80,63 @@ class Core:
         Deletes the core directory.
         """
         chdir(self.project_dir)
-        File.delete(self.core_dir, stdout=False, stderr=False)
+        self._kill_core_processes()
+
+        for _ in range(5):
+            File.delete(self.core_dir, stdout=False, stderr=True)
+            if not exists(self.core_dir):
+                return
+            sleep(1)
+
+        raise PermissionError(
+            f"|ERROR| Core directory is locked and could not be deleted: {self.core_dir}. "
+            "Close the processes using files in it (x2t, x2ttester, antivirus) and try again."
+        )
+
+    def _kill_core_processes(self) -> None:
+        """
+        Kills the processes that lock the core directory (their executable or working directory
+        is inside it) together with their children processes.
+        """
+        killed = []
+
+        for process in psutil.process_iter():
+            if not self._is_core_process(process):
+                continue
+            try:
+                children_processes = process.children(recursive=True)
+            except (psutil.NoSuchProcess, psutil.AccessDenied):
+                children_processes = []
+
+            for _process in [process, *children_processes]:
+                try:
+                    name = _process.name()
+                    _process.kill()
+                    killed.append(_process)
+                    print(f"[red]|INFO| Killed process: {name}, pid: {_process.pid}")
+                except psutil.NoSuchProcess:
+                    pass
+                except psutil.AccessDenied:
+                    print(f"[bold red]|ERROR| AccessDenied when killing process pid: {_process.pid}")
+
+        psutil.wait_procs(killed, timeout=5)
+
+    def _is_core_process(self, process: psutil.Process) -> bool:
+        """
+        Checks whether the process executable or working directory is inside the core directory.
+        :param process: Process to check.
+        :return: True if the process locks the core directory, False otherwise.
+        """
+        core_dir = normcase(abspath(self.core_dir))
+        try:
+            paths = [process.exe(), process.cwd()]
+        except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+            return False
+
+        for path in paths:
+            if not path:
+                continue
+            path = normcase(abspath(path))
+            if path == core_dir or path.startswith(core_dir + sep):
+                return True
+        return False
