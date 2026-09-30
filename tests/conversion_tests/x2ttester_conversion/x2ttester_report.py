@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import json
 import os
+import zipfile
 from datetime import datetime
 from os.path import join, splitext
 from re import sub
@@ -102,20 +103,42 @@ class X2ttesterReport(Report):
         errors_list = self._errors_list(df)
         passed_num = f"{len([file for file in df[df.Output_size != 0.0].Input_file.unique()])}"
 
-        self._add_to_end(df, 'BugInfo', f"Errors: {errors_list}")
-        self._add_to_end(df, 'BugInfo', f"Passed: {passed_num}")
+        # With errors_only disabled x2ttester reports every conversion: keep only failures in the errors report
+        # and send all rows as a separate compressed full report.
+        errors_df = df if self.config.errors_only else df[df.Output_size == 0.0].reset_index(drop=True)
+        full_report = report_path if self.config.errors_only else self._full_report(df)
 
-        processed_report = self.save_csv(df, self.path())
-        self._print_results(df, errors_list, passed_num, report_path)
+        self._add_to_end(errors_df, 'BugInfo', f"Errors: {errors_list}")
+        self._add_to_end(errors_df, 'BugInfo', f"Passed: {passed_num}")
+
+        processed_report = self.save_csv(errors_df, self.path())
+        self._print_results(errors_df, errors_list, passed_num, report_path)
 
         if tg_msg:
             self._send_to_telegram(
                 [
                     self._rename_report_for_tg(processed_report, f'{self.config.x2t_version}_errors_only.csv'),
-                    self._rename_report_for_tg(report_path, f'{self.config.x2t_version}_full.csv'),
+                    self._rename_report_for_tg(
+                        full_report,
+                        f'{self.config.x2t_version}_full{splitext(full_report)[1]}'
+                    ),
                 ],
                 f"{tg_msg}\n\nStatus: `{'Some files have errors' if errors_list else 'All tests passed'}`"
             )
+
+    def _full_report(self, df) -> str:
+        """
+        Saves all conversions (without the parameters xml from the Log column) and compresses the report:
+        a full run has hundreds of thousands of rows, too big for a Telegram document as plain csv.
+
+        :param df: DataFrame with all conversions.
+        :return: Path to the zip archive with the full report.
+        """
+        csv_path = self.save_csv(df, f"{splitext(self.path())[0]}_full.csv")
+        zip_path = f"{splitext(csv_path)[0]}.zip"
+        with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as archive:
+            archive.write(csv_path, f"{self.config.x2t_version}_full.csv")
+        return zip_path
 
     def _rename_report_for_tg(self, report_path: str, new_name: str) -> str:
         """
