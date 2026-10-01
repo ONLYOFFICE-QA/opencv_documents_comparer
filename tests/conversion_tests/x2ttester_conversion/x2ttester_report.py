@@ -3,7 +3,7 @@ import json
 import os
 import zipfile
 from datetime import datetime
-from os.path import join, splitext
+from os.path import isdir, join, splitext
 from re import sub
 
 import pandas as pd
@@ -50,6 +50,20 @@ class X2ttesterReport(Report):
         self.reports_dir = self.config.reports_dir
         self.exceptions = exceptions_json
         self.os = HostInfo().os
+        self._errors_xml = set()
+        self._errors_xml_found = None
+
+    def collect_errors_xml(self, output_dir: str) -> None:
+        """
+        Remembers failed conversions of an x2ttester run by the parameters xml that x2ttester saves to _errors.
+
+        :param output_dir: Output directory of the x2ttester run.
+        """
+        errors_dir = join(output_dir, '_errors')
+        found = isdir(errors_dir)
+        if found:
+            self._errors_xml.update(os.listdir(errors_dir))
+        self._errors_xml_found = found if self._errors_xml_found is None else self._errors_xml_found and found
 
     def path(self) -> str:
         """
@@ -168,8 +182,7 @@ class X2ttesterReport(Report):
         mask = (errors.BugInfo == 0)
         return errors.loc[mask, 'Input_file'].unique().tolist()
 
-    @staticmethod
-    def _failed_conversions(df) -> pd.DataFrame:
+    def _failed_conversions(self, df) -> pd.DataFrame:
         """
         Selects failed conversions from a report with all conversions, the same way x2ttester does in errorsOnly
         mode.
@@ -177,8 +190,11 @@ class X2ttesterReport(Report):
         :param df: DataFrame with all conversions.
         :return: DataFrame with failed conversions only.
         """
-        exit_codes = pd.to_numeric(df.Exit_code, errors='coerce')  # TIMEOUT -> NaN
-        return df[exit_codes.ne(0)]
+        if not self._errors_xml_found:  # x2ttester without the _errors folder (before 7.3)
+            return df[pd.to_numeric(df.Exit_code, errors='coerce').ne(0)]
+
+        output_ext = df.Direction.astype(str).str.split('-').str[-1]
+        return df[(df.Input_file.astype(str) + '_.' + output_ext + '.xml').isin(self._errors_xml)]
 
     def _bug_info(self, row) -> str | int:
         """

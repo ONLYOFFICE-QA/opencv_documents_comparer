@@ -35,7 +35,9 @@ class X2tTesterConversion:
         if True the path will be generated automatically, based on x2t version and configurable options
         :param list_xml: str — the path to the xml file with the names of the files for the test
         """
+        Dir.create(self.config.tmp_dir, stdout=False)  # x2ttester creates the output and _errors dirs non-recursively
         self.x2ttester.conversion(self.config.input_formats, self.config.output_formats, listxml_path=list_xml)
+        self.report.collect_errors_xml(self.config.output_dir)
         self.results_handler.run(results_path, self.config.output_formats) if results_path is not False else ...
         return File.last_modified(dirname(self.config.report_path))
 
