@@ -6,6 +6,7 @@ from datetime import datetime
 from os.path import join, splitext
 from re import sub
 
+import pandas as pd
 from host_tools.utils import Dir
 from rich import print
 
@@ -105,7 +106,7 @@ class X2ttesterReport(Report):
 
         # With errors_only disabled x2ttester reports every conversion: keep only failures in the errors report
         # and send all rows as a separate compressed full report.
-        errors_df = df if self.config.errors_only else df[df.Output_size == 0.0].reset_index(drop=True)
+        errors_df = df if self.config.errors_only else self._failed_conversions(df).reset_index(drop=True)
         full_report = report_path if self.config.errors_only else self._full_report(df)
 
         self._add_to_end(errors_df, 'BugInfo', f"Errors: {errors_list}")
@@ -163,9 +164,21 @@ class X2ttesterReport(Report):
         if df.empty:
             return []
 
-        errors = df[df.Output_size == 0.0] if not self.config.errors_only else df
+        errors = self._failed_conversions(df) if not self.config.errors_only else df
         mask = (errors.BugInfo == 0)
         return errors.loc[mask, 'Input_file'].unique().tolist()
+
+    @staticmethod
+    def _failed_conversions(df) -> pd.DataFrame:
+        """
+        Selects failed conversions from a report with all conversions, the same way x2ttester does in errorsOnly
+        mode.
+
+        :param df: DataFrame with all conversions.
+        :return: DataFrame with failed conversions only.
+        """
+        exit_codes = pd.to_numeric(df.Exit_code, errors='coerce')  # TIMEOUT -> NaN
+        return df[exit_codes.ne(0)]
 
     def _bug_info(self, row) -> str | int:
         """
