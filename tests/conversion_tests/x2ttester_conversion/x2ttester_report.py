@@ -172,8 +172,7 @@ class X2ttesterReport(Report):
     def _failed_conversions(df) -> pd.DataFrame:
         """
         Selects failed conversions from a report with all conversions, the same way x2ttester does in errorsOnly
-        mode: a non-zero exit code or a timeout. A conversion with exit code 0 and an empty result (an empty
-        document converted to txt/md, a broken xps without pages) is not a failure.
+        mode.
 
         :param df: DataFrame with all conversions.
         :return: DataFrame with failed conversions only.
