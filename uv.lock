@@ -1,5 +1,5 @@
 version = 1
-revision = 3
+revision = 5
 requires-python = ">=3.12"
 resolution-markers = [
     "python_full_version >= '3.14' and sys_platform == 'win32'",
@@ -1373,7 +1373,7 @@ wheels = [
 [[package]]
 name = "s3wrapper"
 version = "0.1.0"
-source = { git = "https://github.com/l8556/S3Wrapper.git?branch=master#0725d9f0e5fd352774977285eacd9de6e2795fec" }
+source = { git = "https://github.com/l8556/S3Wrapper.git?branch=master#26ce7d63e7875279dce6733486e74c7fea2cf037" }
 dependencies = [
     { name = "boto3" },
     { name = "rich" },
