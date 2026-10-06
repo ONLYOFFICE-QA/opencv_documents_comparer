@@ -524,9 +524,7 @@
   "84271": {
     "link": "84271",
     "description": "",
-    "os": [
-      "windows"
-    ],
+    "os": [],
     "directions": [
       "docx-pdf",
       "docx-png",
