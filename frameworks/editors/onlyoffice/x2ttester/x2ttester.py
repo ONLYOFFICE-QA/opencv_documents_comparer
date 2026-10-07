@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import subprocess as sb
-from os import chdir
 from os.path import join, exists
 
 from host_tools import File
@@ -27,9 +26,8 @@ class X2tTester:
         :param listxml_path: Path to the list.xml file. Defaults to None.
         """
         self.check_x2ttester_exists()
-        chdir(self.config.core_dir)
         param_xml = self.create_param_xml(input_format, output_format, listxml_path)
-        sb.call(f"{self.x2ttester_path} {param_xml}", shell=True)
+        sb.call(f"{self.x2ttester_path} {param_xml}", shell=True, cwd=self.config.core_dir)
         File.delete(param_xml, stdout=False)
 
     def check_x2ttester_exists(self) -> None:

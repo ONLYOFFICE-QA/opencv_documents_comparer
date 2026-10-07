@@ -1,16 +1,18 @@
 # -*- coding: utf-8 -*-
-from os import chdir
+import subprocess as sb
 from os.path import isfile, join
 from typing import Optional
-from host_tools import Str, Shell
+from host_tools import Str
 from ..host_config import HostConfig
 
 
 class X2t:
     @staticmethod
     def version(x2t_dir: str) -> Optional[str]:
-        chdir(x2t_dir)
-        x2t_info = Shell.get_output(X2t.check_exists(join(x2t_dir, HostConfig().x2t)))
+        x2t_info = sb.run(
+            [X2t.check_exists(join(x2t_dir, HostConfig().x2t))],
+            cwd=x2t_dir, stdout=sb.PIPE, stderr=sb.STDOUT, text=True, errors='replace'
+        ).stdout
         return Str.find_by_key(x2t_info, key='OOX/binary file converter. Version')
 
     @staticmethod
