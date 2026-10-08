@@ -785,7 +785,7 @@
   },
   "84344": {
     "link": "84344",
-    "description": "MS Excel removes named ranges converted from ODS named expressions",
+    "description": "",
     "mode": [
       "Default",
       "t-format"
