@@ -782,5 +782,26 @@
       "Stock Chart 3.ods",
       "Stock Chart 4.ods"
     ]
+  },
+  "84344": {
+    "link": "84344",
+    "description": "MS Excel removes named ranges converted from ODS named expressions",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "ods-xlsx"
+    ],
+    "files": [
+      "ccf1_projets-pierre.ods",
+      "Calendario_Uscite_fumetti_FEBBRAIO 2010.ods",
+      "EV Requirements v2.2.3.ods",
+      "file_1_ (2).ods",
+      "Megoldasok.ods",
+      "tel_sprav_18.10.2013.ods",
+      "ValorPorExtenso.ods",
+      "ValorPorExtensoTeste.ods"
+    ]
   }
 }
