@@ -193,18 +193,6 @@
       "Smaller50MB.xlst"
     ]
   },
-  "59424": {
-    "link": "59424",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "Планировщик_АПРЕЛЬ (1).xlsb",
-      "ПЂ†≠®аЃҐй®™_АПРЕЛЬ (1).xlsb",
-      "Планировщик_АПРЕЛЬ (1).xlst",
-      "ПЂ†≠®аЃҐй®™_АПРЕЛЬ (1).xlst"
-    ]
-  },
   "64543": {
     "link": "64543",
     "description": "the incorrect file extension. its svg",
@@ -388,17 +376,6 @@
       "Consulting (7).pptx"
     ]
   },
-  "80221": {
-    "link": "80221",
-    "description": "",
-    "os": [
-      "mac"
-    ],
-    "directions": [],
-    "files": [
-      "conv_cf4b9eae_edd0_4454_8291_33d678413833_67.docx"
-    ]
-  },
   "82151": {
     "link": "82151",
     "description": "",
@@ -437,35 +414,6 @@
       "28v115.doc"
     ]
   },
-  "83278": {
-    "link": "83278",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "conv_1032815138_1025.docx",
-      "Indonesian_Shadow_Puppets_Unit.docx",
-      "GreekSynopsis.odt",
-      "1001.odt"
-    ]
-  },
-  "83885": {
-    "link": "83885",
-    "description": "",
-    "os": [
-      "windows"
-    ],
-    "directions": [
-      "rtf-md",
-      "rtf-epub",
-      "rtf-fb2",
-      "rtf-html"
-    ],
-    "files": [
-      "pr_124-10-13.rtf",
-      "ellipt_eq.rtf"
-    ]
-  },
   "4": {
     "link": "",
     "description": "X2T_MEMORY_LIMIT",
@@ -477,17 +425,6 @@
     ],
     "files": [
       "conv_ac6a1701_4236_45d6_8ef1_74f5485c546d_69.epub"
-    ]
-  },
-  "84169": {
-    "link": "84169",
-    "description": "",
-    "os": [],
-    "directions": [
-      "docx-md"
-    ],
-    "files": [
-      "PxMc31uDIvN2tuhDIFL5tPoRDAJ4UBiedUozvCa4RN0_.docx"
     ]
   },
   "84196": {
