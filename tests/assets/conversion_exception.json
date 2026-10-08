@@ -184,7 +184,7 @@
   },
   "57360": {
     "link": "57360",
-    "description": "X2T_MEMORY_LIMIT=\"5GiB\"",
+    "description": "X2T_MEMORY_LIMIT=\"5GiB\"; pdf/png/jpg crash with \"Fatal javascript OOM\" even with X2T_MEMORY_LIMIT=\"24GiB\", same crash as bug 66397, recheck after 66397 is fixed",
     "os": [],
     "directions": [],
     "files": [
