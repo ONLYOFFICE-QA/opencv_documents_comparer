@@ -467,5 +467,20 @@
     "files": [
       "PxMc31uDIvN2tuhDIFL5tPoRDAJ4UBiedUozvCa4RN0_.docx"
     ]
+  },
+  "6": {
+    "link": "",
+    "description": "Slow file, Linux nightly run only: TIMEOUT under parallel load. A single conversion passes on Linux (10-13 min) and Windows (~2.5 min); conversion time is the same as on 9.4.1.15 (10.0.0.159: epub 955/951 s, odt 1146/1137 s on Linux)",
+    "os": [
+      "linux"
+    ],
+    "directions": [
+      "docx-epub",
+      "docx-odt",
+      "docx-ott"
+    ],
+    "files": [
+      "conv_uLUYhoGbnJRrGM1RZ8s0eOqbG4dpVxSIKK_q5ui1cmQ__1025.docx"
+    ]
   }
 }
