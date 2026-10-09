@@ -424,10 +424,14 @@
     "os": [],
     "directions": [
       "doc-odt",
-      "doc-ott"
+      "doc-ott",
+      "docx-epub",
+      "docx-odt",
+      "docx-ott"
     ],
     "files": [
-      "conv_560c7142_c498_4723_ba6e_7f331ecc8e21_67.doc"
+      "conv_560c7142_c498_4723_ba6e_7f331ecc8e21_67.doc",
+      "conv_uLUYhoGbnJRrGM1RZ8s0eOqbG4dpVxSIKK_q5ui1cmQ__1025.docx"
     ]
   },
   "84352": {
@@ -470,17 +474,16 @@
   },
   "6": {
     "link": "",
-    "description": "Slow file, Linux nightly run only: TIMEOUT under parallel load. A single conversion passes on Linux (10-13 min) and Windows (~2.5 min); conversion time is the same as on 9.4.1.15 (10.0.0.159: epub 955/951 s, odt 1146/1137 s on Linux)",
+    "description": "X2T_MEMORY_LIMIT=\"6GiB\"; Linux only: exit 80 with the default 4GiB limit (std::bad_alloc on 8.0-9.4), passes with 6GiB (10.0.0.159, peak VmData 5.07 GiB); same memory limit case as bug 59241",
     "os": [
       "linux"
     ],
     "directions": [
-      "docx-epub",
-      "docx-odt",
-      "docx-ott"
+      "xlsb-ods",
+      "xlsb-ots"
     ],
     "files": [
-      "conv_uLUYhoGbnJRrGM1RZ8s0eOqbG4dpVxSIKK_q5ui1cmQ__1025.docx"
+      "Планировщик_АПРЕЛЬ (1).xlsb"
     ]
   }
 }
