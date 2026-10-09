@@ -451,5 +451,21 @@
     "files": [
       "cbc.ppt"
     ]
+  },
+  "5": {
+    "link": "",
+    "description": "Linux nightly run only: exit 132 under parallel load. A single conversion passes on Linux and Windows, including under full CPU load (10.0.0.159, peak VmData 3.66 GiB with the default 4GiB X2T_MEMORY_LIMIT)",
+    "os": [
+      "linux"
+    ],
+    "directions": [
+      "docx-epub",
+      "docx-fb2",
+      "docx-html",
+      "docx-md"
+    ],
+    "files": [
+      "PxMc31uDIvN2tuhDIFL5tPoRDAJ4UBiedUozvCa4RN0_.docx"
+    ]
   }
 }
