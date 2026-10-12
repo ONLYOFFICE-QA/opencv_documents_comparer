@@ -20,9 +20,9 @@
       "empty(бЂ†©§ЃҐ ≠•в).pptt"
     ]
   },
-  "56205": {
-    "link": "56205",
-    "description": "Broken files",
+  "8": {
+    "link": "",
+    "description": "Broken files (bug 56205, closed: the developer confirmed these xps have broken archives or xml)",
     "os": [],
     "directions": [
       "xps-jpg",
@@ -62,9 +62,9 @@
       "hackerone_xlsb-xti-supbook.xlsb"
     ]
   },
-  "39545": {
-    "link": "39545",
-    "description": "Broken file",
+  "7": {
+    "link": "",
+    "description": "Broken file (bug 39545, closed as INVALID: the pdf does not open in Adobe and Foxit either)",
     "os": [],
     "directions": [
       "pdf-jpg",
@@ -102,9 +102,9 @@
       "diplomatariumis00orgoog.doct"
     ]
   },
-  "59241": {
-    "link": "59241",
-    "description": "X2T_MEMORY_LIMIT=\"5GiB\"",
+  "10": {
+    "link": "",
+    "description": "X2T_MEMORY_LIMIT=\"5GiB\" (bug 59241, closed: memory limit)",
     "os": [],
     "directions": [],
     "files": [
@@ -182,9 +182,9 @@
       "employee-entries.doct"
     ]
   },
-  "57360": {
-    "link": "57360",
-    "description": "X2T_MEMORY_LIMIT=\"5GiB\"; pdf/png/jpg crash with \"Fatal javascript OOM\" even with X2T_MEMORY_LIMIT=\"24GiB\", same crash as bug 66397, recheck after 66397 is fixed",
+  "9": {
+    "link": "",
+    "description": "X2T_MEMORY_LIMIT=\"5GiB\"; pdf/png/jpg crash with \"Fatal javascript OOM\" even with X2T_MEMORY_LIMIT=\"24GiB\", same crash as bug 66397, recheck after 66397 is fixed (bug 57360, closed: memory limit)",
     "os": [],
     "directions": [],
     "files": [
@@ -358,9 +358,9 @@
       "conv_2817370291_1025.htm"
     ]
   },
-  "76314": {
-    "link": "76314",
-    "description": "X2T_MEMORY_LIMIT=\"24GiB\"",
+  "11": {
+    "link": "",
+    "description": "X2T_MEMORY_LIMIT=\"24GiB\" (bug 76314, closed: memory limit)",
     "os": [],
     "directions": [],
     "files": [
