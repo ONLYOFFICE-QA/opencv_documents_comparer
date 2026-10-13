@@ -803,5 +803,20 @@
       "ValorPorExtenso.ods",
       "ValorPorExtensoTeste.ods"
     ]
+  },
+  "84487": {
+    "link": "84487",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "xls-xlsx"
+    ],
+    "files": [
+      "cf_builtin_percent.xls",
+      "cf_user_kg.xls"
+    ]
   }
 }
