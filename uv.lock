@@ -1,5 +1,5 @@
 version = 1
-revision = 3
+revision = 5
 requires-python = ">=3.12"
 resolution-markers = [
     "python_full_version >= '3.14' and sys_platform == 'win32'",
@@ -402,7 +402,7 @@ wheels = [
 [[package]]
 name = "host-tools"
 version = "2.5"
-source = { git = "https://github.com/l8556/host_tools.git?branch=master#5eef418be1673b77f7f0b8468bc05d1c2f2295a2" }
+source = { git = "https://github.com/l8556/host_tools.git?branch=master#726ad80e0e53a31acec5978264826e6fc90edb7c" }
 dependencies = [
     { name = "distro" },
     { name = "py7zr" },
@@ -1409,7 +1409,7 @@ wheels = [
 [[package]]
 name = "s3wrapper"
 version = "0.1.0"
-source = { git = "https://github.com/l8556/S3Wrapper.git?branch=master#430f20a3d043bb2aac2eebd4a343610fc16e6f73" }
+source = { git = "https://github.com/l8556/S3Wrapper.git?branch=master#1795355a9577f6f3df84c19a347bc4b40d0cf555" }
 dependencies = [
     { name = "boto3" },
     { name = "rich" },
