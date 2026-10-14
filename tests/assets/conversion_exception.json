@@ -475,22 +475,7 @@
     "os": [
       "linux"
     ],
-    "directions": [
-      "numbers-xlsx",
-      "numbers-xls",
-      "numbers-xlsm",
-      "numbers-xlsb",
-      "numbers-xltx",
-      "numbers-xltm",
-      "numbers-ods",
-      "numbers-ots",
-      "numbers-csv",
-      "numbers-tsv",
-      "numbers-pdf",
-      "numbers-png",
-      "numbers-jpg",
-      "numbers-xlst"
-    ],
+    "directions": [],
     "files": [
       "testMultipleSheets.numbers"
     ]
