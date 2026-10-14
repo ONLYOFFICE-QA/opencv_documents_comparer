@@ -468,5 +468,31 @@
     "files": [
       "fixture-crash.docx"
     ]
+  },
+  "84508": {
+    "link": "84508",
+    "description": "",
+    "os": [
+      "linux"
+    ],
+    "directions": [
+      "numbers-xlsx",
+      "numbers-xls",
+      "numbers-xlsm",
+      "numbers-xlsb",
+      "numbers-xltx",
+      "numbers-xltm",
+      "numbers-ods",
+      "numbers-ots",
+      "numbers-csv",
+      "numbers-tsv",
+      "numbers-pdf",
+      "numbers-png",
+      "numbers-jpg",
+      "numbers-xlst"
+    ],
+    "files": [
+      "testMultipleSheets.numbers"
+    ]
   }
 }
