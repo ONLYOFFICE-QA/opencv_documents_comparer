@@ -518,10 +518,7 @@
     "link": "84560",
     "description": "",
     "os": [],
-    "directions": [
-      "pdf-png",
-      "pdf-jpg"
-    ],
+    "directions": [],
     "files": [
       "issue19517.pdf"
     ]
