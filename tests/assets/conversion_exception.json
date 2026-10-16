@@ -543,5 +543,22 @@
       "tdf165642_glossaryFootnote.docx",
       "fixture-crash.docx"
     ]
+  },
+  "84562": {
+    "link": "84562",
+    "description": "",
+    "os": [],
+    "directions": [
+      "docx-pdf",
+      "docx-png",
+      "docx-jpg",
+      "docx-epub",
+      "docx-fb2",
+      "docx-html",
+      "docx-md"
+    ],
+    "files": [
+      "fdo79129.docx"
+    ]
   }
 }
