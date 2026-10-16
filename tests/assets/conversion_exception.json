@@ -513,5 +513,17 @@
       "bitmap-halftone-skip-grid-template2.pdf",
       "bitmap-halftone-skip-grid-template3.pdf"
     ]
+  },
+  "84560": {
+    "link": "84560",
+    "description": "",
+    "os": [],
+    "directions": [
+      "pdf-png",
+      "pdf-jpg"
+    ],
+    "files": [
+      "issue19517.pdf"
+    ]
   }
 }
