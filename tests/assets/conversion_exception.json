@@ -500,5 +500,62 @@
       "testPagesHeadersFootersAlphaUpper.pages",
       "testPagesHeadersFootersRomanUpper.pages"
     ]
+  },
+  "84559": {
+    "link": "84559",
+    "description": "",
+    "os": [],
+    "directions": [],
+    "files": [
+      "bitmap-halftone-skip-grid.pdf",
+      "bitmap-halftone-skip-dummy.pdf",
+      "bitmap-halftone-skip-grid-template1.pdf",
+      "bitmap-halftone-skip-grid-template2.pdf",
+      "bitmap-halftone-skip-grid-template3.pdf"
+    ]
+  },
+  "84560": {
+    "link": "84560",
+    "description": "",
+    "os": [],
+    "directions": [],
+    "files": [
+      "issue19517.pdf"
+    ]
+  },
+  "84561": {
+    "link": "84561",
+    "description": "",
+    "os": [],
+    "directions": [
+      "docx-odt",
+      "docx-ott"
+    ],
+    "files": [
+      "sdt_after_section_break.docx",
+      "tdf148361.docx",
+      "tdf147724.docx",
+      "customxml-two-data-stores.docx",
+      "tdf151912.docx",
+      "tdf165642_glossaryFootnote.docx",
+      "fixture-crash.docx"
+    ]
+  },
+  "84562": {
+    "link": "84562",
+    "description": "",
+    "os": [],
+    "directions": [
+      "docx-pdf",
+      "docx-png",
+      "docx-jpg",
+      "docx-epub",
+      "docx-fb2",
+      "docx-html",
+      "docx-md"
+    ],
+    "files": [
+      "fdo79129.docx"
+    ]
   }
 }
