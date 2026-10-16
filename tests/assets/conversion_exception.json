@@ -525,5 +525,23 @@
     "files": [
       "issue19517.pdf"
     ]
+  },
+  "84561": {
+    "link": "84561",
+    "description": "",
+    "os": [],
+    "directions": [
+      "docx-odt",
+      "docx-ott"
+    ],
+    "files": [
+      "sdt_after_section_break.docx",
+      "tdf148361.docx",
+      "tdf147724.docx",
+      "customxml-two-data-stores.docx",
+      "tdf151912.docx",
+      "tdf165642_glossaryFootnote.docx",
+      "fixture-crash.docx"
+    ]
   }
 }
