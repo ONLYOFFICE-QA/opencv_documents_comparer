@@ -488,5 +488,17 @@
     "files": [
       "huge_sheet.xlsb"
     ]
+  },
+  "84553": {
+    "link": "84553",
+    "description": "",
+    "os": [],
+    "directions": [],
+    "files": [
+      "testPagesHeadersFootersRomanLower.pages",
+      "testPagesHeadersFootersAlphaLower.pages",
+      "testPagesHeadersFootersAlphaUpper.pages",
+      "testPagesHeadersFootersRomanUpper.pages"
+    ]
   }
 }
