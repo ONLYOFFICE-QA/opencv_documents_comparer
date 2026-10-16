@@ -393,7 +393,6 @@
     "testMultipleSheets.numbers"
   ],
   "pages": [
-    "testPagesHeadersFootersRomanLower.pages",
-    "testPagesLayout.pages"
+    "testPagesHeadersFootersRomanLower.pages"
   ]
 }
