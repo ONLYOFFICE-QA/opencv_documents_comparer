@@ -500,5 +500,18 @@
       "testPagesHeadersFootersAlphaUpper.pages",
       "testPagesHeadersFootersRomanUpper.pages"
     ]
+  },
+  "84559": {
+    "link": "84559",
+    "description": "",
+    "os": [],
+    "directions": [],
+    "files": [
+      "bitmap-halftone-skip-grid.pdf",
+      "bitmap-halftone-skip-dummy.pdf",
+      "bitmap-halftone-skip-grid-template1.pdf",
+      "bitmap-halftone-skip-grid-template2.pdf",
+      "bitmap-halftone-skip-grid-template3.pdf"
+    ]
   }
 }
