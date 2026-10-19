@@ -557,5 +557,22 @@
     "files": [
       "fdo79129.docx"
     ]
+  },
+  "84583": {
+    "link": "84583",
+    "description": "",
+    "os": [],
+    "directions": [
+      "docx-pdf",
+      "docx-png",
+      "docx-jpg",
+      "docx-epub",
+      "docx-fb2",
+      "docx-html",
+      "docx-md"
+    ],
+    "files": [
+      "tdf104649.docx"
+    ]
   }
 }
