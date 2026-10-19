@@ -596,5 +596,18 @@
     "files": [
       "tika-3388.docx"
     ]
+  },
+  "84586": {
+    "link": "84586",
+    "description": "",
+    "os": [],
+    "directions": [
+      "docx-odt",
+      "docx-ott"
+    ],
+    "files": [
+      "Bug60341.docx",
+      "tdf129353.docx"
+    ]
   }
 }
