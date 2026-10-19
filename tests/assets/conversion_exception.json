@@ -575,5 +575,26 @@
     "files": [
       "tdf104649.docx"
     ]
+  },
+  "84585": {
+    "link": "84585",
+    "description": "",
+    "os": [
+      "linux",
+      "mac"
+    ],
+    "directions": [
+      "docx-pdf",
+      "docx-png",
+      "docx-jpg",
+      "docx-doct",
+      "docx-epub",
+      "docx-fb2",
+      "docx-html",
+      "docx-md"
+    ],
+    "files": [
+      "tika-3388.docx"
+    ]
   }
 }
