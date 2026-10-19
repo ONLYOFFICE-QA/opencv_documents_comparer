@@ -473,7 +473,8 @@
     "link": "84508",
     "description": "",
     "os": [
-      "linux"
+      "linux",
+      "mac"
     ],
     "directions": [],
     "files": [
