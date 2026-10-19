@@ -631,5 +631,16 @@
     "files": [
       "bug53475-password-is-solrcell[passsolrcell].docx"
     ]
+  },
+  "84597": {
+    "link": "84597",
+    "description": "",
+    "os": [],
+    "directions": [
+      "docx-txt"
+    ],
+    "files": [
+      "090716_Studentische_Arbeit_VWS.docx"
+    ]
   }
 }
