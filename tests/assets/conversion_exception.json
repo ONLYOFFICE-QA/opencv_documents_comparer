@@ -473,7 +473,8 @@
     "link": "84508",
     "description": "",
     "os": [
-      "linux"
+      "linux",
+      "mac"
     ],
     "directions": [],
     "files": [
@@ -556,6 +557,70 @@
     ],
     "files": [
       "fdo79129.docx"
+    ]
+  },
+  "84583": {
+    "link": "84583",
+    "description": "",
+    "os": [],
+    "directions": [
+      "docx-pdf",
+      "docx-png",
+      "docx-jpg",
+      "docx-epub",
+      "docx-fb2",
+      "docx-html",
+      "docx-md"
+    ],
+    "files": [
+      "tdf104649.docx"
+    ]
+  },
+  "84585": {
+    "link": "84585",
+    "description": "",
+    "os": [
+      "linux",
+      "mac"
+    ],
+    "directions": [
+      "docx-pdf",
+      "docx-png",
+      "docx-jpg",
+      "docx-doct",
+      "docx-epub",
+      "docx-fb2",
+      "docx-html",
+      "docx-md"
+    ],
+    "files": [
+      "tika-3388.docx"
+    ]
+  },
+  "84586": {
+    "link": "84586",
+    "description": "",
+    "os": [],
+    "directions": [
+      "docx-odt",
+      "docx-ott"
+    ],
+    "files": [
+      "Bug60341.docx",
+      "tdf129353.docx"
+    ]
+  },
+  "84589": {
+    "link": "84589",
+    "description": "",
+    "os": [],
+    "directions": [
+      "docx-odt",
+      "docx-ott"
+    ],
+    "files": [
+      "tdf149200.docx",
+      "tdf149198.docx"
     ]
   }
 }
