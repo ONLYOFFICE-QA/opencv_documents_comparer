@@ -651,5 +651,15 @@
     "files": [
       "protected_upper_case[passpassword].docx"
     ]
+  },
+  "84615": {
+    "link": "84615",
+    "description": "",
+    "os": [],
+    "directions": [],
+    "files": [
+      "auth-event-ef-open[pass000000].pdf",
+      "encrypted-attachment[pass000000].pdf"
+    ]
   }
 }
