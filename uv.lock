@@ -1420,7 +1420,7 @@ wheels = [
 [[package]]
 name = "s3wrapper"
 version = "0.1.0"
-source = { git = "https://github.com/l8556/S3Wrapper.git?branch=master#9ae8af623e892a8f61efa759393f545ff4c1b843" }
+source = { git = "https://github.com/l8556/S3Wrapper.git?branch=master#39cb4b3c78f361472981673e1dfe3c7a5e46e75b" }
 dependencies = [
     { name = "boto3" },
     { name = "rich" },
