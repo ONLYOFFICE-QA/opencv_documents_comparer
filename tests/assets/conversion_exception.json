@@ -672,5 +672,16 @@
     "files": [
       "ConditionalFormattingSamples.xls"
     ]
+  },
+  "84639": {
+    "link": "84639",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xlsx-xlsb"
+    ],
+    "files": [
+      "enhanced-protection.xlsx"
+    ]
   }
 }
