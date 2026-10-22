@@ -1,5 +1,5 @@
 version = 1
-revision = 3
+revision = 5
 requires-python = ">=3.12"
 resolution-markers = [
     "python_full_version >= '3.14' and sys_platform == 'win32'",
@@ -408,7 +408,7 @@ wheels = [
 [[package]]
 name = "host-tools"
 version = "2.5"
-source = { git = "https://github.com/l8556/host_tools.git?branch=master#c88414a34985a31703d424816075a9b5d84a4135" }
+source = { git = "https://github.com/l8556/host_tools.git?branch=master#351c68f8aaff40d2d6f7ca7890fdd0dbfcc4b21b" }
 dependencies = [
     { name = "distro" },
     { name = "py7zr" },
@@ -1567,7 +1567,7 @@ wheels = [
 [[package]]
 name = "telegram"
 version = "2.0"
-source = { git = "https://github.com/l8556/TelegramApi.git?branch=master#6c1dc80fd93777e83399089c01f50af3bfb71d57" }
+source = { git = "https://github.com/l8556/TelegramApi.git?branch=master#461e43ebefc12e4db952098c814829ac0966ad4a" }
 dependencies = [
     { name = "requests" },
     { name = "rich" },
