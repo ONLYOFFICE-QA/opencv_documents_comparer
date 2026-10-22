@@ -661,5 +661,40 @@
       "auth-event-ef-open[pass000000].pdf",
       "encrypted-attachment[pass000000].pdf"
     ]
+  },
+  "84638": {
+    "link": "84638",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xls-xlsb"
+    ],
+    "files": [
+      "ConditionalFormattingSamples.xls"
+    ]
+  },
+  "84639": {
+    "link": "84639",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xlsx-xlsb"
+    ],
+    "files": [
+      "enhanced-protection.xlsx"
+    ]
+  },
+  "84640": {
+    "link": "84640",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xlsx-pdf",
+      "xlsx-png",
+      "xlsx-jpg"
+    ],
+    "files": [
+      "CustomXMLMappings-complex-type.xlsx"
+    ]
   }
 }
