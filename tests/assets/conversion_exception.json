@@ -683,5 +683,18 @@
     "files": [
       "enhanced-protection.xlsx"
     ]
+  },
+  "84640": {
+    "link": "84640",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xlsx-pdf",
+      "xlsx-png",
+      "xlsx-jpg"
+    ],
+    "files": [
+      "CustomXMLMappings-complex-type.xlsx"
+    ]
   }
 }
