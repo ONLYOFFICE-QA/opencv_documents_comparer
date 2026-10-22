@@ -696,5 +696,18 @@
     "files": [
       "CustomXMLMappings-complex-type.xlsx"
     ]
+  },
+  "84650": {
+    "link": "84650",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xlsx-xls",
+      "xlsx-xlsb"
+    ],
+    "files": [
+      "51519.xlsx",
+      "50299.xlsx"
+    ]
   }
 }
