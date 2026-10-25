@@ -711,5 +711,67 @@
     "files": [
       "56450.xls"
     ]
+  },
+  "84666": {
+    "link": "84666",
+    "description": "",
+    "os": [],
+    "directions": [],
+    "files": [
+      "extenxls_pwd123[passpwd123].xlsx"
+    ]
+  },
+  "84668": {
+    "link": "84668",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xlsx-xlsb"
+    ],
+    "files": [
+      "64508.xlsx",
+      "64667.xlsx"
+    ]
+  },
+  "84669": {
+    "link": "84669",
+    "description": "",
+    "os": [
+      "linux",
+      "mac"
+    ],
+    "directions": [
+      "xlsx-xls"
+    ],
+    "files": [
+      "tdf100084.xlsx"
+    ]
+  },
+  "84670": {
+    "link": "84670",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xlsx-pdf",
+      "xlsx-png",
+      "xlsx-jpg",
+      "xlsx-ods",
+      "xlsx-ots",
+      "xlsx-xls",
+      "xlsx-xlsb"
+    ],
+    "files": [
+      "tdf124525.xlsx"
+    ]
+  },
+  "84673": {
+    "link": "84673",
+    "description": "",
+    "os": [],
+    "directions": [],
+    "files": [
+      "49609.xlsx",
+      "tdf131575.xlsx"
+    ]
   }
 }
