@@ -405,19 +405,6 @@
       "conv_uLUYhoGbnJRrGM1RZ8s0eOqbG4dpVxSIKK_q5ui1cmQ__1025.docx"
     ]
   },
-  "84352": {
-    "link": "84352",
-    "description": "",
-    "os": [
-      "windows"
-    ],
-    "directions": [],
-    "files": [
-      "Alko_UEN1.doc",
-      "Adams.wps",
-      "Adams S.wpt"
-    ]
-  },
   "84367": {
     "link": "84367",
     "description": "",
@@ -460,27 +447,6 @@
       "Планировщик_АПРЕЛЬ (1).xlsb"
     ]
   },
-  "84479": {
-    "link": "84479",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "fixture-crash.docx"
-    ]
-  },
-  "84508": {
-    "link": "84508",
-    "description": "",
-    "os": [
-      "linux",
-      "mac"
-    ],
-    "directions": [],
-    "files": [
-      "testMultipleSheets.numbers"
-    ]
-  },
   "84519": {
     "link": "84519",
     "description": "",
@@ -488,18 +454,6 @@
     "directions": [],
     "files": [
       "huge_sheet.xlsb"
-    ]
-  },
-  "84553": {
-    "link": "84553",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "testPagesHeadersFootersRomanLower.pages",
-      "testPagesHeadersFootersAlphaLower.pages",
-      "testPagesHeadersFootersAlphaUpper.pages",
-      "testPagesHeadersFootersRomanUpper.pages"
     ]
   },
   "84559": {
@@ -524,41 +478,6 @@
       "issue19517.pdf"
     ]
   },
-  "84561": {
-    "link": "84561",
-    "description": "",
-    "os": [],
-    "directions": [
-      "docx-odt",
-      "docx-ott"
-    ],
-    "files": [
-      "sdt_after_section_break.docx",
-      "tdf148361.docx",
-      "tdf147724.docx",
-      "customxml-two-data-stores.docx",
-      "tdf151912.docx",
-      "tdf165642_glossaryFootnote.docx",
-      "fixture-crash.docx"
-    ]
-  },
-  "84562": {
-    "link": "84562",
-    "description": "",
-    "os": [],
-    "directions": [
-      "docx-pdf",
-      "docx-png",
-      "docx-jpg",
-      "docx-epub",
-      "docx-fb2",
-      "docx-html",
-      "docx-md"
-    ],
-    "files": [
-      "fdo79129.docx"
-    ]
-  },
   "84583": {
     "link": "84583",
     "description": "",
@@ -574,177 +493,6 @@
     ],
     "files": [
       "tdf104649.docx"
-    ]
-  },
-  "84585": {
-    "link": "84585",
-    "description": "",
-    "os": [
-      "linux",
-      "mac"
-    ],
-    "directions": [
-      "docx-pdf",
-      "docx-png",
-      "docx-jpg",
-      "docx-doct",
-      "docx-epub",
-      "docx-fb2",
-      "docx-html",
-      "docx-md"
-    ],
-    "files": [
-      "tika-3388.docx"
-    ]
-  },
-  "84586": {
-    "link": "84586",
-    "description": "",
-    "os": [],
-    "directions": [
-      "docx-odt",
-      "docx-ott"
-    ],
-    "files": [
-      "Bug60341.docx",
-      "tdf129353.docx"
-    ]
-  },
-  "84589": {
-    "link": "84589",
-    "description": "",
-    "os": [],
-    "directions": [
-      "docx-odt",
-      "docx-ott"
-    ],
-    "files": [
-      "tdf149200.docx",
-      "tdf149198.docx"
-    ]
-  },
-  "84597": {
-    "link": "84597",
-    "description": "",
-    "os": [],
-    "directions": [
-      "docx-txt"
-    ],
-    "files": [
-      "090716_Studentische_Arbeit_VWS.docx"
-    ]
-  },
-  "84599": {
-    "link": "84599",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "protected_upper_case[passpassword].docx"
-    ]
-  },
-  "84615": {
-    "link": "84615",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "auth-event-ef-open[pass000000].pdf",
-      "encrypted-attachment[pass000000].pdf"
-    ]
-  },
-  "84638": {
-    "link": "84638",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xls-xlsb"
-    ],
-    "files": [
-      "ConditionalFormattingSamples.xls"
-    ]
-  },
-  "84639": {
-    "link": "84639",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xlsx-xlsb"
-    ],
-    "files": [
-      "enhanced-protection.xlsx"
-    ]
-  },
-  "84640": {
-    "link": "84640",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xlsx-pdf",
-      "xlsx-png",
-      "xlsx-jpg"
-    ],
-    "files": [
-      "CustomXMLMappings-complex-type.xlsx"
-    ]
-  },
-  "84650": {
-    "link": "84650",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xlsx-xls",
-      "xlsx-xlsb"
-    ],
-    "files": [
-      "51519.xlsx",
-      "50299.xlsx"
-    ]
-  },
-  "84651": {
-    "link": "84651",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xls-xlsb"
-    ],
-    "files": [
-      "56450.xls"
-    ]
-  },
-  "84666": {
-    "link": "84666",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "extenxls_pwd123[passpwd123].xlsx"
-    ]
-  },
-  "84668": {
-    "link": "84668",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xlsx-xlsb"
-    ],
-    "files": [
-      "64508.xlsx",
-      "64667.xlsx"
-    ]
-  },
-  "84669": {
-    "link": "84669",
-    "description": "",
-    "os": [
-      "linux",
-      "mac"
-    ],
-    "directions": [
-      "xlsx-xls"
-    ],
-    "files": [
-      "tdf100084.xlsx"
     ]
   },
   "84670": {
@@ -764,39 +512,6 @@
       "tdf124525.xlsx"
     ]
   },
-  "84673": {
-    "link": "84673",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "49609.xlsx",
-      "tdf131575.xlsx"
-    ]
-  },
-  "84754": {
-    "link": "84754",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xls-ods",
-      "xls-ots"
-    ],
-    "files": [
-      "35564.xls",
-      "41139.xls",
-      "35565.xls"
-    ]
-  },
-  "84755": {
-    "link": "84755",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "fdo55572-1.xls"
-    ]
-  },
   "84756": {
     "link": "84756",
     "description": "",
@@ -808,18 +523,6 @@
     ],
     "files": [
       "49581.xls"
-    ]
-  },
-  "84757": {
-    "link": "84757",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xls-csv",
-      "xls-tsv"
-    ],
-    "files": [
-      "tdf144732.xls"
     ]
   },
   "84758": {
