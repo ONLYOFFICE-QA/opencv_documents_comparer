@@ -439,7 +439,7 @@ wheels = [
 [[package]]
 name = "host-tools"
 version = "2.5"
-source = { git = "https://github.com/l8556/host_tools.git?branch=master#c0a8f923c936df5eb7e1be13c21eb4015d0d17ec" }
+source = { git = "https://github.com/l8556/host_tools.git?branch=master#3d7d4c2753feeff474f339682a79cbaf548302b5" }
 dependencies = [
     { name = "distro" },
     { name = "py7zr" },
@@ -1454,7 +1454,7 @@ wheels = [
 [[package]]
 name = "s3wrapper"
 version = "0.1.0"
-source = { git = "https://github.com/l8556/S3Wrapper.git?branch=master#e445e900efc8300e07eac429a6bdda5bcc231529" }
+source = { git = "https://github.com/l8556/S3Wrapper.git?branch=master#e98d56c488021532c896d608bc40bcbd90bf11e9" }
 dependencies = [
     { name = "boto3" },
     { name = "rich" },
