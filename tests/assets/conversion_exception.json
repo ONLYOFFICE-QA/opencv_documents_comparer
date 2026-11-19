@@ -405,18 +405,6 @@
       "conv_uLUYhoGbnJRrGM1RZ8s0eOqbG4dpVxSIKK_q5ui1cmQ__1025.docx"
     ]
   },
-  "84367": {
-    "link": "84367",
-    "description": "",
-    "os": [
-      "windows"
-    ],
-    "directions": [],
-    "files": [
-      "cbc.ppt",
-      "Lecture3_labor_final.ppt"
-    ]
-  },
   "5": {
     "link": "",
     "description": "Linux nightly run only: exit 132 under parallel load. A single conversion passes on Linux and Windows, including under full CPU load (10.0.0.159, peak VmData 3.66 GiB with the default 4GiB X2T_MEMORY_LIMIT)",
@@ -445,37 +433,6 @@
     ],
     "files": [
       "Планировщик_АПРЕЛЬ (1).xlsb"
-    ]
-  },
-  "84519": {
-    "link": "84519",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "huge_sheet.xlsb"
-    ]
-  },
-  "84559": {
-    "link": "84559",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "bitmap-halftone-skip-grid.pdf",
-      "bitmap-halftone-skip-dummy.pdf",
-      "bitmap-halftone-skip-grid-template1.pdf",
-      "bitmap-halftone-skip-grid-template2.pdf",
-      "bitmap-halftone-skip-grid-template3.pdf"
-    ]
-  },
-  "84560": {
-    "link": "84560",
-    "description": "",
-    "os": [],
-    "directions": [],
-    "files": [
-      "issue19517.pdf"
     ]
   },
   "84583": {
@@ -510,30 +467,6 @@
     ],
     "files": [
       "tdf124525.xlsx"
-    ]
-  },
-  "84756": {
-    "link": "84756",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xls-csv",
-      "xls-tsv",
-      "xls-xlsb"
-    ],
-    "files": [
-      "49581.xls"
-    ]
-  },
-  "84758": {
-    "link": "84758",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xlsx-xlsb"
-    ],
-    "files": [
-      "tdf76047_externalLink.xlsx"
     ]
   },
   "85253": {
