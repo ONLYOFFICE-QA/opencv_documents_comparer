@@ -68,7 +68,9 @@
     "os": [],
     "directions": [
       "pdf-jpg",
-      "pdf-png"
+      "pdf-png",
+      "pdf-docx",
+      "pdf-txt"
     ],
     "files": [
       "Crying_behaviourANGmcP.pdf"
