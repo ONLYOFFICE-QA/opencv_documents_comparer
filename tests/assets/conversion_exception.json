@@ -68,7 +68,9 @@
     "os": [],
     "directions": [
       "pdf-jpg",
-      "pdf-png"
+      "pdf-png",
+      "pdf-docx",
+      "pdf-txt"
     ],
     "files": [
       "Crying_behaviourANGmcP.pdf"
@@ -479,7 +481,13 @@
       "xlsb-xltx",
       "xlsb-xltm",
       "xlsb-csv",
-      "xlsb-tsv"
+      "xlsb-tsv",
+      "xlsb-ods",
+      "xlsb-ots",
+      "xlsb-xls",
+      "xlsb-jpg",
+      "xlsb-png",
+      "xlsb-pdf"
     ],
     "files": [
       "huge_sheet.xlsb"
