@@ -818,5 +818,19 @@
       "cf_builtin_percent.xls",
       "cf_user_kg.xls"
     ]
+  },
+  "85397": {
+    "link": "85397",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "xlsb-xlsx"
+    ],
+    "files": [
+      "universal-content.xlsb"
+    ]
   }
 }
