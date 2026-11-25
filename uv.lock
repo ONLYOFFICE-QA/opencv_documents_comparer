@@ -439,7 +439,7 @@ wheels = [
 [[package]]
 name = "host-tools"
 version = "2.5"
-source = { git = "https://github.com/l8556/host_tools.git?branch=master#3d7d4c2753feeff474f339682a79cbaf548302b5" }
+source = { git = "https://github.com/l8556/host_tools.git?branch=master#34a34c8947f38c8aea760a922bbac24a46256c50" }
 dependencies = [
     { name = "distro" },
     { name = "py7zr" },
@@ -1455,7 +1455,7 @@ wheels = [
 [[package]]
 name = "s3wrapper"
 version = "0.1.0"
-source = { git = "https://github.com/l8556/S3Wrapper.git?branch=master#cc891a12daaa657b8fb20a540f04167b10b32014" }
+source = { git = "https://github.com/l8556/S3Wrapper.git?branch=master#45af15b622cc96f7d6383e9ea7d0306649a5e428" }
 dependencies = [
     { name = "boto3" },
     { name = "rich" },
@@ -1602,7 +1602,7 @@ wheels = [
 [[package]]
 name = "telegram"
 version = "2.0"
-source = { git = "https://github.com/l8556/TelegramApi.git?branch=master#09bab7a08e6a1210e6bcd67f44e0b321cfb4e4d5" }
+source = { git = "https://github.com/l8556/TelegramApi.git?branch=master#f98d0871cb67761be73c44b96a56dde1071ebe6f" }
 dependencies = [
     { name = "requests" },
     { name = "rich" },
