@@ -439,7 +439,7 @@ wheels = [
 [[package]]
 name = "host-tools"
 version = "2.5"
-source = { git = "https://github.com/l8556/host_tools.git?branch=master#34a34c8947f38c8aea760a922bbac24a46256c50" }
+source = { git = "https://github.com/l8556/host_tools.git?branch=master#b5581a8990b1ded67d9b71ecb30767d3762f89ff" }
 dependencies = [
     { name = "distro" },
     { name = "py7zr" },
@@ -1602,7 +1602,7 @@ wheels = [
 [[package]]
 name = "telegram"
 version = "2.0"
-source = { git = "https://github.com/l8556/TelegramApi.git?branch=master#f98d0871cb67761be73c44b96a56dde1071ebe6f" }
+source = { git = "https://github.com/l8556/TelegramApi.git?branch=master#e39131db2e24a58ee07dcabd06393661763ba223" }
 dependencies = [
     { name = "requests" },
     { name = "rich" },
