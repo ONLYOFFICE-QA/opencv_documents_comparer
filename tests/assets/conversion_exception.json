@@ -442,23 +442,6 @@
       "Планировщик_АПРЕЛЬ (1).xlsb"
     ]
   },
-  "84583": {
-    "link": "84583",
-    "description": "",
-    "os": [],
-    "directions": [
-      "docx-pdf",
-      "docx-png",
-      "docx-jpg",
-      "docx-epub",
-      "docx-fb2",
-      "docx-html",
-      "docx-md"
-    ],
-    "files": [
-      "tdf104649.docx"
-    ]
-  },
   "84670": {
     "link": "84670",
     "description": "",
@@ -474,28 +457,6 @@
     ],
     "files": [
       "tdf124525.xlsx"
-    ]
-  },
-  "85253": {
-    "link": "85253",
-    "description": "",
-    "os": [],
-    "directions": [
-      "xlsb-xlsx",
-      "xlsb-xlsm",
-      "xlsb-xltx",
-      "xlsb-xltm",
-      "xlsb-csv",
-      "xlsb-tsv",
-      "xlsb-ods",
-      "xlsb-ots",
-      "xlsb-xls",
-      "xlsb-jpg",
-      "xlsb-png",
-      "xlsb-pdf"
-    ],
-    "files": [
-      "huge_sheet.xlsb"
     ]
   }
 }
