@@ -540,5 +540,33 @@
       "ValorPorExtenso.ods",
       "ValorPorExtensoTeste.ods"
     ]
+  },
+  "85397": {
+    "link": "85397",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "xlsb-xlsx"
+    ],
+    "files": [
+      "universal-content.xlsb"
+    ]
+  },
+  "85426": {
+    "link": "85426",
+    "description": "",
+    "mode": [
+      "Default",
+      "t-format"
+    ],
+    "directions": [
+      "hwp-docx"
+    ],
+    "files": [
+      "shadow_pers_leftbottom_28346x42520.hwp"
+    ]
   }
 }
