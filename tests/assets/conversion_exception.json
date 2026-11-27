@@ -589,5 +589,41 @@
       "эффект_штурмовика.docx",
       "مرحباً بك في Word.docx"
     ]
+  },
+  "85488": {
+    "link": "85488",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xlsb-ods",
+      "xlsb-ots"
+    ],
+    "files": [
+      "huge_sheet.xlsb"
+    ]
+  },
+  "66397": {
+    "link": "66397",
+    "description": "",
+    "os": [],
+    "directions": [
+      "xlsb-jpg",
+      "xlsb-png",
+      "xlsb-pdf"
+    ],
+    "files": [
+      "huge_sheet.xlsb"
+    ]
+  },
+  "12": {
+    "link": "",
+    "description": "X2T_MEMORY_LIMIT=\"6GiB\"; xlsb=>xls (new in 10.0) exceeds the default 4GiB limit (std::bad_alloc, exit 134 on Linux), passes with raised limits (10.0.5.9, peak VmData 5.7 GiB on 10.0.3.60)",
+    "os": [],
+    "directions": [
+      "xlsb-xls"
+    ],
+    "files": [
+      "huge_sheet.xlsb"
+    ]
   }
 }
